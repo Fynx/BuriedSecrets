@@ -5,6 +5,6 @@ int main(int argc, char** argv)
 {
 	QApplication app(argc, argv);
 	General game;
-	game.show();
+	game.getMainWindow()->show();
 	return app.exec();
 }

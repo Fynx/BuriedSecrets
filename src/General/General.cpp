@@ -1,14 +1,53 @@
 #include "General/General.h"
 
-#include <QtWidgets>
-
 General::General()
 {
-	QLabel *l = new QLabel(this);
-	l->setText("BuriedSecrets here. Hello world.");
-	setCentralWidget(l);
-	QAction *a = new QAction(this);
-	a->setText("Quit");
-	connect(a, SIGNAL(triggered()), SLOT(close()));
-	menuBar()->addMenu("File")->addAction(a);
+	initModules();
+}
+
+General::~General()
+{
+	delete dataManager;
+	delete debugManager;
+	delete graphics;
+	delete mind;
+	delete physicsEngine;
+	delete soundsManager;
+	delete userInterface;
+}
+
+QMainWindow * General::getMainWindow()
+{
+	return userInterface->getMainWindow();
+}
+
+void General::loadMap()
+{
+	qDebug() << "Triggered function loadMap";
+	int a;
+	dataManager->loadFromFile("blabla", a);
+}
+
+void General::saveMap()
+{
+	qDebug() << "Triggered function saveMap";
+	int a = 5;
+	dataManager->saveToFile("blabla", a);
+}
+
+void General::initModules()
+{
+	dataManager = new DataManager();
+
+	debugManager = new DebugManager();
+
+	graphics = new Graphics();
+
+	mind = new Mind();
+
+	physicsEngine = new PhysicsEngine();
+
+	soundsManager = new SoundsManager();
+
+	userInterface = new UserInterface(this);
 }
