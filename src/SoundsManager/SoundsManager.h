@@ -2,5 +2,8 @@
 
 class SoundsManager {
 public:
-	SoundsManager() {}
+	SoundsManager();
+
+	//TODO event as an arg
+	void onEvent();
 };

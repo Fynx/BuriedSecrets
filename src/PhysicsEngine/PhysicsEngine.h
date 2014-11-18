@@ -2,5 +2,5 @@
 
 class PhysicsEngine {
 public:
-	PhysicsEngine() {}
+	PhysicsEngine();
 };

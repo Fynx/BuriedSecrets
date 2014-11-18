@@ -1,8 +1,7 @@
 #include "UserInterface/UserInterface.h"
 
 UserInterface::UserInterface(MapManager *mapManager)
-	: mapManager(mapManager),
-	  mainWindow(new QMainWindow())
+	: mapManager(mapManager), mainWindow(new QMainWindow())
 {
 	//TODO these things are not going to be here, so don't worry about menu and qt signals
 

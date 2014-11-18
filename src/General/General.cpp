@@ -37,17 +37,25 @@ void General::saveMap()
 
 void General::initModules()
 {
-	dataManager = new DataManager();
+	/** Order is the first law of heaven */
 
+	/** Accesible by everything */
+	// we should make it a singleton, really
 	debugManager = new DebugManager();
 
-	graphics = new Graphics();
+	/** Independent utility modules */
 
-	mind = new Mind();
-
-	physicsEngine = new PhysicsEngine();
+	dataManager = new DataManager();
 
 	soundsManager = new SoundsManager();
 
+	physicsEngine = new PhysicsEngine();
+
+	/** Core modules */
+
+	mind = new Mind(physicsEngine, soundsManager);
+
 	userInterface = new UserInterface(this);
+
+	graphics = new Graphics(mind, userInterface);
 }
