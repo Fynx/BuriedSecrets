@@ -3,5 +3,4 @@
 
 DataManager::DataManager()
 {
-
 }

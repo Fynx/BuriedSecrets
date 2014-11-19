@@ -1,8 +1,12 @@
 set (Mind_SRCS
+	Animator.cpp
+	AnimatorManager.cpp
+	AnimatorTest.cpp
 	Mind.cpp
 )
 
 set (Mind_HDRS
+	AnimatorManager.h
 )
 
 qt5_wrap_cpp (Mind_SRCS ${Mind_HDRS})

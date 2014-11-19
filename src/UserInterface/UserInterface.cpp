@@ -1,5 +1,8 @@
 #include "UserInterface/UserInterface.h"
 
+/**
+ * All widgets are created and set by Graphics (!) except for the mainWindow.
+ */
 UserInterface::UserInterface(MapManager *mapManager)
 	: mapManager(mapManager), mainWindow(new QMainWindow())
 {
