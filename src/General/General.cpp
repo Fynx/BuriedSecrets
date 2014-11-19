@@ -55,7 +55,7 @@ void General::initModules()
 
 	mind = new Mind(physicsEngine, soundsManager);
 
-	userInterface = new UserInterface(this);
+	userInterface = new UserInterface(this, mind);
 
 	graphics = new Graphics(mind, userInterface);
 }
