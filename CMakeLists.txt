@@ -1,7 +1,7 @@
 project (BuriedSecrets)
 cmake_minimum_required (VERSION 2.8)
 find_package (Qt5 COMPONENTS Core Gui Widgets)
-set (CMAKE_CXX_FLAGS "-Wall -std=c++11 -ggdb -pg")
+set (CMAKE_CXX_FLAGS "-Wall -Werror -std=c++11 -ggdb -pg")
 
 include_directories (${Qt5Widgets_INCLUDE_DIRS} ${BuriedSecrets_SOURCE_DIR}/src)
 set (EXECUTABLE_OUTPUT_PATH "${BuriedSecrets_BINARY_DIR}/bin")
@@ -14,6 +14,12 @@ if (BUILD_TESTS)
 	include_directories (${Qt5Test_INCLUDE_DIRS})
 	enable_testing ()
 endif (BUILD_TESTS)
+
+# SFML
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+set(SFML_STATIC_VARIABLES TRUE)
+find_package(SFML 2.1 COMPONENTS system window graphics audio REQUIRED)
+include_directories(${SFML_INCLUDE_DIR}})
 
 add_subdirectory (src)
 
