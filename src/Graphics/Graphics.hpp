@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Mind/Mind.h"
-#include "UserInterface/UserInterface.h"
+#include "Mind/Mind.hpp"
+#include "UserInterface/UserInterface.hpp"
 
 class Graphics {
 public:

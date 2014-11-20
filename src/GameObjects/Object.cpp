@@ -1,4 +1,4 @@
-#include "GameObjects/Object.h"
+#include "GameObjects/Object.hpp"
 
 Object::~Object()
 {}

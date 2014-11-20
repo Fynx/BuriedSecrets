@@ -1,4 +1,4 @@
-#include "General/General.h"
+#include "General/General.hpp"
 
 General::General()
 {

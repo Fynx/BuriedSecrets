@@ -7,8 +7,8 @@ set (Mind_SRCS
 )
 
 set (Mind_HDRS
-	AnimatorManager.h
-	Mind.h
+	AnimatorManager.hpp
+	Mind.hpp
 )
 
 qt5_wrap_cpp (Mind_SRCS ${Mind_HDRS})

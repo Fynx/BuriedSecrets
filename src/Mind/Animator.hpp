@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GameObjects/Object.h"
+#include "GameObjects/Object.hpp"
 
 #include <QtCore>
 

@@ -1,4 +1,4 @@
-#include "UserInterface/UserInterface.h"
+#include "UserInterface/UserInterface.hpp"
 
 /**
  * All widgets are created and set by Graphics (!) except for the mainWindow.

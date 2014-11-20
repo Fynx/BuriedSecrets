@@ -1,1 +1,1 @@
-#include "DebugManager/DebugManager.h"
+#include "DebugManager/DebugManager.hpp"

@@ -1,5 +1,5 @@
-#include "DataManager/DataManager.h"
-#include "DataManager/FileIO.h"
+#include "DataManager/DataManager.hpp"
+#include "DataManager/FileIO.hpp"
 
 DataManager::DataManager()
 {

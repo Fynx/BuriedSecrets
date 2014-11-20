@@ -1,12 +1,12 @@
 #pragma once
 
-#include "DataManager/DataManager.h"
-#include "DebugManager/DebugManager.h"
-#include "Graphics/Graphics.h"
-#include "Mind/Mind.h"
-#include "PhysicsEngine/PhysicsEngine.h"
-#include "SoundsManager/SoundsManager.h"
-#include "UserInterface/UserInterface.h"
+#include "DataManager/DataManager.hpp"
+#include "DebugManager/DebugManager.hpp"
+#include "Graphics/Graphics.hpp"
+#include "Mind/Mind.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
+#include "SoundsManager/SoundsManager.hpp"
+#include "UserInterface/UserInterface.hpp"
 
 #include <QtWidgets>
 

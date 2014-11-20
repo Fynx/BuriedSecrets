@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mind/Mind.h"
+#include "Mind/Mind.hpp"
 
 #include <QtWidgets>
 

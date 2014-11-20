@@ -1,5 +1,5 @@
-#include "Mind/AnimatorManager.h"
-#include "Mind/AnimatorTest.h"
+#include "Mind/AnimatorManager.hpp"
+#include "Mind/AnimatorTest.hpp"
 
 AnimatorManager::AnimatorManager()
 {

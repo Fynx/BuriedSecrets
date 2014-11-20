@@ -1,4 +1,4 @@
-#include "Mind/Animator.h"
+#include "Mind/Animator.hpp"
 
 Animator::~Animator()
 {}

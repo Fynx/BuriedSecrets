@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Mind/AnimatorManager.h"
-#include "Mind/Event.h"
-#include "PhysicsEngine/PhysicsEngine.h"
-#include "SoundsManager/SoundsManager.h"
+#include "Mind/AnimatorManager.hpp"
+#include "Mind/Event.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
+#include "SoundsManager/SoundsManager.hpp"
 
 #include <QtCore>
 

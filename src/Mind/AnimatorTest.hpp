@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mind/Animator.h"
+#include "Mind/Animator.hpp"
 
 class AnimatorTest : public Animator {
 public:

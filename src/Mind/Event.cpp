@@ -1,4 +1,4 @@
-#include "Mind/Event.h"
+#include "Mind/Event.hpp"
 
 Event::Event(const QString &name)
 	: name(name)

@@ -1,4 +1,4 @@
-#include "Mind/Mind.h"
+#include "Mind/Mind.hpp"
 
 //TODO use DebugManager instead
 #include <QtCore>

@@ -4,7 +4,7 @@ set (BuriedSecrets_SRCS
 )
 
 set (BuriedSecrets_HDRS
-	General.h
+	General.hpp
 )
 
 qt5_wrap_cpp (BuriedSecrets_SRCS ${BuriedSecrets_HDRS})

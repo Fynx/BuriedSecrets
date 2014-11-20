@@ -1,4 +1,4 @@
-#include "SoundsManager/SoundsManager.h"
+#include "SoundsManager/SoundsManager.hpp"
 
 //TODO replace with DebugManager, don't use qDebug
 #include <QtCore>

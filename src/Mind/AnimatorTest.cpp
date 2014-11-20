@@ -1,4 +1,4 @@
-#include "Mind/AnimatorTest.h"
+#include "Mind/AnimatorTest.hpp"
 
 //TODO use DebugManager instead
 #include <QtCore>

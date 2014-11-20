@@ -3,7 +3,7 @@ set (UserInterface_SRCS
 )
 
 set (UserInterface_HDRS
-	UserInterface.h
+	UserInterface.hpp
 )
 
 qt5_wrap_cpp (UserInterface_SRCS ${UserInterface_HDRS})
