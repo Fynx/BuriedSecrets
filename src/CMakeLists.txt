@@ -8,8 +8,8 @@ add_subdirectory (PhysicsEngine)
 
 add_subdirectory (GameObjects)
 add_subdirectory (Mind)
-add_subdirectory (UserInterface)
 add_subdirectory (Graphics)
+add_subdirectory (UserInterface)
 
 add_subdirectory (Tools)
 add_subdirectory (General)

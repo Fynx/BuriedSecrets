@@ -18,14 +18,15 @@ class UserInterface : public QObject {
 
 Q_OBJECT;
 public:
-	UserInterface(MapManager *mapManager, Mind *mind);
+	UserInterface(MapManager *mapManager, Mind *mind, QWidget *mapView);
 	~UserInterface();
 
-	QMainWindow * getMainWindow();
+	QMainWindow *getMainWindow();
 
 private:
 	MapManager  *mapManager;
 	Mind        *mind;
 
 	QMainWindow *mainWindow;
+	QWidget     *mapView;
 };

@@ -18,7 +18,7 @@ public:
 	General();
 	~General();
 
-	QMainWindow * getMainWindow();
+	QMainWindow *getMainWindow();
 
 	virtual void loadMap();
 	virtual void saveMap();

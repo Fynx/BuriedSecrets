@@ -7,7 +7,8 @@ SoundsManager::SoundsManager()
 {
 }
 
-void SoundsManager::onEvent()
+void SoundsManager::onEvent(const Event &event)
 {
 	qDebug() << "<explosion>";
+	qDebug() << "event:" << event.toString();
 }

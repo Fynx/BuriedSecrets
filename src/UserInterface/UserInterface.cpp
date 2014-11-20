@@ -1,10 +1,7 @@
 #include "UserInterface/UserInterface.hpp"
 
-/**
- * All widgets are created and set by Graphics (!) except for the mainWindow.
- */
-UserInterface::UserInterface(MapManager *mapManager, Mind *mind)
-	: mapManager(mapManager), mind(mind), mainWindow(new QMainWindow())
+UserInterface::UserInterface(MapManager *mapManager, Mind *mind, QWidget *mapView)
+	: mapManager(mapManager), mind(mind), mainWindow(new QMainWindow()), mapView(mapView)
 {
 	//TODO these things are not going to be here, so don't worry about menu and qt signals
 
@@ -28,8 +25,6 @@ UserInterface::UserInterface(MapManager *mapManager, Mind *mind)
 	actionQuit->setText("Quit");
 	connect(actionQuit, &QAction::triggered, mainWindow, &QMainWindow::close);
 	menuFile->addAction(actionQuit);
-
-	mind->onEvent(QString("UserInterface sends its regards."));
 }
 
 UserInterface::~UserInterface()

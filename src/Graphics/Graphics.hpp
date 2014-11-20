@@ -5,9 +5,10 @@
 
 class Graphics {
 public:
-	Graphics(Mind *mind, UserInterface *userInterface);
+	Graphics(Mind *mind);
+
+	QWidget *getMapView();
 
 private:
 	Mind *mind;
-	UserInterface *userInterface;
 };
