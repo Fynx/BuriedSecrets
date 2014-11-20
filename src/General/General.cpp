@@ -16,7 +16,7 @@ General::~General()
 	delete userInterface;
 }
 
-QMainWindow * General::getMainWindow()
+QMainWindow *General::getMainWindow()
 {
 	return userInterface->getMainWindow();
 }
@@ -24,15 +24,13 @@ QMainWindow * General::getMainWindow()
 void General::loadMap()
 {
 	qDebug() << "Triggered function loadMap";
-	int a;
-	dataManager->loadFromFile("blabla", a);
+	dataManager->loadFromFile("blabla", *mind);
 }
 
 void General::saveMap()
 {
 	qDebug() << "Triggered function saveMap";
-	int a = 5;
-	dataManager->saveToFile("blabla", a);
+	dataManager->saveToFile("blabla", *mind);
 }
 
 void General::initModules()
@@ -53,7 +51,8 @@ void General::initModules()
 
 	/** Core modules */
 
-	mind = new Mind(physicsEngine, soundsManager);
+	//TODO Mind should not have access to dataManager
+	mind = new Mind(dataManager, physicsEngine, soundsManager);
 
 	graphics = new Graphics(mind);
 

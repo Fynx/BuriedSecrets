@@ -14,7 +14,7 @@ target_link_libraries (BuriedSecrets
 	${Qt5Widgets_LIBRARIES}
 	DataManager
 	DebugManager
-# 	GameObjects
+	GameObjects
 	Graphics
 	Mind
 	PhysicsEngine

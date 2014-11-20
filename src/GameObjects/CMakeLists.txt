@@ -1,4 +1,6 @@
 set (GameObjects_SRCS
+	Building.cpp
+	Fortification.cpp
 	Object.cpp
 )
 
