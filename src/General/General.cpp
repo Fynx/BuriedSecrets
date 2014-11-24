@@ -1,9 +1,11 @@
 #include "General/General.hpp"
 
+
 General::General()
 {
 	initModules();
 }
+
 
 General::~General()
 {
@@ -16,10 +18,12 @@ General::~General()
 	delete userInterface;
 }
 
+
 QMainWindow *General::getMainWindow()
 {
 	return userInterface->getMainWindow();
 }
+
 
 void General::loadMap()
 {
@@ -27,11 +31,13 @@ void General::loadMap()
 	dataManager->loadFromFile("blabla", *mind);
 }
 
+
 void General::saveMap()
 {
 	qDebug() << "Triggered function saveMap";
 	dataManager->saveToFile("blabla", *mind);
 }
+
 
 void General::initModules()
 {
@@ -56,5 +62,7 @@ void General::initModules()
 
 	graphics = new Graphics(mind);
 
-	userInterface = new UserInterface(this, mind, graphics->getMapView());
+	userInterface = new UserInterface(this, mind, graphics->getGraphicsWidget());
+
+	graphics->startRendering();
 }

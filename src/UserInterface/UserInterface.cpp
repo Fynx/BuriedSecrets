@@ -1,7 +1,8 @@
 #include "UserInterface/UserInterface.hpp"
 
-UserInterface::UserInterface(MapManager *mapManager, Mind *mind, QWidget *mapView)
-	: mapManager(mapManager), mind(mind), mainWindow(new QMainWindow()), mapView(mapView)
+
+UserInterface::UserInterface(MapManager* mapManager, Mind* mind, QWidget* graphicsWidget)
+	: mapManager(mapManager), mind(mind), mainWindow(new QMainWindow()), graphicsWidget(graphicsWidget)
 {
 	//TODO these things are not going to be here, so don't worry about menu and qt signals
 
@@ -25,6 +26,12 @@ UserInterface::UserInterface(MapManager *mapManager, Mind *mind, QWidget *mapVie
 	actionQuit->setText("Quit");
 	connect(actionQuit, &QAction::triggered, mainWindow, &QMainWindow::close);
 	menuFile->addAction(actionQuit);
+
+	graphicsWidget->setParent(mainWindow);
+	// FIXME Those below are just examples. Soszu, fix this!
+	graphicsWidget->resize(150, 50);
+	graphicsWidget->move(10, 30);
+	graphicsWidget->show();
 }
 
 UserInterface::~UserInterface()

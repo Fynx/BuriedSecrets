@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Graphics/GraphicsWidget.hpp"
 #include "Mind/Mind.hpp"
 
 #include <QtWidgets>
@@ -18,7 +19,7 @@ class UserInterface : public QObject {
 
 Q_OBJECT;
 public:
-	UserInterface(MapManager *mapManager, Mind *mind, QWidget *mapView);
+	UserInterface(MapManager *mapManager, Mind *mind, QWidget *graphicsWidget);
 	~UserInterface();
 
 	QMainWindow *getMainWindow();
@@ -28,5 +29,5 @@ private:
 	Mind        *mind;
 
 	QMainWindow *mainWindow;
-	QWidget     *mapView;
+	QWidget     *graphicsWidget;
 };

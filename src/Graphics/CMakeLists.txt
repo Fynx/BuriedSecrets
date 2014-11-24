@@ -1,8 +1,11 @@
 set (Graphics_SRCS
 	Graphics.cpp
+	GraphicsWidget.cpp
 )
 
 set (Graphics_HDRS
+	Graphics.hpp
+	GraphicsWidget.hpp
 )
 
 qt5_wrap_cpp (Graphics_SRCS ${Graphics_HDRS})
