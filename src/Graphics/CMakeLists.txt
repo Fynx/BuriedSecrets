@@ -1,6 +1,8 @@
 set (Graphics_SRCS
 	Graphics.cpp
 	GraphicsWidget.cpp
+	GraphicalObject.cpp
+	GraphicalObjectFactory.cpp
 )
 
 set (Graphics_HDRS

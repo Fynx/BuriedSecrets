@@ -4,8 +4,11 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <QtCore/QVector>
 
 #include "Graphics/GraphicsWidget.hpp"
+#include "Graphics/GraphicalObject.hpp"
+#include "Graphics/GraphicalObjectFactory.hpp"
 #include "Mind/Mind.hpp"
 #include "UserInterface/UserInterface.hpp"
 
@@ -25,9 +28,18 @@ public:
 	 * 'as fast as possible'.
 	 */
 	void startRendering(int framesIntervalms = 0);
+	/**
+	 * @brief Loads the graphical representation of the level.
+	 *
+	 * @return void
+	 */
+	void loadLevel();
 
 private:
+	QVector<GraphicalObject *> getGraphicalObjectsFor(const QVector< Object* >& objects);
+
 	GraphicsWidget widget;
+	GraphicalObjectFactory graphicalObjectFactory;
 	QTimer renderTimer;
 
 	// This pointer is just for convenience as it points to the widget.

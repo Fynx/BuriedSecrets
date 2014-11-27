@@ -16,6 +16,12 @@ public:
 	Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager);
 	~Mind();
 
+	/**
+	 * @brief Returns all Objects on the map that are incidental with the given rect.
+	 *
+	 */
+	QVector<Object *> getObjectsInRect(const QRect& rect) const;
+
 private:
 	DataManager   *dataManager;
 	PhysicsEngine *physicsEngine;
@@ -27,4 +33,7 @@ private:
 
 	friend QDataStream &operator<<(QDataStream &out, const Mind &mind);
 	friend QDataStream &operator>>(QDataStream &in, Mind &mind);
+
+	// FIXME temporary:
+	Prototype prototype;
 };
