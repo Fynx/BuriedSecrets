@@ -1,0 +1,3 @@
+SoundsManager
+======
+Playing simple sounds.
