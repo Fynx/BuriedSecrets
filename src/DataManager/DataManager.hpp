@@ -5,6 +5,7 @@
  */
 #pragma once
 
+#include "DataManager/FileIO.hpp"
 #include "DataManager/Prototype.hpp"
 
 #include <QtWidgets>
