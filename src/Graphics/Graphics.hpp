@@ -19,7 +19,7 @@
 class Graphics: public QObject {
 Q_OBJECT;
 public:
-	Graphics(Mind *mind);
+	Graphics(const Mind *mind, const DataManager *dataManager);
 	GraphicsWidget *getGraphicsWidget();
 	/**
 	 * @brief Starts periodical rendering.
@@ -44,7 +44,8 @@ private:
 
 	// This pointer is just for convenience as it points to the widget.
 	sf::RenderWindow *canvas;
-	Mind *mind;
+	const Mind *mind;
+	const DataManager *dataManager;
 
 private slots:
 	/**

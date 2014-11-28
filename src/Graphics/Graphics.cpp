@@ -1,8 +1,8 @@
 #include "Graphics/Graphics.hpp"
 
 
-Graphics::Graphics(Mind* mind)
-	: widget{}, mind{mind}
+Graphics::Graphics(const Mind* mind, const DataManager* dataManager)
+	: widget{}, mind{mind}, dataManager{dataManager}
 {
 	canvas = &widget;
 }
