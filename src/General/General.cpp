@@ -1,4 +1,5 @@
 #include "General/General.hpp"
+#include "PhysicsEngine/Box2DEngine.hpp"
 
 
 General::General()
@@ -53,7 +54,7 @@ void General::initModules()
 
 	soundsManager = new SoundsManager();
 
-	physicsEngine = new PhysicsEngine();
+	physicsEngine = new Box2DEngine();
 
 	/** Core modules */
 
@@ -64,5 +65,6 @@ void General::initModules()
 
 	userInterface = new UserInterface(this, mind, graphics->getGraphicsWidget());
 
+	// WTF?!
 	graphics->startRendering();
 }

@@ -21,6 +21,19 @@ set(SFML_STATIC_VARIABLES TRUE)
 find_package(SFML 2.1 COMPONENTS system window graphics audio REQUIRED)
 include_directories(${SFML_INCLUDE_DIR}})
 
+# Box2D
+set(BOX2D_VERSION 2.3.0)
+set(LIB_INSTALL_DIR lib${LIB_SUFFIX})
+set(BOX2D_INSTALL_BY_DEFAULT ON)
+option(BOX2D_BUILD_STATIC "Build Box2D static libraries" ON)
+option(BOX2D_INSTALL "Install Box2D libs, includes, and CMake scripts" ${BOX2D_INSTALL_BY_DEFAULT})
+option(BOX2D_BUILD_SHARED "Build Box2D shared libraries" OFF)
+
+add_subdirectory(Box2D)
+include_directories(${CMAKE_SOURCE_DIR})
+
+
+
 add_subdirectory (src)
 
 install (DIRECTORY data DESTINATION "${BuriedSecrets_BINARY_DIR}")

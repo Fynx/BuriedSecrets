@@ -23,6 +23,7 @@ public:
 
 private:
 	const Prototype *prototype;
+	// Dana fizyczna, wywalić stąd
 	QPointF position;
 
 	friend QDataStream &operator<<(QDataStream &out, const Object &object);
