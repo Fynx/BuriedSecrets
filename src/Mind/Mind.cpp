@@ -1,7 +1,8 @@
-/* YoLoDevelopment, 2014
+﻿/* YoLoDevelopment, 2014
  * All rights reserved.
  */
 #include "Mind/Mind.hpp"
+
 #include "GameObjects/Building.hpp"
 #include "GameObjects/Fortification.hpp"
 
@@ -33,6 +34,12 @@ QVector<Object *> Mind::getObjectsInRect(const QRect &rect) const
 	QVector <Object *> res;
 	// FIXME TODO
 	return objects;
+}
+
+void Mind::newGameActivated()
+{
+	qDebug() << "Let the game begin!";
+	//TODO
 }
 
 QDataStream &operator<<(QDataStream &out, const Mind &mind)

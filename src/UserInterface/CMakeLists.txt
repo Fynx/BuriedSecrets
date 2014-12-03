@@ -1,8 +1,12 @@
-set (UserInterface_SRCS
+﻿set (UserInterface_SRCS
+	GameWindow.cpp
+	MainMenuWindow.cpp
 	UserInterface.cpp
 )
 
 set (UserInterface_HDRS
+	GameWindow.hpp
+	MainMenuWindow.hpp
 	UserInterface.hpp
 )
 

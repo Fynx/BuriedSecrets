@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+﻿/* YoLoDevelopment, 2014
  * All rights reserved.
  */
 #pragma once
@@ -24,6 +24,8 @@ public:
 	 *
 	 */
 	QVector<Object *> getObjectsInRect(const QRect& rect) const;
+	//it also may be a slot
+	void newGameActivated();
 
 private:
 	DataManager   *dataManager;

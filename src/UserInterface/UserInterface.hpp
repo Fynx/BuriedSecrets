@@ -1,10 +1,12 @@
-/* YoLoDevelopment, 2014
+﻿/* YoLoDevelopment, 2014
  * All rights reserved.
  */
 #pragma once
 
 #include "Graphics/GraphicsWidget.hpp"
 #include "Mind/Mind.hpp"
+#include "UserInterface/MainMenuWindow.hpp"
+#include "UserInterface/GameWindow.hpp"
 
 #include <QtWidgets>
 
@@ -28,9 +30,18 @@ public:
 	QMainWindow *getMainWindow();
 
 private:
-	MapManager  *mapManager;
-	Mind        *mind;
+	void initLayout();
+	void switchToGame();
+	void switchToMainMenu();
+
+	static const int MainMenuWindowIndex   = 0;
+	static const int GameWindowIndex = 1;
 
 	QMainWindow *mainWindow;
-	QWidget     *graphicsWidget;
+	QStackedWidget *stackedWidget;
+	MainMenuWindow *mainMenuWindow;
+	GameWindow *gameWindow;
+
+	MapManager  *mapManager;
+	Mind        *mind;
 };

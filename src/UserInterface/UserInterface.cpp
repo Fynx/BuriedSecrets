@@ -1,17 +1,20 @@
-/* YoLoDevelopment, 2014
+﻿/* YoLoDevelopment, 2014
  * All rights reserved.
  */
 #include "UserInterface/UserInterface.hpp"
 
 
 UserInterface::UserInterface(MapManager *mapManager, Mind *mind, QWidget *graphicsWidget)
-	: mapManager(mapManager), mind(mind), mainWindow(new QMainWindow()), graphicsWidget(graphicsWidget)
+	: mainWindow(new QMainWindow()), mainMenuWindow(new MainMenuWindow(mind)),
+	  gameWindow(new GameWindow(mind, graphicsWidget)), mapManager(mapManager), mind(mind)
 {
-	//TODO these things are not going to be here, so don't worry about menu and qt signals
+	connect(mainMenuWindow, &MainMenuWindow::quit, mainWindow, &QMainWindow::close);
+	connect(mainMenuWindow, &MainMenuWindow::switchToGame, this, &UserInterface::switchToGame);
+	connect(gameWindow, &GameWindow::switchToMainMenu, this, &UserInterface::switchToMainMenu);
 
-	QLabel *l = new QLabel(mainWindow);
-	l->setText("BuriedSecrets here. Hello world.");
-	mainWindow->setCentralWidget(l);
+	initLayout();
+
+	//TODO these things are not going to be here, so don't worry about menu and qt signals
 
 	QMenu *menuFile = mainWindow->menuBar()->addMenu("File");
 
@@ -29,12 +32,29 @@ UserInterface::UserInterface(MapManager *mapManager, Mind *mind, QWidget *graphi
 	actionQuit->setText("Quit");
 	connect(actionQuit, &QAction::triggered, mainWindow, &QMainWindow::close);
 	menuFile->addAction(actionQuit);
+}
 
-	graphicsWidget->setParent(mainWindow);
-	// FIXME Those below are just examples. Soszu, fix this!
-	graphicsWidget->resize(150, 50);
-	graphicsWidget->move(10, 30);
-	graphicsWidget->show();
+void UserInterface::initLayout()
+{
+	stackedWidget = new QStackedWidget;
+
+	stackedWidget->insertWidget(MainMenuWindowIndex, mainMenuWindow);
+	stackedWidget->insertWidget(GameWindowIndex, gameWindow);
+	stackedWidget->setCurrentIndex(MainMenuWindowIndex);
+
+	mainWindow->setCentralWidget(stackedWidget);
+	mainWindow->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+	mainWindow->setWindowState(Qt::WindowFullScreen);
+}
+
+void UserInterface::switchToGame()
+{
+	stackedWidget->setCurrentIndex(GameWindowIndex);
+}
+
+void UserInterface::switchToMainMenu()
+{
+	stackedWidget->setCurrentIndex(MainMenuWindowIndex);
 }
 
 UserInterface::~UserInterface()
