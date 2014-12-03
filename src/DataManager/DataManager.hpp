@@ -6,6 +6,7 @@
 #pragma once
 
 #include "DataManager/Prototype.hpp"
+#include "DataManager/Resource.hpp"
 
 #include <QtWidgets>
 
@@ -16,6 +17,7 @@ public:
 	~DataManager();
 
 	const Prototype *getPrototype(const QString &name) const;
+	const Resource *getResource(const QString &name) const;
 
 	template <class T>
 	void loadFromFile(const QString &path, T &s);
@@ -23,10 +25,19 @@ public:
 	template <class T>
 	void saveToFile(const QString &path, const T &s);
 
+	/**
+	 * @brief Reads file as raw data and returns it as a QString.
+	 *
+	 * @param path The path to the file.
+	 */
+	QString readRawData(const QString &path);
+
 private:
 	void loadPrototypes();
+	void loadResources();
 
 	QHash <QString, Prototype *> prototypes;
+	QHash <QString, Resource *> resources;
 };
 
 
@@ -38,7 +49,6 @@ void DataManager::loadFromFile(const QString &path, T &s)
 		qDebug() << "DataManager: Failed to load file " << path;
 		return;
 	}
-
 
 	QDataStream input(&file);
 	input >> s;

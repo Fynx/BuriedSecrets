@@ -1,6 +1,7 @@
 set (DataManager_SRCS
 	DataManager.cpp
 	Prototype.cpp
+	Resource.cpp
 )
 
 set (DataManager_HDRS
