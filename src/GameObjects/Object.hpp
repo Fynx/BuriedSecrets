@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #pragma once
 
 #include "DataManager/Prototype.hpp"
@@ -8,15 +11,16 @@ public:
 	virtual ~Object();
 
 	const Prototype *getPrototype();
-	const QPointF& getPosition() const;
+	const QPointF &getPosition() const;
 	void setPosition(const float x, const float y);
 
 	//TODO put it somewhere else
 	enum class Type {
 		Invalid,
 		Building,
-		Creature,
-		Fortification
+		Fortification,
+		Character,
+		Mob,
 	};
 
 	virtual Type getType() const = 0;

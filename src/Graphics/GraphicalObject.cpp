@@ -8,3 +8,6 @@ GraphicalObject::GraphicalObject(const Object* object)
 	: object{object}
 {
 }
+
+GraphicalObject::~GraphicalObject()
+{}

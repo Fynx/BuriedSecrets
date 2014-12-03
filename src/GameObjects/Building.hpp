@@ -1,6 +1,8 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #pragma once
 
-#include "DataManager/Prototype.hpp"
 #include "GameObjects/Object.hpp"
 
 class Building : public Object {

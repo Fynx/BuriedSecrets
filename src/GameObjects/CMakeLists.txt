@@ -1,6 +1,8 @@
 set (GameObjects_SRCS
 	Building.cpp
+	Character.cpp
 	Fortification.cpp
+	Mob.cpp
 	Object.cpp
 )
 

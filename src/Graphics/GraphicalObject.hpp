@@ -14,6 +14,7 @@
 class GraphicalObject {
 public:
 	GraphicalObject(const Object *object);
+	virtual ~GraphicalObject() = 0;
 	virtual sf::Drawable *getDrawable() = 0;
 
 private:

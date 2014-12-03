@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include <QtWidgets>
 #include "General/General.hpp"
 

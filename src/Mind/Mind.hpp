@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #pragma once
 
 #include "DataManager/DataManager.hpp"
@@ -33,7 +36,4 @@ private:
 
 	friend QDataStream &operator<<(QDataStream &out, const Mind &mind);
 	friend QDataStream &operator>>(QDataStream &in, Mind &mind);
-
-	// FIXME temporary:
-	Prototype prototype;
 };

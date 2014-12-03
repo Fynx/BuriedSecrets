@@ -1,7 +1,10 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include "UserInterface/UserInterface.hpp"
 
 
-UserInterface::UserInterface(MapManager* mapManager, Mind* mind, QWidget* graphicsWidget)
+UserInterface::UserInterface(MapManager *mapManager, Mind *mind, QWidget *graphicsWidget)
 	: mapManager(mapManager), mind(mind), mainWindow(new QMainWindow()), graphicsWidget(graphicsWidget)
 {
 	//TODO these things are not going to be here, so don't worry about menu and qt signals
@@ -13,12 +16,12 @@ UserInterface::UserInterface(MapManager* mapManager, Mind* mind, QWidget* graphi
 	QMenu *menuFile = mainWindow->menuBar()->addMenu("File");
 
 	QAction *actionLoadMap = new QAction(mainWindow);
-	actionLoadMap->setText("Load map");
+	actionLoadMap->setText("Load mind");
 	connect(actionLoadMap, &QAction::triggered, mapManager, &MapManager::loadMap);
 	menuFile->addAction(actionLoadMap);
 
 	QAction *actionSaveMap = new QAction(mainWindow);
-	actionSaveMap->setText("Save map");
+	actionSaveMap->setText("Save mind");
 	connect(actionSaveMap, &QAction::triggered, mapManager, &MapManager::saveMap);
 	menuFile->addAction(actionSaveMap);
 
@@ -39,7 +42,7 @@ UserInterface::~UserInterface()
 	delete mainWindow;
 }
 
-QMainWindow * UserInterface::getMainWindow()
+QMainWindow *UserInterface::getMainWindow()
 {
 	return mainWindow;
 }

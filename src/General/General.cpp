@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include "General/General.hpp"
 #include "PhysicsEngine/Box2DEngine.hpp"
 
@@ -6,7 +9,6 @@ General::General()
 {
 	initModules();
 }
-
 
 General::~General()
 {
@@ -19,26 +21,22 @@ General::~General()
 	delete userInterface;
 }
 
-
 QMainWindow *General::getMainWindow()
 {
 	return userInterface->getMainWindow();
 }
 
-
 void General::loadMap()
 {
 	qDebug() << "Triggered function loadMap";
-	dataManager->loadFromFile("blabla", *mind);
+	dataManager->loadFromFile("data/map.bin", *mind);
 }
-
 
 void General::saveMap()
 {
 	qDebug() << "Triggered function saveMap";
-	dataManager->saveToFile("blabla", *mind);
+	dataManager->saveToFile("data/map.bin", *mind);
 }
-
 
 void General::initModules()
 {

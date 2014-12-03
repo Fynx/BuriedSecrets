@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include "Box2DEngine.hpp"
 
 Box2DEngine::Box2DEngine() : PhysicsEngine(), world(b2Vec2(0,0))

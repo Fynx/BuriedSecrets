@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include "GameObjects/Fortification.hpp"
 
 Fortification::Fortification(const Prototype *prototype)

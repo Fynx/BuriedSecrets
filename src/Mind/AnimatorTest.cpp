@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include "Mind/AnimatorTest.hpp"
 
 //TODO use DebugManager instead
@@ -5,10 +8,10 @@
 
 AnimatorTest::AnimatorTest()
 {
-	qDebug() << "Animator created.";
+	qDebug() << "AnimatorTest created.";
 }
 
 void AnimatorTest::act()
 {
-	qDebug() << "TestAnimator to the rescue!";
+// 	qDebug() << "TestAnimator to the rescue!";
 }

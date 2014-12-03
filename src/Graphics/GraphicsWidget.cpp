@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include "GraphicsWidget.hpp"
 
 #ifdef Q_WS_X11

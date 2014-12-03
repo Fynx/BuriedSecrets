@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include "GameObjects/Building.hpp"
 
 Building::Building(const Prototype *prototype)

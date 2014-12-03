@@ -34,6 +34,7 @@ public:
 
 private:
 	void loadPrototypes();
+	void savePrototypes() const;
 	void loadResources();
 
 	QHash <QString, Prototype *> prototypes;
@@ -52,9 +53,7 @@ void DataManager::loadFromFile(const QString &path, T &s)
 
 	QDataStream input(&file);
 	input >> s;
-	qDebug() << "DataManager: Loaded " << path;
 }
-
 
 template <class T>
 void DataManager::saveToFile(const QString &path, const T &s)
@@ -68,4 +67,6 @@ void DataManager::saveToFile(const QString &path, const T &s)
 
 	QDataStream output(&tmpFile);
 	output << s;
+
+	tmpFile.commit();
 }

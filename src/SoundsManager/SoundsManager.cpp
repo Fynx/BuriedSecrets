@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include "SoundsManager/SoundsManager.hpp"
 
 //TODO replace with DebugManager, don't use qDebug
