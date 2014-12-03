@@ -1,3 +1,6 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #pragma once
 #include <SFML/Graphics.hpp>
 
@@ -11,11 +14,8 @@
 class GraphicalObject {
 public:
 	GraphicalObject(const Object *object);
-	sf::Drawable *getDrawable();
+	virtual sf::Drawable *getDrawable() = 0;
 
 private:
 	const Object *object;
-
-	//FIXME temporary for testing
-	sf::CircleShape circle;
 };

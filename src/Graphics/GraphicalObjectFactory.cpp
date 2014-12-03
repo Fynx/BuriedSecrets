@@ -1,5 +1,7 @@
 #include "Graphics/GraphicalObjectFactory.hpp"
 
+#include "Graphics/StaticGraphicalObject.hpp"
+
 
 GraphicalObjectFactory::GraphicalObjectFactory()
 {
@@ -18,7 +20,7 @@ GraphicalObject* GraphicalObjectFactory::get(const Object* object)
 	auto iter = map.find(object);
 	GraphicalObject *ptr = nullptr;
 	if (iter == map.end()) {
-		ptr = new GraphicalObject(object);
+		ptr = new StaticGraphicalObject(object);
 		map[object] = ptr;
 	} else {
 		ptr = iter.value();
@@ -37,9 +39,7 @@ GraphicalObject* GraphicalObjectFactory::get(Object* object)
 void GraphicalObjectFactory::deleteObjects()
 {
 	// Free the GraphicalObjects.
-	for (const auto& elem: map) {
-		delete elem;
-	}
+	qDeleteAll(map);
 }
 
 
