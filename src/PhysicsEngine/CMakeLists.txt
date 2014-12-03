@@ -1,6 +1,7 @@
 set (PhysicsEngine_SRCS
 	PhysicsEngine.cpp
 	Box2DEngine.cpp
+	ContactListener.cpp
 )
 
 set (PhysicsEngine_HDRS
