@@ -30,7 +30,7 @@ public:
 	 *
 	 * @param path The path to the file.
 	 */
-	QString readRawData(const QString &path);
+	QByteArray readRawData(const QString &path);
 
 private:
 	void loadPrototypes();

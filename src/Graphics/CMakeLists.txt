@@ -1,8 +1,9 @@
 set (Graphics_SRCS
-	Graphics.cpp
-	GraphicsWidget.cpp
 	GraphicalObject.cpp
 	GraphicalObjectFactory.cpp
+	Graphics.cpp
+	GraphicsDataManager.cpp
+	GraphicsWidget.cpp
 	StaticGraphicalObject.cpp
 )
 

@@ -14,10 +14,9 @@
  */
 class StaticGraphicalObject: public GraphicalObject {
 public:
-	StaticGraphicalObject(const Object* object);
+	StaticGraphicalObject(const Object* object, const sf::Texture *texture);
 	virtual sf::Drawable *getDrawable() override;
 
 private:
-	//FIXME temporary for testing
-	sf::CircleShape circle;
+	sf::Sprite sprite;
 };

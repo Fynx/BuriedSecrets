@@ -32,16 +32,15 @@ const Resource *DataManager::getResource(const QString &name) const
 }
 
 
-QString DataManager::readRawData(const QString &path)
+QByteArray DataManager::readRawData(const QString &path)
 {
-	QString result;
+	QByteArray result;
 	QFile file(path);
 
 	if (!file.open(QIODevice::ReadOnly)) {
 		qDebug() << "DataManager: Failed to load file " << path;
 	} else {
-		QTextStream input(&file);
-		result = input.readAll();
+		result = file.readAll();
 		qDebug() << "DataManager: Loaded " << path;
 	}
 
@@ -167,13 +166,14 @@ void DataManager::loadResources()
 			QString resourceStr = readRawData(prefix + resourcePath);
 			QStringList resourceInfo = resourceStr.split('\n');
 
-			QString resourceData = readRawData(prefix + resourceInfo.at(2)); // load the data from the file
+			// load the data from the file
+			QByteArray resourceData = readRawData(prefix + resourceInfo.at(2));
 
 			ResourceType type = (resourceInfo.at(1) == "Texture")
 				? ResourceType::Texture
 				: ResourceType::Font;
 			char *data = new char[resourceData.length()];
-			strcpy(data, resourceData.toStdString().c_str());
+			memcpy(data, resourceData.data(), resourceData.length());
 
 			Resource *resource = new Resource(type, data, resourceData.length());
 			resources[resourceInfo.at(0)] = resource;

@@ -5,7 +5,7 @@
 
 
 Graphics::Graphics(const Mind* mind, const DataManager* dataManager)
-	: widget{}, mind{mind}, dataManager{dataManager}
+: graphicsDataManager{dataManager}, widget{}, graphicalObjectFactory{&graphicsDataManager}, mind{mind}, dataManager{dataManager}
 {
 	canvas = &widget;
 }

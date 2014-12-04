@@ -9,6 +9,7 @@
 #include "Graphics/GraphicsWidget.hpp"
 #include "Graphics/GraphicalObject.hpp"
 #include "Graphics/GraphicalObjectFactory.hpp"
+#include "Graphics/GraphicsDataManager.hpp"
 #include "Mind/Mind.hpp"
 #include "UserInterface/UserInterface.hpp"
 
@@ -38,6 +39,7 @@ public:
 private:
 	QVector<GraphicalObject *> getGraphicalObjectsFor(const QVector< Object* >& objects);
 
+	GraphicsDataManager graphicsDataManager;
 	GraphicsWidget widget;
 	GraphicalObjectFactory graphicalObjectFactory;
 	QTimer renderTimer;

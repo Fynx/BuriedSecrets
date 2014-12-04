@@ -6,11 +6,12 @@
 #include <QHash>
 
 #include "Graphics/GraphicalObject.hpp"
+#include "Graphics/GraphicsDataManager.hpp"
 
 
 class GraphicalObjectFactory {
 public:
-	GraphicalObjectFactory();
+	GraphicalObjectFactory(GraphicsDataManager *graphicsDataManager);
 	~GraphicalObjectFactory();
 	GraphicalObject *get(Object *object);
 	GraphicalObject *get(const Object *object);
@@ -23,4 +24,5 @@ private:
 	GraphicalObjectFactory(const GraphicalObjectFactory &) = delete;
 
 	QHash <const Object *, GraphicalObject *> map;
+	GraphicsDataManager *graphicsDataManager;
 };

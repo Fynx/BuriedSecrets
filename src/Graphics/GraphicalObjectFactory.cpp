@@ -6,10 +6,9 @@
 #include "Graphics/StaticGraphicalObject.hpp"
 
 
-GraphicalObjectFactory::GraphicalObjectFactory()
-{
-
-}
+GraphicalObjectFactory::GraphicalObjectFactory(GraphicsDataManager *graphicsDataManager)
+: graphicsDataManager{graphicsDataManager}
+{}
 
 
 GraphicalObjectFactory::~GraphicalObjectFactory()
@@ -23,7 +22,7 @@ GraphicalObject* GraphicalObjectFactory::get(const Object* object)
 	auto iter = map.find(object);
 	GraphicalObject *ptr = nullptr;
 	if (iter == map.end()) {
-		ptr = new StaticGraphicalObject(object);
+		ptr = new StaticGraphicalObject(object, graphicsDataManager->getTexture("Soszu"));
 		map[object] = ptr;
 	} else {
 		ptr = iter.value();
