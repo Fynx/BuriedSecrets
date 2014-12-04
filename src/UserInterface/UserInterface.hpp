@@ -10,21 +10,16 @@
 
 #include <QtWidgets>
 
-// Nah, not a QObject, just for now
-class MapManager : public QObject {
-Q_OBJECT;
-public:
-	virtual void loadMap() = 0;
-	virtual void saveMap() = 0;
 
-	//...
-};
+// Forward declaration.
+class General;
+
 
 class UserInterface : public QObject {
 
 Q_OBJECT;
 public:
-	UserInterface(MapManager *mapManager, Mind *mind, QWidget *graphicsWidget);
+	UserInterface(General *general, Mind *mind, QWidget *graphicsWidget);
 	~UserInterface();
 
 	QMainWindow *getMainWindow();
@@ -42,6 +37,6 @@ private:
 	MainMenuWindow *mainMenuWindow;
 	GameWindow *gameWindow;
 
-	MapManager  *mapManager;
+	General  *general;
 	Mind        *mind;
 };

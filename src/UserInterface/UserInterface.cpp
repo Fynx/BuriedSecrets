@@ -3,10 +3,12 @@
  */
 #include "UserInterface/UserInterface.hpp"
 
+#include "General/General.hpp"
 
-UserInterface::UserInterface(MapManager *mapManager, Mind *mind, QWidget *graphicsWidget)
+
+UserInterface::UserInterface(General *general, Mind *mind, QWidget *graphicsWidget)
 	: mainWindow(new QMainWindow()), mainMenuWindow(new MainMenuWindow(mind)),
-	  gameWindow(new GameWindow(mind, graphicsWidget)), mapManager(mapManager), mind(mind)
+	  gameWindow(new GameWindow(mind, graphicsWidget)), general(general), mind(mind)
 {
 	connect(mainMenuWindow, &MainMenuWindow::quit, mainWindow, &QMainWindow::close);
 	connect(mainMenuWindow, &MainMenuWindow::switchToGame, this, &UserInterface::switchToGame);
@@ -20,12 +22,12 @@ UserInterface::UserInterface(MapManager *mapManager, Mind *mind, QWidget *graphi
 
 	QAction *actionLoadMap = new QAction(mainWindow);
 	actionLoadMap->setText("Load mind");
-	connect(actionLoadMap, &QAction::triggered, mapManager, &MapManager::loadMap);
+	connect(actionLoadMap, &QAction::triggered, general, &General::loadMap);
 	menuFile->addAction(actionLoadMap);
 
 	QAction *actionSaveMap = new QAction(mainWindow);
 	actionSaveMap->setText("Save mind");
-	connect(actionSaveMap, &QAction::triggered, mapManager, &MapManager::saveMap);
+	connect(actionSaveMap, &QAction::triggered, general, &General::saveMap);
 	menuFile->addAction(actionSaveMap);
 
 	QAction *actionQuit = new QAction(mainWindow);

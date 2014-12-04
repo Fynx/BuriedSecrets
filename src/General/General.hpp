@@ -13,9 +13,8 @@
 
 #include <QtWidgets>
 
-//TODO not a QMainWindow most likely, it's in UserInterface, displayed by Graphics
-class General : public MapManager {
-
+// General has to be a QObject.
+class General: public QObject {
 Q_OBJECT;
 public:
 	General();
@@ -23,8 +22,8 @@ public:
 
 	QMainWindow *getMainWindow();
 
-	virtual void loadMap();
-	virtual void saveMap();
+	void loadMap();
+	void saveMap();
 
 private:
 	void initModules();
