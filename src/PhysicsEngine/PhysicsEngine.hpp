@@ -18,13 +18,13 @@ public:
 	PhysicsEngine();
 	virtual ~PhysicsEngine();
 
-	virtual void addObject(Object *obj, QPointF pos, float angle = 0) = 0;
+	virtual void addObject(Object *obj, const QPointF &pos, const float angle = 0) = 0;
 	virtual void removeObject(Object *obj) = 0;
-	virtual void updatePhysics(int msc) = 0;
-	virtual void setVelocity(Object *obj, QVector2D v) = 0;
-	virtual void setPosition(Object *obj, QPointF pos, float angle = 360.) = 0;
-	virtual QPointF getPosition(Object *obj) = 0;
-	virtual QList<Object *> testAABB(QRectF rect) = 0;
-	virtual QList<Object *> getColliding(Object *obj) = 0;
-	virtual Object *getFirstHit(QPointF position, QVector2D direction, float range) = 0;
+	virtual void updatePhysics(const int msc) = 0;
+	virtual void setVelocity(Object *obj, const QVector2D &v) = 0;
+	virtual void setPosition(Object *obj, const QPointF &pos, float angle = 360.0) = 0;
+	virtual const QPointF getPosition(const Object *obj) const = 0;
+	virtual const QList<const Object *> getObjectsInRect(const QRectF &rect) const = 0;
+	virtual const QList<const Object *> getColliding(const Object *obj) const = 0;
+	virtual Object *getFirstHit(const QPointF &position, QVector2D direction, const float range) const = 0;
 };

@@ -14,7 +14,7 @@ Box2DEngine::Box2DEngine() : PhysicsEngine(), world(b2Vec2(0,0)), listener()
 }
 
 
-void Box2DEngine::addObject(Object *obj, QPointF pos, float angle)
+void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 {
 	/*
 	 * All the stuff z prototypy obiektów
@@ -23,7 +23,7 @@ void Box2DEngine::addObject(Object *obj, QPointF pos, float angle)
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(pos.x(), pos.y());
-    b2Body* body = world.CreateBody(&bodyDef);
+	b2Body* body = world.CreateBody(&bodyDef);
 
 	b2Shape *shape;
 	shape = new b2CircleShape();
@@ -51,14 +51,14 @@ void Box2DEngine::removeObject(Object *obj)
 }
 
 
-void Box2DEngine::updatePhysics(int msc)
+void Box2DEngine::updatePhysics(const int msc)
 {
 	float32 timeStep = msc / 1000.0;
 	world.Step(timeStep, VELOCITY_ITS, POSITION_ITS);
 }
 
 
-void Box2DEngine::setPosition(Object *obj, QPointF pos, float angle)
+void Box2DEngine::setPosition(Object *obj, const QPointF &pos, float angle)
 {
 	b2Body *body = objects.value(obj);
 	if (!body)
@@ -72,7 +72,7 @@ void Box2DEngine::setPosition(Object *obj, QPointF pos, float angle)
 }
 
 
-void Box2DEngine::setVelocity(Object *obj, QVector2D v)
+void Box2DEngine::setVelocity(Object *obj, const QVector2D &v)
 {
 	b2Body *body = objects.value(obj);
 	if (!body)
@@ -81,7 +81,7 @@ void Box2DEngine::setVelocity(Object *obj, QVector2D v)
 }
 
 
-QPointF Box2DEngine::getPosition(Object *obj)
+const QPointF Box2DEngine::getPosition(const Object *obj) const
 {
 	b2Body *body = objects.value(obj);
 	if (!body)
@@ -91,7 +91,7 @@ QPointF Box2DEngine::getPosition(Object *obj)
 }
 
 
-Object *Box2DEngine::getFirstHit(QPointF position, QVector2D direction, float range)
+Object *Box2DEngine::getFirstHit(const QPointF &position, QVector2D direction, const float range) const
 {
 	direction.normalize();
 	QPointF dest = position + (direction *range).toPointF();
@@ -99,25 +99,25 @@ Object *Box2DEngine::getFirstHit(QPointF position, QVector2D direction, float ra
 
 	world.RayCast(&callback, b2Vec2(position.x(), position.y()), b2Vec2(dest.x(), dest.y()));
 
-	return NULL;
+	return nullptr;
 }
 
 
-QList<Object *> Box2DEngine::getColliding(Object *obj)
+const QList<const Object *> Box2DEngine::getColliding(const Object *obj) const
 {
-	QList<Object *> res = listener.collisions.value(obj).toList();
+	QList<const Object *> res = listener.collisions.value(obj).toList();
 	return res;
 }
 
 
-QList<Object *> Box2DEngine::testAABB(QRectF rect)
+const QList< const Object * > Box2DEngine::getObjectsInRect(const QRectF &rect) const
 {
 	AABBCallback queryCallback;
 	b2AABB query;
 	query.lowerBound.x = rect.left();
-	query.lowerBound.y = rect.bottom();
+	query.lowerBound.y = rect.top();
 	query.upperBound.x = rect.right();
-	query.upperBound.y = rect.top();
+	query.upperBound.y = rect.bottom();
 	world.QueryAABB(&queryCallback, query);
 
 	return queryCallback.foundObjects;

@@ -19,7 +19,7 @@ public:
 
 private:
 	bool ReportFixture(b2Fixture* fixture);
-	QList<Object*> foundObjects;
+	QList<const Object*> foundObjects;
 
 	friend class Box2DEngine;
 };

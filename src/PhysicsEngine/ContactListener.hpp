@@ -20,7 +20,7 @@ public:
 private:
 	void BeginContact(b2Contact* contact);
 	void EndContact(b2Contact* contact);
-	QMap<Object *, QSet<Object *> > collisions;
+	QMap<const Object *, QSet<const Object *> > collisions;
 
 	friend class Box2DEngine;
 };

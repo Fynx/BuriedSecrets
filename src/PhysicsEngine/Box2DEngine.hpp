@@ -3,24 +3,26 @@
  */
 #pragma once
 
-#include "PhysicsEngine.hpp"
-#include "ContactListener.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 #include "Box2D/Box2D.h"
+
+#include "PhysicsEngine/ContactListener.hpp"
+
 
 class Box2DEngine : public PhysicsEngine {
 public:
 	Box2DEngine();
 
-	void addObject(Object *obj, QPointF pos, float angle = 0);
-	void removeObject(Object *obj);
-	void updatePhysics(int msc);
-	void setVelocity(Object *obj, QVector2D v);
-	void setPosition(Object *obj, QPointF pos, float angle = 360.);
-	QPointF getPosition(Object *obj);
-	QList<Object *> testAABB(QRectF rect);
-	QList<Object *> getColliding(Object *obj);
-	Object *getFirstHit(QPointF position, QVector2D direction, float range);
+	void addObject(Object *obj, const QPointF &pos, const float angle = 0) override;
+	void removeObject(Object *obj) override;
+	void updatePhysics(const int msc) override;
+	void setVelocity(Object *obj, const QVector2D &v) override;
+	void setPosition(Object *obj, const QPointF &pos, float angle = 360.0) override;
+	const QPointF getPosition(const Object *obj) const override;
+	const QList<const Object *> getObjectsInRect(const QRectF &rect) const override;
+	const QList<const Object *> getColliding(const Object *obj) const override;
+	Object *getFirstHit(const QPointF &position, QVector2D direction, const float range) const override;
 
 private:
 	const int32 VELOCITY_ITS = 6;
@@ -28,5 +30,5 @@ private:
 
 	b2World world;
 	ContactListener listener;
-	QMap<Object *, b2Body*> objects;
+	QMap<const Object *, b2Body *> objects;
 };
