@@ -5,16 +5,16 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Graphics/GraphicalObject.hpp"
+#include "Graphics/GraphicalEntity.hpp"
 
 
 /**
  * @brief This class represents a static graphical object that always displays the same image.
  *
  */
-class StaticGraphicalObject: public GraphicalObject {
+class StaticGraphicalEntity: public GraphicalEntity {
 public:
-	StaticGraphicalObject(const Object* object, const sf::Texture *texture);
+	StaticGraphicalEntity(const Object* object, const sf::Texture *texture);
 	virtual sf::Drawable *getDrawable() override;
 
 private:

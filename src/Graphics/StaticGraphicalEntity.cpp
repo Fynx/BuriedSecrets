@@ -1,14 +1,14 @@
 /* YoLoDevelopment, 2014
  * All rights reserved.
  */
-#include "Graphics/StaticGraphicalObject.hpp"
+#include "Graphics/StaticGraphicalEntity.hpp"
 
 
 using namespace sf;
 
 
-StaticGraphicalObject::StaticGraphicalObject(const Object* object, const Texture *texture)
-: GraphicalObject{object}, sprite{*texture}
+StaticGraphicalEntity::StaticGraphicalEntity(const Object* object, const Texture *texture)
+	: GraphicalEntity{object}, sprite{*texture}
 {
 	auto position = object->getPosition();
 	sprite.setPosition(position.x(), position.y());
@@ -18,7 +18,7 @@ StaticGraphicalObject::StaticGraphicalObject(const Object* object, const Texture
 }
 
 
-sf::Drawable *StaticGraphicalObject::getDrawable()
+sf::Drawable *StaticGraphicalEntity::getDrawable()
 {
 	return &sprite;
 }

@@ -1,10 +1,10 @@
 set (Graphics_SRCS
-	GraphicalObject.cpp
-	GraphicalObjectFactory.cpp
+	GraphicalEntity.cpp
+	GraphicalEntityFactory.cpp
 	Graphics.cpp
 	GraphicsDataManager.cpp
 	GraphicsWidget.cpp
-	StaticGraphicalObject.cpp
+	StaticGraphicalEntity.cpp
 )
 
 set (Graphics_HDRS

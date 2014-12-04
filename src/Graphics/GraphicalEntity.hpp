@@ -11,10 +11,10 @@
  * @brief The graphical representation of the logical object.
  *
  */
-class GraphicalObject {
+class GraphicalEntity {
 public:
-	GraphicalObject(const Object *object);
-	virtual ~GraphicalObject() = 0;
+	GraphicalEntity(const Object *object);
+	virtual ~GraphicalEntity();
 	virtual sf::Drawable *getDrawable() = 0;
 
 private:

@@ -7,8 +7,8 @@
 #include <QtCore/QVector>
 
 #include "Graphics/GraphicsWidget.hpp"
-#include "Graphics/GraphicalObject.hpp"
-#include "Graphics/GraphicalObjectFactory.hpp"
+#include "Graphics/GraphicalEntity.hpp"
+#include "Graphics/GraphicalEntityFactory.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
 #include "Mind/Mind.hpp"
 #include "UserInterface/UserInterface.hpp"
@@ -37,11 +37,11 @@ public:
 	void loadLevel();
 
 private:
-	QVector<GraphicalObject *> getGraphicalObjectsFor(const QVector< Object* >& objects);
+	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QVector< Object* >& objects);
 
 	GraphicsDataManager graphicsDataManager;
 	GraphicsWidget widget;
-	GraphicalObjectFactory graphicalObjectFactory;
+	GraphicalEntityFactory graphicalEntityFactory;
 	QTimer renderTimer;
 
 	// This pointer is just for convenience as it points to the widget.
