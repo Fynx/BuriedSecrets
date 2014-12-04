@@ -20,7 +20,7 @@ public:
 	QPointF getPosition(Object *obj);
 	QList<Object *> testAABB(QRectF rect);
 	QList<Object *> getColliding(Object *obj);
-	Object *getFirstHit(QPointF position, QVector2D direction);
+	Object *getFirstHit(QPointF position, QVector2D direction, float range);
 
 private:
 	const int32 VELOCITY_ITS = 6;

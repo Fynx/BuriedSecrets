@@ -26,5 +26,5 @@ public:
 	virtual QPointF getPosition(Object *obj) = 0;
 	virtual QList<Object *> testAABB(QRectF rect) = 0;
 	virtual QList<Object *> getColliding(Object *obj) = 0;
-	virtual Object *getFirstHit(QPointF position, QVector2D direction) = 0;
+	virtual Object *getFirstHit(QPointF position, QVector2D direction, float range) = 0;
 };

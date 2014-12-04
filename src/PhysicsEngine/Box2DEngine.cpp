@@ -1,4 +1,6 @@
 #include "Box2DEngine.hpp"
+#include "AABBCallback.hpp"
+#include "RayCallback.hpp"
 
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -86,8 +88,14 @@ QPointF Box2DEngine::getPosition(Object *obj)
 }
 
 
-Object *Box2DEngine::getFirstHit(QPointF position, QVector2D direction)
+Object *Box2DEngine::getFirstHit(QPointF position, QVector2D direction, float range)
 {
+	direction.normalize();
+	QPointF dest = position + (direction *range).toPointF();
+	RayCallback callback;
+
+	world.RayCast(&callback, b2Vec2(position.x(), position.y()), b2Vec2(dest.x(), dest.y()));
+
 	return NULL;
 }
 
@@ -101,6 +109,13 @@ QList<Object *> Box2DEngine::getColliding(Object *obj)
 
 QList<Object *> Box2DEngine::testAABB(QRectF rect)
 {
-	QList<Object *> res;
-	return res;
+	AABBCallback queryCallback;
+	b2AABB query;
+	query.lowerBound.x = rect.left();
+	query.lowerBound.y = rect.bottom();
+	query.upperBound.x = rect.right();
+	query.upperBound.y = rect.top();
+	world.QueryAABB(&queryCallback, query);
+
+	return queryCallback.foundObjects;
 }
