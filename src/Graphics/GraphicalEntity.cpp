@@ -8,5 +8,13 @@ GraphicalEntity::GraphicalEntity(const Object* object)
 	: object{object}
 {}
 
+
 GraphicalEntity::~GraphicalEntity()
 {}
+
+
+const Object *GraphicalEntity::getObject() const
+{
+	return object;
+}
+

@@ -15,7 +15,10 @@
 class StaticGraphicalEntity: public GraphicalEntity {
 public:
 	StaticGraphicalEntity(const Object* object, const sf::Texture *texture);
-	virtual sf::Drawable *getDrawable() override;
+
+	sf::Drawable *getDrawable() override;
+	void setPosition(const QPointF &position) override;
+	void update(const float timeDelta) override;
 
 private:
 	sf::Sprite sprite;

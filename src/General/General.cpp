@@ -59,7 +59,7 @@ void General::initModules()
 	//TODO Mind should not have access to dataManager
 	mind = new Mind(dataManager, physicsEngine, soundsManager);
 
-	graphics = new Graphics(mind, dataManager);
+	graphics = new Graphics(physicsEngine, dataManager);
 
 	userInterface = new UserInterface(this, mind, graphics->getGraphicsWidget());
 

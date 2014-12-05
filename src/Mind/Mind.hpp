@@ -2,6 +2,7 @@
  * All rights reserved.
  */
 #pragma once
+#include <QtCore>
 
 #include "DataManager/DataManager.hpp"
 #include "GameObjects/Object.hpp"
@@ -10,7 +11,6 @@
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "SoundsManager/SoundsManager.hpp"
 
-#include <QtCore>
 
 class Mind : public QObject {
 
@@ -19,15 +19,19 @@ public:
 	Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager);
 	~Mind();
 
-	/**
-	 * @brief Returns all Objects on the map that are incidental with the given rect.
-	 *
-	 */
-	QVector<Object *> getObjectsInRect(const QRect& rect) const;
-	//it also may be a slot
+	// it may also be a slot
 	void newGameActivated();
 
 private:
+	/**
+	 * @brief Adds an object to the inner collection and to physics.
+	 *
+	 * @param object The object to add.
+	 * @param position The position at which it should initially be (physics).
+	 * @return void
+	 */
+	void addObject(Object* object, const QPointF &position);
+
 	DataManager   *dataManager;
 	PhysicsEngine *physicsEngine;
 	SoundsManager *soundsManager;

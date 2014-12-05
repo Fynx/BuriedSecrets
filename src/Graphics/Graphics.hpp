@@ -10,7 +10,6 @@
 #include "Graphics/GraphicalEntity.hpp"
 #include "Graphics/GraphicalEntityFactory.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
-#include "Mind/Mind.hpp"
 #include "UserInterface/UserInterface.hpp"
 
 
@@ -20,7 +19,7 @@
 class Graphics: public QObject {
 Q_OBJECT;
 public:
-	Graphics(const Mind *mind, const DataManager *dataManager);
+	Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager);
 	GraphicsWidget *getGraphicsWidget();
 	/**
 	 * @brief Starts periodical rendering.
@@ -37,7 +36,8 @@ public:
 	void loadLevel();
 
 private:
-	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QVector< Object* >& objects);
+	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QList< const Object * > &objects);
+	void updateEntity(GraphicalEntity *entity, const float deltaTime);
 
 	GraphicsDataManager graphicsDataManager;
 	GraphicsWidget widget;
@@ -46,7 +46,7 @@ private:
 
 	// This pointer is just for convenience as it points to the widget.
 	sf::RenderWindow *canvas;
-	const Mind *mind;
+	const PhysicsEngine *physicsEngine;
 	const DataManager *dataManager;
 
 private slots:

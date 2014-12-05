@@ -23,24 +23,27 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	soundsManager->onEvent(QString("test: success"));
 }
 
+
 Mind::~Mind()
 {
 	delete animatorManager;
 	qDeleteAll(objects);
 }
 
-QVector<Object *> Mind::getObjectsInRect(const QRect &rect) const
-{
-	QVector <Object *> res;
-	// FIXME TODO
-	return objects;
-}
 
 void Mind::newGameActivated()
 {
 	qDebug() << "Let the game begin!";
 	//TODO
 }
+
+
+void Mind::addObject (Object *object, const QPointF &position)
+{
+	objects.append(object);
+	physicsEngine->addObject(object, position);
+}
+
 
 QDataStream &operator<<(QDataStream &out, const Mind &mind)
 {
@@ -52,16 +55,15 @@ QDataStream &operator<<(QDataStream &out, const Mind &mind)
 	// FIXME Temporary game objects:
 	Building obj1(mind.dataManager->getPrototype("building"));
 	Building obj2(mind.dataManager->getPrototype("building"));
-	obj1.setPosition(0, 0);
-	obj2.setPosition(20, 30);
 
-	out << QString("building") << obj1;
-	out << QString("building") << obj2;
+	out << QString("building") << obj1 << QPointF{0, 0};
+	out << QString("building") << obj2 << QPointF{20, 30};
 
 	qDebug() << "done.";
 
 	return out;
 }
+
 
 QDataStream &operator>>(QDataStream &in, Mind &mind)
 {
@@ -77,8 +79,10 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 		if (type == "building") {
 			qDebug() << "\tbuilding";
 			Building *building = new Building(mind.dataManager->getPrototype("building"));
+			QPointF pos;
 			in >> *building;
-			mind.objects.append(building);
+			in >> pos;
+			mind.addObject(building, pos);
 		} else {
 			qDebug() << "Object other than a building! O.O";
 		}
