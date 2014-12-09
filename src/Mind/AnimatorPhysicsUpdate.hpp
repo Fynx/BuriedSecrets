@@ -5,9 +5,10 @@
 
 #include "Mind/Animator.hpp"
 
-class AnimatorTest : public Animator {
+class AnimatorPhysicsUpdate : public Animator {
 public:
-	AnimatorTest(Mind *mind);
+	AnimatorPhysicsUpdate(Mind *mind);
 
 	void act();
 };
+

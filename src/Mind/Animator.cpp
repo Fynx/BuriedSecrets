@@ -3,6 +3,11 @@
  */
 #include "Mind/Animator.hpp"
 
+
+Animator::Animator(Mind *mind) : mind(mind)
+{}
+
+
 Animator::~Animator()
 {}
 

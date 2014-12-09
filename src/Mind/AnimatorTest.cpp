@@ -6,12 +6,16 @@
 //TODO use DebugManager instead
 #include <QtCore>
 
-AnimatorTest::AnimatorTest()
+#include "Mind/Mind.hpp"
+
+AnimatorTest::AnimatorTest(Mind *mind) : Animator(mind)
 {
 	qDebug() << "AnimatorTest created.";
 }
 
 void AnimatorTest::act()
 {
- 	//qDebug() << "TestAnimator to the rescue!";
+	for (Object * obj : objects){
+		mind->physicsEngine()->setVelocity(obj, QVector2D(50, 45));
+	}
 }

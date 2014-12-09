@@ -21,6 +21,7 @@ public:
 
 	// it may also be a slot
 	void newGameActivated();
+	PhysicsEngine *physicsEngine();
 
 private:
 	/**
@@ -33,7 +34,7 @@ private:
 	void addObject(Object* object, const QPointF &position);
 
 	DataManager   *dataManager;
-	PhysicsEngine *physicsEngine;
+	PhysicsEngine *physics;
 	SoundsManager *soundsManager;
 
 	AnimatorManager *animatorManager;

@@ -7,8 +7,11 @@
 
 #include <QtCore>
 
+class Mind;
+
 class Animator {
 public:
+	Animator(Mind *);
 	virtual ~Animator();
 
 	virtual void act() = 0;
@@ -18,4 +21,5 @@ public:
 
 protected:
 	QVector <Object *> objects;
+	Mind *mind;
 };

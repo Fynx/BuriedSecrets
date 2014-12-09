@@ -12,9 +12,9 @@
 
 Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager)
 	: dataManager(dataManager),
-	  physicsEngine(physicsEngine),
+	  physics(physicsEngine),
 	  soundsManager(soundsManager),
-	  animatorManager(new AnimatorManager)
+	  animatorManager(new AnimatorManager(this))
 {
 	qDebug() << "Mind initialized. Select 'Load mind' from the menu options to load objects.";
 	qDebug() << "Or add loadFromFile(\"data/map.bin\") here in Mind::Mind.";
@@ -41,7 +41,13 @@ void Mind::newGameActivated()
 void Mind::addObject (Object *object, const QPointF &position)
 {
 	objects.append(object);
-	physicsEngine->addObject(object, position);
+	physics->addObject(object, position);
+}
+
+
+PhysicsEngine *Mind::physicsEngine()
+{
+	return physics;
 }
 
 
@@ -57,7 +63,7 @@ QDataStream &operator<<(QDataStream &out, const Mind &mind)
 	Building obj2(mind.dataManager->getPrototype("building"));
 
 	out << QString("building") << obj1 << QPointF{0, 0};
-	out << QString("building") << obj2 << QPointF{20, 30};
+	out << QString("building") << obj2 << QPointF{100, 100};
 
 	qDebug() << "done.";
 
@@ -83,6 +89,12 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 			in >> *building;
 			in >> pos;
 			mind.addObject(building, pos);
+
+			// ----- Cut here ----- //
+			if (i==0)
+				mind.animatorManager->addObject("Test", building);
+
+			// ----- Cut here ----- //
 		} else {
 			qDebug() << "Object other than a building! O.O";
 		}
