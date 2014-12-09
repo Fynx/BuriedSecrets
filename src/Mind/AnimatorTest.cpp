@@ -13,5 +13,5 @@ AnimatorTest::AnimatorTest()
 
 void AnimatorTest::act()
 {
-// 	qDebug() << "TestAnimator to the rescue!";
+ 	//qDebug() << "TestAnimator to the rescue!";
 }

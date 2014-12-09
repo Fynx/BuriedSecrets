@@ -14,11 +14,19 @@ public:
 	AnimatorManager();
 	~AnimatorManager();
 
+	bool addObject(QString animator, Object *obj);
+	bool removeObject(QString animator, Object *obj);
+
 private:
-	void triggerAnimators();
+	void initAnimators();
+	void initTimers();
+	void addAnimator(Animator *anim, const QString name, const int interval);
 
-	//TODO separate event animators from the ones triggered by the timeout
-	QVector <Animator *> animators;
+	QMap<int, QVector<Animator *> >intervals;
+	QMap<QString, Animator *> animators;
+	QVector <QTimer *> timers;
+	QSignalMapper signalMapper;
 
-	QTimer timer;
+private slots:
+	void update(const int timeElapsed);
 };

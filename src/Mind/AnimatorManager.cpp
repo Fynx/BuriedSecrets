@@ -4,22 +4,79 @@
 #include "Mind/AnimatorManager.hpp"
 #include "Mind/AnimatorTest.hpp"
 
-AnimatorManager::AnimatorManager()
-{
-	animators.append(new AnimatorTest());
 
-	connect(&timer, &QTimer::timeout, this, &AnimatorManager::triggerAnimators);
-	timer.start(1000);
+AnimatorManager::AnimatorManager() : signalMapper(this)
+{
+	initAnimators();
+	initTimers();
 }
+
 
 AnimatorManager::~AnimatorManager()
 {
-	for (Animator *a : animators)
+	for (Animator *a : animators){
 		delete a;
+	}
 }
 
-void AnimatorManager::triggerAnimators()
+
+void AnimatorManager::initAnimators()
 {
-	for (Animator *a : animators)
-		a->act();
+	addAnimator(new AnimatorTest(), "Test", 40);
+}
+
+
+void AnimatorManager::initTimers()
+{
+	for(int msec : intervals.keys()){
+		QTimer *t = new QTimer(this);
+		timers.append(t);
+		signalMapper.setMapping(t, msec);
+		connect(t, SIGNAL(timeout()), &signalMapper, SLOT(map()));
+		t->start(msec);
+	}
+	connect(&signalMapper, SIGNAL(mapped(int)), this, SLOT(update(int)));
+}
+
+
+void AnimatorManager::addAnimator(Animator *anim, QString name, int interval)
+{
+	animators.insert(name, anim);
+	intervals[interval].append(anim);
+}
+
+
+bool AnimatorManager::addObject(QString animator, Object *obj)
+{
+	if (!animators.contains(animator)){
+		return false;
+	}
+	if (animators[animator]->hasObject(obj)){
+		return false;
+	}
+
+	animators[animator]->addObject(obj);
+	return true;
+}
+
+
+bool AnimatorManager::removeObject(QString animator, Object *obj)
+{
+	if (!animators.contains(animator)){
+		return false;
+	}
+	if (!animators[animator]->hasObject(obj)){
+		return false;
+	}
+
+	animators[animator]->removeObject(obj);
+	return true;
+}
+
+
+void AnimatorManager::update(int timeElapsed)
+{
+	for (Animator *anim : intervals[timeElapsed]){
+		anim->act();
+	}
 }

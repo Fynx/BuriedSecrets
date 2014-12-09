@@ -12,8 +12,10 @@ public:
 	virtual ~Animator();
 
 	virtual void act() = 0;
+	void addObject(Object *obj);
+	void removeObject(Object *obj);
+	bool hasObject(Object *obj);
 
 protected:
-	//TODO access with protected function to a private vector would be nice
 	QVector <Object *> objects;
 };
