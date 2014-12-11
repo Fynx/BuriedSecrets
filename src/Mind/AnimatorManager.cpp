@@ -4,6 +4,7 @@
 #include "Mind/AnimatorManager.hpp"
 #include "Mind/AnimatorTest.hpp"
 #include "Mind/AnimatorPhysicsUpdate.hpp"
+#include "Mind/AnimationAnimator.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -25,6 +26,7 @@ void AnimatorManager::initAnimators()
 {
 	addAnimator(new AnimatorTest(mind), "Test", 40);
 	addAnimator(new AnimatorPhysicsUpdate(mind), "PhysicsUpdate", 40);
+// 	addAnimator(new AnimationAnimator(mind), "Animations", 40);
 }
 
 

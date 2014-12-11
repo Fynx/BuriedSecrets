@@ -106,8 +106,9 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 			mind.addObject(building, pos);
 
 			// ----- Cut here ----- //
-			if (i == 0)
+			if (i == 0) {
 				mind.animatorManager->addObject("Test", building);
+			}
 
 			// ----- Cut here ----- //
 		} else {

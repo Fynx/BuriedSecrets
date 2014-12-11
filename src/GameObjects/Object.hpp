@@ -5,6 +5,7 @@
 
 #include "DataManager/Prototype.hpp"
 
+
 class Object {
 public:
 	Object(const Prototype *prototype);

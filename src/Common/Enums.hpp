@@ -2,6 +2,11 @@
  * All rights reserved.
  */
 #pragma once
+#include <type_traits>
+
+#include <QtCore/QHash>
+#include <QtCore/QString>
+
 
 namespace BS {
 	enum class Type : quint8 {
@@ -14,7 +19,10 @@ namespace BS {
 		Mob,
 	};
 
-	enum class State : quint8 {
+	// FIXME(Tommalla): Yes, you'll hate me for this, but I couldn't force QHash to hash State. I'm happy to talk
+	// about why and try to solve it together with someone.
+	// For now it's just going to be a standard enum, because I'm stuck here and don't want it to stay that way.
+	enum State {
 		Idle,
 		Run,
 		Shoot,
@@ -26,4 +34,6 @@ namespace BS {
 		Personal,
 		Fortification,
 	};
+
+	State getStateFromString(const QString &str);
 }

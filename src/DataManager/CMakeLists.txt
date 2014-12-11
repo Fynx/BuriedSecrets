@@ -1,4 +1,5 @@
 set (DataManager_SRCS
+	AnimationData.cpp
 	DataManager.cpp
 	Map.cpp
 	Prototype.cpp

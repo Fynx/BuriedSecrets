@@ -1,5 +1,7 @@
 # Order is the first law of heaven
 
+add_subdirectory (Common)
+
 add_subdirectory (DebugManager)
 
 add_subdirectory (DataManager)

@@ -3,20 +3,16 @@
  */
 #pragma once
 #include <cstddef>
+#include <QtCore/QString>
 
-enum class ResourceType {
-	Texture,
-	Font
-};
 
 class Resource {
 public:
-	Resource(const ResourceType &type, const char *data, const std::size_t &length);
+	Resource(const char *data, const std::size_t &length);
 	const char *getData() const;
 	const std::size_t getDataLength() const;
 
 private:
-	const ResourceType type;
 	const char *data;
 	const std::size_t length;
 };

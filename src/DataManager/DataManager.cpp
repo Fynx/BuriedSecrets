@@ -3,7 +3,10 @@
  */
 #include "DataManager/DataManager.hpp"
 
+#include <cassert>
+
 #include "DebugManager/DebugManager.hpp"
+
 
 static const QHash<QString, bool> stringy {
 	{"attack",       false},
@@ -31,39 +34,53 @@ static const QHash<QString, bool> stringy {
 	{"type",         true},
 };
 
+
 static const QSet<QString> toMap {
 	"animations"
 };
 
+
 DataManager::DataManager()
 	: map(nullptr)
 {
-	loadPrototypes();
 	loadResources();
+	loadPrototypes();
 }
+
 
 DataManager::~DataManager()
 {
 	qDeleteAll(prototypes);
 	qDeleteAll(resources);
+	qDeleteAll(animationData);
 	delete map;
 }
+
 
 const Prototype *DataManager::getPrototype(const QString &name) const
 {
 	return prototypes[name];
 }
 
+
 const Resource *DataManager::getResource(const QString &name) const
 {
 	return resources[name];
 }
+
 
 const Map *DataManager::getMap(const QString &path)
 {
 	loadMap(path);
 	return map;
 }
+
+
+const AnimationData *DataManager::getAnimationData(const QString &name) const
+{
+	return animationData[name];
+}
+
 
 QByteArray DataManager::readRawData(const QString &path)
 {
@@ -79,6 +96,7 @@ QByteArray DataManager::readRawData(const QString &path)
 
 	return result;
 }
+
 
 void DataManager::loadPrototypes()
 {
@@ -97,6 +115,9 @@ void DataManager::loadPrototypes()
 				} else {
 					qDebug() << "\tLoaded" << prototype->getProperty("name").toString();
 					prototypes[prototype->getProperty("name").toString()] = prototype;
+					// FIXME hardcoded
+					prototype->addAnimationData(BS::Idle, getAnimationData("SoszuIdle"));
+					prototype->addAnimationData(BS::Run, getAnimationData("SoszuWalking"));
 				}
 			}
 			prototype = new Prototype();
@@ -110,10 +131,12 @@ void DataManager::loadPrototypes()
 	qDebug() << "done.\n";
 }
 
+
 void DataManager::savePrototypes() const
 {
 	qDebug() << "Save option NOT AVAILABLE!";
 }
+
 
 void DataManager::loadResources()
 {
@@ -129,22 +152,33 @@ void DataManager::loadResources()
 			qDebug() << "\tloading" << resourcePath;
 			QString resourceStr = readRawData(prefix + resourcePath);
 			QStringList resourceInfo = resourceStr.split('\n');
+			for (int i = 0; i + 2 < resourceInfo.length(); i += 3) {
+				QString typeStr = resourceInfo.at(i + 1);
 
-			// load the data from the file
-			QByteArray resourceData = readRawData(prefix + resourceInfo.at(2));
+				if (typeStr == "Animation") {
+					// Save bare string as data.
+					AnimationData *animation = new AnimationData(
+							resourceInfo.at(i), resourceInfo.at(i + 2));
+					qDebug() << animation;
+					animationData[resourceInfo.at(i)] = animation;
+				} else if (typeStr == "Texture" || typeStr == "Font") {
+					// Load the data from the file
+					QByteArray resourceData = readRawData(prefix + resourceInfo.at(i + 2));
+					char *data = new char[resourceData.length()];
+					memcpy(data, resourceData.data(), resourceData.length());
 
-			ResourceType type = (resourceInfo.at(1) == "Texture")
-				? ResourceType::Texture
-				: ResourceType::Font;
-			char *data = new char[resourceData.length()];
-			memcpy(data, resourceData.data(), resourceData.length());
+					Resource *resource = new Resource(data, resourceData.length());
+					resources[resourceInfo.at(i)] = resource;
+				}
 
-			Resource *resource = new Resource(type, data, resourceData.length());
-			resources[resourceInfo.at(0)] = resource;
+				qDebug() << "loaded " << resourceInfo.at(i);
+			}
+
 		}
 	}
 	qDebug() << "done.";
 }
+
 
 bool DataManager::loadMap(const QString &mapPath)
 {
@@ -200,6 +234,20 @@ bool DataManager::loadMap(const QString &mapPath)
 	qDebug() << "done.";
 	return true;
 }
+
+
+void DataManager::validateResources() const
+{
+	for (const auto& anim: animationData) {
+		for (const auto& frames: anim->getFramesDescription()) {
+			for (const auto& str: frames) {
+				assert(resources.contains(str));
+				// TODO FIXME Assert that the type is a Texture.
+			}
+		}
+	}
+}
+
 
 QPair<QString, QVariant> DataManager::readLine(const QString &line) const
 {

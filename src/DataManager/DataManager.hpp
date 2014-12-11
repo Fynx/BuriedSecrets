@@ -5,6 +5,7 @@
  */
 #pragma once
 
+#include "DataManager/AnimationData.hpp"
 #include "DataManager/Map.hpp"
 #include "DataManager/Prototype.hpp"
 #include "DataManager/Resource.hpp"
@@ -20,6 +21,7 @@ public:
 	const Prototype *getPrototype(const QString &name) const;
 	const Resource *getResource(const QString &name) const;
 	const Map *getMap(const QString &path);
+	const AnimationData *getAnimationData(const QString &name) const;
 
 	template <class T>
 	void loadFromFile(const QString &path, T &s);
@@ -40,10 +42,17 @@ private:
 	void loadResources();
 	bool loadMap(const QString &mapPath);
 
+	/**
+	 * @brief This method assert that all resources have been loaded properly and fails with an exception
+	 * if not.
+	 */
+	void validateResources() const;
+
 	QPair<QString, QVariant> readLine(const QString &line) const;
 
 	QHash<QString, Prototype *> prototypes;
 	QHash<QString, Resource *> resources;
+	QHash <QString, AnimationData *> animationData;
 	Map *map;
 };
 

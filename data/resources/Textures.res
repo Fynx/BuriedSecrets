@@ -1,0 +1,9 @@
+Soszu
+Texture
+images/Soszu.png
+Soszu2
+Texture
+images/Soszu2.png
+Soszu3
+Texture
+images/Soszu3.png
