@@ -8,7 +8,7 @@
 
 
 Object::Object(const Prototype *prototype)
-	: prototype{prototype}
+	: prototype(prototype), parent(nullptr)
 {}
 
 Object::~Object()
@@ -17,6 +17,16 @@ Object::~Object()
 const Prototype *Object::getPrototype()
 {
 	return prototype;
+}
+
+Object *Object::getParent() const
+{
+	return parent;
+}
+
+void Object::setParent(Object *object)
+{
+	parent = object;
 }
 
 QDataStream &operator<<(QDataStream &out, const Object &object)

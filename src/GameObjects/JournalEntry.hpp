@@ -5,9 +5,9 @@
 
 #include "GameObjects/Object.hpp"
 
-class Character : public Object {
+class JournalEntry : public Object {
 public:
-	Character(const Prototype *prototype);
+	JournalEntry(const Prototype *prototype);
 
-	Object::Type getType() const;
+	QString getText() const;
 };

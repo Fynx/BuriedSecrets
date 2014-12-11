@@ -1,9 +1,17 @@
 set (GameObjects_SRCS
 	Building.cpp
-	Character.cpp
+	Equipment.cpp
+	Faction.cpp
 	Fortification.cpp
+	Item.cpp
+	Journal.cpp
+	JournalEntry.cpp
+	Location.cpp
 	Mob.cpp
 	Object.cpp
+	QuestLog.cpp
+	Unit.cpp
+	World.cpp
 )
 
 set (GameObjects_HDRS

@@ -3,7 +3,6 @@
  */
 #include "DataManager/DataManager.hpp"
 
-
 DataManager::DataManager()
 {
 	loadPrototypes();
@@ -12,25 +11,21 @@ DataManager::DataManager()
 	savePrototypes();
 }
 
-
 DataManager::~DataManager()
 {
 	qDeleteAll(prototypes);
 	qDeleteAll(resources);
 }
 
-
 const Prototype *DataManager::getPrototype(const QString &name) const
 {
 	return prototypes[name];
 }
 
-
 const Resource *DataManager::getResource(const QString &name) const
 {
 	return resources[name];
 }
-
 
 QByteArray DataManager::readRawData(const QString &path)
 {
@@ -46,7 +41,6 @@ QByteArray DataManager::readRawData(const QString &path)
 
 	return result;
 }
-
 
 void DataManager::loadPrototypes()
 {
@@ -80,7 +74,6 @@ void DataManager::loadPrototypes()
 
 	qDebug() << "done.\n";
 }
-
 
 void DataManager::savePrototypes() const
 {
@@ -149,7 +142,6 @@ void DataManager::savePrototypes() const
 	else
 		qDebug() << "failed!";
 }
-
 
 void DataManager::loadResources()
 {

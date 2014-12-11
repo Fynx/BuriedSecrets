@@ -16,16 +16,22 @@ public:
 	enum class Type {
 		Invalid,
 		Building,
+		Equipment,
 		Fortification,
-		Character,
+		Journal,
+		Unit,
 		Mob,
 	};
 
 	virtual Type getType() const = 0;
+	Object *getParent() const;
+	void setParent(Object *object);
+
+protected:
+	const Prototype *prototype;
+	Object *parent;
 
 private:
-	const Prototype *prototype;
-
 	friend QDataStream &operator<<(QDataStream &out, const Object &object);
 	friend QDataStream &operator>>(QDataStream &in, Object &object);
 };
