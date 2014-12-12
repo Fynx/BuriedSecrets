@@ -3,12 +3,38 @@
  */
 #include "DataManager/DataManager.hpp"
 
+#include "DebugManager/DebugManager.hpp"
+
+static const QHash<QString, bool> stringy {
+	{"attack",       false},
+	{"background",   false},
+	{"capacity",     false},
+	{"defense",      false},
+	{"encumbrance",  false},
+	{"engineering",  false},
+	{"foodDemand",   false},
+	{"healing",      false},
+	{"hp",           false},
+	{"perception",   false},
+	{"position",     false},
+	{"psychosis",    false},
+	{"range",        false},
+	{"regeneration", false},
+	{"searchTime",   false},
+	{"sightRange",   false},
+	{"speed",        false},
+	{"weight",       false},
+
+	{"avatar",       true},
+	{"itemType",     true},
+	{"name",         true},
+	{"type",         true},
+};
+
 DataManager::DataManager()
 {
 	loadPrototypes();
 	loadResources();
-	//TODO remove this. It's just for hardcoding things.
-	savePrototypes();
 }
 
 DataManager::~DataManager()
@@ -44,32 +70,41 @@ QByteArray DataManager::readRawData(const QString &path)
 
 void DataManager::loadPrototypes()
 {
-	//TODO this shouldn't be here. Create an object and use loadFromFile
-	QString path = "data/prototypes.bin";
-	QFile file(path);
-	if (!file.open(QIODevice::ReadOnly)) {
-		qDebug() << "DataManager: Failed to load file " << path;
-		return;
-	}
-	QDataStream in(&file);
-	//
+	qDebug() << "Loading prototypes... (we DON'T use Prototype::DataStream operators!)";
 
-	qint32 prototypesNumber;
+	QStringList lines = QString(readRawData("data/prototypes.txt")).split("\n");
 
-	in >> prototypesNumber;
+	Prototype *prototype = nullptr;
+	QString key;
+	QVariant value;
 
-	qDebug() << "Loading" << prototypesNumber << "prototypes...";
-
-	for (int i = 0; i < prototypesNumber; ++i) {
-		QString name;
-		in >> name;
-		qDebug() << "\tloading" << name;
-
-		Prototype *p = prototypes.contains(name)
-			? prototypes[name]
-			: new Prototype();
-		in >> *p;
-		prototypes[name] = p;
+	for (const QString &line : lines) {
+		if (!line.isEmpty() && line[0] != '#') {
+			QStringList words = line.split(" ");
+			if (words.size() == 1) {
+				if (prototype != nullptr) {
+					if (prototype->getProperty("name").toString().isEmpty()) {
+						qDebug() << "\tPrototype without a name. Skipping.";
+						delete prototype;
+					} else {
+						qDebug() << "\tLoaded" << prototype->getProperty("name").toString();
+						prototypes[prototype->getProperty("name").toString()] = prototype;
+					}
+				}
+				prototype = new Prototype();
+				key = "type";
+				value = words[0];
+			} else {
+				Q_ASSERT(prototype != nullptr);
+				key = words[0];
+				Q_ASSERT(stringy.contains(key));
+				if (stringy[key])
+					value = line.mid(words[0].size() + 1);
+				else
+					value = words[1].toInt();
+			}
+			prototype->setProperty(key, value);
+		}
 	}
 
 	qDebug() << "done.\n";
@@ -77,70 +112,7 @@ void DataManager::loadPrototypes()
 
 void DataManager::savePrototypes() const
 {
-	//TODO this shouldn't be here. Create an object and use saveFromFile
-	QString path = "data/prototypes.bin";
-	QSaveFile tmpFile(path);
-
-	if (!tmpFile.open(QIODevice::WriteOnly)) {
-		qDebug() << "DataManager: Failed to save to " << path;
-		return;
-	}
-
-	QDataStream out(&tmpFile);
-
-	qDebug() << "Saving prototypes...";
-
-	//FIXME it's fixed prototypes now
-	//TODO tum tum tum
-
-	qint32 prototypesNumber = 3;
-
-	out << prototypesNumber;
-
-	Prototype building;
-	building.setProperty("capacity", 5);
-	building.setProperty("inhabitants", 0);
-	building.setProperty("range", 10.0);
-	building.setProperty("attack", 0);
-	building.setProperty("defense", 0);
-	building.setProperty("searchTime", 5);
-
-	out << QString("building") << building;
-
-	Prototype fortification;
-	fortification.setProperty("hitPoints", 10);
-	fortification.setProperty("attack", 0);
-	fortification.setProperty("defense", 0);
-
-	out << QString("fortification") << fortification;
-
-	Prototype character;
-	character.setProperty("name", "MuahahahaCharacter");
-	character.setProperty("background", "12 years old commando raised by his 89 years old commando grandma.");
-	character.setProperty("position", "engineer");
-	character.setProperty("avatar", "sweetseal");
-	character.setProperty("age", 10023);
-
-	character.setProperty("attack", 10);
-	character.setProperty("engineering", 10);
-	character.setProperty("healing", 10);
-	character.setProperty("perception", 10);
-	character.setProperty("defense", 10);
-
-	character.setProperty("hp", 100);
-	character.setProperty("psyche", 100);
-	character.setProperty("capacity", 5);
-	character.setProperty("hunger", 1.5);
-	character.setProperty("sightRange", 30);
-	character.setProperty("speed", 2);
-	character.setProperty("regeneration", 1);
-
-	out << QString("character") << character;
-
-	if (tmpFile.commit())
-		qDebug() << "done.";
-	else
-		qDebug() << "failed!";
+	qDebug() << "Save option NOT AVAILABLE!";
 }
 
 void DataManager::loadResources()

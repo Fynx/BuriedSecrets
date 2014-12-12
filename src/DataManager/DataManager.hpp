@@ -37,8 +37,8 @@ private:
 	void savePrototypes() const;
 	void loadResources();
 
-	QHash <QString, Prototype *> prototypes;
-	QHash <QString, Resource *> resources;
+	QHash<QString, Prototype *> prototypes;
+	QHash<QString, Resource *> resources;
 };
 
 
