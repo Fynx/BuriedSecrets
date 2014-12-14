@@ -33,6 +33,16 @@ public:
 	void addItem(Item *item);
 	void removeItem(Item *item);
 
+	/** Skills */
+
+	int getDamageControl() const;
+	int getEngineering() const;
+	int getHealing() const;
+	int getPerception() const;
+	int getShooting() const;
+
+	/** Action-wise */
+
 	QList<QPointF> getCurrentPath() const;
 	void setCurrentPath(const QList<QPointF> &path);
 
@@ -45,6 +55,12 @@ private:
 	int hp;
 	int psychosis;
 	Equipment *equipment;
+
+	Item *armor;
+	Item *medicalKit;
+	Item *optics;
+	Item *tools;
+	Item *weapon;
 
 	QList<QPointF> currentPath;
 
