@@ -5,7 +5,10 @@
 
 QVariant Prototype::getProperty(const QString &key) const
 {
-	return properties[key];
+	if (properties.contains(key))
+		return properties[key];
+	else
+		return QVariant(0);
 }
 
 void Prototype::setProperty(const QString &key, const QVariant &value)

@@ -6,17 +6,43 @@
 //TODO use DebugManager instead
 #include <QtCore>
 
+int Object::LastUid = 0;
 
 Object::Object(const Prototype *prototype)
-	: prototype(prototype), parent(nullptr)
+	: prototype(prototype), uid(++LastUid), parent(nullptr), state(Object::State::Idle), frame(0)
 {}
 
 Object::~Object()
 {}
 
-const Prototype *Object::getPrototype()
+const int Object::getUid() const
+{
+	return uid;
+}
+
+const Prototype *Object::getPrototype() const
 {
 	return prototype;
+}
+
+Object::State Object::getState() const
+{
+	return state;
+}
+
+void Object::setState(Object::State state)
+{
+	this->state = state;
+}
+
+int Object::getFrame() const
+{
+	return frame;
+}
+
+void Object::setFrame(int frame)
+{
+	this->frame = frame;
 }
 
 Object *Object::getParent() const

@@ -12,6 +12,16 @@ Object::Type Unit::getType() const
 	return Object::Type::Unit;
 }
 
+Location *Unit::getLocation()
+{
+	return location;
+}
+
+void Unit::setLocation(Location *location)
+{
+	this->location = location;
+}
+
 int Unit::getHP() const
 {
 	return hp;
@@ -72,4 +82,24 @@ void Unit::addItem(Item *item)
 void Unit::removeItem(Item *item)
 {
 	return equipment->removeItem(item);
+}
+
+QList<QPointF> Unit::getCurrentPath() const
+{
+	return currentPath;
+}
+
+void Unit::setCurrentPath(const QList< QPointF > &path)
+{
+	currentPath = path;
+}
+
+int Unit::getAttackedUnitUid() const
+{
+	return attackedUnitUid;
+}
+
+void Unit::setAttackedUnitUid(int uid)
+{
+	attackedUnitUid = uid;
 }

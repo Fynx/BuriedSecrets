@@ -32,6 +32,7 @@ private:
 	 * @return void
 	 */
 	void addObject(Object* object, const QPointF &position);
+	Object *getObjectFromUid(const int uid);
 
 	DataManager   *dataManager;
 	PhysicsEngine *physics;
@@ -39,7 +40,8 @@ private:
 
 	AnimatorManager *animatorManager;
 
-	QVector <Object *> objects;
+	QVector<Object *> objects;
+	QHash<const int, Object *> uidToObject;
 
 	friend QDataStream &operator<<(QDataStream &out, const Mind &mind);
 	friend QDataStream &operator>>(QDataStream &in, Mind &mind);

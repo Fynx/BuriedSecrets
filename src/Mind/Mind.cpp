@@ -23,13 +23,11 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	soundsManager->onEvent(QString("test: success"));
 }
 
-
 Mind::~Mind()
 {
 	delete animatorManager;
 	qDeleteAll(objects);
 }
-
 
 void Mind::newGameActivated()
 {
@@ -37,19 +35,26 @@ void Mind::newGameActivated()
 	//TODO
 }
 
-
-void Mind::addObject (Object *object, const QPointF &position)
+void Mind::addObject(Object *object, const QPointF &position)
 {
 	objects.append(object);
+	uidToObject[object->getUid()] = object;
 	physics->addObject(object, position);
 }
 
+Object *Mind::getObjectFromUid(const int uid)
+{
+	if (uidToObject.contains(uid))
+		return uidToObject[uid];
+	else
+		qDebug() << "Mind::getObjectFromUid: uid not found";
+	return nullptr;
+}
 
 PhysicsEngine *Mind::physicsEngine()
 {
 	return physics;
 }
-
 
 QDataStream &operator<<(QDataStream &out, const Mind &mind)
 {
@@ -69,7 +74,6 @@ QDataStream &operator<<(QDataStream &out, const Mind &mind)
 
 	return out;
 }
-
 
 QDataStream &operator>>(QDataStream &in, Mind &mind)
 {
@@ -91,7 +95,7 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 			mind.addObject(building, pos);
 
 			// ----- Cut here ----- //
-			if (i==0)
+			if (i == 0)
 				mind.animatorManager->addObject("Test", building);
 
 			// ----- Cut here ----- //
