@@ -7,9 +7,9 @@ Unit::Unit(const Prototype *prototype)
 	: Object(prototype)
 {}
 
-Object::Type Unit::getType() const
+BS::Type Unit::getType() const
 {
-	return Object::Type::Unit;
+	return BS::Type::Unit;
 }
 
 Location *Unit::getLocation()
@@ -137,7 +137,7 @@ QList<QPointF> Unit::getCurrentPath() const
 	return currentPath;
 }
 
-void Unit::setCurrentPath(const QList< QPointF > &path)
+void Unit::setCurrentPath(const QList<QPointF> &path)
 {
 	currentPath = path;
 }

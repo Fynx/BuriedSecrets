@@ -8,7 +8,7 @@ Item::Item(const Prototype *prototype)
 	: Object(prototype)
 {}
 
-Item::ItemType Item::getItemType() const
+BS::ItemType Item::getItemType() const
 {
 	QString s = prototype->getProperty("itemType").toString();
 	if (!stringToItemType.contains(s)) {
@@ -33,16 +33,16 @@ int Item::getWeight() const
 	return prototype->getProperty("weight").toInt();
 }
 
-const QMap<Item::ItemType, bool> Item::equippable {
-	{ItemType::Storyline,     true},
-	{ItemType::Material,      false},
-	{ItemType::Personal,      true},
-	{ItemType::Fortification, true},
+const QMap<BS::ItemType, bool> Item::equippable {
+	{BS::ItemType::Storyline,     true},
+	{BS::ItemType::Material,      false},
+	{BS::ItemType::Personal,      true},
+	{BS::ItemType::Fortification, true},
 };
 
-const QMap<QString, Item::ItemType> Item::stringToItemType {
-	{"storyline",     ItemType::Storyline},
-	{"material",      ItemType::Material},
-	{"personal",      ItemType::Personal},
-	{"fortification", ItemType::Fortification},
+const QMap<QString, BS::ItemType> Item::stringToItemType {
+	{"storyline",     BS::ItemType::Storyline},
+	{"material",      BS::ItemType::Material},
+	{"personal",      BS::ItemType::Personal},
+	{"fortification", BS::ItemType::Fortification},
 };

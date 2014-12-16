@@ -31,6 +31,10 @@ static const QHash<QString, bool> stringy {
 	{"type",         true},
 };
 
+static const QSet<QString> toMap {
+	"animations"
+};
+
 DataManager::DataManager()
 {
 	loadPrototypes();
@@ -75,35 +79,23 @@ void DataManager::loadPrototypes()
 	QStringList lines = QString(readRawData("data/prototypes.txt")).split("\n");
 
 	Prototype *prototype = nullptr;
-	QString key;
-	QVariant value;
-
 	for (const QString &line : lines) {
-		if (!line.isEmpty() && line[0] != '#') {
-			QStringList words = line.split(" ");
-			if (words.size() == 1) {
-				if (prototype != nullptr) {
-					if (prototype->getProperty("name").toString().isEmpty()) {
-						qDebug() << "\tPrototype without a name. Skipping.";
-						delete prototype;
-					} else {
-						qDebug() << "\tLoaded" << prototype->getProperty("name").toString();
-						prototypes[prototype->getProperty("name").toString()] = prototype;
-					}
+		QPair<QString, QVariant> pair = readLine(line);
+		if (pair.first == "type") {
+			if (prototype != nullptr) {
+				if (prototype->getProperty("name").toString().isEmpty()) {
+					qDebug() << "\tPrototype without a name. Skipping.";
+					delete prototype;
+				} else {
+					qDebug() << "\tLoaded" << prototype->getProperty("name").toString();
+					prototypes[prototype->getProperty("name").toString()] = prototype;
 				}
-				prototype = new Prototype();
-				key = "type";
-				value = words[0];
-			} else {
-				Q_ASSERT(prototype != nullptr);
-				key = words[0];
-				Q_ASSERT(stringy.contains(key));
-				if (stringy[key])
-					value = line.mid(words[0].size() + 1);
-				else
-					value = words[1].toInt();
 			}
-			prototype->setProperty(key, value);
+			prototype = new Prototype();
+		}
+		if (!pair.first.isEmpty()) {
+			qDebug() << "\t\t" << pair.first << pair.second;
+			prototype->setProperty(pair.first, pair.second);
 		}
 	}
 
@@ -144,4 +136,34 @@ void DataManager::loadResources()
 		}
 	}
 	qDebug() << "done.";
+}
+
+QPair<QString, QVariant> DataManager::readLine(const QString &line) const
+{
+	if (!line.isEmpty() && line[0] != '#') {
+		QString aLine = line;
+		QStringList words = aLine.replace(",", " ").replace("[", " ").replace("]", " ").split(" ");
+		if (words.size() == 1) {
+			return {"type", words[0]};
+		} else {
+			if (stringy[words[0]]) {
+				return {words[0], line.mid(words[0].size() + 1)};
+			} else if (!toMap.contains(words[0])) {
+				return {words[0], words[1].toInt()};
+			} else {
+				QHash<QString, QVariant> map;
+				QString key;
+				for (int i = 1; i < words.size(); ++i) {
+					if (key.isEmpty()) {
+						key = words[i];
+					} else if (!words[i].isEmpty()) {
+						map[key] = words[i];
+						key = QString();
+					}
+				}
+				return {words[0], map};
+			}
+		}
+	}
+	return {};
 }

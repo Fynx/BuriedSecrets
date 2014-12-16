@@ -37,6 +37,8 @@ private:
 	void savePrototypes() const;
 	void loadResources();
 
+	QPair<QString, QVariant> readLine(const QString &line) const;
+
 	QHash<QString, Prototype *> prototypes;
 	QHash<QString, Resource *> resources;
 };

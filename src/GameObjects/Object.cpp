@@ -9,7 +9,7 @@
 int Object::LastUid = 0;
 
 Object::Object(const Prototype *prototype)
-	: prototype(prototype), uid(++LastUid), parent(nullptr), state(Object::State::Idle), frame(0)
+	: prototype(prototype), uid(++LastUid), parent(nullptr), state(BS::State::Idle), frame(0)
 {}
 
 Object::~Object()
@@ -25,12 +25,12 @@ const Prototype *Object::getPrototype() const
 	return prototype;
 }
 
-Object::State Object::getState() const
+BS::State Object::getState() const
 {
 	return state;
 }
 
-void Object::setState(Object::State state)
+void Object::setState(BS::State state)
 {
 	this->state = state;
 }

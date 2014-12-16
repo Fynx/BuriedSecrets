@@ -13,31 +13,13 @@ public:
 	const int getUid() const;
 	const Prototype *getPrototype() const;
 
-	//TODO put it somewhere else
-	enum class Type {
-		Invalid,
-		Building,
-		Equipment,
-		Fortification,
-		Journal,
-		Unit,
-		Mob,
-	};
-
-	virtual Type getType() const = 0;
+	virtual BS::Type getType() const = 0;
 
 	Object *getParent() const;
 	void setParent(Object *object);
 
-	//TODO moar moar
-	enum class State {
-		Idle,
-		Run,
-		Shoot,
-	};
-
-	State getState() const;
-	void setState(State state);
+	BS::State getState() const;
+	void setState(BS::State state);
 
 	//TODO
 	// Number 'frame' represents the current frame in the current action.
@@ -60,6 +42,6 @@ private:
 	const int uid;
 
 	Object *parent;
-	State state;
+	BS::State state;
 	int frame;
 };

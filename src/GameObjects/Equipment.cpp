@@ -7,6 +7,11 @@ Equipment::Equipment(const Prototype *prototype)
 	: Object(prototype)
 {}
 
+BS::Type Equipment::getType() const
+{
+	return BS::Type::Equipment;
+}
+
 void Equipment::addItem(Item *item)
 {
 	items.insert(item);

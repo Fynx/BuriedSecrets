@@ -9,6 +9,8 @@ class Equipment : public Object {
 public:
 	Equipment(const Prototype *prototype);
 
+	virtual BS::Type getType() const;
+
 	void addItem(Item *item);
 	void removeItem(Item *item);
 	const QSet<Item *> &getItems() const;

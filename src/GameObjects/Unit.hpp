@@ -10,7 +10,7 @@ class Unit : public Object {
 public:
 	Unit(const Prototype *prototype);
 
-	Object::Type getType() const;
+	BS::Type getType() const;
 
 	Location *getLocation();
 	void setLocation(Location *location);

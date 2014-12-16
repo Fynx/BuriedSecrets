@@ -7,9 +7,9 @@ Fortification::Fortification(const Prototype *prototype)
 	: Object(prototype)
 {}
 
-Object::Type Fortification::getType() const
+BS::Type Fortification::getType() const
 {
-	return Object::Type::Fortification;
+	return BS::Type::Fortification;
 }
 
 QDataStream &operator<<(QDataStream &out, const Fortification &fortification)

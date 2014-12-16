@@ -10,7 +10,7 @@ class Building : public Object, public Location {
 public:
 	Building(const Prototype *prototype);
 
-	Object::Type getType() const;
+	BS::Type getType() const;
 
 	void addItem(int searchDifficulty, Item *item);
 	void removeItem(int searchDifficulty, Item *item);

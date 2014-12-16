@@ -9,20 +9,13 @@ class Item : public Object {
 public:
 	Item(const Prototype *prototype);
 
-	enum class ItemType {
-		Storyline,
-		Material,
-		Personal,
-		Fortification,
-	};
-
-	ItemType getItemType() const;
+	BS::ItemType getItemType() const;
 	bool isEquippable() const;
 
 	QString getName() const;
 	int getWeight() const;
 
 private:
-	static const QMap<ItemType, bool> equippable;
-	static const QMap<QString, ItemType> stringToItemType;
+	static const QMap<BS::ItemType, bool> equippable;
+	static const QMap<QString, BS::ItemType> stringToItemType;
 };

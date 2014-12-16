@@ -7,9 +7,9 @@ Building::Building(const Prototype *prototype)
 	: Object(prototype)
 {}
 
-Object::Type Building::getType() const
+BS::Type Building::getType() const
 {
-	return Object::Type::Building;
+	return BS::Type::Building;
 }
 
 void Building::addItem(int searchDifficulty, Item *item)

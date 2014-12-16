@@ -13,6 +13,11 @@ data/prototypes.txt
     key value
     ...
 
+Where 'value' is
+- an int: 123
+- a string: string
+- a map from strings to strings: [key value, key value, ...]
+
 Warning:
 Every prototype must have a non-empty field with key name and string as a value. Otherwise the prototype is invalid!
 

@@ -9,5 +9,5 @@ class Mob : public Object {
 public:
 	Mob(const Prototype *prototype);
 
-	Object::Type getType() const;
+	BS::Type getType() const;
 };

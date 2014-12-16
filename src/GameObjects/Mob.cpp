@@ -7,7 +7,7 @@ Mob::Mob(const Prototype *prototype)
 	: Object(prototype)
 {}
 
-Object::Type Mob::getType() const
+BS::Type Mob::getType() const
 {
-	return Object::Type::Mob;
+	return BS::Type::Mob;
 }
