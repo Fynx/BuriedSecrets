@@ -3,7 +3,6 @@
  */
 #include "DataManager/Prototype.hpp"
 
-
 QVariant Prototype::getProperty(const QString &key) const
 {
 	if (properties.contains(key))
@@ -12,12 +11,10 @@ QVariant Prototype::getProperty(const QString &key) const
 		return QVariant(0);
 }
 
-
 void Prototype::setProperty(const QString &key, const QVariant &value)
 {
 	properties[key] = value;
 }
-
 
 const QList<const AnimationData *> Prototype::getAnimationsData() const
 {
@@ -28,14 +25,12 @@ const QList<const AnimationData *> Prototype::getAnimationsData() const
 	return result;
 }
 
-
 const AnimationData *Prototype::getAnimationData(const BS::State &state) const
 {
 	auto it = animationData.find(state);
 	Q_ASSERT(it != animationData.end());
 	return it.value();
 }
-
 
 void Prototype::addAnimationData(const BS::State &state, const AnimationData *data)
 {
@@ -44,7 +39,6 @@ void Prototype::addAnimationData(const BS::State &state, const AnimationData *da
 	animationData[state] = data;
 }
 
-
 QDataStream &operator<<(QDataStream &out, const Prototype &prototype)
 {
 	out << prototype.properties;
@@ -52,15 +46,12 @@ QDataStream &operator<<(QDataStream &out, const Prototype &prototype)
 	return out;
 }
 
-
 QDataStream &operator>>(QDataStream &in, Prototype &prototype)
 {
 	in >> prototype.properties;
 
 	for (auto it = prototype.properties.begin(); it != prototype.properties.end(); ++it)
 		qDebug() << "\t\t" << it.key() << it.value();
-
-
 
 	return in;
 }

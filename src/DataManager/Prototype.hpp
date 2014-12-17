@@ -8,7 +8,6 @@
 #include "Common/Enums.hpp"
 #include "DataManager/AnimationData.hpp"
 
-
 class Prototype {
 public:
 	Prototype() = default;

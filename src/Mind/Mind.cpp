@@ -9,7 +9,6 @@
 //TODO use DebugManager instead
 #include <QtCore>
 
-
 Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager)
 	: dataManager(dataManager),
 	  physics(physicsEngine),

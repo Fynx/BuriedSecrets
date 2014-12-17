@@ -5,34 +5,18 @@ This module is responsible for loading and saving raw data of objects and resour
 
 ## Prototype file
 
-data/prototypes.txt
+data/prototypes.js
 
-#### Format
-
-    type
-    key value
-    key value
-    ...
-
-Where 'value' is
-- an int: 123
-- a string: string
-- a map from strings to strings: [key value, key value, ...]
-
-Lines starting with '#' shall be ignored.
-
-Warning:
-Every prototype must have a non-empty field with key name and string as a value. Otherwise the prototype is invalid!
+Each json object in this file describes a prototype;
+In each of the prototypes there is a map from string to json value.
 
 #### Example
 
-    unit
-    name SampleUnit
-    attack 10
-    defense 10
-    hp 100
-    psychosis 100
-    healing 5
+	{"palace": {
+		"type": "building",
+		"name": "palace",
+		"searchTime": 10
+	}}
 
 
 ## Resource files
@@ -57,6 +41,7 @@ where idxy are names of the textures loaded from any resource. All animations ca
 what number is needed. In our current implementation, with isometric view, we need 8 directions for every animation.
 There must be the same number of frames for every direction (no_frames).
 The State in animation is an Object::State name for which the animation should be displayed.
+
 
 ## Map files
 

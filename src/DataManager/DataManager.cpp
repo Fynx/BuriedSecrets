@@ -2,42 +2,7 @@
  * All rights reserved.
  */
 #include "DataManager/DataManager.hpp"
-
-#include <cassert>
-
 #include "DebugManager/DebugManager.hpp"
-
-
-static const QHash<QString, bool> stringy {
-	{"attack",       false},
-	{"background",   false},
-	{"capacity",     false},
-	{"defense",      false},
-	{"encumbrance",  false},
-	{"engineering",  false},
-	{"foodDemand",   false},
-	{"healing",      false},
-	{"hp",           false},
-	{"perception",   false},
-	{"position",     false},
-	{"psychosis",    false},
-	{"range",        false},
-	{"regeneration", false},
-	{"searchTime",   false},
-	{"sightRange",   false},
-	{"speed",        false},
-	{"weight",       false},
-
-	{"avatar",       true},
-	{"itemType",     true},
-	{"name",         true},
-	{"type",         true},
-};
-
-
-static const QSet<QString> toMap {
-	"animations"
-};
 
 
 DataManager::DataManager()
@@ -47,7 +12,6 @@ DataManager::DataManager()
 	loadPrototypes();
 }
 
-
 DataManager::~DataManager()
 {
 	qDeleteAll(prototypes);
@@ -56,18 +20,15 @@ DataManager::~DataManager()
 	delete map;
 }
 
-
 const Prototype *DataManager::getPrototype(const QString &name) const
 {
 	return prototypes[name];
 }
 
-
 const Resource *DataManager::getResource(const QString &name) const
 {
 	return resources[name];
 }
-
 
 const Map *DataManager::getMap(const QString &path)
 {
@@ -75,12 +36,10 @@ const Map *DataManager::getMap(const QString &path)
 	return map;
 }
 
-
 const AnimationData *DataManager::getAnimationData(const QString &name) const
 {
 	return animationData[name];
 }
-
 
 QByteArray DataManager::readRawData(const QString &path)
 {
@@ -97,46 +56,47 @@ QByteArray DataManager::readRawData(const QString &path)
 	return result;
 }
 
-
 void DataManager::loadPrototypes()
 {
 	qDebug() << "Loading prototypes... (we DON'T use Prototype::DataStream operators!)";
 
-	QStringList lines = QString(readRawData("data/prototypes.txt")).split("\n");
-
-	Prototype *prototype = nullptr;
-	for (const QString &line : lines) {
-		QPair<QString, QVariant> pair = readLine(line);
-		if (pair.first == "type") {
-			if (prototype != nullptr) {
-				if (prototype->getProperty("name").toString().isEmpty()) {
-					qDebug() << "\tPrototype without a name. Skipping.";
-					delete prototype;
-				} else {
-					qDebug() << "\tLoaded" << prototype->getProperty("name").toString();
-					prototypes[prototype->getProperty("name").toString()] = prototype;
-					// FIXME hardcoded
-					prototype->addAnimationData(BS::Idle, getAnimationData("SoszuIdle"));
-					prototype->addAnimationData(BS::Run, getAnimationData("SoszuWalking"));
-				}
-			}
-			prototype = new Prototype();
-		}
-		if (!pair.first.isEmpty()) {
-			qDebug() << "\t\t" << pair.first << pair.second;
-			prototype->setProperty(pair.first, pair.second);
-		}
+	QString path = "data/prototypes.json";
+	QFile prototypesFile(path);
+	if (!prototypesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		qDebug() << "DataManager: Failed to load file " << path;
+		return;
 	}
 
-	qDebug() << "done.\n";
-}
+	QString text = prototypesFile.readAll();
+	QJsonDocument jsonDoc = QJsonDocument::fromJson(text.toUtf8());
+	if (jsonDoc.isNull()) {
+		qDebug() << "DataManager: Error occurred while parsing prototypes file.";
+		return;
+	}
+	QJsonObject json = jsonDoc.object();
 
+	for (const QString &name : json.keys()) {
+		Prototype *prototype = new Prototype;
+		qDebug() << "\t" << name;
+		for (const QString &key : json[name].toObject().keys()) {
+			QJsonValue value = json[name].toObject()[key];
+			prototype->setProperty(key, value.toVariant());
+			qDebug() << "\t\t" << key << value.toVariant();
+		}
+		// FIXME hardcoded
+		prototype->addAnimationData(BS::Idle, getAnimationData("SoszuIdle"));
+		prototype->addAnimationData(BS::Run, getAnimationData("SoszuWalking"));
+
+		prototypes[prototype->getProperty("name").toString()] = prototype;
+	}
+
+	qDebug() << "done";
+}
 
 void DataManager::savePrototypes() const
 {
 	qDebug() << "Save option NOT AVAILABLE!";
 }
-
 
 void DataManager::loadResources()
 {
@@ -178,7 +138,6 @@ void DataManager::loadResources()
 	}
 	qDebug() << "done.";
 }
-
 
 bool DataManager::loadMap(const QString &mapPath)
 {
@@ -235,7 +194,6 @@ bool DataManager::loadMap(const QString &mapPath)
 	return true;
 }
 
-
 void DataManager::validateResources() const
 {
 	for (const auto& anim: animationData) {
@@ -246,35 +204,4 @@ void DataManager::validateResources() const
 			}
 		}
 	}
-}
-
-
-QPair<QString, QVariant> DataManager::readLine(const QString &line) const
-{
-	if (!line.isEmpty() && line[0] != '#') {
-		QString aLine = line;
-		QStringList words = aLine.replace(",", " ").replace("[", " ").replace("]", " ").split(" ");
-		if (words.size() == 1) {
-			return {"type", words[0]};
-		} else {
-			if (stringy[words[0]]) {
-				return {words[0], line.mid(words[0].size() + 1)};
-			} else if (!toMap.contains(words[0])) {
-				return {words[0], words[1].toInt()};
-			} else {
-				QHash<QString, QVariant> map;
-				QString key;
-				for (int i = 1; i < words.size(); ++i) {
-					if (key.isEmpty()) {
-						key = words[i];
-					} else if (!words[i].isEmpty()) {
-						map[key] = words[i];
-						key = QString();
-					}
-				}
-				return {words[0], map};
-			}
-		}
-	}
-	return {};
 }

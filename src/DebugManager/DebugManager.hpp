@@ -4,6 +4,7 @@
 #pragma once
 
 #include <QtGui>
+#include <cassert>
 
 class DebugManager {
 public:

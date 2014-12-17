@@ -12,7 +12,6 @@
 
 #include <QtWidgets>
 
-
 class DataManager {
 public:
 	DataManager();
@@ -47,8 +46,6 @@ private:
 	 * if not.
 	 */
 	void validateResources() const;
-
-	QPair<QString, QVariant> readLine(const QString &line) const;
 
 	QHash<QString, Prototype *> prototypes;
 	QHash<QString, Resource *> resources;
