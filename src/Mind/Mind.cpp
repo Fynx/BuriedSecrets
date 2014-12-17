@@ -110,6 +110,8 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 				mind.animatorManager->addObject("Test", building);
 			}
 
+			mind.animatorManager->addObject("Animations", building);
+
 			// ----- Cut here ----- //
 		} else {
 			qDebug() << "Object other than a building! O.O";

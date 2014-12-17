@@ -8,6 +8,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "DataManager/DataManager.hpp"
+#include "Graphics/Animation.hpp"
 
 
 /**
@@ -28,10 +29,11 @@ public:
 	 * @param name The identifier of the resource.
 	 */
 	const sf::Texture *getTexture(const QString &name);
+	const Animation *getAnimation(const QString &name);
 
 private:
 	const DataManager *dataManager;
 
 	QHash<QString, QPair<sf::Texture *, int>> textures;
-
+	QHash<QString, QPair<Animation *, int>> animations;
 };

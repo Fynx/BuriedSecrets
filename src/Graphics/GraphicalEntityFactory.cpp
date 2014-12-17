@@ -3,6 +3,8 @@
  */
 #include "Graphics/GraphicalEntityFactory.hpp"
 
+#include "Graphics/AnimatedGraphicalEntity.hpp"
+#include "Graphics/AnimationSet.hpp"
 #include "Graphics/StaticGraphicalEntity.hpp"
 
 
@@ -22,7 +24,14 @@ GraphicalEntity* GraphicalEntityFactory::get(const Object* object)
 	auto iter = map.find(object);
 	GraphicalEntity *ptr = nullptr;
 	if (iter == map.end()) {
-		ptr = new StaticGraphicalEntity(object, graphicsDataManager->getTexture("Soszu"));
+		// Build an AnimationSet object and pass it to the AnimatedGraphicalEntity
+		AnimationSet::SetType s;
+		const auto animationsList = object->getPrototype()->getAnimationsData();
+		for (const auto& anim: animationsList) {
+			s[anim->getState()] = graphicsDataManager->getAnimation(anim->getName());
+			qDebug() << anim->getName() << " for " << anim->getState();
+		}
+		ptr = new AnimatedGraphicalEntity(object, AnimationSet{s});
 		map[object] = ptr;
 	} else {
 		ptr = iter.value();

@@ -33,6 +33,6 @@ public:
 	 */
 	virtual void update(const float timeDelta) = 0;
 
-private:
+protected:
 	const Object *object;
 };

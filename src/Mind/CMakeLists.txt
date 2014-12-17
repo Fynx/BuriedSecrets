@@ -1,4 +1,5 @@
 set (Mind_SRCS
+	AnimationAnimator.cpp
 	Animator.cpp
 	AnimatorManager.cpp
 	AnimatorTest.cpp
