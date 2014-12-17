@@ -26,6 +26,10 @@ QMainWindow *General::getMainWindow()
 	return userInterface->getMainWindow();
 }
 
+void General::clear()
+{
+}
+
 void General::loadMap()
 {
 	qDebug() << "Triggered function loadMap";
@@ -36,6 +40,14 @@ void General::saveMap()
 {
 	qDebug() << "Triggered function saveMap";
 	dataManager->saveToFile("data/map.bin", *mind);
+}
+
+void General::createMapFile()
+{
+	qDebug() << "Triggered function createMapFile";
+	mind->insertMap(dataManager->getMap("data/maps/map0.txt"));
+	saveMap();
+	clear();
 }
 
 void General::initModules()

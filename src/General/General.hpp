@@ -22,8 +22,10 @@ public:
 
 	QMainWindow *getMainWindow();
 
+	void clear();
 	void loadMap();
 	void saveMap();
+	void createMapFile();
 
 private:
 	void initModules();

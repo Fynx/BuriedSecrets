@@ -5,6 +5,7 @@
 #include <QtCore>
 
 #include "DataManager/DataManager.hpp"
+#include "DataManager/Map.hpp"
 #include "GameObjects/Object.hpp"
 #include "Mind/AnimatorManager.hpp"
 #include "Mind/Event.hpp"
@@ -22,6 +23,7 @@ public:
 	// it may also be a slot
 	void newGameActivated();
 	PhysicsEngine *physicsEngine();
+	void insertMap(const Map *map);
 
 private:
 	/**

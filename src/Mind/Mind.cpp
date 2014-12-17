@@ -56,22 +56,33 @@ PhysicsEngine *Mind::physicsEngine()
 	return physics;
 }
 
+void Mind::insertMap(const Map *map)
+{
+	qDebug() << "Inserting map...";
+	for (const Map::Object &object : map->getObjects()) {
+		Object *obj;
+		if (object.properties["type"] == "building") {
+			Building *building = new Building(dataManager->getPrototype("building"));
+			obj = building;
+		}
+		QPointF coordinates = {object.properties["x"].toFloat(), object.properties["y"].toFloat()};
+		addObject(obj, coordinates);
+	}
+
+	//TODO !!! connect with animators
+}
+
 QDataStream &operator<<(QDataStream &out, const Mind &mind)
 {
 	qDebug() << "Saving dataObjects...";
 
-	qint32 dataObjectsNumber = 2;
-	out << dataObjectsNumber;
-
-	// FIXME Temporary game objects:
-	Building obj1(mind.dataManager->getPrototype("building"));
-	Building obj2(mind.dataManager->getPrototype("building"));
-
-	out << QString("building") << obj1 << QPointF{0, 0};
-	out << QString("building") << obj2 << QPointF{100, 100};
+	out << static_cast<qint32>(mind.objects.size());
+	for (const Object *obj : mind.objects) {
+		qDebug() << "\tsave" << obj->getUid();
+		out << QString("building") << *obj << mind.physics->getPosition(obj);
+	}
 
 	qDebug() << "done.";
-
 	return out;
 }
 
@@ -87,8 +98,8 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 		in >> type;
 
 		if (type == "building") {
-			qDebug() << "\tbuilding";
 			Building *building = new Building(mind.dataManager->getPrototype("building"));
+			qDebug() << "\tbuilding" << building->getUid();
 			QPointF pos;
 			in >> *building;
 			in >> pos;

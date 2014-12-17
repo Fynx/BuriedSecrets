@@ -4,12 +4,10 @@
 #pragma once
 #include <cstddef>
 
-
 enum class ResourceType {
 	Texture,
 	Font
 };
-
 
 class Resource {
 public:

@@ -36,6 +36,7 @@ static const QSet<QString> toMap {
 };
 
 DataManager::DataManager()
+	: map(nullptr)
 {
 	loadPrototypes();
 	loadResources();
@@ -45,6 +46,7 @@ DataManager::~DataManager()
 {
 	qDeleteAll(prototypes);
 	qDeleteAll(resources);
+	delete map;
 }
 
 const Prototype *DataManager::getPrototype(const QString &name) const
@@ -55,6 +57,12 @@ const Prototype *DataManager::getPrototype(const QString &name) const
 const Resource *DataManager::getResource(const QString &name) const
 {
 	return resources[name];
+}
+
+const Map *DataManager::getMap(const QString &path)
+{
+	loadMap(path);
+	return map;
 }
 
 QByteArray DataManager::readRawData(const QString &path)
@@ -136,6 +144,61 @@ void DataManager::loadResources()
 		}
 	}
 	qDebug() << "done.";
+}
+
+bool DataManager::loadMap(const QString &mapPath)
+{
+	qDebug() << "\nCreating map...";
+	delete map;
+	map = nullptr;
+
+	QString mapDsc = readRawData(mapPath);
+	QStringList list = mapDsc.split('\n', QString::SkipEmptyParts);
+
+	for (int i = 0; i < list.size(); ++i)
+		if (list[i][0] == '#')
+			list.removeAt(i--);
+
+	if (list.size() < 2) {
+		qDebug() << "failed!";
+		return false;
+	}
+
+	QString name = list[0];
+	QString representationName = list[1];
+
+	qDebug() << "name:" << name;
+	qDebug() << "representationName:" << representationName;
+
+	QVector<Map::Object> objects;
+	for (int i = 2; i < list.size();) {
+		Map::Object object;
+		object.name = list[i++];
+		object.animators = list[i++].split(' ', QString::SkipEmptyParts);
+
+		//TODO extremely strange bug, something wrong with properties here.
+		QStringList properties = list[i].split(' ', QString::SkipEmptyParts);
+		int size = properties.size();
+		while (i < list.size() && size > 1) {
+			object.properties[properties[0]] = properties[1];
+			++i;
+			if (i < list.size()) {
+				QStringList properties = list[i].split(' ', QString::SkipEmptyParts);
+				size = properties.size();
+			}
+		}
+
+		qDebug() << "\t" << object.name;
+		qDebug() << "\t\t" << object.animators;
+		qDebug() << "\t\t" << object.properties;
+
+		objects.append(object);
+	}
+
+	map = new Map(name, representationName, objects);
+
+	qDebug() << "done.";
+	return true;
 }
 
 QPair<QString, QVariant> DataManager::readLine(const QString &line) const

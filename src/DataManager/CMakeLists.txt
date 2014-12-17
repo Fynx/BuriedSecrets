@@ -1,5 +1,6 @@
 set (DataManager_SRCS
 	DataManager.cpp
+	Map.cpp
 	Prototype.cpp
 	Resource.cpp
 )

@@ -30,6 +30,11 @@ UserInterface::UserInterface(General *general, Mind *mind, QWidget *graphicsWidg
 	connect(actionSaveMap, &QAction::triggered, general, &General::saveMap);
 	menuFile->addAction(actionSaveMap);
 
+	QAction *actionParseMap = new QAction(mainWindow);
+	actionParseMap->setText("Create map file");
+	connect(actionParseMap, &QAction::triggered, general, &General::createMapFile);
+	menuFile->addAction(actionParseMap);
+
 	QAction *actionQuit = new QAction(mainWindow);
 	actionQuit->setText("Quit");
 	connect(actionQuit, &QAction::triggered, mainWindow, &QMainWindow::close);
