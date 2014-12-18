@@ -10,8 +10,7 @@ class Map {
 public:
 	struct Object {
 		QString name;
-		QStringList animators;
-		QHash<QString, QString> properties;
+		QVariantMap properties;
 	};
 
 	Map(const QString &name, const QString &representationName, const QVector<Map::Object> &objects);

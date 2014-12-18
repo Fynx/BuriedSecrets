@@ -45,21 +45,32 @@ The State in animation is an Object::State name for which the animation should b
 
 ## Map files
 
-#### Format
+data/maps/*.json
 
-	MapName
-	BackgroundTextureName
+#### Required fields
 
-	objectA
-	animator animator ...
-	key value
-	key value
-	...
+- "mapName" - unique name of the map
+- "mapDesc" - path to description of the map (grid, etc.)
 
-	objectB
-	animator animator ...
-	key value
-	key value
-	...
+For each object in "objects"
+- "type"
+- "animators" - array
+- "x", "y" - coordinates
 
-Lines starting with '#' shall be ignored.
+#### Example
+
+	{
+		"mapName": "ExampleMap",
+		"mapDesc": "ExampleMap.wtf",
+		"objects": {
+			"ExampleObject": {
+				"type": "building",
+				"animators": [
+					"AnimatorTest"
+				],
+				"x": 0.0,
+				"y": 0.0
+			}
+		}
+	}
+

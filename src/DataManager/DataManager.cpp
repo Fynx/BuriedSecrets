@@ -139,65 +139,46 @@ void DataManager::loadResources()
 	qDebug() << "done.";
 }
 
-bool DataManager::loadMap(const QString &mapPath)
+bool DataManager::loadMap(const QString &path)
 {
 	qDebug() << "\nCreating map...";
 	delete map;
 	map = nullptr;
 
-	QString mapDsc = readRawData(mapPath);
-	QStringList list = mapDsc.split('\n', QString::SkipEmptyParts);
-
-	for (int i = 0; i < list.size(); ++i)
-		if (list[i][0] == '#')
-			list.removeAt(i--);
-
-	if (list.size() < 2) {
-		qDebug() << "failed!";
+	QFile file(path);
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+		qDebug() << "DataManager: Failed to load file " << path;
 		return false;
 	}
 
-	QString name = list[0];
-	QString representationName = list[1];
+	QString text = file.readAll();
+	QJsonDocument jsonDoc = QJsonDocument::fromJson(text.toUtf8());
+	if (jsonDoc.isNull()) {
+		qDebug() << "DataManager: Error occurred while parsing map file.";
+		return false;
+	}
+	QJsonObject json = jsonDoc.object();
 
-	qDebug() << "name:" << name;
-	qDebug() << "representationName:" << representationName;
+	QString mapName = json["mapName"].toString();
+	QString mapDesc = json["mapDesc"].toString();
 
+	qDebug() << "mapName:" << mapName;
+	qDebug() << "mapDesc:" << mapDesc;
+
+	//TODO remove animators from the map,
 	QVector<Map::Object> objects;
-	for (int i = 2; i < list.size();) {
+	for (const QString &key : json["objects"].toObject().keys()) {
 		Map::Object object;
-		object.name = list[i++];
-		object.animators = list[i++].split(' ', QString::SkipEmptyParts);
-
-		//TODO extremely strange bug, something wrong with properties here.
-		QStringList properties = list[i].split(' ', QString::SkipEmptyParts);
-		int size = properties.size();
-		QString a = properties[0];
-		QString b;
-		if (size > 1)
-			b = properties[1];
-		while (i < list.size() && size > 1) {
-			object.properties[a] = b;
-			++i;
-			if (i < list.size()) {
-				QStringList properties = list[i].split(' ', QString::SkipEmptyParts);
-				size = properties.size();
-				a = properties[0];
-				if (size > 1)
-					b = properties[1];
-			}
-		}
-
-		qDebug() << "\t" << object.name;
-		qDebug() << "\t\t" << object.animators;
-		qDebug() << "\t\t" << object.properties;
-
+		object.name = key;
+		object.properties = json["objects"].toObject()[key].toObject().toVariantMap();
+		qDebug() << "\t" << key;
+		for (const QString &kk : object.properties.keys())
+			qDebug() << "\t\t" << kk << ":" << object.properties[kk];
 		objects.append(object);
 	}
 
-	map = new Map(name, representationName, objects);
+	map = new Map(mapName, mapDesc, objects);
 
-	qDebug() << "done.";
 	return true;
 }
 

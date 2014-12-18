@@ -36,6 +36,7 @@ void Mind::newGameActivated()
 
 void Mind::addObject(Object *object, const QPointF &position)
 {
+	qDebug() << "addObject:" << object->getUid();
 	objects.append(object);
 	uidToObject[object->getUid()] = object;
 	physics->addObject(object, position);
@@ -65,10 +66,6 @@ void Mind::insertMap(const Map *map)
 			obj = building;
 		}
 		QPointF coordinates = {object.properties["x"].toFloat(), object.properties["y"].toFloat()};
-		qDebug() << "setting coordinates:"
-			<< coordinates
-			<< object.properties["x"].toStdString().c_str()
-			<< object.properties["y"].toStdString().c_str();
 		addObject(obj, coordinates);
 	}
 

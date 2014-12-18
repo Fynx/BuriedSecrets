@@ -45,7 +45,7 @@ void General::saveMap()
 void General::createMapFile()
 {
 	qDebug() << "Triggered function createMapFile";
-	mind->insertMap(dataManager->getMap("data/maps/map0.txt"));
+	mind->insertMap(dataManager->getMap("data/maps/map0.json"));
 	saveMap();
 	clear();
 }
