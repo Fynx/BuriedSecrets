@@ -6,18 +6,17 @@
 
 #include "Graphics/Animation.hpp"
 #include "Graphics/AnimationSet.hpp"
-#include "Graphics/GraphicalEntity.hpp"
+#include "Graphics/SpriteGraphicalEntity.hpp"
 
 
-class AnimatedGraphicalEntity: public GraphicalEntity {
+class AnimatedGraphicalEntity: public SpriteGraphicalEntity {
 public:
 	AnimatedGraphicalEntity(const Object *object, const AnimationSet &animationSet);
 
-	sf::Drawable *getDrawable() override;
-	void setPosition(const QPointF &position) override;
+	void setDirection(const BS::Graphic::Direction &direction) override;
 	void update(const float timeDelta) override;
 
 private:
-	sf::Sprite sprite;
 	const AnimationSet animationSet;
+	BS::Graphic::Direction direction;
 };

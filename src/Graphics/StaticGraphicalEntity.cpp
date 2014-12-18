@@ -8,22 +8,15 @@ using namespace sf;
 
 
 StaticGraphicalEntity::StaticGraphicalEntity(const Object* object, const Texture *texture)
-	: GraphicalEntity{object}, sprite{*texture}
+	: SpriteGraphicalEntity{object}
 {
-	// FIXME temporary:
-	sprite.setScale(0.05, 0.05);
+	sprite.setTexture(*texture);
 }
 
 
-sf::Drawable *StaticGraphicalEntity::getDrawable()
+void StaticGraphicalEntity::setDirection(const BS::Graphic::Direction &direction)
 {
-	return &sprite;
-}
-
-
-void StaticGraphicalEntity::setPosition(const QPointF &position)
-{
-	sprite.setPosition(position.x(), position.y());
+	// FIXME Not supported. Do we wan't to support it in any way?
 }
 
 

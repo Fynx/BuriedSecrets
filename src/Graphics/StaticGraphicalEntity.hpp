@@ -5,21 +5,17 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Graphics/GraphicalEntity.hpp"
+#include "Graphics/SpriteGraphicalEntity.hpp"
 
 
 /**
  * @brief This class represents a static graphical object that always displays the same image.
  *
  */
-class StaticGraphicalEntity: public GraphicalEntity {
+class StaticGraphicalEntity: public SpriteGraphicalEntity {
 public:
 	StaticGraphicalEntity(const Object* object, const sf::Texture *texture);
 
-	sf::Drawable *getDrawable() override;
-	void setPosition(const QPointF &position) override;
+	void setDirection(const BS::Graphic::Direction &direction) override;
 	void update(const float timeDelta) override;
-
-private:
-	sf::Sprite sprite;
 };

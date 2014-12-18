@@ -36,4 +36,18 @@ namespace BS {
 	};
 
 	State getStateFromString(const QString &str);
+
+	namespace Graphic {
+		// This is an enum for a reason (underlying value implicitly converted to a numeric type).
+		enum Direction {
+			Right = 0,
+			RightUp = 1,
+			Up = 2,
+			LeftUp = 3,
+			Left = 4,
+			LeftDown = 5,
+			Down = 6,
+			RightDown = 7
+		};
+	}
 }

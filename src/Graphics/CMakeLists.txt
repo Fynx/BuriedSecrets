@@ -7,6 +7,7 @@ set (Graphics_SRCS
 	Graphics.cpp
 	GraphicsDataManager.cpp
 	GraphicsWidget.cpp
+	SpriteGraphicalEntity.cpp
 	StaticGraphicalEntity.cpp
 )
 

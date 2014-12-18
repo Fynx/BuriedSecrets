@@ -23,7 +23,8 @@ public:
 	 *
 	 * @param position In some units...
 	 */
-	virtual void setPosition(const QPointF& position) = 0;
+	virtual void setPosition(const QPointF &position) = 0;
+	virtual void setDirection(const BS::Graphic::Direction &direction) = 0;
 	const Object* getObject() const;
 	/**
 	 * @brief Updates the internal state of the Entity over the time that has passed since the last update.
