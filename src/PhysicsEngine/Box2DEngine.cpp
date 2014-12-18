@@ -91,6 +91,15 @@ const QPointF Box2DEngine::getPosition(const Object *obj) const
 }
 
 
+const float Box2DEngine::getAngle(const Object *obj) const
+{
+	b2Body *body = objects.value(obj);
+	assert(body);
+
+	return body->GetAngle() / RADTODEG;
+}
+
+
 Object *Box2DEngine::getFirstHit(const QPointF &position, QVector2D direction, const float range) const
 {
 	direction.normalize();

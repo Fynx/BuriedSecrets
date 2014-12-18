@@ -20,6 +20,7 @@ public:
 	void setVelocity(Object *obj, const QVector2D &v) override;
 	void setPosition(Object *obj, const QPointF &pos, float angle = 360.0) override;
 	const QPointF getPosition(const Object *obj) const override;
+	const float getAngle(const Object *obj) const override;
 	const QList<const Object *> getObjectsInRect(const QRectF &rect) const override;
 	const QList<const Object *> getColliding(const Object *obj) const override;
 	Object *getFirstHit(const QPointF &position, QVector2D direction, const float range) const override;
