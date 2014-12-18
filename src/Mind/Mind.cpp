@@ -65,6 +65,10 @@ void Mind::insertMap(const Map *map)
 			obj = building;
 		}
 		QPointF coordinates = {object.properties["x"].toFloat(), object.properties["y"].toFloat()};
+		qDebug() << "setting coordinates:"
+			<< coordinates
+			<< object.properties["x"].toStdString().c_str()
+			<< object.properties["y"].toStdString().c_str();
 		addObject(obj, coordinates);
 	}
 
@@ -102,6 +106,7 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 			QPointF pos;
 			in >> *building;
 			in >> pos;
+			qDebug() << "\t\t" << pos;
 			mind.addObject(building, pos);
 
 			// ----- Cut here ----- //

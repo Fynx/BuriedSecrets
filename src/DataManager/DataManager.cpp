@@ -172,12 +172,19 @@ bool DataManager::loadMap(const QString &mapPath)
 		//TODO extremely strange bug, something wrong with properties here.
 		QStringList properties = list[i].split(' ', QString::SkipEmptyParts);
 		int size = properties.size();
+		QString a = properties[0];
+		QString b;
+		if (size > 1)
+			b = properties[1];
 		while (i < list.size() && size > 1) {
-			object.properties[properties[0]] = properties[1];
+			object.properties[a] = b;
 			++i;
 			if (i < list.size()) {
 				QStringList properties = list[i].split(' ', QString::SkipEmptyParts);
 				size = properties.size();
+				a = properties[0];
+				if (size > 1)
+					b = properties[1];
 			}
 		}
 
