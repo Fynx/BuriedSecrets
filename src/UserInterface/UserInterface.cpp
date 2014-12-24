@@ -4,6 +4,7 @@
 #include "UserInterface/UserInterface.hpp"
 
 #include "General/General.hpp"
+#include "UserInterface/IsometricPerspective.hpp"
 
 
 UserInterface::UserInterface(General *general, Mind *mind, QWidget *graphicsWidget)
@@ -39,7 +40,17 @@ UserInterface::UserInterface(General *general, Mind *mind, QWidget *graphicsWidg
 	actionQuit->setText("Quit");
 	connect(actionQuit, &QAction::triggered, mainWindow, &QMainWindow::close);
 	menuFile->addAction(actionQuit);
+
+	const float metreToPxScale = 30.0f;
+	// TODO after MapManager is added and there is some map passed to UI, we will need to get the real size here.
+	// For now:
+	const float mapWidth = 500;
+	const float mapHeight = 500;
+	viewport = new Viewport(new IsometricPerspective(metreToPxScale));
+	viewport->setMapSize(mapWidth, mapHeight);
+	viewport->setViewSize(graphicsWidget->width(), graphicsWidget->height());
 }
+
 
 void UserInterface::initLayout()
 {
@@ -54,22 +65,32 @@ void UserInterface::initLayout()
 	mainWindow->setWindowState(Qt::WindowFullScreen);
 }
 
+
 void UserInterface::switchToGame()
 {
 	stackedWidget->setCurrentIndex(GameWindowIndex);
 }
+
 
 void UserInterface::switchToMainMenu()
 {
 	stackedWidget->setCurrentIndex(MainMenuWindowIndex);
 }
 
+
 UserInterface::~UserInterface()
 {
 	delete mainWindow;
 }
 
+
 QMainWindow *UserInterface::getMainWindow()
 {
 	return mainWindow;
+}
+
+
+Viewport *UserInterface::getViewport()
+{
+	return viewport;
 }

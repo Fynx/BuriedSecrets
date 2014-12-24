@@ -75,6 +75,5 @@ void General::initModules()
 
 	userInterface = new UserInterface(this, mind, graphics->getGraphicsWidget());
 
-	// WTF?!
-	graphics->startRendering();
+	graphics->startRendering(userInterface->getViewport());
 }

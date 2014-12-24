@@ -18,8 +18,10 @@ GraphicsWidget *Graphics::getGraphicsWidget()
 }
 
 
-void Graphics::startRendering(int framesIntervalms)
+void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 {
+	// TODO
+	// Move all rendering logic into a separate class (Renderer) and forward viewport there.
 	renderTimer.setInterval(framesIntervalms);
 	connect(&renderTimer, SIGNAL(timeout()), this, SLOT(render()));
 	renderTimer.start();

@@ -1,7 +1,10 @@
 ﻿set (UserInterface_SRCS
+	IsometricPerspective.cpp
 	GameWindow.cpp
 	MainMenuWindow.cpp
+	Perspective.cpp
 	UserInterface.cpp
+	Viewport.cpp
 )
 
 set (UserInterface_HDRS

@@ -2,13 +2,13 @@
  * All rights reserved.
  */
 #pragma once
+#include <QtWidgets>
 
 #include "Graphics/GraphicsWidget.hpp"
 #include "Mind/Mind.hpp"
 #include "UserInterface/MainMenuWindow.hpp"
 #include "UserInterface/GameWindow.hpp"
-
-#include <QtWidgets>
+#include "UserInterface/Viewport.hpp"
 
 
 // Forward declaration.
@@ -23,6 +23,7 @@ public:
 	~UserInterface();
 
 	QMainWindow *getMainWindow();
+	Viewport *getViewport();
 
 private:
 	void initLayout();
@@ -39,4 +40,6 @@ private:
 
 	General  *general;
 	Mind        *mind;
+
+	Viewport *viewport;
 };

@@ -10,7 +10,8 @@
 #include "Graphics/GraphicalEntity.hpp"
 #include "Graphics/GraphicalEntityFactory.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
-#include "UserInterface/UserInterface.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
+#include "UserInterface/Viewport.hpp"
 
 
 /**
@@ -27,7 +28,7 @@ public:
 	 * @param framesIntervalms Minimal interval between two consecutive frames in ms. Defaults to 0, which means
 	 * 'as fast as possible'.
 	 */
-	void startRendering(int framesIntervalms = 0);
+	void startRendering(const Viewport *viewport, int framesIntervalms = 0);
 	/**
 	 * @brief Loads the graphical representation of the level.
 	 *
@@ -48,6 +49,7 @@ private:
 	sf::RenderWindow *canvas;
 	const PhysicsEngine *physicsEngine;
 	const DataManager *dataManager;
+	Viewport *viewport;
 
 private slots:
 	/**
