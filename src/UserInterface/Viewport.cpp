@@ -5,7 +5,7 @@
 
 
 Viewport::Viewport(const Perspective *perspective)
-	: perspective{perspective}, currentView{0, 0, 0, 0}
+	: perspective{perspective}, scale{1.0f}, currentView{0, 0, 0, 0}
 {
 	mapWidth = mapHeight = viewWidth = viewHeight = 0;
 }
@@ -57,15 +57,17 @@ void Viewport::setScale(const float scale)
 	const float reScale = sqrt(oldScale / scale);
 	this->scale = scale;
 
-	currentView = QRectF(currentView.topLeft() * reScale, currentView.bottomRight() * reScale);
+	currentView = QRectF(currentView.topLeft() / reScale, currentView.bottomRight() * reScale);
 	updateView();
 }
 
 
 void Viewport::updateView()
 {
-	// QPointF topLeft = currentView.topLeft();
-	// TODO
-	// calculate the rect based on perpective, viewWidth, viewHeight, map and scale
+	QPointF topLeft = currentView.topLeft();
+	float finalWidth = viewWidth * scale;
+	float finalHeight = viewHeight * scale;
+	currentView = QRectF{topLeft, QPointF{topLeft.x() + finalWidth, topLeft.y() + finalHeight}};
+	// FIXME don't allow the rect to go beyond the map
 }
 

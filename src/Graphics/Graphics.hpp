@@ -6,6 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <QtCore/QVector>
 
+#include "Graphics/Camera.hpp"
 #include "Graphics/GraphicsWidget.hpp"
 #include "Graphics/GraphicalEntity.hpp"
 #include "Graphics/GraphicalEntityFactory.hpp"
@@ -21,6 +22,11 @@ class Graphics: public QObject {
 Q_OBJECT;
 public:
 	Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager);
+	~Graphics();
+
+	Graphics(const Graphics &other) = delete;
+	Graphics &operator=(const Graphics &other) = delete;
+
 	GraphicsWidget *getGraphicsWidget();
 	/**
 	 * @brief Starts periodical rendering.
@@ -49,7 +55,7 @@ private:
 	sf::RenderWindow *canvas;
 	const PhysicsEngine *physicsEngine;
 	const DataManager *dataManager;
-	Viewport *viewport;
+	Camera *camera;
 
 private slots:
 	/**

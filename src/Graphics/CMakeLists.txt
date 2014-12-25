@@ -2,6 +2,7 @@ set (Graphics_SRCS
 	AnimatedGraphicalEntity.cpp
 	Animation.cpp
 	AnimationSet.cpp
+	Camera.cpp
 	GraphicalEntity.cpp
 	GraphicalEntityFactory.cpp
 	Graphics.cpp
