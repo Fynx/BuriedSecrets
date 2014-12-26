@@ -8,11 +8,11 @@
 #include "Mind/Mind.hpp"
 #include "UserInterface/MainMenuWindow.hpp"
 #include "UserInterface/GameWindow.hpp"
-#include "UserInterface/Viewport.hpp"
 
 
 // Forward declaration.
 class General;
+class Viewport;
 
 
 class UserInterface : public QObject {
@@ -30,6 +30,9 @@ private:
 	void switchToGame();
 	void switchToMainMenu();
 
+	//DEV TMP
+	void devActionsMenu();
+
 	static const int MainMenuWindowIndex = 0;
 	static const int GameWindowIndex = 1;
 
@@ -40,6 +43,4 @@ private:
 
 	General *general;
 	Mind *mind;
-
-	Viewport *viewport;
 };

@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Mind/Mind.hpp"
+#include "UserInterface/Viewport.hpp"
 
 #include <QtWidgets>
 
@@ -12,13 +13,18 @@ class GameWindow : public QWidget {
 public:
 	GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent = nullptr);
 
+	Viewport *viewport();
+
 private:
 	void keyPressEvent(QKeyEvent *event);
 	void resizeEvent(QResizeEvent *event);
 
-	Mind *mind;
+	void initViewport();
 
-	QWidget *graphicsWidget;
+	Mind *mind_;
+
+	Viewport *viewport_;
+	QWidget *graphicsWidget_;
 
 signals:
 	void switchToMainMenu();

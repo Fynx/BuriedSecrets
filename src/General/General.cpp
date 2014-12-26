@@ -29,7 +29,10 @@ QMainWindow *General::getMainWindow()
 void General::newGameStarted()
 {
 	qDebug() << "General seys: \"Get the ball rollin!\"";
-	//TODO
+
+	graphics->startRendering(userInterface->getViewport());
+
+	//TODO whatever needed
 }
 
 void General::clear()
@@ -80,6 +83,4 @@ void General::initModules()
 	graphics = new Graphics(physicsEngine, dataManager);
 
 	userInterface = new UserInterface(this, mind, graphics->getGraphicsWidget());
-
-	graphics->startRendering(userInterface->getViewport());
 }

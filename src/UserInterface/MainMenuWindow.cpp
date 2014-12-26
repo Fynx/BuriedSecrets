@@ -62,8 +62,10 @@ void MainMenuWindow::onContinueActivated()
 void MainMenuWindow::onNewGameActivated()
 {
 	gameInProgress = true;
-	general->newGameStarted();
+	//WARNING with next two lines in different order
+	//        general starts game with game window widgets not yet initialized
 	emit switchToGame();
+	general->newGameStarted();
 	adjustButtonsVisibility();
 }
 
