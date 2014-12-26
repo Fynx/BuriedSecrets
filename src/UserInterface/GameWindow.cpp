@@ -57,11 +57,15 @@ void GameWindow::initBottomPanel()
 	QHBoxLayout *BPLayout = new QHBoxLayout;
 	bottomPanel_->setLayout(BPLayout);
 
-	QPushButton *journalBtn = new QPushButton("Journal");
+	const QIcon *journalIcon = dataManager_->getIcon("journal");
+	QPushButton *journalBtn = new QPushButton(*journalIcon, "Journal");
+	journalBtn->setIconSize(BottomPanelIconsSize);
 	journalBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	BPLayout->addWidget(journalBtn);
 
-	QPushButton *campEQBtn = new QPushButton("Camp EQ");
+	const QIcon *campEQIcon = dataManager_->getIcon("campEQ");
+	QPushButton *campEQBtn = new QPushButton(*campEQIcon, "Camp EQ");
+	campEQBtn->setIconSize(BottomPanelIconsSize);
 	campEQBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	BPLayout->addWidget(campEQBtn);
 }

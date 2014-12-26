@@ -10,7 +10,7 @@ class InterfaceDataManager;
 class Mind;
 
 static const QSize BottomPanelSize{300, 100};
-// static const QMargins BottomPanelMargins{3, 3, 3, 3};
+static const QSize BottomPanelIconsSize{32, 32};
 
 class GameWindow : public QWidget {
 	Q_OBJECT;

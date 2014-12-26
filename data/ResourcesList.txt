@@ -1,2 +1,3 @@
 resources/Textures.res
 resources/Animations.res
+resources/Icons.res
