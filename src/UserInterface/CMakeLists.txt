@@ -1,6 +1,7 @@
 ﻿set (UserInterface_SRCS
 	IsometricPerspective.cpp
 	GameWindow.cpp
+	InterfaceDataManager.cpp
 	MainMenuWindow.cpp
 	Perspective.cpp
 	UserInterface.cpp

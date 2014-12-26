@@ -4,14 +4,21 @@
 #include "UserInterface/UserInterface.hpp"
 
 #include "General/General.hpp"
+#include "Mind/Mind.hpp"
+#include "Graphics/GraphicsWidget.hpp"
+#include "UserInterface/Viewport.hpp"
+#include "UserInterface/MainMenuWindow.hpp"
+#include "UserInterface/GameWindow.hpp"
+#include "UserInterface/InterfaceDataManager.hpp"
 
-UserInterface::UserInterface(DataManager *dataManager, General *general, Mind *mind, QWidget *graphicsWidget)
-	: mainWindow(new QMainWindow()),
-	  mainMenuWindow(new MainMenuWindow(dataManager, general)),
-	  gameWindow(new GameWindow(dataManager, mind, graphicsWidget)),
-	  dataManager(dataManager),
-	  general(general),
-	  mind(mind)
+
+UserInterface::UserInterface(const DataManager *dataManager, General *general, Mind *mind, QWidget *graphicsWidget)
+	: general(general),
+	  mind(mind),
+	  interfaceDataManager(new InterfaceDataManager(dataManager)),
+	  mainWindow(new QMainWindow()),
+	  mainMenuWindow(new MainMenuWindow(interfaceDataManager, general)),
+	  gameWindow(new GameWindow(interfaceDataManager, mind, graphicsWidget))
 {
 	connect(mainMenuWindow, &MainMenuWindow::quit, mainWindow, &QMainWindow::close);
 	connect(mainMenuWindow, &MainMenuWindow::switchToGame, this, &UserInterface::switchToGame);

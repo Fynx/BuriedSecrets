@@ -3,9 +3,13 @@
  */
 #include "UserInterface/GameWindow.hpp"
 
+#include "Mind/Mind.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
+#include "UserInterface/Viewport.hpp"
+#include "UserInterface/InterfaceDataManager.hpp"
 
-GameWindow::GameWindow(DataManager *dataManager, Mind *mind, QWidget *graphicsWidget, QWidget *parent)
+
+GameWindow::GameWindow(InterfaceDataManager *dataManager, Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	: QWidget(parent),
 	  dataManager_(dataManager),
 	  mind_(mind),

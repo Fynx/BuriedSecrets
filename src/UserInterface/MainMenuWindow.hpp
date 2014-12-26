@@ -3,16 +3,16 @@
  */
 #pragma once
 
-class General;
-class DataManager;
-
 #include <QtWidgets>
+
+class General;
+class InterfaceDataManager;
 
 class MainMenuWindow : public QWidget {
 
 Q_OBJECT;
 public:
-	MainMenuWindow(DataManager *dataManager, General *general, QWidget *parent = nullptr);
+	MainMenuWindow(InterfaceDataManager *dataManager, General *general, QWidget *parent = nullptr);
 
 private:
 	void initButtons();
@@ -36,7 +36,7 @@ private:
 	QStackedWidget *stackedWidget_;
 	bool gameInProgress_;
 
-	DataManager *dataManager_;
+	InterfaceDataManager *dataManager_;
 	General *general_;
 
 signals:

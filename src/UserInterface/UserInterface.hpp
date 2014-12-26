@@ -2,24 +2,22 @@
  * All rights reserved.
  */
 #pragma once
+
 #include <QtWidgets>
 
-#include "Graphics/GraphicsWidget.hpp"
-#include "Mind/Mind.hpp"
-#include "UserInterface/MainMenuWindow.hpp"
-#include "UserInterface/GameWindow.hpp"
-
-
-// Forward declaration.
 class DataManager;
 class General;
+class Mind;
+class InterfaceDataManager;
 class Viewport;
+class MainMenuWindow;
+class GameWindow;
 
 class UserInterface : public QObject {
 
 Q_OBJECT;
 public:
-	UserInterface(DataManager *dataManager, General *general, Mind *mind, QWidget *graphicsWidget);
+	UserInterface(const DataManager *dataManager, General *general, Mind *mind, QWidget *graphicsWidget);
 	~UserInterface();
 
 	QMainWindow *getMainWindow();
@@ -36,12 +34,12 @@ private:
 	static const int MainMenuWindowIndex = 0;
 	static const int GameWindowIndex = 1;
 
+	General *general;
+	Mind *mind;
+	InterfaceDataManager *interfaceDataManager;
+
 	QMainWindow *mainWindow;
 	QStackedWidget *stackedWidget;
 	MainMenuWindow *mainMenuWindow;
 	GameWindow *gameWindow;
-
-	DataManager *dataManager;
-	General *general;
-	Mind *mind;
 };

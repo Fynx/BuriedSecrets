@@ -3,12 +3,11 @@
  */
 #pragma once
 
-#include "Mind/Mind.hpp"
-#include "UserInterface/Viewport.hpp"
-
 #include <QtWidgets>
 
-class DataManager;
+class Viewport;
+class InterfaceDataManager;
+class Mind;
 
 static const QSize BottomPanelSize{300, 100};
 // static const QMargins BottomPanelMargins{3, 3, 3, 3};
@@ -16,7 +15,7 @@ static const QSize BottomPanelSize{300, 100};
 class GameWindow : public QWidget {
 	Q_OBJECT;
 public:
-	GameWindow(DataManager *dataManager, Mind *mind, QWidget *graphicsWidget, QWidget *parent = nullptr);
+	GameWindow(InterfaceDataManager *dataManager, Mind *mind, QWidget *graphicsWidget, QWidget *parent = nullptr);
 
 	Viewport *viewport();
 
@@ -27,7 +26,7 @@ private:
 	void initBottomPanel();
 	void initViewport();
 
-	DataManager *dataManager_;
+	InterfaceDataManager *dataManager_;
 	Mind *mind_;
 
 	Viewport *viewport_;

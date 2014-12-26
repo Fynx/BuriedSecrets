@@ -2,9 +2,11 @@
  * All rights reserved.
  */
 #include "UserInterface/MainMenuWindow.hpp"
-#include "General/General.hpp"
 
-MainMenuWindow::MainMenuWindow(DataManager *dataManager, General *general, QWidget *parent)
+#include "General/General.hpp"
+#include "UserInterface/InterfaceDataManager.hpp"
+
+MainMenuWindow::MainMenuWindow(InterfaceDataManager *dataManager, General *general, QWidget *parent)
 	: QWidget(parent),
 	  gameInProgress_(false),
 	  dataManager_(dataManager),
