@@ -1,0 +1,22 @@
+{
+	"mapName": "Map0",
+	"mapDesc": "map0.wtf",
+	"objects": {
+		"Soszu": {
+			"type": "building",
+			"animators": [
+				"AnimatorTest"
+			],
+			"x": 0.0,
+			"y": 0.0
+		},
+		"Soszu2": {
+			"type": "building",
+			"animators": [
+				"AnimatorTest"
+			],
+			"x": 50.0,
+			"y": 50.0
+		}
+	}
+}
