@@ -5,8 +5,8 @@
 
 #include "UserInterface/IsometricPerspective.hpp"
 
-GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
-	: QWidget(parent), mind_(mind), graphicsWidget_(graphicsWidget)
+GameWindow::GameWindow(DataManager *dataManager, Mind *mind, QWidget *graphicsWidget, QWidget *parent)
+	: QWidget(parent), dataManager_(dataManager), mind_(mind), graphicsWidget_(graphicsWidget)
 {
 	graphicsWidget_->setParent(this);
 

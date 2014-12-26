@@ -4,7 +4,11 @@
 #include "UserInterface/MainMenuWindow.hpp"
 #include "General/General.hpp"
 
-MainMenuWindow::MainMenuWindow(General *general, QWidget *parent) : QWidget(parent), gameInProgress(false), general(general)
+MainMenuWindow::MainMenuWindow(DataManager *dataManager, General *general, QWidget *parent)
+	: QWidget(parent),
+	  gameInProgress_(false),
+	  dataManager_(dataManager),
+	  general_(general)
 {
 	initButtons();
 	initLayout();
@@ -12,23 +16,23 @@ MainMenuWindow::MainMenuWindow(General *general, QWidget *parent) : QWidget(pare
 
 void MainMenuWindow::initButtons()
 {
-	continueBtn = new QPushButton("Continue");
-	connect(continueBtn, &QPushButton::clicked, this, &MainMenuWindow::onContinueActivated);
+	continueBtn_ = new QPushButton("Continue");
+	connect(continueBtn_, &QPushButton::clicked, this, &MainMenuWindow::onContinueActivated);
 
-	newGameBtn = new QPushButton("New game");
-	connect(newGameBtn, &QPushButton::clicked, this, &MainMenuWindow::onNewGameActivated);
+	newGameBtn_ = new QPushButton("New game");
+	connect(newGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::onNewGameActivated);
 
-	loadGameBtn = new QPushButton("Load game");
-	connect(loadGameBtn, &QPushButton::clicked, this, &MainMenuWindow::onLoadGameActivated);
+	loadGameBtn_ = new QPushButton("Load game");
+	connect(loadGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::onLoadGameActivated);
 
-	saveGameBtn = new QPushButton("Save game");
-	connect(saveGameBtn, &QPushButton::clicked, this, &MainMenuWindow::onSaveGameActivated);
+	saveGameBtn_ = new QPushButton("Save game");
+	connect(saveGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::onSaveGameActivated);
 
-	instructionsBtn = new QPushButton("Instructions");
-	connect(instructionsBtn, &QPushButton::clicked, this, &MainMenuWindow::onInstructionsActivated);
+	instructionsBtn_ = new QPushButton("Instructions");
+	connect(instructionsBtn_, &QPushButton::clicked, this, &MainMenuWindow::onInstructionsActivated);
 
-	quitGameBtn = new QPushButton("Quit");
-	connect(quitGameBtn, &QPushButton::clicked, this, &MainMenuWindow::onQuitActivated);
+	quitGameBtn_ = new QPushButton("Quit");
+	connect(quitGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::onQuitActivated);
 
 	adjustButtonsVisibility();
 }
@@ -39,19 +43,19 @@ void MainMenuWindow::initLayout()
 	this->setLayout(mainLayout);
 
 	mainLayout->addWidget(new QLabel("Buried Secrets"));
-	mainLayout->addWidget(continueBtn);
-	mainLayout->addWidget(newGameBtn);
-	mainLayout->addWidget(loadGameBtn);
-	mainLayout->addWidget(saveGameBtn);
-	mainLayout->addWidget(instructionsBtn);
-	mainLayout->addWidget(quitGameBtn);
+	mainLayout->addWidget(continueBtn_);
+	mainLayout->addWidget(newGameBtn_);
+	mainLayout->addWidget(loadGameBtn_);
+	mainLayout->addWidget(saveGameBtn_);
+	mainLayout->addWidget(instructionsBtn_);
+	mainLayout->addWidget(quitGameBtn_);
 	mainLayout->addStretch();
 }
 
 void MainMenuWindow::adjustButtonsVisibility()
 {
-	continueBtn->setVisible(gameInProgress);
-	saveGameBtn->setVisible(gameInProgress);
+	continueBtn_->setVisible(gameInProgress_);
+	saveGameBtn_->setVisible(gameInProgress_);
 }
 
 void MainMenuWindow::onContinueActivated()
@@ -61,11 +65,11 @@ void MainMenuWindow::onContinueActivated()
 
 void MainMenuWindow::onNewGameActivated()
 {
-	gameInProgress = true;
+	gameInProgress_ = true;
 	//WARNING with next two lines in different order
 	//        general starts game with game window widgets not yet initialized
 	emit switchToGame();
-	general->newGameStarted();
+	general_->newGameStarted();
 	adjustButtonsVisibility();
 }
 

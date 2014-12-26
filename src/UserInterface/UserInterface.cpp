@@ -5,10 +5,11 @@
 
 #include "General/General.hpp"
 
-UserInterface::UserInterface(General *general, Mind *mind, QWidget *graphicsWidget)
+UserInterface::UserInterface(DataManager *dataManager, General *general, Mind *mind, QWidget *graphicsWidget)
 	: mainWindow(new QMainWindow()),
-	  mainMenuWindow(new MainMenuWindow(general)),
-	  gameWindow(new GameWindow(mind, graphicsWidget)),
+	  mainMenuWindow(new MainMenuWindow(dataManager, general)),
+	  gameWindow(new GameWindow(dataManager, mind, graphicsWidget)),
+	  dataManager(dataManager),
 	  general(general),
 	  mind(mind)
 {

@@ -82,5 +82,5 @@ void General::initModules()
 
 	graphics = new Graphics(physicsEngine, dataManager);
 
-	userInterface = new UserInterface(this, mind, graphics->getGraphicsWidget());
+	userInterface = new UserInterface(dataManager, this, mind, graphics->getGraphicsWidget());
 }

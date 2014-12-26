@@ -11,15 +11,15 @@
 
 
 // Forward declaration.
+class DataManager;
 class General;
 class Viewport;
-
 
 class UserInterface : public QObject {
 
 Q_OBJECT;
 public:
-	UserInterface(General *general, Mind *mind, QWidget *graphicsWidget);
+	UserInterface(DataManager *dataManager, General *general, Mind *mind, QWidget *graphicsWidget);
 	~UserInterface();
 
 	QMainWindow *getMainWindow();
@@ -41,6 +41,7 @@ private:
 	MainMenuWindow *mainMenuWindow;
 	GameWindow *gameWindow;
 
+	DataManager *dataManager;
 	General *general;
 	Mind *mind;
 };

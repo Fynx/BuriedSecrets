@@ -8,10 +8,12 @@
 
 #include <QtWidgets>
 
+class DataManager;
+
 class GameWindow : public QWidget {
 	Q_OBJECT;
 public:
-	GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent = nullptr);
+	GameWindow(DataManager *dataManager, Mind *mind, QWidget *graphicsWidget, QWidget *parent = nullptr);
 
 	Viewport *viewport();
 
@@ -21,6 +23,7 @@ private:
 
 	void initViewport();
 
+	DataManager *dataManager_;
 	Mind *mind_;
 
 	Viewport *viewport_;
