@@ -28,12 +28,6 @@ Mind::~Mind()
 	qDeleteAll(objects);
 }
 
-void Mind::newGameActivated()
-{
-	qDebug() << "Let the game begin!";
-	//TODO
-}
-
 void Mind::addObject(Object *object, const QPointF &position)
 {
 	qDebug() << "addObject:" << object->getUid();

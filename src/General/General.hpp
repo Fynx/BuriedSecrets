@@ -22,6 +22,8 @@ public:
 
 	QMainWindow *getMainWindow();
 
+	void newGameStarted();
+
 	void clear();
 	void loadMap();
 	void saveMap();

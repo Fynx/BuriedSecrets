@@ -30,7 +30,7 @@ private:
 	void switchToGame();
 	void switchToMainMenu();
 
-	static const int MainMenuWindowIndex   = 0;
+	static const int MainMenuWindowIndex = 0;
 	static const int GameWindowIndex = 1;
 
 	QMainWindow *mainWindow;
@@ -38,8 +38,8 @@ private:
 	MainMenuWindow *mainMenuWindow;
 	GameWindow *gameWindow;
 
-	General  *general;
-	Mind        *mind;
+	General *general;
+	Mind *mind;
 
 	Viewport *viewport;
 };

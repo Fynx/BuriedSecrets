@@ -2,8 +2,9 @@
  * All rights reserved.
  */
 #include "UserInterface/MainMenuWindow.hpp"
+#include "General/General.hpp"
 
-MainMenuWindow::MainMenuWindow(Mind *mind, QWidget *parent) : QWidget(parent), mind(mind), gameInProgress(false)
+MainMenuWindow::MainMenuWindow(General *general, QWidget *parent) : QWidget(parent), gameInProgress(false), general(general)
 {
 	initButtons();
 	initLayout();
@@ -61,7 +62,7 @@ void MainMenuWindow::onContinueActivated()
 void MainMenuWindow::onNewGameActivated()
 {
 	gameInProgress = true;
-	mind->newGameActivated();
+	general->newGameStarted();
 	emit switchToGame();
 	adjustButtonsVisibility();
 }

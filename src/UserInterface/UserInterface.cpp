@@ -8,8 +8,11 @@
 
 
 UserInterface::UserInterface(General *general, Mind *mind, QWidget *graphicsWidget)
-	: mainWindow(new QMainWindow()), mainMenuWindow(new MainMenuWindow(mind)),
-	  gameWindow(new GameWindow(mind, graphicsWidget)), general(general), mind(mind)
+	: mainWindow(new QMainWindow()),
+	  mainMenuWindow(new MainMenuWindow(general)),
+	  gameWindow(new GameWindow(mind, graphicsWidget)),
+	  general(general),
+	  mind(mind)
 {
 	connect(mainMenuWindow, &MainMenuWindow::quit, mainWindow, &QMainWindow::close);
 	connect(mainMenuWindow, &MainMenuWindow::switchToGame, this, &UserInterface::switchToGame);

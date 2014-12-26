@@ -26,6 +26,12 @@ QMainWindow *General::getMainWindow()
 	return userInterface->getMainWindow();
 }
 
+void General::newGameStarted()
+{
+	qDebug() << "General seys: \"Get the ball rollin!\"";
+	//TODO
+}
+
 void General::clear()
 {
 }

@@ -3,7 +3,7 @@
  */
 #pragma once
 
-#include "Mind/Mind.hpp"
+class General;
 
 #include <QtWidgets>
 
@@ -11,7 +11,7 @@ class MainMenuWindow : public QWidget {
 
 Q_OBJECT;
 public:
-	MainMenuWindow(Mind *mind, QWidget *parent = nullptr);
+	MainMenuWindow(General *general, QWidget *parent = nullptr);
 
 private:
 	void initButtons();
@@ -33,8 +33,9 @@ private:
 	QPushButton *quitGameBtn;
 
 	QStackedWidget *stackedWidget;
-	Mind *mind;
 	bool gameInProgress;
+
+	General *general;
 
 signals:
 	void quit();

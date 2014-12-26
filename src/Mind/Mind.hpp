@@ -20,8 +20,6 @@ public:
 	Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager);
 	~Mind();
 
-	// it may also be a slot
-	void newGameActivated();
 	PhysicsEngine *physicsEngine();
 	void insertMap(const Map *map);
 
