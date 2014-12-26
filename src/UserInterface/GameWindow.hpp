@@ -10,6 +10,9 @@
 
 class DataManager;
 
+static const QSize BottomPanelSize{300, 100};
+// static const QMargins BottomPanelMargins{3, 3, 3, 3};
+
 class GameWindow : public QWidget {
 	Q_OBJECT;
 public:
@@ -21,6 +24,7 @@ private:
 	void keyPressEvent(QKeyEvent *event);
 	void resizeEvent(QResizeEvent *event);
 
+	void initBottomPanel();
 	void initViewport();
 
 	DataManager *dataManager_;
@@ -28,6 +32,7 @@ private:
 
 	Viewport *viewport_;
 	QWidget *graphicsWidget_;
+	QFrame *bottomPanel_;
 
 signals:
 	void switchToMainMenu();
