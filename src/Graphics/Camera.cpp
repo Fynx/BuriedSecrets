@@ -13,3 +13,9 @@ QList<const Object *> Camera::getVisibleObjects() const
 	return physicsEngine->getObjectsInRect(viewport->getCurrentView());
 }
 
+
+int Camera::discretizeAngle(const float angle, const int range) const
+{
+	return static_cast<int>(round(angle * range / 360.0f)) % range;
+}
+

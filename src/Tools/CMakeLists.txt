@@ -1,8 +1,8 @@
-set (Tools_SRCS
-)
-
-set (Tools_HDRS
-)
+# set (Tools_SRCS
+# )
+#
+# set (Tools_HDRS
+# )
 
 # qt5_wrap_cpp (Tools_SRCS ${Tools_HDRS})
 
@@ -12,3 +12,5 @@ set (Tools_HDRS
 if (BUILD_TESTS)
 	add_subdirectory (tests)
 endif (BUILD_TESTS)
+
+add_executable(AnimationCreator AnimationCreator.cpp)

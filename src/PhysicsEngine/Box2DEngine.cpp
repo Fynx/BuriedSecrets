@@ -65,7 +65,7 @@ void Box2DEngine::setPosition(Object *obj, const QPointF &pos, float angle)
 		return;
 
 	if (angle >= 360. || angle < 0)
-		angle = body->GetAngle() / RADTODEG;
+		angle = body->GetAngle() * RADTODEG;
 
 	angle = angle * DEGTORAD;
 	body->SetTransform(b2Vec2(pos.x(), pos.y()), angle);
@@ -96,7 +96,7 @@ const float Box2DEngine::getAngle(const Object *obj) const
 	b2Body *body = objects.value(obj);
 	assert(body);
 
-	return body->GetAngle() / RADTODEG;
+	return body->GetAngle() * RADTODEG;
 }
 
 

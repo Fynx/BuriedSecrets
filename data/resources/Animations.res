@@ -1,6 +1,6 @@
 SoszuIdle
 Animation
-Idle 3 Soszu Soszu2 Soszu3 Soszu Soszu2 Soszu3 Soszu Soszu2 Soszu3 Soszu Soszu2 Soszu3 Soszu Soszu2 Soszu3 Soszu Soszu2 Soszu3 Soszu Soszu2 Soszu3 Soszu Soszu2 Soszu3
+Idle 3 SoszuUp SoszuUp2 SoszuUp3 SoszuUpRight SoszuUpRight2 SoszuUpRight3 SoszuRight SoszuRight2 SoszuRight3 SoszuDownRight SoszuDownRight2 SoszuDownRight3 SoszuDown SoszuDown2 SoszuDown3 SoszuDownLeft SoszuDownLeft2 SoszuDownLeft3 SoszuLeft SoszuLeft2 SoszuLeft3 SoszuUpLeft SoszuUpLeft2 SoszuUpLeft3
 SoszuWalking
 Animation
-Run 1 Soszu Soszu Soszu Soszu Soszu Soszu Soszu Soszu
+Run 1 SoszuDown SoszuDown SoszuDown SoszuDown SoszuDown SoszuDown SoszuDown SoszuDown
