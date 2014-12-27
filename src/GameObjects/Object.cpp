@@ -38,6 +38,7 @@ BS::State Object::getState() const
 void Object::setState(BS::State state)
 {
 	this->state = state;
+	setFrame(0);
 }
 
 

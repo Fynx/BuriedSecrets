@@ -2,6 +2,7 @@ set (Mind_SRCS
 	AnimationAnimator.cpp
 	Animator.cpp
 	AnimatorManager.cpp
+	AnimatorMove.cpp
 	AnimatorTest.cpp
 	AnimatorPhysicsUpdate.cpp
 	Event.cpp

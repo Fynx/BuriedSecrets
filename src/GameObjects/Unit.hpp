@@ -30,6 +30,10 @@ public:
 
 	int getSightRange() const;
 
+	int getSpeed() const;
+
+	int getRegeneration() const;
+
 	void addItem(Item *item);
 	void removeItem(Item *item);
 
@@ -43,7 +47,7 @@ public:
 
 	/** Action-wise */
 
-	QList<QPointF> getCurrentPath() const;
+	QList<QPointF> &getCurrentPath();
 	void setCurrentPath(const QList<QPointF> &path);
 
 	int getAttackedUnitUid() const;
@@ -56,6 +60,7 @@ private:
 	int psychosis;
 	Equipment *equipment;
 
+	// Should be implemented inside equipment
 	Item *armor;
 	Item *medicalKit;
 	Item *optics;
