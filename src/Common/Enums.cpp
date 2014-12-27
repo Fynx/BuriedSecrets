@@ -2,6 +2,25 @@
  * All rights reserved.
  */
 #include "Common/Enums.hpp"
+#include <QtCore>
+
+//TODO change to hashmaps
+
+static const QMap <BS::State, QString> stateToString {
+	{BS::State::Idle, "Idle"},
+	{BS::State::Run, "Run"},
+	{BS::State::Shoot, "Shoot"},
+};
+
+static const QMap <BS::Type, QString> typeToString {
+	{BS::Type::Invalid, "invalid"},
+	{BS::Type::Building, "building"},
+	{BS::Type::Equipment, "equipment"},
+	{BS::Type::Fortification, "fortification"},
+	{BS::Type::Journal, "journal"},
+	{BS::Type::Mob, "mob"},
+	{BS::Type::Unit, "unit"},
+};
 
 namespace BS {
 
@@ -15,6 +34,16 @@ namespace BS {
 		}
 
 		return result;
+	}
+
+	QString changeTypeToString(BS::Type type)
+	{
+		return ::typeToString.value(type, QString());
+	}
+
+	BS::Type changeStringToType(const QString &string)
+	{
+		return ::typeToString.key(string, BS::Type::Invalid);
 	}
 
 }

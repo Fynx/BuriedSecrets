@@ -2,8 +2,7 @@
  * All rights reserved.
  */
 #pragma once
-#include <QtCore/QHash>
-#include <QtCore/QString>
+#include <QtCore>
 #include <QVector>
 
 #include "Common/Enums.hpp"
@@ -11,9 +10,9 @@
 
 class AnimationData {
 public:
-	typedef QVector<QVector<QString>> FramesDescription;
+	typedef QVector<QVector<QString> > FramesDescription;
 
-	AnimationData(const QString &name, const QString &rawData);
+	AnimationData(const QString &name, BS::State state, int framesNumber, const QVariantList &frames);
 
 	const QString &getName() const;
 	const FramesDescription &getFramesDescription() const;
@@ -24,5 +23,6 @@ public:
 private:
 	const QString name;
 	BS::State state;
+	int framesNumber;
 	FramesDescription framesDescription;
 };

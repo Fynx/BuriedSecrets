@@ -1,0 +1,48 @@
+{
+  "SoszuIdle": {
+    "type": "animation",
+    "state": "Idle",
+    "framesNumber": 3,
+    "frames": [
+      "SoszuUp",
+      "SoszuUp2",
+      "SoszuUp3",
+      "SoszuUpRight",
+      "SoszuUpRight2",
+      "SoszuUpRight3",
+      "SoszuRight",
+      "SoszuRight2",
+      "SoszuRight3",
+      "SoszuDownRight",
+      "SoszuDownRight2",
+      "SoszuDownRight3",
+      "SoszuDown",
+      "SoszuDown2",
+      "SoszuDown3",
+      "SoszuDownLeft",
+      "SoszuDownLeft2",
+      "SoszuDownLeft3",
+      "SoszuLeft",
+      "SoszuLeft2",
+      "SoszuLeft3",
+      "SoszuUpLeft",
+      "SoszuUpLeft2",
+      "SoszuUpLeft3"
+    ]
+  },
+  "SoszuWalking": {
+    "type": "animation",
+    "state": "Run",
+    "framesNumber": 1,
+    "frames": [
+      "SoszuDown",
+      "SoszuDown",
+      "SoszuDown",
+      "SoszuDown",
+      "SoszuDown",
+      "SoszuDown",
+      "SoszuDown",
+      "SoszuDown"
+    ]
+  }
+}

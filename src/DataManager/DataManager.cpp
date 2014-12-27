@@ -101,42 +101,43 @@ void DataManager::savePrototypes() const
 
 void DataManager::loadResources()
 {
-	// Look at README.md of DataManager for more info on the format.
-	const QString prefix = "data/";
+	/** Look at README.md of DataManager for more info on the format. */
+	const QString preffix = "data/";
 	qDebug() << "Loading resources...";
-	QString resourcesListStr = readRawData(prefix + "ResourcesList.txt");
+	QString resourcesListStr = readRawData(preffix + "ResourcesList.txt");
 	QStringList resourcesList = resourcesListStr.split('\n');
 
-	// Load all the resources from the list.
+	/** Load all the resources from the list. */
 	for (QString resourcePath: resourcesList) {
 		if (!resourcePath.trimmed().isEmpty()) {
 			qDebug() << "\tloading" << resourcePath;
-			QString resourceStr = readRawData(prefix + resourcePath);
-			QStringList resourceInfo = resourceStr.split('\n');
-			for (int i = 0; i + 2 < resourceInfo.length(); i += 3) {
-				QString typeStr = resourceInfo.at(i + 1);
+			QJsonObject json = readJson(preffix + resourcePath);
 
-				if (typeStr == "Animation") {
-					// Save bare string as data.
+			for (const QString &key : json.keys()) {
+				const QJsonObject &obj = json[key].toObject();
+				if (obj["type"].toString() == "animation") {
 					AnimationData *animation = new AnimationData(
-							resourceInfo.at(i), resourceInfo.at(i + 2));
+						key,
+						BS::getStateFromString(obj["state"].toString()),
+						obj["framesNumber"].toInt(),
+						obj["frames"].toArray().toVariantList()
+    					);
 					qDebug() << animation;
-					animationData[resourceInfo.at(i)] = animation;
-				} else if (typeStr == "Texture" || typeStr == "Font") {
-					// Load the data from the file
-					QByteArray resourceData = readRawData(prefix + resourceInfo.at(i + 2));
+					animationData[key] = animation;
+				} else if (obj["type"].toString() == "texture" || obj["type"].toString() == "font") {
+					/** Load the data from the file */
+					QByteArray resourceData = readRawData(preffix + obj["data"].toString());
 					char *data = new char[resourceData.length()];
 					memcpy(data, resourceData.data(), resourceData.length());
-
+//
 					Resource *resource = new Resource(data, resourceData.length());
-					resources[resourceInfo.at(i)] = resource;
+					resources[key] = resource;
 				}
-
-				qDebug() << "loaded " << resourceInfo.at(i);
 			}
-
+			qDebug() << "loaded" << resourcePath;
 		}
 	}
+
 	qDebug() << "done.";
 }
 

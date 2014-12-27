@@ -1,0 +1,98 @@
+{
+  "SoszuUp": {
+    "type": "texture",
+    "data": "images/SoszuUp.png"
+  },
+  "SoszuUp2": {
+    "type": "texture",
+    "data": "images/SoszuUp2.png"
+  },
+  "SoszuUp3": {
+    "type": "texture",
+    "data": "images/SoszuUp3.png"
+  },
+  "SoszuUpRight": {
+    "type": "texture",
+    "data": "images/SoszuUpRight.png"
+  },
+  "SoszuUpRight2": {
+    "type": "texture",
+    "data": "images/SoszuUpRight2.png"
+  },
+  "SoszuUpRight3": {
+    "type": "texture",
+    "data": "images/SoszuUpRight3.png"
+  },
+  "SoszuRight": {
+    "type": "texture",
+    "data": "images/SoszuRight.png"
+  },
+  "SoszuRight2": {
+    "type": "texture",
+    "data": "images/SoszuRight2.png"
+  },
+  "SoszuRight3": {
+    "type": "texture",
+    "data": "images/SoszuRight3.png"
+  },
+  "SoszuDownRight": {
+    "type": "texture",
+    "data": "images/SoszuDownRight.png"
+  },
+  "SoszuDownRight2": {
+    "type": "texture",
+    "data": "images/SoszuDownRight2.png"
+  },
+  "SoszuDownRight3": {
+    "type": "texture",
+    "data": "images/SoszuDownRight3.png"
+  },
+  "SoszuDown": {
+    "type": "texture",
+    "data": "images/SoszuDown.png"
+  },
+  "SoszuDown2": {
+    "type": "texture",
+    "data": "images/SoszuDown2.png"
+  },
+  "SoszuDown3": {
+    "type": "texture",
+    "data": "images/SoszuDown3.png"
+  },
+  "SoszuDownLeft": {
+    "type": "texture",
+    "data": "images/SoszuDownLeft.png"
+  },
+  "SoszuDownLeft2": {
+    "type": "texture",
+    "data": "images/SoszuDownLeft2.png"
+  },
+  "SoszuDownLeft3": {
+    "type": "texture",
+    "data": "images/SoszuDownLeft3.png"
+  },
+  "SoszuLeft": {
+    "type": "texture",
+    "data": "images/SoszuLeft.png"
+  },
+  "SoszuLeft2": {
+    "type": "texture",
+    "data": "images/SoszuLeft2.png"
+  },
+  "SoszuLeft3": {
+    "type": "texture",
+    "data": "images/SoszuLeft3.png"
+  },
+  "SoszuUpLeft": {
+    "type": "texture",
+    "data": "images/SoszuUpLeft.png"
+  },
+  "SoszuUpLeft2": {
+    "type": "texture",
+    "data": "images/SoszuUpLeft2.png"
+  },
+  "SoszuUpLeft3": {
+    "type": "texture",
+    "data": "images/SoszuUpLeft3.png"
+  }
+}

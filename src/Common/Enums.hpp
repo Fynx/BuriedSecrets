@@ -19,6 +19,9 @@ namespace BS {
 		Unit,
 	};
 
+	QString changeTypeToString(BS::Type type);
+	BS::Type changeStringToType(const QString &string);
+
 	// FIXME(Tommalla): Yes, you'll hate me for this, but I couldn't force QHash to hash State. I'm happy to talk
 	// about why and try to solve it together with someone.
 	// For now it's just going to be a standard enum, because I'm stuck here and don't want it to stay that way.

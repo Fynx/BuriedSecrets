@@ -1,2 +1,2 @@
-resources/Textures.res
-resources/Animations.res
+resources/Textures.json
+resources/Animations.json

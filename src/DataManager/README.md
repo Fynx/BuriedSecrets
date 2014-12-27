@@ -21,6 +21,10 @@ In each of the prototypes there is a map from string to json value.
 
 ## Resource files
 
+TODO update json!
+
+Deprecation:
+
 The main file with the list of all resources is data/ResourcesList.txt. It contains a newline-separated list of
 relative (to data/) paths to .res files. Each .res file describes a list of resources. Any resources file can contain any number of resources of any supported types.
 The format of Texture or Font in a resource file is as follows:

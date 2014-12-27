@@ -9,28 +9,6 @@
 #include "GameObjects/Mob.hpp"
 #include "GameObjects/Unit.hpp"
 
-//TODO refactor: move somewhere
-
-static const QMap <BS::Type, QString> typeToString {
-	{BS::Type::Invalid, "invalid"},
-	{BS::Type::Building, "building"},
-	{BS::Type::Equipment, "equipment"},
-	{BS::Type::Fortification, "fortification"},
-	{BS::Type::Journal, "journal"},
-	{BS::Type::Mob, "mob"},
-	{BS::Type::Unit, "unit"},
-};
-
-inline QString changeTypeToString(BS::Type type)
-{
-	return typeToString.value(type, QString());
-}
-
-inline BS::Type changeStringToType(const QString &string)
-{
-	return typeToString.key(string, BS::Type::Invalid);
-}
-
 
 //TODO use DebugManager instead
 #include <QtCore>
@@ -83,7 +61,7 @@ void Mind::insertMap(const Map *map)
 		Object *obj;
 		qDebug() << "\tinsert object: type=" << object.properties["type"].toString()
 			<< "name=" << object.properties["name"].toString();
-		BS::Type type = changeStringToType(object.properties["type"].toString());
+		BS::Type type = BS::changeStringToType(object.properties["type"].toString());
 		QString name = object.properties["name"].toString();
 		switch (type) {
 			case BS::Type::Invalid: {
