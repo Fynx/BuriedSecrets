@@ -16,7 +16,11 @@ QList<const Object *> Camera::getVisibleObjects() const
 
 int Camera::discretizeAngle(const float angle, const int range) const
 {
-	return static_cast<int>(round(angle * range / 360.0f)) % range;
+	int res = static_cast<int>(round(angle * range / 360.0f)) % range;
+	if (res < 0) {
+		res += range;
+	}
+	return res;
 }
 
 
