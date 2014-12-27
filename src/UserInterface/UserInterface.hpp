@@ -24,15 +24,14 @@ public:
 	Viewport *getViewport();
 
 private:
-	void initLayout();
-	void switchToGame();
-	void switchToMainMenu();
+	enum class Window : quint8 {
+		MainMenu,
+		Game,
+		LoadGame,
+		SaveGame,
+		Instructions
+	};
 
-	//DEV TMP
-	void devActionsMenu();
-
-	static const int MainMenuWindowIndex = 0;
-	static const int GameWindowIndex = 1;
 
 	General *general;
 	Mind *mind;
@@ -42,4 +41,16 @@ private:
 	QStackedWidget *stackedWidget;
 	MainMenuWindow *mainMenuWindow;
 	GameWindow *gameWindow;
+
+	void initLayout();
+	void initWindows();
+	void switchToWindow(Window window);
+
+	//DEV TMP
+	void initDevActionsMenu();
+
+private slots:
+	void onShowMainMenu();
+	void onNewGame();
+	void onContinueGame();
 };

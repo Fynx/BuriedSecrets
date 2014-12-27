@@ -31,7 +31,7 @@ Viewport * GameWindow::viewport()
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
 	if (event->key() == Qt::Key_Escape) {
-		emit switchToMainMenu();
+		emit showMainMenu();
 	}
 	else
 		QWidget::keyPressEvent(event);

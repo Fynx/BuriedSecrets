@@ -12,19 +12,12 @@ class MainMenuWindow : public QWidget {
 
 Q_OBJECT;
 public:
-	MainMenuWindow(InterfaceDataManager *dataManager, General *general, QWidget *parent = nullptr);
+	MainMenuWindow(InterfaceDataManager *dataManager, QWidget *parent = nullptr);
 
 private:
 	void initButtons();
 	void initLayout();
-	void adjustButtonsVisibility();
 
-	void onContinueActivated();
-	void onNewGameActivated();
-	void onLoadGameActivated();
-	void onSaveGameActivated();
-	void onInstructionsActivated();
-	void onQuitActivated();
 
 	QPushButton *continueBtn_;
 	QPushButton *newGameBtn_;
@@ -37,9 +30,15 @@ private:
 	bool gameInProgress_;
 
 	InterfaceDataManager *dataManager_;
-	General *general_;
+
+private slots:
+	void adjustButtonsVisibility();
 
 signals:
-	void quit();
-	void switchToGame();
+	void continueActivated();
+	void newGameActivated();
+	void loadGameActivated();
+	void saveGameActivated();
+	void instructionsActivated();
+	void quitActivated();
 };

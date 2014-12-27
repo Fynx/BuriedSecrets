@@ -34,5 +34,5 @@ private:
 	QFrame *bottomPanel_;
 
 signals:
-	void switchToMainMenu();
+	void showMainMenu();
 };

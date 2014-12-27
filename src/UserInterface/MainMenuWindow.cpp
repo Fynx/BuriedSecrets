@@ -6,11 +6,10 @@
 #include "General/General.hpp"
 #include "UserInterface/InterfaceDataManager.hpp"
 
-MainMenuWindow::MainMenuWindow(InterfaceDataManager *dataManager, General *general, QWidget *parent)
+MainMenuWindow::MainMenuWindow(InterfaceDataManager *dataManager, QWidget *parent)
 	: QWidget(parent),
 	  gameInProgress_(false),
-	  dataManager_(dataManager),
-	  general_(general)
+	  dataManager_(dataManager)
 {
 	initButtons();
 	initLayout();
@@ -19,22 +18,22 @@ MainMenuWindow::MainMenuWindow(InterfaceDataManager *dataManager, General *gener
 void MainMenuWindow::initButtons()
 {
 	continueBtn_ = new QPushButton("Continue");
-	connect(continueBtn_, &QPushButton::clicked, this, &MainMenuWindow::onContinueActivated);
+	connect(continueBtn_, &QPushButton::clicked, this, &MainMenuWindow::continueActivated);
 
 	newGameBtn_ = new QPushButton("New game");
-	connect(newGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::onNewGameActivated);
+	connect(newGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::newGameActivated);
 
 	loadGameBtn_ = new QPushButton("Load game");
-	connect(loadGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::onLoadGameActivated);
+	connect(loadGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::loadGameActivated);
 
 	saveGameBtn_ = new QPushButton("Save game");
-	connect(saveGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::onSaveGameActivated);
+	connect(saveGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::saveGameActivated);
 
 	instructionsBtn_ = new QPushButton("Instructions");
-	connect(instructionsBtn_, &QPushButton::clicked, this, &MainMenuWindow::onInstructionsActivated);
+	connect(instructionsBtn_, &QPushButton::clicked, this, &MainMenuWindow::instructionsActivated);
 
 	quitGameBtn_ = new QPushButton("Quit");
-	connect(quitGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::onQuitActivated);
+	connect(quitGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::quitActivated);
 
 	adjustButtonsVisibility();
 }
@@ -58,39 +57,4 @@ void MainMenuWindow::adjustButtonsVisibility()
 {
 	continueBtn_->setVisible(gameInProgress_);
 	saveGameBtn_->setVisible(gameInProgress_);
-}
-
-void MainMenuWindow::onContinueActivated()
-{
-	emit switchToGame();
-}
-
-void MainMenuWindow::onNewGameActivated()
-{
-	gameInProgress_ = true;
-	//WARNING with next two lines in different order
-	//        general starts game with game window widgets not yet initialized
-	emit switchToGame();
-	general_->newGameStarted();
-	adjustButtonsVisibility();
-}
-
-void MainMenuWindow::onLoadGameActivated()
-{
-
-}
-
-void MainMenuWindow::onSaveGameActivated()
-{
-
-}
-
-void MainMenuWindow::onInstructionsActivated()
-{
-
-}
-
-void MainMenuWindow::onQuitActivated()
-{
-	emit quit();
 }

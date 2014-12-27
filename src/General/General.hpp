@@ -22,7 +22,7 @@ public:
 
 	QMainWindow *getMainWindow();
 
-	void newGameStarted();
+	void startNewGame();
 
 	void clear();
 	void loadMap();

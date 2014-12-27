@@ -17,29 +17,23 @@ UserInterface::UserInterface(const DataManager *dataManager, General *general, M
 	  mind(mind),
 	  interfaceDataManager(new InterfaceDataManager(dataManager)),
 	  mainWindow(new QMainWindow()),
-	  mainMenuWindow(new MainMenuWindow(interfaceDataManager, general)),
+	  mainMenuWindow(new MainMenuWindow(interfaceDataManager)),
 	  gameWindow(new GameWindow(interfaceDataManager, mind, graphicsWidget))
 {
-	connect(mainMenuWindow, &MainMenuWindow::quit, mainWindow, &QMainWindow::close);
-	connect(mainMenuWindow, &MainMenuWindow::switchToGame, this, &UserInterface::switchToGame);
-	connect(gameWindow, &GameWindow::switchToMainMenu, this, &UserInterface::switchToMainMenu);
-
+	initWindows();
 	initLayout();
-	devActionsMenu();
+	initDevActionsMenu();
 }
-
 
 UserInterface::~UserInterface()
 {
 	delete mainWindow;
 }
 
-
 QMainWindow * UserInterface::getMainWindow()
 {
 	return mainWindow;
 }
-
 
 Viewport * UserInterface::getViewport()
 {
@@ -47,33 +41,35 @@ Viewport * UserInterface::getViewport()
 }
 
 
+void UserInterface::initWindows()
+{
+	connect(mainMenuWindow, &MainMenuWindow::quitActivated, mainWindow, &QMainWindow::close);
+	connect(mainMenuWindow, &MainMenuWindow::newGameActivated, this, &UserInterface::onNewGame);
+	connect(mainMenuWindow, &MainMenuWindow::continueActivated, this, &UserInterface::onContinueGame);
+
+	connect(gameWindow, &GameWindow::showMainMenu, this, &UserInterface::onShowMainMenu);
+}
+
 void UserInterface::initLayout()
 {
 	stackedWidget = new QStackedWidget;
 
-	stackedWidget->insertWidget(MainMenuWindowIndex, mainMenuWindow);
-	stackedWidget->insertWidget(GameWindowIndex, gameWindow);
-	stackedWidget->setCurrentIndex(MainMenuWindowIndex);
+	stackedWidget->insertWidget(static_cast<int>(Window::MainMenu), mainMenuWindow);
+	stackedWidget->insertWidget(static_cast<int>(Window::Game), gameWindow);
+
+	switchToWindow(Window::MainMenu);
 
 	mainWindow->setCentralWidget(stackedWidget);
 	mainWindow->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
 	mainWindow->setWindowState(Qt::WindowFullScreen);
 }
 
-
-void UserInterface::switchToGame()
+void UserInterface::switchToWindow(Window window)
 {
-	stackedWidget->setCurrentIndex(GameWindowIndex);
+	stackedWidget->setCurrentIndex(static_cast<int>(window));
 }
 
-
-void UserInterface::switchToMainMenu()
-{
-	stackedWidget->setCurrentIndex(MainMenuWindowIndex);
-}
-
-
-void UserInterface::devActionsMenu()
+void UserInterface::initDevActionsMenu()
 {
 	//DEV TMP
 	//these things are not going to be here, so don't worry about menu and qt signals
@@ -94,4 +90,22 @@ void UserInterface::devActionsMenu()
 	QAction *actionQuit = new QAction("Quit", mainWindow);
 	connect(actionQuit, &QAction::triggered, mainWindow, &QMainWindow::close);
 	menuFile->addAction(actionQuit);
+}
+
+
+void UserInterface::onShowMainMenu()
+{
+	switchToWindow(Window::MainMenu);
+}
+
+void UserInterface::onNewGame()
+{
+	//first switch to game window to initialize it
+	switchToWindow(Window::Game);
+	general->startNewGame();
+}
+
+void UserInterface::onContinueGame()
+{
+	switchToWindow(Window::Game);
 }
