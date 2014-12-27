@@ -34,6 +34,7 @@ public:
 	 * @param path The path to the file.
 	 */
 	QByteArray readRawData(const QString &path);
+	QJsonObject readJson(const QString &path);
 
 private:
 	void loadPrototypes();

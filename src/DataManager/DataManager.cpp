@@ -57,24 +57,24 @@ QByteArray DataManager::readRawData(const QString &path)
 	return result;
 }
 
+QJsonObject DataManager::readJson(const QString &path)
+{
+	QJsonDocument jsonDoc = QJsonDocument::fromJson(readRawData(path));
+	if (jsonDoc.isNull()) {
+		qDebug() << "DataManager: Error occurred while parsing .json file.";
+		return QJsonObject();
+	} else {
+		return jsonDoc.object();
+	}
+}
+
 void DataManager::loadPrototypes()
 {
 	qDebug() << "Loading prototypes... (we DON'T use Prototype::DataStream operators!)";
 
 	QString path = "data/prototypes.json";
-	QFile prototypesFile(path);
-	if (!prototypesFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		qDebug() << "DataManager: Failed to load file " << path;
-		return;
-	}
 
-	QString text = prototypesFile.readAll();
-	QJsonDocument jsonDoc = QJsonDocument::fromJson(text.toUtf8());
-	if (jsonDoc.isNull()) {
-		qDebug() << "DataManager: Error occurred while parsing prototypes file.";
-		return;
-	}
-	QJsonObject json = jsonDoc.object();
+	QJsonObject json = readJson(path);
 
 	for (const QString &name : json.keys()) {
 		Prototype *prototype = new Prototype;
@@ -146,19 +146,7 @@ bool DataManager::loadMap(const QString &path)
 	delete map;
 	map = nullptr;
 
-	QFile file(path);
-	if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-		qDebug() << "DataManager: Failed to load file " << path;
-		return false;
-	}
-
-	QString text = file.readAll();
-	QJsonDocument jsonDoc = QJsonDocument::fromJson(text.toUtf8());
-	if (jsonDoc.isNull()) {
-		qDebug() << "DataManager: Error occurred while parsing map file.";
-		return false;
-	}
-	QJsonObject json = jsonDoc.object();
+	QJsonObject json = readJson(path);
 
 	QString mapName = json["mapName"].toString();
 	QString mapDesc = json["mapDesc"].toString();
@@ -185,9 +173,9 @@ bool DataManager::loadMap(const QString &path)
 
 void DataManager::validateResources() const
 {
-	for (const auto& anim: animationData) {
-		for (const auto& frames: anim->getFramesDescription()) {
-			for (const auto& str: frames) {
+	for (const auto &anim: animationData) {
+		for (const auto &frames: anim->getFramesDescription()) {
+			for (const auto &str: frames) {
 				assert(resources.contains(str));
 				// TODO FIXME Assert that the type is a Texture.
 			}
