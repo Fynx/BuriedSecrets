@@ -9,8 +9,7 @@ class General;
 class UserInterface;
 
 class MainMenuWindow : public QWidget {
-
-Q_OBJECT;
+	Q_OBJECT
 public:
 	MainMenuWindow(const UserInterface *userInterface, QWidget *parent = nullptr);
 

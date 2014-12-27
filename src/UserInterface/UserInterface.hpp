@@ -14,8 +14,7 @@ class MainMenuWindow;
 class GameWindow;
 
 class UserInterface : public QObject {
-
-Q_OBJECT;
+	Q_OBJECT
 public:
 	UserInterface(General *general);
 	~UserInterface();

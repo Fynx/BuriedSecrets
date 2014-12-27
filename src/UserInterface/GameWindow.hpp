@@ -12,7 +12,7 @@ static const QSize BottomPanelSize{300, 100};
 static const QSize BottomPanelIconsSize{32, 32};
 
 class GameWindow : public QWidget {
-	Q_OBJECT;
+	Q_OBJECT
 public:
 	GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent = nullptr);
 	~GameWindow();

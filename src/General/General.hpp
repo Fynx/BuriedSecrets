@@ -15,7 +15,7 @@
 
 // General has to be a QObject.
 class General: public QObject {
-Q_OBJECT;
+	Q_OBJECT
 public:
 	General();
 	~General();

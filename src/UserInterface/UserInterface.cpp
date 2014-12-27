@@ -116,8 +116,6 @@ void UserInterface::onShowMainMenu()
 
 void UserInterface::onNewGame()
 {
-	//first switch to game window to initialize it
-	switchToWindow(Window::Game);
 	general_->startNewGame();
 }
 
