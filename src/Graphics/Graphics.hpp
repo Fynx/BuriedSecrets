@@ -47,7 +47,7 @@ private:
 	void updateEntity(GraphicalEntity *entity, const float deltaTime);
 
 	GraphicsDataManager graphicsDataManager;
-	GraphicsWidget widget;
+	GraphicsWidget *widget;
 	GraphicalEntityFactory graphicalEntityFactory;
 	QTimer renderTimer;
 

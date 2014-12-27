@@ -6,7 +6,6 @@
 #include <QtWidgets>
 
 class Viewport;
-class InterfaceDataManager;
 class Mind;
 
 static const QSize BottomPanelSize{300, 100};
@@ -15,7 +14,8 @@ static const QSize BottomPanelIconsSize{32, 32};
 class GameWindow : public QWidget {
 	Q_OBJECT;
 public:
-	GameWindow(InterfaceDataManager *dataManager, Mind *mind, QWidget *graphicsWidget, QWidget *parent = nullptr);
+	GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent = nullptr);
+	~GameWindow();
 
 	Viewport *viewport();
 
@@ -26,7 +26,6 @@ private:
 	void initBottomPanel();
 	void initViewport();
 
-	InterfaceDataManager *dataManager_;
 	Mind *mind_;
 
 	Viewport *viewport_;

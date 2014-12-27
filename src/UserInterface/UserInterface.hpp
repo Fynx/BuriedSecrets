@@ -17,11 +17,15 @@ class UserInterface : public QObject {
 
 Q_OBJECT;
 public:
-	UserInterface(const DataManager *dataManager, General *general, Mind *mind, QWidget *graphicsWidget);
+	UserInterface(General *general);
 	~UserInterface();
 
 	QMainWindow *getMainWindow();
-	Viewport *getViewport();
+	Viewport *getViewport(); //TODO see if not const
+
+	bool gameInProgress() const;
+	void clearGame();
+	void newGame(Mind *mind, QWidget *graphicsWidget);
 
 private:
 	enum class Window : quint8 {
@@ -33,14 +37,12 @@ private:
 	};
 
 
-	General *general;
-	Mind *mind;
-	InterfaceDataManager *interfaceDataManager;
+	General *general_;
 
-	QMainWindow *mainWindow;
-	QStackedWidget *stackedWidget;
-	MainMenuWindow *mainMenuWindow;
-	GameWindow *gameWindow;
+	QMainWindow *mainWindow_;
+	GameWindow *gameWindow_;
+	MainMenuWindow *mainMenuWindow_;
+	QStackedWidget *stackedWidget_;
 
 	void initLayout();
 	void initWindows();

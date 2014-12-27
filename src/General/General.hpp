@@ -22,6 +22,7 @@ public:
 
 	QMainWindow *getMainWindow();
 
+	void clearGameModules();
 	void startNewGame();
 
 	void clear();
@@ -32,12 +33,14 @@ public:
 private:
 	void initModules();
 
-	//TODO change to pointers
-	DataManager   *dataManager;
+	//Permanent modules
 	DebugManager  *debugManager;
+	DataManager   *dataManager;
+	UserInterface *userInterface;
+
+	//Per-game modules
 	Graphics      *graphics;
 	Mind          *mind;
 	PhysicsEngine *physicsEngine;
 	SoundsManager *soundsManager;
-	UserInterface *userInterface;
 };

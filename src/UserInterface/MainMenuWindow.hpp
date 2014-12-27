@@ -6,15 +6,20 @@
 #include <QtWidgets>
 
 class General;
-class InterfaceDataManager;
+class UserInterface;
 
 class MainMenuWindow : public QWidget {
 
 Q_OBJECT;
 public:
-	MainMenuWindow(InterfaceDataManager *dataManager, QWidget *parent = nullptr);
+	MainMenuWindow(const UserInterface *userInterface, QWidget *parent = nullptr);
+
+public slots:
+	void adjustButtonsVisibility();
 
 private:
+	void keyPressEvent(QKeyEvent *event);
+
 	void initButtons();
 	void initLayout();
 
@@ -27,12 +32,7 @@ private:
 	QPushButton *quitGameBtn_;
 
 	QStackedWidget *stackedWidget_;
-	bool gameInProgress_;
-
-	InterfaceDataManager *dataManager_;
-
-private slots:
-	void adjustButtonsVisibility();
+	const UserInterface *userInterface_;
 
 signals:
 	void continueActivated();

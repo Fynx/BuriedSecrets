@@ -1,4 +1,4 @@
-﻿/* YoLoDevelopment, 2014
+﻿	/* YoLoDevelopment, 2014
  * All rights reserved.
  */
 #include "UserInterface/GameWindow.hpp"
@@ -6,13 +6,12 @@
 #include "Mind/Mind.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
 #include "UserInterface/Viewport.hpp"
-#include "UserInterface/InterfaceDataManager.hpp"
 
 
-GameWindow::GameWindow(InterfaceDataManager *dataManager, Mind *mind, QWidget *graphicsWidget, QWidget *parent)
+GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	: QWidget(parent),
-	  dataManager_(dataManager),
 	  mind_(mind),
+	  viewport_(nullptr),
 	  graphicsWidget_(graphicsWidget),
 	  bottomPanel_(new QFrame)
 {
@@ -21,6 +20,11 @@ GameWindow::GameWindow(InterfaceDataManager *dataManager, Mind *mind, QWidget *g
 
 	initBottomPanel();
 	initViewport();
+}
+
+GameWindow::~GameWindow()
+{
+	delete viewport_;
 }
 
 Viewport * GameWindow::viewport()
@@ -57,15 +61,11 @@ void GameWindow::initBottomPanel()
 	QHBoxLayout *BPLayout = new QHBoxLayout;
 	bottomPanel_->setLayout(BPLayout);
 
-	const QIcon *journalIcon = dataManager_->getIcon("journal");
-	QPushButton *journalBtn = new QPushButton(*journalIcon, "Journal");
-	journalBtn->setIconSize(BottomPanelIconsSize);
+	QPushButton *journalBtn = new QPushButton("Journal");
 	journalBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	BPLayout->addWidget(journalBtn);
 
-	const QIcon *campEQIcon = dataManager_->getIcon("campEQ");
-	QPushButton *campEQBtn = new QPushButton(*campEQIcon, "Camp EQ");
-	campEQBtn->setIconSize(BottomPanelIconsSize);
+	QPushButton *campEQBtn = new QPushButton("Camp EQ");
 	campEQBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	BPLayout->addWidget(campEQBtn);
 }

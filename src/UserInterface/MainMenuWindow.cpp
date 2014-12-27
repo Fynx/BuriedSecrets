@@ -4,15 +4,34 @@
 #include "UserInterface/MainMenuWindow.hpp"
 
 #include "General/General.hpp"
-#include "UserInterface/InterfaceDataManager.hpp"
 
-MainMenuWindow::MainMenuWindow(InterfaceDataManager *dataManager, QWidget *parent)
+MainMenuWindow::MainMenuWindow(const UserInterface *userInterface, QWidget *parent)
 	: QWidget(parent),
-	  gameInProgress_(false),
-	  dataManager_(dataManager)
+	  userInterface_(userInterface)
 {
 	initButtons();
 	initLayout();
+}
+
+void MainMenuWindow::adjustButtonsVisibility()
+{
+	continueBtn_->setVisible(userInterface_->gameInProgress());
+	saveGameBtn_->setVisible(userInterface_->gameInProgress());
+}
+
+void MainMenuWindow::keyPressEvent(QKeyEvent *event)
+{
+	switch (event->key()) {
+		case Qt::Key_Escape:
+			if (userInterface_->gameInProgress())
+				emit continueActivated();
+			break;
+		case Qt::Key_Q:
+			emit quitActivated();
+			break;
+		default:
+			QWidget::keyPressEvent(event);
+	}
 }
 
 void MainMenuWindow::initButtons()
@@ -51,10 +70,4 @@ void MainMenuWindow::initLayout()
 	mainLayout->addWidget(instructionsBtn_);
 	mainLayout->addWidget(quitGameBtn_);
 	mainLayout->addStretch();
-}
-
-void MainMenuWindow::adjustButtonsVisibility()
-{
-	continueBtn_->setVisible(gameInProgress_);
-	saveGameBtn_->setVisible(gameInProgress_);
 }

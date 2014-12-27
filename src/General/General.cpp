@@ -6,30 +6,57 @@
 
 
 General::General()
-{
-	initModules();
-}
+	: debugManager(new DebugManager),
+	  dataManager(new DataManager),
+	  userInterface(new UserInterface(this)),
+	  graphics(nullptr),
+	  mind(nullptr),
+	  physicsEngine(nullptr),
+	  soundsManager(nullptr)
+{}
 
 General::~General()
 {
+	clearGameModules();
+
+	delete userInterface;
 	delete dataManager;
 	delete debugManager;
-	delete graphics;
-	delete mind;
-	delete physicsEngine;
-	delete soundsManager;
-	delete userInterface;
 }
 
-QMainWindow *General::getMainWindow()
+QMainWindow * General::getMainWindow()
 {
 	return userInterface->getMainWindow();
 }
 
+void General::clearGameModules()
+{
+	qDebug() << "General seys: \"Clearing game modules.\"";
+
+	userInterface->clearGame();
+
+	delete graphics;
+	delete mind;
+	delete physicsEngine;
+	delete soundsManager;
+}
+
 void General::startNewGame()
 {
+	/** Order is the first law of heaven */
 	qDebug() << "General seys: \"Starting new game.\"";
 
+	clearGameModules();
+
+	soundsManager = new SoundsManager;
+	physicsEngine = new Box2DEngine;
+
+	//TODO Mind should not have access to dataManager
+	mind = new Mind(dataManager, physicsEngine, soundsManager);
+
+	graphics = new Graphics(physicsEngine, dataManager);
+
+	userInterface->newGame(mind, graphics->getGraphicsWidget());
 	graphics->startRendering(userInterface->getViewport());
 }
 
@@ -55,30 +82,4 @@ void General::createMapFile()
 	mind->insertMap(dataManager->getMap("data/maps/map0.json"));
 	saveMap();
 	clear();
-}
-
-void General::initModules()
-{
-	/** Order is the first law of heaven */
-
-	/** Accesible by everything */
-	// we should make it a singleton, really
-	debugManager = new DebugManager();
-
-	/** Independent utility modules */
-
-	dataManager = new DataManager();
-
-	soundsManager = new SoundsManager();
-
-	physicsEngine = new Box2DEngine();
-
-	/** Core modules */
-
-	//TODO Mind should not have access to dataManager
-	mind = new Mind(dataManager, physicsEngine, soundsManager);
-
-	graphics = new Graphics(physicsEngine, dataManager);
-
-	userInterface = new UserInterface(dataManager, this, mind, graphics->getGraphicsWidget());
 }

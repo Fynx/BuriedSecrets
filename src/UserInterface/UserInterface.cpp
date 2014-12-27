@@ -9,16 +9,13 @@
 #include "UserInterface/Viewport.hpp"
 #include "UserInterface/MainMenuWindow.hpp"
 #include "UserInterface/GameWindow.hpp"
-#include "UserInterface/InterfaceDataManager.hpp"
 
 
-UserInterface::UserInterface(const DataManager *dataManager, General *general, Mind *mind, QWidget *graphicsWidget)
-	: general(general),
-	  mind(mind),
-	  interfaceDataManager(new InterfaceDataManager(dataManager)),
-	  mainWindow(new QMainWindow()),
-	  mainMenuWindow(new MainMenuWindow(interfaceDataManager)),
-	  gameWindow(new GameWindow(interfaceDataManager, mind, graphicsWidget))
+UserInterface::UserInterface(General *general)
+	: general_(general),
+	  mainWindow_(new QMainWindow),
+	  gameWindow_(nullptr),
+	  mainMenuWindow_(new MainMenuWindow(this))
 {
 	initWindows();
 	initLayout();
@@ -27,68 +24,87 @@ UserInterface::UserInterface(const DataManager *dataManager, General *general, M
 
 UserInterface::~UserInterface()
 {
-	delete mainWindow;
+	delete mainWindow_;
 }
 
 QMainWindow * UserInterface::getMainWindow()
 {
-	return mainWindow;
+	return mainWindow_;
 }
 
 Viewport * UserInterface::getViewport()
 {
-	return gameWindow->viewport();
+	return gameWindow_->viewport();
+}
+
+bool UserInterface::gameInProgress() const
+{
+	return (gameWindow_ != nullptr);
+}
+
+void UserInterface::newGame(Mind *mind, QWidget *graphicsWidget)
+{
+	gameWindow_ = new GameWindow(mind, graphicsWidget);
+
+	connect(gameWindow_, &GameWindow::showMainMenu, this, &UserInterface::onShowMainMenu);
+	stackedWidget_->insertWidget(static_cast<int>(Window::Game), gameWindow_);
+
+	switchToWindow(Window::Game);
+	mainMenuWindow_->adjustButtonsVisibility();
 }
 
 
 void UserInterface::initWindows()
 {
-	connect(mainMenuWindow, &MainMenuWindow::quitActivated, mainWindow, &QMainWindow::close);
-	connect(mainMenuWindow, &MainMenuWindow::newGameActivated, this, &UserInterface::onNewGame);
-	connect(mainMenuWindow, &MainMenuWindow::continueActivated, this, &UserInterface::onContinueGame);
-
-	connect(gameWindow, &GameWindow::showMainMenu, this, &UserInterface::onShowMainMenu);
+	connect(mainMenuWindow_, &MainMenuWindow::quitActivated, mainWindow_, &QMainWindow::close);
+	connect(mainMenuWindow_, &MainMenuWindow::newGameActivated, this, &UserInterface::onNewGame);
+	connect(mainMenuWindow_, &MainMenuWindow::continueActivated, this, &UserInterface::onContinueGame);
 }
 
 void UserInterface::initLayout()
 {
-	stackedWidget = new QStackedWidget;
+	stackedWidget_ = new QStackedWidget;
+	stackedWidget_->insertWidget(static_cast<int>(Window::MainMenu), mainMenuWindow_);
 
-	stackedWidget->insertWidget(static_cast<int>(Window::MainMenu), mainMenuWindow);
-	stackedWidget->insertWidget(static_cast<int>(Window::Game), gameWindow);
-
-	switchToWindow(Window::MainMenu);
-
-	mainWindow->setCentralWidget(stackedWidget);
-	mainWindow->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
-	mainWindow->setWindowState(Qt::WindowFullScreen);
+	mainWindow_->setCentralWidget(stackedWidget_);
+	mainWindow_->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
+	mainWindow_->setWindowState(Qt::WindowFullScreen);
 }
 
 void UserInterface::switchToWindow(Window window)
 {
-	stackedWidget->setCurrentIndex(static_cast<int>(window));
+	stackedWidget_->setCurrentIndex(static_cast<int>(window));
+}
+
+void UserInterface::clearGame()
+{
+	if (gameInProgress()) {
+		disconnect(gameWindow_, &GameWindow::showMainMenu, this, &UserInterface::onShowMainMenu);
+		stackedWidget_->removeWidget(gameWindow_);
+		delete gameWindow_;
+	}
 }
 
 void UserInterface::initDevActionsMenu()
 {
 	//DEV TMP
 	//these things are not going to be here, so don't worry about menu and qt signals
-	QMenu *menuFile = mainWindow->menuBar()->addMenu("File");
+	QMenu *menuFile = mainWindow_->menuBar()->addMenu("File");
 
-	QAction *actionLoadMap = new QAction("Load mind", mainWindow);
-	connect(actionLoadMap, &QAction::triggered, general, &General::loadMap);
+	QAction *actionLoadMap = new QAction("Load mind", mainWindow_);
+	connect(actionLoadMap, &QAction::triggered, general_, &General::loadMap);
 	menuFile->addAction(actionLoadMap);
 
-	QAction *actionSaveMap = new QAction("Save mind", mainWindow);
-	connect(actionSaveMap, &QAction::triggered, general, &General::saveMap);
+	QAction *actionSaveMap = new QAction("Save mind", mainWindow_);
+	connect(actionSaveMap, &QAction::triggered, general_, &General::saveMap);
 	menuFile->addAction(actionSaveMap);
 
-	QAction *actionParseMap = new QAction("Create map file", mainWindow);
-	connect(actionParseMap, &QAction::triggered, general, &General::createMapFile);
+	QAction *actionParseMap = new QAction("Create map file", mainWindow_);
+	connect(actionParseMap, &QAction::triggered, general_, &General::createMapFile);
 	menuFile->addAction(actionParseMap);
 
-	QAction *actionQuit = new QAction("Quit", mainWindow);
-	connect(actionQuit, &QAction::triggered, mainWindow, &QMainWindow::close);
+	QAction *actionQuit = new QAction("Quit", mainWindow_);
+	connect(actionQuit, &QAction::triggered, mainWindow_, &QMainWindow::close);
 	menuFile->addAction(actionQuit);
 }
 
@@ -102,7 +118,7 @@ void UserInterface::onNewGame()
 {
 	//first switch to game window to initialize it
 	switchToWindow(Window::Game);
-	general->startNewGame();
+	general_->startNewGame();
 }
 
 void UserInterface::onContinueGame()

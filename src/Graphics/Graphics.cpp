@@ -5,10 +5,10 @@
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
-	: graphicsDataManager{dataManager}, widget{}, graphicalEntityFactory{&graphicsDataManager}, physicsEngine{physicsEngine}
+	: graphicsDataManager{dataManager}, widget{new GraphicsWidget}, graphicalEntityFactory{&graphicsDataManager}, physicsEngine{physicsEngine}
 	, dataManager{dataManager}, camera{nullptr}
 {
-	canvas = &widget;
+	canvas = widget;
 }
 
 
@@ -18,9 +18,9 @@ Graphics::~Graphics()
 }
 
 
-GraphicsWidget *Graphics::getGraphicsWidget()
+GraphicsWidget * Graphics::getGraphicsWidget()
 {
-	return &widget;
+	return widget;
 }
 
 
@@ -50,7 +50,7 @@ void Graphics::render()
 	}
 
 	// This call has to be at the end to repaint the widget.
-	widget.repaint();
+	widget->repaint();
 }
 
 
