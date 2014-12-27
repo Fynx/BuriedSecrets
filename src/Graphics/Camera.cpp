@@ -19,3 +19,9 @@ int Camera::discretizeAngle(const float angle, const int range) const
 	return static_cast<int>(round(angle * range / 360.0f)) % range;
 }
 
+
+const Perspective *Camera::getPerspective() const
+{
+	return viewport->getPerspective();
+}
+

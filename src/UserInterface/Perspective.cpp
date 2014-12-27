@@ -10,13 +10,13 @@ Perspective::Perspective(const float scale)
 
 QPointF Perspective::getLogicalPoint(const QPointF &translatedPoint) const
 {
-	return scalePoint(getOriginalScaledPoint(translatedPoint), 1.0f / scale);
+	return getOriginalPoint(getOriginalScaledPoint(translatedPoint));
 }
 
 
 QPointF Perspective::getTranslatedPoint(const QPointF &logicalPoint) const
 {
-	return getTransformedPoint(scalePoint(logicalPoint, scale));
+	return getScaledPoint(getTransformedPoint(logicalPoint));
 }
 
 
@@ -38,11 +38,40 @@ QRectF Perspective::getTranslatedRect(const QRectF& logicalRect) const
 }
 
 
+QPointF Perspective::getScaledPoint(const QPointF &originalPoint) const
+{
+	return scalePoint(originalPoint, scale);
+}
+
+
+QPointF Perspective::getOriginalPoint(const QPointF &scaledPoint) const
+{
+	return scalePoint(scaledPoint, 1.0f / scale);
+}
+
+
+QRectF Perspective::getOriginalRect(const QRectF &scaledRect) const
+{
+	return QRectF(
+		getOriginalPoint(scaledRect.topLeft()),
+		getOriginalPoint(scaledRect.bottomRight())
+	);
+}
+
+
+QRectF Perspective::getScaledRect(const QRectF &originalRect) const
+{
+	return QRectF(
+		getScaledPoint(originalRect.topLeft()),
+		getScaledPoint(originalRect.bottomRight())
+	);
+}
+
+
 QPointF Perspective::scalePoint(const QPointF &orig, const float useScale) const
 {
 	return orig * useScale;
 }
-
 
 
 

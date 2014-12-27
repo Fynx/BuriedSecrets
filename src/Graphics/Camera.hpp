@@ -16,6 +16,7 @@ public:
 	 * @brief This method transforms a continuous angle into a discretized form.
 	 */
 	int discretizeAngle(const float angle, const int range = 8) const;
+	const Perspective *getPerspective() const;
 
 private:
 	const PhysicsEngine *physicsEngine;

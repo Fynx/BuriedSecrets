@@ -67,7 +67,10 @@ void Viewport::updateView()
 	QPointF topLeft = currentView.topLeft();
 	float finalWidth = viewWidth * scale;
 	float finalHeight = viewHeight * scale;
-	currentView = QRectF{topLeft, QPointF{topLeft.x() + finalWidth, topLeft.y() + finalHeight}};
+	currentView = perspective->getLogicalRect(QRectF{
+		topLeft,
+		QPointF{topLeft.x() + finalWidth, topLeft.y() + finalHeight}}
+	);
 	// FIXME don't allow the rect to go beyond the map
 }
 

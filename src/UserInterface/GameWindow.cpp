@@ -72,7 +72,7 @@ void GameWindow::initBottomPanel()
 
 void GameWindow::initViewport()
 {
-	const float metreToPxScale = 30.0f;
+	const float metreToPxScale = 1.0 / 3.0f;
 	// TODO after MapManager is added and there is some map passed to UI, we will need to get the real size here.
 	// For now:
 	const float mapWidth = 500;

@@ -68,7 +68,8 @@ void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime)
 {
 	entity->setDirection(static_cast<BS::Graphic::Direction>(
 			camera->discretizeAngle(physicsEngine->getAngle(entity->getObject()))));
-	entity->setPosition(physicsEngine->getPosition(entity->getObject()));
+	entity->setPosition(camera->getPerspective()->getTranslatedPoint(
+			physicsEngine->getPosition(entity->getObject())));
 	entity->update(deltaTime);
 }
 
