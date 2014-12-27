@@ -54,6 +54,7 @@ data/maps/*.json
 
 For each object in "objects"
 - "type"
+- "name"
 - "animators" - array
 - "x", "y" - coordinates
 

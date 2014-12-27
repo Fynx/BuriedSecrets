@@ -15,8 +15,8 @@ namespace BS {
 		Equipment,
 		Fortification,
 		Journal,
-		Unit,
 		Mob,
+		Unit,
 	};
 
 	// FIXME(Tommalla): Yes, you'll hate me for this, but I couldn't force QHash to hash State. I'm happy to talk
