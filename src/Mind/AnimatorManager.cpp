@@ -27,7 +27,7 @@ void AnimatorManager::initAnimators()
 {
 	addAnimator(new AnimatorTest(mind), "Test", 40);
 	addAnimator(new AnimatorPhysicsUpdate(mind), "PhysicsUpdate", 40);
-	addAnimator(new AnimationAnimator(mind), "Animations", 40);
+	addAnimator(new AnimationAnimator(mind), "Animations", 700);
 	addAnimator(new AnimatorMove(mind), "Move", 40);
 }
 

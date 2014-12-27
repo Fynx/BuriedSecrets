@@ -9,9 +9,4 @@ public:
 	AnimationAnimator(Mind *mind);
 
 	void act() override;
-
-private:
-	const int frameDuration = 700;	// in miliseconds
-	int elapsedTime;
-	QTime timer;
 };
