@@ -25,10 +25,9 @@ public:
 	void clearGameModules();
 	void startNewGame();
 
-	void clear();
 	void loadMap();
 	void saveMap();
-	void createMapFile();
+	void loadMapFromJson();
 
 private:
 	void initModules();

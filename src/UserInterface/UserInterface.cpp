@@ -99,8 +99,8 @@ void UserInterface::initDevActionsMenu()
 	connect(actionSaveMap, &QAction::triggered, general_, &General::saveMap);
 	menuFile->addAction(actionSaveMap);
 
-	QAction *actionParseMap = new QAction("Create map file", mainWindow_);
-	connect(actionParseMap, &QAction::triggered, general_, &General::createMapFile);
+	QAction *actionParseMap = new QAction("Load mind from json", mainWindow_);
+	connect(actionParseMap, &QAction::triggered, general_, &General::loadMapFromJson);
 	menuFile->addAction(actionParseMap);
 
 	QAction *actionQuit = new QAction("Quit", mainWindow_);

@@ -31,7 +31,7 @@ QMainWindow * General::getMainWindow()
 
 void General::clearGameModules()
 {
-	qDebug() << "General seys: \"Clearing game modules.\"";
+	qDebug() << "General says: \"Clearing game modules.\"";
 
 	userInterface->clearGame();
 
@@ -44,7 +44,7 @@ void General::clearGameModules()
 void General::startNewGame()
 {
 	/** Order is the first law of heaven */
-	qDebug() << "General seys: \"Starting new game.\"";
+	qDebug() << "General says: \"Starting new game.\"";
 
 	clearGameModules();
 
@@ -60,10 +60,6 @@ void General::startNewGame()
 	graphics->startRendering(userInterface->getViewport());
 }
 
-void General::clear()
-{
-}
-
 void General::loadMap()
 {
 	qDebug() << "Triggered function loadMap";
@@ -76,10 +72,9 @@ void General::saveMap()
 	dataManager->saveToFile("data/map.bin", *mind);
 }
 
-void General::createMapFile()
+void General::loadMapFromJson()
 {
 	qDebug() << "Triggered function createMapFile";
+	qDebug() << "If segfault, click \"newGame\" in the main menu before committing suicide.";
 	mind->insertMap(dataManager->getMap("data/maps/map0.json"));
-	saveMap();
-	clear();
 }
