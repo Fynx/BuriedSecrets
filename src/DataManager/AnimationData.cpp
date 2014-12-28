@@ -19,9 +19,9 @@ AnimationData::AnimationData(
 	}
 
 	// Assert that animations in all directions have the same number of frames.
-	const auto len = framesDescription[0].length();
+/*	const auto len = framesDescription[0].length();
 	for (int i = 1; i < framesDescription.length(); ++i)
-		Q_ASSERT(framesDescription[i].length() == len);
+		Q_ASSERT(framesDescription[i].length() == len);*/
 
 	qDebug() << "Read" << framesDescription[0].length() << "frames for every direction.";
 }

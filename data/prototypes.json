@@ -32,7 +32,7 @@
 		"capacity": 5,
 		"hunger": 2,
 		"sightRange": 30,
-		"speed": 2,
+		"movementSpeed": 5,
 		"regeneration": 1,
 		"animations": {
 			"siedze": "siedze.abc",

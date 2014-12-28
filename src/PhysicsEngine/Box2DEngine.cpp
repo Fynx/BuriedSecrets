@@ -27,7 +27,7 @@ void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 
 	b2Shape *shape;
 	shape = new b2CircleShape();
-	((b2CircleShape*) shape)->m_radius = 10;
+	((b2CircleShape*) shape)->m_radius = 1;
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = shape;
 	fixtureDef.density = 10.0f;//?

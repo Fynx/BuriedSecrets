@@ -45,8 +45,7 @@ void AnimatorMove::act()
 			if (obj->getState() == BS::Idle)
 				obj->setState(BS::Run);
 			dir.normalize();
-			dir = dir *unit->getSpeed();
-			qDebug() << dir.x() << " " << dir.y();
+			dir = dir * unit->getSpeed();
 			mind->physicsEngine()->setVelocity(obj, dir);
 		}
 	}
