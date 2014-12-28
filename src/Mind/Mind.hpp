@@ -15,7 +15,7 @@
 
 class Mind : public QObject {
 
-Q_OBJECT;
+Q_OBJECT
 public:
 	Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager);
 	~Mind();
@@ -23,7 +23,6 @@ public:
 	PhysicsEngine *physicsEngine();
 	void insertMap(const Map *map);
 
-private:
 	/**
 	 * @brief Adds an object to the inner collection and to physics.
 	 *
@@ -32,8 +31,10 @@ private:
 	 * @return void
 	 */
 	void addObject(Object* object, const QPointF &position);
+	void removeObject(Object *object);
 	Object *getObjectFromUid(const int uid);
 
+private:
 	DataManager   *dataManager;
 	PhysicsEngine *physics;
 	SoundsManager *soundsManager;

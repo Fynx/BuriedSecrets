@@ -15,7 +15,7 @@ public:
 	Equipment *getEquipment();
 	Journal *getJournal();
 	QuestLog *getQuestLog();
-	QSet<Unit *> getUnits();
+	QSet<int> getUnits();
 
 	int consume(int f);
 
@@ -24,5 +24,5 @@ private:
 	Equipment *equipment;
 	Journal *journal;
 	QuestLog *questLog;
-	QSet<Unit *> units;
+	QSet<int> units;
 };

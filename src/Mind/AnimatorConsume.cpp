@@ -19,10 +19,17 @@ void AnimatorConsume::act()
 {
 	for (Object * obj : objects){
 		Faction *faction = dynamic_cast<Faction *>(obj);
-		if (!faction)
+		if (!faction){
+			qDebug() << "Wrong object for animatorConsume " << obj->getUid();
 			continue;
-		QSet<Unit *> units = faction->getUnits();
-		for (Unit *unit : units){
+		}
+
+		QSet<int> units = faction->getUnits();
+		for (int id : units){
+			Unit *unit = dynamic_cast<Unit *>(mind->getObjectFromUid(id));
+			if (!unit)
+				continue;
+
 			unit->setHP(unit->getHP() - faction->consume(unit->getFoodDemand()));
 		}
 	}

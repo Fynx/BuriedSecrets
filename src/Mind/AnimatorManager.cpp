@@ -7,6 +7,7 @@
 #include "Mind/AnimationAnimator.hpp"
 #include "Mind/AnimatorMove.hpp"
 #include "Mind/AnimatorConsume.hpp"
+#include "Mind/AnimatorDie.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -31,6 +32,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimationAnimator(mind), "Animations", 700);
 	addAnimator(new AnimatorMove(mind), "Move", 40);
 	addAnimator(new AnimatorConsume(mind), "Consume", 1000);
+	addAnimator(new AnimatorDie(mind), "Die", 40);
 }
 
 

@@ -26,7 +26,7 @@ QuestLog *Faction::getQuestLog()
 }
 
 
-QSet<Unit *> Faction::getUnits()
+QSet<int> Faction::getUnits()
 {
 	return units;
 }

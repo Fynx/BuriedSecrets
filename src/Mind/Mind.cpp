@@ -26,11 +26,13 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	soundsManager->onEvent(QString("test: success"));
 }
 
+
 Mind::~Mind()
 {
 	delete animatorManager;
 	qDeleteAll(objects);
 }
+
 
 void Mind::addObject(Object *object, const QPointF &position)
 {
@@ -39,6 +41,16 @@ void Mind::addObject(Object *object, const QPointF &position)
 	uidToObject[object->getUid()] = object;
 	physics->addObject(object, position);
 }
+
+
+void Mind::removeObject(Object *object)
+{
+	qDebug() << "removeObject:" << object->getUid();
+	objects.removeAll(object);
+	uidToObject.remove(object->getUid());
+	physics->removeObject(object);
+}
+
 
 Object *Mind::getObjectFromUid(const int uid)
 {
@@ -49,10 +61,12 @@ Object *Mind::getObjectFromUid(const int uid)
 	return nullptr;
 }
 
+
 PhysicsEngine *Mind::physicsEngine()
 {
 	return physics;
 }
+
 
 void Mind::insertMap(const Map *map)
 {
@@ -118,6 +132,7 @@ void Mind::insertMap(const Map *map)
 	//TODO !!! connect with animators
 }
 
+
 QDataStream &operator<<(QDataStream &out, const Mind &mind)
 {
 	qDebug() << "Saving dataObjects...";
@@ -131,6 +146,7 @@ QDataStream &operator<<(QDataStream &out, const Mind &mind)
 	qDebug() << "done.";
 	return out;
 }
+
 
 QDataStream &operator>>(QDataStream &in, Mind &mind)
 {
