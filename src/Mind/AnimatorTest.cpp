@@ -13,6 +13,7 @@ AnimatorTest::AnimatorTest(Mind *mind) : Animator(mind)
 	qDebug() << "AnimatorTest created.";
 }
 
+
 void AnimatorTest::act()
 {
 	for (Object * obj : objects){

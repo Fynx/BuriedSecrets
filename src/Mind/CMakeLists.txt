@@ -2,6 +2,10 @@ set (Mind_SRCS
 	AnimationAnimator.cpp
 	Animator.cpp
 	AnimatorManager.cpp
+	AnimatorConsume.cpp
+	AnimatorDie.cpp
+	AnimatorApplyDamage.cpp
+	AnimatorRegenerate.cpp
 	AnimatorMove.cpp
 	AnimatorTest.cpp
 	AnimatorPhysicsUpdate.cpp

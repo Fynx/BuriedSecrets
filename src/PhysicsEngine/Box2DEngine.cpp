@@ -58,6 +58,21 @@ void Box2DEngine::updatePhysics(const int msc)
 }
 
 
+void Box2DEngine::setAngle(Object *obj, float angle)
+{
+	b2Body *body = objects.value(obj);
+	if (!body)
+		return;
+
+	if (angle >= 360. || angle < 0)
+		angle = body->GetAngle() * RADTODEG;
+
+	angle = angle * DEGTORAD;
+
+	body->SetTransform(body->GetPosition(), angle);
+}
+
+
 void Box2DEngine::setPosition(Object *obj, const QPointF &pos, float angle)
 {
 	b2Body *body = objects.value(obj);

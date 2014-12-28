@@ -17,6 +17,8 @@ public:
 	QuestLog *getQuestLog();
 	QSet<Unit *> getUnits();
 
+	int consume(int f);
+
 private:
 	int food;
 	Equipment *equipment;

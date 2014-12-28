@@ -21,6 +21,7 @@ public:
 	virtual void addObject(Object *obj, const QPointF &pos, const float angle = 0) = 0;
 	virtual void removeObject(Object *obj) = 0;
 	virtual void updatePhysics(const int msc) = 0;
+	virtual void setAngle(Object *obj, float angle) = 0;
 	virtual void setVelocity(Object *obj, const QVector2D &v) = 0;
 	virtual void setPosition(Object *obj, const QPointF &pos, float angle = 360.0) = 0;
 	virtual const QPointF getPosition(const Object *obj) const = 0;

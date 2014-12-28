@@ -6,6 +6,7 @@
 #include "Mind/AnimatorPhysicsUpdate.hpp"
 #include "Mind/AnimationAnimator.hpp"
 #include "Mind/AnimatorMove.hpp"
+#include "Mind/AnimatorConsume.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -29,6 +30,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorPhysicsUpdate(mind), "PhysicsUpdate", 40);
 	addAnimator(new AnimationAnimator(mind), "Animations", 700);
 	addAnimator(new AnimatorMove(mind), "Move", 40);
+	addAnimator(new AnimatorConsume(mind), "Consume", 1000);
 }
 
 

@@ -17,6 +17,7 @@ public:
 	void addObject(Object *obj, const QPointF &pos, const float angle = 0) override;
 	void removeObject(Object *obj) override;
 	void updatePhysics(const int msc) override;
+	void setAngle(Object *obj, float angle) override;
 	void setVelocity(Object *obj, const QVector2D &v) override;
 	void setPosition(Object *obj, const QPointF &pos, float angle = 360.0) override;
 	const QPointF getPosition(const Object *obj) const override;
