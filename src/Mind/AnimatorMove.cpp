@@ -20,6 +20,8 @@ void AnimatorMove::act()
 {
 	for (Object * obj : objects) {
 		Unit *unit = dynamic_cast<Unit *>(obj);
+		QVector2D dir (0, 0);
+
 		if (!unit)
 			continue;
 
@@ -27,13 +29,15 @@ void AnimatorMove::act()
 			continue;
 
 		if (unit->getCurrentPath().size() == 0) {
-			if (obj->getState() ==BS::Run)
+			if (obj->getState() == BS::Run){
 				obj->setState(BS::Idle);
+				mind->physicsEngine()->setVelocity(obj, dir * 0);
+			}
 			continue;
 		}
 
-		QVector2D dir;
-		dir = QVector2D(mind->physicsEngine()->getPosition(obj) - unit->getCurrentPath().first());
+		dir = QVector2D(unit->getCurrentPath().first() - mind->physicsEngine()->getPosition(obj));
+
 
 		if (dir.length() < epsilon)
 			unit->getCurrentPath().removeFirst();
@@ -41,7 +45,9 @@ void AnimatorMove::act()
 			if (obj->getState() == BS::Idle)
 				obj->setState(BS::Run);
 			dir.normalize();
-			mind->physicsEngine()->setVelocity(obj, dir * unit->getSpeed());
+			dir = dir *unit->getSpeed();
+			qDebug() << dir.x() << " " << dir.y();
+			mind->physicsEngine()->setVelocity(obj, dir);
 		}
 	}
 }

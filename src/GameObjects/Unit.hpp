@@ -15,24 +15,24 @@ public:
 	Location *getLocation();
 	void setLocation(Location *location);
 
-	int getHP() const;
+	float getHP() const;
 	void setHP(int hp);
-	int getMaxHP() const;
+	float getMaxHP() const;
 
-	int getPsychosis() const;
+	float getPsychosis() const;
 	void setPsychosis(int psychosis);
-	int getMaxPsychosis() const;
+	float getMaxPsychosis() const;
 
-	int getEncumbrance() const;
-	int getMaxEncumbrance() const;
+	float getEncumbrance() const;
+	float getMaxEncumbrance() const;
 
-	int getFoodDemand() const;
+	float getFoodDemand() const;
 
-	int getSightRange() const;
+	float getSightRange() const;
 
-	int getSpeed() const;
+	float getSpeed() const;
 
-	int getRegeneration() const;
+	float getRegeneration() const;
 
 	void addItem(Item *item);
 	void removeItem(Item *item);

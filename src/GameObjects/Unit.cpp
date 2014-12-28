@@ -26,7 +26,7 @@ void Unit::setLocation(Location *location)
 }
 
 
-int Unit::getHP() const
+float Unit::getHP() const
 {
 	return hp;
 }
@@ -38,13 +38,13 @@ void Unit::setHP(int hp)
 }
 
 
-int Unit::getMaxHP() const
+float Unit::getMaxHP() const
 {
-	return prototype->getProperty("hp").toInt();
+	return prototype->getProperty("hp").toFloat();
 }
 
 
-int Unit::getPsychosis() const
+float Unit::getPsychosis() const
 {
 	return psychosis;
 }
@@ -56,47 +56,47 @@ void Unit::setPsychosis(int psychosis)
 }
 
 
-int Unit::getMaxPsychosis() const
+float Unit::getMaxPsychosis() const
 {
-	return prototype->getProperty("psychosis").toInt();
+	return prototype->getProperty("psychosis").toFloat();
 }
 
 
-int Unit::getEncumbrance() const
+float Unit::getEncumbrance() const
 {
 	return equipment->getWeight();
 }
 
 
-int Unit::getMaxEncumbrance() const
+float Unit::getMaxEncumbrance() const
 {
-	return prototype->getProperty("encumbrance").toInt();
+	return prototype->getProperty("encumbrance").toFloat();
 }
 
 
-int Unit::getFoodDemand() const
+float Unit::getFoodDemand() const
 {
 	//TODO update with things
-	return prototype->getProperty("foodDemand").toInt();
+	return prototype->getProperty("foodDemand").toFloat();
 }
 
 
-int Unit::getSightRange() const
+float Unit::getSightRange() const
 {
 	//TODO update with things
-	return prototype->getProperty("sightRange").toInt();
+	return prototype->getProperty("sightRange").toFloat();
 }
 
 
-int Unit::getSpeed() const
+float Unit::getSpeed() const
 {
-	return prototype->getProperty("movementSpeed").toInt();
+	return prototype->getProperty("movementSpeed").toFloat();
 }
 
 
-int Unit::getRegeneration() const
+float Unit::getRegeneration() const
 {
-	return prototype->getProperty("regeneration").toInt();
+	return prototype->getProperty("regeneration").toFloat();
 }
 
 
