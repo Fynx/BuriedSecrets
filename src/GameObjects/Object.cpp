@@ -66,6 +66,12 @@ void Object::setParent(Object *object)
 }
 
 
+QVariant &Object::property(QString name)
+{
+	return properties[name];
+}
+
+
 QDataStream &operator<<(QDataStream &out, const Object &object)
 {
 	//TODO sth, properties, things like that.

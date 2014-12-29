@@ -116,12 +116,12 @@ void Unit::removeItem(Item *item)
  * Feel free to modify the names.
  */
 
-int Unit::getDamageControl() const
+float Unit::getDamageControl() const
 {
-	int baseValue = prototype->getProperty("damageControl").toInt();
-	int additionalValue = (armor == nullptr)
+	float baseValue = prototype->getProperty("damageControl").toFloat();
+	float additionalValue = (armor == nullptr)
 		? 0
-		: armor->getPrototype()->getProperty("defense").toInt();
+		: armor->getPrototype()->getProperty("defense").toFloat();
 	return  baseValue + additionalValue;
 }
 

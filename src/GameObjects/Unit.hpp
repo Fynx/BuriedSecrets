@@ -39,7 +39,7 @@ public:
 
 	/** Skills */
 
-	int getDamageControl() const;
+	float getDamageControl() const;
 	int getEngineering() const;
 	int getHealing() const;
 	int getPerception() const;

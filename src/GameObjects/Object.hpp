@@ -16,11 +16,14 @@ public:
 
 	virtual BS::Type getType() const = 0;
 
+	// Do we really need this? Da fuck iz this?
 	Object *getParent() const;
 	void setParent(Object *object);
 
 	BS::State getState() const;
 	void setState(BS::State state);
+
+	QVariant &property(QString name);
 
 	//TODO
 	// Number 'frame' represents the current frame in the current action.
@@ -45,4 +48,5 @@ private:
 	Object *parent;
 	BS::State state;
 	int frame;
+	QMap <QString, QVariant> properties;
 };
