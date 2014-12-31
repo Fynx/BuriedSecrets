@@ -7,72 +7,60 @@ Unit::Unit(const Prototype *prototype)
 	: Object(prototype)
 {}
 
-
 BS::Type Unit::getType() const
 {
 	return BS::Type::Unit;
 }
-
 
 Location *Unit::getLocation()
 {
 	return location;
 }
 
-
 void Unit::setLocation(Location *location)
 {
 	this->location = location;
 }
-
 
 float Unit::getHP() const
 {
 	return hp;
 }
 
-
 void Unit::setHP(int hp)
 {
 	this->hp = hp;
 }
-
 
 float Unit::getMaxHP() const
 {
 	return prototype->getProperty("hp").toFloat();
 }
 
-
 float Unit::getPsychosis() const
 {
 	return psychosis;
 }
-
 
 void Unit::setPsychosis(int psychosis)
 {
 	this->psychosis = psychosis;
 }
 
-
 float Unit::getMaxPsychosis() const
 {
 	return prototype->getProperty("psychosis").toFloat();
 }
-
 
 float Unit::getEncumbrance() const
 {
 	return equipment->getWeight();
 }
 
-
 float Unit::getMaxEncumbrance() const
 {
 	return prototype->getProperty("encumbrance").toFloat();
 }
-
 
 float Unit::getFoodDemand() const
 {
@@ -80,31 +68,26 @@ float Unit::getFoodDemand() const
 	return prototype->getProperty("foodDemand").toFloat();
 }
 
-
 float Unit::getSightRange() const
 {
 	//TODO update with things
 	return prototype->getProperty("sightRange").toFloat();
 }
 
-
 float Unit::getSpeed() const
 {
 	return prototype->getProperty("movementSpeed").toFloat();
 }
-
 
 float Unit::getRegeneration() const
 {
 	return prototype->getProperty("regeneration").toFloat();
 }
 
-
 void Unit::addItem(Item *item)
 {
 	return equipment->addItem(item);
 }
-
 
 void Unit::removeItem(Item *item)
 {
@@ -125,7 +108,6 @@ float Unit::getDamageControl() const
 	return  baseValue + additionalValue;
 }
 
-
 int Unit::getShooting() const
 {
 	int baseValue = prototype->getProperty("shooting").toInt();
@@ -134,7 +116,6 @@ int Unit::getShooting() const
 		: armor->getPrototype()->getProperty("attack").toInt();
 	return baseValue + additionalValue;
 }
-
 
 int Unit::getEngineering() const
 {
@@ -145,14 +126,12 @@ int Unit::getEngineering() const
 	return baseValue + additionalValue;
 }
 
-
 int Unit::getHealing() const
 {
 	int baseValue = prototype->getProperty("healing").toInt();
 	int additionalValue = prototype->getProperty("healing").toInt();
 	return baseValue + additionalValue;
 }
-
 
 int Unit::getPerception() const
 {
@@ -168,18 +147,15 @@ QList<QPointF> &Unit::getCurrentPath()
 	return currentPath;
 }
 
-
 void Unit::setCurrentPath(const QList<QPointF> &path)
 {
 	currentPath = path;
 }
 
-
 int Unit::getAttackedUnitUid() const
 {
 	return attackedUnitUid;
 }
-
 
 void Unit::setAttackedUnitUid(int uid)
 {
