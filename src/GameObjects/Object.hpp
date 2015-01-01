@@ -17,6 +17,7 @@ public:
 	virtual BS::Type getType() const = 0;
 
 	// Do we really need this? Da fuck iz this?
+	// Dis is A Faction sometimes. And perhaps something else in some cases.
 	Object *getParent() const;
 	void setParent(Object *object);
 

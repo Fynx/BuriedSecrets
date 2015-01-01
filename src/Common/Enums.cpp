@@ -15,6 +15,7 @@ static const QMap <BS::State, QString> stateToString {
 static const QMap <BS::Type, QString> typeToString {
 	{BS::Type::Invalid, "invalid"},
 	{BS::Type::Building, "building"},
+	{BS::Type::Camp, "camp"},
 	{BS::Type::Equipment, "equipment"},
 	{BS::Type::Fortification, "fortification"},
 	{BS::Type::Journal, "journal"},
