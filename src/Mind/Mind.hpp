@@ -35,6 +35,8 @@ public:
 	Object *getObjectFromUid(const int uid);
 
 private:
+	Object *createObject(BS::Type type, const QString &name);
+
 	DataManager   *dataManager;
 	PhysicsEngine *physics;
 	SoundsManager *soundsManager;

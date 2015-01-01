@@ -3,6 +3,7 @@
  */
 #include "Mind/Mind.hpp"
 
+#include "Common/Strings.hpp"
 #include "GameObjects/Building.hpp"
 #include "GameObjects/Camp.hpp"
 #include "GameObjects/Equipment.hpp"
@@ -67,69 +68,19 @@ void Mind::insertMap(const Map *map)
 {
 	qDebug() << "Inserting map...";
 	for (const Map::Object &object : map->getObjects()) {
-		Object *obj;
 		qDebug() << "\tinsert object: type=" << object.properties["type"].toString()
 			<< "name=" << object.properties["name"].toString();
+
 		BS::Type type = BS::changeStringToType(object.properties["type"].toString());
-		QString name = object.properties["name"].toString();
-		switch (type) {
-			case BS::Type::Invalid: {
-				qDebug() << "Explosion: Invalid object type";
-				break;
-			}
-			case BS::Type::Building: {
-				Building *building = new Building(dataManager->getPrototype(name));
-				obj = building;
-				break;
-			}
-			case BS::Type::Camp: {
-				Camp *camp = new Camp(dataManager->getPrototype(name));
-				obj = camp;
-				break;
-			}
-			case BS::Type::Equipment: {
-				Equipment *equipment = new Equipment(dataManager->getPrototype(name));
-				obj = equipment;
-				break;
-			}
-			case BS::Type::Fortification: {
-				Fortification *fortification = new Fortification(dataManager->getPrototype(name));
-				obj = fortification;
-				break;
-			}
-			case BS::Type::Mob: {
-				Mob *mob = new Mob(dataManager->getPrototype(name));
-				obj = mob;
-				break;
-			}
-			case BS::Type::Unit: {
-				Unit *unit = new Unit(dataManager->getPrototype(name));
-				obj = unit;
+		Object *obj = createObject(type, object.properties["name"].toString());
 
-				// ----- Cut here ----- //
-				QList<QPointF> tmpPath;
-				tmpPath.append(QPointF(50, 5));
-				tmpPath.append(QPointF(5, 50));
-				tmpPath.append(QPointF(5, 10));
-				tmpPath.append(QPointF(30, 50));
-				tmpPath.append(QPointF(50, 25));
-				tmpPath.append(QPointF(5, 5));
-				unit->setCurrentPath(tmpPath);
+		for (const QJsonValue &value : object.properties["animators"].toJsonArray())
+			if (!animatorManager->addObject(value.toString(), obj))
+				qDebug() << "\t\tfailed to add animator" << value.toString();
 
-				animatorManager->addObject("Move", obj);
-				// ----- Cut here ----- //
-
-				break;
-			}
-			default: {
-				qDebug() << "blablabla...\n" << "blabla?";
-			}
-		}
 		QPointF coordinates = {object.properties["x"].toFloat(), object.properties["y"].toFloat()};
 		addObject(obj, coordinates);
 	}
-
-	//TODO !!! connect with animators
 }
 
 QDataStream &operator<<(QDataStream &out, const Mind &mind)
@@ -167,9 +118,8 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 			mind.addObject(building, pos);
 
 			// ----- Cut here ----- //
-			if (i == 0) {
-				mind.animatorManager->addObject("Test", building);
-			}
+			if (i == 0)
+				mind.animatorManager->addObject(BS::Strings::Animators::Test, building);
 
 			mind.animatorManager->addObject("Animations", building);
 
@@ -182,4 +132,64 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 	qDebug() << "done.";
 
 	return in;
+}
+
+Object *Mind::createObject(BS::Type type, const QString &name)
+{
+	Object *obj;
+	switch (type) {
+		case BS::Type::Invalid: {
+			qDebug() << "Explosion: Invalid object type";
+			break;
+		}
+		case BS::Type::Building: {
+			Building *building = new Building(dataManager->getPrototype(name));
+			obj = building;
+			break;
+		}
+		case BS::Type::Camp: {
+			Camp *camp = new Camp(dataManager->getPrototype(name));
+			obj = camp;
+			break;
+		}
+		case BS::Type::Equipment: {
+			Equipment *equipment = new Equipment(dataManager->getPrototype(name));
+			obj = equipment;
+			break;
+		}
+		case BS::Type::Fortification: {
+			Fortification *fortification = new Fortification(dataManager->getPrototype(name));
+			obj = fortification;
+			break;
+		}
+		case BS::Type::Mob: {
+			Mob *mob = new Mob(dataManager->getPrototype(name));
+			obj = mob;
+			break;
+		}
+		case BS::Type::Unit: {
+			Unit *unit = new Unit(dataManager->getPrototype(name));
+			obj = unit;
+
+			// ----- Cut here ----- //
+			QList<QPointF> tmpPath;
+			tmpPath.append(QPointF(50, 5));
+			tmpPath.append(QPointF(5, 50));
+			tmpPath.append(QPointF(5, 10));
+			tmpPath.append(QPointF(30, 50));
+			tmpPath.append(QPointF(50, 25));
+			tmpPath.append(QPointF(5, 5));
+			unit->setCurrentPath(tmpPath);
+
+			animatorManager->addObject("Move", obj);
+			// ----- Cut here ----- //
+
+			break;
+		}
+		default: {
+			qDebug() << "blablabla...\n" << "blabla?";
+		}
+	}
+
+	return obj;
 }
