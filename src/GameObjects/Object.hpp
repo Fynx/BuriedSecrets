@@ -15,6 +15,7 @@ public:
 	const Prototype *getPrototype() const;
 
 	virtual BS::Type getType() const = 0;
+	QString getName() const;
 
 	// Do we really need this? Da fuck iz this?
 	// Dis is A Faction sometimes. And perhaps something else in some cases.
@@ -24,7 +25,7 @@ public:
 	BS::State getState() const;
 	void setState(BS::State state);
 
-	QVariant &property(QString name);
+	QVariant &property(const QString &name);
 
 	//TODO
 	// Number 'frame' represents the current frame in the current action.

@@ -22,6 +22,8 @@ DataManager::~DataManager()
 
 const Prototype *DataManager::getPrototype(const QString &name) const
 {
+	if (!prototypes.contains(name))
+		qDebug() << "Prototype" << name << "not found!";
 	Q_ASSERT(prototypes.contains(name));
 	return prototypes[name];
 }

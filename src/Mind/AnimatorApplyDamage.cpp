@@ -6,8 +6,9 @@
 //TODO use DebugManager instead
 #include <QtCore>
 
-#include "Mind/Mind.hpp"
+#include "Common/Strings.hpp"
 #include "GameObjects/Unit.hpp"
+#include "Mind/Mind.hpp"
 
 AnimatorApplyDamage::AnimatorApplyDamage(Mind *mind) : Animator(mind)
 {
@@ -21,8 +22,8 @@ void AnimatorApplyDamage::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		float damage = unit->property("Damage").toFloat();
-		unit->property("Damage").fromValue(0.0);
+		float damage = unit->property(BS::Strings::Properties::Damage).toFloat();
+		unit->property(BS::Strings::Properties::Damage).fromValue(0.0);
 		damage = damage * (1.0 - unit->getDamageControl());
 		unit->setHP(unit->getHP() - damage);
 	}

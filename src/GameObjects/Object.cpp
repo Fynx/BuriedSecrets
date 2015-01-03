@@ -1,6 +1,7 @@
 /* YoLoDevelopment, 2014
  * All rights reserved.
  */
+#include "Common/Strings.hpp"
 #include "GameObjects/Object.hpp"
 
 //TODO use DebugManager instead
@@ -23,6 +24,11 @@ const int Object::getUid() const
 const Prototype *Object::getPrototype() const
 {
 	return prototype;
+}
+
+QString Object::getName() const
+{
+	return prototype->getProperty(BS::Strings::Properties::Name).toString();
 }
 
 BS::State Object::getState() const
@@ -56,7 +62,7 @@ void Object::setParent(Object *object)
 	parent = object;
 }
 
-QVariant &Object::property(QString name)
+QVariant &Object::property(const QString &name)
 {
 	return properties[name];
 }

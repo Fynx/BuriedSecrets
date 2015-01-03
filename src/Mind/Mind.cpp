@@ -11,7 +11,6 @@
 #include "GameObjects/Mob.hpp"
 #include "GameObjects/Unit.hpp"
 
-
 //TODO use DebugManager instead
 #include <QtCore>
 
@@ -30,14 +29,12 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	soundsManager->onEvent(QString("test: success"));
 }
 
-
 Mind::~Mind()
 {
 	delete animatorManager;
 	delete mapManager;
 	qDeleteAll(objects);
 }
-
 
 void Mind::addObject(Object *object, const QPointF &position)
 {
@@ -47,7 +44,6 @@ void Mind::addObject(Object *object, const QPointF &position)
 	physics->addObject(object, position);
 }
 
-
 void Mind::removeObject(Object *object)
 {
 	qDebug() << "removeObject:" << object->getUid();
@@ -55,7 +51,6 @@ void Mind::removeObject(Object *object)
 	uidToObject.remove(object->getUid());
 	physics->removeObject(object);
 }
-
 
 Object *Mind::getObjectFromUid(const int uid)
 {
@@ -66,12 +61,10 @@ Object *Mind::getObjectFromUid(const int uid)
 	return nullptr;
 }
 
-
 PhysicsEngine *Mind::physicsEngine()
 {
 	return physics;
 }
-
 
 void Mind::insertMap(const MapInfo *map)
 {
@@ -96,12 +89,10 @@ void Mind::insertMap(const MapInfo *map)
 	}
 }
 
-
 const Map *Mind::getMap() const
 {
 	return mapManager->getMap();
 }
-
 
 QDataStream &operator<<(QDataStream &out, const Mind &mind)
 {
@@ -110,13 +101,15 @@ QDataStream &operator<<(QDataStream &out, const Mind &mind)
 	out << static_cast<qint32>(mind.objects.size());
 	for (const Object *obj : mind.objects) {
 		qDebug() << "\tsave" << obj->getUid();
-		out << QString("building") << *obj << mind.physics->getPosition(obj);
+		out << BS::changeTypeToString(obj->getType()) << obj->getName() << obj->getUid()
+			<< *obj << mind.physics->getPosition(obj) << mind.animatorManager->getAnimatorsForObject(obj);
+		qDebug() << "\t\t" << BS::changeTypeToString(obj->getType()) << obj->getName()
+			<< mind.physics->getPosition(obj) << mind.animatorManager->getAnimatorsForObject(obj);
 	}
 
 	qDebug() << "done.";
 	return out;
 }
-
 
 QDataStream &operator>>(QDataStream &in, Mind &mind)
 {
@@ -126,28 +119,27 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 	in >> dataObjectsNumber;
 
 	for (int i = 0; i < dataObjectsNumber; ++i) {
-		QString type;
-		in >> type;
+		QString typeString;
+		QString name;
+		int uid;
+		in >> typeString >> name >> uid;
+		BS::Type type = BS::changeStringToType(typeString);
 
-		if (type == "building") {
-			Building *building = new Building(mind.dataManager->getPrototype("building"));
-			qDebug() << "\tbuilding" << building->getUid();
-			QPointF pos;
-			in >> *building;
-			in >> pos;
-			qDebug() << "\t\t" << pos;
-			mind.addObject(building, pos);
+		qDebug() << "\t" << typeString << name;
 
-			// ----- Cut here ----- //
-			if (i == 0)
-				mind.animatorManager->addObject(BS::Strings::Animators::Test, building);
+		Object *object = mind.createObject(type, name);
+		in >> *object;
 
-			mind.animatorManager->addObject("Animations", building);
+		QPointF pos;
+		in >> pos;
+		qDebug() << "\t\t" << pos;
+		mind.addObject(object, pos);
 
-			// ----- Cut here ----- //
-		} else {
-			qDebug() << "Object other than a building! O.O";
-		}
+		QVector<QString> animators;
+		in >> animators;
+		qDebug() << "\t\tanimators:" << animators;
+		for (const QString &animator : animators)
+			mind.animatorManager->addObject(animator, object);
 	}
 
 	qDebug() << "done.";
@@ -201,8 +193,6 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 			tmpPath.append(QPointF(50, 25));
 			tmpPath.append(QPointF(5, 5));
 			unit->setCurrentPath(tmpPath);
-
-			animatorManager->addObject("Move", obj);
 			// ----- Cut here ----- //
 
 			break;

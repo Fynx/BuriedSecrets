@@ -18,5 +18,10 @@ namespace BS {
 			const QString Test          = "AnimatorTest";
 		}
 
+		namespace Properties {
+			const QString Damage = "damage";
+			const QString Name   = "name";
+		}
+
 	}
 }

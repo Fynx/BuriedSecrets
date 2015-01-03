@@ -72,6 +72,15 @@ bool AnimatorManager::removeObject(QString animator, Object *obj)
 	return true;
 }
 
+QVector<QString> AnimatorManager::getAnimatorsForObject(const Object *obj) const
+{
+	QVector<QString> result;
+	for (QMap<QString, Animator *>::ConstIterator it = animators.cbegin(); it != animators.cend(); ++it)
+		if (it.value()->hasObject(obj))
+			result.append(it.key());
+	return result;
+}
+
 void AnimatorManager::update(int timeElapsed)
 {
 	for (Animator *anim : intervals[timeElapsed])

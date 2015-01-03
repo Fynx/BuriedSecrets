@@ -54,6 +54,10 @@ public:
 	void setAttackedUnitUid(int uid);
 
 private:
+	friend QDataStream &operator<<(QDataStream &out, const Unit &object);
+	friend QDataStream &operator>>(QDataStream &in, Unit &object);
+	//TODO all pointers to objects change to uid
+
 	Location *location;
 
 	int hp;

@@ -18,8 +18,9 @@ public:
 	void addObject(Object *obj);
 	void removeObject(Object *obj);
 	bool hasObject(Object *obj);
+	bool hasObject(const Object *obj) const;
 
 protected:
-	QVector <Object *> objects;
+	QVector<Object *> objects;
 	Mind *mind;
 };

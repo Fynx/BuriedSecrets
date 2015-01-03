@@ -161,3 +161,13 @@ void Unit::setAttackedUnitUid(int uid)
 {
 	attackedUnitUid = uid;
 }
+
+QDataStream &operator<<(QDataStream &out, const Unit &unit)
+{
+	return out;
+}
+
+QDataStream &operator>>(QDataStream &in, Unit &unit)
+{
+	return in;
+}
