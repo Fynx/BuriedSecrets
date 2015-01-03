@@ -6,7 +6,7 @@
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
 	: graphicsDataManager{dataManager}, widget{new GraphicsWidget}, graphicalEntityFactory{&graphicsDataManager}, physicsEngine{physicsEngine}
-	, dataManager{dataManager}, camera{nullptr}
+	, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}
 {
 	canvas = widget;
 }
@@ -14,6 +14,8 @@ Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataMa
 
 Graphics::~Graphics()
 {
+	delete mapSprite;
+	mapSprite = nullptr;
 	delete camera;
 }
 
@@ -37,14 +39,20 @@ void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 void Graphics::loadMap(const Map *map)
 {
 	this->map = map;
-
-	// TODO
+	mapSprite = new sf::Sprite{*(graphicsDataManager.getTexture(map->getMapInfo()->getName()))};
+	mapSprite->setPosition(0, 0);
 }
 
 
 void Graphics::render()
 {
 	canvas->clear(sf::Color::Black);
+	// Draw the map
+	// FIXME TODO moving the map (view, etc)
+	if (mapSprite != nullptr) {
+		canvas->draw(*mapSprite);
+	}
+
 	// All the drawing logic for objects goes here.
 
 	auto visibleObjects = camera->getVisibleObjects();

@@ -58,6 +58,7 @@ private:
 	const DataManager *dataManager;
 	const Map *map;
 	Camera *camera;
+	sf::Sprite *mapSprite;
 
 private slots:
 	/**

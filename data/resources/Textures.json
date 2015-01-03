@@ -94,5 +94,9 @@
   "SoszuUpLeft3": {
     "type": "texture",
     "data": "images/SoszuUpLeft3.png"
+  },
+  "Map0": {
+    "type": "texture",
+    "data": "images/Map0.png"
   }
 }
