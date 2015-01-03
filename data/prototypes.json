@@ -2,6 +2,7 @@
 	"building": {
 		"type": "building",
 		"name": "building",
+		"textureName": "SoszuHouse",
 		"capacity": 5,
 		"range": 10,
 		"attack": 0,
@@ -11,9 +12,20 @@
 	"fortification": {
 		"type": "fortification",
 		"name": "fortification",
+		"textureName": "SoszuHouse",
 		"hp": 10,
 		"attack": 0,
 		"defense": 0
+	},
+	"SoszuHouse": {
+		"type": "building",
+		"name": "Soszu's House",
+		"textureName": "SoszuHouse",
+		"capacity": 5,
+		"range": 10,
+		"attack": 0,
+		"defense": 0,
+		"searchTime": 0
 	},
 	"unit": {
 		"type": "unit",
@@ -35,8 +47,32 @@
 		"movementSpeed": 5,
 		"regeneration": 1,
 		"animations": {
-			"siedze": "siedze.abc",
-			"stoje": "stoje.abc"
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking"
+		}
+	},
+	"Soszu": {
+		"type": "unit",
+		"name": "Soszu",
+		"background": "Blah blah",
+		"position": "engineer",
+		"avatar": "no films here",
+		"age": 123124,
+		"attack": 10,
+		"engineering": 10,
+		"healing": 10,
+		"perception": 10,
+		"defense": 10,
+		"hp": 100,
+		"psychosis": 100,
+		"capacity": 5,
+		"hunger": 2,
+		"sightRange": 30,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking"
 		}
 	}
 }

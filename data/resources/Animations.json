@@ -35,14 +35,14 @@
     "state": "Run",
     "framesNumber": 1,
     "frames": [
+      "SoszuUp",
+      "SoszuUpRight",
+      "SoszuRight",
+      "SoszuDownRight",
       "SoszuDown",
-      "SoszuDown",
-      "SoszuDown",
-      "SoszuDown",
-      "SoszuDown",
-      "SoszuDown",
-      "SoszuDown",
-      "SoszuDown"
+      "SoszuDownLeft",
+      "SoszuLeft",
+      "SoszuUpLeft"
     ]
   }
 }

@@ -84,9 +84,15 @@ void DataManager::loadPrototypes()
 			prototype->setProperty(key, value.toVariant());
 			qDebug() << "\t\t" << key << value.toVariant();
 		}
-		// FIXME hardcoded
-		prototype->addAnimationData(BS::Idle, getAnimationData("SoszuIdle"));
-		prototype->addAnimationData(BS::Run, getAnimationData("SoszuWalking"));
+
+		if (prototype->hasProperty("animations")) {
+			auto animations = prototype->getProperty("animations").toMap();
+
+			for (const auto& animation: animations) {
+				const AnimationData *animData = getAnimationData(animation.toString());
+				prototype->addAnimationData(animData->getState(), animData);
+			}
+		}
 
 		prototypes[prototype->getProperty("name").toString()] = prototype;
 	}

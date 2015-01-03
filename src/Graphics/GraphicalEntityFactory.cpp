@@ -24,14 +24,26 @@ GraphicalEntity* GraphicalEntityFactory::get(const Object* object)
 	auto iter = map.find(object);
 	GraphicalEntity *ptr = nullptr;
 	if (iter == map.end()) {
-		// Build an AnimationSet object and pass it to the AnimatedGraphicalEntity
-		AnimationSet::SetType s;
-		const auto animationsList = object->getPrototype()->getAnimationsData();
-		for (const auto& anim: animationsList) {
-			s[anim->getState()] = graphicsDataManager->getAnimation(anim->getName());
-			qDebug() << anim->getName() << " for " << anim->getState();
+		auto objectType = object->getPrototype()->getProperty("type").toString();
+
+		if (objectType == "unit") {
+			// Build an AnimationSet object and pass it to the AnimatedGraphicalEntity
+			AnimationSet::SetType s;
+			const auto animationsList = object->getPrototype()->getAnimationsData();
+			for (const auto& anim: animationsList) {
+				s[anim->getState()] = graphicsDataManager->getAnimation(anim->getName());
+				qDebug() << anim->getName() << " for " << anim->getState();
+			}
+			ptr = new AnimatedGraphicalEntity(object, AnimationSet{s});
+		} else if (objectType == "building") {
+			ptr = new StaticGraphicalEntity(object, graphicsDataManager->getTexture(
+					object->getPrototype()->getProperty("textureName").toString()));
+		} else {
+			qDebug() << "FAIL!";
+			Q_ASSERT(false);	// Not a known type.
 		}
-		ptr = new AnimatedGraphicalEntity(object, AnimationSet{s});
+
+		Q_ASSERT(ptr != nullptr);
 		map[object] = ptr;
 	} else {
 		ptr = iter.value();

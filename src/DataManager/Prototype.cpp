@@ -3,12 +3,19 @@
  */
 #include "DataManager/Prototype.hpp"
 
+bool Prototype::hasProperty(const QString &key) const
+{
+	return properties.contains(key);
+}
+
 QVariant Prototype::getProperty(const QString &key) const
 {
 	if (properties.contains(key))
 		return properties[key];
-	else
+	else {
+		qDebug() << "Notice: the prototype doesn't have \"" << key <<"\"";
 		return QVariant(0);
+	}
 }
 
 void Prototype::setProperty(const QString &key, const QVariant &value)

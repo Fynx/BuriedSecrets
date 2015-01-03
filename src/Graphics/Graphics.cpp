@@ -5,8 +5,8 @@
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
-	: graphicsDataManager{dataManager}, widget{new GraphicsWidget}, graphicalEntityFactory{&graphicsDataManager}, physicsEngine{physicsEngine}
-	, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}
+	: graphicsDataManager{dataManager}, widget{new GraphicsWidget}, graphicalEntityFactory{&graphicsDataManager}
+	, physicsEngine{physicsEngine}, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}
 {
 	canvas = widget;
 }

@@ -12,6 +12,7 @@ class Prototype {
 public:
 	Prototype() = default;
 
+	bool hasProperty(const QString &key) const;
 	QVariant getProperty(const QString &key) const;
 	void setProperty(const QString &key, const QVariant &value);
 	const AnimationData *getAnimationData(const BS::State &state) const;

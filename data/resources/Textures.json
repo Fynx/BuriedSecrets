@@ -98,5 +98,9 @@
   "Map0": {
     "type": "texture",
     "data": "images/Map0.png"
+  },
+  "SoszuHouse": {
+    "type": "texture",
+    "data": "images/SoszuHouse.png"
   }
 }
