@@ -6,23 +6,23 @@
 #include <QtCore>
 #include "DataManager/Resource.hpp"
 
-class Map {
+class MapInfo {
 public:
 	struct Object {
 		QString name;
 		QVariantMap properties;
 	};
 
-	Map(const QString &name, const QString &representationName, const QVector<Map::Object> &objects);
+	MapInfo(const QString &name, const QString &representationName, const QVector<MapInfo::Object> &objects);
 
 	QString getName() const;
 	QString getRepresentationName() const;
 // 	Resource *getRepresentation() const;
-	const QVector<Map::Object> &getObjects() const;
+	const QVector<MapInfo::Object> &getObjects() const;
 
 private:
 	const QString name;
 	const QString representationName;
 // 	Resource *representation;
-	const QVector<Map::Object> objects;
+	const QVector<MapInfo::Object> objects;
 };

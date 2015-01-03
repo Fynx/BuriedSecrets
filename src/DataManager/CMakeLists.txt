@@ -1,7 +1,7 @@
 set (DataManager_SRCS
 	AnimationData.cpp
 	DataManager.cpp
-	Map.cpp
+	MapInfo.cpp
 	Prototype.cpp
 	Resource.cpp
 )

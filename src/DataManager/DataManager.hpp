@@ -6,7 +6,7 @@
 #pragma once
 
 #include "DataManager/AnimationData.hpp"
-#include "DataManager/Map.hpp"
+#include "DataManager/MapInfo.hpp"
 #include "DataManager/Prototype.hpp"
 #include "DataManager/Resource.hpp"
 
@@ -19,7 +19,7 @@ public:
 
 	const Prototype *getPrototype(const QString &name) const;
 	const Resource *getResource(const QString &name) const;
-	const Map *getMap(const QString &path);
+	const MapInfo *getMap(const QString &path);
 	const AnimationData *getAnimationData(const QString &name) const;
 
 	template <class T>
@@ -51,7 +51,7 @@ private:
 	QHash<QString, Prototype *> prototypes;
 	QHash<QString, Resource *> resources;
 	QHash <QString, AnimationData *> animationData;
-	Map *map;
+	MapInfo *map;
 };
 
 

@@ -1,3 +1,5 @@
+add_subdirectory(MapManager)
+
 set (Mind_SRCS
 	AnimationAnimator.cpp
 	Animator.cpp

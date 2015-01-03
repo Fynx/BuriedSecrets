@@ -11,6 +11,7 @@
 #include "Graphics/GraphicalEntity.hpp"
 #include "Graphics/GraphicalEntityFactory.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
+#include "Mind/MapManager/Map.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "UserInterface/Viewport.hpp"
 
@@ -36,11 +37,11 @@ public:
 	 */
 	void startRendering(const Viewport *viewport, int framesIntervalms = 0);
 	/**
-	 * @brief Loads the graphical representation of the level.
+	 * @brief Loads the graphical representation of the map.
 	 *
 	 * @return void
 	 */
-	void loadLevel();
+	void loadMap(const Map *map);
 
 private:
 	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QList< const Object * > &objects);
@@ -55,6 +56,7 @@ private:
 	sf::RenderWindow *canvas;
 	const PhysicsEngine *physicsEngine;
 	const DataManager *dataManager;
+	const Map *map;
 	Camera *camera;
 
 private slots:

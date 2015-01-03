@@ -31,7 +31,7 @@ const Resource *DataManager::getResource(const QString &name) const
 	return resources[name];
 }
 
-const Map *DataManager::getMap(const QString &path)
+const MapInfo *DataManager::getMap(const QString &path)
 {
 	loadMap(path);
 	return map;
@@ -156,9 +156,9 @@ bool DataManager::loadMap(const QString &path)
 	qDebug() << "mapDesc:" << mapDesc;
 
 	//TODO remove animators from the map,
-	QVector<Map::Object> objects;
+	QVector<MapInfo::Object> objects;
 	for (const QString &key : json["objects"].toObject().keys()) {
-		Map::Object object;
+		MapInfo::Object object;
 		object.name = key;
 		object.properties = json["objects"].toObject()[key].toObject().toVariantMap();
 		qDebug() << "\t" << key;
@@ -167,7 +167,7 @@ bool DataManager::loadMap(const QString &path)
 		objects.append(object);
 	}
 
-	map = new Map(mapName, mapDesc, objects);
+	map = new MapInfo(mapName, mapDesc, objects);
 
 	return true;
 }

@@ -15,11 +15,13 @@
 //TODO use DebugManager instead
 #include <QtCore>
 
+
 Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager)
 	: dataManager(dataManager),
 	  physics(physicsEngine),
 	  soundsManager(soundsManager),
-	  animatorManager(new AnimatorManager(this))
+	  animatorManager(new AnimatorManager(this)),
+	  mapManager(nullptr)
 {
 	qDebug() << "Mind initialized. Select 'Load mind' from the menu options to load objects.";
 	qDebug() << "Or add loadFromFile(\"data/map.bin\") here in Mind::Mind.";
@@ -28,11 +30,14 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	soundsManager->onEvent(QString("test: success"));
 }
 
+
 Mind::~Mind()
 {
 	delete animatorManager;
+	delete mapManager;
 	qDeleteAll(objects);
 }
+
 
 void Mind::addObject(Object *object, const QPointF &position)
 {
@@ -42,6 +47,7 @@ void Mind::addObject(Object *object, const QPointF &position)
 	physics->addObject(object, position);
 }
 
+
 void Mind::removeObject(Object *object)
 {
 	qDebug() << "removeObject:" << object->getUid();
@@ -49,6 +55,7 @@ void Mind::removeObject(Object *object)
 	uidToObject.remove(object->getUid());
 	physics->removeObject(object);
 }
+
 
 Object *Mind::getObjectFromUid(const int uid)
 {
@@ -59,15 +66,21 @@ Object *Mind::getObjectFromUid(const int uid)
 	return nullptr;
 }
 
+
 PhysicsEngine *Mind::physicsEngine()
 {
 	return physics;
 }
 
-void Mind::insertMap(const Map *map)
+
+void Mind::insertMap(const MapInfo *map)
 {
 	qDebug() << "Inserting map...";
-	for (const Map::Object &object : map->getObjects()) {
+
+	delete mapManager;
+	mapManager = new MapManager(map);
+
+	for (const MapInfo::Object &object : map->getObjects()) {
 		qDebug() << "\tinsert object: type=" << object.properties["type"].toString()
 			<< "name=" << object.properties["name"].toString();
 
@@ -83,6 +96,13 @@ void Mind::insertMap(const Map *map)
 	}
 }
 
+
+const Map *Mind::getMap() const
+{
+	return mapManager->getMap();
+}
+
+
 QDataStream &operator<<(QDataStream &out, const Mind &mind)
 {
 	qDebug() << "Saving dataObjects...";
@@ -96,6 +116,7 @@ QDataStream &operator<<(QDataStream &out, const Mind &mind)
 	qDebug() << "done.";
 	return out;
 }
+
 
 QDataStream &operator>>(QDataStream &in, Mind &mind)
 {

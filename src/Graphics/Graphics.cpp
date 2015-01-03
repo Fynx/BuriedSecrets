@@ -34,6 +34,14 @@ void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 }
 
 
+void Graphics::loadMap(const Map *map)
+{
+	this->map = map;
+
+	// TODO
+}
+
+
 void Graphics::render()
 {
 	canvas->clear(sf::Color::Black);

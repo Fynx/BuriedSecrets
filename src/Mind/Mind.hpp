@@ -5,10 +5,11 @@
 #include <QtCore>
 
 #include "DataManager/DataManager.hpp"
-#include "DataManager/Map.hpp"
+#include "DataManager/MapInfo.hpp"
 #include "GameObjects/Object.hpp"
 #include "Mind/AnimatorManager.hpp"
 #include "Mind/Event.hpp"
+#include "MapManager/MapManager.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "SoundsManager/SoundsManager.hpp"
 
@@ -21,7 +22,8 @@ public:
 	~Mind();
 
 	PhysicsEngine *physicsEngine();
-	void insertMap(const Map *map);
+	void insertMap(const MapInfo *map);
+	const Map *getMap() const;
 
 	/**
 	 * @brief Adds an object to the inner collection and to physics.
@@ -42,6 +44,7 @@ private:
 	SoundsManager *soundsManager;
 
 	AnimatorManager *animatorManager;
+	MapManager *mapManager;
 
 	QVector<Object *> objects;
 	QHash<const int, Object *> uidToObject;

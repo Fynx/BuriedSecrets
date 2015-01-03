@@ -76,5 +76,7 @@ void General::loadMapFromJson()
 {
 	qDebug() << "Triggered function createMapFile";
 	qDebug() << "If segfault, click \"newGame\" in the main menu before committing suicide.";
-	mind->insertMap(dataManager->getMap("data/maps/map0.json"));
+	auto mapInfo = dataManager->getMap("data/maps/map0.json");
+	mind->insertMap(mapInfo);
+	graphics->loadMap(mind->getMap());
 }
