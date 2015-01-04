@@ -17,21 +17,39 @@ Box2DEngine::Box2DEngine() : PhysicsEngine(), world(b2Vec2(0,0)), listener()
 void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 {
 	/*
-	 * All the stuff z prototypy obiektów
+	 * All the stuff from Objects' Prototypes
 	 */
 
 	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(pos.x(), pos.y());
-	b2Body* body = world.CreateBody(&bodyDef);
 
 	b2Shape *shape;
-	shape = new b2CircleShape();
-	((b2CircleShape*) shape)->m_radius = 1;
+	const auto objType = obj->getPrototype()->getProperty("type").toString();
+	if (objType == "unit") {
+		shape = new b2CircleShape();
+		dynamic_cast<b2CircleShape *>(shape)->m_radius =
+				obj->getPrototype()->getProperty("baseRadius").toFloat();
+		bodyDef.type = b2_dynamicBody;
+		bodyDef.position.Set(
+			pos.x() - ((b2CircleShape*) shape)->m_radius, pos.y() - ((b2CircleShape*) shape)->m_radius);
+	} else {
+		// We assume building
+		shape = new b2PolygonShape();
+		QVariantList verts = obj->getPrototype()->getProperty("basePolygon").toList();
+		b2Vec2 vertices[verts.size()];
+		for (int i = 0; i < verts.size(); ++i) {
+			// A potential FIXME: We may need to align the polygon to the upper left corner.
+			vertices[i].Set(verts[i].toList()[0].toFloat(), verts[i].toList()[1].toFloat());
+		}
+		dynamic_cast<b2PolygonShape *>(shape)->Set(vertices, verts.size());
+		bodyDef.type = b2_staticBody;
+		bodyDef.position.Set(pos.x(), pos.y());
+	}
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = shape;
-	fixtureDef.density = 10.0f;//?
-	fixtureDef.friction = 10.f;//?
+	fixtureDef.density = 10.0f; //?
+	fixtureDef.friction = 10.f; //?
+
+	b2Body* body = world.CreateBody(&bodyDef);
 	body->CreateFixture(&fixtureDef);
 	body->SetUserData(obj);
 
