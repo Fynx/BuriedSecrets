@@ -80,7 +80,7 @@ void Mind::insertMap(const MapInfo *map)
 		BS::Type type = BS::changeStringToType(object.properties["type"].toString());
 		Object *obj = createObject(type, object.properties["name"].toString());
 
-		for (const QJsonValue &value : object.properties["animators"].toJsonArray())
+		for (const QVariant &value : object.properties["animators"].toList())
 			if (!animatorManager->addObject(value.toString(), obj))
 				qDebug() << "\t\tfailed to add animator" << value.toString();
 
