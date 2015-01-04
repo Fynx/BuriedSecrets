@@ -29,6 +29,9 @@ public:
 	void saveMap();
 	void loadMapFromJson();
 
+	// FIXME this might need to be moved to DebugManager
+	void toggleDisplayBasePolygons();
+
 private:
 	void initModules();
 

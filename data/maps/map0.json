@@ -4,7 +4,7 @@
 	"objects": {
 		"SoszuHouse": {
 			"type": "building",
-			"name": "building",
+			"name": "Soszu's House",
 			"animators": [],
 			"x": 2,
 			"y": 3

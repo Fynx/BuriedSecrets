@@ -19,13 +19,14 @@ public:
 	virtual sf::Drawable *getDrawable() = 0;
 	/**
 	 * @brief Sets the Entity's position.
-	 * Units to be decided (probably pixels, TODO).
 	 *
-	 * @param position In some units...
+	 * @param position In pixels.
 	 */
 	virtual void setPosition(const QPointF &position) = 0;
 	virtual void setDirection(const BS::Graphic::Direction &direction) = 0;
 	const Object* getObject() const;
+	QList<QPointF> getBasePolygon() const;
+	QPointF getBaseCentre() const;
 	/**
 	 * @brief Updates the internal state of the Entity over the time that has passed since the last update.
 	 *

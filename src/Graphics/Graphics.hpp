@@ -42,18 +42,24 @@ public:
 	 * @return void
 	 */
 	void loadMap(const Map *map);
+	void toggleShowBasePolygons();
 
 private:
 	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QList< const Object * > &objects);
 	void updateEntity(GraphicalEntity *entity, const float deltaTime);
+	/**
+	 * @brief Returns the graphical position of the entity.
+	 */
+	QPointF getPosition(GraphicalEntity *entity) const;
 
 	GraphicsDataManager graphicsDataManager;
-	GraphicsWidget *widget;
-	GraphicalEntityFactory *graphicalEntityFactory;
 	QTimer renderTimer;
+	bool showBasePolygons;
 
 	// This pointer is just for convenience as it points to the widget.
 	sf::RenderWindow *canvas;
+	GraphicsWidget *widget;
+	GraphicalEntityFactory *graphicalEntityFactory;
 	const PhysicsEngine *physicsEngine;
 	const DataManager *dataManager;
 	const Map *map;

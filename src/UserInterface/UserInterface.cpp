@@ -106,6 +106,12 @@ void UserInterface::initDevActionsMenu()
 	QAction *actionQuit = new QAction("Quit", mainWindow_);
 	connect(actionQuit, &QAction::triggered, mainWindow_, &QMainWindow::close);
 	menuFile->addAction(actionQuit);
+
+	QMenu *menuDebug = mainWindow_->menuBar()->addMenu("Debug");
+
+	QAction *actionBasePolygonsToggle = new QAction("Toggle base polygons", mainWindow_);
+	connect(actionBasePolygonsToggle, &QAction::triggered, general_, &General::toggleDisplayBasePolygons);
+	menuDebug->addAction(actionBasePolygonsToggle);
 }
 
 

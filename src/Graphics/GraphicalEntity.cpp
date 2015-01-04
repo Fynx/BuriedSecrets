@@ -25,3 +25,17 @@ const Object *GraphicalEntity::getObject() const
 	return object;
 }
 
+
+QList< QPointF > GraphicalEntity::getBasePolygon() const
+{
+	return basePolygon;
+}
+
+
+QPointF GraphicalEntity::getBaseCentre() const
+{
+	return baseCentre;
+}
+
+
+

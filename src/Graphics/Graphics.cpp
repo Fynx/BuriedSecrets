@@ -5,8 +5,9 @@
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
-	: graphicsDataManager{dataManager}, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}
-	, physicsEngine{physicsEngine}, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}
+	: graphicsDataManager{dataManager}, showBasePolygons{false}, widget{new GraphicsWidget}
+	, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}, dataManager{dataManager}, camera{nullptr}
+	, mapSprite{nullptr}
 {
 	canvas = widget;
 }
@@ -48,6 +49,12 @@ void Graphics::loadMap(const Map *map)
 }
 
 
+void Graphics::toggleShowBasePolygons()
+{
+	showBasePolygons = !showBasePolygons;
+}
+
+
 void Graphics::render()
 {
 	canvas->clear(sf::Color::Black);
@@ -67,6 +74,23 @@ void Graphics::render()
 	for (auto& obj: visibleGraphicalEntities) {
 		updateEntity(obj, 0);
 		canvas->draw(*(obj->getDrawable()));
+
+		if (showBasePolygons) {
+			// FIXME this can not work for non-convex
+			const auto points = obj->getBasePolygon();
+			QPointF centre = obj->getBaseCentre();
+			QPointF pos = getPosition(obj);
+			sf::ConvexShape polygon;
+			polygon.setPointCount(points.size());
+			for (int i = 0; i < points.size(); ++i) {
+				polygon.setPoint(i, sf::Vector2f(pos.x() - centre.x() + points[i].x(),
+								 pos.y() - centre.y() + points[i].y()));
+			}
+			polygon.setFillColor(sf::Color::Transparent);
+			polygon.setOutlineThickness(2);
+			polygon.setOutlineColor(sf::Color::Red);
+			canvas->draw(polygon);
+		}
 	}
 
 	// This call has to be at the end to repaint the widget.
@@ -88,8 +112,13 @@ void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime)
 {
 	entity->setDirection(static_cast<BS::Graphic::Direction>(
 			camera->discretizeAngle(physicsEngine->getAngle(entity->getObject()))));
-	entity->setPosition(camera->getPerspective()->getTranslatedPoint(
-			physicsEngine->getPosition(entity->getObject())));
+	entity->setPosition(getPosition(entity));
 	entity->update(deltaTime);
 }
+
+QPointF Graphics::getPosition(GraphicalEntity *entity) const
+{
+	return camera->getPerspective()->getTranslatedPoint(physicsEngine->getPosition(entity->getObject()));
+}
+
 

@@ -15,6 +15,7 @@ General::General()
 	  soundsManager(nullptr)
 {}
 
+
 General::~General()
 {
 	clearGameModules();
@@ -24,10 +25,12 @@ General::~General()
 	delete debugManager;
 }
 
+
 QMainWindow * General::getMainWindow()
 {
 	return userInterface->getMainWindow();
 }
+
 
 void General::clearGameModules()
 {
@@ -40,6 +43,7 @@ void General::clearGameModules()
 	delete physicsEngine;
 	delete soundsManager;
 }
+
 
 void General::startNewGame()
 {
@@ -60,17 +64,20 @@ void General::startNewGame()
 	graphics->startRendering(userInterface->getViewport());
 }
 
+
 void General::loadMap()
 {
 	qDebug() << "Triggered function loadMap";
 	dataManager->loadFromFile("data/map.bin", *mind);
 }
 
+
 void General::saveMap()
 {
 	qDebug() << "Triggered function saveMap";
 	dataManager->saveToFile("data/map.bin", *mind);
 }
+
 
 void General::loadMapFromJson()
 {
@@ -79,4 +86,10 @@ void General::loadMapFromJson()
 	auto mapInfo = dataManager->getMap("data/maps/map0.json");
 	mind->insertMap(mapInfo);
 	graphics->loadMap(mind->getMap());
+}
+
+
+void General::toggleDisplayBasePolygons()
+{
+	graphics->toggleShowBasePolygons();
 }
