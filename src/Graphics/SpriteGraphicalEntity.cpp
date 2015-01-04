@@ -4,8 +4,8 @@
 #include "Graphics/SpriteGraphicalEntity.hpp"
 
 
-SpriteGraphicalEntity::SpriteGraphicalEntity(const Object *object)
-	: GraphicalEntity(object)
+SpriteGraphicalEntity::SpriteGraphicalEntity(const Object *object, const QList<QPointF> &basePolygon)
+	: GraphicalEntity{object, basePolygon}
 {
 	sprite.setScale(0.05, 0.05);
 }
@@ -19,7 +19,7 @@ sf::Drawable *SpriteGraphicalEntity::getDrawable()
 
 void SpriteGraphicalEntity::setPosition(const QPointF &position)
 {
-	sprite.setPosition(position.x(), position.y());
+	sprite.setPosition(position.x() - baseCentre.x(), position.y() - baseCentre.y());
 }
 
 

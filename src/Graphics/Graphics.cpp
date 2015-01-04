@@ -5,7 +5,7 @@
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
-	: graphicsDataManager{dataManager}, widget{new GraphicsWidget}, graphicalEntityFactory{&graphicsDataManager}
+	: graphicsDataManager{dataManager}, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}
 	, physicsEngine{physicsEngine}, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}
 {
 	canvas = widget;
@@ -30,6 +30,10 @@ void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 {
 	delete camera;
 	camera = new Camera{physicsEngine, viewport};
+
+	delete graphicalEntityFactory;
+	graphicalEntityFactory = new GraphicalEntityFactory{&graphicsDataManager, viewport->getPerspective()};
+
 	renderTimer.setInterval(framesIntervalms);
 	connect(&renderTimer, SIGNAL(timeout()), this, SLOT(render()));
 	renderTimer.start();
@@ -74,7 +78,7 @@ QVector<GraphicalEntity *> Graphics::getGraphicalEntitiesFor(const QList<const O
 {
 	QVector<GraphicalEntity *> res;
 	for (const auto& obj: objects) {
-		res.append(graphicalEntityFactory.get(obj));
+		res.append(graphicalEntityFactory->get(obj));
 	}
 	return res;
 }

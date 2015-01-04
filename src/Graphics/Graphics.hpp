@@ -49,7 +49,7 @@ private:
 
 	GraphicsDataManager graphicsDataManager;
 	GraphicsWidget *widget;
-	GraphicalEntityFactory graphicalEntityFactory;
+	GraphicalEntityFactory *graphicalEntityFactory;
 	QTimer renderTimer;
 
 	// This pointer is just for convenience as it points to the widget.

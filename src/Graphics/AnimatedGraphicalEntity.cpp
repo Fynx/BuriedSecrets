@@ -4,8 +4,10 @@
 #include "Graphics/AnimatedGraphicalEntity.hpp"
 
 
-AnimatedGraphicalEntity::AnimatedGraphicalEntity(const Object *object, const AnimationSet &animationSet)
-	: SpriteGraphicalEntity{object}, animationSet{animationSet}, direction{BS::Graphic::Direction::Right}
+AnimatedGraphicalEntity::AnimatedGraphicalEntity(const Object *object, const QList<QPointF> &basePolygon,
+						 const AnimationSet &animationSet)
+	: SpriteGraphicalEntity{object, basePolygon}, animationSet{animationSet}
+	, direction{BS::Graphic::Direction::Right}
 {}
 
 

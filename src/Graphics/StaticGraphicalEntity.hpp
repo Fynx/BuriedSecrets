@@ -14,7 +14,7 @@
  */
 class StaticGraphicalEntity: public SpriteGraphicalEntity {
 public:
-	StaticGraphicalEntity(const Object* object, const sf::Texture *texture);
+	StaticGraphicalEntity(const Object* object, const QList<QPointF> &basePolygon, const sf::Texture *texture);
 
 	void setDirection(const BS::Graphic::Direction &direction) override;
 	void update(const float timeDelta) override;

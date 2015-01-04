@@ -10,7 +10,7 @@
 
 class SpriteGraphicalEntity: public GraphicalEntity {
 public:
-	SpriteGraphicalEntity(const Object *object);
+	SpriteGraphicalEntity(const Object *object, const QList<QPointF> &basePolygon);
 
 	sf::Drawable *getDrawable() override;
 	void setPosition(const QPointF &position) override;

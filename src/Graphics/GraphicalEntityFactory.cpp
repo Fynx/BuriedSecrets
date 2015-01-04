@@ -8,8 +8,8 @@
 #include "Graphics/StaticGraphicalEntity.hpp"
 
 
-GraphicalEntityFactory::GraphicalEntityFactory(GraphicsDataManager *graphicsDataManager)
-: graphicsDataManager{graphicsDataManager}
+GraphicalEntityFactory::GraphicalEntityFactory(GraphicsDataManager *graphicsDataManager, const Perspective *perspective)
+	: graphicsDataManager{graphicsDataManager}, perspective{perspective}
 {}
 
 
@@ -23,8 +23,10 @@ GraphicalEntity* GraphicalEntityFactory::get(const Object* object)
 {
 	auto iter = map.find(object);
 	GraphicalEntity *ptr = nullptr;
+
 	if (iter == map.end()) {
 		auto objectType = object->getPrototype()->getProperty("type").toString();
+		QList<QPointF> basePolygon;
 
 		if (objectType == "unit") {
 			// Build an AnimationSet object and pass it to the AnimatedGraphicalEntity
@@ -34,9 +36,30 @@ GraphicalEntity* GraphicalEntityFactory::get(const Object* object)
 				s[anim->getState()] = graphicsDataManager->getAnimation(anim->getName());
 				qDebug() << anim->getName() << " for " << anim->getState();
 			}
-			ptr = new AnimatedGraphicalEntity(object, AnimationSet{s});
+
+			// Get centre, radius and build a polygon emulating circle.
+			const float radius = object->getPrototype()->getProperty("baseRadius").toFloat();
+			const QVariantList centre = object->getPrototype()->getProperty("baseCentre").toList();
+			const float centreX = centre[0].toFloat();
+			const float centreY = centre[1].toFloat();
+
+			// Clockwise
+			basePolygon.append(perspective->getTranslatedPoint(QPointF{centreX - radius, centreY}));
+			basePolygon.append(perspective->getTranslatedPoint(QPointF{centreX, centreY - radius}));
+			basePolygon.append(perspective->getTranslatedPoint(QPointF{centreX + radius, centreY}));
+			basePolygon.append(perspective->getTranslatedPoint(QPointF{centreX, centreY + radius}));
+
+			ptr = new AnimatedGraphicalEntity(object, basePolygon, AnimationSet{s});
 		} else if (objectType == "building") {
-			ptr = new StaticGraphicalEntity(object, graphicsDataManager->getTexture(
+			// Convert basePolygon from prototype to a QList<QPointF>
+			const QVariantList polygon = object->getPrototype()->getProperty("basePolygon").toList();
+			for (const QVariant &p: polygon) {
+				const QVariantList &point = p.toList();
+				basePolygon.append(perspective->getTranslatedPoint(
+						QPointF{point[0].toFloat(), point[1].toFloat()}));
+			}
+
+			ptr = new StaticGraphicalEntity(object, basePolygon, graphicsDataManager->getTexture(
 					object->getPrototype()->getProperty("textureName").toString()));
 		} else {
 			qDebug() << "FAIL!";
@@ -64,5 +87,6 @@ void GraphicalEntityFactory::deleteObjects()
 	// Free the GraphicalObjects.
 	qDeleteAll(map);
 }
+
 
 

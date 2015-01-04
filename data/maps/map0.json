@@ -6,8 +6,8 @@
 			"type": "building",
 			"name": "building",
 			"animators": [],
-			"x": 0.0,
-			"y": 0.0
+			"x": 2,
+			"y": 3
 		},
 		"Soszu": {
 			"type": "unit",
