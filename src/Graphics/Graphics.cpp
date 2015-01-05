@@ -7,7 +7,7 @@
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
 	: graphicsDataManager{dataManager}, showBasePolygons{false}, widget{new GraphicsWidget}
 	, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}, dataManager{dataManager}, camera{nullptr}
-	, mapSprite{nullptr}
+	, mapSprite{nullptr}, drawOrder{new int[10000]}, positions{new QPointF[10000]}
 {
 	canvas = widget;
 }
@@ -18,6 +18,7 @@ Graphics::~Graphics()
 	delete mapSprite;
 	mapSprite = nullptr;
 	delete camera;
+	delete drawOrder;
 }
 
 
@@ -65,26 +66,41 @@ void Graphics::render()
 	}
 
 	// All the drawing logic for objects goes here.
-
 	auto visibleObjects = camera->getVisibleObjects();
 	auto visibleGraphicalEntities = getGraphicalEntitiesFor(visibleObjects);
 
-	// TODO depth - probably need to sort visible objects by the layer on which they should be.
+	for (int i = 0; i < visibleGraphicalEntities.size(); ++i) {
+		drawOrder[i] = i;
+		positions[i] = getPosition(visibleGraphicalEntities[i]);
+	}
 
-	for (auto& obj: visibleGraphicalEntities) {
-		updateEntity(obj, 0);
+	qSort(drawOrder, drawOrder + visibleGraphicalEntities.size(),
+	      [&](const int &a, const int &b) -> bool {
+		QPointF aP = positions[a] + visibleGraphicalEntities[a]->getBaseCentre();
+		QPointF bP = positions[b] + visibleGraphicalEntities[b]->getBaseCentre();
+
+		if (aP.y() != bP.y()) {
+			return aP.y() < bP.y();
+		}
+
+		return aP.x() < bP.x();
+	      });
+
+	GraphicalEntity *obj;
+	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
+		obj = visibleGraphicalEntities[idx];
+		updateEntity(obj, 0, positions[idx]);
 		canvas->draw(*(obj->getDrawable()));
 
 		if (showBasePolygons) {
 			// FIXME this can not work for non-convex
 			const auto points = obj->getBasePolygon();
 			QPointF centre = obj->getBaseCentre();
-			QPointF pos = getPosition(obj);
 			sf::ConvexShape polygon;
 			polygon.setPointCount(points.size());
 			for (int i = 0; i < points.size(); ++i) {
-				polygon.setPoint(i, sf::Vector2f(pos.x() - centre.x() + points[i].x(),
-								 pos.y() - centre.y() + points[i].y()));
+				polygon.setPoint(i, sf::Vector2f(positions[idx].x() - centre.x() + points[i].x(),
+								 positions[idx].y() - centre.y() + points[i].y()));
 			}
 			polygon.setFillColor(sf::Color::Transparent);
 			polygon.setOutlineThickness(2);
@@ -108,11 +124,11 @@ QVector<GraphicalEntity *> Graphics::getGraphicalEntitiesFor(const QList<const O
 }
 
 
-void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime)
+void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime, const QPointF &position)
 {
 	entity->setDirection(static_cast<BS::Graphic::Direction>(
 			camera->discretizeAngle(physicsEngine->getAngle(entity->getObject()))));
-	entity->setPosition(getPosition(entity));
+	entity->setPosition(position);
 	entity->update(deltaTime);
 }
 

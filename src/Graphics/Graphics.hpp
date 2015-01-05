@@ -46,7 +46,7 @@ public:
 
 private:
 	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QList< const Object * > &objects);
-	void updateEntity(GraphicalEntity *entity, const float deltaTime);
+	void updateEntity(GraphicalEntity *entity, const float deltaTime, const QPointF &position);
 	/**
 	 * @brief Returns the graphical position of the entity.
 	 */
@@ -65,10 +65,14 @@ private:
 	const Map *map;
 	Camera *camera;
 	sf::Sprite *mapSprite;
+	int *drawOrder;
+	QPointF *positions;
 
 private slots:
 	/**
 	 * @brief Renders the current scene.
+	 *
+	 * NOT thread-safe.
 	 */
 	void render();
 };
