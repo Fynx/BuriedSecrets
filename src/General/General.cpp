@@ -93,3 +93,9 @@ void General::toggleDisplayBasePolygons()
 {
 	graphics->toggleShowBasePolygons();
 }
+
+
+void General::toggleDisplayFPS()
+{
+	graphics->toggleShowFPS();
+}

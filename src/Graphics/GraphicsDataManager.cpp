@@ -10,9 +10,8 @@ using namespace sf;
 
 
 GraphicsDataManager::GraphicsDataManager(const DataManager* dataManager)
-: dataManager{dataManager}
-{
-}
+	: dataManager{dataManager}
+{}
 
 
 GraphicsDataManager::~GraphicsDataManager()
@@ -23,11 +22,14 @@ GraphicsDataManager::~GraphicsDataManager()
 	for (auto &elem: animations) {
 		delete elem.first;
 	}
+	for (auto &elem: fonts) {
+		delete elem.first;
+	}
 	// The rest is going to clean itself.
 }
 
 
-const sf::Texture* GraphicsDataManager::getTexture(const QString& name)
+const Texture* GraphicsDataManager::getTexture(const QString& name)
 {
 	Texture *result;
 
@@ -38,7 +40,6 @@ const sf::Texture* GraphicsDataManager::getTexture(const QString& name)
 		result->setSmooth(true);
 		if (!result->loadFromMemory(image->getData(), image->getDataLength())) {
 			qDebug() << "Failed to load the texture: " << name;
-			qDebug() << image->getData();
 			// TODO should we die miserably here?
 		}
 		textures[name] = QPair<Texture *, int>{result, 1};
@@ -80,4 +81,28 @@ const Animation *GraphicsDataManager::getAnimation(const QString &name)
 
 	return result;
 }
+
+
+const Font *GraphicsDataManager::getFont(const QString &name)
+{
+	Font *result;
+
+	auto it = fonts.find(name);
+	if (it == fonts.end()) {
+		const Resource *res = dataManager->getResource(name);
+
+		result = new Font();
+		if (!result->loadFromMemory(res->getData(), res->getDataLength())) {
+			qDebug() << "Failed to load the font: " << name;
+		}
+
+		fonts[name] = QPair<Font *, int>{result, 1};
+	} else {
+		it->second++;
+		result = it->first;
+	}
+
+	return result;
+}
+
 

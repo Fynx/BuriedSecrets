@@ -31,6 +31,7 @@ public:
 
 	// FIXME this might need to be moved to DebugManager
 	void toggleDisplayBasePolygons();
+	void toggleDisplayFPS();
 
 private:
 	void initModules();

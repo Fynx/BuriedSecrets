@@ -30,10 +30,12 @@ public:
 	 */
 	const sf::Texture *getTexture(const QString &name);
 	const Animation *getAnimation(const QString &name);
+	const sf::Font *getFont(const QString &name);
 
 private:
 	const DataManager *dataManager;
 
 	QHash<QString, QPair<sf::Texture *, int>> textures;
 	QHash<QString, QPair<Animation *, int>> animations;
+	QHash<QString, QPair<sf::Font *, int>> fonts;
 };

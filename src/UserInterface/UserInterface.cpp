@@ -112,6 +112,10 @@ void UserInterface::initDevActionsMenu()
 	QAction *actionBasePolygonsToggle = new QAction("Toggle base polygons", mainWindow_);
 	connect(actionBasePolygonsToggle, &QAction::triggered, general_, &General::toggleDisplayBasePolygons);
 	menuDebug->addAction(actionBasePolygonsToggle);
+
+	QAction *actionFPSToggle = new QAction("Toggle FPS", mainWindow_);
+	connect(actionFPSToggle, &QAction::triggered, general_, &General::toggleDisplayFPS);
+	menuDebug->addAction(actionFPSToggle);
 }
 
 

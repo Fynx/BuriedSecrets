@@ -5,11 +5,14 @@
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
-	: graphicsDataManager{dataManager}, showBasePolygons{false}, widget{new GraphicsWidget}
-	, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}, dataManager{dataManager}, camera{nullptr}
-	, mapSprite{nullptr}, drawOrder{new int[10000]}, positions{new QPointF[10000]}
+	: graphicsDataManager{dataManager}, showBasePolygons{false}, showFPS{true}, timeElapsed{0.0f}, frames{0}
+	, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}
+	, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}, drawOrder{new int[10000]}
+	, positions{new QPointF[10000]}
 {
 	canvas = widget;
+	fpsText.setFont(*graphicsDataManager.getFont("HEMIHEAD"));
+	fpsText.setColor(sf::Color::Red);
 }
 
 
@@ -53,6 +56,15 @@ void Graphics::loadMap(const Map *map)
 void Graphics::toggleShowBasePolygons()
 {
 	showBasePolygons = !showBasePolygons;
+}
+
+
+void Graphics::toggleShowFPS()
+{
+	showFPS = !showFPS;
+	clock.restart();
+	timeElapsed = 0.0f;
+	frames = 0;
 }
 
 
@@ -109,6 +121,21 @@ void Graphics::render()
 		}
 	}
 
+	if (showFPS) {
+		++frames;
+		float deltaTime = clock.getElapsedTime().asSeconds();
+		clock.restart();
+		timeElapsed += deltaTime;
+		if (timeElapsed >= 1.0f) {
+			timeElapsed -= 1.0f;
+			fpsText.setString(std::to_string(frames));
+			frames = 0;
+		}
+
+		float width = widget->width();
+		fpsText.setPosition(width - 45, 20);
+		canvas->draw(fpsText);
+	}
 	// This call has to be at the end to repaint the widget.
 	widget->repaint();
 }

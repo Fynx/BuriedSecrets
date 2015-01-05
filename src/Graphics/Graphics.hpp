@@ -43,6 +43,7 @@ public:
 	 */
 	void loadMap(const Map *map);
 	void toggleShowBasePolygons();
+	void toggleShowFPS();
 
 private:
 	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QList< const Object * > &objects);
@@ -55,6 +56,11 @@ private:
 	GraphicsDataManager graphicsDataManager;
 	QTimer renderTimer;
 	bool showBasePolygons;
+	bool showFPS;
+	sf::Text fpsText;
+	float timeElapsed;
+	sf::Clock clock;
+	int frames;
 
 	// This pointer is just for convenience as it points to the widget.
 	sf::RenderWindow *canvas;

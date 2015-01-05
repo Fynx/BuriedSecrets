@@ -1,2 +1,3 @@
 resources/Textures.json
 resources/Animations.json
+resources/Fonts.json
