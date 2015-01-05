@@ -28,7 +28,7 @@ const Prototype *Object::getPrototype() const
 
 QString Object::getName() const
 {
-	return prototype->getProperty(BS::Strings::Properties::Name).toString();
+	return prototype->getProperty(Properties::Name).toString();
 }
 
 BS::State Object::getState() const

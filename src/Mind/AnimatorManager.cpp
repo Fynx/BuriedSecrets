@@ -24,12 +24,12 @@ AnimatorManager::~AnimatorManager()
 
 void AnimatorManager::initAnimators()
 {
-	addAnimator(new AnimatorTest(mind), BS::Strings::Animators::Test, 40);
-	addAnimator(new AnimatorPhysicsUpdate(mind), BS::Strings::Animators::PhysicsUpdate, 40);
-	addAnimator(new AnimationAnimator(mind), BS::Strings::Animators::Animator, 700);
-	addAnimator(new AnimatorMove(mind), BS::Strings::Animators::Move, 40);
-	addAnimator(new AnimatorConsume(mind), BS::Strings::Animators::Consume, 1000);
-	addAnimator(new AnimatorDie(mind), BS::Strings::Animators::Die, 40);
+	addAnimator(new AnimatorTest(mind), Animators::Test, 40);
+	addAnimator(new AnimatorPhysicsUpdate(mind), Animators::PhysicsUpdate, 40);
+	addAnimator(new AnimationAnimator(mind), Animators::Animator, 700);
+	addAnimator(new AnimatorMove(mind), Animators::Move, 40);
+	addAnimator(new AnimatorConsume(mind), Animators::Consume, 1000);
+	addAnimator(new AnimatorDie(mind), Animators::Die, 40);
 }
 
 void AnimatorManager::initTimers()

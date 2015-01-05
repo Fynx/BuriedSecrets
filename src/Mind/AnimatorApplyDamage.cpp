@@ -22,8 +22,8 @@ void AnimatorApplyDamage::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		float damage = unit->property(BS::Strings::Properties::Damage).toFloat();
-		unit->property(BS::Strings::Properties::Damage).fromValue(0.0);
+		float damage = unit->property(Properties::Damage).toFloat();
+		unit->property(Properties::Damage).fromValue(0.0);
 		damage = damage * (1.0 - unit->getDamageControl());
 		unit->setHP(unit->getHP() - damage);
 	}
