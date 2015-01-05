@@ -1,7 +1,6 @@
 {
 	"building": {
 		"type": "building",
-		"name": "building",
 		"textureName": "SoszuHouse",
 		"basePolygon": [[1, 1], [1, 2], [2, 2], [2, 1]],
 		"capacity": 5,
@@ -12,7 +11,6 @@
 	},
 	"fortification": {
 		"type": "fortification",
-		"name": "fortification",
 		"textureName": "SoszuHouse",
 		"basePolygon": [[1, 1], [1, 2], [2, 2], [2, 1]],
 		"hp": 10,
@@ -21,7 +19,16 @@
 	},
 	"SoszuHouse": {
 		"type": "building",
-		"name": "Soszu's House",
+		"textureName": "SoszuHouse",
+		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]],
+		"capacity": 5,
+		"range": 10,
+		"attack": 0,
+		"defense": 0,
+		"searchTime": 0
+	},
+	"SoszuHouse2": {
+		"type": "building",
 		"textureName": "SoszuHouse",
 		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]],
 		"capacity": 5,
@@ -32,7 +39,6 @@
 	},
 	"unit": {
 		"type": "unit",
-		"name": "unit",
 		"background": "Blah blah",
 		"position": "engineer",
 		"avatar": "no films here",
@@ -58,7 +64,6 @@
 	},
 	"Soszu": {
 		"type": "unit",
-		"name": "Soszu",
 		"background": "Blah blah",
 		"position": "engineer",
 		"avatar": "no films here",

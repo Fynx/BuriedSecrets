@@ -78,7 +78,7 @@ void Mind::insertMap(const MapInfo *map)
 			<< "name=" << object.properties["name"].toString();
 
 		BS::Type type = BS::changeStringToType(object.properties["type"].toString());
-		Object *obj = createObject(type, object.properties["name"].toString());
+		Object *obj = createObject(type, object.name);
 
 		for (const QVariant &value : object.properties["animators"].toList())
 			if (!animatorManager->addObject(value.toString(), obj))

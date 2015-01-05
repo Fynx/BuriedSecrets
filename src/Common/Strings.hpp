@@ -16,6 +16,7 @@ namespace Animators {
 }
 
 namespace Properties {
-	const QString Damage = "damage";
-	const QString Name   = "name";
+	const QString Animations = "animations";
+	const QString Damage     = "damage";
+	const QString Name       = "name";
 }

@@ -1,6 +1,7 @@
 /* YoLoDevelopment, 2014
  * All rights reserved.
  */
+#include "Common/Strings.hpp"
 #include "DataManager/DataManager.hpp"
 #include "DebugManager/DebugManager.hpp"
 
@@ -81,14 +82,15 @@ void DataManager::loadPrototypes()
 	for (const QString &name : json.keys()) {
 		Prototype *prototype = new Prototype;
 		qDebug() << "\t" << name;
+		prototype->setProperty(Properties::Name, name);
 		for (const QString &key : json[name].toObject().keys()) {
 			QJsonValue value = json[name].toObject()[key];
 			prototype->setProperty(key, value.toVariant());
 			qDebug() << "\t\t" << key << value.toVariant();
 		}
 
-		if (prototype->hasProperty("animations")) {
-			auto animations = prototype->getProperty("animations").toMap();
+		if (prototype->hasProperty(Properties::Animations)) {
+			auto animations = prototype->getProperty(Properties::Animations).toMap();
 
 			for (const auto& animation: animations) {
 				const AnimationData *animData = getAnimationData(animation.toString());
@@ -96,7 +98,7 @@ void DataManager::loadPrototypes()
 			}
 		}
 
-		prototypes[prototype->getProperty("name").toString()] = prototype;
+		prototypes[name] = prototype;
 	}
 
 	qDebug() << "done";

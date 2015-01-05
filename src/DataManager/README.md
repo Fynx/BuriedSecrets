@@ -14,7 +14,6 @@ In each of the prototypes there is a map from string to json value.
 
 	{"palace": {
 		"type": "building",
-		"name": "palace",
 		"searchTime": 10
 	}}
 

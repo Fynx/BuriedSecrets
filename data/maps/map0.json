@@ -4,14 +4,12 @@
 	"objects": {
 		"SoszuHouse": {
 			"type": "building",
-			"name": "Soszu's House",
 			"animators": [],
 			"x": 2,
 			"y": 3
 		},
 		"SoszuHouse2": {
 			"type": "building",
-			"name": "Soszu's House",
 			"animators": [],
 			"x": 1.8,
 			"y": 3.4
