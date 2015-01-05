@@ -19,7 +19,6 @@ void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 	/*
 	 * All the stuff from Objects' Prototypes
 	 */
-
 	b2BodyDef bodyDef;
 
 	b2Shape *shape;
@@ -34,11 +33,35 @@ void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 	} else {
 		// We assume building
 		shape = new b2PolygonShape();
+		// Take the base polygon.
 		QVariantList verts = obj->getPrototype()->getProperty("basePolygon").toList();
 		b2Vec2 vertices[verts.size()];
+		float minX = verts[0].toList()[0].toFloat();
+		float minY = verts[0].toList()[1].toFloat();
+		float centreX = 0.f;
+		float centreY = 0.f;
+		// Calculate minX, minY and the centre of mass (as if the shape was aligned to the upper left corner
+		// as much as possible).
+		for (const QVariant &point: verts) {
+			const QVariantList p = point.toList();
+			minX = std::min(minX, p[0].toFloat());
+			minY = std::min(minY, p[0].toFloat());
+			centreX += p[0].toFloat();
+			centreY += p[1].toFloat();
+		}
+
+		centreX -= minX * verts.size();
+		centreY -= minY * verts.size();
+
+		centreX /= verts.size();
+		centreY /= verts.size();
+
+		// Add the vertices to Box2D
 		for (int i = 0; i < verts.size(); ++i) {
-			// A potential FIXME: We may need to align the polygon to the upper left corner.
-			vertices[i].Set(verts[i].toList()[0].toFloat(), verts[i].toList()[1].toFloat());
+			// Align the polygon to the upper left corner and then move it so that (0, 0) is at the centre
+			// of mass.
+			vertices[i].Set(verts[i].toList()[0].toFloat() - minX - centreX,
+					verts[i].toList()[1].toFloat() - minY - centreY);
 		}
 		dynamic_cast<b2PolygonShape *>(shape)->Set(vertices, verts.size());
 		bodyDef.type = b2_staticBody;
