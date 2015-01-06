@@ -15,8 +15,6 @@ UnitsPanel::UnitsPanel()
 	addUnitWidget(new UnitWidget);
 	addUnitWidget(new UnitWidget);
 	addUnitWidget(new UnitWidget);
-	addUnitWidget(new UnitWidget);
-	addUnitWidget(new UnitWidget);
 }
 
 QSize UnitsPanel::sizeHint() const

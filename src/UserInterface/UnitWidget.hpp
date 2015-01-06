@@ -8,7 +8,6 @@
 static const QSize WidgetSize{200, 100};
 
 class UnitWidget : public QFrame {
-	Q_OBJECT
 public:
 	UnitWidget();
 	QSize sizeHint() const;

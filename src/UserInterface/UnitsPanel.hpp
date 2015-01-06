@@ -8,7 +8,6 @@
 class UnitWidget;
 
 class UnitsPanel : public QFrame{
-	Q_OBJECT
 public:
 	UnitsPanel();
 	QSize sizeHint() const;

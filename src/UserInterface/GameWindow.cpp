@@ -7,7 +7,8 @@
 #include "UserInterface/IsometricPerspective.hpp"
 #include "UserInterface/Viewport.hpp"
 #include "UserInterface/UnitsPanel.hpp"
-
+#include "UserInterface/CampEquipmentWindow.hpp"
+#include "UserInterface/JournalWindow.hpp"
 
 GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	: QWidget(parent),
@@ -15,15 +16,19 @@ GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	  viewport_(nullptr),
 	  graphicsWidget_(graphicsWidget),
 	  unitsPanel_(new UnitsPanel),
-	  bottomPanel_(new QFrame)
+	  bottomPanel_(new QFrame),
+	  campEquipmentWindow_(new CampEquipmentWindow),
+	  journalWindow_(new JournalWindow)
 {
 	graphicsWidget_->setParent(this);
 	bottomPanel_->setParent(this);
 	unitsPanel_->setParent(this);
-
-	graphicsWidget_->lower();
+	campEquipmentWindow_->setParent(this);
+	journalWindow_->setParent(this);
 
 	initBottomPanel();
+	initCampEquipmentWidget();
+	initJournal();
 	initViewport();
 }
 
@@ -72,20 +77,28 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 void GameWindow::resizeEvent(QResizeEvent *event)
 {
 	QPoint topLeft;
+	QSize widgetSize;
+
 	//maximize graphicsWidget_
 	graphicsWidget_->setGeometry(0, 0, event->size().width(), event->size().height());
 
 	//resize unitsPanel
 	topLeft = QPoint((event->size().width() - unitsPanel_->sizeHint().width()) / 2, 0);
 	unitsPanel_->setGeometry(QRect(topLeft, unitsPanel_->sizeHint()));
-	qDebug() << unitsPanel_->sizeHint();
 
 	//resize bottomPanel
 	topLeft = QPoint(event->size().width() - BottomPanelSize.width(),
 	                 event->size().height() - BottomPanelSize.height());
 	bottomPanel_->setGeometry(QRect(topLeft, BottomPanelSize));
 
-	//resize viewport
+	//set size of campEquipmentWindow
+	topLeft = QPoint(0, unitsPanel_->sizeHint().height());
+	widgetSize = QSize(event->size().width() / 2, event->size().height() - topLeft.y());
+	campEquipmentWindow_->setGeometry(QRect(topLeft, widgetSize));
+	//set size of journalWindow
+	journalWindow_->setGeometry(QRect(topLeft, widgetSize));
+
+	//set size of viewport
 	viewport_->setViewSizeInPixels(QSizeF(event->size().width(), event->size().height()));
 	qDebug() << viewport_->toString();
 
@@ -101,10 +114,24 @@ void GameWindow::initBottomPanel()
 	QPushButton *journalBtn = new QPushButton("Journal");
 	journalBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	bottomPanel_->layout()->addWidget(journalBtn);
+	connect(journalBtn, &QPushButton::clicked, journalWindow_, &JournalWindow::show);
+	connect(journalBtn, &QPushButton::clicked, campEquipmentWindow_, &CampEquipmentWindow::hide);
 
 	QPushButton *campEQBtn = new QPushButton("Camp EQ");
 	campEQBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	bottomPanel_->layout()->addWidget(campEQBtn);
+	connect(campEQBtn, &QPushButton::clicked, campEquipmentWindow_, &CampEquipmentWindow::show);
+	connect(campEQBtn, &QPushButton::clicked, journalWindow_, &JournalWindow::hide);
+}
+
+void GameWindow::initCampEquipmentWidget()
+{
+	campEquipmentWindow_->hide();
+}
+
+void GameWindow::initJournal()
+{
+	journalWindow_->hide();
 }
 
 void GameWindow::initViewport()

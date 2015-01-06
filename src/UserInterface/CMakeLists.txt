@@ -1,20 +1,20 @@
 ﻿set (UserInterface_SRCS
-	IsometricPerspective.cpp
+	CampEquipmentWindow.cpp
 	GameWindow.cpp
+	IsometricPerspective.cpp
+	JournalWindow.cpp
 	MainMenuWindow.cpp
 	Perspective.cpp
-	UserInterface.cpp
-	Viewport.cpp
 	UnitsPanel.cpp
 	UnitWidget.cpp
+	UserInterface.cpp
+	Viewport.cpp
 )
 
 set (UserInterface_HDRS
 	GameWindow.hpp
 	MainMenuWindow.hpp
 	UserInterface.hpp
-	UnitsPanel.hpp
-	UnitWidget.hpp
 )
 
 qt5_wrap_cpp (UserInterface_SRCS ${UserInterface_HDRS})

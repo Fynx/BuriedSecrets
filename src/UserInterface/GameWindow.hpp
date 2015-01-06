@@ -8,6 +8,8 @@
 class Viewport;
 class Mind;
 class UnitsPanel;
+class CampEquipmentWindow;
+class JournalWindow;
 
 //TODO orginize this
 static const QSize BottomPanelSize{300, 100};
@@ -29,7 +31,9 @@ private:
 	void resizeEvent(QResizeEvent *event);
 
 	void initBottomPanel();
+	void initCampEquipmentWidget();
 	void initViewport();
+	void initJournal();
 
 	Mind *mind_;
 
@@ -37,6 +41,8 @@ private:
 	QWidget *graphicsWidget_;
 	UnitsPanel *unitsPanel_;
 	QFrame *bottomPanel_;
+	CampEquipmentWindow *campEquipmentWindow_;
+	JournalWindow *journalWindow_;
 
 signals:
 	void showMainMenu();
