@@ -7,6 +7,7 @@
 #include "DataManager/DataManager.hpp"
 #include "DataManager/MapInfo.hpp"
 #include "GameObjects/Object.hpp"
+#include "GameObjects/Faction.hpp"
 #include "Mind/AnimatorManager.hpp"
 #include "Mind/Event.hpp"
 #include "MapManager/MapManager.hpp"
@@ -35,6 +36,7 @@ public:
 	void addObject(Object* object, const QPointF &position);
 	void removeObject(Object *object);
 	Object *getObjectFromUid(const int uid);
+	Faction *getFactionFromUid(const unsigned int uid);
 
 private:
 	Object *createObject(BS::Type type, const QString &name);
@@ -48,6 +50,7 @@ private:
 
 	QVector<Object *> objects;
 	QHash<const int, Object *> uidToObject;
+	QHash<const unsigned int, Faction *> factions;
 
 	friend QDataStream &operator<<(QDataStream &out, const Mind &mind);
 	friend QDataStream &operator>>(QDataStream &in, Mind &mind);

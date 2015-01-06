@@ -94,6 +94,15 @@ const Map *Mind::getMap() const
 	return mapManager->getMap();
 }
 
+
+Faction *Mind::getFactionFromUid(unsigned int uid)
+{
+	if (!factions.contains(uid))
+		qDebug() << "No such Faction! " << uid;
+	return factions.value(uid);
+}
+
+
 QDataStream &operator<<(QDataStream &out, const Mind &mind)
 {
 	qDebug() << "Saving dataObjects...";
@@ -149,6 +158,7 @@ QDataStream &operator>>(QDataStream &in, Mind &mind)
 
 Object *Mind::createObject(BS::Type type, const QString &name)
 {
+	// Where is Faction?
 	Object *obj;
 	switch (type) {
 		case BS::Type::Invalid: {

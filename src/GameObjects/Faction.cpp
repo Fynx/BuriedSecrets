@@ -37,3 +37,31 @@ int Faction::consume(int f)
 	food -=f;
 	return 0;
 }
+
+
+int Faction::getFood()
+{
+	return food;
+}
+
+
+unsigned int Faction::getFactionId()
+{
+	return factionId;
+}
+
+
+bool Faction::isNeutralFaction(unsigned int uid)
+{
+	if (!relations.contains(uid))
+		qDebug() << "No such faction! " << uid;
+	return relations.value(uid) > 0;
+}
+
+
+void Faction::modifyRelation(unsigned int uid, int diff)
+{
+	if (!relations.contains(uid))
+		qDebug() << "No such faction! " << uid;
+	relations[uid] += diff;
+}
