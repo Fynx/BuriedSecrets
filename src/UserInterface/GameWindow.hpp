@@ -7,9 +7,11 @@
 
 class Viewport;
 class Mind;
-
+//TODO orginize this
 static const QSize BottomPanelSize{300, 100};
 static const QSize BottomPanelIconsSize{32, 32};
+static const int ViewportMoveDelta = 10;
+static const qreal ViewportZoomDelta = 0.05f;
 
 class GameWindow : public QWidget {
 	Q_OBJECT

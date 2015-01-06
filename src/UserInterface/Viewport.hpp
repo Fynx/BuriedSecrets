@@ -34,18 +34,24 @@ public:
 	 * @brief Returns the logical coordinates of the current area the player should see.
 	 */
 	QRectF getCurrentView() const;
-	QPointF getScaledPoint(const QPointF& point) const;
+	QPointF getScaledPoint(const QPointF &point) const;
+	QString toString() const;
 
-	void setViewSize(const float viewWidth, const float viewHeight);
+	void moveViewInPixels(const QPointF &deltaInPixels);
+	void moveViewInMeters(const QPointF &deltaInMeters);
+	void setViewSizeInMeters(const QSizeF &sizeInMeters);
+	void setViewSizeInPixels(const QSizeF &sizeInPixels);
 	void setMapSize(const float mapWidth, const float mapHeight);
-	void setScale(const float scale);
+	void setZoom(const float zoom);
+	void resetZoom();
+	void zoomIn(qreal zoomDelta);
 // 	void moveToLogicalCoordinates
 
 private:
 	void updateView();
 
 	const Perspective *perspective;
-	float scale;
+	float zoom;
 	float mapWidth;
 	float mapHeight;
 	float viewWidth;

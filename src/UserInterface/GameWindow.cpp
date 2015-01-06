@@ -34,15 +34,41 @@ Viewport * GameWindow::viewport()
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
-	if (event->key() == Qt::Key_Escape) {
-		emit showMainMenu();
+	switch (event->key()) {
+		case Qt::Key_Escape:
+			emit showMainMenu();
+			break;
+		case Qt::Key_W:
+			viewport_->moveViewInPixels(QPointF{0, ViewportMoveDelta});
+			break;
+		case Qt::Key_S:
+			viewport_->moveViewInPixels(QPointF{0, ViewportMoveDelta * (-1)});
+			break;
+		case Qt::Key_A:
+			viewport_->moveViewInPixels(QPointF{ViewportMoveDelta * (-1), 0});
+			break;
+		case Qt::Key_D:
+			viewport_->moveViewInPixels(QPointF{ViewportMoveDelta, 0});
+			break;
+		case Qt::Key_Plus:
+			viewport_->zoomIn(ViewportZoomDelta);
+			break;
+		case Qt::Key_Minus:
+			viewport_->zoomIn(ViewportZoomDelta * (-1));
+			break;
+		case Qt::Key_0:
+			viewport_->resetZoom();
+			break;
+		default:
+			QWidget::keyPressEvent(event);
 	}
-	else
-		QWidget::keyPressEvent(event);
 }
 
 void GameWindow::resizeEvent(QResizeEvent *event)
 {
+	//WARNING TODO
+	//this resizeEvent is used only for initialization
+
 	//maximize graphicsWidget_
 	graphicsWidget_->setGeometry(0, 0, event->size().width(), event->size().height());
 
@@ -50,8 +76,11 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 	QPoint topLeftCorner = QPoint(event->size().width() - BottomPanelSize.width(),
 								  event->size().height() - BottomPanelSize.height());
 	bottomPanel_->setGeometry(QRect(topLeftCorner, BottomPanelSize));
-	//update viewport
-	viewport_->setViewSize(graphicsWidget_->width(), graphicsWidget_->height());
+
+	//init viewport
+	viewport_->setViewSizeInPixels(QSizeF(event->size().width(), event->size().height()));
+
+	qDebug() << viewport_->toString();
 
 	QWidget::resizeEvent(event);
 }

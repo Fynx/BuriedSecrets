@@ -24,6 +24,10 @@ public:
 	QPointF getOriginalPoint(const QPointF &scaledPoint) const;
 	QRectF getScaledRect(const QRectF &originalRect) const;
 	QRectF getOriginalRect(const QRectF &scaledRect) const;
+	qreal fromMetersToPixels(qreal meters) const;
+	QSizeF fromMetersToPixels(QSizeF sizeInMeters) const;
+	qreal fromPixelsToMeters(qreal pixels) const;
+	QSizeF fromPixelsToMeters(QSizeF sizeInPixels) const;
 
 protected:
 	virtual QPointF getTransformedPoint(const QPointF &scaledPoint) const = 0;

@@ -20,7 +20,7 @@ QPointF Perspective::getTranslatedPoint(const QPointF &logicalPoint) const
 }
 
 
-QRectF Perspective::getLogicalRect(const QRectF& translatedRect) const
+QRectF Perspective::getLogicalRect(const QRectF &translatedRect) const
 {
 	return QRectF(
 		getLogicalPoint(translatedRect.topLeft()),
@@ -29,7 +29,7 @@ QRectF Perspective::getLogicalRect(const QRectF& translatedRect) const
 }
 
 
-QRectF Perspective::getTranslatedRect(const QRectF& logicalRect) const
+QRectF Perspective::getTranslatedRect(const QRectF &logicalRect) const
 {
 	return QRectF(
 		getTranslatedPoint(logicalRect.topLeft()),
@@ -68,10 +68,31 @@ QRectF Perspective::getScaledRect(const QRectF &originalRect) const
 }
 
 
+qreal Perspective::fromMetersToPixels(qreal meters) const
+{
+	return meters * scale;
+}
+
+
+QSizeF Perspective::fromMetersToPixels(QSizeF sizeInMeters) const
+{
+	return sizeInMeters * scale;
+}
+
+
+qreal Perspective::fromPixelsToMeters(qreal pixels) const
+{
+	return pixels / scale;
+}
+
+
+QSizeF Perspective::fromPixelsToMeters(QSizeF sizeInPixels) const
+{
+	return sizeInPixels / scale;
+}
+
+
 QPointF Perspective::scalePoint(const QPointF &orig, const float useScale) const
 {
 	return orig * useScale;
 }
-
-
-
