@@ -7,6 +7,11 @@ Faction::Faction(const Prototype *prototype)
 	: Object(prototype)
 {}
 
+BS::Type Faction::getType() const
+{
+	return BS::Type::Faction;
+}
+
 Equipment *Faction::getEquipment()
 {
 	return equipment;

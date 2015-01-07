@@ -14,6 +14,7 @@ namespace BS {
 		Building,
 		Camp,
 		Equipment,
+		Faction,
 		Fortification,
 		Journal,
 		Mob,

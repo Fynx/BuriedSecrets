@@ -17,6 +17,7 @@ static const QMap <BS::Type, QString> typeToString {
 	{BS::Type::Building, "building"},
 	{BS::Type::Camp, "camp"},
 	{BS::Type::Equipment, "equipment"},
+	{BS::Type::Faction, "faction"},
 	{BS::Type::Fortification, "fortification"},
 	{BS::Type::Journal, "journal"},
 	{BS::Type::Mob, "mob"},

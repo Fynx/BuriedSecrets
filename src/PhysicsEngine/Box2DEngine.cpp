@@ -13,7 +13,6 @@ Box2DEngine::Box2DEngine() : PhysicsEngine(), world(b2Vec2(0,0)), listener()
 	world.SetContactListener(&listener);
 }
 
-
 void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 {
 	/*
@@ -22,15 +21,20 @@ void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 	b2BodyDef bodyDef;
 
 	b2Shape *shape;
-	const auto objType = obj->getPrototype()->getProperty("type").toString();
-	if (objType == "unit") {
+	QString objTypeString = obj->getPrototype()->getProperty("type").toString();
+	BS::Type objType = BS::changeStringToType(objTypeString);
+
+	switch (objType) {
+	case BS::Type::Unit: {
 		shape = new b2CircleShape();
 		dynamic_cast<b2CircleShape *>(shape)->m_radius =
 				obj->getPrototype()->getProperty("baseRadius").toFloat();
 		bodyDef.type = b2_dynamicBody;
 		bodyDef.position.Set(
 			pos.x() - ((b2CircleShape*) shape)->m_radius, pos.y() - ((b2CircleShape*) shape)->m_radius);
-	} else {
+		break;
+	}
+	case BS::Type::Building: {
 		// We assume building
 		shape = new b2PolygonShape();
 		// Take the base polygon.
@@ -66,6 +70,11 @@ void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 		dynamic_cast<b2PolygonShape *>(shape)->Set(vertices, verts.size());
 		bodyDef.type = b2_staticBody;
 		bodyDef.position.Set(pos.x(), pos.y());
+		break;
+	}
+	default:
+		//TODO All classes that should be here.
+		return;
 	}
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = shape;
@@ -79,7 +88,6 @@ void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 	objects.insert(obj, body);
 }
 
-
 void Box2DEngine::removeObject(Object *obj)
 {
 	if (!obj)
@@ -91,13 +99,11 @@ void Box2DEngine::removeObject(Object *obj)
 	listener.collisions.remove(obj);
 }
 
-
 void Box2DEngine::updatePhysics(const int msc)
 {
 	float32 timeStep = msc / 1000.0;
 	world.Step(timeStep, VELOCITY_ITS, POSITION_ITS);
 }
-
 
 void Box2DEngine::setAngle(Object *obj, float angle)
 {
@@ -113,7 +119,6 @@ void Box2DEngine::setAngle(Object *obj, float angle)
 	body->SetTransform(body->GetPosition(), angle);
 }
 
-
 void Box2DEngine::setPosition(Object *obj, const QPointF &pos, float angle)
 {
 	b2Body *body = objects.value(obj);
@@ -127,7 +132,6 @@ void Box2DEngine::setPosition(Object *obj, const QPointF &pos, float angle)
 	body->SetTransform(b2Vec2(pos.x(), pos.y()), angle);
 }
 
-
 void Box2DEngine::setVelocity(Object *obj, const QVector2D &v)
 {
 	b2Body *body = objects.value(obj);
@@ -135,7 +139,6 @@ void Box2DEngine::setVelocity(Object *obj, const QVector2D &v)
 		return;
 	body->SetLinearVelocity(b2Vec2(v.x(), v.y()));
 }
-
 
 const QPointF Box2DEngine::getPosition(const Object *obj) const
 {
@@ -146,7 +149,6 @@ const QPointF Box2DEngine::getPosition(const Object *obj) const
 	return QPointF(body->GetPosition().x, body->GetPosition().y);
 }
 
-
 const float Box2DEngine::getAngle(const Object *obj) const
 {
 	b2Body *body = objects.value(obj);
@@ -154,7 +156,6 @@ const float Box2DEngine::getAngle(const Object *obj) const
 
 	return body->GetAngle() * RADTODEG;
 }
-
 
 Object *Box2DEngine::getFirstHit(const QPointF &position, QVector2D direction, const float range) const
 {
@@ -167,13 +168,11 @@ Object *Box2DEngine::getFirstHit(const QPointF &position, QVector2D direction, c
 	return nullptr;
 }
 
-
 const QList<const Object *> Box2DEngine::getColliding(const Object *obj) const
 {
 	QList<const Object *> res = listener.collisions.value(obj).toList();
 	return res;
 }
-
 
 const QList< const Object * > Box2DEngine::getObjectsInRect(const QRectF &rect) const
 {

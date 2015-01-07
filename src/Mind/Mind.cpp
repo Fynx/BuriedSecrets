@@ -14,7 +14,6 @@
 //TODO use DebugManager instead
 #include <QtCore>
 
-
 Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager)
 	: dataManager(dataManager),
 	  physics(physicsEngine),
@@ -95,14 +94,12 @@ const Map *Mind::getMap() const
 	return mapManager->getMap();
 }
 
-
 Faction *Mind::getFactionFromUid(unsigned int uid)
 {
 	if (!factions.contains(uid))
 		qDebug() << "No such Faction! " << uid;
 	return factions.value(uid);
 }
-
 
 QDataStream &operator<<(QDataStream &out, const Mind &mind)
 {
@@ -179,6 +176,11 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 		case BS::Type::Equipment: {
 			Equipment *equipment = new Equipment(dataManager->getPrototype(name));
 			obj = equipment;
+			break;
+		}
+		case BS::Type::Faction: {
+			Faction *faction = new Faction(dataManager->getPrototype(name));
+			obj = faction;
 			break;
 		}
 		case BS::Type::Fortification: {

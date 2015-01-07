@@ -87,4 +87,7 @@
 			"Run": "SoszuWalking"
 		}
 	}
+	"soszes": {
+		"type": "faction"
+	}
 }

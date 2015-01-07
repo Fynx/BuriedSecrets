@@ -14,6 +14,8 @@ class Faction : public Object {
 public:
 	Faction(const Prototype *prototype);
 
+	BS::Type getType() const;
+
 	Equipment *getEquipment();
 	Journal *getJournal();
 	QuestLog *getQuestLog();
