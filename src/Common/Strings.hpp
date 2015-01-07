@@ -5,7 +5,7 @@
 #include <QtCore>
 
 namespace Animators {
-	const QString Animator      = "AnimatorAnimator";
+	const QString Animation      = "AnimatorAnimation";
 	const QString ApplyDamage   = "AnimatorApplyDamage";
 	const QString Consume       = "AnimatorConsume";
 	const QString Die           = "AnimatorDie";

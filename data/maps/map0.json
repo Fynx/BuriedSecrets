@@ -19,7 +19,7 @@
 			"name": "Soszu",
 			"animators": [
 				"AnimatorTest",
-				"AnimationAnimator"
+				"AnimatorAnimation"
 			],
 			"x": 3.0,
 			"y": 5.0

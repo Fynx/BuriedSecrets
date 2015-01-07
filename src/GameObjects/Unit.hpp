@@ -5,6 +5,7 @@
 
 #include "GameObjects/Equipment.hpp"
 #include "GameObjects/Location.hpp"
+#include "Common/Enums.hpp"
 
 class Unit : public Object {
 public:
@@ -47,11 +48,14 @@ public:
 
 	/** Action-wise */
 
+	void setCommand(BS::Command c);
+	BS::Command getCommand();
+
 	QList<QPointF> &getCurrentPath();
 	void setCurrentPath(const QList<QPointF> &path);
 
-	int getAttackedUnitUid() const;
-	void setAttackedUnitUid(int uid);
+	int getTargetObject() const;
+	void setTargetObject(int uid);
 
 private:
 	friend QDataStream &operator<<(QDataStream &out, const Unit &object);
@@ -62,6 +66,7 @@ private:
 
 	int hp;
 	int psychosis;
+	BS::Command command;
 	Equipment *equipment;
 
 	// Should be implemented inside equipment
@@ -73,5 +78,5 @@ private:
 
 	QList<QPointF> currentPath;
 
-	int attackedUnitUid;
+	int targetObjectUid;
 };

@@ -47,6 +47,7 @@ void Mind::addObject(Object *object, const QPointF &position)
 void Mind::removeObject(Object *object)
 {
 	qDebug() << "removeObject:" << object->getUid();
+	animatorManager->removeObject(object);
 	objects.removeAll(object);
 	uidToObject.remove(object->getUid());
 	physics->removeObject(object);

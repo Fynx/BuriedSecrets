@@ -152,14 +152,24 @@ void Unit::setCurrentPath(const QList<QPointF> &path)
 	currentPath = path;
 }
 
-int Unit::getAttackedUnitUid() const
+int Unit::getTargetObject() const
 {
-	return attackedUnitUid;
+	return targetObjectUid;
 }
 
-void Unit::setAttackedUnitUid(int uid)
+void Unit::setTargetObject(int uid)
 {
-	attackedUnitUid = uid;
+	targetObjectUid = uid;
+}
+
+BS::Command Unit::getCommand()
+{
+	return command;
+}
+
+void Unit::setCommand(BS::Command c)
+{
+	command = c;
 }
 
 QDataStream &operator<<(QDataStream &out, const Unit &unit)

@@ -32,6 +32,17 @@ namespace BS {
 		Shoot,
 	};
 
+	enum class Command : quint8 {
+		None,
+		Attack,
+		Move,
+		EnterBuilding,
+		EnterFortification,
+		Heal,
+		Construct,
+		Deconstruct
+	};
+
 	enum class ItemType : quint8 {
 		Storyline,
 		Material,

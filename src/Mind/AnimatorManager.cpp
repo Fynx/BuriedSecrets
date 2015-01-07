@@ -26,7 +26,7 @@ void AnimatorManager::initAnimators()
 {
 	addAnimator(new AnimatorTest(mind), Animators::Test, 40);
 	addAnimator(new AnimatorPhysicsUpdate(mind), Animators::PhysicsUpdate, 40);
-	addAnimator(new AnimationAnimator(mind), Animators::Animator, 700);
+	addAnimator(new AnimationAnimator(mind), Animators::Animation, 700);
 	addAnimator(new AnimatorMove(mind), Animators::Move, 40);
 	addAnimator(new AnimatorConsume(mind), Animators::Consume, 1000);
 	addAnimator(new AnimatorDie(mind), Animators::Die, 40);
@@ -69,6 +69,14 @@ bool AnimatorManager::removeObject(QString animator, Object *obj)
 		return false;
 
 	animators[animator]->removeObject(obj);
+	return true;
+}
+
+bool AnimatorManager::removeObject(Object *obj)
+{
+	for(QString anim : getAnimatorsForObject(obj)){
+		removeObject(anim, obj);
+	}
 	return true;
 }
 
