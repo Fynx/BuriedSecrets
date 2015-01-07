@@ -71,8 +71,9 @@ void Graphics::toggleShowFPS()
 void Graphics::render()
 {
 	canvas->clear(sf::Color::Black);
+	canvas->setView(camera->getCurrentView());
+
 	// Draw the map
-	// FIXME TODO moving the map (view, etc)
 	if (mapSprite != nullptr) {
 		canvas->draw(*mapSprite);
 	}
@@ -132,8 +133,9 @@ void Graphics::render()
 			frames = 0;
 		}
 
-		float width = widget->width();
-		fpsText.setPosition(width - 45, 20);
+		sf::View view = canvas->getView();
+		sf::Vector2f center = view.getCenter();
+		fpsText.setPosition(center.x + view.getSize().x / 2 - 45, center.y - view.getSize().y / 2 + 20);
 		canvas->draw(fpsText);
 	}
 	// This call has to be at the end to repaint the widget.

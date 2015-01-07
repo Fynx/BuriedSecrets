@@ -49,10 +49,10 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 			emit showMainMenu();
 			break;
 		case Qt::Key_W:
-			viewport_->moveViewInPixels(QPointF{0, ViewportMoveDelta});
+			viewport_->moveViewInPixels(QPointF{0, ViewportMoveDelta * (-1)});
 			break;
 		case Qt::Key_S:
-			viewport_->moveViewInPixels(QPointF{0, ViewportMoveDelta * (-1)});
+			viewport_->moveViewInPixels(QPointF{0, ViewportMoveDelta});
 			break;
 		case Qt::Key_A:
 			viewport_->moveViewInPixels(QPointF{ViewportMoveDelta * (-1), 0});

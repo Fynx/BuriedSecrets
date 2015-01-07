@@ -3,6 +3,7 @@
  */
 #include "Graphics/Camera.hpp"
 
+
 Camera::Camera(const PhysicsEngine *physicsEngine, const Viewport *viewport)
 	: physicsEngine{physicsEngine}, viewport{viewport}
 {}
@@ -29,3 +30,12 @@ const Perspective *Camera::getPerspective() const
 	return viewport->getPerspective();
 }
 
+
+sf::View Camera::getCurrentView() const
+{
+	const Perspective *perspective = viewport->getPerspective();
+	QRectF currentViewInPx = perspective->fromMetresToPixels(viewport->getCurrentView());
+	return sf::View(sf::FloatRect(
+			currentViewInPx.left(), currentViewInPx.top(),
+			currentViewInPx.width(), currentViewInPx.height()));
+}

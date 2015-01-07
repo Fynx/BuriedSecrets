@@ -46,13 +46,13 @@ QString Viewport::toString() const
 
 void Viewport::moveViewInMetres(const QPointF &deltaInMetres)
 {
-	// what TODO?
+	currentView = QRectF{currentView.topLeft() + deltaInMetres, currentView.bottomRight() + deltaInMetres};
 }
 
 
 void Viewport::moveViewInPixels(const QPointF &deltaInPixels)
 {
-	//what TODO?
+	moveViewInMetres(perspective->fromPixelsToMetres(deltaInPixels));
 }
 
 

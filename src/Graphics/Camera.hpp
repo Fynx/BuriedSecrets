@@ -2,6 +2,8 @@
  * All rights reserved.
  */
 #pragma once
+#include <SFML/Graphics.hpp>
+
 #include "GameObjects/Object.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "UserInterface/Viewport.hpp"
@@ -17,6 +19,7 @@ public:
 	 */
 	int discretizeAngle(const float angle, const int range = 8) const;
 	const Perspective *getPerspective() const;
+	sf::View getCurrentView() const;
 
 private:
 	const PhysicsEngine *physicsEngine;
