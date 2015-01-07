@@ -86,7 +86,7 @@
 			"Idle": "SoszuIdle",
 			"Run": "SoszuWalking"
 		}
-	}
+	},
 	"soszes": {
 		"type": "faction"
 	}
