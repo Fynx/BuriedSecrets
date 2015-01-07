@@ -3,96 +3,97 @@
  */
 #include "UserInterface/Perspective.hpp"
 
-Perspective::Perspective(const float scale)
-	: scale{scale}
+
+Perspective::Perspective(const float pixelToMetresScale)
+	: pixelToMetresScale{pixelToMetresScale}
 {}
 
 
-QPointF Perspective::getLogicalPoint(const QPointF &translatedPoint) const
+QPointF Perspective::fromPixelsToMetres(const QPointF &translatedPoint) const
 {
-	return getOriginalPoint(getOriginalScaledPoint(translatedPoint));
+	return fromBaseToMetres(fromPixelsToBase(translatedPoint));
 }
 
 
-QPointF Perspective::getTranslatedPoint(const QPointF &logicalPoint) const
+QPointF Perspective::fromMetresToPixels(const QPointF &logicalPoint) const
 {
-	return getScaledPoint(getTransformedPoint(logicalPoint));
+	return fromMetresToBase(fromBaseToPixels(logicalPoint));
 }
 
 
-QRectF Perspective::getLogicalRect(const QRectF &translatedRect) const
+QRectF Perspective::fromPixelsToMetres(const QRectF &translatedRect) const
 {
 	return QRectF(
-		getLogicalPoint(translatedRect.topLeft()),
-		getLogicalPoint(translatedRect.bottomRight())
+		fromPixelsToMetres(translatedRect.topLeft()),
+		fromPixelsToMetres(translatedRect.bottomRight())
 	);
 }
 
 
-QRectF Perspective::getTranslatedRect(const QRectF &logicalRect) const
+QRectF Perspective::fromMetresToPixels(const QRectF &logicalRect) const
 {
 	return QRectF(
-		getTranslatedPoint(logicalRect.topLeft()),
-		getTranslatedPoint(logicalRect.bottomRight())
+		fromMetresToPixels(logicalRect.topLeft()),
+		fromMetresToPixels(logicalRect.bottomRight())
 	);
 }
 
 
-QPointF Perspective::getScaledPoint(const QPointF &originalPoint) const
+QPointF Perspective::fromMetresToBase(const QPointF &originalPoint) const
 {
-	return scalePoint(originalPoint, scale);
+	return scalePoint(originalPoint, pixelToMetresScale);
 }
 
 
-QPointF Perspective::getOriginalPoint(const QPointF &scaledPoint) const
+QPointF Perspective::fromBaseToMetres(const QPointF &scaledPoint) const
 {
-	return scalePoint(scaledPoint, 1.0f / scale);
+	return scalePoint(scaledPoint, 1.0f / pixelToMetresScale);
 }
 
 
-QRectF Perspective::getOriginalRect(const QRectF &scaledRect) const
+QRectF Perspective::fromBaseToMetres(const QRectF &scaledRect) const
 {
 	return QRectF(
-		getOriginalPoint(scaledRect.topLeft()),
-		getOriginalPoint(scaledRect.bottomRight())
+		fromBaseToMetres(scaledRect.topLeft()),
+		fromBaseToMetres(scaledRect.bottomRight())
 	);
 }
 
 
-QRectF Perspective::getScaledRect(const QRectF &originalRect) const
+QRectF Perspective::fromMetresToBase(const QRectF &originalRect) const
 {
 	return QRectF(
-		getScaledPoint(originalRect.topLeft()),
-		getScaledPoint(originalRect.bottomRight())
+		fromMetresToBase(originalRect.topLeft()),
+		fromMetresToBase(originalRect.bottomRight())
 	);
 }
 
 
-qreal Perspective::fromMetersToPixels(qreal meters) const
+QSizeF Perspective::fromMetresToPixels(const QSizeF &sizeInMetres) const
 {
-	return meters * scale;
+	return pointToSize(fromMetresToPixels(sizeToPoint(sizeInMetres)));
 }
 
 
-QSizeF Perspective::fromMetersToPixels(QSizeF sizeInMeters) const
+QSizeF Perspective::fromPixelsToMetres(const QSizeF &sizeInPixels) const
 {
-	return sizeInMeters * scale;
+	return pointToSize(fromPixelsToMetres(sizeToPoint(sizeInPixels)));
 }
 
 
-qreal Perspective::fromPixelsToMeters(qreal pixels) const
+QPointF Perspective::scalePoint(const QPointF &orig, const float scale) const
 {
-	return pixels / scale;
+	return orig * scale;
 }
 
 
-QSizeF Perspective::fromPixelsToMeters(QSizeF sizeInPixels) const
+QPointF Perspective::sizeToPoint(const QSizeF &size) const
 {
-	return sizeInPixels / scale;
+	return QPointF{size.width(), size.height()};
 }
 
 
-QPointF Perspective::scalePoint(const QPointF &orig, const float useScale) const
+QSizeF Perspective::pointToSize(const QPointF &point) const
 {
-	return orig * useScale;
+	return QSizeF{point.x(), point.y()};
 }

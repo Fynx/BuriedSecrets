@@ -10,13 +10,13 @@ IsometricPerspective::IsometricPerspective(const float scale)
 {}
 
 
-QPointF IsometricPerspective::getOriginalScaledPoint(const QPointF &transformedPoint) const
+QPointF IsometricPerspective::fromPixelsToBase(const QPointF &transformedPoint) const
 {
 	return QPointF{transformedPoint.x(), transformedPoint.y() * isometricYScale};
 }
 
 
-QPointF IsometricPerspective::getTransformedPoint(const QPointF &scaledPoint) const
+QPointF IsometricPerspective::fromBaseToPixels(const QPointF &scaledPoint) const
 {
 	return QPointF{scaledPoint.x(), scaledPoint.y() / isometricYScale};
 }

@@ -161,7 +161,7 @@ void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime, cons
 
 QPointF Graphics::getPosition(GraphicalEntity *entity) const
 {
-	return camera->getPerspective()->getTranslatedPoint(physicsEngine->getPosition(entity->getObject()));
+	return camera->getPerspective()->fromMetresToPixels(physicsEngine->getPosition(entity->getObject()));
 }
 
 

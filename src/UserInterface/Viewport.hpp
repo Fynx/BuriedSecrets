@@ -8,16 +8,18 @@
 /**
  * @brief This class represents the viewport.
  *
- * It knows and can give information about what area (in the logical coordinates) of the world is the current
- * viewport including:
+ * It knows and can give information about what area (in the logical coordinates) of the world the current
+ * viewport is, including:
  *  - scale,
  *  - position of the viewport,
  *  - perspective.
  *
- * TODO there probably will be more methods for this class in the future.
  */
 class Viewport {
 public:
+	/**
+	 * @brief The class takes ownership of the perspective.
+	 */
 	Viewport(const Perspective *perspective);
 	~Viewport();
 
@@ -38,14 +40,16 @@ public:
 	QString toString() const;
 
 	void moveViewInPixels(const QPointF &deltaInPixels);
-	void moveViewInMeters(const QPointF &deltaInMeters);
-	void setViewSizeInMeters(const QSizeF &sizeInMeters);
+	void moveViewInMetres(const QPointF &deltaInMetres);
+	void setViewSizeInMetres(const QSizeF &sizeInMetres);
 	void setViewSizeInPixels(const QSizeF &sizeInPixels);
+	/**
+	 * @brief Sets the map size. Arguments are in metres.
+	 */
 	void setMapSize(const float mapWidth, const float mapHeight);
 	void setZoom(const float zoom);
 	void resetZoom();
 	void zoomIn(qreal zoomDelta);
-// 	void moveToLogicalCoordinates
 
 private:
 	void updateView();

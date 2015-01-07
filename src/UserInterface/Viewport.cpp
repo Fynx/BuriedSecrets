@@ -17,7 +17,7 @@ Viewport::~Viewport()
 }
 
 
-const Perspective * Viewport::getPerspective() const
+const Perspective *Viewport::getPerspective() const
 {
 	return perspective;
 }
@@ -44,7 +44,7 @@ QString Viewport::toString() const
 }
 
 
-void Viewport::moveViewInMeters(const QPointF &deltaInMeters)
+void Viewport::moveViewInMetres(const QPointF &deltaInMetres)
 {
 	// what TODO?
 }
@@ -56,19 +56,19 @@ void Viewport::moveViewInPixels(const QPointF &deltaInPixels)
 }
 
 
-void Viewport::setViewSizeInMeters(const QSizeF &sizeInMeters)
+void Viewport::setViewSizeInMetres(const QSizeF &sizeInMetres)
 {
-	viewWidth = sizeInMeters.width();
-	viewHeight = sizeInMeters.height();
+	viewWidth = sizeInMetres.width();
+	viewHeight = sizeInMetres.height();
 	updateView();
 }
 
 
 void Viewport::setViewSizeInPixels(const QSizeF &sizeInPixels)
 {
-	QSizeF sizeInMeters = perspective->fromPixelsToMeters(sizeInPixels);
-	viewWidth = sizeInMeters.width();
-	viewHeight = sizeInMeters.height();
+	QSizeF sizeInMetres = perspective->fromPixelsToMetres(sizeInPixels);
+	viewWidth = sizeInMetres.width();
+	viewHeight = sizeInMetres.height();
 	updateView();
 }
 
@@ -109,11 +109,8 @@ void Viewport::zoomIn(qreal zoomDelta)
 void Viewport::updateView()
 {
 	QPointF topLeft = currentView.topLeft();
-	float finalWidth = viewWidth * zoom;
-	float finalHeight = viewHeight * zoom;
-	currentView = perspective->getLogicalRect(QRectF{
-		topLeft,
-		QPointF{topLeft.x() + finalWidth, topLeft.y() + finalHeight}}
-	);
+// 	float finalWidth = viewWidth * zoom;
+// 	float finalHeight = viewHeight * zoom;
+	currentView = QRectF(topLeft, QPointF(topLeft.x() + viewWidth, topLeft.y() + viewHeight));
 // 	FIXME don't allow the rect to go beyond the map
 }

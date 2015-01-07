@@ -9,8 +9,8 @@ public:
 	IsometricPerspective(const float scale);
 
 protected:
-	QPointF getOriginalScaledPoint(const QPointF &transformedPoint) const override;
-	QPointF getTransformedPoint(const QPointF &scaledPoint) const override;
+	QPointF fromPixelsToBase(const QPointF &transformedPoint) const override;
+	QPointF fromBaseToPixels(const QPointF &scaledPoint) const override;
 
 private:
 	const float isometricYScale = 2.0f;

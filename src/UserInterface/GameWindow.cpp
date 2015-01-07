@@ -137,11 +137,11 @@ void GameWindow::initJournal()
 void GameWindow::initViewport()
 {
 	// Number of pixels per meter
-	const float metreToPxScale = 30.0f;
+	const float pixelToMetresScale = 30.0f;
 	// TODO after MapManager is added and there is some map passed to UI, we will need to get the real size here.
 	// For now:
 	const float mapWidth = 500;
 	const float mapHeight = 500;
-	viewport_ = new Viewport(new IsometricPerspective(metreToPxScale));
+	viewport_ = new Viewport(new IsometricPerspective(pixelToMetresScale));
 	viewport_->setMapSize(mapWidth, mapHeight);
 }

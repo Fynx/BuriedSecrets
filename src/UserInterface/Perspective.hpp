@@ -7,34 +7,38 @@
 
 /**
  * @brief This class represents an implementation of a perspective.
+ *
+ * Pixels - what we see on the screen (isometric).
+ * Base - Pixels scaled to physical dimensions.
+ * Metres - The logical coordinates.
  */
 class Perspective {
 public:
-	Perspective(const float scale);
+	Perspective(const float pixelToMetresScale);
 	virtual ~Perspective() = default;
 
-	// Those methods do everything - px to metre scaling + perspective
-	QPointF getLogicalPoint(const QPointF &translatedPoint) const;
-	QPointF getTranslatedPoint(const QPointF &logicalPoint) const;
-	QRectF getLogicalRect(const QRectF &translatedRect) const;
-	QRectF getTranslatedRect(const QRectF &logicalRect) const;
+	// Those methods do everything - pixels <-> base <-> metres
+	QPointF fromPixelsToMetres(const QPointF &translatedPoint) const;
+	QPointF fromMetresToPixels(const QPointF &logicalPoint) const;
+	QRectF fromPixelsToMetres(const QRectF &translatedRect) const;
+	QRectF fromMetresToPixels(const QRectF &logicalRect) const;
+	QSizeF fromMetresToPixels(const QSizeF &sizeInMetres) const;
+	QSizeF fromPixelsToMetres(const QSizeF &sizeInPixels) const;
 
-	// Those do just px to metre scaling
-	QPointF getScaledPoint(const QPointF &originalPoint) const;
-	QPointF getOriginalPoint(const QPointF &scaledPoint) const;
-	QRectF getScaledRect(const QRectF &originalRect) const;
-	QRectF getOriginalRect(const QRectF &scaledRect) const;
-	qreal fromMetersToPixels(qreal meters) const;
-	QSizeF fromMetersToPixels(QSizeF sizeInMeters) const;
-	qreal fromPixelsToMeters(qreal pixels) const;
-	QSizeF fromPixelsToMeters(QSizeF sizeInPixels) const;
+	// Those do just base <-> metres
+	QPointF fromMetresToBase(const QPointF &originalPoint) const;
+	QPointF fromBaseToMetres(const QPointF &scaledPoint) const;
+	QRectF fromMetresToBase(const QRectF &originalRect) const;
+	QRectF fromBaseToMetres(const QRectF &scaledRect) const;
 
 protected:
-	virtual QPointF getTransformedPoint(const QPointF &scaledPoint) const = 0;
-	virtual QPointF getOriginalScaledPoint(const QPointF &transformedPoint) const = 0;
+	virtual QPointF fromBaseToPixels(const QPointF &scaledPoint) const = 0;
+	virtual QPointF fromPixelsToBase(const QPointF &transformedPoint) const = 0;
 
 private:
-	QPointF scalePoint(const QPointF &orig, const float useScale) const;
+	inline QPointF scalePoint(const QPointF &orig, const float scale) const;
+	inline QPointF sizeToPoint(const QSizeF &size) const;
+	inline QSizeF pointToSize(const QPointF &point) const;
 
-	const float scale;
+	const float pixelToMetresScale;
 };
