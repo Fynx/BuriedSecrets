@@ -16,6 +16,7 @@ AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
 	initTimers();
 }
 
+
 AnimatorManager::~AnimatorManager()
 {
 	for (Animator *a : animators)
