@@ -4,6 +4,7 @@
 #include "Mind/Mind.hpp"
 
 #include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Building.hpp"
 #include "GameObjects/Camp.hpp"
 #include "GameObjects/Equipment.hpp"
@@ -21,10 +22,10 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	  animatorManager(new AnimatorManager(this)),
 	  mapManager(nullptr)
 {
-	qDebug() << "Mind initialized. Select 'Load mind' from the menu options to load objects.";
-	qDebug() << "Or add loadFromFile(\"data/map.bin\") here in Mind::Mind.";
-	qDebug() << "You can even add saveFromFile here.";
-	qDebug() << "SoundsManager event test.";
+	info("Mind initialized. Select 'Load mind' from the menu options to load objects.");
+	info("Or add loadFromFile(\"data/map.bin\") here in Mind::Mind.");
+	info("You can even add saveFromFile here.");
+	info("SoundsManager event test.");
 	soundsManager->onEvent(QString("test: success"));
 }
 
@@ -40,7 +41,7 @@ Object *Mind::getObjectFromUid(const int uid)
 	if (uidToObject.contains(uid))
 		return uidToObject[uid];
 	else
-		qDebug() << "Mind::getObjectFromUid: uid not found";
+		warn("Mind::getObjectFromUid: uid not found");
 	return nullptr;
 }
 
@@ -72,7 +73,6 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 QJsonObject Mind::saveToJson() const
 {
-	qDebug() << "saveToJson";
 	QJsonObject json;
 	QJsonObject objs;
 

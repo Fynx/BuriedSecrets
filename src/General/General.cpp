@@ -30,7 +30,7 @@ QMainWindow * General::getMainWindow()
 
 void General::clearGameModules()
 {
-	qDebug() << "General says: \"Clearing game modules.\"";
+	info("Clearing game modules...");
 
 	userInterface->clearGame();
 
@@ -38,12 +38,14 @@ void General::clearGameModules()
 	delete mind;
 	delete physicsEngine;
 	delete soundsManager;
+
+	info("done.");
 }
 
 void General::startNewGame()
 {
 	/** Order is the first law of heaven */
-	qDebug() << "General says: \"Starting new game.\"";
+	info("New game");
 
 	clearGameModules();
 
@@ -61,16 +63,18 @@ void General::startNewGame()
 
 void General::loadLevel()
 {
-	qDebug() << "LoadLevel";
+	info("Loading level...");
 	QJsonObject json = dataManager->loadJsonFromFile("data/maps/map0.json");
 	mind->loadFromJson(json);
 	graphics->loadMap(mind->getMap());
+	info("done.");
 }
 
 void General::saveLevel()
 {
-	qDebug() << "SaveLevel";
+	info("Saving level...");
 	dataManager->saveJsonToFile("data/maps/save0.json", mind->saveToJson());
+	info("done.");
 }
 
 void General::toggleDisplayBasePolygons()

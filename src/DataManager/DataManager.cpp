@@ -48,7 +48,7 @@ QJsonObject DataManager::loadJsonFromFile(const QString &path)
 {
 	QJsonDocument jsonDoc = QJsonDocument::fromJson(readRawData(path));
 	if (jsonDoc.isNull()) {
-		qDebug() << "DataManager: Error occurred while parsing .json file.";
+		err("DataManager: Error occurred while parsing .json file.");
 		return QJsonObject();
 	} else {
 		return jsonDoc.object();
@@ -59,7 +59,7 @@ void DataManager::saveJsonToFile(const QString &path, const QJsonObject &json)
 {
 	QSaveFile file(path);
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-		qDebug() << "DataManager: Failed to save file " << path;
+		err(QString("DataManager: Failed to save file ") + path);
 		return;
 	}
 
@@ -88,20 +88,23 @@ QByteArray DataManager::readRawData(const QString &path)
 
 void DataManager::loadPrototypes()
 {
-	qDebug() << "Loading prototypes... (we DON'T use Prototype::DataStream operators!)";
+	info("Loading prototypes...");
+	warn("(we DON'T use Prototype::DataStream operators!)");
 
 	QString path = "data/prototypes.json";
 
 	QJsonObject json = loadJsonFromFile(path);
 
+	int counter = 1;
 	for (const QString &name : json.keys()) {
 		Prototype *prototype = new Prototype;
-		qDebug() << "\t" << name;
+		qDebug() << (QString("[") + QString::number(counter++) + "/"
+			+ QString::number(json.keys().size()) + "]\t").toStdString().c_str() << name;
 		prototype->setProperty(Properties::Name, name);
 		for (const QString &key : json[name].toObject().keys()) {
 			QJsonValue value = json[name].toObject()[key];
 			prototype->setProperty(key, value.toVariant());
-			qDebug() << "\t\t" << key << value.toVariant();
+// 			qDebug() << "\t\t" << key << value.toVariant();
 		}
 
 		if (prototype->hasProperty(Properties::Animations)) {
@@ -116,7 +119,7 @@ void DataManager::loadPrototypes()
 		prototypes[name] = prototype;
 	}
 
-	qDebug() << "done";
+	info("done");
 }
 
 void DataManager::savePrototypes() const
@@ -128,14 +131,17 @@ void DataManager::loadResources()
 {
 	/** Look at README.md of DataManager for more info on the format. */
 	const QString preffix = "data/";
-	qDebug() << "Loading resources...";
+	info("Loading resources...");
 	QString resourcesListStr = readRawData(preffix + "ResourcesList.txt");
-	QStringList resourcesList = resourcesListStr.split('\n');
+	QStringList resourcesList = resourcesListStr.split('\n', QString::SkipEmptyParts);
 
 	/** Load all the resources from the list. */
+	int counter = 1;
 	for (QString resourcePath: resourcesList) {
 		if (!resourcePath.trimmed().isEmpty()) {
-			qDebug() << "\tloading" << resourcePath;
+			info(QString("[") + QString::number(counter++) + "/" + QString::number(resourcesList.size()) +
+				QString("]") + QString("\tloading ") + resourcePath);
+
 			QJsonObject json = loadJsonFromFile(preffix + resourcePath);
 
 			for (const QString &key : json.keys()) {
@@ -163,7 +169,7 @@ void DataManager::loadResources()
 		}
 	}
 
-	qDebug() << "done.";
+	info("done.");
 }
 
 bool DataManager::loadMap(const QString &path)
@@ -179,17 +185,6 @@ bool DataManager::loadMap(const QString &path)
 
 	qDebug() << "mapName:" << mapName;
 	qDebug() << "mapDesc:" << mapDesc;
-
-// 	QVector<MapInfo::Object> objects;
-// 	for (const QString &key : json["objects"].toObject().keys()) {
-// 		MapInfo::Object object;
-// 		object.name = key;
-// 		object.properties = json["objects"].toObject()[key].toObject().toVariantMap();
-// 		qDebug() << "\t" << key;
-// 		for (const QString &kk : object.properties.keys())
-// 			qDebug() << "\t\t" << kk << ":" << object.properties[kk];
-// 		objects.append(object);
-// 	}
 
 	map = new MapInfo(mapName, mapDesc);//, objects);
 
