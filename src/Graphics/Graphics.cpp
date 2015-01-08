@@ -13,6 +13,7 @@ Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataMa
 	canvas = widget;
 	fpsText.setFont(*graphicsDataManager.getFont("HEMIHEAD"));
 	fpsText.setColor(sf::Color::Red);
+	widget->setVerticalSyncEnabled(true);
 }
 
 
