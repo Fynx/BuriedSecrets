@@ -3,19 +3,20 @@
  */
 #include "Mind/MapManager/MapManager.hpp"
 
-
-MapManager::MapManager(const MapInfo *mapInfo)
-	:  map{mapInfo}, mapInfo{mapInfo}
+MapManager::MapManager(const QJsonObject &json)
+	: map(json)
 {}
 
+// MapManager::MapManager(const MapInfo *mapInfo)
+// 	:  map{mapInfo}, mapInfo{mapInfo}
+// {}
 
 const Map *MapManager::getMap() const
 {
 	return &map;
 }
 
-
-QList< QPointF > MapManager::getPath(const QPointF &from, const QPointF &to) const
+QList<QPointF> MapManager::getPath(const QPointF &from, const QPointF &to) const
 {
 	QList<QPointF> result;
 

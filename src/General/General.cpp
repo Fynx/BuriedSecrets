@@ -59,25 +59,18 @@ void General::startNewGame()
 	graphics->startRendering(userInterface->getViewport());
 }
 
-void General::loadMap()
+void General::loadLevel()
 {
-	qDebug() << "Triggered function loadMap";
-	dataManager->loadFromFile("data/map.bin", *mind);
-}
-
-void General::saveMap()
-{
-	qDebug() << "Triggered function saveMap";
-	dataManager->saveToFile("data/map.bin", *mind);
-}
-
-void General::loadMapFromJson()
-{
-	qDebug() << "Triggered function createMapFile";
-	qDebug() << "If segfault, click \"newGame\" in the main menu before committing suicide.";
-	auto mapInfo = dataManager->getMap("data/maps/map0.json");
-	mind->insertMap(mapInfo);
+	qDebug() << "LoadLevel";
+	QJsonObject json = dataManager->loadJsonFromFile("data/maps/map0.json");
+	mind->loadFromJson(json);
 	graphics->loadMap(mind->getMap());
+}
+
+void General::saveLevel()
+{
+	qDebug() << "SaveLevel";
+	dataManager->saveJsonToFile("data/maps/save0.json", mind->saveToJson());
 }
 
 void General::toggleDisplayBasePolygons()

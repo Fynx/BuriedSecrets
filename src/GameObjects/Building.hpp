@@ -16,9 +16,9 @@ public:
 	void removeItem(int searchDifficulty, Item *item);
 	QMultiMap<int, Item *> getItems() const;
 
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
 private:
-	friend QDataStream &operator<<(QDataStream &out, const Building &building);
-	friend QDataStream &operator>>(QDataStream &in, Building &building);
 
 	QMultiMap<int, Item *> items;
 };

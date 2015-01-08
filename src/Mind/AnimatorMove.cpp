@@ -9,12 +9,10 @@
 #include "Mind/Mind.hpp"
 #include "../GameObjects/Unit.hpp"
 
-
 AnimatorMove::AnimatorMove(Mind *mind) : Animator(mind)
 {
 	qDebug() << "AnimatorMove created.";
 }
-
 
 void AnimatorMove::act()
 {
@@ -50,4 +48,3 @@ void AnimatorMove::act()
 		}
 	}
 }
-

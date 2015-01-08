@@ -91,17 +91,13 @@ void UserInterface::initDevActionsMenu()
 	//these things are not going to be here, so don't worry about menu and qt signals
 	QMenu *menuFile = mainWindow_->menuBar()->addMenu("File");
 
-	QAction *actionLoadMap = new QAction("Load mind", mainWindow_);
-	connect(actionLoadMap, &QAction::triggered, general_, &General::loadMap);
+	QAction *actionLoadMap = new QAction("Load level", mainWindow_);
+	connect(actionLoadMap, &QAction::triggered, general_, &General::loadLevel);
 	menuFile->addAction(actionLoadMap);
 
-	QAction *actionSaveMap = new QAction("Save mind", mainWindow_);
-	connect(actionSaveMap, &QAction::triggered, general_, &General::saveMap);
+	QAction *actionSaveMap = new QAction("Save level", mainWindow_);
+	connect(actionSaveMap, &QAction::triggered, general_, &General::saveLevel);
 	menuFile->addAction(actionSaveMap);
-
-	QAction *actionParseMap = new QAction("Load mind from json", mainWindow_);
-	connect(actionParseMap, &QAction::triggered, general_, &General::loadMapFromJson);
-	menuFile->addAction(actionParseMap);
 
 	QAction *actionQuit = new QAction("Quit", mainWindow_);
 	connect(actionQuit, &QAction::triggered, mainWindow_, &QMainWindow::close);

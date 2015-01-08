@@ -16,6 +16,9 @@ public:
 	const QSet<Item *> &getItems() const;
 	int getWeight() const;
 
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
+
 private:
 	QSet<Item *> items;
 };

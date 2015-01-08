@@ -34,3 +34,13 @@ int Equipment::getWeight() const
 		weight += item->getWeight();
 	return weight;
 }
+
+void Equipment::loadFromJson(const QJsonObject &json)
+{
+	Object::loadFromJson(json);
+}
+
+QJsonObject Equipment::saveToJson() const
+{
+	return Object::saveToJson();
+}

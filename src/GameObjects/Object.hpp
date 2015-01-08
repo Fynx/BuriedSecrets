@@ -35,12 +35,11 @@ public:
 	int getFrame() const;
 	void setFrame(int frame);
 
+	virtual void loadFromJson(const QJsonObject &json) = 0;
+	virtual QJsonObject saveToJson() const = 0;
+
 protected:
 	const Prototype *prototype;
-
-private:
-	friend QDataStream &operator<<(QDataStream &out, const Object &object);
-	friend QDataStream &operator>>(QDataStream &in, Object &object);
 
 	static int LastUid;
 

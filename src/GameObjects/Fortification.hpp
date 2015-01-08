@@ -11,7 +11,6 @@ public:
 
 	BS::Type getType() const;
 
-private:
-	friend QDataStream &operator<<(QDataStream &out, const Fortification &fortification);
-	friend QDataStream &operator>>(QDataStream &in, Fortification &fortification);
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
 };

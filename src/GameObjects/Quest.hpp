@@ -10,4 +10,7 @@ public:
 	Quest(const Prototype *prototype);
 
 	QString getDescription() const;
+
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
 };

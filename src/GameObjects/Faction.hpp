@@ -21,16 +21,19 @@ public:
 	QuestLog *getQuestLog();
 	QSet<int> getUnits();
 	int getFood();
-	unsigned int getFactionId();
-	bool isNeutralFaction(unsigned int uid);
-	void modifyRelation(unsigned int uid, int diff);
+	int getFactionId();
+	bool isNeutralFaction(int uid);
+	void modifyRelation(int uid, int diff);
 
 	int consume(int f);
 
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
+
 private:
 	int food;
-	unsigned int factionId;
-	QHash<unsigned int, int> relations;
+	int factionId;
+	QHash<int, int> relations;
 	Equipment *equipment;
 	Journal *journal;
 	QuestLog *questLog;

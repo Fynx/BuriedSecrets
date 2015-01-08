@@ -33,14 +33,12 @@ QMultiMap<int, Item *> Building::getItems() const
 	return items;
 }
 
-QDataStream &operator<<(QDataStream &out, const Building &building)
+void Building::loadFromJson(const QJsonObject &json)
 {
-	out << dynamic_cast<const Object &>(building);
-	return out;
+	Object::loadFromJson(json);
 }
 
-QDataStream &operator>>(QDataStream &in, Building &building)
+QJsonObject Building::saveToJson() const
 {
-	in >> dynamic_cast<Object &>(building);
-	return in;
+	return Object::saveToJson();
 }

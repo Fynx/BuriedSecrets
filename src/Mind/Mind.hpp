@@ -23,7 +23,10 @@ public:
 	~Mind();
 
 	PhysicsEngine *physicsEngine();
-	void insertMap(const MapInfo *map);
+
+	void loadFromJson(const QJsonObject &json);
+	QJsonObject saveToJson() const;
+
 	const Map *getMap() const;
 
 	/**
@@ -36,10 +39,11 @@ public:
 	void addObject(Object* object, const QPointF &position);
 	void removeObject(Object *object);
 	Object *getObjectFromUid(const int uid);
-	Faction *getFactionFromUid(const unsigned int uid);
+	Faction *getFactionFromUid(const int uid);
 
 private:
 	Object *createObject(BS::Type type, const QString &name);
+	Object *createObjectFromJson(const QString &name, const QJsonObject &json);
 
 	DataManager   *dataManager;
 	PhysicsEngine *physics;
@@ -50,8 +54,5 @@ private:
 
 	QVector<Object *> objects;
 	QHash<const int, Object *> uidToObject;
-	QHash<const unsigned int, Faction *> factions;
-
-	friend QDataStream &operator<<(QDataStream &out, const Mind &mind);
-	friend QDataStream &operator>>(QDataStream &in, Mind &mind);
+	QHash<const int, Faction *> factions;
 };

@@ -25,9 +25,8 @@ public:
 	void clearGameModules();
 	void startNewGame();
 
-	void loadMap();
-	void saveMap();
-	void loadMapFromJson();
+	void loadLevel();
+	void saveLevel();
 
 	// FIXME this might need to be moved to DebugManager
 	void toggleDisplayBasePolygons();

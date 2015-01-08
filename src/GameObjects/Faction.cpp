@@ -1,6 +1,7 @@
 /* YoLoDevelopment, 2014
  * All rights reserved.
  */
+#include "Common/Strings.hpp"
 #include "GameObjects/Faction.hpp"
 
 Faction::Faction(const Prototype *prototype)
@@ -32,6 +33,30 @@ QSet<int> Faction::getUnits()
 	return units;
 }
 
+int Faction::getFood()
+{
+	return food;
+}
+
+int Faction::getFactionId()
+{
+	return factionId;
+}
+
+bool Faction::isNeutralFaction(int uid)
+{
+	if (!relations.contains(uid))
+		qDebug() << "No such faction! " << uid;
+	return relations.value(uid) > 0;
+}
+
+void Faction::modifyRelation(int uid, int diff)
+{
+	if (!relations.contains(uid))
+		qDebug() << "No such faction! " << uid;
+	relations[uid] += diff;
+}
+
 int Faction::consume(int f)
 {
 	if (food < f){
@@ -43,30 +68,20 @@ int Faction::consume(int f)
 	return 0;
 }
 
-
-int Faction::getFood()
+void Faction::loadFromJson(const QJsonObject &json)
 {
-	return food;
+	Object::loadFromJson(json);
+
+	factionId = json[Properties::Faction].toInt();
+	food      = json[Properties::Food].toInt();
 }
 
-
-unsigned int Faction::getFactionId()
+QJsonObject Faction::saveToJson() const
 {
-	return factionId;
-}
+	QJsonObject json = Object::saveToJson();
 
+	json[Properties::Faction] = factionId;
+	json[Properties::Food]    = food;
 
-bool Faction::isNeutralFaction(unsigned int uid)
-{
-	if (!relations.contains(uid))
-		qDebug() << "No such faction! " << uid;
-	return relations.value(uid) > 0;
-}
-
-
-void Faction::modifyRelation(unsigned int uid, int diff)
-{
-	if (!relations.contains(uid))
-		qDebug() << "No such faction! " << uid;
-	relations[uid] += diff;
+	return json;
 }

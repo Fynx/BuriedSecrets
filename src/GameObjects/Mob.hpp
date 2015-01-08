@@ -10,4 +10,7 @@ public:
 	Mob(const Prototype *prototype);
 
 	BS::Type getType() const;
+
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
 };

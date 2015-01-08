@@ -19,3 +19,13 @@ void Journal::clearEntries()
 	qDeleteAll(entries);
 	entries.clear();
 }
+
+void Journal::loadFromJson(const QJsonObject &json)
+{
+	Object::loadFromJson(json);
+}
+
+QJsonObject Journal::saveToJson() const
+{
+	return Object::saveToJson();
+}

@@ -24,9 +24,11 @@ public:
 
 	template <class T>
 	void loadFromFile(const QString &path, T &s);
-
 	template <class T>
 	void saveToFile(const QString &path, const T &s);
+
+	QJsonObject loadJsonFromFile(const QString &path);
+	void saveJsonToFile(const QString &path, const QJsonObject &json);
 
 	/**
 	 * @brief Reads file as raw data and returns it as a QString.
@@ -34,7 +36,6 @@ public:
 	 * @param path The path to the file.
 	 */
 	QByteArray readRawData(const QString &path);
-	QJsonObject readJson(const QString &path);
 
 private:
 	void loadPrototypes();
@@ -53,7 +54,6 @@ private:
 	QHash <QString, AnimationData *> animationData;
 	MapInfo *map;
 };
-
 
 template <class T>
 void DataManager::loadFromFile(const QString &path, T &s)

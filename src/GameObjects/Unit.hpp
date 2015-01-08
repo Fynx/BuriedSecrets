@@ -57,9 +57,10 @@ public:
 	int getTargetObject() const;
 	void setTargetObject(int uid);
 
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
+
 private:
-	friend QDataStream &operator<<(QDataStream &out, const Unit &object);
-	friend QDataStream &operator>>(QDataStream &in, Unit &object);
 	//TODO all pointers to objects change to uid
 
 	Location *location;

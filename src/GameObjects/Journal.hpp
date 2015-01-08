@@ -13,6 +13,9 @@ public:
 	JournalEntry *getEntry(int number) const;
 	void clearEntries();
 
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
+
 private:
 	QVector<JournalEntry *> entries;
 };

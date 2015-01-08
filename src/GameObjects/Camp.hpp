@@ -16,6 +16,6 @@ public:
 
 	qreal getRange() const;
 
-private:
-	qreal range;
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
 };

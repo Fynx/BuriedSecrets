@@ -35,23 +35,6 @@ Mind::~Mind()
 	qDeleteAll(objects);
 }
 
-void Mind::addObject(Object *object, const QPointF &position)
-{
-	qDebug() << "addObject:" << object->getUid();
-	objects.append(object);
-	uidToObject[object->getUid()] = object;
-	physics->addObject(object, position);
-}
-
-void Mind::removeObject(Object *object)
-{
-	qDebug() << "removeObject:" << object->getUid();
-	animatorManager->removeObject(object);
-	objects.removeAll(object);
-	uidToObject.remove(object->getUid());
-	physics->removeObject(object);
-}
-
 Object *Mind::getObjectFromUid(const int uid)
 {
 	if (uidToObject.contains(uid))
@@ -66,27 +49,52 @@ PhysicsEngine *Mind::physicsEngine()
 	return physics;
 }
 
-void Mind::insertMap(const MapInfo *map)
+void Mind::loadFromJson(const QJsonObject &json)
 {
-	qDebug() << "Inserting map...";
-
 	delete mapManager;
-	mapManager = new MapManager(map);
+	mapManager = new MapManager(json);
 
-	for (const MapInfo::Object &object : map->getObjects()) {
-		qDebug() << "\tinsert object: type=" << object.properties["type"].toString()
-			<< "name=" << object.properties["name"].toString();
+	const QJsonObject &objs = json[Properties::Objects].toObject();
 
-		BS::Type type = BS::changeStringToType(object.properties["type"].toString());
-		Object *obj = createObject(type, object.name);
+	for (const QString &key : objs.keys()) {
+		qDebug() << key;
+		const QJsonObject &obj = objs[key].toObject();
+		Object *object = createObjectFromJson(key, obj);
 
-		for (const QVariant &value : object.properties["animators"].toList())
-			if (!animatorManager->addObject(value.toString(), obj))
-				qDebug() << "\t\tfailed to add animator" << value.toString();
+		for (const QJsonValue &value : obj[Properties::Animators].toArray())
+			if (!animatorManager->addObject(value.toString(), object))
+				qDebug() << "\t\tfailed to add to animator" << value.toString();
 
-		QPointF coordinates = {object.properties["x"].toFloat(), object.properties["y"].toFloat()};
-		addObject(obj, coordinates);
+		QPointF coordinates = {obj[Properties::X].toDouble(), obj[Properties::Y].toDouble()};
+		addObject(object, coordinates);
 	}
+}
+
+QJsonObject Mind::saveToJson() const
+{
+	qDebug() << "saveToJson";
+	QJsonObject json;
+	QJsonObject objs;
+
+	json.insert(Properties::MapName, mapManager->getMap()->getName());
+	json.insert(Properties::MapDesc, mapManager->getMap()->getDesc());
+
+	for (Object *obj : objects) {
+		qDebug() << "\tsave" << obj->getName();
+		QJsonObject objJson = obj->saveToJson();
+
+		QVector<QString> animators = animatorManager->getAnimatorsForObject(obj);
+		objJson.insert(Properties::Animators, QJsonArray::fromStringList(animators.toList()));
+
+		QPointF pos = physics->getPosition(obj);
+		objJson.insert(Properties::X, pos.x());
+		objJson.insert(Properties::Y, pos.y());
+
+		objs.insert(obj->getName(), objJson);
+	}
+	json.insert(Properties::Objects, objs);
+
+	return json;
 }
 
 const Map *Mind::getMap() const
@@ -94,69 +102,31 @@ const Map *Mind::getMap() const
 	return mapManager->getMap();
 }
 
-Faction *Mind::getFactionFromUid(unsigned int uid)
+void Mind::addObject(Object *object, const QPointF &position)
+{
+	objects.append(object);
+	uidToObject[object->getUid()] = object;
+	physics->addObject(object, position);
+}
+
+void Mind::removeObject(Object *object)
+{
+	qDebug() << "removeObject:" << object->getUid();
+	animatorManager->removeObject(object);
+	objects.removeAll(object);
+	uidToObject.remove(object->getUid());
+	physics->removeObject(object);
+}
+
+Faction *Mind::getFactionFromUid(int uid)
 {
 	if (!factions.contains(uid))
 		qDebug() << "No such Faction! " << uid;
 	return factions.value(uid);
 }
 
-QDataStream &operator<<(QDataStream &out, const Mind &mind)
-{
-	qDebug() << "Saving dataObjects...";
-
-	out << static_cast<qint32>(mind.objects.size());
-	for (const Object *obj : mind.objects) {
-		qDebug() << "\tsave" << obj->getUid();
-		out << BS::changeTypeToString(obj->getType()) << obj->getName() << obj->getUid()
-			<< *obj << mind.physics->getPosition(obj) << mind.animatorManager->getAnimatorsForObject(obj);
-		qDebug() << "\t\t" << BS::changeTypeToString(obj->getType()) << obj->getName()
-			<< mind.physics->getPosition(obj) << mind.animatorManager->getAnimatorsForObject(obj);
-	}
-
-	qDebug() << "done.";
-	return out;
-}
-
-QDataStream &operator>>(QDataStream &in, Mind &mind)
-{
-	qDebug() << "Loading dataObjects...";
-
-	qint32 dataObjectsNumber;
-	in >> dataObjectsNumber;
-
-	for (int i = 0; i < dataObjectsNumber; ++i) {
-		QString typeString;
-		QString name;
-		int uid;
-		in >> typeString >> name >> uid;
-		BS::Type type = BS::changeStringToType(typeString);
-
-		qDebug() << "\t" << typeString << name;
-
-		Object *object = mind.createObject(type, name);
-		in >> *object;
-
-		QPointF pos;
-		in >> pos;
-		qDebug() << "\t\t" << pos;
-		mind.addObject(object, pos);
-
-		QVector<QString> animators;
-		in >> animators;
-		qDebug() << "\t\tanimators:" << animators;
-		for (const QString &animator : animators)
-			mind.animatorManager->addObject(animator, object);
-	}
-
-	qDebug() << "done.";
-
-	return in;
-}
-
 Object *Mind::createObject(BS::Type type, const QString &name)
 {
-	// Where is Faction?
 	Object *obj;
 	switch (type) {
 		case BS::Type::Invalid: {
@@ -214,6 +184,15 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 			qDebug() << "blablabla...\n" << "blabla?";
 		}
 	}
+
+	return obj;
+}
+
+Object *Mind::createObjectFromJson(const QString &name, const QJsonObject &json)
+{
+	BS::Type type = BS::changeStringToType(json[Properties::Type].toString());
+	Object *obj = createObject(type, name);
+	obj->loadFromJson(json);
 
 	return obj;
 }

@@ -11,3 +11,13 @@ BS::Type Mob::getType() const
 {
 	return BS::Type::Mob;
 }
+
+void Mob::loadFromJson(const QJsonObject &json)
+{
+	Object::loadFromJson(json);
+}
+
+QJsonObject Mob::saveToJson() const
+{
+	return Object::saveToJson();
+}

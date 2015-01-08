@@ -11,3 +11,13 @@ QString Quest::getDescription() const
 {
 	return prototype->getProperty("description").toString();
 }
+
+void Quest::loadFromJson(const QJsonObject &json)
+{
+	Object::loadFromJson(json);
+}
+
+QJsonObject Quest::saveToJson() const
+{
+	return Object::saveToJson();
+}

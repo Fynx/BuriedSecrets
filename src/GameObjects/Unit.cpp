@@ -1,6 +1,7 @@
 /* YoLoDevelopment, 2014
  * All rights reserved.
  */
+#include "Common/Strings.hpp"
 #include "GameObjects/Unit.hpp"
 
 Unit::Unit(const Prototype *prototype)
@@ -34,7 +35,7 @@ void Unit::setHP(int hp)
 
 float Unit::getMaxHP() const
 {
-	return prototype->getProperty("hp").toFloat();
+	return prototype->getProperty(Properties::HP).toFloat();
 }
 
 float Unit::getPsychosis() const
@@ -49,7 +50,7 @@ void Unit::setPsychosis(int psychosis)
 
 float Unit::getMaxPsychosis() const
 {
-	return prototype->getProperty("psychosis").toFloat();
+	return prototype->getProperty(Properties::Psychosis).toFloat();
 }
 
 float Unit::getEncumbrance() const
@@ -59,29 +60,29 @@ float Unit::getEncumbrance() const
 
 float Unit::getMaxEncumbrance() const
 {
-	return prototype->getProperty("encumbrance").toFloat();
+	return prototype->getProperty(Properties::Encumbrance).toFloat();
 }
 
 float Unit::getFoodDemand() const
 {
 	//TODO update with things
-	return prototype->getProperty("foodDemand").toFloat();
+	return prototype->getProperty(Properties::FoodDemand).toFloat();
 }
 
 float Unit::getSightRange() const
 {
 	//TODO update with things
-	return prototype->getProperty("sightRange").toFloat();
+	return prototype->getProperty(Properties::SightRange).toFloat();
 }
 
 float Unit::getSpeed() const
 {
-	return prototype->getProperty("movementSpeed").toFloat();
+	return prototype->getProperty(Properties::MovementSpeed).toFloat();
 }
 
 float Unit::getRegeneration() const
 {
-	return prototype->getProperty("regeneration").toFloat();
+	return prototype->getProperty(Properties::Regeneration).toFloat();
 }
 
 void Unit::addItem(Item *item)
@@ -101,42 +102,42 @@ void Unit::removeItem(Item *item)
 
 float Unit::getDamageControl() const
 {
-	float baseValue = prototype->getProperty("damageControl").toFloat();
+	float baseValue = prototype->getProperty(Properties::DamageControl).toFloat();
 	float additionalValue = (armor == nullptr)
 		? 0
-		: armor->getPrototype()->getProperty("defense").toFloat();
+		: armor->getPrototype()->getProperty(Properties::Defense).toFloat();
 	return  baseValue + additionalValue;
 }
 
 int Unit::getShooting() const
 {
-	int baseValue = prototype->getProperty("shooting").toInt();
+	int baseValue = prototype->getProperty(Properties::Shooting).toInt();
 	int additionalValue = (weapon == nullptr)
 		? 0
-		: armor->getPrototype()->getProperty("attack").toInt();
+		: armor->getPrototype()->getProperty(Properties::Attack).toInt();
 	return baseValue + additionalValue;
 }
 
 int Unit::getEngineering() const
 {
-	int baseValue = prototype->getProperty("engineering").toInt();
+	int baseValue = prototype->getProperty(Properties::Engineering).toInt();
 	int additionalValue = (tools == nullptr)
 		? 0
-		: tools->getPrototype()->getProperty("engineering").toInt();
+		: tools->getPrototype()->getProperty(Properties::Engineering).toInt();
 	return baseValue + additionalValue;
 }
 
 int Unit::getHealing() const
 {
-	int baseValue = prototype->getProperty("healing").toInt();
-	int additionalValue = prototype->getProperty("healing").toInt();
+	int baseValue = prototype->getProperty(Properties::Healing).toInt();
+	int additionalValue = prototype->getProperty(Properties::Healing).toInt();
 	return baseValue + additionalValue;
 }
 
 int Unit::getPerception() const
 {
-	int baseValue = prototype->getProperty("perception").toInt();
-	int additionalValue = prototype->getProperty("perception").toInt();
+	int baseValue = prototype->getProperty(Properties::Perception).toInt();
+	int additionalValue = prototype->getProperty(Properties::Perception).toInt();
 	return baseValue + additionalValue;
 }
 
@@ -172,12 +173,24 @@ void Unit::setCommand(BS::Command c)
 	command = c;
 }
 
-QDataStream &operator<<(QDataStream &out, const Unit &unit)
+/** Save & load */
+
+void Unit::loadFromJson(const QJsonObject &json)
 {
-	return out;
+	//TODO paths blablablah
+
+	Object::loadFromJson(json);
+
+	hp        = json[Properties::HP].toInt();
+	psychosis = json[Properties::Psychosis].toInt();
 }
 
-QDataStream &operator>>(QDataStream &in, Unit &unit)
+QJsonObject Unit::saveToJson() const
 {
-	return in;
+	QJsonObject json = Object::saveToJson();
+
+	json[Properties::HP]        = hp;
+	json[Properties::Psychosis] = psychosis;
+
+	return json;
 }

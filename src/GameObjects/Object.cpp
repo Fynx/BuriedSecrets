@@ -31,6 +31,16 @@ QString Object::getName() const
 	return prototype->getProperty(Properties::Name).toString();
 }
 
+Object *Object::getParent() const
+{
+	return parent;
+}
+
+void Object::setParent(Object *object)
+{
+	parent = object;
+}
+
 BS::State Object::getState() const
 {
 	return state;
@@ -40,6 +50,11 @@ void Object::setState(BS::State state)
 {
 	this->state = state;
 	setFrame(0);
+}
+
+QVariant &Object::property(const QString &name)
+{
+	return properties[name];
 }
 
 int Object::getFrame() const
@@ -52,29 +67,15 @@ void Object::setFrame(int frame)
 	this->frame = frame;
 }
 
-Object *Object::getParent() const
+void Object::loadFromJson(const QJsonObject &json)
 {
-	return parent;
+	//TODO
 }
 
-void Object::setParent(Object *object)
+QJsonObject Object::saveToJson() const
 {
-	parent = object;
-}
-
-QVariant &Object::property(const QString &name)
-{
-	return properties[name];
-}
-
-QDataStream &operator<<(QDataStream &out, const Object &object)
-{
-	//TODO sth, properties, things like that.
-	return out;
-}
-
-QDataStream &operator>>(QDataStream &in, Object &object)
-{
-	//TODO same here
-	return in;
+	//TODO
+	QJsonObject json;
+	json.insert(Properties::Type, BS::changeTypeToString(getType()));
+	return json;
 }

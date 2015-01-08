@@ -10,4 +10,7 @@ public:
 	JournalEntry(const Prototype *prototype);
 
 	QString getText() const;
+
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
 };

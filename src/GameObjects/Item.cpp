@@ -33,6 +33,16 @@ int Item::getWeight() const
 	return prototype->getProperty("weight").toInt();
 }
 
+void Item::loadFromJson(const QJsonObject &json)
+{
+	Object::loadFromJson(json);
+}
+
+QJsonObject Item::saveToJson() const
+{
+	return Object::saveToJson();
+}
+
 const QMap<BS::ItemType, bool> Item::equippable {
 	{BS::ItemType::Storyline,     true},
 	{BS::ItemType::Material,      false},

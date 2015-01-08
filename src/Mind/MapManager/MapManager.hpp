@@ -11,7 +11,8 @@
 
 class MapManager {
 public:
-	MapManager(const MapInfo *mapInfo);
+	MapManager(const QJsonObject &json);
+// 	MapManager(const MapInfo *mapInfo);
 
 	const Map *getMap() const;
 	QList<QPointF> getPath(const QPointF &from, const QPointF &to) const;
@@ -19,5 +20,5 @@ public:
 private:
 	Map map;
 
-	const MapInfo *mapInfo;
+// 	const MapInfo *mapInfo;
 };

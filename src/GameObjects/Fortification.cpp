@@ -12,14 +12,12 @@ BS::Type Fortification::getType() const
 	return BS::Type::Fortification;
 }
 
-QDataStream &operator<<(QDataStream &out, const Fortification &fortification)
+void Fortification::loadFromJson(const QJsonObject &json)
 {
-	out << dynamic_cast<const Object &>(fortification);
-	return out;
+	Object::loadFromJson(json);
 }
 
-QDataStream &operator>>(QDataStream &in, Fortification &fortification)
+QJsonObject Fortification::saveToJson() const
 {
-	in >> dynamic_cast<Object &>(fortification);
-	return in;
+	return Object::saveToJson();
 }

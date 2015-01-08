@@ -15,6 +15,9 @@ public:
 	QString getName() const;
 	int getWeight() const;
 
+	virtual void loadFromJson(const QJsonObject &json);
+	virtual QJsonObject saveToJson() const;
+
 private:
 	static const QMap<BS::ItemType, bool> equippable;
 	static const QMap<QString, BS::ItemType> stringToItemType;

@@ -5,7 +5,6 @@
 #include "DataManager/DataManager.hpp"
 #include "DebugManager/DebugManager.hpp"
 
-
 DataManager::DataManager()
 	: map(nullptr)
 {
@@ -45,6 +44,33 @@ const AnimationData *DataManager::getAnimationData(const QString &name) const
 	return animationData[name];
 }
 
+QJsonObject DataManager::loadJsonFromFile(const QString &path)
+{
+	QJsonDocument jsonDoc = QJsonDocument::fromJson(readRawData(path));
+	if (jsonDoc.isNull()) {
+		qDebug() << "DataManager: Error occurred while parsing .json file.";
+		return QJsonObject();
+	} else {
+		return jsonDoc.object();
+	}
+}
+
+void DataManager::saveJsonToFile(const QString &path, const QJsonObject &json)
+{
+	QSaveFile file(path);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+		qDebug() << "DataManager: Failed to save file " << path;
+		return;
+	}
+
+	QJsonDocument doc;
+	doc.setObject(json);
+
+	file.write(doc.toJson());
+
+	file.commit();
+}
+
 QByteArray DataManager::readRawData(const QString &path)
 {
 	QByteArray result;
@@ -60,24 +86,13 @@ QByteArray DataManager::readRawData(const QString &path)
 	return result;
 }
 
-QJsonObject DataManager::readJson(const QString &path)
-{
-	QJsonDocument jsonDoc = QJsonDocument::fromJson(readRawData(path));
-	if (jsonDoc.isNull()) {
-		qDebug() << "DataManager: Error occurred while parsing .json file.";
-		return QJsonObject();
-	} else {
-		return jsonDoc.object();
-	}
-}
-
 void DataManager::loadPrototypes()
 {
 	qDebug() << "Loading prototypes... (we DON'T use Prototype::DataStream operators!)";
 
 	QString path = "data/prototypes.json";
 
-	QJsonObject json = readJson(path);
+	QJsonObject json = loadJsonFromFile(path);
 
 	for (const QString &name : json.keys()) {
 		Prototype *prototype = new Prototype;
@@ -92,7 +107,7 @@ void DataManager::loadPrototypes()
 		if (prototype->hasProperty(Properties::Animations)) {
 			auto animations = prototype->getProperty(Properties::Animations).toMap();
 
-			for (const auto& animation: animations) {
+			for (const QVariant &animation: animations) {
 				const AnimationData *animData = getAnimationData(animation.toString());
 				prototype->addAnimationData(animData->getState(), animData);
 			}
@@ -121,11 +136,11 @@ void DataManager::loadResources()
 	for (QString resourcePath: resourcesList) {
 		if (!resourcePath.trimmed().isEmpty()) {
 			qDebug() << "\tloading" << resourcePath;
-			QJsonObject json = readJson(preffix + resourcePath);
+			QJsonObject json = loadJsonFromFile(preffix + resourcePath);
 
 			for (const QString &key : json.keys()) {
 				const QJsonObject &obj = json[key].toObject();
-				if (obj["type"].toString() == "animation") {
+				if (obj[Properties::Type].toString() == "animation") {
 					AnimationData *animation = new AnimationData(
 						key,
 						BS::getStateFromString(obj["state"].toString()),
@@ -157,27 +172,26 @@ bool DataManager::loadMap(const QString &path)
 	delete map;
 	map = nullptr;
 
-	QJsonObject json = readJson(path);
+	QJsonObject json = loadJsonFromFile(path);
 
-	QString mapName = json["mapName"].toString();
-	QString mapDesc = json["mapDesc"].toString();
+	QString mapName = json[Properties::MapName].toString();
+	QString mapDesc = json[Properties::MapDesc].toString();
 
 	qDebug() << "mapName:" << mapName;
 	qDebug() << "mapDesc:" << mapDesc;
 
-	//TODO remove animators from the map,
-	QVector<MapInfo::Object> objects;
-	for (const QString &key : json["objects"].toObject().keys()) {
-		MapInfo::Object object;
-		object.name = key;
-		object.properties = json["objects"].toObject()[key].toObject().toVariantMap();
-		qDebug() << "\t" << key;
-		for (const QString &kk : object.properties.keys())
-			qDebug() << "\t\t" << kk << ":" << object.properties[kk];
-		objects.append(object);
-	}
+// 	QVector<MapInfo::Object> objects;
+// 	for (const QString &key : json["objects"].toObject().keys()) {
+// 		MapInfo::Object object;
+// 		object.name = key;
+// 		object.properties = json["objects"].toObject()[key].toObject().toVariantMap();
+// 		qDebug() << "\t" << key;
+// 		for (const QString &kk : object.properties.keys())
+// 			qDebug() << "\t\t" << kk << ":" << object.properties[kk];
+// 		objects.append(object);
+// 	}
 
-	map = new MapInfo(mapName, mapDesc, objects);
+	map = new MapInfo(mapName, mapDesc);//, objects);
 
 	return true;
 }

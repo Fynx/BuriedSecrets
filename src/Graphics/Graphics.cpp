@@ -15,7 +15,6 @@ Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataMa
 	fpsText.setColor(sf::Color::Red);
 }
 
-
 Graphics::~Graphics()
 {
 	delete mapSprite;
@@ -24,12 +23,10 @@ Graphics::~Graphics()
 	delete drawOrder;
 }
 
-
 GraphicsWidget * Graphics::getGraphicsWidget()
 {
 	return widget;
 }
-
 
 void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 {
@@ -44,20 +41,17 @@ void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 	renderTimer.start();
 }
 
-
 void Graphics::loadMap(const Map *map)
 {
 	this->map = map;
-	mapSprite = new sf::Sprite{*(graphicsDataManager.getTexture(map->getMapInfo()->getName()))};
+	mapSprite = new sf::Sprite{*(graphicsDataManager.getTexture(map->getName()))};
 	mapSprite->setPosition(0, 0);
 }
-
 
 void Graphics::toggleShowBasePolygons()
 {
 	showBasePolygons = !showBasePolygons;
 }
-
 
 void Graphics::toggleShowFPS()
 {
@@ -66,7 +60,6 @@ void Graphics::toggleShowFPS()
 	timeElapsed = 0.0f;
 	frames = 0;
 }
-
 
 void Graphics::render()
 {
@@ -112,8 +105,9 @@ void Graphics::render()
 			sf::ConvexShape polygon;
 			polygon.setPointCount(points.size());
 			for (int i = 0; i < points.size(); ++i) {
-				polygon.setPoint(i, sf::Vector2f(positions[idx].x() - centre.x() + points[i].x(),
-								 positions[idx].y() - centre.y() + points[i].y()));
+				polygon.setPoint(i,
+					sf::Vector2f(positions[idx].x() - centre.x() + points[i].x(),
+					positions[idx].y() - centre.y() + points[i].y()));
 			}
 			polygon.setFillColor(sf::Color::Transparent);
 			polygon.setOutlineThickness(2);
@@ -142,7 +136,6 @@ void Graphics::render()
 	widget->repaint();
 }
 
-
 QVector<GraphicalEntity *> Graphics::getGraphicalEntitiesFor(const QList<const Object *> &objects)
 {
 	QVector<GraphicalEntity *> res;
@@ -152,11 +145,10 @@ QVector<GraphicalEntity *> Graphics::getGraphicalEntitiesFor(const QList<const O
 	return res;
 }
 
-
 void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime, const QPointF &position)
 {
 	entity->setDirection(static_cast<BS::Graphic::Direction>(
-			camera->discretizeAngle(physicsEngine->getAngle(entity->getObject()))));
+		camera->discretizeAngle(physicsEngine->getAngle(entity->getObject()))));
 	entity->setPosition(position);
 	entity->update(deltaTime);
 }
@@ -165,5 +157,3 @@ QPointF Graphics::getPosition(GraphicalEntity *entity) const
 {
 	return camera->getPerspective()->fromMetresToPixels(physicsEngine->getPosition(entity->getObject()));
 }
-
-
