@@ -51,8 +51,10 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 	const QJsonObject &objs = json[Properties::Objects].toObject();
 
+	QSet<QPair<Object *, QPair<double, double> > > objectsToAdd;
+
 	for (const QString &key : objs.keys()) {
-		qDebug() << key;
+		qDebug() << "\tload" << key;
 		const QJsonObject &obj = objs[key].toObject();
 		Object *object = createObjectFromJson(key, obj);
 
@@ -60,9 +62,17 @@ void Mind::loadFromJson(const QJsonObject &json)
 			if (!animatorManager->addObject(value.toString(), object))
 				qDebug() << "\t\tfailed to add to animator" << value.toString();
 
-		QPointF coordinates = {obj[Properties::X].toDouble(), obj[Properties::Y].toDouble()};
-		addObject(object, coordinates);
+		// Pair because stupid qt
+		QPair<double, double> coordinates = {obj[Properties::X].toDouble(), obj[Properties::Y].toDouble()};
+		objectsToAdd.insert(qMakePair(object, coordinates));
 	}
+
+	for (auto &p : objectsToAdd) {
+		p.first->assignUid();
+		addObject(p.first, QPointF(p.second.first, p.second.second));
+	}
+
+	//TODO assign pointers in Objects, you can put uid assigning before this for loop here for safety.
 }
 
 QJsonObject Mind::saveToJson() const

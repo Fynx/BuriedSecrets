@@ -48,6 +48,7 @@ namespace Properties {
 	const QString State         = "state";
 	const QString Texture       = "texture";
 	const QString Type          = "type";
+	const QString Uid           = "uid";
 	const QString X             = "x";
 	const QString Y             = "y";
 }

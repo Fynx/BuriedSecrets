@@ -11,7 +11,9 @@ public:
 	Object(const Prototype *prototype);
 	virtual ~Object();
 
-	const int getUid() const;
+	/** If current UID is invalid, new UID is assigned. */
+	void assignUid();
+	int getUid() const;
 	const Prototype *getPrototype() const;
 
 	virtual BS::Type getType() const = 0;
@@ -41,10 +43,12 @@ public:
 protected:
 	const Prototype *prototype;
 
+	static void updateUid(int uid);
+	static const int InvalidUid = 0;
+	/** Every new UID is greater than every previous */
 	static int LastUid;
 
-	// Watch for all traps connected to serialization!
-	const int uid;
+	int uid;
 
 	Object *parent;
 	BS::State state;

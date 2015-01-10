@@ -2,6 +2,7 @@
  * All rights reserved.
  */
 #include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "Mind/AnimatorManager.hpp"
 #include "Mind/AnimatorTest.hpp"
 #include "Mind/AnimatorPhysicsUpdate.hpp"
@@ -16,7 +17,6 @@ AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
 	initTimers();
 }
 
-
 AnimatorManager::~AnimatorManager()
 {
 	for (Animator *a : animators)
@@ -25,12 +25,14 @@ AnimatorManager::~AnimatorManager()
 
 void AnimatorManager::initAnimators()
 {
+	info("Initializing animators...");
 	addAnimator(new AnimatorTest(mind), Animators::Test, 40);
 	addAnimator(new AnimatorPhysicsUpdate(mind), Animators::PhysicsUpdate, 40);
 	addAnimator(new AnimationAnimator(mind), Animators::Animation, 700);
 	addAnimator(new AnimatorMove(mind), Animators::Move, 40);
 	addAnimator(new AnimatorConsume(mind), Animators::Consume, 1000);
 	addAnimator(new AnimatorDie(mind), Animators::Die, 40);
+	info("done.");
 }
 
 void AnimatorManager::initTimers()
@@ -75,9 +77,8 @@ bool AnimatorManager::removeObject(QString animator, Object *obj)
 
 bool AnimatorManager::removeObject(Object *obj)
 {
-	for(QString anim : getAnimatorsForObject(obj)){
+	for(QString anim : getAnimatorsForObject(obj))
 		removeObject(anim, obj);
-	}
 	return true;
 }
 
