@@ -2,8 +2,8 @@
  * All rights reserved.
  */
 #pragma once
-#include "DataManager/MapInfo.hpp"
 
+#include <QtCore>
 
 /**
  * @brief Logical representation of the map.
@@ -15,7 +15,6 @@ public:
 	Map(const QJsonObject &json);
 
 	const QJsonObject &getJson() const;
-// 	const MapInfo *getMapInfo() const;
 	/**
 	 * @brief True if point (x, y) can be stepped on. False otherwise.
 	 */
@@ -25,7 +24,6 @@ public:
 	QString getDesc() const;
 
 private:
-// 	const MapInfo *mapInfo;
 	//TODO extract data into fields or something
 	QJsonObject json;
 };

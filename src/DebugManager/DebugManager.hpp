@@ -12,16 +12,18 @@ public:
 	DebugManager() {}
 };
 
+// static const char *BashBlue   = "0;34";
+static const char *BashGray   = "1;30";
 static const char *BashGreen  = "0;32";
 static const char *BashRed    = "0;31";
 static const char *BashYellow = "0;33";
 
-inline QString bashColorStart(const char *bashColor)
+inline static QString bashColorStart(const char *bashColor)
 {
 	return QString("\033[") + QString(bashColor) + QString("m");
 }
 
-inline QString bashColorEnd()
+inline static QString bashColorEnd()
 {
 	return QString("\033[0m");
 }
@@ -44,4 +46,9 @@ inline void warn(const QString &str)
 inline void info(const QString &str)
 {
 	print(str, BashGreen);
+}
+
+inline void dataInfo(const QString &str)
+{
+	print(str, BashGray);
 }

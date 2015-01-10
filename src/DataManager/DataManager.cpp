@@ -6,7 +6,6 @@
 #include "DebugManager/DebugManager.hpp"
 
 DataManager::DataManager()
-	: map(nullptr)
 {
 	loadResources();
 	loadPrototypes();
@@ -17,13 +16,12 @@ DataManager::~DataManager()
 	qDeleteAll(prototypes);
 	qDeleteAll(resources);
 	qDeleteAll(animationData);
-	delete map;
 }
 
 const Prototype *DataManager::getPrototype(const QString &name) const
 {
 	if (!prototypes.contains(name))
-		qDebug() << "Prototype" << name << "not found!";
+		err(QString("Prototype ") + name + QString(" not found!"));
 	Q_ASSERT(prototypes.contains(name));
 	return prototypes[name];
 }
@@ -31,12 +29,6 @@ const Prototype *DataManager::getPrototype(const QString &name) const
 const Resource *DataManager::getResource(const QString &name) const
 {
 	return resources[name];
-}
-
-const MapInfo *DataManager::getMap(const QString &path)
-{
-	loadMap(path);
-	return map;
 }
 
 const AnimationData *DataManager::getAnimationData(const QString &name) const
@@ -77,10 +69,10 @@ QByteArray DataManager::readRawData(const QString &path)
 	QFile file(path);
 
 	if (!file.open(QIODevice::ReadOnly)) {
-		qDebug() << "DataManager: Failed to load file " << path;
+		warn(QString("DataManager: failed to load file ") + path);
 	} else {
 		result = file.readAll();
-		qDebug() << "DataManager: Loaded " << path;
+		dataInfo(QString("DataManager: loaded ") + path);
 	}
 
 	return result;
@@ -89,10 +81,7 @@ QByteArray DataManager::readRawData(const QString &path)
 void DataManager::loadPrototypes()
 {
 	info("Loading prototypes...");
-	warn("(we DON'T use Prototype::DataStream operators!)");
-
 	QString path = "data/prototypes.json";
-
 	QJsonObject json = loadJsonFromFile(path);
 
 	int counter = 1;
@@ -119,12 +108,12 @@ void DataManager::loadPrototypes()
 		prototypes[name] = prototype;
 	}
 
-	info("done");
+	info("done.");
 }
 
 void DataManager::savePrototypes() const
 {
-	qDebug() << "Save option NOT AVAILABLE!";
+	err("Save option NOT AVAILABLE!");
 }
 
 void DataManager::loadResources()
@@ -146,18 +135,19 @@ void DataManager::loadResources()
 
 			for (const QString &key : json.keys()) {
 				const QJsonObject &obj = json[key].toObject();
-				if (obj[Properties::Type].toString() == "animation") {
+				if (obj[Properties::Type].toString() == Properties::Animation) {
 					AnimationData *animation = new AnimationData(
 						key,
-						BS::getStateFromString(obj["state"].toString()),
-						obj["framesNumber"].toInt(),
-						obj["frames"].toArray().toVariantList()
-    					);
+						BS::getStateFromString(obj[Properties::State].toString()),
+						obj[Properties::FramesNumber].toInt(),
+						obj[Properties::Frames].toArray().toVariantList()
+					);
 					qDebug() << animation;
 					animationData[key] = animation;
-				} else if (obj["type"].toString() == "texture" || obj["type"].toString() == "font") {
+				} else if (obj[Properties::Type].toString() == Properties::Texture ||
+					obj[Properties::Type].toString() == Properties::Font) {
 					/** Load the data from the file */
-					QByteArray resourceData = readRawData(preffix + obj["data"].toString());
+					QByteArray resourceData = readRawData(preffix + obj[Properties::Data].toString());
 					char *data = new char[resourceData.length()];
 					memcpy(data, resourceData.data(), resourceData.length());
 //
@@ -165,30 +155,10 @@ void DataManager::loadResources()
 					resources[key] = resource;
 				}
 			}
-			qDebug() << "loaded" << resourcePath;
 		}
 	}
 
 	info("done.");
-}
-
-bool DataManager::loadMap(const QString &path)
-{
-	qDebug() << "\nCreating map...";
-	delete map;
-	map = nullptr;
-
-	QJsonObject json = loadJsonFromFile(path);
-
-	QString mapName = json[Properties::MapName].toString();
-	QString mapDesc = json[Properties::MapDesc].toString();
-
-	qDebug() << "mapName:" << mapName;
-	qDebug() << "mapDesc:" << mapDesc;
-
-	map = new MapInfo(mapName, mapDesc);//, objects);
-
-	return true;
 }
 
 void DataManager::validateResources() const

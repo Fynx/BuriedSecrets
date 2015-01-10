@@ -16,18 +16,23 @@ namespace Animators {
 }
 
 namespace Properties {
+	const QString Animation     = "animation";
 	const QString Animations    = "animations";
 	const QString Animators     = "animators";
 	const QString Attack        = "attack";
 	const QString Damage        = "damage";
 	const QString DamageControl = "damageControl";
+	const QString Data          = "data";
 	const QString Defense       = "defense";
 	const QString Encumbrance   = "encumbrance";
 	const QString Engineering   = "engineering";
 	const QString FoodDemand    = "foodDemand";
+	const QString Frames        = "frames";
+	const QString FramesNumber  = "framesNumber";
 	const QString Healing       = "healing";
 	const QString HP            = "hp";
 	const QString Faction       = "faction";
+	const QString Font          = "font";
 	const QString Food          = "food";
 	const QString MapName       = "mapName";
 	const QString MapDesc       = "mapDesc";
@@ -40,6 +45,8 @@ namespace Properties {
 	const QString Regeneration  = "regeneration";
 	const QString Shooting      = "shooting";
 	const QString SightRange    = "sightRange";
+	const QString State         = "state";
+	const QString Texture       = "texture";
 	const QString Type          = "type";
 	const QString X             = "x";
 	const QString Y             = "y";

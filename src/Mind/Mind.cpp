@@ -12,9 +12,6 @@
 #include "GameObjects/Mob.hpp"
 #include "GameObjects/Unit.hpp"
 
-//TODO use DebugManager instead
-#include <QtCore>
-
 Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager)
 	: dataManager(dataManager),
 	  physics(physicsEngine),
@@ -22,10 +19,7 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	  animatorManager(new AnimatorManager(this)),
 	  mapManager(nullptr)
 {
-	info("Mind initialized. Select 'Load mind' from the menu options to load objects.");
-	info("Or add loadFromFile(\"data/map.bin\") here in Mind::Mind.");
-	info("You can even add saveFromFile here.");
-	info("SoundsManager event test.");
+	info("Mind initialized");
 	soundsManager->onEvent(QString("test: success"));
 }
 

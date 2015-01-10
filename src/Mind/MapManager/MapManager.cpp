@@ -7,10 +7,6 @@ MapManager::MapManager(const QJsonObject &json)
 	: map(json)
 {}
 
-// MapManager::MapManager(const MapInfo *mapInfo)
-// 	:  map{mapInfo}, mapInfo{mapInfo}
-// {}
-
 const Map *MapManager::getMap() const
 {
 	return &map;

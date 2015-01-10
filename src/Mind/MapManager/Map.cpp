@@ -4,11 +4,6 @@
 #include "Common/Strings.hpp"
 #include "Mind/MapManager/Map.hpp"
 
-
-// Map::Map(const MapInfo *mapInfo)
-// 	: mapInfo{mapInfo}
-// {}
-
 Map::Map(const QJsonObject &json)
 	: json(json)
 {}
@@ -27,8 +22,3 @@ QString Map::getDesc() const
 {
 	return json[Properties::MapDesc].toString();
 }
-
-// const MapInfo *Map::getMapInfo() const
-// {
-// 	return mapInfo;
-// }

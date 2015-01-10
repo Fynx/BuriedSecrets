@@ -5,7 +5,6 @@
 #include <QtCore>
 
 #include "DataManager/DataManager.hpp"
-#include "DataManager/MapInfo.hpp"
 #include "GameObjects/Object.hpp"
 #include "GameObjects/Faction.hpp"
 #include "Mind/AnimatorManager.hpp"

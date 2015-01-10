@@ -6,9 +6,9 @@
 #pragma once
 
 #include "DataManager/AnimationData.hpp"
-#include "DataManager/MapInfo.hpp"
 #include "DataManager/Prototype.hpp"
 #include "DataManager/Resource.hpp"
+#include "DebugManager/DebugManager.hpp"
 
 #include <QtWidgets>
 
@@ -19,7 +19,6 @@ public:
 
 	const Prototype *getPrototype(const QString &name) const;
 	const Resource *getResource(const QString &name) const;
-	const MapInfo *getMap(const QString &path);
 	const AnimationData *getAnimationData(const QString &name) const;
 
 	template <class T>
@@ -41,7 +40,6 @@ private:
 	void loadPrototypes();
 	void savePrototypes() const;
 	void loadResources();
-	bool loadMap(const QString &mapPath);
 
 	/**
 	 * @brief This method assert that all resources have been loaded properly and fails with an exception
@@ -52,7 +50,6 @@ private:
 	QHash<QString, Prototype *> prototypes;
 	QHash<QString, Resource *> resources;
 	QHash <QString, AnimationData *> animationData;
-	MapInfo *map;
 };
 
 template <class T>
@@ -60,7 +57,7 @@ void DataManager::loadFromFile(const QString &path, T &s)
 {
 	QFile file(path);
 	if (!file.open(QIODevice::ReadOnly)) {
-		qDebug() << "DataManager: Failed to load file " << path;
+		warn(QString("DataManager: Failed to load file ") + path);
 		return;
 	}
 
@@ -74,7 +71,7 @@ void DataManager::saveToFile(const QString &path, const T &s)
 	QSaveFile tmpFile(path);
 
 	if (!tmpFile.open(QIODevice::WriteOnly)) {
-		qDebug() << "DataManager: Failed to save to " << path;
+		warn(QString("DataManager: Failed to save to ") + path);
 		return;
 	}
 
