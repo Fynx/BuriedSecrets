@@ -39,6 +39,7 @@ public:
 	void removeObject(Object *object);
 	Object *getObjectFromUid(const int uid);
 	Faction *getFactionFromUid(const int uid);
+	Faction *getPlayerFaction();
 
 private:
 	Object *createObject(BS::Type type, const QString &name);

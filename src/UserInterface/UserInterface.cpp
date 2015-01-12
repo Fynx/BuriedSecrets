@@ -123,6 +123,7 @@ void UserInterface::onShowMainMenu()
 void UserInterface::onNewGame()
 {
 	general_->startNewGame();
+	general_->loadLevel();
 }
 
 void UserInterface::onContinueGame()

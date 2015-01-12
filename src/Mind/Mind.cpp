@@ -129,6 +129,11 @@ Faction *Mind::getFactionFromUid(int uid)
 	return factions.value(uid);
 }
 
+Faction *Mind::getPlayerFaction()
+{
+	return getFactionFromUid(1);
+}
+
 Object *Mind::createObject(BS::Type type, const QString &name)
 {
 	Object *obj;
