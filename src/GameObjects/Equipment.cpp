@@ -44,3 +44,10 @@ QJsonObject Equipment::saveToJson() const
 {
 	return Object::saveToJson();
 }
+
+Item *Equipment::getSlotItem(BS::Slot slot)
+{
+	if ((!usedItems.contains(slot)) || (!items.contains(usedItems[slot])))
+		return nullptr;
+	return usedItems.value(slot);
+}

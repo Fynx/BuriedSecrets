@@ -44,6 +44,15 @@ namespace BS {
 		Deconstruct
 	};
 
+	enum Slot {
+		Weapon,
+		Tool,
+		Medicament,
+		Armor,
+		Fortificationn,
+		Perception
+	};
+
 	enum class ItemType : quint8 {
 		Storyline,
 		Material,

@@ -13,6 +13,8 @@ public:
 
 	BS::Type getType() const;
 
+	Item *getUsedItem();
+
 	Location *getLocation();
 	void setLocation(Location *location);
 
@@ -69,13 +71,6 @@ private:
 	int psychosis;
 	BS::Command command;
 	Equipment *equipment;
-
-	// Should be implemented inside equipment
-	Item *armor;
-	Item *medicalKit;
-	Item *optics;
-	Item *tools;
-	Item *weapon;
 
 	QList<QPointF> currentPath;
 

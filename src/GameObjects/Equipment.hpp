@@ -4,6 +4,7 @@
 #pragma once
 
 #include "GameObjects/Item.hpp"
+#include "Common/Enums.hpp"
 
 class Equipment : public Object {
 public:
@@ -15,10 +16,12 @@ public:
 	void removeItem(Item *item);
 	const QSet<Item *> &getItems() const;
 	int getWeight() const;
+	Item *getSlotItem(BS::Slot);
 
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
 private:
 	QSet<Item *> items;
+	QHash<BS::Slot, Item*> usedItems;
 };

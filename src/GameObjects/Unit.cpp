@@ -2,7 +2,10 @@
  * All rights reserved.
  */
 #include "Common/Strings.hpp"
+#include "Common/Enums.hpp"
 #include "GameObjects/Unit.hpp"
+
+using namespace BS;
 
 Unit::Unit(const Prototype *prototype)
 	: Object(prototype)
@@ -10,7 +13,25 @@ Unit::Unit(const Prototype *prototype)
 
 BS::Type Unit::getType() const
 {
-	return BS::Type::Unit;
+	return Type::Unit;
+}
+
+Item *Unit::getUsedItem()
+{
+	switch (command){
+	case Command::Attack:
+		return equipment->getSlotItem(Slot::Weapon);
+
+	case Command::Heal:
+		return equipment->getSlotItem(Slot::Medicament);
+
+	case Command::Construct:
+	case Command::Deconstruct:
+		return equipment->getSlotItem(Slot::Tool);
+	default:
+		return nullptr;
+		break;
+	}
 }
 
 Location *Unit::getLocation()
@@ -103,27 +124,27 @@ void Unit::removeItem(Item *item)
 float Unit::getDamageControl() const
 {
 	float baseValue = prototype->getProperty(Properties::DamageControl).toFloat();
-	float additionalValue = (armor == nullptr)
+	float additionalValue = (equipment->getSlotItem(BS::Slot::Armor) == nullptr)
 		? 0
-		: armor->getPrototype()->getProperty(Properties::Defense).toFloat();
+		: equipment->getSlotItem(BS::Slot::Armor)->getPrototype()->getProperty(Properties::Defense).toFloat();
 	return  baseValue + additionalValue;
 }
 
 int Unit::getShooting() const
 {
 	int baseValue = prototype->getProperty(Properties::Shooting).toInt();
-	int additionalValue = (weapon == nullptr)
+	int additionalValue = (equipment->getSlotItem(BS::Slot::Weapon) == nullptr)
 		? 0
-		: armor->getPrototype()->getProperty(Properties::Attack).toInt();
+		: equipment->getSlotItem(BS::Slot::Weapon)->getPrototype()->getProperty(Properties::Attack).toInt();
 	return baseValue + additionalValue;
 }
 
 int Unit::getEngineering() const
 {
 	int baseValue = prototype->getProperty(Properties::Engineering).toInt();
-	int additionalValue = (tools == nullptr)
+	int additionalValue = (equipment->getSlotItem(BS::Slot::Tool) == nullptr)
 		? 0
-		: tools->getPrototype()->getProperty(Properties::Engineering).toInt();
+		: equipment->getSlotItem(BS::Slot::Tool)->getPrototype()->getProperty(Properties::Engineering).toInt();
 	return baseValue + additionalValue;
 }
 
