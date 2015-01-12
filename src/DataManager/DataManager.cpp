@@ -18,6 +18,11 @@ DataManager::~DataManager()
 	qDeleteAll(animationData);
 }
 
+QList <Prototype *> DataManager::getAllPrototypes()
+{
+	return prototypes.values();
+}
+
 const Prototype *DataManager::getPrototype(const QString &name) const
 {
 	if (!prototypes.contains(name))

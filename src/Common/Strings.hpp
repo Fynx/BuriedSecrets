@@ -34,6 +34,7 @@ namespace Properties {
 	const QString Faction       = "faction";
 	const QString Font          = "font";
 	const QString Food          = "food";
+	const QString Ingredients   = "ingredients";
 	const QString MapName       = "mapName";
 	const QString MapDesc       = "mapDesc";
 	const QString MovementSpeed = "movementSpeed";

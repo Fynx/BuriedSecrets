@@ -17,6 +17,7 @@ public:
 	DataManager();
 	~DataManager();
 
+	QList <Prototype *> getAllPrototypes();
 	const Prototype *getPrototype(const QString &name) const;
 	const Resource *getResource(const QString &name) const;
 	const AnimationData *getAnimationData(const QString &name) const;

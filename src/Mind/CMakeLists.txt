@@ -13,6 +13,7 @@ set (Mind_SRCS
 	AnimatorPhysicsUpdate.cpp
 	Event.cpp
 	Mind.cpp
+	ItemConstructor.cpp
 )
 
 set (Mind_HDRS
