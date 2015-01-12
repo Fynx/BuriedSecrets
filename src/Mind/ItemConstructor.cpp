@@ -1,7 +1,13 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
 #include "ItemConstructor.hpp"
 #include "Common/Strings.hpp"
+#include "Mind/Mind.hpp"
+#include "GameObjects/Item.hpp"
 
-ItemConstructor::ItemConstructor(DataManager *dm)
+
+ItemConstructor::ItemConstructor(DataManager *dm, Mind *m) : mind(m)
 {
 	for (Prototype *proto : dm->getAllPrototypes()){
 		if (proto->hasProperty(Properties::Type) && proto->getProperty(Properties::Type).toString() == BS::changeTypeToString(BS::Type::Item))
@@ -41,7 +47,12 @@ QList<Prototype *> ItemConstructor::possibleItems(Equipment *eq)
 }
 
 
-Item *ItemConstructor::constructItem(Prototype *, Equipment *eq)
+Item *ItemConstructor::constructItem(Prototype *proto, Equipment *eq)
 {
-	return nullptr;
+	Item *result;
+	// Add Ingredients consumption
+	result = new Item(proto);
+	mind->addObject(result);
+	eq->addItem(result);
+	return result;
 }

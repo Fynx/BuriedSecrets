@@ -17,7 +17,8 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	  physics(physicsEngine),
 	  soundsManager(soundsManager),
 	  animatorManager(new AnimatorManager(this)),
-	  mapManager(nullptr)
+	  mapManager(nullptr),
+	  constructor(new ItemConstructor(dataManager, this))
 {
 	info("Mind initialized");
 	soundsManager->onEvent(QString("test: success"));
@@ -42,6 +43,11 @@ Object *Mind::getObjectFromUid(const int uid)
 PhysicsEngine *Mind::physicsEngine()
 {
 	return physics;
+}
+
+ItemConstructor *Mind::itemConstructor()
+{
+	return constructor;
 }
 
 void Mind::loadFromJson(const QJsonObject &json)
@@ -108,9 +114,14 @@ const Map *Mind::getMap() const
 
 void Mind::addObject(Object *object, const QPointF &position)
 {
+	addObject(object);
+	physics->addObject(object, position);
+}
+
+void Mind::addObject(Object *object)
+{
 	objects.append(object);
 	uidToObject[object->getUid()] = object;
-	physics->addObject(object, position);
 }
 
 void Mind::removeObject(Object *object)

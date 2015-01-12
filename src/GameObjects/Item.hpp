@@ -9,6 +9,8 @@ class Item : public Object {
 public:
 	Item(const Prototype *prototype);
 
+	BS::Type getType() const;
+
 	BS::ItemType getItemType() const;
 	bool isEquippable() const;
 

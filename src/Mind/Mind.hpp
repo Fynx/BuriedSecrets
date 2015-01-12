@@ -9,6 +9,7 @@
 #include "GameObjects/Faction.hpp"
 #include "Mind/AnimatorManager.hpp"
 #include "Mind/Event.hpp"
+#include "Mind/ItemConstructor.hpp"
 #include "MapManager/MapManager.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "SoundsManager/SoundsManager.hpp"
@@ -22,6 +23,7 @@ public:
 	~Mind();
 
 	PhysicsEngine *physicsEngine();
+	ItemConstructor *itemConstructor();
 
 	void loadFromJson(const QJsonObject &json);
 	QJsonObject saveToJson() const;
@@ -36,6 +38,7 @@ public:
 	 * @return void
 	 */
 	void addObject(Object* object, const QPointF &position);
+	void addObject(Object* object);
 	void removeObject(Object *object);
 	Object *getObjectFromUid(const int uid);
 	Faction *getFactionFromUid(const int uid);
@@ -51,6 +54,7 @@ private:
 
 	AnimatorManager *animatorManager;
 	MapManager *mapManager;
+	ItemConstructor *constructor;
 
 	QVector<Object *> objects;
 	QHash<const int, Object *> uidToObject;

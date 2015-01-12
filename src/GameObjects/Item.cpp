@@ -6,7 +6,13 @@
 
 Item::Item(const Prototype *prototype)
 	: Object(prototype)
-{}
+{
+}
+
+BS::Type Item::getType() const
+{
+	return BS::Type::Unit;
+}
 
 BS::ItemType Item::getItemType() const
 {
