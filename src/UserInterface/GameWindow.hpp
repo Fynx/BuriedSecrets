@@ -34,7 +34,7 @@ private:
 	void mousePressEvent(QMouseEvent *event);
 	void resizeEvent(QResizeEvent *event);
 
-	void handleGameWidgetClicked(const QPoint &pos);
+	void handleGameWidgetClicked(const QPoint &pos, Qt::MouseButton button);
 	void initViewport();
 
 	const QList<Object *> &fiterSelection(const QList<Object *> &objects);

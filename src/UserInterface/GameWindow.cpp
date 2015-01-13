@@ -92,8 +92,9 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 
 void GameWindow::mousePressEvent(QMouseEvent *event)
 {
+	event->button();
 	if (childAt(event->pos()) == graphicsWidget_)
-		handleGameWidgetClicked(event->pos());
+		handleGameWidgetClicked(event->pos(), event->button());
 
 	QWidget::mousePressEvent(event);
 }
@@ -128,20 +129,34 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 	QWidget::resizeEvent(event);
 }
 
-void GameWindow::handleGameWidgetClicked(const QPoint &pos)
+void GameWindow::handleGameWidgetClicked(const QPoint &pos, Qt::MouseButton button)
 {
 	QPointF point = viewport_->fromPixelsToMetres(pos);
 
-	point -= QPointF(0.1, 0.1);
-	const QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
+	if (button == Qt::LeftButton) {
+		point -= QPointF(0.1, 0.1);
+		const QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
 
-	if (objects.isEmpty()) {
-		selectObjects({});
+		if (objects.isEmpty()) {
+			selectObjects({});
+			return;
+		}
+
+		Object *object = mind_->getObjectFromUid(objects[0]->getUid());
+		selectObjects(fiterSelection({object}));
 		return;
 	}
-
-	Object *object = mind_->getObjectFromUid(objects[0]->getUid());
-	selectObjects(fiterSelection({object}));
+	if (button == Qt::RightButton) {
+		for (auto &object : selectedObjects_) {
+			if (object->getType() == BS::Type::Unit) {
+				Unit* unit = static_cast<Unit *>(object);
+				unit->setCommand(BS::Command::Move);
+				//TODO set destination with <point>
+				qDebug() << "Move" << unit->getName() << "to" << point;
+			}
+		}
+		return;
+	}
 }
 
 const QList<Object *> &GameWindow::fiterSelection(const QList<Object *> &objects)
