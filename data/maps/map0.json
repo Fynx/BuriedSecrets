@@ -24,7 +24,8 @@
 			"y": 5.0
 		},
 		"soszes": {
-			"type": "faction"
-		}
+		"type": "faction",
+		"food": 1234
+	}
 	}
 }

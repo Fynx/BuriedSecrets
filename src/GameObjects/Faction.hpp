@@ -19,12 +19,13 @@ public:
 	Equipment *getEquipment();
 	Journal *getJournal();
 	QuestLog *getQuestLog();
-	QSet<int> getUnits();
-	int getFood();
-	int getFactionId();
-	bool isNeutralFaction(int uid);
-	void modifyRelation(int uid, int diff);
 
+	const QSet<int> &getUnits() const;
+	int getFood() const;
+	int getFactionId() const;
+	bool isNeutralFaction(int uid) const;
+
+	void modifyRelation(int uid, int diff);
 	int consume(int f);
 
 	virtual void loadFromJson(const QJsonObject &json);

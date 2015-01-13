@@ -12,6 +12,8 @@
 #include "GameObjects/Mob.hpp"
 #include "GameObjects/Unit.hpp"
 
+const int Mind::PlayerFactionId = 0;
+
 Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager)
 	: dataManager(dataManager),
 	  physics(physicsEngine),
@@ -133,16 +135,28 @@ void Mind::removeObject(Object *object)
 	physics->removeObject(object);
 }
 
-Faction *Mind::getFactionFromUid(int uid)
+Faction *Mind::getFactionById(int id)
 {
-	if (!factions.contains(uid))
-		qDebug() << "No such Faction! " << uid;
-	return factions.value(uid);
+	if (!factions.contains(id))
+		qDebug() << "No such Faction! " << id;
+	return factions.value(id);
+}
+
+const Faction *Mind::getFactionById(int id) const
+{
+	if (!factions.contains(id))
+		qDebug() << "No such Faction! " << id;
+	return factions.value(id);
 }
 
 Faction *Mind::getPlayerFaction()
 {
-	return getFactionFromUid(1);
+	return getFactionById(PlayerFactionId);
+}
+
+const Faction *Mind::getPlayerFaction() const
+{
+	return getFactionById(PlayerFactionId);
 }
 
 Object *Mind::createObject(BS::Type type, const QString &name)
@@ -170,6 +184,7 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 		}
 		case BS::Type::Faction: {
 			Faction *faction = new Faction(dataManager->getPrototype(name));
+			factions.insert(faction->getFactionId(), faction);
 			obj = faction;
 			break;
 		}

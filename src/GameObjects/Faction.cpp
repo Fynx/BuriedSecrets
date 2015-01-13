@@ -6,7 +6,9 @@
 
 Faction::Faction(const Prototype *prototype)
 	: Object(prototype)
-{}
+{
+	factionId = prototype->getProperty(Properties::Faction).toInt();
+}
 
 BS::Type Faction::getType() const
 {
@@ -28,22 +30,22 @@ QuestLog *Faction::getQuestLog()
 	return questLog;
 }
 
-QSet<int> Faction::getUnits()
+const QSet<int> &Faction::getUnits() const
 {
 	return units;
 }
 
-int Faction::getFood()
+int Faction::getFood() const
 {
 	return food;
 }
 
-int Faction::getFactionId()
+int Faction::getFactionId() const
 {
 	return factionId;
 }
 
-bool Faction::isNeutralFaction(int uid)
+bool Faction::isNeutralFaction(int uid) const
 {
 	if (!relations.contains(uid))
 		qDebug() << "No such faction! " << uid;
@@ -72,16 +74,14 @@ void Faction::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
 
-	factionId = json[Properties::Faction].toInt();
-	food      = json[Properties::Food].toInt();
+	food = json[Properties::Food].toInt();
 }
 
 QJsonObject Faction::saveToJson() const
 {
 	QJsonObject json = Object::saveToJson();
 
-	json[Properties::Faction] = factionId;
-	json[Properties::Food]    = food;
+	json[Properties::Food] = food;
 
 	return json;
 }

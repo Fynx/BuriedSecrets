@@ -19,6 +19,8 @@ class Mind : public QObject {
 
 Q_OBJECT
 public:
+	static const int PlayerFactionId;
+
 	Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager);
 	~Mind();
 
@@ -41,8 +43,10 @@ public:
 	void addObject(Object* object);
 	void removeObject(Object *object);
 	Object *getObjectFromUid(const int uid);
-	Faction *getFactionFromUid(const int uid);
+	Faction *getFactionById(const int id);
+	const Faction *getFactionById(const int id) const;
 	Faction *getPlayerFaction();
+	const Faction *getPlayerFaction() const;
 
 private:
 	Object *createObject(BS::Type type, const QString &name);

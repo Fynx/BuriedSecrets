@@ -1,4 +1,5 @@
 ﻿set (UserInterface_SRCS
+	CampPanel.cpp
 	CampEquipmentWindow.cpp
 	GameWindow.cpp
 	IsometricPerspective.cpp
@@ -12,6 +13,7 @@
 )
 
 set (UserInterface_HDRS
+	CampPanel.hpp
 	GameWindow.hpp
 	MainMenuWindow.hpp
 	UserInterface.hpp

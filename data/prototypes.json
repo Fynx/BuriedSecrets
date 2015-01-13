@@ -88,6 +88,7 @@
 		}
 	},
 	"soszes": {
-		"type": "faction"
+		"type": "faction",
+		"faction" : 0
 	}
 }
