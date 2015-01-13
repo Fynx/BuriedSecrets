@@ -130,19 +130,35 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 
 void GameWindow::handleGameWidgetClicked(const QPoint &pos)
 {
-// 	qDebug() <<"pixels:" << pos <<"metres" << viewport_->fromPixelsToMetres(pos);
 	QPointF point = viewport_->fromPixelsToMetres(pos);
 
-	//TODO temporary solution: We use random object from 0.2m x 0.2m rect as selected object
 	point -= QPointF(0.1, 0.1);
 	const QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
 
-	if (objects.isEmpty())
+	if (objects.isEmpty()) {
+		selectObjects({});
 		return;
+	}
 
-	//TODO needs not const getObject
-// 	Object *object = objects[0];
-// 	object->property(Properties::IsSelected) = QVariant(true);
+	Object *object = mind_->getObjectFromUid(objects[0]->getUid());
+	selectObjects(fiterSelection({object}));
+}
+
+const QList<Object *> &GameWindow::fiterSelection(const QList<Object *> &objects)
+{
+	//TODO
+	return objects;
+}
+
+void GameWindow::selectObjects(const QList<Object *> &objects)
+{
+	for (auto &object : selectedObjects_)
+		object->property(Properties::IsSelected) = QVariant(false);
+
+	selectedObjects_ = objects;
+
+	for (auto &object : selectedObjects_)
+		object->property(Properties::IsSelected) = QVariant(true);
 }
 
 void GameWindow::update()

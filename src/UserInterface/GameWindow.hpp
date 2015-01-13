@@ -5,12 +5,13 @@
 
 #include <QtWidgets>
 
-class Viewport;
-class Mind;
-class UnitsPanel;
-class CampPanel;
 class CampEquipmentWindow;
+class CampPanel;
 class JournalWindow;
+class Mind;
+class Object;
+class UnitsPanel;
+class Viewport;
 
 static const int UpdateTimerInterval = 100; //in milliseconds
 
@@ -36,6 +37,9 @@ private:
 	void handleGameWidgetClicked(const QPoint &pos);
 	void initViewport();
 
+	const QList<Object *> &fiterSelection(const QList<Object *> &objects);
+	void selectObjects(const QList<Object *> &objects);
+
 	Mind *mind_;
 
 	Viewport *viewport_;
@@ -45,6 +49,8 @@ private:
 	CampEquipmentWindow *campEquipmentWindow_;
 	JournalWindow *journalWindow_;
 	QTimer *updateTimer_;
+
+	QList<Object *> selectedObjects_;
 
 private slots:
 	void update();

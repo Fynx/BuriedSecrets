@@ -33,7 +33,6 @@ public:
 
 private:
 	int food;
-	int factionId;
 	QHash<int, int> relations;
 	Equipment *equipment;
 	Journal *journal;

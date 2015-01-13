@@ -7,7 +7,6 @@
 Faction::Faction(const Prototype *prototype)
 	: Object(prototype)
 {
-	factionId = prototype->getProperty(Properties::Faction).toInt();
 }
 
 BS::Type Faction::getType() const
@@ -42,7 +41,7 @@ int Faction::getFood() const
 
 int Faction::getFactionId() const
 {
-	return factionId;
+	return prototype->getProperty(Properties::Faction).toInt();
 }
 
 bool Faction::isNeutralFaction(int uid) const
