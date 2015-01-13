@@ -17,6 +17,6 @@ AnimatorTest::AnimatorTest(Mind *mind) : Animator(mind)
 void AnimatorTest::act()
 {
 	for (Object * obj : objects){
-		mind->physicsEngine()->setVelocity(obj, QVector2D(50, 45));
+		mind->physicsEngine()->setVelocity(obj, QVector2D(4, 8));
 	}
 }

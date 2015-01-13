@@ -5,6 +5,8 @@
 
 #include "UserInterface/Perspective.hpp"
 
+#include <QDebug>
+
 /**
  * @brief This class represents the viewport.
  *
@@ -37,7 +39,8 @@ public:
 	 */
 	QRectF getCurrentView() const;
 	QPointF getScaledPoint(const QPointF &point) const;
-	QString toString() const;
+	QPointF fromPixelsToMetres(const QPointF &pointInPixels) const;
+	QPointF fromMetresToPixels(const QPointF &pointInMetres) const;
 
 	void moveViewInPixels(const QPointF &deltaInPixels);
 	void moveViewInMetres(const QPointF &deltaInMetres);
@@ -62,3 +65,5 @@ private:
 	float viewHeight;
 	QRectF currentView;
 };
+
+QDebug operator<< (QDebug d, const Viewport &viewport);

@@ -5,6 +5,7 @@
 
 JournalWindow::JournalWindow()
 {
+	hide();
 	closeBtn_ = new QPushButton("Close");
 	connect(closeBtn_, &QPushButton::clicked, this, &JournalWindow::hide);
 

@@ -5,6 +5,7 @@
 
 CampEquipmentWindow::CampEquipmentWindow()
 {
+	hide();
 	closeBtn_ = new QPushButton("Close");
 	connect (closeBtn_, &QPushButton::clicked, this, &CampEquipmentWindow::hide);
 

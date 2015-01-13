@@ -12,7 +12,7 @@
 #include "GameObjects/Mob.hpp"
 #include "GameObjects/Unit.hpp"
 
-const int Mind::PlayerFactionId = 0;
+const int Mind::PlayerFactionId = 1;
 
 Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager *soundsManager)
 	: dataManager(dataManager),

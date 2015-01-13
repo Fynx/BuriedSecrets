@@ -11,8 +11,8 @@
 		"SoszuHouse2": {
 			"type": "building",
 			"animators": [],
-			"x": 1.8,
-			"y": 3.4
+			"x": 10.8,
+			"y": 13.4
 		},
 		"Soszu": {
 			"type": "unit",
@@ -23,9 +23,33 @@
 			"x": 3.0,
 			"y": 5.0
 		},
+		"Soszer": {
+			"type": "unit",
+			"animators": [
+				"AnimatorAnimation"
+			],
+			"x": 20.0,
+			"y": 40.0
+		},
+		"Soszyslaw": {
+			"type": "unit",
+			"animators": [
+				"AnimatorAnimation"
+			],
+			"x": 30.0,
+			"y": 30.0
+		},
+		"Soszman": {
+			"type": "unit",
+			"animators": [
+				"AnimatorAnimation"
+			],
+			"x": 25.0,
+			"y": 25.0
+		},
 		"soszes": {
-		"type": "faction",
-		"food": 1234
-	}
+			"type": "faction",
+			"food": 1234
+		}
 	}
 }

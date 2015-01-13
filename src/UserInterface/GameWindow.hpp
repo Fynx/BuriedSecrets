@@ -30,11 +30,11 @@ public slots:
 
 private:
 	void keyPressEvent(QKeyEvent *event);
+	void mousePressEvent(QMouseEvent *event);
 	void resizeEvent(QResizeEvent *event);
 
-	void initCampEquipmentWidget();
+	void handleGameWidgetClicked(const QPoint &pos);
 	void initViewport();
-	void initJournal();
 
 	Mind *mind_;
 

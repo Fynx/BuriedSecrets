@@ -87,8 +87,108 @@
 			"Run": "SoszuWalking"
 		}
 	},
+	"Soszu": {
+		"type": "unit",
+		"background": "Blah blah",
+		"position": "engineer",
+		"avatar": "no films here",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 123124,
+		"attack": 10,
+		"engineering": 10,
+		"healing": 10,
+		"perception": 10,
+		"defense": 10,
+		"hp": 100,
+		"psychosis": 100,
+		"capacity": 5,
+		"hunger": 2,
+		"sightRange": 30,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking"
+		}
+	},
+	"Soszer": {
+		"type": "unit",
+		"background": "Blah blah",
+		"position": "engineer",
+		"avatar": "no films here",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 123124,
+		"attack": 10,
+		"engineering": 10,
+		"healing": 10,
+		"perception": 10,
+		"defense": 10,
+		"hp": 100,
+		"psychosis": 100,
+		"capacity": 5,
+		"hunger": 2,
+		"sightRange": 30,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking"
+		}
+	},
+	"Soszyslaw": {
+		"type": "unit",
+		"background": "Blah blah",
+		"position": "engineer",
+		"avatar": "no films here",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 123124,
+		"attack": 10,
+		"engineering": 10,
+		"healing": 10,
+		"perception": 10,
+		"defense": 10,
+		"hp": 100,
+		"psychosis": 100,
+		"capacity": 5,
+		"hunger": 2,
+		"sightRange": 30,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking"
+		}
+	},
+	"Soszman": {
+		"type": "unit",
+		"background": "Blah blah",
+		"position": "engineer",
+		"avatar": "no films here",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 123124,
+		"attack": 10,
+		"engineering": 10,
+		"healing": 10,
+		"perception": 10,
+		"defense": 10,
+		"hp": 100,
+		"psychosis": 100,
+		"capacity": 5,
+		"hunger": 2,
+		"sightRange": 30,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking"
+		}
+	},
 	"soszes": {
 		"type": "faction",
-		"faction" : 0
+		"faction" : 1
 	}
 }

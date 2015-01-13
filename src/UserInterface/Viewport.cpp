@@ -29,18 +29,21 @@ QRectF Viewport::getCurrentView() const
 }
 
 
-QPointF Viewport::getScaledPoint(const QPointF &point) const
+QPointF Viewport::fromMetresToPixels(const QPointF &pointInMetres) const
 {
-	return point * zoom;
+	return perspective->fromMetresToPixels(pointInMetres);
 }
 
 
-QString Viewport::toString() const
+QPointF Viewport::fromPixelsToMetres(const QPointF &pointInPixels) const
 {
-	return (QString("Viewport: ") +
-	        QString("\nMap: ") + QString::number(mapWidth) + QString("x") + QString::number(mapHeight) +
-	        QString("\nView: ") + QString::number(viewWidth) + QString("x") + QString::number(viewHeight) +
-	        QString("\nZoom: ") + QString::number(zoom));
+	return perspective->fromPixelsToMetres(pointInPixels);
+}
+
+
+QPointF Viewport::getScaledPoint(const QPointF &point) const
+{
+	return point * zoom;
 }
 
 
@@ -113,4 +116,11 @@ void Viewport::updateView()
 // 	float finalHeight = viewHeight * zoom;
 	currentView = QRectF(topLeft, QPointF(topLeft.x() + viewWidth, topLeft.y() + viewHeight));
 // 	FIXME don't allow the rect to go beyond the map
+}
+
+QDebug operator<< (QDebug d, const Viewport &viewport) {
+	d << "Viewport(";
+		d << "View(" << viewport.getCurrentView() <<")";
+	d << ")";
+	return d;
 }

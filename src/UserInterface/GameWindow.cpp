@@ -5,6 +5,7 @@
 
 #include "DebugManager/DebugManager.hpp"
 #include "Mind/Mind.hpp"
+#include "Common/Strings.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
 #include "UserInterface/Viewport.hpp"
 #include "UserInterface/UnitsPanel.hpp"
@@ -29,16 +30,14 @@ GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	campEquipmentWindow_->setParent(this);
 	journalWindow_->setParent(this);
 
-	initCampEquipmentWidget();
-	initJournal();
-	initViewport();
-
 	connect(campPanel_, &CampPanel::journalActivated, journalWindow_, &JournalWindow::show);
 	connect(campPanel_, &CampPanel::journalActivated, campEquipmentWindow_, &CampEquipmentWindow::hide);
 	connect(campPanel_, &CampPanel::campEQActivated, campEquipmentWindow_, &CampEquipmentWindow::show);
 	connect(campPanel_, &CampPanel::campEQActivated, journalWindow_, &JournalWindow::hide);
 
 	connect(updateTimer_, &QTimer::timeout, this, &GameWindow::update);
+
+	initViewport();
 }
 
 GameWindow::~GameWindow()
@@ -91,6 +90,14 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 	}
 }
 
+void GameWindow::mousePressEvent(QMouseEvent *event)
+{
+	if (childAt(event->pos()) == graphicsWidget_)
+		handleGameWidgetClicked(event->pos());
+
+	QWidget::mousePressEvent(event);
+}
+
 void GameWindow::resizeEvent(QResizeEvent *event)
 {
 	QPoint topLeft;
@@ -117,19 +124,25 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 
 	//set size of viewport
 	viewport_->setViewSizeInPixels(QSizeF(event->size().width(), event->size().height()));
-	qDebug() << viewport_->toString();
 
 	QWidget::resizeEvent(event);
 }
 
-void GameWindow::initCampEquipmentWidget()
+void GameWindow::handleGameWidgetClicked(const QPoint &pos)
 {
-	campEquipmentWindow_->hide();
-}
+// 	qDebug() <<"pixels:" << pos <<"metres" << viewport_->fromPixelsToMetres(pos);
+	QPointF point = viewport_->fromPixelsToMetres(pos);
 
-void GameWindow::initJournal()
-{
-	journalWindow_->hide();
+	//TODO temporary solution: We use random object from 0.2m x 0.2m rect as selected object
+	point -= QPointF(0.1, 0.1);
+	const QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
+
+	if (objects.isEmpty())
+		return;
+
+	//TODO needs not const getObject
+// 	Object *object = objects[0];
+// 	object->property(Properties::IsSelected) = QVariant(true);
 }
 
 void GameWindow::update()
