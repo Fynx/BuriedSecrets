@@ -19,10 +19,8 @@ public:
 	virtual BS::Type getType() const = 0;
 	QString getName() const;
 
-	// Do we really need this? Da fuck iz this?
-	// Dis is A Faction sometimes. And perhaps something else in some cases.
-	Object *getParent() const;
-	void setParent(Object *object);
+	int getFaction() const;
+	void setFaction(int faction);
 
 	BS::State getState() const;
 	void setState(BS::State state);
@@ -50,7 +48,7 @@ protected:
 
 	int uid;
 
-	Object *parent;
+	int factionId;
 	BS::State state;
 	int frame;
 	QMap <QString, QVariant> properties;

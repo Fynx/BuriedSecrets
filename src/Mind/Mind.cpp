@@ -84,6 +84,16 @@ void Mind::loadFromJson(const QJsonObject &json)
 		addObject(p.first, QPointF(p.second.first, p.second.second));
 	}
 
+	/** Set factions */
+
+	for (Object *object : objects) {
+		if (object->getType() == BS::Type::Faction) {
+			factions.insert(object->getFaction(), dynamic_cast<Faction *>(object));
+			for (int objectUid : dynamic_cast<Faction *>(object)->getUnits())
+				getObjectFromUid(objectUid)->setFaction(object->getFaction());
+		}
+	}
+
 	//TODO assign pointers in Objects, you can put uid assigning before this for loop here for safety.
 }
 
@@ -170,6 +180,8 @@ const Faction *Mind::getPlayerFaction() const
 
 Object *Mind::createObject(BS::Type type, const QString &name)
 {
+	//TODO remove EVERYTHING from here except creating the object itself
+
 	Object *obj;
 	switch (type) {
 		case BS::Type::Invalid: {
@@ -193,7 +205,6 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 		}
 		case BS::Type::Faction: {
 			Faction *faction = new Faction(dataManager->getPrototype(name));
-			factions.insert(faction->getFactionId(), faction);
 			obj = faction;
 			break;
 		}

@@ -8,7 +8,7 @@
 int Object::LastUid = Object::InvalidUid;
 
 Object::Object(const Prototype *prototype)
-	: prototype(prototype), uid(InvalidUid), parent(nullptr), state(BS::State::Idle), frame(0)
+	: prototype(prototype), uid(InvalidUid), state(BS::State::Idle), frame(0)
 {}
 
 Object::~Object()
@@ -37,14 +37,14 @@ QString Object::getName() const
 	return prototype->getProperty(Properties::Name).toString();
 }
 
-Object *Object::getParent() const
+int Object::getFaction() const
 {
-	return parent;
+	return factionId;
 }
 
-void Object::setParent(Object *object)
+void Object::setFaction(int faction)
 {
-	parent = object;
+	factionId = faction;
 }
 
 BS::State Object::getState() const
@@ -75,18 +75,18 @@ void Object::setFrame(int frame)
 
 void Object::loadFromJson(const QJsonObject &json)
 {
-	//TODO
 	uid = json[Properties::Uid].toInt();
+	factionId = json[Properties::Faction].toInt();
 	updateUid(uid);
 }
 
 QJsonObject Object::saveToJson() const
 {
-	//TODO
 	QJsonObject json;
 	json.insert(Properties::Name, getName());
 	json.insert(Properties::Type, BS::changeTypeToString(getType()));
 	json.insert(Properties::Uid, getUid());
+	json.insert(Properties::Faction, getFaction());
 	return json;
 }
 

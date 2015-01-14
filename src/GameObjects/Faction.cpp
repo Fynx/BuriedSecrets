@@ -39,11 +39,6 @@ int Faction::getFood() const
 	return food;
 }
 
-int Faction::getFactionId() const
-{
-	return prototype->getProperty(Properties::Faction).toInt();
-}
-
 bool Faction::isNeutralFaction(int uid) const
 {
 	if (!relations.contains(uid))
@@ -74,6 +69,10 @@ void Faction::loadFromJson(const QJsonObject &json)
 	Object::loadFromJson(json);
 
 	food = json[Properties::Food].toInt();
+
+	QJsonArray us = json[Properties::Units].toArray();
+	for (const QJsonValue &value : us)
+		units.insert(value.toInt());
 }
 
 QJsonObject Faction::saveToJson() const
@@ -81,6 +80,11 @@ QJsonObject Faction::saveToJson() const
 	QJsonObject json = Object::saveToJson();
 
 	json[Properties::Food] = food;
+
+	QJsonArray us;
+	for (int u : units)
+		us.append(u);
+	json[Properties::Units] = us;
 
 	return json;
 }

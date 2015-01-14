@@ -22,7 +22,6 @@ public:
 
 	const QSet<int> &getUnits() const;
 	int getFood() const;
-	int getFactionId() const;
 	bool isNeutralFaction(int uid) const;
 
 	void modifyRelation(int uid, int diff);

@@ -25,7 +25,8 @@
 				"AnimatorMove"
 			],
 			"x": 3.0,
-			"y": 5.0
+			"y": 5.0,
+			"uid": 1
 		},
 		{
 			"name": "Soszer",
@@ -35,7 +36,8 @@
 				"AnimatorMove"
 			],
 			"x": 20.0,
-			"y": 40.0
+			"y": 40.0,
+			"uid": 2
 		},
 		{
 			"name": "Soszyslaw",
@@ -60,7 +62,12 @@
 		{
 			"name": "soszes",
 			"type": "faction",
-			"food": 1234
+			"food": 1234,
+			"faction": 1,
+			"units": [
+				1,
+				2
+			]
 		}
 	]
 }
