@@ -151,7 +151,9 @@ void GameWindow::handleGameWidgetClicked(const QPoint &pos, Qt::MouseButton butt
 			if (object->getType() == BS::Type::Unit) {
 				Unit* unit = static_cast<Unit *>(object);
 				unit->setCommand(BS::Command::Move);
-				//TODO set destination with <point>
+
+				QPointF pos = QPointF(unit->property(Properties::X).toDouble(), unit->property(Properties::Y).toDouble());
+				unit->setCurrentPath(mind_->getMapManager()->getPath(pos, point));
 				qDebug() << "Move" << unit->getName() << "to" << point;
 			}
 		}
@@ -178,6 +180,7 @@ void GameWindow::selectObjects(const QList<Object *> &objects)
 
 void GameWindow::update()
 {
+	unitsPanel_->update(mind_);
 	campPanel_->update(mind_);
 }
 

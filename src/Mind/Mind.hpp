@@ -31,6 +31,7 @@ public:
 	QJsonObject saveToJson() const;
 
 	const Map *getMap() const;
+	const MapManager *getMapManager() const;
 
 	/**
 	 * @brief Adds an object to the inner collection and to physics.

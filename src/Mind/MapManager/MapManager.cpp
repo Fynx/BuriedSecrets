@@ -14,7 +14,7 @@ const Map *MapManager::getMap() const
 
 QList<QPointF> MapManager::getPath(const QPointF &from, const QPointF &to) const
 {
-	QList<QPointF> result;
+	QList<QPointF> result{to};
 
 	// TODO
 

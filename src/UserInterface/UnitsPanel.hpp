@@ -5,15 +5,18 @@
 
 #include <QtWidgets>
 
+class Mind;
 class UnitWidget;
 
 class UnitsPanel : public QFrame{
 public:
 	UnitsPanel();
 	QSize sizeHint() const;
-	void addUnitWidget(UnitWidget *unitWidget);
+	void update(const Mind *mind);
 
 private:
+	void addUnitWidget(UnitWidget *unitWidget);
+
 	//it may render obsolete in the future
 	QList <UnitWidget *> unitWidgets_;
 };

@@ -4,6 +4,7 @@
 #include "UnitsPanel.hpp"
 
 #include "UserInterface/UnitWidget.hpp"
+#include "Mind/Mind.hpp"
 
 UnitsPanel::UnitsPanel()
 {
@@ -22,9 +23,14 @@ QSize UnitsPanel::sizeHint() const
 	if (unitWidgets_.isEmpty())
 		return QSize{0,0};
 
-	int totalWidth = unitWidgets_[0]->sizeHint().width() * unitWidgets_.size();\
+	int totalWidth = unitWidgets_[0]->sizeHint().width() * unitWidgets_.size();
 	int totalHeight = unitWidgets_[0]->sizeHint().height();
 	return QSize{totalWidth, totalHeight};
+}
+
+void UnitsPanel::update(const Mind *mind)
+{
+
 }
 
 void UnitsPanel::addUnitWidget(UnitWidget *unitWidget)

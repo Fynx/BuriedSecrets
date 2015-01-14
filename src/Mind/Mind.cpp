@@ -114,6 +114,11 @@ const Map *Mind::getMap() const
 	return mapManager->getMap();
 }
 
+const MapManager *Mind::getMapManager() const
+{
+	return mapManager;
+}
+
 void Mind::addObject(Object *object, const QPointF &position)
 {
 	addObject(object);

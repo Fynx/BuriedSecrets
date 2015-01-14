@@ -18,7 +18,8 @@
 			"type": "unit",
 			"animators": [
 				"AnimatorTest",
-				"AnimatorAnimation"
+				"AnimatorAnimation",
+				"AnimatorMove"
 			],
 			"x": 3.0,
 			"y": 5.0
@@ -26,7 +27,8 @@
 		"Soszer": {
 			"type": "unit",
 			"animators": [
-				"AnimatorAnimation"
+				"AnimatorAnimation",
+				"AnimatorMove"
 			],
 			"x": 20.0,
 			"y": 40.0
@@ -34,7 +36,8 @@
 		"Soszyslaw": {
 			"type": "unit",
 			"animators": [
-				"AnimatorAnimation"
+				"AnimatorAnimation",
+				"AnimatorMove"
 			],
 			"x": 30.0,
 			"y": 30.0
@@ -42,7 +45,8 @@
 		"Soszman": {
 			"type": "unit",
 			"animators": [
-				"AnimatorAnimation"
+				"AnimatorAnimation",
+				"AnimatorMove"
 			],
 			"x": 25.0,
 			"y": 25.0
