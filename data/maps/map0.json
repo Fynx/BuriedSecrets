@@ -1,20 +1,23 @@
 {
 	"mapName": "Map0",
 	"mapDesc": "map0.wtf",
-	"objects": {
-		"SoszuHouse": {
+	"objects": [
+		{
+			"name": "SoszuHouse",
 			"type": "building",
 			"animators": [],
 			"x": 2,
 			"y": 3
 		},
-		"SoszuHouse2": {
+		{
+			"name": "SoszuHouse2",
 			"type": "building",
 			"animators": [],
 			"x": 10.8,
 			"y": 13.4
 		},
-		"Soszu": {
+		{
+			"name": "Soszu",
 			"type": "unit",
 			"animators": [
 				"AnimatorTest",
@@ -24,7 +27,8 @@
 			"x": 3.0,
 			"y": 5.0
 		},
-		"Soszer": {
+		{
+			"name": "Soszer",
 			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
@@ -33,7 +37,8 @@
 			"x": 20.0,
 			"y": 40.0
 		},
-		"Soszyslaw": {
+		{
+			"name": "Soszyslaw",
 			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
@@ -42,7 +47,8 @@
 			"x": 30.0,
 			"y": 30.0
 		},
-		"Soszman": {
+		{
+			"name": "Soszman",
 			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
@@ -51,9 +57,10 @@
 			"x": 25.0,
 			"y": 25.0
 		},
-		"soszes": {
+		{
+			"name": "soszes",
 			"type": "faction",
 			"food": 1234
 		}
-	}
+	]
 }

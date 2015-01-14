@@ -57,14 +57,18 @@ void Mind::loadFromJson(const QJsonObject &json)
 	delete mapManager;
 	mapManager = new MapManager(json);
 
-	const QJsonObject &objs = json[Properties::Objects].toObject();
+	const QJsonArray &objs = json[Properties::Objects].toArray();
 
 	QSet<QPair<Object *, QPair<double, double> > > objectsToAdd;
 
-	for (const QString &key : objs.keys()) {
-		qDebug() << "\tload" << key;
-		const QJsonObject &obj = objs[key].toObject();
-		Object *object = createObjectFromJson(key, obj);
+	for (const QJsonValue &val : objs) {
+		const QJsonObject &obj = val.toObject();
+		if (!obj.contains(Properties::Name)) {
+			err("Object without a name! Skipping.");
+			continue;
+		}
+		qDebug() << "\tload" << obj[Properties::Name].toString();
+		Object *object = createObjectFromJson(obj[Properties::Name].toString(), obj);
 
 		for (const QJsonValue &value : obj[Properties::Animators].toArray())
 			if (!animatorManager->addObject(value.toString(), object))
@@ -86,7 +90,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 QJsonObject Mind::saveToJson() const
 {
 	QJsonObject json;
-	QJsonObject objs;
+	QJsonArray objs;
 
 	json.insert(Properties::MapName, mapManager->getMap()->getName());
 	json.insert(Properties::MapDesc, mapManager->getMap()->getDesc());
@@ -102,7 +106,7 @@ QJsonObject Mind::saveToJson() const
 		objJson.insert(Properties::X, pos.x());
 		objJson.insert(Properties::Y, pos.y());
 
-		objs.insert(obj->getName(), objJson);
+		objs.append(objJson);
 	}
 	json.insert(Properties::Objects, objs);
 
