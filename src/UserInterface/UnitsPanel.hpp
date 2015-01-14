@@ -9,14 +9,15 @@ class Mind;
 class UnitWidget;
 
 class UnitsPanel : public QFrame{
+	Q_OBJECT
 public:
 	UnitsPanel();
 	QSize sizeHint() const;
-	void update(const Mind *mind);
+	void refresh(const Mind *mind);
 
 private:
-	void addUnitWidget(UnitWidget *unitWidget);
-
-	//it may render obsolete in the future
 	QList <UnitWidget *> unitWidgets_;
+
+signals:
+	void sizeChanged();
 };

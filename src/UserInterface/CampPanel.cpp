@@ -12,7 +12,7 @@ CampPanel::CampPanel()
 	initLayout();
 }
 
-void CampPanel::update(const Mind *mind)
+void CampPanel::refresh(const Mind *mind)
 {
 	setFoodAmount(mind->getPlayerFaction()->getFood());
 }

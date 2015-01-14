@@ -34,6 +34,11 @@ const QSet<int> &Faction::getUnits() const
 	return units;
 }
 
+const QList<int> &Faction::getAllUnits() const
+{
+	return allUnits;
+}
+
 int Faction::getFood() const
 {
 	return food;
@@ -71,8 +76,10 @@ void Faction::loadFromJson(const QJsonObject &json)
 	food = json[Properties::Food].toInt();
 
 	QJsonArray us = json[Properties::Units].toArray();
-	for (const QJsonValue &value : us)
+	for (const QJsonValue &value : us) {
 		units.insert(value.toInt());
+		allUnits.append(value.toInt());
+	}
 }
 
 QJsonObject Faction::saveToJson() const

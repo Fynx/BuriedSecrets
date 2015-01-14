@@ -53,7 +53,8 @@ private:
 	QList<Object *> selectedObjects_;
 
 private slots:
-	void update();
+	void refresh();
+	void adjustUnitsPanelGeometry();
 
 signals:
 	void showMainMenu();

@@ -44,6 +44,7 @@ public:
 	void addObject(Object* object);
 	void removeObject(Object *object);
 	Object *getObjectFromUid(const int uid);
+	const Object *getObjectFromUid(const int uid) const;
 	Faction *getFactionById(const int id);
 	const Faction *getFactionById(const int id) const;
 	Faction *getPlayerFaction();

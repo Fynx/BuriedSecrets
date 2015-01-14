@@ -48,7 +48,6 @@ private:
 
 	//DEV TMP
 	void initDevActionsMenu();
-	QAction *actionUILoop_;
 
 private slots:
 	void onShowMainMenu();

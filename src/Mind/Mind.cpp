@@ -33,15 +33,6 @@ Mind::~Mind()
 	qDeleteAll(objects);
 }
 
-Object *Mind::getObjectFromUid(const int uid)
-{
-	if (uidToObject.contains(uid))
-		return uidToObject[uid];
-	else
-		warn("Mind::getObjectFromUid: uid not found");
-	return nullptr;
-}
-
 PhysicsEngine *Mind::physicsEngine()
 {
 	return physics;
@@ -152,6 +143,24 @@ void Mind::removeObject(Object *object)
 	objects.removeAll(object);
 	uidToObject.remove(object->getUid());
 	physics->removeObject(object);
+}
+
+Object *Mind::getObjectFromUid(const int uid)
+{
+	if (uidToObject.contains(uid))
+		return uidToObject[uid];
+	else
+		warn("Mind::getObjectFromUid: uid not found");
+	return nullptr;
+}
+
+const Object *Mind::getObjectFromUid(const int uid) const
+{
+	if (uidToObject.contains(uid))
+		return uidToObject[uid];
+	else
+		warn("Mind::getObjectFromUid: uid not found");
+	return nullptr;
 }
 
 Faction *Mind::getFactionById(int id)

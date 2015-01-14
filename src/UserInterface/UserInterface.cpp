@@ -51,10 +51,6 @@ void UserInterface::newGame(Mind *mind, QWidget *graphicsWidget)
 
 	switchToWindow(Window::Game);
 	mainMenuWindow_->adjustButtonsVisibility();
-
-	//TODO
-	//Here should be start of GameWindow update loop (not connect)
-	connect(actionUILoop_, &QAction::triggered, gameWindow_, &GameWindow::startUpdateLoop);
 }
 
 void UserInterface::initWindows()
@@ -82,7 +78,6 @@ void UserInterface::switchToWindow(Window window)
 void UserInterface::clearGame()
 {
 	if (gameInProgress()) {
-		disconnect(actionUILoop_, &QAction::triggered, gameWindow_, &GameWindow::startUpdateLoop);
 		disconnect(gameWindow_, &GameWindow::showMainMenu, this, &UserInterface::onShowMainMenu);
 		stackedWidget_->removeWidget(gameWindow_);
 		delete gameWindow_;
@@ -102,9 +97,6 @@ void UserInterface::initDevActionsMenu()
 	QAction *actionSaveMap = new QAction("Save level", mainWindow_);
 	connect(actionSaveMap, &QAction::triggered, general_, &General::saveLevel);
 	menuFile->addAction(actionSaveMap);
-
-	actionUILoop_ = new QAction("Start UI loop", mainWindow_);
-	menuFile->addAction(actionUILoop_);
 
 	QAction *actionQuit = new QAction("Quit", mainWindow_);
 	connect(actionQuit, &QAction::triggered, mainWindow_, &QMainWindow::close);
@@ -130,6 +122,9 @@ void UserInterface::onNewGame()
 {
 	general_->startNewGame();
 	general_->loadLevel();
+
+	//TMP TODO should be in UserInterface::onNewGame, but it is called before loading level
+	gameWindow_->startUpdateLoop();
 }
 
 void UserInterface::onContinueGame()

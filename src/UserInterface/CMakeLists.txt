@@ -16,6 +16,7 @@ set (UserInterface_HDRS
 	CampPanel.hpp
 	GameWindow.hpp
 	MainMenuWindow.hpp
+	UnitsPanel.hpp
 	UserInterface.hpp
 )
 

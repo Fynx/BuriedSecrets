@@ -10,12 +10,6 @@ UnitsPanel::UnitsPanel()
 {
 	setLayout(new QHBoxLayout);
 	setAutoFillBackground(true);
-
-	//TMP
-	addUnitWidget(new UnitWidget);
-	addUnitWidget(new UnitWidget);
-	addUnitWidget(new UnitWidget);
-	addUnitWidget(new UnitWidget);
 }
 
 QSize UnitsPanel::sizeHint() const
@@ -28,13 +22,24 @@ QSize UnitsPanel::sizeHint() const
 	return QSize{totalWidth, totalHeight};
 }
 
-void UnitsPanel::update(const Mind *mind)
+void UnitsPanel::refresh(const Mind *mind)
 {
+	QList <int> allUnitsUids = mind->getPlayerFaction()->getAllUnits();
 
-}
+	//check if there are new units
+	int iter = unitWidgets_.size();
 
-void UnitsPanel::addUnitWidget(UnitWidget *unitWidget)
-{
-	unitWidgets_.append(unitWidget);
-	layout()->addWidget(unitWidget);
+	if (iter < allUnitsUids.size()) {
+		while (iter < allUnitsUids.size()) {
+			const Unit *unit = dynamic_cast<const Unit *>(mind->getObjectFromUid(allUnitsUids[iter]));
+			UnitWidget *uw = new UnitWidget(unit);
+			unitWidgets_.append(uw);
+			layout()->addWidget(uw);
+			++iter;
+		}
+		emit sizeChanged();
+	}
+
+	for (auto &iter : unitWidgets_)
+		iter->refresh();
 }

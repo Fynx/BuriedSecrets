@@ -30,12 +30,14 @@ GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	campEquipmentWindow_->setParent(this);
 	journalWindow_->setParent(this);
 
+	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameWindow::adjustUnitsPanelGeometry);
+
 	connect(campPanel_, &CampPanel::journalActivated, journalWindow_, &JournalWindow::show);
 	connect(campPanel_, &CampPanel::journalActivated, campEquipmentWindow_, &CampEquipmentWindow::hide);
 	connect(campPanel_, &CampPanel::campEQActivated, campEquipmentWindow_, &CampEquipmentWindow::show);
 	connect(campPanel_, &CampPanel::campEQActivated, journalWindow_, &JournalWindow::hide);
 
-	connect(updateTimer_, &QTimer::timeout, this, &GameWindow::update);
+	connect(updateTimer_, &QTimer::timeout, this, &GameWindow::refresh);
 
 	initViewport();
 }
@@ -105,26 +107,24 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 	QSize widgetSize;
 
 	//maximize graphicsWidget_
-	graphicsWidget_->setGeometry(0, 0, event->size().width(), event->size().height());
+	graphicsWidget_->setGeometry(geometry());
 
-	//resize unitsPanel
-	topLeft = QPoint((event->size().width() - unitsPanel_->sizeHint().width()) / 2, 0);
-	unitsPanel_->setGeometry(QRect(topLeft, unitsPanel_->sizeHint()));
+	adjustUnitsPanelGeometry();
 
 	//resize campPanel
-	topLeft = QPoint(event->size().width() - CampPanelSize.width(),
-	                 event->size().height() - CampPanelSize.height());
+	topLeft = QPoint(geometry().width() - CampPanelSize.width(),
+	                 geometry().height() - CampPanelSize.height());
 	campPanel_->setGeometry(QRect(topLeft, CampPanelSize));
 
 	//set size of campEquipmentWindow
 	topLeft = QPoint(0, unitsPanel_->sizeHint().height());
-	widgetSize = QSize(event->size().width() / 2, event->size().height() - topLeft.y());
+	widgetSize = QSize(geometry().width() / 2, geometry().height() - topLeft.y());
 	campEquipmentWindow_->setGeometry(QRect(topLeft, widgetSize));
 	//set size of journalWindow
 	journalWindow_->setGeometry(QRect(topLeft, widgetSize));
 
 	//set size of viewport
-	viewport_->setViewSizeInPixels(QSizeF(event->size().width(), event->size().height()));
+	viewport_->setViewSizeInPixels(QSizeF(geometry().width(), geometry().height()));
 
 	QWidget::resizeEvent(event);
 }
@@ -178,10 +178,16 @@ void GameWindow::selectObjects(const QList<Object *> &objects)
 		object->property(Properties::IsSelected) = QVariant(true);
 }
 
-void GameWindow::update()
+void GameWindow::refresh()
 {
-	unitsPanel_->update(mind_);
-	campPanel_->update(mind_);
+	unitsPanel_->refresh(mind_);
+	campPanel_->refresh(mind_);
+}
+
+void GameWindow::adjustUnitsPanelGeometry()
+{
+	QPoint topLeft = QPoint((geometry().width() - unitsPanel_->sizeHint().width()) / 2, 0);
+	unitsPanel_->setGeometry(QRect(topLeft, unitsPanel_->sizeHint()));
 }
 
 void GameWindow::initViewport()

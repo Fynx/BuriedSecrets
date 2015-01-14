@@ -13,7 +13,7 @@ class CampPanel : public QFrame {
 	Q_OBJECT
 public:
 	CampPanel();
-	void update(const Mind *mind);
+	void refresh(const Mind *mind);
 
 private:
 	void initWidgets();

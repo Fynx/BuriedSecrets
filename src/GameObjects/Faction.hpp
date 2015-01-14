@@ -21,6 +21,7 @@ public:
 	QuestLog *getQuestLog();
 
 	const QSet<int> &getUnits() const;
+	const QList<int> &getAllUnits() const;
 	int getFood() const;
 	bool isNeutralFaction(int uid) const;
 
@@ -37,4 +38,5 @@ private:
 	Journal *journal;
 	QuestLog *questLog;
 	QSet<int> units;
+	QList<int> allUnits;
 };
