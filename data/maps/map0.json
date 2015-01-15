@@ -20,7 +20,6 @@
 			"name": "Soszu",
 			"type": "unit",
 			"animators": [
-				"AnimatorTest",
 				"AnimatorAnimation",
 				"AnimatorMove"
 			],
@@ -47,12 +46,14 @@
 				"AnimatorMove"
 			],
 			"x": 30.0,
-			"y": 30.0
+			"y": 30.0,
+			"uid" : 3
 		},
 		{
 			"name": "Soszman",
 			"type": "unit",
 			"animators": [
+				"AnimatorTest",
 				"AnimatorAnimation",
 				"AnimatorMove"
 			],
@@ -64,10 +65,7 @@
 			"type": "faction",
 			"food": 1234,
 			"faction": 1,
-			"units": [
-				1,
-				2
-			]
+			"units": [1, 2, 3]
 		}
 	]
 }

@@ -63,6 +63,11 @@ QVariant &Object::property(const QString &name)
 	return properties[name];
 }
 
+const QVariant Object::property(const QString &name) const
+{
+	return properties[name];
+}
+
 int Object::getFrame() const
 {
 	return frame;

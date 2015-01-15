@@ -10,6 +10,7 @@ UnitsPanel::UnitsPanel()
 {
 	setLayout(new QHBoxLayout);
 	setAutoFillBackground(true);
+	connect(&signalMapper_, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped), this, &UnitsPanel::unitSelected);
 }
 
 QSize UnitsPanel::sizeHint() const
@@ -33,8 +34,13 @@ void UnitsPanel::refresh(const Mind *mind)
 		while (iter < allUnitsUids.size()) {
 			const Unit *unit = dynamic_cast<const Unit *>(mind->getObjectFromUid(allUnitsUids[iter]));
 			UnitWidget *uw = new UnitWidget(unit);
+
 			unitWidgets_.append(uw);
 			layout()->addWidget(uw);
+			connect(uw, &UnitWidget::selected,
+			        &signalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
+			signalMapper_.setMapping(uw, unit->getUid());
+
 			++iter;
 		}
 		emit sizeChanged();

@@ -8,9 +8,10 @@
 class Unit;
 class Mind;
 
-static const QSize WidgetSize{200, 100};
+static const QSize WidgetSize{210, 120};
 
 class UnitWidget : public QFrame {
+	Q_OBJECT
 public:
 	UnitWidget(const Unit *unit);
 	QSize sizeHint() const;
@@ -30,4 +31,7 @@ private:
 	QProgressBar *psychosisBar_;
 	QProgressBar *encumbranceBar_;
 	QLabel *behaviourLabel_;
+
+signals:
+	void selected();
 };

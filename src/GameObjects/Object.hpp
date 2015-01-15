@@ -26,6 +26,7 @@ public:
 	void setState(BS::State state);
 
 	QVariant &property(const QString &name);
+	const QVariant property(const QString &name) const;
 
 	//TODO
 	// Number 'frame' represents the current frame in the current action.

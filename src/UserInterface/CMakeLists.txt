@@ -17,6 +17,7 @@ set (UserInterface_HDRS
 	GameWindow.hpp
 	MainMenuWindow.hpp
 	UnitsPanel.hpp
+	UnitWidget.hpp
 	UserInterface.hpp
 )
 

@@ -31,6 +31,7 @@ GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	journalWindow_->setParent(this);
 
 	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameWindow::adjustUnitsPanelGeometry);
+	connect(unitsPanel_, &UnitsPanel::unitSelected, this, &GameWindow::selectUnit);
 
 	connect(campPanel_, &CampPanel::journalActivated, journalWindow_, &JournalWindow::show);
 	connect(campPanel_, &CampPanel::journalActivated, campEquipmentWindow_, &CampEquipmentWindow::hide);
@@ -161,6 +162,18 @@ void GameWindow::handleGameWidgetClicked(const QPoint &pos, Qt::MouseButton butt
 	}
 }
 
+void GameWindow::initViewport()
+{
+	// Number of pixels per meter
+	const float pixelToMetresScale = 30.0f;
+	// TODO after MapManager is added and there is some map passed to UI, we will need to get the real size here.
+	// For now:
+	const float mapWidth = 500;
+	const float mapHeight = 500;
+	viewport_ = new Viewport(new IsometricPerspective(pixelToMetresScale));
+	viewport_->setMapSize(mapWidth, mapHeight);
+}
+
 const QList<Object *> &GameWindow::fiterSelection(const QList<Object *> &objects)
 {
 	//TODO
@@ -174,8 +187,10 @@ void GameWindow::selectObjects(const QList<Object *> &objects)
 
 	selectedObjects_ = objects;
 
-	for (auto &object : selectedObjects_)
+	for (auto &object : selectedObjects_) {
 		object->property(Properties::IsSelected) = QVariant(true);
+		qDebug() << object->getName();
+	}
 }
 
 void GameWindow::refresh()
@@ -190,14 +205,7 @@ void GameWindow::adjustUnitsPanelGeometry()
 	unitsPanel_->setGeometry(QRect(topLeft, unitsPanel_->sizeHint()));
 }
 
-void GameWindow::initViewport()
+void GameWindow::selectUnit(int uid)
 {
-	// Number of pixels per meter
-	const float pixelToMetresScale = 30.0f;
-	// TODO after MapManager is added and there is some map passed to UI, we will need to get the real size here.
-	// For now:
-	const float mapWidth = 500;
-	const float mapHeight = 500;
-	viewport_ = new Viewport(new IsometricPerspective(pixelToMetresScale));
-	viewport_->setMapSize(mapWidth, mapHeight);
+	selectObjects({mind_->getObjectFromUid(uid)});
 }

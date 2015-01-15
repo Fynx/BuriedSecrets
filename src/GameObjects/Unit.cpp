@@ -9,7 +9,9 @@ using namespace BS;
 
 Unit::Unit(const Prototype *prototype)
 	: Object(prototype)
-{}
+{
+	property(Properties::IsSelected) = false;
+}
 
 BS::Type Unit::getType() const
 {

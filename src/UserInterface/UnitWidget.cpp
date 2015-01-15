@@ -4,12 +4,13 @@
 #include "UnitWidget.hpp"
 
 #include "GameObjects/Unit.hpp"
+#include "Common/Strings.hpp"
 
 UnitWidget::UnitWidget(const Unit *unit) : unit_(unit)
 {
 	setAutoFillBackground(true);
-	setFrameStyle(QFrame::StyledPanel | QFrame::Raised);
 	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+	setLineWidth(3);
 
 	initWidgets();
 	initLayout();
@@ -32,6 +33,11 @@ void UnitWidget::refresh()
 	encumbranceBar_->setValue(unit_->getEncumbrance());
 
 	behaviourLabel_->setText("Defensive");
+
+	if (unit_->property(Properties::IsSelected).toBool())
+		setFrameStyle(QFrame::Panel | QFrame::Raised);
+	else
+		setFrameStyle(QFrame::Panel | QFrame::Sunken);
 }
 
 void UnitWidget::initWidgets()
@@ -45,6 +51,7 @@ void UnitWidget::initWidgets()
 
 	face_ = new QPushButton("Face");
 	face_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	connect(face_, &QPushButton::clicked, this, &UnitWidget::selected);
 
 
 	hpBar_ = new QProgressBar;
@@ -69,8 +76,8 @@ void UnitWidget::initLayout()
 	leftLayout->addWidget(campIcon_);
 
 	QVBoxLayout *middleLayout = new QVBoxLayout;
-	middleLayout->addWidget(face_);
 	middleLayout->addWidget(name_);
+	middleLayout->addWidget(face_);
 
 	QVBoxLayout *rightLayout = new QVBoxLayout;
 	rightLayout->addWidget(hpBar_);

@@ -8,7 +8,7 @@
 class Mind;
 class UnitWidget;
 
-class UnitsPanel : public QFrame{
+class UnitsPanel : public QFrame {
 	Q_OBJECT
 public:
 	UnitsPanel();
@@ -17,7 +17,9 @@ public:
 
 private:
 	QList <UnitWidget *> unitWidgets_;
+	QSignalMapper signalMapper_;
 
 signals:
 	void sizeChanged();
+	void unitSelected(int uid);
 };

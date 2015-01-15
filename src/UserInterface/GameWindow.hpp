@@ -55,6 +55,7 @@ private:
 private slots:
 	void refresh();
 	void adjustUnitsPanelGeometry();
+	void selectUnit(int uid);
 
 signals:
 	void showMainMenu();
