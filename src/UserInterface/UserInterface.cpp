@@ -51,6 +51,8 @@ void UserInterface::newGame(Mind *mind, QWidget *graphicsWidget)
 
 	switchToWindow(Window::Game);
 	mainMenuWindow_->adjustButtonsVisibility();
+
+	gameWindow_->startUpdateLoop();
 }
 
 void UserInterface::initWindows()
@@ -90,10 +92,6 @@ void UserInterface::initDevActionsMenu()
 	//these things are not going to be here, so don't worry about menu and qt signals
 	QMenu *menuFile = mainWindow_->menuBar()->addMenu("File");
 
-	QAction *actionLoadMap = new QAction("Load level", mainWindow_);
-	connect(actionLoadMap, &QAction::triggered, general_, &General::loadLevel);
-	menuFile->addAction(actionLoadMap);
-
 	QAction *actionSaveMap = new QAction("Save level", mainWindow_);
 	connect(actionSaveMap, &QAction::triggered, general_, &General::saveLevel);
 	menuFile->addAction(actionSaveMap);
@@ -121,10 +119,6 @@ void UserInterface::onShowMainMenu()
 void UserInterface::onNewGame()
 {
 	general_->startNewGame();
-	general_->loadLevel();
-
-	//TMP TODO should be in UserInterface::onNewGame, but it is called before loading level
-	gameWindow_->startUpdateLoop();
 }
 
 void UserInterface::onContinueGame()

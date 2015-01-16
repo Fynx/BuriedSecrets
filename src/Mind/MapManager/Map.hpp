@@ -20,10 +20,14 @@ public:
 	 */
 	bool canStepAt(const float x, const float y) const;
 
-	QString getName() const;
-	QString getDesc() const;
+	const QString & getName() const;
+	const QString & getDesc() const;
+	const QSizeF & getSize() const;
 
 private:
 	//TODO extract data into fields or something
 	QJsonObject json;
+	QString name;
+	QString desc;
+	QSizeF size;
 };

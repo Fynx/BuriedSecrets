@@ -39,42 +39,42 @@ void General::clearGameModules()
 	delete physicsEngine;
 	delete soundsManager;
 
-	info("done.");
+	info("Done.");
 }
 
 void General::startNewGame()
 {
 	/** Order is the first law of heaven */
-	info("New game");
+	info("Starting new game...");
 
 	clearGameModules();
 
 	soundsManager = new SoundsManager;
 	physicsEngine = new Box2DEngine;
 
+	//Initialize & load Mind
 	//TODO Mind should not have access to dataManager
 	mind = new Mind(dataManager, physicsEngine, soundsManager);
-
-	graphics = new Graphics(physicsEngine, dataManager);
-
-	userInterface->newGame(mind, graphics->getGraphicsWidget());
-	graphics->startRendering(userInterface->getViewport());
-}
-
-void General::loadLevel()
-{
-	info("Loading level...");
 	QJsonObject json = dataManager->loadJsonFromFile("data/maps/map0.json");
 	mind->loadFromJson(json);
+
+	//Initialize & load Graphics
+	graphics = new Graphics(physicsEngine, dataManager);
 	graphics->loadMap(mind->getMap());
-	info("done.");
+
+	//start UI & Graphics
+	//WARNING starting newGame in UI must be after all data is loaded to Mind
+	userInterface->newGame(mind, graphics->getGraphicsWidget());
+	graphics->startRendering(userInterface->getViewport());
+
+	info("Done.");
 }
 
 void General::saveLevel()
 {
 	info("Saving level...");
 	dataManager->saveJsonToFile("data/maps/save0.json", mind->saveToJson());
-	info("done.");
+	info("Done.");
 }
 
 void General::toggleDisplayBasePolygons()

@@ -5,7 +5,10 @@
 #include "Mind/MapManager/Map.hpp"
 
 Map::Map(const QJsonObject &json)
-	: json(json)
+	: json(json),
+	  name(json[Properties::MapName].toString()),
+	  desc(json[Properties::MapDesc].toString()),
+	  size(json[Properties::MapWidth].toDouble(), json[Properties::MapHeight].toDouble())
 {}
 
 const QJsonObject &Map::getJson() const
@@ -13,12 +16,17 @@ const QJsonObject &Map::getJson() const
 	return json;
 }
 
-QString Map::getName() const
+const QString &Map::getName() const
 {
-	return json[Properties::MapName].toString();
+	return name;
 }
 
-QString Map::getDesc() const
+const QString &Map::getDesc() const
 {
-	return json[Properties::MapDesc].toString();
+	return desc;
+}
+
+const QSizeF &Map::getSize() const
+{
+	return size;
 }

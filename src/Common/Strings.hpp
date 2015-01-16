@@ -38,6 +38,8 @@ namespace Properties {
 	const QString Ingredients   = "ingredients";
 	const QString MapName       = "mapName";
 	const QString MapDesc       = "mapDesc";
+	const QString MapWidth      = "mapWidth";
+	const QString MapHeight     = "mapHeight";
 	const QString MovementSpeed = "movementSpeed";
 	const QString Name          = "name";
 	const QString Objects       = "objects";

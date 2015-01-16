@@ -7,7 +7,7 @@
 Viewport::Viewport(const Perspective *perspective)
 	: perspective{perspective}, zoom{1.0f}, currentView{0, 0, 0, 0}
 {
-	mapWidth = mapHeight = viewWidth = viewHeight = 0;
+	viewWidth = viewHeight = 0;
 }
 
 
@@ -35,7 +35,7 @@ QPointF Viewport::fromMetresToPixels(const QPointF &pointInMetres) const
 }
 
 
-QPointF Viewport::fromPixelsToMetres(const QPointF &pointInPixels) const
+QPointF Viewport::fromPixelsToMetres(const QPoint &pointInPixels) const
 {
 	return perspective->fromPixelsToMetres(pointInPixels);
 }
@@ -53,7 +53,7 @@ void Viewport::moveViewInMetres(const QPointF &deltaInMetres)
 }
 
 
-void Viewport::moveViewInPixels(const QPointF &deltaInPixels)
+void Viewport::moveViewInPixels(const QPoint &deltaInPixels)
 {
 	moveViewInMetres(perspective->fromPixelsToMetres(deltaInPixels));
 }
@@ -67,7 +67,7 @@ void Viewport::setViewSizeInMetres(const QSizeF &sizeInMetres)
 }
 
 
-void Viewport::setViewSizeInPixels(const QSizeF &sizeInPixels)
+void Viewport::setViewSizeInPixels(const QSize &sizeInPixels)
 {
 	QSizeF sizeInMetres = perspective->fromPixelsToMetres(sizeInPixels);
 	viewWidth = sizeInMetres.width();
@@ -76,10 +76,9 @@ void Viewport::setViewSizeInPixels(const QSizeF &sizeInPixels)
 }
 
 
-void Viewport::setMapSize(const float mapWidth, const float mapHeight)
+void Viewport::setMapSize(const QSizeF &mapSize)
 {
-	this->mapWidth = mapWidth;
-	this->mapHeight = mapHeight;
+	this->mapSize = mapSize;
 	updateView();
 }
 
@@ -117,6 +116,7 @@ void Viewport::updateView()
 	currentView = QRectF(topLeft, QPointF(topLeft.x() + viewWidth, topLeft.y() + viewHeight));
 // 	FIXME don't allow the rect to go beyond the map
 }
+
 
 QDebug operator<< (QDebug d, const Viewport &viewport) {
 	d << "Viewport(";

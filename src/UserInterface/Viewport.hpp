@@ -39,17 +39,17 @@ public:
 	 */
 	QRectF getCurrentView() const;
 	QPointF getScaledPoint(const QPointF &point) const;
-	QPointF fromPixelsToMetres(const QPointF &pointInPixels) const;
+	QPointF fromPixelsToMetres(const QPoint &pointInPixels) const;
 	QPointF fromMetresToPixels(const QPointF &pointInMetres) const;
 
-	void moveViewInPixels(const QPointF &deltaInPixels);
+	void moveViewInPixels(const QPoint &deltaInPixels);
 	void moveViewInMetres(const QPointF &deltaInMetres);
 	void setViewSizeInMetres(const QSizeF &sizeInMetres);
-	void setViewSizeInPixels(const QSizeF &sizeInPixels);
+	void setViewSizeInPixels(const QSize &sizeInPixels);
 	/**
 	 * @brief Sets the map size. Arguments are in metres.
 	 */
-	void setMapSize(const float mapWidth, const float mapHeight);
+	void setMapSize(const QSizeF &mapSize);
 	void setZoom(const float zoom);
 	void resetZoom();
 	void zoomIn(qreal zoomDelta);
@@ -59,8 +59,7 @@ private:
 
 	const Perspective *perspective;
 	float zoom;
-	float mapWidth;
-	float mapHeight;
+	QSizeF mapSize;
 	float viewWidth;
 	float viewHeight;
 	QRectF currentView;

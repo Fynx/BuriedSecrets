@@ -25,7 +25,6 @@ public:
 	void clearGameModules();
 	void startNewGame();
 
-	void loadLevel();
 	void saveLevel();
 
 	// FIXME this might need to be moved to DebugManager
