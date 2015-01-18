@@ -11,6 +11,7 @@ set (Mind_SRCS
 	AnimatorMove.cpp
 	AnimatorTest.cpp
 	AnimatorPhysicsUpdate.cpp
+	AnimatorUpdatePath.cpp
 	Event.cpp
 	Mind.cpp
 	ItemConstructor.cpp

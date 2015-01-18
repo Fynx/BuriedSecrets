@@ -5,13 +5,10 @@
 
 #include "Mind/Animator.hpp"
 
-class AnimatorMove : public Animator {
+class AnimatorUpdatePath : public Animator {
 public:
-	AnimatorMove(Mind *mind);
+	AnimatorUpdatePath(Mind *mind);
 
 	void act();
-
-private:
-	const float epsilon = 0.5;
 };
 
