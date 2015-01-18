@@ -53,7 +53,8 @@ float Unit::getHP() const
 
 void Unit::setHP(int hp)
 {
-	this->hp = hp;
+	this->hp = qMin(hp, getMaxHP());
+	this->hp = qMax(this->hp, 0);
 }
 
 float Unit::getMaxHP() const
@@ -68,7 +69,8 @@ float Unit::getPsychosis() const
 
 void Unit::setPsychosis(int psychosis)
 {
-	this->psychosis = psychosis;
+	this->psychosis = qMin(hp, getMaxPsychosis());
+	this->psychosis = qMax(this->psychosis, 0);
 }
 
 float Unit::getMaxPsychosis() const

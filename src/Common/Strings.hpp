@@ -14,6 +14,7 @@ namespace Animators {
 	const QString Regenerate    = "AnimatorRegenerate";
 	const QString Test          = "AnimatorTest";
 	const QString UpdatePath    = "AnimatorUpdatePath";
+	const QString Regenerate    = "AnimatorRegenerate";
 }
 
 namespace Properties {

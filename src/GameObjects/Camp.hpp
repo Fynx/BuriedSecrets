@@ -18,4 +18,7 @@ public:
 
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
+
+private:
+	qreal rangeOfHealing;
 };

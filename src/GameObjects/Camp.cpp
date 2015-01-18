@@ -16,7 +16,7 @@ BS::Type Camp::getType() const
 
 qreal Camp::getRange() const
 {
-	return prototype->getProperty("range").toDouble();
+	return rangeOfHealing;
 }
 
 void Camp::loadFromJson(const QJsonObject &json)

@@ -29,6 +29,11 @@ QuestLog *Faction::getQuestLog()
 	return questLog;
 }
 
+Camp *Faction::getCamp()
+{
+	return camp;
+}
+
 const QSet<int> &Faction::getUnits() const
 {
 	return units;
