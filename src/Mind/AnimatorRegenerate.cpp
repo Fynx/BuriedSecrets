@@ -31,7 +31,7 @@ void AnimatorRegenerate::act()
 			continue;
 
 		for (int id : fac->getUnits()) {
-			Unit *unit = mind->getObjectFromUid(id);
+			Unit *unit = dynamic_cast<Unit *>(mind->getObjectFromUid(id));
 			QPointF unitPos;
 
 			if (!unit)
@@ -40,7 +40,7 @@ void AnimatorRegenerate::act()
 			if (unitPos.isNull())
 				continue;
 
-			if (QVector2D(unitPos - camPos).length() < fac->getCamp()->getRange()){
+			if (QVector2D(unitPos - campPos).length() < fac->getCamp()->getRange()){
 				unit->setPsychosis(unit->getPsychosis() + unit->getRegeneration());
 				unit->setHP(unit->getHP() + unit->getRegeneration());
 			}

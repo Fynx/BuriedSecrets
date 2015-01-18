@@ -11,11 +11,11 @@ namespace Animators {
 	const QString Die           = "AnimatorDie";
 	const QString Move          = "AnimatorMove";
 	const QString PhysicsUpdate = "AnimatorPhysicsUpdate";
-	const QString Regenerate    = "AnimatorRegenerate";
 	const QString Test          = "AnimatorTest";
 	const QString UpdatePath    = "AnimatorUpdatePath";
 	const QString Regenerate    = "AnimatorRegenerate";
 	const QString GoPsycho      = "AnimatorGoPsycho";
+	const QString Heal          = "AnimatorHeal";
 }
 
 namespace Properties {

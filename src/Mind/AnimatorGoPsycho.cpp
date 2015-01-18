@@ -37,7 +37,7 @@ void AnimatorGoPsycho::act()
 		if (unitPos.isNull())
 			continue;
 
-		if (QVector2D(unitPos - camPos).length() > fac->getCamp()->getRange()){
+		if (QVector2D(unitPos - campPos).length() > fac->getCamp()->getRange()){
 			unit->setPsychosis(unit->getPsychosis()-1);
 		}
 		if (unit->getPsychosis() == 0){

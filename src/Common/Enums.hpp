@@ -32,6 +32,7 @@ namespace BS {
 		Idle,
 		Run,
 		Shoot,
+		Heal
 	};
 
 	enum class Command : quint8 {

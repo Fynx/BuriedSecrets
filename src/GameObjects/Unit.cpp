@@ -4,6 +4,7 @@
 #include "Common/Strings.hpp"
 #include "Common/Enums.hpp"
 #include "GameObjects/Unit.hpp"
+#include <QtGlobal>
 
 using namespace BS;
 
@@ -53,7 +54,7 @@ float Unit::getHP() const
 
 void Unit::setHP(int hp)
 {
-	this->hp = qMin(hp, getMaxHP());
+	this->hp = qMin(float(hp), getMaxHP());
 	this->hp = qMax(this->hp, 0);
 }
 
@@ -69,7 +70,7 @@ float Unit::getPsychosis() const
 
 void Unit::setPsychosis(int psychosis)
 {
-	this->psychosis = qMin(hp, getMaxPsychosis());
+	this->psychosis = qMin(float(hp), getMaxPsychosis());
 	this->psychosis = qMax(this->psychosis, 0);
 }
 
