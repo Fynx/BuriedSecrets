@@ -12,6 +12,7 @@
 #include "Mind/AnimatorDie.hpp"
 #include "Mind/AnimatorUpdatePath.hpp"
 #include "Mind/AnimatorRegenerate.hpp"
+#include "Mind/AnimatorGoPsycho.hpp"
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
 {
@@ -36,7 +37,8 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorDie(mind), Animators::Die, 40);
 	info("done.");
 	addAnimator(new AnimatorUpdatePath(mind), Animators::UpdatePath, 100);
-	addAnimator(new AnimatorRegenerate(mind), Animators::Regenerate, 100);
+	addAnimator(new AnimatorRegenerate(mind), Animators::Regenerate, 1000);
+	addAnimator(new AnimatorGoPsycho(mind), Animators::GoPsycho, 1000);
 }
 
 void AnimatorManager::initTimers()
