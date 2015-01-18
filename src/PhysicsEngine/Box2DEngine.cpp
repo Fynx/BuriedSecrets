@@ -4,6 +4,7 @@
 #include "Box2DEngine.hpp"
 #include "AABBCallback.hpp"
 #include "RayCallback.hpp"
+#include <cmath>
 
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -111,9 +112,6 @@ void Box2DEngine::setAngle(Object *obj, float angle)
 	if (!body)
 		return;
 
-	if (angle >= 360. || angle < 0)
-		angle = body->GetAngle() * RADTODEG;
-
 	angle = angle * DEGTORAD;
 
 	body->SetTransform(body->GetPosition(), angle);
@@ -125,9 +123,6 @@ void Box2DEngine::setPosition(Object *obj, const QPointF &pos, float angle)
 	if (!body)
 		return;
 
-	if (angle >= 360. || angle < 0)
-		angle = body->GetAngle() * RADTODEG;
-
 	angle = angle * DEGTORAD;
 	body->SetTransform(b2Vec2(pos.x(), pos.y()), angle);
 }
@@ -138,6 +133,10 @@ void Box2DEngine::setVelocity(Object *obj, const QVector2D &v)
 	if (!body)
 		return;
 	body->SetLinearVelocity(b2Vec2(v.x(), v.y()));
+
+	body->SetAngularVelocity(0);
+	if (!v.isNull())
+		setAngle(obj, std::atan2(v.y(), v.x()) * RADTODEG);
 }
 
 const QPointF Box2DEngine::getPosition(const Object *obj) const

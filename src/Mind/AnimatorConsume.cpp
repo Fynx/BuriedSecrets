@@ -3,15 +3,16 @@
  */
 #include "Mind/AnimatorConsume.hpp"
 
-//TODO use DebugManager instead
 #include <QtCore>
 
 #include "Mind/Mind.hpp"
 #include "GameObjects/Faction.hpp"
+#include "DebugManager/DebugManager.hpp"
+
 
 AnimatorConsume::AnimatorConsume(Mind *mind) : Animator(mind)
 {
-	qDebug() << "AnimatorConsume created.";
+	info("AnimatorConsume created.");
 }
 
 
@@ -19,10 +20,8 @@ void AnimatorConsume::act()
 {
 	for (Object * obj : objects){
 		Faction *faction = dynamic_cast<Faction *>(obj);
-		if (!faction){
-			qDebug() << "Wrong object for animatorConsume " << obj->getUid();
+		if (!faction)
 			continue;
-		}
 
 		QSet<int> units = faction->getUnits();
 		for (int id : units){

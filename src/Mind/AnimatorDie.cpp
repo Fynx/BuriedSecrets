@@ -3,15 +3,14 @@
  */
 #include "Mind/AnimatorDie.hpp"
 
-//TODO use DebugManager instead
-#include <QtCore>
-
 #include "Mind/Mind.hpp"
 #include "GameObjects/Unit.hpp"
+#include "DebugManager/DebugManager.hpp"
+
 
 AnimatorDie::AnimatorDie(Mind *mind) : Animator(mind)
 {
-	qDebug() << "AnimatorDie created.";
+	info("AnimatorDie created.");
 }
 
 
@@ -22,7 +21,7 @@ void AnimatorDie::act()
 		if (!unit)
 			continue;
 		if (unit->getHP() <= 0){
-			qDebug() << "Unit dies. Id: " <<unit->getUid();
+			info("Unit dies. Id: " + QString::number(unit->getUid()));
 			mind->removeObject(unit);
 		}
 	}

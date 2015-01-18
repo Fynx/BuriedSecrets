@@ -3,13 +3,13 @@
  */
 #include "Mind/AnimatorPhysicsUpdate.hpp"
 
-#include <QtCore>
-
 #include "Mind/Mind.hpp"
+#include "DebugManager/DebugManager.hpp"
+
 
 AnimatorPhysicsUpdate::AnimatorPhysicsUpdate(Mind *mind) : Animator(mind)
 {
-	qDebug() << "AnimatorPhysicsUpdate created.";
+	info("AnimatorPhysicsUpdate created.");
 }
 
 

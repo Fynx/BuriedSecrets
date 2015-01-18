@@ -3,16 +3,16 @@
  */
 #include "Mind/AnimatorApplyDamage.hpp"
 
-//TODO use DebugManager instead
 #include <QtCore>
 
 #include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
 
 AnimatorApplyDamage::AnimatorApplyDamage(Mind *mind) : Animator(mind)
 {
-	qDebug() << "AnimatorApplyDamage created.";
+	info("AnimatorApplyDamage created.");
 }
 
 

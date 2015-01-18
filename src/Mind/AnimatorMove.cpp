@@ -3,15 +3,14 @@
  */
 #include "Mind/AnimatorMove.hpp"
 
-//TODO use DebugManager instead
-#include <QtCore>
-
 #include "Mind/Mind.hpp"
 #include "../GameObjects/Unit.hpp"
+#include "DebugManager/DebugManager.hpp"
+
 
 AnimatorMove::AnimatorMove(Mind *mind) : Animator(mind)
 {
-	qDebug() << "AnimatorMove created.";
+	info("AnimatorMove created.");
 }
 
 void AnimatorMove::act()
@@ -29,13 +28,12 @@ void AnimatorMove::act()
 		if (unit->getCurrentPath().size() == 0) {
 			if (obj->getState() == BS::Run){
 				obj->setState(BS::Idle);
-				mind->physicsEngine()->setVelocity(obj, dir * 0);
 			}
+			mind->physicsEngine()->setVelocity(obj, dir * 0);
 			continue;
 		}
 
 		dir = QVector2D(unit->getCurrentPath().first() - mind->physicsEngine()->getPosition(obj));
-
 
 		if (dir.length() < epsilon)
 			unit->getCurrentPath().removeFirst();

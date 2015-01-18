@@ -3,14 +3,13 @@
  */
 #include "Mind/AnimatorTest.hpp"
 
-//TODO use DebugManager instead
-#include <QtCore>
-
 #include "Mind/Mind.hpp"
+#include "DebugManager/DebugManager.hpp"
+
 
 AnimatorTest::AnimatorTest(Mind *mind) : Animator(mind)
 {
-	qDebug() << "AnimatorTest created.";
+	info("AnimatorTest created.");
 }
 
 

@@ -1,9 +1,11 @@
 #include "Mind/AnimationAnimator.hpp"
+#include "DebugManager/DebugManager.hpp"
 
 
 AnimationAnimator::AnimationAnimator(Mind *mind)
 	: Animator{mind}
 {
+	info("AnimationAnimator created.");
 }
 
 
