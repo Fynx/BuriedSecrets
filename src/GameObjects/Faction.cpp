@@ -44,6 +44,11 @@ const QList<int> &Faction::getAllUnits() const
 	return allUnits;
 }
 
+bool Faction::isAliveMember(int uid) const
+{
+	return units.contains(uid);
+}
+
 int Faction::getFood() const
 {
 	return food;

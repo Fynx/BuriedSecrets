@@ -27,13 +27,20 @@ public:
 	void gameWidgetResized(QSize sizeInPixels);
 
 public slots:
-	void selectUnit(int uid);
+	void addUnitToSelectionByUid(int uid);
+	void healUnitByUid(int uid);
+	void selectUnitByUid(int uid);
+	void showUnitByUid(int uid);
 
 private:
-	const QList<Object *> &fiterSelection(const QList<Object *> &objects);
-	void selectObjects(const QList<Object *> &objects);
+	Unit *unitByNumber(int number) const;
+	Object *objectInPixelsPos(QPoint pointInPixels) const;
+	QSet<Unit *> fiterSelection(const QSet<Object *> &objects) const;
+	void selectUnits(const QSet<Unit *> &units);
+	void addUnitsToSelection(QSet<Unit *> units);
 
 	Mind *mind_;
 	Viewport viewport_;
-	QList<Object *> selectedObjects_;
+	QSet<Unit *> selectedUnits_;
+	QMap<int, QSet<Unit *>> selectionGroups_;
 };

@@ -23,7 +23,8 @@
 			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
-				"AnimatorMove"
+				"AnimatorMove",
+				"AnimatorHeal"
 			],
 			"x": 3.0,
 			"y": 5.0,
@@ -34,7 +35,8 @@
 			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
-				"AnimatorMove"
+				"AnimatorMove",
+				"AnimatorHeal"
 			],
 			"x": 20.0,
 			"y": 40.0,
@@ -45,7 +47,8 @@
 			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
-				"AnimatorMove"
+				"AnimatorMove",
+				"AnimatorHeal"
 			],
 			"x": 30.0,
 			"y": 30.0,

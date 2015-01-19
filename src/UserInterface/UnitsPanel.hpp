@@ -16,10 +16,20 @@ public:
 	void refresh(const Mind *mind);
 
 private:
+	void addUnitWidget(UnitWidget *unitWidget);
+
 	QList <UnitWidget *> unitWidgets_;
-	QSignalMapper signalMapper_;
+	QSignalMapper selectSignalMapper_;
+	QSignalMapper addSignalMapper_;
+	QSignalMapper healSignalMapper_;
+	QSignalMapper showMenuSignalMapper_;
+	QSignalMapper showUnitSignalMapper_;
 
 signals:
+	void addUnit(int uid);
+	void healUnit(int uid);
+	void selectUnit(int uid);
+	void showUnit(int uid);
+	void showUnitMenu(int uid);
 	void sizeChanged();
-	void unitSelected(int uid);
 };

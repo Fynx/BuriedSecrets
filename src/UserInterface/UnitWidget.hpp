@@ -14,10 +14,15 @@ class UnitWidget : public QFrame {
 	Q_OBJECT
 public:
 	UnitWidget(const Unit *unit);
+
+	const Unit *unit();
 	QSize sizeHint() const;
 	void refresh();
 
 private:
+	void mouseDoubleClickEvent(QMouseEvent *event);
+	void mousePressEvent(QMouseEvent *event);
+
 	void initWidgets();
 	void initLayout();
 
@@ -25,7 +30,7 @@ private:
 
 	QFrame *campIcon_;
 	QFrame *locationIcon_;
-	QPushButton *face_;
+	QFrame *face_;
 	QLabel *name_;
 	QProgressBar *hpBar_;
 	QProgressBar *psychosisBar_;
@@ -34,4 +39,8 @@ private:
 
 signals:
 	void selected();
+	void added();
+	void heal();
+	void showUnit();
+	void showMenu();
 };

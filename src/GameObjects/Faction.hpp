@@ -24,6 +24,7 @@ public:
 
 	const QSet<int> &getUnits() const;
 	const QList<int> &getAllUnits() const;
+	bool isAliveMember(int uid) const;
 	int getFood() const;
 	bool isNeutralFaction(int uid) const;
 

@@ -31,7 +31,10 @@ GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	journalWindow_->setParent(this);
 
 	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameWindow::adjustUnitsPanelGeometry);
-	connect(unitsPanel_, &UnitsPanel::unitSelected, &gameWidgetManager_, &GameWidgetManager::selectUnit);
+	connect(unitsPanel_, &UnitsPanel::addUnit,    &gameWidgetManager_, &GameWidgetManager::addUnitToSelectionByUid);
+	connect(unitsPanel_, &UnitsPanel::healUnit,   &gameWidgetManager_, &GameWidgetManager::healUnitByUid);
+	connect(unitsPanel_, &UnitsPanel::selectUnit, &gameWidgetManager_, &GameWidgetManager::selectUnitByUid);
+	connect(unitsPanel_, &UnitsPanel::showUnit,   &gameWidgetManager_, &GameWidgetManager::showUnitByUid);
 
 	connect(campPanel_, &CampPanel::journalActivated, journalWindow_, &JournalWindow::show);
 	connect(campPanel_, &CampPanel::journalActivated, campEquipmentWindow_, &CampEquipmentWindow::hide);

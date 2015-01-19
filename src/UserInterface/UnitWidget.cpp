@@ -16,6 +16,11 @@ UnitWidget::UnitWidget(const Unit *unit) : unit_(unit)
 	initLayout();
 }
 
+const Unit *UnitWidget::unit()
+{
+	return unit_;
+}
+
 QSize UnitWidget::sizeHint() const
 {
 	return WidgetSize;
@@ -40,6 +45,31 @@ void UnitWidget::refresh()
 		setFrameStyle(QFrame::Panel | QFrame::Sunken);
 }
 
+void UnitWidget::mouseDoubleClickEvent(QMouseEvent *event)
+{
+	emit showMenu();
+
+	QWidget::mouseDoubleClickEvent(event);
+}
+
+void UnitWidget::mousePressEvent(QMouseEvent *event)
+{
+	if (event->button() == Qt::LeftButton) {
+		if (QApplication::keyboardModifiers() & Qt::ControlModifier)
+			emit added();
+		else
+			emit selected();
+	}
+	if (event->button() == Qt::RightButton) {
+		if (QApplication::keyboardModifiers() & Qt::AltModifier)
+			emit heal();
+		else
+			emit showUnit();
+	}
+
+	QWidget::mousePressEvent(event);
+}
+
 void UnitWidget::initWidgets()
 {
 	locationIcon_ = new QFrame;
@@ -49,9 +79,8 @@ void UnitWidget::initWidgets()
 
 	name_ = new QLabel(unit_->getName());
 
-	face_ = new QPushButton("Face");
+	face_ = new QFrame;
 	face_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-	connect(face_, &QPushButton::clicked, this, &UnitWidget::selected);
 
 
 	hpBar_ = new QProgressBar;
