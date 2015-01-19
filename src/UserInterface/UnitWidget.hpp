@@ -38,8 +38,8 @@ private:
 	QLabel *behaviourLabel_;
 
 signals:
-	void selected();
-	void added();
+	void select();
+	void add();
 	void heal();
 	void showUnit();
 	void showMenu();

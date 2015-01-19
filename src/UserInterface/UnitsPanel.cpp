@@ -59,15 +59,15 @@ void UnitsPanel::addUnitWidget(UnitWidget *unitWidget)
 	unitWidgets_.append(unitWidget);
 	layout()->addWidget(unitWidget);
 
-	connect(unitWidget, &UnitWidget::added,
+	connect(unitWidget, &UnitWidget::add,
 	        &addSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
-	connect(unitWidget, &UnitWidget::added,
+	connect(unitWidget, &UnitWidget::heal,
 			&healSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
-	connect(unitWidget, &UnitWidget::selected,
+	connect(unitWidget, &UnitWidget::select,
 	        &selectSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
-	connect(unitWidget, &UnitWidget::added,
+	connect(unitWidget, &UnitWidget::showMenu,
 			&showMenuSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
-	connect(unitWidget, &UnitWidget::added,
+	connect(unitWidget, &UnitWidget::showUnit,
 			&showUnitSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 
 	addSignalMapper_.setMapping(unitWidget, unitWidget->unit()->getUid());

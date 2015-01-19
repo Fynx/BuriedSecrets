@@ -56,9 +56,9 @@ void UnitWidget::mousePressEvent(QMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton) {
 		if (QApplication::keyboardModifiers() & Qt::ControlModifier)
-			emit added();
+			emit add();
 		else
-			emit selected();
+			emit select();
 	}
 	if (event->button() == Qt::RightButton) {
 		if (QApplication::keyboardModifiers() & Qt::AltModifier)
