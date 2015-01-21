@@ -26,7 +26,6 @@ GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	  unitWindow_(new UnitWindow(mind_)),
 	  updateTimer_(new QTimer)
 {
-	//TODO order
 	gameWidget_->setParent(this);
 	campPanel_->setParent(this);
 	unitsPanel_->setParent(this);
@@ -34,26 +33,8 @@ GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	journalWindow_->setParent(this);
 	unitWindow_->setParent(this);
 
-	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameWindow::adjustUnitsPanelGeometry);
-	connect(unitsPanel_, &UnitsPanel::addUnit,    &gameWidgetManager_, &GameWidgetManager::addUnitToSelectionByUid);
-	connect(unitsPanel_, &UnitsPanel::healUnit,   &gameWidgetManager_, &GameWidgetManager::healUnitByUid);
-	connect(unitsPanel_, &UnitsPanel::selectUnit, &gameWidgetManager_, &GameWidgetManager::selectUnitByUid);
-	connect(unitsPanel_, &UnitsPanel::showUnit,   &gameWidgetManager_, &GameWidgetManager::showUnitByUid);
-
-	//TODO window manager
-	connect(unitsPanel_, &UnitsPanel::showUnitMenu, unitWindow_, &UnitWindow::setUnit);
-	connect(unitsPanel_, &UnitsPanel::showUnitMenu, unitWindow_, &UnitWindow::show);
-	connect(unitsPanel_, &UnitsPanel::showUnitMenu, campEquipmentWindow_, &CampEquipmentWindow::hide);
-	connect(unitsPanel_, &UnitsPanel::showUnitMenu, journalWindow_, &JournalWindow::hide);
-
-	connect(campPanel_, &CampPanel::journalActivated, journalWindow_, &JournalWindow::show);
-	connect(campPanel_, &CampPanel::journalActivated, campEquipmentWindow_, &CampEquipmentWindow::hide);
-	connect(campPanel_, &CampPanel::journalActivated, unitWindow_, &UnitWindow::hide);
-
-	connect(campPanel_, &CampPanel::campEQActivated, campEquipmentWindow_, &CampEquipmentWindow::show);
-	connect(campPanel_, &CampPanel::campEQActivated, journalWindow_, &JournalWindow::hide);
-	connect(campPanel_, &CampPanel::campEQActivated, unitWindow_, &UnitWindow::hide);
-
+	initUnitsPanel();
+	initWindows();
 
 	connect(updateTimer_, &QTimer::timeout, this, &GameWindow::refresh);
 }
@@ -69,6 +50,36 @@ void GameWindow::startUpdateLoop()
 
 	update();
 	updateTimer_->start(UpdateTimerInterval);
+}
+
+void GameWindow::initUnitsPanel()
+{
+	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameWindow::adjustUnitsPanelGeometry);
+	connect(unitsPanel_, &UnitsPanel::addUnit,    &gameWidgetManager_, &GameWidgetManager::addUnitToSelectionByUid);
+	connect(unitsPanel_, &UnitsPanel::healUnit,   &gameWidgetManager_, &GameWidgetManager::healUnitByUid);
+	connect(unitsPanel_, &UnitsPanel::selectUnit, &gameWidgetManager_, &GameWidgetManager::selectUnitByUid);
+	connect(unitsPanel_, &UnitsPanel::showUnit,   &gameWidgetManager_, &GameWidgetManager::showUnitByUid);
+}
+
+void GameWindow::initWindows()
+{
+	connect(campPanel_, &CampPanel::campEQActivated, this, &GameWindow::showCampMenu);
+	connect(campPanel_, &CampPanel::journalActivated, this, &GameWindow::showJournal);
+	connect(unitsPanel_, &UnitsPanel::showUnitMenu, this, &GameWindow::showUnitMenu);
+
+	connect(campEquipmentWindow_, &CampEquipmentWindow::exit, this, &GameWindow::closeCampMenu);
+	connect(journalWindow_, &JournalWindow::exit, this, &GameWindow::closeJournal);
+	connect(unitWindow_, &UnitWindow::exit, this, &GameWindow::closeUnitMenu);
+
+	campEquipmentWindow_->hide();
+	journalWindow_->hide();
+	unitWindow_->hide();
+}
+
+void GameWindow::refresh()
+{
+	unitsPanel_->refresh(mind_);
+	campPanel_->refresh(mind_);
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
@@ -97,6 +108,9 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 	//maximize graphicsWidget_
 	gameWidget_->setGeometry(geometry());
 
+	//inform GameWidgetManager about resize (Viewport must know)
+	gameWidgetManager_.gameWidgetResized(gameWidget_->size());
+
 	adjustUnitsPanelGeometry();
 
 	//resize campPanel
@@ -104,29 +118,91 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 	               geometry().height() - CampPanelSize.height());
 	campPanel_->setGeometry(QRect(topLeft, CampPanelSize));
 
-		//set windows geometry
-	QPoint windowTopLeft(geometry().width() / 4, unitsPanel_->sizeHint().height());
-	QSize windowSize(geometry().width() / 2, geometry().height() - windowTopLeft.y());
-	QRect windowRect(windowTopLeft, windowSize);
-
-	campEquipmentWindow_->setGeometry(windowRect);
-	journalWindow_->setGeometry(windowRect);
-	unitWindow_->setGeometry(windowRect);
-
-	//inform GameWidgetManager about resize (Viewport must know)
-	gameWidgetManager_.gameWidgetResized(gameWidget_->size());
+	tileCenter(campEquipmentWindow_);
+	tileCenter(journalWindow_);
+	tileCenter(unitWindow_);
 
 	QWidget::resizeEvent(event);
 }
 
-void GameWindow::refresh()
+void GameWindow::tileCenter(QWidget *widget)
 {
-	unitsPanel_->refresh(mind_);
-	campPanel_->refresh(mind_);
+	QPoint topLeft(geometry().width() / 4, unitsPanel_->sizeHint().height());
+	QSize size(geometry().width() / 2, geometry().height() - topLeft.y());
+
+	widget->setGeometry(QRect(topLeft, size));
+}
+
+void GameWindow::tileLeft(QWidget *widget)
+{
+	QPoint topLeft(0, unitsPanel_->sizeHint().height());
+	QSize size(geometry().width() / 2, geometry().height() - topLeft.y());
+
+	widget->setGeometry(QRect(topLeft, size));
+}
+
+void GameWindow::tileRight(QWidget *widget)
+{
+	QPoint topLeft(geometry().width() / 2, unitsPanel_->sizeHint().height());
+	QSize size(geometry().width() / 2, geometry().height() - topLeft.y());
+
+	widget->setGeometry(QRect(topLeft, size));
 }
 
 void GameWindow::adjustUnitsPanelGeometry()
 {
 	QPoint topLeft = QPoint((geometry().width() - unitsPanel_->sizeHint().width()) / 2, 0);
 	unitsPanel_->setGeometry(QRect(topLeft, unitsPanel_->sizeHint()));
+}
+
+void GameWindow::showCampMenu()
+{
+	journalWindow_->hide();
+
+	if (unitWindow_->isVisible()) {
+		tileRight(unitWindow_);
+		tileLeft(campEquipmentWindow_);
+	}
+
+	campEquipmentWindow_->show();
+}
+
+void GameWindow::showJournal()
+{
+	campEquipmentWindow_->hide();
+	journalWindow_->show();
+	unitWindow_->hide();
+}
+
+void GameWindow::showUnitMenu(int uid)
+{
+	unitWindow_->setUnit(uid);
+
+	journalWindow_->hide();
+
+	if (campEquipmentWindow_->isVisible()) {
+		tileRight(unitWindow_);
+		tileLeft(campEquipmentWindow_);
+	}
+
+	unitWindow_->show();
+}
+
+void GameWindow::closeCampMenu()
+{
+	campEquipmentWindow_->hide();
+	tileCenter(unitWindow_);
+	tileCenter(campEquipmentWindow_);
+}
+
+void GameWindow::closeJournal()
+{
+	journalWindow_->hide();
+}
+
+void GameWindow::closeUnitMenu()
+{
+	unitWindow_->hide();
+	tileCenter(unitWindow_);
+	tileCenter(campEquipmentWindow_);
 }

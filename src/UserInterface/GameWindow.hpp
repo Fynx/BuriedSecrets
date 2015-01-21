@@ -28,9 +28,18 @@ public slots:
 	void startUpdateLoop();
 
 private:
+	void initUnitsPanel();
+	void initWindows();
+	void refresh();
+
 	void keyPressEvent(QKeyEvent *event);
 	void mousePressEvent(QMouseEvent *event);
 	void resizeEvent(QResizeEvent *event);
+
+	void tileLeft(QWidget *widget);
+	void tileRight(QWidget *widget);
+	void tileCenter(QWidget *widget);
+	void adjustUnitsPanelGeometry();
 
 	Mind *mind_;
 	GameWidgetManager gameWidgetManager_;
@@ -45,8 +54,12 @@ private:
 	QTimer *updateTimer_;
 
 private slots:
-	void refresh();
-	void adjustUnitsPanelGeometry();
+	void showCampMenu();
+	void showJournal();
+	void showUnitMenu(int uid);
+	void closeCampMenu();
+	void closeJournal();
+	void closeUnitMenu();
 
 signals:
 	void showMainMenu();

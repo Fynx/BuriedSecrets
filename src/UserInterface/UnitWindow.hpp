@@ -24,4 +24,7 @@ private:
 	Unit *unit_;
 	QLabel *title_;
 	QPushButton *closeBtn_;
+
+signals:
+	void exit();
 };

@@ -6,12 +6,10 @@
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
 
-UnitWindow::UnitWindow(Mind *mind) : mind_(mind)
+UnitWindow::UnitWindow(Mind *mind) : mind_(mind), unit_(nullptr)
 {
-	hide();
-
 	closeBtn_ = new QPushButton("Close");
-	connect (closeBtn_, &QPushButton::clicked, this, &UnitWindow::hide);
+	connect (closeBtn_, &QPushButton::clicked, this, &UnitWindow::exit);
 
 	title_ = new QLabel;
 	setAutoFillBackground(true);
@@ -28,7 +26,6 @@ void UnitWindow::initLayout()
 	layout->addStretch();
 	layout->addWidget(closeBtn_);
 }
-
 
 void UnitWindow::setUnit(int uid)
 {

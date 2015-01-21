@@ -5,9 +5,8 @@
 
 CampEquipmentWindow::CampEquipmentWindow()
 {
-	hide();
 	closeBtn_ = new QPushButton("Close");
-	connect (closeBtn_, &QPushButton::clicked, this, &CampEquipmentWindow::hide);
+	connect (closeBtn_, &QPushButton::clicked, this, &CampEquipmentWindow::exit);
 
 	setAutoFillBackground(true);
 
