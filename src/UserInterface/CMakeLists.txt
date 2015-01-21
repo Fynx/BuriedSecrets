@@ -9,6 +9,7 @@
 	Perspective.cpp
 	UnitsPanel.cpp
 	UnitWidget.cpp
+	UnitWindow.cpp
 	UserInterface.cpp
 	Viewport.cpp
 )
@@ -20,6 +21,7 @@ set (UserInterface_HDRS
 	MainMenuWindow.hpp
 	UnitsPanel.hpp
 	UnitWidget.hpp
+	UnitWindow.hpp
 	UserInterface.hpp
 )
 

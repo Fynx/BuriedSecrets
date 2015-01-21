@@ -10,6 +10,7 @@
 #include "UserInterface/CampPanel.hpp"
 #include "UserInterface/CampEquipmentWindow.hpp"
 #include "UserInterface/JournalWindow.hpp"
+#include "UserInterface/UnitWindow.hpp"
 
 const int GameWindow::UpdateTimerInterval = 100;
 
@@ -22,13 +23,16 @@ GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	  campPanel_(new CampPanel),
 	  campEquipmentWindow_(new CampEquipmentWindow),
 	  journalWindow_(new JournalWindow),
+	  unitWindow_(new UnitWindow(mind_)),
 	  updateTimer_(new QTimer)
 {
+	//TODO order
 	gameWidget_->setParent(this);
 	campPanel_->setParent(this);
 	unitsPanel_->setParent(this);
 	campEquipmentWindow_->setParent(this);
 	journalWindow_->setParent(this);
+	unitWindow_->setParent(this);
 
 	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameWindow::adjustUnitsPanelGeometry);
 	connect(unitsPanel_, &UnitsPanel::addUnit,    &gameWidgetManager_, &GameWidgetManager::addUnitToSelectionByUid);
@@ -36,10 +40,20 @@ GameWindow::GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent)
 	connect(unitsPanel_, &UnitsPanel::selectUnit, &gameWidgetManager_, &GameWidgetManager::selectUnitByUid);
 	connect(unitsPanel_, &UnitsPanel::showUnit,   &gameWidgetManager_, &GameWidgetManager::showUnitByUid);
 
+	//TODO window manager
+	connect(unitsPanel_, &UnitsPanel::showUnitMenu, unitWindow_, &UnitWindow::setUnit);
+	connect(unitsPanel_, &UnitsPanel::showUnitMenu, unitWindow_, &UnitWindow::show);
+	connect(unitsPanel_, &UnitsPanel::showUnitMenu, campEquipmentWindow_, &CampEquipmentWindow::hide);
+	connect(unitsPanel_, &UnitsPanel::showUnitMenu, journalWindow_, &JournalWindow::hide);
+
 	connect(campPanel_, &CampPanel::journalActivated, journalWindow_, &JournalWindow::show);
 	connect(campPanel_, &CampPanel::journalActivated, campEquipmentWindow_, &CampEquipmentWindow::hide);
+	connect(campPanel_, &CampPanel::journalActivated, unitWindow_, &UnitWindow::hide);
+
 	connect(campPanel_, &CampPanel::campEQActivated, campEquipmentWindow_, &CampEquipmentWindow::show);
 	connect(campPanel_, &CampPanel::campEQActivated, journalWindow_, &JournalWindow::hide);
+	connect(campPanel_, &CampPanel::campEQActivated, unitWindow_, &UnitWindow::hide);
+
 
 	connect(updateTimer_, &QTimer::timeout, this, &GameWindow::refresh);
 }
@@ -80,25 +94,24 @@ void GameWindow::mousePressEvent(QMouseEvent *event)
 
 void GameWindow::resizeEvent(QResizeEvent *event)
 {
-	QPoint topLeft;
-	QSize widgetSize;
-
 	//maximize graphicsWidget_
 	gameWidget_->setGeometry(geometry());
 
 	adjustUnitsPanelGeometry();
 
 	//resize campPanel
-	topLeft = QPoint(geometry().width() - CampPanelSize.width(),
-	                 geometry().height() - CampPanelSize.height());
+	QPoint topLeft(geometry().width() - CampPanelSize.width(),
+	               geometry().height() - CampPanelSize.height());
 	campPanel_->setGeometry(QRect(topLeft, CampPanelSize));
 
-	//set size of campEquipmentWindow
-	topLeft = QPoint(0, unitsPanel_->sizeHint().height());
-	widgetSize = QSize(geometry().width() / 2, geometry().height() - topLeft.y());
-	campEquipmentWindow_->setGeometry(QRect(topLeft, widgetSize));
-	//set size of journalWindow
-	journalWindow_->setGeometry(QRect(topLeft, widgetSize));
+		//set windows geometry
+	QPoint windowTopLeft(geometry().width() / 4, unitsPanel_->sizeHint().height());
+	QSize windowSize(geometry().width() / 2, geometry().height() - windowTopLeft.y());
+	QRect windowRect(windowTopLeft, windowSize);
+
+	campEquipmentWindow_->setGeometry(windowRect);
+	journalWindow_->setGeometry(windowRect);
+	unitWindow_->setGeometry(windowRect);
 
 	//inform GameWidgetManager about resize (Viewport must know)
 	gameWidgetManager_.gameWidgetResized(gameWidget_->size());

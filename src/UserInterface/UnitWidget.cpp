@@ -6,6 +6,8 @@
 #include "GameObjects/Unit.hpp"
 #include "Common/Strings.hpp"
 
+const QSize UnitWidget::WidgetSize{150, 120};
+
 UnitWidget::UnitWidget(const Unit *unit) : unit_(unit)
 {
 	setAutoFillBackground(true);
@@ -33,11 +35,6 @@ void UnitWidget::refresh()
 
 	psychosisBar_->setMaximum(unit_->getMaxPsychosis());
 	psychosisBar_->setValue(unit_->getPsychosis());
-
-	encumbranceBar_->setMaximum(unit_->getMaxEncumbrance());
-	encumbranceBar_->setValue(unit_->getEncumbrance());
-
-	behaviourLabel_->setText("Defensive");
 
 	if (unit_->property(Properties::IsSelected).toBool())
 		setFrameStyle(QFrame::Panel | QFrame::Raised);
@@ -76,26 +73,25 @@ void UnitWidget::initWidgets()
 
 	campIcon_ = new QFrame;
 
+	behaviourIcon_ = new QFrame;
 
 	name_ = new QLabel(unit_->getName());
+	name_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+
 
 	face_ = new QFrame;
 	face_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
 
 	hpBar_ = new QProgressBar;
-	hpBar_->setFormat("%v/%m");
+	hpBar_->setTextVisible(false);
+	hpBar_->setOrientation(Qt::Vertical);
 	hpBar_->setMinimum(0);
 
 	psychosisBar_ = new QProgressBar;
-	psychosisBar_->setFormat("%v/%m");
+	psychosisBar_->setTextVisible(false);
+	psychosisBar_->setOrientation(Qt::Vertical);
 	psychosisBar_->setMinimum(0);
-
-	encumbranceBar_ = new QProgressBar;
-	encumbranceBar_->setFormat("%v/%m");
-	encumbranceBar_->setMinimum(0);
-
-	behaviourLabel_ = new QLabel;
 }
 
 void UnitWidget::initLayout()
@@ -103,16 +99,15 @@ void UnitWidget::initLayout()
 	QVBoxLayout *leftLayout = new QVBoxLayout;
 	leftLayout->addWidget(locationIcon_);
 	leftLayout->addWidget(campIcon_);
+	leftLayout->addWidget(behaviourIcon_);
 
 	QVBoxLayout *middleLayout = new QVBoxLayout;
 	middleLayout->addWidget(name_);
 	middleLayout->addWidget(face_);
 
-	QVBoxLayout *rightLayout = new QVBoxLayout;
+	QHBoxLayout *rightLayout = new QHBoxLayout;
 	rightLayout->addWidget(hpBar_);
 	rightLayout->addWidget(psychosisBar_);
-	rightLayout->addWidget(encumbranceBar_);
-	rightLayout->addWidget(behaviourLabel_);
 
 	QHBoxLayout *mainLayout = new QHBoxLayout;
 	setLayout(mainLayout);

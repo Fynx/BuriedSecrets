@@ -12,6 +12,7 @@ class CampPanel;
 class JournalWindow;
 class Mind;
 class UnitsPanel;
+class UnitWindow;
 class Viewport;
 
 class GameWindow : public QWidget {
@@ -39,6 +40,8 @@ private:
 	CampPanel *campPanel_;
 	CampEquipmentWindow *campEquipmentWindow_;
 	JournalWindow *journalWindow_;
+	UnitWindow *unitWindow_;
+
 	QTimer *updateTimer_;
 
 private slots:

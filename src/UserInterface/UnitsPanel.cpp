@@ -25,7 +25,7 @@ UnitsPanel::UnitsPanel()
 QSize UnitsPanel::sizeHint() const
 {
 	if (unitWidgets_.isEmpty())
-		return QSize{0,0};
+		return QSize{0, UnitWidget::WidgetSize.height()};
 
 	int totalWidth = unitWidgets_[0]->sizeHint().width() * unitWidgets_.size();
 	int totalHeight = unitWidgets_[0]->sizeHint().height();
