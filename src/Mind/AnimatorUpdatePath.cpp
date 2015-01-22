@@ -24,11 +24,15 @@ void AnimatorUpdatePath::act()
 		if (!unit)
 			continue;
 		Command comm = unit->getCommand();
-		if (!(comm == Command::Attack || unit->getCommand() == Command::Heal))
-			continue;
-
 		QPointF from = mind->physicsEngine()->getPosition(unit);
-		QPointF to = mind->physicsEngine()->getPosition(mind->getObjectFromUid(unit->getTargetObject()));
+		QPointF to(0, 0);
+
+		if (comm == Command::Attack || unit->getCommand() == Command::Heal)
+			to = mind->physicsEngine()->getPosition(mind->getObjectFromUid(unit->getTargetObject()));
+
+		if (comm == Command::Construct)
+			to = unit->getTargetPoint();
+
 		if (from.isNull() || to.isNull()){
 			warn("Invalid points in AnimatorUpdatePath");
 			continue;

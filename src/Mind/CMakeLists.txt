@@ -14,6 +14,7 @@ set (Mind_SRCS
 	AnimatorUpdatePath.cpp
 	AnimatorGoPsycho.cpp
 	AnimatorHeal.cpp
+	AnimatorConstruct.cpp
 	Event.cpp
 	Mind.cpp
 	ItemConstructor.cpp

@@ -42,7 +42,9 @@ public:
 	 */
 	void addObject(Object* object, const QPointF &position);
 	void addObject(Object* object);
+	Object *createDefaultObject(BS::Type type, QString prototype);
 	void removeObject(Object *object);
+
 	Object *getObjectFromUid(const int uid);
 	const Object *getObjectFromUid(const int uid) const;
 	Faction *getFactionById(const int id);

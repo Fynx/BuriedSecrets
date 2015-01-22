@@ -29,12 +29,19 @@ Item *Unit::getUsedItem()
 		return equipment->getSlotItem(Slot::Medicament);
 
 	case Command::Construct:
+		return equipment->getSlotItem(Slot::Fortificationn);
+
 	case Command::Deconstruct:
 		return equipment->getSlotItem(Slot::Tool);
 	default:
 		return nullptr;
 		break;
 	}
+}
+
+Equipment *Unit::getEquipment()
+{
+	return equipment;
 }
 
 Location *Unit::getLocation()
@@ -189,6 +196,16 @@ int Unit::getTargetObject() const
 void Unit::setTargetObject(int uid)
 {
 	targetObjectUid = uid;
+}
+
+QPointF Unit::getTargetPoint()
+{
+	return targetPoint;
+}
+
+void Unit::setTargetPoint(QPointF p)
+{
+	targetPoint = p;
 }
 
 BS::Command Unit::getCommand()

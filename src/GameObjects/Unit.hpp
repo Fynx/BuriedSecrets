@@ -14,6 +14,7 @@ public:
 	BS::Type getType() const;
 
 	Item *getUsedItem();
+	Equipment *getEquipment();
 
 	Location *getLocation();
 	void setLocation(Location *location);
@@ -59,12 +60,13 @@ public:
 	int getTargetObject() const;
 	void setTargetObject(int uid);
 
+	QPointF getTargetPoint();
+	void setTargetPoint(QPointF);
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
 private:
-	//TODO all pointers to objects change to uid
-
 	Location *location;
 
 	int hp;
@@ -75,4 +77,5 @@ private:
 	QList<QPointF> currentPath;
 
 	int targetObjectUid;
+	QPointF targetPoint;
 };

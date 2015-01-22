@@ -21,6 +21,7 @@ namespace Animators {
 	const QString Regenerate    = "AnimatorRegenerate";
 	const QString GoPsycho      = "AnimatorGoPsycho";
 	const QString Heal          = "AnimatorHeal";
+	const QString Construct     = "AnimatorConstruct";
 }
 
 namespace Attributes {
@@ -57,6 +58,7 @@ namespace Properties {
 	const QString Attack        = "attack";
 	const QString Damage        = "damage";
 	const QString DamageControl = "damageControl";
+	const QString DefAnimators  = "defAnimators";
 	const QString Defense       = "defense";
 	const QString Encumbrance   = "encumbrance";
 	const QString Engineering   = "engineering";
@@ -71,6 +73,7 @@ namespace Properties {
 	const QString Regeneration  = "regeneration";
 	const QString Shooting      = "shooting";
 	const QString SightRange    = "sightRange";
+	const QString SpawnedType   = "spawnedType";
 	const QString Type          = "type";
 }
 

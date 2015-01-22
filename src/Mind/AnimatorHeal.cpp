@@ -40,8 +40,9 @@ void AnimatorHeal::act()
 			continue;
 		}
 
-		if (unit->getState() != State::Heal)
+		if (unit->getState() != State::Heal){
 			unit->setState(State::Heal);
-		target->setHP(target->getHP() + unit->getHealing());
+		    target->setHP(target->getHP() + unit->getHealing());
+		}
 	}
 }

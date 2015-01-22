@@ -136,6 +136,20 @@ void Mind::addObject(Object *object)
 	uidToObject[object->getUid()] = object;
 }
 
+Object *Mind::createDefaultObject(BS::Type type, QString prototype)
+{
+	const Prototype *proto = dataManager->getPrototype(prototype);
+	Object *obj = createObject(type, prototype);
+	if (proto->hasProperty(Properties::DefAnimators)){
+		// May require change to some Prototype field
+		for (QString anim : proto->getProperty(Properties::DefAnimators).toStringList()){
+			animatorManager->addObject(anim, obj);
+		}
+	}
+
+	return obj;
+}
+
 void Mind::removeObject(Object *object)
 {
 	qDebug() << "removeObject:" << object->getUid();
