@@ -23,11 +23,13 @@ AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
 	initTimers();
 }
 
+
 AnimatorManager::~AnimatorManager()
 {
 	for (Animator *a : animators)
 		delete a;
 }
+
 
 void AnimatorManager::initAnimators()
 {
@@ -46,6 +48,7 @@ void AnimatorManager::initAnimators()
 	info("done.");
 }
 
+
 void AnimatorManager::initTimers()
 {
 	for(int msec : intervals.keys()){
@@ -58,11 +61,29 @@ void AnimatorManager::initTimers()
 	connect(&signalMapper, SIGNAL(mapped(int)), this, SLOT(update(int)));
 }
 
+
+void AnimatorManager::pauseGame()
+{
+	for (QTimer *t : timers)
+		if (t->isActive())
+			t->stop();
+}
+
+
+void AnimatorManager::resumeGame()
+{
+	for (QTimer *t : timers)
+		if (!t->isActive())
+			t->start();
+}
+
+
 void AnimatorManager::addAnimator(Animator *anim, QString name, int interval)
 {
 	animators.insert(name, anim);
 	intervals[interval].append(anim);
 }
+
 
 bool AnimatorManager::addObject(QString animator, Object *obj)
 {
@@ -75,6 +96,7 @@ bool AnimatorManager::addObject(QString animator, Object *obj)
 	return true;
 }
 
+
 bool AnimatorManager::removeObject(QString animator, Object *obj)
 {
 	if (!animators.contains(animator))
@@ -86,12 +108,14 @@ bool AnimatorManager::removeObject(QString animator, Object *obj)
 	return true;
 }
 
+
 bool AnimatorManager::removeObject(Object *obj)
 {
 	for(QString anim : getAnimatorsForObject(obj))
 		removeObject(anim, obj);
 	return true;
 }
+
 
 QVector<QString> AnimatorManager::getAnimatorsForObject(const Object *obj) const
 {
@@ -101,6 +125,7 @@ QVector<QString> AnimatorManager::getAnimatorsForObject(const Object *obj) const
 			result.append(it.key());
 	return result;
 }
+
 
 void AnimatorManager::update(int timeElapsed)
 {

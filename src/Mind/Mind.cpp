@@ -124,6 +124,16 @@ const MapManager *Mind::getMapManager() const
 	return mapManager;
 }
 
+void Mind::pauseGame()
+{
+	animatorManager->pauseGame();
+}
+
+void Mind::resumeGame()
+{
+	animatorManager->resumeGame();
+}
+
 void Mind::addObject(Object *object, const QPointF &position)
 {
 	addObject(object);

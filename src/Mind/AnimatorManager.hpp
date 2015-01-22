@@ -19,6 +19,8 @@ public:
 	bool addObject(QString animator, Object *obj);
 	bool removeObject(QString animator, Object *obj);
 	bool removeObject(Object *obj);
+	void pauseGame();
+	void resumeGame();
 
 	QVector<QString> getAnimatorsForObject(const Object *obj) const;
 

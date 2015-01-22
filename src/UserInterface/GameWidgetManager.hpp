@@ -39,6 +39,7 @@ private:
 	void selectUnits(const QSet<Unit *> &units);
 	void addUnitsToSelection(QSet<Unit *> units);
 
+	bool isPaused_;
 	Mind *mind_;
 	Viewport viewport_;
 	QSet<Unit *> selectedUnits_;

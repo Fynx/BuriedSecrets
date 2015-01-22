@@ -52,6 +52,9 @@ public:
 	Faction *getPlayerFaction();
 	const Faction *getPlayerFaction() const;
 
+	void pauseGame();
+	void resumeGame();
+
 private:
 	Object *createObject(BS::Type type, const QString &name);
 	Object *createObjectFromJson(const QString &name, const QJsonObject &json);

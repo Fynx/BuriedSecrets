@@ -53,6 +53,13 @@ void GameWidgetManager::keyPressEvent(const QKeyEvent *event)
 		case Qt::Key_Equal:
 			viewport_.resetZoom();
 			break;
+	case Qt::Key_P:
+		if (isPaused_)
+			mind_->resumeGame();
+		else
+			mind_->pauseGame();
+		isPaused_ = !isPaused_;
+		break;
 	}
 
 	//Selection groups
