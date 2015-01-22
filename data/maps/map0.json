@@ -24,6 +24,8 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
+				"AnimatorUpdatePath",
+				"AnimatorEnterBuilding",
 				"AnimatorHeal"
 			],
 			"x": 3.0,
@@ -36,6 +38,8 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
+				"AnimatorUpdatePath",
+				"AnimatorEnterBuilding",
 				"AnimatorHeal"
 			],
 			"x": 20.0,
@@ -48,8 +52,9 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
-				"AnimatorHeal",
-				"AnimatorEnterBuilding"
+				"AnimatorEnterBuilding",
+				"AnimatorUpdatePath",
+				"AnimatorHeal"
 			],
 			"x": 30.0,
 			"y": 30.0,
@@ -61,6 +66,7 @@
 			"animators": [
 				"AnimatorTest",
 				"AnimatorAnimation",
+				"AnimatorUpdatePath",
 				"AnimatorMove"
 			],
 			"x": 25.0,

@@ -10,6 +10,7 @@ static const QMap <BS::State, QString> stateToString {
 	{BS::State::Idle, "Idle"},
 	{BS::State::Run, "Run"},
 	{BS::State::Shoot, "Shoot"},
+	{BS::State::Heal, "Heal"},
 };
 
 static const QMap <BS::Type, QString> typeToString {
@@ -32,8 +33,10 @@ namespace BS {
 		BS::State result = BS::State::Idle;
 		if (str == "Run") {
 			result = BS::State::Run;
-		} else if (str == "Shooting") {
+		} else if (str == "Shoot") {
 			result = BS::State::Shoot;
+		} else if (str == "Heal") {
+			result = BS::State::Heal;
 		}
 
 		return result;

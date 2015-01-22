@@ -77,7 +77,7 @@ void GameWidgetManager::keyPressEvent(const QKeyEvent *event)
 		Unit *unit = unitByNumber(number);
 
 		if (unit != nullptr) {
-			if (event->modifiers() & Qt::ControlModifier)
+			if (event->modifiers() & Qt::ShiftModifier)
 				addUnitsToSelection({unit});
 			else if (event->modifiers() & Qt::AltModifier) {
 				for (auto &selectedUnit : selectedUnits_) {
@@ -97,7 +97,7 @@ void GameWidgetManager::mousePressEvent(const QMouseEvent *event)
 
 	//Selection
 	if (event->button() == Qt::LeftButton) {
-		if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
+		if (QApplication::keyboardModifiers() & Qt::ShiftModifier) {
 			if (target != nullptr)
 				addUnitsToSelection(fiterSelection({target}));
 		}

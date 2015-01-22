@@ -86,7 +86,8 @@
 		"regeneration": 1,
 		"animations": {
 			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking"
+			"Run": "SoszuWalking",
+			"Heal": "SoszuIdle"
 		}
 	},
 	"Soszu": {
@@ -112,7 +113,8 @@
 		"regeneration": 1,
 		"animations": {
 			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking"
+			"Run": "SoszuWalking",
+			"Heal": "SoszuHeal"
 		}
 	},
 	"Soszer": {
@@ -138,7 +140,8 @@
 		"regeneration": 1,
 		"animations": {
 			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking"
+			"Run": "SoszuWalking",
+			"Heal": "SoszuHeal"
 		}
 	},
 	"Soszyslaw": {
@@ -164,7 +167,8 @@
 		"regeneration": 1,
 		"animations": {
 			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking"
+			"Run": "SoszuWalking",
+			"Heal": "SoszuHeal"
 		}
 	},
 	"Soszman": {
@@ -190,7 +194,8 @@
 		"regeneration": 1,
 		"animations": {
 			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking"
+			"Run": "SoszuWalking",
+			"Heal": "SoszuHeal"
 		}
 	},
 	"soszes": {

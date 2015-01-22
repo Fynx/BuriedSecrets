@@ -52,7 +52,7 @@ void UnitWidget::mouseDoubleClickEvent(QMouseEvent *event)
 void UnitWidget::mousePressEvent(QMouseEvent *event)
 {
 	if (event->button() == Qt::LeftButton) {
-		if (QApplication::keyboardModifiers() & Qt::ControlModifier)
+		if (QApplication::keyboardModifiers() & Qt::ShiftModifier)
 			emit add();
 		else
 			emit select();
