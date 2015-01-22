@@ -15,6 +15,7 @@ Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataMa
 	fpsText.setColor(sf::Color::Red);
 }
 
+
 Graphics::~Graphics()
 {
 	delete mapSprite;
@@ -23,10 +24,12 @@ Graphics::~Graphics()
 	delete drawOrder;
 }
 
+
 GraphicsWidget * Graphics::getGraphicsWidget()
 {
 	return widget;
 }
+
 
 void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 {
@@ -40,6 +43,21 @@ void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 	connect(&renderTimer, SIGNAL(timeout()), this, SLOT(render()));
 	renderTimer.start();
 }
+
+
+void Graphics::pauseRendering()
+{
+	renderTimer.stop();
+}
+
+
+void Graphics::resumeRendering()
+{
+	Q_ASSERT(camera);
+	Q_ASSERT(graphicalEntityFactory);
+	renderTimer.start();
+}
+
 
 void Graphics::loadMap(const Map *map)
 {

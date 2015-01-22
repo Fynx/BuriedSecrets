@@ -114,6 +114,7 @@ void UserInterface::initDevActionsMenu()
 
 void UserInterface::onShowMainMenu()
 {
+	general_->pauseGame();
 	switchToWindow(Window::MainMenu);
 }
 
@@ -124,5 +125,6 @@ void UserInterface::onNewGame()
 
 void UserInterface::onContinueGame()
 {
+	general_->resumeGame();
 	switchToWindow(Window::Game);
 }

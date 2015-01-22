@@ -31,6 +31,9 @@ public:
 	void toggleDisplayBasePolygons();
 	void toggleDisplayFPS();
 
+	void pauseGame();
+	void resumeGame();
+
 private:
 	void initModules();
 

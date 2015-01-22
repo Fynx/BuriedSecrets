@@ -36,6 +36,8 @@ public:
 	 * 'as fast as possible'.
 	 */
 	void startRendering(const Viewport *viewport, int framesIntervalms = 0);
+	void pauseRendering();
+	void resumeRendering();
 	/**
 	 * @brief Loads the graphical representation of the map.
 	 *
