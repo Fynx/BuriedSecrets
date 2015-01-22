@@ -11,7 +11,7 @@ using namespace BS;
 Unit::Unit(const Prototype *prototype)
 	: Object(prototype)
 {
-	property(Properties::IsSelected) = false;
+	property(TempData::IsSelected) = false;
 }
 
 BS::Type Unit::getType() const
@@ -21,7 +21,7 @@ BS::Type Unit::getType() const
 
 Item *Unit::getUsedItem()
 {
-	switch (command){
+	switch (command) {
 	case Command::Attack:
 		return equipment->getSlotItem(Slot::Weapon);
 

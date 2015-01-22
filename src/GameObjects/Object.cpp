@@ -80,8 +80,8 @@ void Object::setFrame(int frame)
 
 void Object::loadFromJson(const QJsonObject &json)
 {
-	uid = json[Properties::Uid].toInt();
-	factionId = json[Properties::Faction].toInt();
+	uid = json[Attributes::Uid].toInt();
+	factionId = json[Attributes::Faction].toInt();
 	updateUid(uid);
 }
 
@@ -90,8 +90,8 @@ QJsonObject Object::saveToJson() const
 	QJsonObject json;
 	json.insert(Properties::Name, getName());
 	json.insert(Properties::Type, BS::changeTypeToString(getType()));
-	json.insert(Properties::Uid, getUid());
-	json.insert(Properties::Faction, getFaction());
+	json.insert(Attributes::Uid, getUid());
+	json.insert(Attributes::Faction, getFaction());
 	return json;
 }
 

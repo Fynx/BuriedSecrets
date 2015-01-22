@@ -98,6 +98,7 @@ void UserInterface::initDevActionsMenu()
 
 	QAction *actionQuit = new QAction("Quit", mainWindow_);
 	connect(actionQuit, &QAction::triggered, mainWindow_, &QMainWindow::close);
+	actionQuit->setShortcut(Qt::CTRL + Qt::Key_Q);
 	menuFile->addAction(actionQuit);
 
 	QMenu *menuDebug = mainWindow_->menuBar()->addMenu("Debug");

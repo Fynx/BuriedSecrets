@@ -48,7 +48,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 	delete mapManager;
 	mapManager = new MapManager(json);
 
-	const QJsonArray &objs = json[Properties::Objects].toArray();
+	const QJsonArray &objs = json[Data::Objects].toArray();
 
 	QSet<QPair<Object *, QPair<double, double> > > objectsToAdd;
 
@@ -61,12 +61,12 @@ void Mind::loadFromJson(const QJsonObject &json)
 		qDebug() << "\tload" << obj[Properties::Name].toString();
 		Object *object = createObjectFromJson(obj[Properties::Name].toString(), obj);
 
-		for (const QJsonValue &value : obj[Properties::Animators].toArray())
+		for (const QJsonValue &value : obj[Data::Animators].toArray())
 			if (!animatorManager->addObject(value.toString(), object))
 				qDebug() << "\t\tfailed to add to animator" << value.toString();
 
 		// Pair because stupid qt
-		QPair<double, double> coordinates = {obj[Properties::X].toDouble(), obj[Properties::Y].toDouble()};
+		QPair<double, double> coordinates = {obj[TempData::X].toDouble(), obj[TempData::Y].toDouble()};
 		objectsToAdd.insert(qMakePair(object, coordinates));
 	}
 
@@ -93,23 +93,23 @@ QJsonObject Mind::saveToJson() const
 	QJsonObject json;
 	QJsonArray objs;
 
-	json.insert(Properties::MapName, mapManager->getMap()->getName());
-	json.insert(Properties::MapDesc, mapManager->getMap()->getDesc());
+	json.insert(MapProperties::MapName, mapManager->getMap()->getName());
+	json.insert(MapProperties::MapDesc, mapManager->getMap()->getDesc());
 
 	for (Object *obj : objects) {
 		qDebug() << "\tsave" << obj->getName();
 		QJsonObject objJson = obj->saveToJson();
 
 		QVector<QString> animators = animatorManager->getAnimatorsForObject(obj);
-		objJson.insert(Properties::Animators, QJsonArray::fromStringList(animators.toList()));
+		objJson.insert(Data::Animators, QJsonArray::fromStringList(animators.toList()));
 
 		QPointF pos = physics->getPosition(obj);
-		objJson.insert(Properties::X, pos.x());
-		objJson.insert(Properties::Y, pos.y());
+		objJson.insert(TempData::X, pos.x());
+		objJson.insert(TempData::Y, pos.y());
 
 		objs.append(objJson);
 	}
-	json.insert(Properties::Objects, objs);
+	json.insert(Data::Objects, objs);
 
 	return json;
 }

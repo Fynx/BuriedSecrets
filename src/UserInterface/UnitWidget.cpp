@@ -36,7 +36,7 @@ void UnitWidget::refresh()
 	psychosisBar_->setMaximum(unit_->getMaxPsychosis());
 	psychosisBar_->setValue(unit_->getPsychosis());
 
-	if (unit_->property(Properties::IsSelected).toBool())
+	if (unit_->property(TempData::IsSelected).toBool())
 		setFrameStyle(QFrame::Panel | QFrame::Raised);
 	else
 		setFrameStyle(QFrame::Panel | QFrame::Sunken);

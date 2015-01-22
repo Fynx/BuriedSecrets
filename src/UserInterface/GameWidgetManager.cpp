@@ -112,7 +112,9 @@ void GameWidgetManager::mousePressEvent(const QMouseEvent *event)
 			else {
 				if (target == nullptr) {
 					//TODO it should be via MapManager; only setting destination point
-					QPointF pos = QPointF(unit->property(Properties::X).toDouble(), unit->property(Properties::Y).toDouble());
+					QPointF pos =
+						QPointF(unit->property(TempData::X).toDouble(),
+							unit->property(TempData::Y).toDouble());
 					unit->setCurrentPath(mind_->getMapManager()->getPath(pos, place));
 					unit->setCommand(BS::Command::Move);
 				}
@@ -197,12 +199,12 @@ QSet<Unit *> GameWidgetManager::fiterSelection(const QSet<Object *> &objects) co
 void GameWidgetManager::selectUnits(const QSet<Unit *> &units)
 {
 	for (auto &unit : selectedUnits_)
-		unit->property(Properties::IsSelected) = QVariant(false);
+		unit->property(TempData::IsSelected) = QVariant(false);
 
 	selectedUnits_ = units;
 
 	for (auto &unit : selectedUnits_) {
-		unit->property(Properties::IsSelected) = QVariant(true);
+		unit->property(TempData::IsSelected) = QVariant(true);
 		qDebug() << unit->getName();
 	}
 }
@@ -212,7 +214,7 @@ void GameWidgetManager::addUnitsToSelection(QSet<Unit *> units)
 	selectedUnits_.unite(units);
 
 	for (auto &unit : units) {
-		unit->property(Properties::IsSelected) = QVariant(true);
+		unit->property(TempData::IsSelected) = QVariant(true);
 		qDebug() << unit->getName();
 	}
 }

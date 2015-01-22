@@ -6,9 +6,9 @@
 
 Map::Map(const QJsonObject &json)
 	: json(json),
-	  name(json[Properties::MapName].toString()),
-	  desc(json[Properties::MapDesc].toString()),
-	  size(json[Properties::MapWidth].toDouble(), json[Properties::MapHeight].toDouble())
+	  name(json[MapProperties::MapName].toString()),
+	  desc(json[MapProperties::MapDesc].toString()),
+	  size(json[MapProperties::MapWidth].toDouble(), json[MapProperties::MapHeight].toDouble())
 {}
 
 const QJsonObject &Map::getJson() const

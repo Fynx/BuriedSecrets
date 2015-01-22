@@ -101,8 +101,8 @@ void DataManager::loadPrototypes()
 // 			qDebug() << "\t\t" << key << value.toVariant();
 		}
 
-		if (prototype->hasProperty(Properties::Animations)) {
-			auto animations = prototype->getProperty(Properties::Animations).toMap();
+		if (prototype->hasProperty(Data::Animations)) {
+			auto animations = prototype->getProperty(Data::Animations).toMap();
 
 			for (const QVariant &animation: animations) {
 				const AnimationData *animData = getAnimationData(animation.toString());
@@ -140,19 +140,19 @@ void DataManager::loadResources()
 
 			for (const QString &key : json.keys()) {
 				const QJsonObject &obj = json[key].toObject();
-				if (obj[Properties::Type].toString() == Properties::Animation) {
+				if (obj[Properties::Type].toString() == Resources::Animation) {
 					AnimationData *animation = new AnimationData(
 						key,
-						BS::getStateFromString(obj[Properties::State].toString()),
-						obj[Properties::FramesNumber].toInt(),
-						obj[Properties::Frames].toArray().toVariantList()
+						BS::getStateFromString(obj[TempData::State].toString()),
+						obj[AnimationProperties::FramesNumber].toInt(),
+						obj[AnimationProperties::Frames].toArray().toVariantList()
 					);
 					qDebug() << animation;
 					animationData[key] = animation;
-				} else if (obj[Properties::Type].toString() == Properties::Texture ||
-					obj[Properties::Type].toString() == Properties::Font) {
+				} else if (obj[Properties::Type].toString() == Resources::Texture ||
+					obj[Properties::Type].toString() == Resources::Font) {
 					/** Load the data from the file */
-					QByteArray resourceData = readRawData(preffix + obj[Properties::Data].toString());
+					QByteArray resourceData = readRawData(preffix + obj[Data::Data].toString());
 					char *data = new char[resourceData.length()];
 					memcpy(data, resourceData.data(), resourceData.length());
 //

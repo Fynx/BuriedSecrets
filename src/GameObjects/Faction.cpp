@@ -83,9 +83,9 @@ void Faction::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
 
-	food = json[Properties::Food].toInt();
+	food = json[Attributes::Food].toInt();
 
-	QJsonArray us = json[Properties::Units].toArray();
+	QJsonArray us = json[Attributes::Units].toArray();
 	for (const QJsonValue &value : us) {
 		units.insert(value.toInt());
 		allUnits.append(value.toInt());
@@ -96,12 +96,12 @@ QJsonObject Faction::saveToJson() const
 {
 	QJsonObject json = Object::saveToJson();
 
-	json[Properties::Food] = food;
+	json[Attributes::Food] = food;
 
 	QJsonArray us;
 	for (int u : units)
 		us.append(u);
-	json[Properties::Units] = us;
+	json[Attributes::Units] = us;
 
 	return json;
 }
