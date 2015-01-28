@@ -11,9 +11,9 @@ SpriteGraphicalEntity::SpriteGraphicalEntity(const Object *object, const QList<Q
 }
 
 
-sf::Drawable *SpriteGraphicalEntity::getDrawable()
+void SpriteGraphicalEntity::draw(sf::RenderTarget *renderTarget)
 {
-	return &sprite;
+	renderTarget->draw(sprite);
 }
 
 

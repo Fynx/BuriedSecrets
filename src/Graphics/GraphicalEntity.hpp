@@ -16,7 +16,7 @@ public:
 	GraphicalEntity(const Object *object, QList<QPointF> basePolygon);
 	virtual ~GraphicalEntity();
 
-	virtual sf::Drawable *getDrawable() = 0;
+	virtual void draw(sf::RenderTarget *renderTarget) = 0;
 	/**
 	 * @brief Sets the Entity's position.
 	 *

@@ -115,7 +115,7 @@ void Graphics::render()
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
 		obj = visibleGraphicalEntities[idx];
 		updateEntity(obj, 0, positions[idx]);
-		canvas->draw(*(obj->getDrawable()));
+		obj->draw(canvas);
 
 		if (showBasePolygons) {
 			// FIXME this can not work for non-convex
