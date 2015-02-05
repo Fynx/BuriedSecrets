@@ -13,12 +13,17 @@ public:
 	BS::Type getType() const;
 
 	void addItem(int searchDifficulty, Item *item);
-	void removeItem(int searchDifficulty, Item *item);
-	QMultiMap<int, Item *> getItems() const;
+	void removeItem(Item *item);
+	QList<Item *> getItems(int searchDifficulty = 1000) const;
+
+	void insertUnit(int id);
+	void removeUnit(int id);
+	QList<int> getUnits();
 
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
-private:
 
-	QMultiMap<int, Item *> items;
+private:
+	QMap<Item *, int> items;
+	QSet<int> units;
 };

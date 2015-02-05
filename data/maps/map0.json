@@ -48,7 +48,8 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
-				"AnimatorHeal"
+				"AnimatorHeal",
+				"AnimatorEnterBuilding"
 			],
 			"x": 30.0,
 			"y": 30.0,

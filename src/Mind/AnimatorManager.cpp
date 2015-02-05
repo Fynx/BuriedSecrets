@@ -15,6 +15,7 @@
 #include "Mind/AnimatorGoPsycho.hpp"
 #include "Mind/AnimatorHeal.hpp"
 #include "Mind/AnimatorConstruct.hpp"
+#include "Mind/AnimatorEnterBuilding.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -45,6 +46,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorGoPsycho(mind), Animators::GoPsycho, 1000);
 	addAnimator(new AnimatorHeal(mind), Animators::Heal, 100);
 	addAnimator(new AnimatorConstruct(mind), Animators::Construct, 100);
+	addAnimator(new AnimatorEnterBuilding(mind), Animators::EnterBuilding, 100);
 	info("done.");
 }
 

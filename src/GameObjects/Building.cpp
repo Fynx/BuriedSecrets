@@ -14,23 +14,23 @@ BS::Type Building::getType() const
 
 void Building::addItem(int searchDifficulty, Item *item)
 {
-	items.insert(searchDifficulty, item);
+	items.insert(item, searchDifficulty);
 }
 
-void Building::removeItem(int searchDifficulty, Item *item)
+void Building::removeItem(Item *item)
 {
-	auto it = items.begin();
-	while (it != items.end() && (it.key() != searchDifficulty || it.value() != item))
-		++it;
-	if (it == items.end())
-		qDebug() << "Failed to remove item";
-	else
-		items.erase(it);
+	items.remove(item);
 }
 
-QMultiMap<int, Item *> Building::getItems() const
+QList<Item *> Building::getItems(int searchDifficulty) const
 {
-	return items;
+	QList<Item *> result;
+	for (auto it : items.keys()){
+		if (items.value(it) <= searchDifficulty)
+			result.append(it);
+	}
+
+	return result;
 }
 
 void Building::loadFromJson(const QJsonObject &json)
@@ -41,4 +41,19 @@ void Building::loadFromJson(const QJsonObject &json)
 QJsonObject Building::saveToJson() const
 {
 	return Object::saveToJson();
+}
+
+void Building::insertUnit(int id)
+{
+	units.insert(id);
+}
+
+void Building::removeUnit(int id)
+{
+	units.remove(id);
+}
+
+QList<int> Building::getUnits()
+{
+	return units.toList();
 }

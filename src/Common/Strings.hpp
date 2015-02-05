@@ -22,6 +22,7 @@ namespace Animators {
 	const QString GoPsycho      = "AnimatorGoPsycho";
 	const QString Heal          = "AnimatorHeal";
 	const QString Construct     = "AnimatorConstruct";
+	const QString EnterBuilding = "AnimatorEnterBuilding";
 }
 
 namespace Attributes {
