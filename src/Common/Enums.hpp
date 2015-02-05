@@ -37,14 +37,15 @@ namespace BS {
 	};
 
 	enum class Command : quint8 {
-		None,
 		Attack,
-		Move,
+		Construct,
+		Deconstruct,
 		EnterBuilding,
 		EnterFortification,
 		Heal,
-		Construct,
-		Deconstruct
+		LeaveBuilding,
+		Move,
+		None
 	};
 
 	enum Slot {

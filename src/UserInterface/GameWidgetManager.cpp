@@ -119,15 +119,27 @@ void GameWidgetManager::mousePressEvent(const QMouseEvent *event)
 			else {
 				if (target == nullptr) {
 					//TODO it should be via MapManager; only setting destination point
-					QPointF pos =
-						QPointF(unit->property(TempData::X).toDouble(),
-							unit->property(TempData::Y).toDouble());
+					QPointF pos = QPointF(unit->property(TempData::X).toDouble(),
+					                      unit->property(TempData::Y).toDouble());
 					unit->setCurrentPath(mind_->getMapManager()->getPath(pos, place));
-					unit->setCommand(BS::Command::Move);
+					if (unit->getState() == BS::State::Inside) {
+						unit->setCommand(BS::Command::LeaveBuilding);
+						qDebug() << "LeaveBuilding   http://ujeb.se/UuzV";
+					}
+					else
+						unit->setCommand(BS::Command::Move);
 				}
 				else {
-					unit->setTargetObject(target->getUid());
-					unit->setCommand(BS::Command::Attack);
+					if (target->getType() == BS::Type::Unit) {
+						unit->setTargetObject(target->getUid());
+						unit->setCommand(BS::Command::Attack);
+					}
+					else {
+						if (target->getType() == BS::Type::Building) {
+							unit->setTargetObject(target->getUid());
+							unit->setCommand(BS::Command::EnterBuilding);
+						}
+					}
 				}
 			}
 		}
