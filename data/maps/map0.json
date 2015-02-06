@@ -28,7 +28,8 @@
 				"AnimatorMove",
 				"AnimatorUpdatePath",
 				"AnimatorEnterBuilding",
-				"AnimatorHeal"
+				"AnimatorHeal",
+				"AnimatorLeaveBuilding"
 			],
 			"x": 3.0,
 			"y": 5.0,
@@ -42,7 +43,9 @@
 				"AnimatorMove",
 				"AnimatorUpdatePath",
 				"AnimatorEnterBuilding",
-				"AnimatorHeal"
+				"AnimatorHeal",
+                                "AnimatorLeaveBuilding"
+
 			],
 			"x": 20.0,
 			"y": 40.0,
@@ -56,7 +59,9 @@
 				"AnimatorMove",
 				"AnimatorEnterBuilding",
 				"AnimatorUpdatePath",
-				"AnimatorHeal"
+				"AnimatorHeal",
+                                "AnimatorLeaveBuilding"
+
 			],
 			"x": 30.0,
 			"y": 30.0,
@@ -69,7 +74,9 @@
 				"AnimatorTest",
 				"AnimatorAnimation",
 				"AnimatorUpdatePath",
-				"AnimatorMove"
+				"AnimatorMove",
+                                "AnimatorLeaveBuilding"
+
 			],
 			"x": 25.0,
 			"y": 25.0,

@@ -20,10 +20,13 @@ public:
 	void removeUnit(int id);
 	QList<int> getUnits();
 
+	QPointF getOffset();
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
 private:
+	QPointF offset;
 	QMap<Item *, int> items;
 	QSet<int> units;
 };

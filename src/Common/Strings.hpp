@@ -23,12 +23,15 @@ namespace Animators {
 	const QString Heal          = "AnimatorHeal";
 	const QString Construct     = "AnimatorConstruct";
 	const QString EnterBuilding = "AnimatorEnterBuilding";
+	const QString LeaveBuilding = "AnimatorLeaveBuilding";
 }
 
 namespace Attributes {
 	const QString Faction       = "faction";
 	const QString Food          = "food";
 	const QString HP            = "hp";
+	const QString OffsetX       = "offsetX";
+	const QString OffsetY       = "offsetY";
 	const QString Psychosis     = "psychosis";
 	const QString Uid           = "uid";
 	const QString Units         = "units";

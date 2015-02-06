@@ -16,6 +16,7 @@ set (Mind_SRCS
 	AnimatorHeal.cpp
 	AnimatorConstruct.cpp
 	AnimatorEnterBuilding.cpp
+	AnimatorLeaveBuilding.cpp
 	Event.cpp
 	Mind.cpp
 	ItemConstructor.cpp

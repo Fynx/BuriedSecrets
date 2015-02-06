@@ -4,7 +4,7 @@
 #include "GameObjects/Building.hpp"
 
 Building::Building(const Prototype *prototype)
-	: Object(prototype)
+	: Object(prototype), offset(-1, 0.5)
 {}
 
 BS::Type Building::getType() const
@@ -56,4 +56,9 @@ void Building::removeUnit(int id)
 QList<int> Building::getUnits()
 {
 	return units.toList();
+}
+
+QPointF Building::getOffset()
+{
+	return offset;
 }
