@@ -37,6 +37,7 @@ namespace BS {
 	};
 
 	enum class Command : quint8 {
+		None,  //Srsly, this should be first
 		Attack,
 		Construct,
 		Deconstruct,
@@ -44,8 +45,7 @@ namespace BS {
 		EnterFortification,
 		Heal,
 		LeaveBuilding,
-		Move,
-		None
+		Move
 	};
 
 	enum Slot {

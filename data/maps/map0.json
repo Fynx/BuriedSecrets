@@ -9,14 +9,16 @@
 			"type": "building",
 			"animators": [],
 			"x": 2,
-			"y": 3
+			"y": 3,
+			"uid": 15
 		},
 		{
 			"name": "SoszuHouse2",
 			"type": "building",
 			"animators": [],
 			"x": 10.8,
-			"y": 13.4
+			"y": 13.4,
+			"uid": 16
 		},
 		{
 			"name": "Soszu",
@@ -70,14 +72,16 @@
 				"AnimatorMove"
 			],
 			"x": 25.0,
-			"y": 25.0
+			"y": 25.0,
+			"uid": 4
 		},
 		{
 			"name": "soszes",
 			"type": "faction",
 			"food": 1234,
 			"faction": 1,
-			"units": [1, 2, 3]
+			"units": [1, 2, 3],
+			"uid": 5
 		}
 	]
 }

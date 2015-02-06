@@ -13,7 +13,7 @@ using namespace BS;
 
 AnimatorUpdatePath::AnimatorUpdatePath(Mind *mind) : Animator(mind)
 {
-	info("AnimatorUpdatePath created.");
+	info("Animator Update Path created.");
 }
 
 
@@ -27,16 +27,15 @@ void AnimatorUpdatePath::act()
 		QPointF from = mind->physicsEngine()->getPosition(unit);
 		QPointF to(0, 0);
 
-		if (comm == Command::Attack || unit->getCommand() == Command::Heal || unit->getCommand() == Command::EnterBuilding)
+		if ((comm == Command::Attack) || (comm == Command::Heal) || (comm == Command::EnterBuilding))
 			to = mind->physicsEngine()->getPosition(mind->getObjectFromUid(unit->getTargetObject()));
 
-		if (comm == Command::Construct)
+		if ((comm == Command::Construct) || (comm == Command::Move))
 			to = unit->getTargetPoint();
 
-		if (from.isNull() || to.isNull()){
-			warn("Invalid points in AnimatorUpdatePath");
+		if (from.isNull() || to.isNull())
 			continue;
-		}
+
 		unit->setCurrentPath(mind->getMapManager()->getPath(from, to));
 	}
 }

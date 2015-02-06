@@ -174,7 +174,7 @@ Object *Mind::getObjectFromUid(const int uid)
 	if (uidToObject.contains(uid))
 		return uidToObject[uid];
 	else
-		warn("Mind::getObjectFromUid: uid not found");
+		warn("Mind::getObjectFromUid: uid not found " + QString::number(uid));
 	return nullptr;
 }
 
@@ -183,7 +183,7 @@ const Object *Mind::getObjectFromUid(const int uid) const
 	if (uidToObject.contains(uid))
 		return uidToObject[uid];
 	else
-		warn("Mind::getObjectFromUid: uid not found");
+		warn("Mind::getObjectFromUid: uid not found " + QString::number(uid));
 	return nullptr;
 }
 
