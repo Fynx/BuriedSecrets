@@ -144,12 +144,12 @@ float Unit::getDamageControl() const
 	return  baseValue + additionalValue;
 }
 
-int Unit::getShooting() const
+int Unit::getAttack() const
 {
-	int baseValue = prototype->getProperty(Properties::Shooting).toInt();
+	int baseValue = prototype->getProperty(Properties::Attack).toInt();
 	int additionalValue = (equipment->getSlotItem(BS::Slot::Weapon) == nullptr)
 		? 0
-		: equipment->getSlotItem(BS::Slot::Weapon)->getPrototype()->getProperty(Properties::Attack).toInt();
+		: equipment->getSlotItem(BS::Slot::Weapon)->getPrototype()->getProperty(Properties::Dispersion).toInt();
 	return baseValue + additionalValue;
 }
 

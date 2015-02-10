@@ -30,10 +30,13 @@ namespace BS {
 	// For now it's just going to be a standard enum, because I'm stuck here and don't want it to stay that way.
 	enum State {
 		Idle,
-		Run,
-		Shoot,
-		Heal,
-		Inside
+		Attack,        // Unit
+		RunAttack,     // Unit
+		Run,           // Unit
+		Heal,          // Unit
+		Inside,        // Unit
+		Shoot,         // Weapon
+		Delay          // Weapon
 	};
 
 	enum class Command : quint8 {

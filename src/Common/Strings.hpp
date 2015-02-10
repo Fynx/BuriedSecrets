@@ -27,12 +27,14 @@ namespace Animators {
 }
 
 namespace Attributes {
+	const QString Bullets       = "bullets";           // Weapon
 	const QString Faction       = "faction";
 	const QString Food          = "food";
 	const QString HP            = "hp";
 	const QString OffsetX       = "offsetX";
 	const QString OffsetY       = "offsetY";
 	const QString Psychosis     = "psychosis";
+	const QString DelayTime     = "delayTime";         // Item
 	const QString Uid           = "uid";
 	const QString Units         = "units";
 }
@@ -59,29 +61,35 @@ namespace Resources {
 }
 
 namespace Properties {
-	const QString Attack        = "attack";
-	const QString Damage        = "damage";
-	const QString DamageControl = "damageControl";
+	const QString Attack        = "attack";            // base for Unit
+	const QString Damage        = "damage";            // Weapon
+	const QString DamageControl = "damageControl";     // base for Unit
 	const QString DefAnimators  = "defAnimators";
-	const QString Defense       = "defense";
-	const QString Encumbrance   = "encumbrance";
-	const QString Engineering   = "engineering";
-	const QString FoodDemand    = "foodDemand";
-	const QString Healing       = "healing";
-	const QString HP            = "hp";
-	const QString Ingredients   = "ingredients";
-	const QString MovementSpeed = "movementSpeed";
+	const QString Defense       = "defense";           // base for Unit
+	const QString Dispersion    = "dispersion";        // Weapon
+	const QString Encumbrance   = "encumbrance";       // max for Unit
+	const QString Engineering   = "engineering";       // base for Unit
+	const QString FoodDemand    = "foodDemand";        // base for Unit
+	const QString Healing       = "healing";           // base for Unit
+	const QString HP            = "hp";                // max for Unit ??
+	const QString Ingredients   = "ingredients";       // Item
+	const QString MagazineSize  = "magazineSize";      // Weapon
+	const QString MovementSpeed = "movementSpeed";     // Unit
 	const QString Name          = "name";
-	const QString Perception    = "perception";
-	const QString Psychosis     = "psychosis";
-	const QString Regeneration  = "regeneration";
-	const QString Shooting      = "shooting";
-	const QString SightRange    = "sightRange";
-	const QString SpawnedType   = "spawnedType";
+	const QString OptimalRange  = "optimalRange";      // Weapon
+	const QString Perception    = "perception";        // base for Unit
+	const QString Psychosis     = "psychosis";         // max for Unit ??
+	const QString Range         = "range";             // Weapon
+	const QString Regeneration  = "regeneration";      // Unit
+	const QString ReloadTime    = "reloadTime";        // Weapon
+	const QString ShotsInterval = "shotsInterval";     // Weapon
+	const QString SightRange    = "sightRange";        // base for Unit
+	const QString SpawnedType   = "spawnedType";       // Item - Fortification
 	const QString Type          = "type";
 }
 
 namespace TempData {
+	const QString Damage        = "damage";
 	const QString IsSelected    = "isSelected";
 	const QString State         = "state";
 	const QString X             = "x";

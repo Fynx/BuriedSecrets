@@ -47,7 +47,7 @@ public:
 	int getEngineering() const;
 	int getHealing() const;
 	int getPerception() const;
-	int getShooting() const;
+	int getAttack() const;
 
 	/** Action-wise */
 
