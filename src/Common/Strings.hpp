@@ -24,10 +24,12 @@ namespace Animators {
 	const QString Construct     = "AnimatorConstruct";
 	const QString EnterBuilding = "AnimatorEnterBuilding";
 	const QString LeaveBuilding = "AnimatorLeaveBuilding";
+	const QString Attack		= "AnimatorAttack";
+	const QString Weapon		= "AnimatorWeapon";
 }
 
-namespace Attributes {
-	const QString Bullets       = "bullets";           // Weapon
+namespace Attributes {                                 // Converted into class fields
+	const QString UsesLeft      = "UsesLeft";          // Item
 	const QString Faction       = "faction";
 	const QString Food          = "food";
 	const QString HP            = "hp";
@@ -60,7 +62,7 @@ namespace Resources {
 	const QString Texture       = "texture";
 }
 
-namespace Properties {
+namespace Properties {                                 // for Prototypes
 	const QString Attack        = "attack";            // base for Unit
 	const QString Damage        = "damage";            // Weapon
 	const QString DamageControl = "damageControl";     // base for Unit
@@ -88,7 +90,7 @@ namespace Properties {
 	const QString Type          = "type";
 }
 
-namespace TempData {
+namespace TempData {                                   // kept in GO's map
 	const QString Damage        = "damage";
 	const QString IsSelected    = "isSelected";
 	const QString State         = "state";

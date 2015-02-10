@@ -39,6 +39,28 @@ int Item::getWeight() const
 	return prototype->getProperty("weight").toInt();
 }
 
+int Item::getUseDelay()
+{
+	return delay;
+}
+
+void Item::setUseDelay(int t)
+{
+	delay = t;
+}
+
+int Item::getUsesLeft()
+{
+	return usesLeft;
+}
+
+void Item::setUsesLeft(int n)
+{
+	usesLeft = n;
+	if (usesLeft < 0)
+		usesLeft = 0;
+}
+
 void Item::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);

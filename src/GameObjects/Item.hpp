@@ -17,10 +17,19 @@ public:
 	QString getName() const;
 	int getWeight() const;
 
+	int getUsesLeft();
+	void setUsesLeft(int n);
+
+	int getUseDelay();
+	void setUseDelay(int t);
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
 private:
+	int usesLeft;
+	int delay;
+
 	static const QMap<BS::ItemType, bool> equippable;
 	static const QMap<QString, BS::ItemType> stringToItemType;
 };
