@@ -28,7 +28,7 @@ void AnimatorWeapon::act()
 			weapon->setUseDelay(weapon->getUseDelay() - 1);
 			continue;
 		}
-		if (weapon->getState() == BS::State::Shoot){
+		if (weapon->getState() == State::Shoot){
 			weapon->setUsesLeft(weapon->getUsesLeft() - 1);
 			weapon->setUseDelay(weapon->getPrototype()->getProperty(Properties::ShotsInterval).toInt());
 		}
@@ -37,9 +37,9 @@ void AnimatorWeapon::act()
 			weapon->setUseDelay(weapon->getPrototype()->getProperty(Properties::ReloadTime).toInt());
 		}
 		if (weapon->getUseDelay() > 0)
-			weapon->setState(BS::State::Delay);
+			weapon->setState(State::Delay);
 		else
-			weapon->setState(BS::State::Idle);
+			weapon->setState(State::Idle);
 	}
 }
 

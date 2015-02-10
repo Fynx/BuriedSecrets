@@ -22,14 +22,14 @@ void AnimatorMove::act()
 		if (!unit)
 			continue;
 
-		if ( !(obj->getState() == BS::Idle) && !(obj->getState() == BS::Run))
+		if ( !(obj->getState() == BS::Idle) && !(obj->getState() == BS::Run) && !(obj->getState() == BS::RunAttack))
 			continue;
 
 		if (unit->getCurrentPath().size() == 0) {
 			if (obj->getState() == BS::Run){
 				obj->setState(BS::Idle);
 			}
-			mind->physicsEngine()->setVelocity(obj, dir * 0);
+			mind->physicsEngine()->setVelocity(obj, dir);
 			continue;
 		}
 
