@@ -81,5 +81,10 @@ namespace BS {
 			Down = 6,
 			RightDown = 7
 		};
+
+		// Ditto.
+		enum EffectOrder {
+			BasePolygon = 99999999
+		};
 	}
 }

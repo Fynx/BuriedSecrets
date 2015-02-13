@@ -3,6 +3,8 @@
  */
 #include "Graphics/Graphics.hpp"
 
+#include "Graphics/BasePolygonEffect.hpp"
+
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
 	: graphicsDataManager{dataManager}, showBasePolygons{false}, showFPS{true}, timeElapsed{0.0f}, frames{0}
@@ -69,7 +71,9 @@ void Graphics::loadMap(const Map *map)
 
 void Graphics::toggleShowBasePolygons()
 {
-	showBasePolygons = !showBasePolygons;
+	if (!removeEffect("BasePolygons", postEffects)) {
+		addEffect("BasePolygons", new BasePolygonEffect{}, postEffects);
+	}
 }
 
 void Graphics::toggleShowFPS()
@@ -115,23 +119,19 @@ void Graphics::render()
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
 		obj = visibleGraphicalEntities[idx];
 		updateEntity(obj, 0, positions[idx]);
+
+		for (const auto &effect: preEffects) {
+			effect.second->draw(obj, positions[idx], canvas);
+		}
+
 		obj->draw(canvas);
 
+		for (const auto &effect: postEffects) {
+			effect.second->draw(obj, positions[idx], canvas);
+		}
+
 		if (showBasePolygons) {
-			// FIXME this can not work for non-convex
-			const auto points = obj->getBasePolygon();
-			QPointF centre = obj->getBaseCentre();
-			sf::ConvexShape polygon;
-			polygon.setPointCount(points.size());
-			for (int i = 0; i < points.size(); ++i) {
-				polygon.setPoint(i,
-					sf::Vector2f(positions[idx].x() - centre.x() + points[i].x(),
-					positions[idx].y() - centre.y() + points[i].y()));
-			}
-			polygon.setFillColor(sf::Color::Transparent);
-			polygon.setOutlineThickness(2);
-			polygon.setOutlineColor(sf::Color::Red);
-			canvas->draw(polygon);
+
 		}
 	}
 
@@ -155,6 +155,7 @@ void Graphics::render()
 	widget->repaint();
 }
 
+
 QVector<GraphicalEntity *> Graphics::getGraphicalEntitiesFor(const QList<const Object *> &objects)
 {
 	QVector<GraphicalEntity *> res;
@@ -164,6 +165,7 @@ QVector<GraphicalEntity *> Graphics::getGraphicalEntitiesFor(const QList<const O
 	return res;
 }
 
+
 void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime, const QPointF &position)
 {
 	entity->setDirection(static_cast<BS::Graphic::Direction>(
@@ -172,7 +174,37 @@ void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime, cons
 	entity->update(deltaTime);
 }
 
+
 QPointF Graphics::getPosition(GraphicalEntity *entity) const
 {
 	return camera->getPerspective()->fromMetresToPixels(physicsEngine->getPosition(entity->getObject()));
+}
+
+
+void Graphics::addEffect(const QString &effectName, Effect *effect, std::list<std::pair<QString, Effect *>> &effectsList)
+{
+	int id = effect->getOrderId();
+	auto elem = std::make_pair("BasePolygons", effect);
+	for (auto it = effectsList.begin(); it != effectsList.end(); ++it) {
+		if (it->second->getOrderId() > id) {
+			effectsList.insert(it, elem);
+			return;
+		}
+	}
+
+	effectsList.push_back(elem);
+}
+
+
+bool Graphics::removeEffect(const QString &effectName, std::list<std::pair< QString, Effect *>> &effectsList)
+{
+	for (auto it = effectsList.begin(); it != effectsList.end(); ++it) {
+		if (it->first == effectName) {
+			delete it->second;
+			effectsList.erase(it);
+			return true;
+		}
+	}
+
+	return false;
 }

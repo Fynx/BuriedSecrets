@@ -7,6 +7,7 @@
 #include <QtCore/QVector>
 
 #include "Graphics/Camera.hpp"
+#include "Graphics/Effect.hpp"
 #include "Graphics/GraphicsWidget.hpp"
 #include "Graphics/GraphicalEntity.hpp"
 #include "Graphics/GraphicalEntityFactory.hpp"
@@ -54,6 +55,8 @@ private:
 	 * @brief Returns the graphical position of the entity.
 	 */
 	QPointF getPosition(GraphicalEntity *entity) const;
+	void addEffect(const QString &effectName, Effect *effect, std::list<std::pair<QString, Effect *>> &effectsList);
+	bool removeEffect(const QString &effectName, std::list<std::pair<QString, Effect *>> &effectsList);
 
 	GraphicsDataManager graphicsDataManager;
 	QTimer renderTimer;
@@ -63,6 +66,8 @@ private:
 	float timeElapsed;
 	sf::Clock clock;
 	int frames;
+	std::list<std::pair<QString, Effect *>> preEffects;	// Effects drawn before the Entities.
+	std::list<std::pair<QString, Effect *>> postEffects;	// Effects drawn after the entities.
 
 	// This pointer is just for convenience as it points to the widget.
 	sf::RenderWindow *canvas;
