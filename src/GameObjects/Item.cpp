@@ -2,6 +2,7 @@
  * All rights reserved.
  */
 
+#include "Common/Strings.hpp"
 #include "GameObjects/Item.hpp"
 
 Item::Item(const Prototype *prototype)
@@ -16,7 +17,7 @@ BS::Type Item::getType() const
 
 BS::ItemType Item::getItemType() const
 {
-	QString s = prototype->getProperty("itemType").toString();
+	QString s = prototype->getProperty(Properties::ItemType).toString();
 	if (!stringToItemType.contains(s)) {
 		qDebug() << "Unknown itemType";
 		exit(0);
@@ -31,12 +32,12 @@ bool Item::isEquippable() const
 
 QString Item::getName() const
 {
-	return prototype->getProperty("name").toString();
+	return prototype->getProperty(Properties::Name).toString();
 }
 
 int Item::getWeight() const
 {
-	return prototype->getProperty("weight").toInt();
+	return prototype->getProperty(Properties::Weight).toInt();
 }
 
 int Item::getUseDelay()

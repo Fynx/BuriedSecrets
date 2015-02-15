@@ -201,5 +201,137 @@
 	"soszes": {
 		"type": "faction",
 		"faction" : 1
+	},
+	"El Bogdano": {
+		"type": "unit",
+		"background": "Experienced marksman from WTF Confederation Army.",
+		"position": "sniper",
+		"avatar": "no films here",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 37,
+		"attack": 12,
+		"encumbrance" : 24,
+		"engineering": 2,
+		"healing": 2,
+		"perception": 8,
+		"defense": 8,
+		"hp": 30,
+		"psychosis": 100,
+		"capacity": 12,
+		"hunger": 1,
+		"sightRange": 10,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+		}
+	},
+	"Senior Cebulez": {
+		"type": "unit",
+		"background": "Former sapper, disarmed few thousand mines so far.",
+		"position": "engineer",
+		"avatar": "no films here",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 35,
+		"attack": 6,
+		"encumbrance" : 24,
+		"engineering": 8,
+		"healing": 1,
+		"perception": 6,
+		"defense": 5,
+		"hp": 25,
+		"psychosis": 100,
+		"capacity": 12,
+		"hunger": 1,
+		"sightRange": 10,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+		}
+	},
+	"Dr. D. Snee": {
+		"type": "unit",
+		"background": "Surgeon with battlefield experience. Many people live because of her.",
+		"position": "surgeon",
+		"avatar": "no films here",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 32,
+		"attack": 4,
+		"encumbrance" : 24,
+		"engineering": 1,
+		"healing": 8,
+		"perception": 4,
+		"defense": 3,
+		"hp": 20,
+		"psychosis": 100,
+		"capacity": 12,
+		"hunger": 1,
+		"sightRange": 10,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+		}
+	},
+	"Sniper rifle": {
+		"type": "item",
+		"itemType": "personal",
+		"damage": 40,
+		"fireRate": 0.3,
+		"weight": 3
+	},
+	"Pistol": {
+		"type": "item",
+		"itemType": "personal",
+		"damage": 15,
+		"dispersion": 2,
+		"fireRate": 0.8,
+		"weight": 1
+	},
+	"Assault rifle": {
+		"type": "item",
+		"itemType": "personal",
+		"damage": 15,
+		"dispersion": 4,
+		"fireRate": 3,
+		"weight": 2
+	},
+	"Machete": {
+		"type": "item",
+		"itemType": "personal",
+		"damage": 30,
+		"dispersion": 0,
+		"fireRate": 1,
+		"weight": 1
+	},
+	"Revolvers": {
+		"type": "item",
+		"itemType": "personal",
+		"damage": 18,
+		"dispersion": 6,
+		"fireRate": 2,
+		"weight": 2
+	},
+	"Medkit": {
+		"type": "item",
+		"itemType": "personal",
+		"healing": 10,
+		"weight": 1
+	},
+	"Wrench": {
+		"type": "item",
+		"itemType": "personal",
+		"damage": 15,
+		"dispersion": 0,
+		"engineering": 6,
+		"fireRate": 0.8,
+		"weight": 2
+	},
+	"Combat jacket": {
+		"type": "item",
+		"itemType": "personal",
+		"defense": 10,
+		"weight": 4
 	}
 }
