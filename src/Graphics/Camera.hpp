@@ -19,6 +19,7 @@ public:
 	 */
 	int discretizeAngle(const float angle, const int range = 8) const;
 	const Perspective *getPerspective() const;
+	const Viewport *getViewport() const;
 	sf::View getCurrentView() const;
 
 private:

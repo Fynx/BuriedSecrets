@@ -60,7 +60,6 @@ private:
 
 	GraphicsDataManager graphicsDataManager;
 	QTimer renderTimer;
-	bool showBasePolygons;
 	bool showFPS;
 	sf::Text fpsText;
 	float timeElapsed;

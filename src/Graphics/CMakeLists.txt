@@ -4,11 +4,13 @@ set (Graphics_SRCS
 	AnimationSet.cpp
 	BasePolygonEffect.cpp
 	Camera.cpp
+	Common.cpp
 	GraphicalEntity.cpp
 	GraphicalEntityFactory.cpp
 	Graphics.cpp
 	GraphicsDataManager.cpp
 	GraphicsWidget.cpp
+	SelectionEffect.cpp
 	SpriteGraphicalEntity.cpp
 	StaticGraphicalEntity.cpp
 )

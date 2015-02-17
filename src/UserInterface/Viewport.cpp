@@ -47,6 +47,13 @@ QPointF Viewport::getScaledPoint(const QPointF &point) const
 }
 
 
+QPointF Viewport::getWholeScale() const
+{
+	QPointF p{1.0f, 1.0f};
+	return getScaledPoint(fromMetresToPixels(p));
+}
+
+
 void Viewport::moveViewInMetres(const QPointF &deltaInMetres)
 {
 	currentView = QRectF{currentView.topLeft() + deltaInMetres, currentView.bottomRight() + deltaInMetres};

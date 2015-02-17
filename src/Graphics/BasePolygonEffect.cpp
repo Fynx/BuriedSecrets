@@ -7,7 +7,7 @@
 
 
 void BasePolygonEffect::draw(const GraphicalEntity *graphicalEntity, const QPointF &entityPosition,
-			     sf::RenderTarget *renderTarget)
+			     const Viewport *viewport, sf::RenderTarget *renderTarget)
 {
 	const auto points = graphicalEntity->getBasePolygon();
 	QPointF centre = graphicalEntity->getBaseCentre();

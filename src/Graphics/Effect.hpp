@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Graphics/GraphicalEntity.hpp"
+#include "UserInterface/Viewport.hpp"
 
 
 /**
@@ -24,10 +25,12 @@ public:
 	 * Please note that this method can even decide to not draw anything.
 	 *
 	 * @param graphicalEntity The entity for which the effect should be drawn.
+	 * @param entityPosition The position at which the upper left corner of the target entity will be drawn.
+	 * @param viewport The viewport used for drawing.
 	 * @param renderTarget The render target to which the effect should be drawn.
 	 */
 	virtual void draw(const GraphicalEntity *graphicalEntity, const QPointF &entityPosition,
-			  sf::RenderTarget *renderTarget) = 0;
+			  const Viewport *viewport, sf::RenderTarget *renderTarget) = 0;
 
 	/**
 	 * @brief Returns a unique id which defines the order in which the effect should be drawn if multiple effects

@@ -31,6 +31,12 @@ const Perspective *Camera::getPerspective() const
 }
 
 
+const Viewport *Camera::getViewport() const
+{
+	return viewport;
+}
+
+
 sf::View Camera::getCurrentView() const
 {
 	const Perspective *perspective = viewport->getPerspective();

@@ -3,16 +3,19 @@
  */
 #pragma once
 
+#include <SFML/Graphics.hpp>
 
-#include "Graphics/Effect.hpp"
+#include "Effect.hpp"
 
 
-class BasePolygonEffect: public Effect {
+class SelectionEffect: public Effect {
 public:
+	SelectionEffect();
 	void draw(const GraphicalEntity *graphicalEntity, const QPointF &entityPosition, const Viewport *viewport,
 		  sf::RenderTarget *renderTarget) override;
 	int getOrderId() const override;
 
 private:
-	sf::ConvexShape polygon;
+	sf::CircleShape circleShape;
+	QList<QPointF> basePolygon;
 };

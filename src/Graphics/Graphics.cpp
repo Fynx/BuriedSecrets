@@ -4,10 +4,11 @@
 #include "Graphics/Graphics.hpp"
 
 #include "Graphics/BasePolygonEffect.hpp"
+#include "Graphics/SelectionEffect.hpp"
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
-	: graphicsDataManager{dataManager}, showBasePolygons{false}, showFPS{true}, timeElapsed{0.0f}, frames{0}
+	: graphicsDataManager{dataManager}, showFPS{true}, timeElapsed{0.0f}, frames{0}
 	, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}
 	, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}, drawOrder{new int[10000]}
 	, positions{new QPointF[10000]}
@@ -16,6 +17,8 @@ Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataMa
 	fpsText.setFont(*graphicsDataManager.getFont("HEMIHEAD"));
 	fpsText.setColor(sf::Color::Red);
 	widget->setVerticalSyncEnabled(true);
+
+	addEffect("Selection", new SelectionEffect{}, preEffects);
 }
 
 
@@ -28,7 +31,7 @@ Graphics::~Graphics()
 }
 
 
-GraphicsWidget * Graphics::getGraphicsWidget()
+GraphicsWidget *Graphics::getGraphicsWidget()
 {
 	return widget;
 }
@@ -115,23 +118,37 @@ void Graphics::render()
 		return aP.x() < bP.x();
 	      });
 
+
 	GraphicalEntity *obj;
+
+	// Draw pre effects (update entities as well).
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
 		obj = visibleGraphicalEntities[idx];
 		updateEntity(obj, 0, positions[idx]);
 
+		// TODO FIXME When refactoring graphics, one might want to bind viewport and canvas to the effect
+		// (pass it in constructor or sth like that).
 		for (const auto &effect: preEffects) {
-			effect.second->draw(obj, positions[idx], canvas);
+			effect.second->draw(obj, positions[idx], camera->getViewport(), canvas);
 		}
+	}
 
+	// Draw entities.
+	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
+		obj = visibleGraphicalEntities[idx];
 		obj->draw(canvas);
 
 		for (const auto &effect: postEffects) {
-			effect.second->draw(obj, positions[idx], canvas);
+			effect.second->draw(obj, positions[idx], camera->getViewport(), canvas);
 		}
+	}
 
-		if (showBasePolygons) {
+	// Draw post effects.
+	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
+		obj = visibleGraphicalEntities[idx];
 
+		for (const auto &effect: postEffects) {
+			effect.second->draw(obj, positions[idx], camera->getViewport(), canvas);
 		}
 	}
 

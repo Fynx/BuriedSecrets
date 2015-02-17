@@ -41,6 +41,10 @@ public:
 	QPointF getScaledPoint(const QPointF &point) const;
 	QPointF fromPixelsToMetres(const QPoint &pointInPixels) const;
 	QPointF fromMetresToPixels(const QPointF &pointInMetres) const;
+	/**
+	 * @brief Returns the whole scale from metres to pixels including zoom.
+	 */
+	QPointF getWholeScale() const;
 
 	void moveViewInPixels(const QPoint &deltaInPixels);
 	void moveViewInMetres(const QPointF &deltaInMetres);
