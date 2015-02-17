@@ -3,7 +3,7 @@
  */
 #include "Graphics/SelectionEffect.hpp"
 
-#include "Graphics/Common.hpp"
+#include "Common/Geometry.hpp"
 #include "Common/Strings.hpp"
 
 
@@ -29,7 +29,7 @@ void SelectionEffect::draw(const GraphicalEntity *graphicalEntity, const QPointF
 		} else {
 			basePolygon = graphicalEntity->getBasePolygon();
 			for (const QPointF &p: basePolygon) {
-				radius = std::max(radius, BS::Graphic::distance(p, centre));
+				radius = std::max(radius, BS::Geometry::distance(p, centre));
 			}
 		}
 

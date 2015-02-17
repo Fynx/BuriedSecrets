@@ -5,11 +5,9 @@
 
 #include <QPointF>
 
-#include "Common/Enums.hpp"
-
 
 namespace BS {
-	namespace Graphic {
+	namespace Geometry {
 		float distance(const QPointF &a, const QPointF &b);
 	}
 }

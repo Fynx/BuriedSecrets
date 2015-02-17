@@ -1,5 +1,6 @@
 set (Common_SRCS
 	Enums.cpp
+	Geometry.cpp
 )
 
 set (Common_HDRS
