@@ -1,0 +1,51 @@
+/* YoLoDevelopment, 2015
+ * All rights reserved.
+ */
+#include "BoardWidget.hpp"
+
+BoardWidget::BoardWidget()
+	: isRubberBandVisible_(false)
+{}
+
+QRect BoardWidget::rubberBandRect() const
+{
+	return rubberBandRect_.normalized();
+}
+
+bool BoardWidget::isRubberBandVisible() const
+{
+	return isRubberBandVisible_;
+}
+
+void BoardWidget::mousePressEvent(QMouseEvent *event)
+{
+
+	if (!(event->buttons() & Qt::LeftButton)) {
+		QWidget::mousePressEvent(event);
+		return;
+	}
+
+	isRubberBandVisible_ = true;
+	rubberBandRect_ = QRect(event->pos(), QSize());
+
+	QWidget::mousePressEvent(event);
+}
+
+void BoardWidget::mouseMoveEvent(QMouseEvent *event)
+{
+	rubberBandRect_.setBottomRight(event->pos());
+}
+
+void BoardWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+	if (!(event->button() == Qt::LeftButton)) {
+		QWidget::mousePressEvent(event);
+		return;
+	}
+
+	isRubberBandVisible_ = false;
+
+	emit selectionEnded(rubberBandRect());
+
+	QWidget::mousePressEvent(event);
+}

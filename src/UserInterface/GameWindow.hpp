@@ -5,8 +5,9 @@
 
 #include <QtWidgets>
 
-#include "GameWidgetManager.hpp"
+#include "SelectionManager.hpp"
 
+class BoardWidget;
 class CampEquipmentWindow;
 class CampPanel;
 class JournalWindow;
@@ -20,7 +21,7 @@ class GameWindow : public QWidget {
 public:
 	static const int UpdateTimerInterval; //in milliseconds
 
-	GameWindow(Mind *mind, QWidget *graphicsWidget, QWidget *parent = nullptr);
+	GameWindow(Mind *mind, BoardWidget *boardWidget, QWidget *parent = nullptr);
 
 	Viewport *viewport();
 
@@ -42,9 +43,8 @@ private:
 	void adjustUnitsPanelGeometry();
 
 	Mind *mind_;
-	GameWidgetManager gameWidgetManager_;
 
-	QWidget *gameWidget_;
+	BoardWidget *boardWidget_;
 	UnitsPanel *unitsPanel_;
 	CampPanel *campPanel_;
 	CampEquipmentWindow *campEquipmentWindow_;
@@ -52,6 +52,8 @@ private:
 	UnitWindow *unitWindow_;
 
 	QTimer *updateTimer_;
+
+	SelectionManager selectionManager_;
 
 private slots:
 	void showCampMenu();

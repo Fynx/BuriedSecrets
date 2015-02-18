@@ -1,7 +1,7 @@
 /* YoLoDevelopment, 2015
  * All rights reserved.
  */
-#include "GameWidgetManager.hpp"
+#include "SelectionManager.hpp"
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
@@ -10,11 +10,11 @@
 #include "Mind/Mind.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
 
-const float GameWidgetManager::pixelToMetresScale = 30.0f;
-const int GameWidgetManager::ViewportMoveDelta = 10;
-const qreal GameWidgetManager::ViewportZoomDelta = 0.05f;
+const float SelectionManager::pixelToMetresScale = 30.0f;
+const int SelectionManager::ViewportMoveDelta = 10;
+const qreal SelectionManager::ViewportZoomDelta = 0.05f;
 
-GameWidgetManager::GameWidgetManager(Mind *mind)
+SelectionManager::SelectionManager(Mind *mind)
 	: mind_(mind),
 	  viewport_(new IsometricPerspective(pixelToMetresScale))
 {
@@ -26,12 +26,12 @@ GameWidgetManager::GameWidgetManager(Mind *mind)
 		selectionGroups_.insert(i, {});
 }
 
-Viewport *GameWidgetManager::viewport()
+Viewport *SelectionManager::viewport()
 {
 	return &viewport_;
 }
 
-void GameWidgetManager::keyPressEvent(const QKeyEvent *event)
+void SelectionManager::keyPressEvent(const QKeyEvent *event)
 {
 	//Viewport
 	switch (event->key()) {
@@ -93,22 +93,22 @@ void GameWidgetManager::keyPressEvent(const QKeyEvent *event)
 	}
 }
 
-void GameWidgetManager::mousePressEvent(const QMouseEvent *event)
+void SelectionManager::mousePressEvent(const QMouseEvent *event)
 {
 	QPointF place = viewport_.fromPixelsToMetres(event->pos());
 	Object *target = objectInPixelsPos(event->pos());
 
-	//Selection
+	//Selection TODO see if still needed
 	if (event->button() == Qt::LeftButton) {
 		if (QApplication::keyboardModifiers() & Qt::ShiftModifier) {
 			if (target != nullptr)
-				addUnitsToSelection(fiterSelection({target}));
+				addUnitsToSelection(filterSelection({target}));
 		}
 		else {
 			if (target == nullptr)
 				selectUnits({});
 			else
-				selectUnits(fiterSelection({target}));
+				selectUnits(filterSelection({target}));
 		}
 	}
 
@@ -149,17 +149,17 @@ void GameWidgetManager::mousePressEvent(const QMouseEvent *event)
 	}
 }
 
-void GameWidgetManager::gameWidgetResized(QSize sizeInPixels)
+void SelectionManager::gameWidgetResized(QSize sizeInPixels)
 {
 	viewport_.setViewSizeInPixels(sizeInPixels);
 }
 
-void GameWidgetManager::refresh()
+void SelectionManager::refresh()
 {
 	markBuildingsSelected();
 }
 
-void GameWidgetManager::addUnitToSelectionByUid(int uid)
+void SelectionManager::addUnitToSelectionByUid(int uid)
 {
 	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
 	if (unit == nullptr)
@@ -167,7 +167,7 @@ void GameWidgetManager::addUnitToSelectionByUid(int uid)
 	addUnitsToSelection({unit});
 }
 
-void GameWidgetManager::healUnitByUid(int uid)
+void SelectionManager::healUnitByUid(int uid)
 {
 	Unit *target = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
 	if (target == nullptr)
@@ -178,7 +178,7 @@ void GameWidgetManager::healUnitByUid(int uid)
 	}
 }
 
-void GameWidgetManager::selectUnitByUid(int uid)
+void SelectionManager::selectUnitByUid(int uid)
 {
 	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
 	if (unit == nullptr)
@@ -186,12 +186,23 @@ void GameWidgetManager::selectUnitByUid(int uid)
 	selectUnits({unit});
 }
 
-void GameWidgetManager::showUnitByUid(int uid)
+void SelectionManager::showUnitByUid(int uid)
 {
 	//TODO center viewport on unit position
 }
 
-Unit *GameWidgetManager::unitByNumber(int number) const
+void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
+{
+	qDebug() << selectionRect;
+	QSet<Unit *> filteredUnits = filterSelection(objectInPixelsRect(selectionRect));
+
+	if (QApplication::keyboardModifiers() & Qt::ShiftModifier)
+		addUnitsToSelection(filteredUnits);
+	else
+		selectUnits(filteredUnits);
+}
+
+Unit *SelectionManager::unitByNumber(int number) const
 {
 	QList<int> allUnits = mind_->getPlayerFaction()->getAllUnits();
 	if (number < 1 || number > allUnits.size())
@@ -199,12 +210,12 @@ Unit *GameWidgetManager::unitByNumber(int number) const
 	return dynamic_cast<Unit *>(mind_->getObjectFromUid(allUnits[number - 1]));
 }
 
-Object *GameWidgetManager::objectInPixelsPos(QPoint pointInPixels) const
+Object *SelectionManager::objectInPixelsPos(QPoint pointInPixels) const
 {
 	QPointF point = viewport_.fromPixelsToMetres(pointInPixels);
 
 	point -= QPointF(0.1, 0.1);
-	const QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
+	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
 
 	if (objects.isEmpty())
 		return nullptr;
@@ -212,18 +223,34 @@ Object *GameWidgetManager::objectInPixelsPos(QPoint pointInPixels) const
 	return mind_->getObjectFromUid(objects[0]->getUid());
 }
 
-QSet<Unit *> GameWidgetManager::fiterSelection(const QSet<Object *> &objects) const
+QSet<Object *> SelectionManager::objectInPixelsRect(QRect rectInPixels) const
+{
+	auto topLeftInMetres = viewport_.fromPixelsToMetres(rectInPixels.topLeft());
+	auto botomRightInMetres = viewport_.fromPixelsToMetres(rectInPixels.bottomRight());
+	QRectF rectInMetres(topLeftInMetres, botomRightInMetres);
+	rectInMetres = rectInMetres.normalized();
+
+	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(rectInMetres);
+
+	QSet<Object *> result;
+	for (auto &obj : objects)
+		result.insert(mind_->getObjectFromUid(obj->getUid()));
+
+	return result;
+}
+
+QSet<Unit *> SelectionManager::filterSelection(const QSet<Object *> &objects) const
 {
 	QSet<Unit *> units;
 	QSet<Building *> buildings;
 
 	for (auto &object : objects) {
 		Unit *unit = dynamic_cast<Unit *>(object);
-		if (unit && unit->getFactionId() == mind_->PlayerFactionId)
+		if (unit && unit->getFactionId() == Mind::PlayerFactionId)
 			units.insert(unit);
 
 		Building *building = dynamic_cast<Building *>(object);
-		if (building && building->getFactionId() == mind_->PlayerFactionId)
+		if (building && building->getFactionId() == Mind::PlayerFactionId)
 			buildings.insert(building);
 	}
 
@@ -242,7 +269,7 @@ QSet<Unit *> GameWidgetManager::fiterSelection(const QSet<Object *> &objects) co
 	return units;
 }
 
-void GameWidgetManager::selectUnits(const QSet<Unit *> &units)
+void SelectionManager::selectUnits(const QSet<Unit *> &units)
 {
 	for (auto &unit : selectedUnits_)
 		unit->property(TempData::IsSelected) = QVariant(false);
@@ -255,7 +282,7 @@ void GameWidgetManager::selectUnits(const QSet<Unit *> &units)
 	markBuildingsSelected();
 }
 
-void GameWidgetManager::addUnitsToSelection(QSet<Unit *> units)
+void SelectionManager::addUnitsToSelection(QSet<Unit *> units)
 {
 	selectedUnits_.unite(units);
 
@@ -265,7 +292,7 @@ void GameWidgetManager::addUnitsToSelection(QSet<Unit *> units)
 	markBuildingsSelected();
 }
 
-void GameWidgetManager::markBuildingsSelected()
+void SelectionManager::markBuildingsSelected()
 {
 	for (auto &building : selectedBuildings_)
 		building->property(TempData::IsSelected) = QVariant(false);

@@ -1,12 +1,13 @@
 ﻿set (UserInterface_SRCS
+	BoardWidget.cpp
 	CampEquipmentWindow.cpp
 	CampPanel.cpp
-	GameWidgetManager.cpp
 	GameWindow.cpp
 	IsometricPerspective.cpp
 	JournalWindow.cpp
 	MainMenuWindow.cpp
 	Perspective.cpp
+	SelectionManager.cpp
 	UnitsPanel.cpp
 	UnitWidget.cpp
 	UnitWindow.cpp
@@ -15,12 +16,13 @@
 )
 
 set (UserInterface_HDRS
+	BoardWidget.hpp
 	CampEquipmentWindow.hpp
 	CampPanel.hpp
-	GameWidgetManager.hpp
 	GameWindow.hpp
 	JournalWindow.hpp
 	MainMenuWindow.hpp
+	SelectionManager.hpp
 	UnitsPanel.hpp
 	UnitWidget.hpp
 	UnitWindow.hpp

@@ -7,8 +7,9 @@
 #include <QtCore/QTimer>
 #include <SFML/Graphics.hpp>
 
+#include "UserInterface/BoardWidget.hpp"
 
-class GraphicsWidget : public QWidget, public sf::RenderWindow {
+class GraphicsWidget : public BoardWidget, public sf::RenderWindow {
 Q_OBJECT;
 public:
 	GraphicsWidget();

@@ -42,9 +42,9 @@ bool UserInterface::gameInProgress() const
 	return (gameWindow_ != nullptr);
 }
 
-void UserInterface::newGame(Mind *mind, QWidget *graphicsWidget)
+void UserInterface::newGame(Mind *mind, BoardWidget *boardWidget)
 {
-	gameWindow_ = new GameWindow(mind, graphicsWidget);
+	gameWindow_ = new GameWindow(mind, boardWidget);
 
 	connect(gameWindow_, &GameWindow::showMainMenu, this, &UserInterface::onShowMainMenu);
 	stackedWidget_->insertWidget(static_cast<int>(Window::Game), gameWindow_);

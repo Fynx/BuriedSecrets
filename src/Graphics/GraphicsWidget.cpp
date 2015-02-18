@@ -10,7 +10,7 @@
 
 
 GraphicsWidget::GraphicsWidget()
-	: QWidget{}, initialized{false}
+	: BoardWidget{}, initialized{false}
 {
 	// Setup some states to allow direct rendering into the widget
 	setAttribute(Qt::WA_PaintOnScreen);

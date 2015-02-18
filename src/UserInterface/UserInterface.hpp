@@ -5,6 +5,7 @@
 
 #include <QtWidgets>
 
+class BoardWidget;
 class DataManager;
 class General;
 class Mind;
@@ -24,7 +25,7 @@ public:
 
 	bool gameInProgress() const;
 	void clearGame();
-	void newGame(Mind *mind, QWidget *graphicsWidget);
+	void newGame(Mind *mind, BoardWidget *boardWidget);
 
 private:
 	enum class Window : quint8 {
