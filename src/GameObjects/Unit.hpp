@@ -15,6 +15,8 @@ public:
 
 	Item *getUsedItem();
 	Equipment *getEquipment();
+	void setEquipment(Equipment *eq);
+	int getEquipmentUid() const;
 
 	Location *getLocation();
 	void setLocation(Location *location);
@@ -73,6 +75,7 @@ private:
 	int psychosis;
 	BS::Command command;
 	Equipment *equipment;
+	int equipmentUid;
 
 	QList<QPointF> currentPath;
 

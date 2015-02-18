@@ -10,11 +10,11 @@
 ItemConstructor::ItemConstructor(DataManager *dm, Mind *m) : mind(m)
 {
 	for (Prototype *proto : dm->getAllPrototypes()){
-		if (proto->hasProperty(Properties::Type) && proto->getProperty(Properties::Type).toString() == BS::changeTypeToString(BS::Type::Item))
+		if (proto->hasProperty(Properties::Type)
+			&& proto->getProperty(Properties::Type).toString() == BS::changeTypeToString(BS::Type::Item))
 			allItems.append(proto);
 	}
 }
-
 
 QList<Prototype *> ItemConstructor::possibleItems(Equipment *eq)
 {
@@ -45,7 +45,6 @@ QList<Prototype *> ItemConstructor::possibleItems(Equipment *eq)
 
 	return result;
 }
-
 
 Item *ItemConstructor::constructItem(Prototype *proto, Equipment *eq)
 {

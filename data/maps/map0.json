@@ -45,8 +45,8 @@
 				"AnimatorEnterBuilding",
 				"AnimatorHeal",
                                 "AnimatorLeaveBuilding"
-
 			],
+			"equipment": 50,
 			"x": 20.0,
 			"y": 40.0,
 			"uid": 2
@@ -89,6 +89,27 @@
 			"faction": 1,
 			"units": [1, 2, 3],
 			"uid": 5
+		},
+
+		{
+			"name": "equipment",
+			"type": "equipment",
+			"items": [
+				51,
+				52
+			],
+			"uid": 50
+		},
+
+		{
+			"name": "Revolvers",
+			"type": "item",
+			"uid": 51
+		},
+		{
+			"name": "Medkit",
+			"type": "item",
+			"uid": 52
 		}
 	]
 }

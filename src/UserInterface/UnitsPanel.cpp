@@ -34,7 +34,7 @@ QSize UnitsPanel::sizeHint() const
 
 void UnitsPanel::refresh(const Mind *mind)
 {
-	QList <int> allUnits = mind->getPlayerFaction()->getAllUnits();
+	QList <int> allUnits = mind->getPlayerFaction()->getAllUnitsUids();
 
 	//check if there are new units
 	int iter = unitWidgets_.size();

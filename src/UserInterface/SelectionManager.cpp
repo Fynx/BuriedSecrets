@@ -197,7 +197,7 @@ void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
 
 Unit *SelectionManager::unitByNumber(int number) const
 {
-	QList<int> allUnits = mind_->getPlayerFaction()->getAllUnits();
+	QList<int> allUnits = mind_->getPlayerFaction()->getAllUnitsUids();
 	if (number < 1 || number > allUnits.size())
 		return nullptr;
 	return dynamic_cast<Unit *>(mind_->getObjectFromUid(allUnits[number - 1]));

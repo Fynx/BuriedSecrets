@@ -22,8 +22,8 @@ public:
 	QuestLog *getQuestLog();
 	Camp *getCamp();
 
-	const QSet<int> &getUnits() const;
-	const QList<int> &getAllUnits() const;
+	const QSet<int> &getUnitsUids() const;
+	const QList<int> &getAllUnitsUids() const;
 	bool isAliveMember(int uid) const;
 	int getFood() const;
 	bool isNeutralFaction(int uid) const;
@@ -41,6 +41,6 @@ private:
 	Journal *journal;
 	QuestLog *questLog;
 	Camp *camp;
-	QSet<int> units;
-	QList<int> allUnits;
+	QSet<int> unitsUids;
+	QList<int> allUnitsUids;
 };

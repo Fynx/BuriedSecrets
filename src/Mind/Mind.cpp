@@ -58,7 +58,8 @@ void Mind::loadFromJson(const QJsonObject &json)
 			err("Object without a name! Skipping.");
 			continue;
 		}
-		qDebug() << "\tload" << obj[Properties::Name].toString();
+		qDebug() << "\tload" << obj[Properties::Name].toString() << "("
+			<< obj[Properties::Type].toString() << "," << obj[Attributes::Uid].toInt() << ")";
 		Object *object = createObjectFromJson(obj[Properties::Name].toString(), obj);
 
 		for (const QJsonValue &value : obj[Data::Animators].toArray())
@@ -75,17 +76,30 @@ void Mind::loadFromJson(const QJsonObject &json)
 		addObject(p.first, QPointF(p.second.first, p.second.second));
 	}
 
-	/** Set factions */
+	/** Set pointers */
+
+	//WARNING ItemConstructor is NOT used. Because what for.
 
 	for (Object *object : objects) {
 		if (object->getType() == BS::Type::Faction) {
 			factions.insert(object->getFactionId(), dynamic_cast<Faction *>(object));
-			for (int objectUid : dynamic_cast<Faction *>(object)->getUnits())
+			for (int objectUid : dynamic_cast<Faction *>(object)->getUnitsUids())
 				getObjectFromUid(objectUid)->setFactionId(object->getFactionId());
+		} else if (object->getType() == BS::Type::Unit) {
+			Unit *unit = dynamic_cast<Unit *>(object);
+			int eqUid = unit->getEquipmentUid();
+			if (eqUid == Object::InvalidUid) {
+				Equipment *eq = dynamic_cast<Equipment *>(createDefaultObject(BS::Type::Equipment, "equipment"));
+				eqUid = eq->assignUid();
+				addObject(eq);
+			}
+			unit->setEquipment(dynamic_cast<Equipment *>(getObjectFromUid(eqUid)));
+		} else if (object->getType() == BS::Type::Equipment) {
+			Equipment *eq = dynamic_cast<Equipment *>(object);
+			for (int itemUid : eq->getItemsUids())
+				eq->addItem(dynamic_cast<Item *>(getObjectFromUid(itemUid)));
 		}
 	}
-
-	//TODO assign pointers in Objects, you can put uid assigning before this for loop here for safety.
 }
 
 QJsonObject Mind::saveToJson() const
@@ -244,6 +258,11 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 		case BS::Type::Fortification: {
 			Fortification *fortification = new Fortification(dataManager->getPrototype(name));
 			obj = fortification;
+			break;
+		}
+		case BS::Type::Item: {
+			Item *item = new Item(dataManager->getPrototype(name));
+			obj = item;
 			break;
 		}
 		case BS::Type::Mob: {

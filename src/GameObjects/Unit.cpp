@@ -45,6 +45,17 @@ Equipment *Unit::getEquipment()
 	return equipment;
 }
 
+void Unit::setEquipment(Equipment *eq)
+{
+	equipment = eq;
+	equipmentUid = eq->getUid();
+}
+
+int Unit::getEquipmentUid() const
+{
+	return equipmentUid;
+}
+
 Location *Unit::getLocation()
 {
 	return location;
@@ -223,12 +234,13 @@ void Unit::setCommand(BS::Command c)
 
 void Unit::loadFromJson(const QJsonObject &json)
 {
-	//TODO paths blablablah
+	//TODO paths blablablah // <- Don't remember what...?
 
 	Object::loadFromJson(json);
 
 	hp        = json[Properties::HP].toInt();
 	psychosis = json[Properties::Psychosis].toInt();
+	equipmentUid = json[Properties::Equipment].toInt();
 }
 
 QJsonObject Unit::saveToJson() const
@@ -237,6 +249,7 @@ QJsonObject Unit::saveToJson() const
 
 	json[Properties::HP]        = hp;
 	json[Properties::Psychosis] = psychosis;
+	json[Properties::Equipment] = equipment->getUid();
 
 	return json;
 }

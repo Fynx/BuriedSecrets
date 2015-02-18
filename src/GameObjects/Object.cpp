@@ -14,10 +14,11 @@ Object::Object(const Prototype *prototype)
 Object::~Object()
 {}
 
-void Object::assignUid()
+int Object::assignUid()
 {
 	if (uid == Object::InvalidUid)
 		uid = ++LastUid;
+	return uid;
 }
 
 int Object::getUid() const

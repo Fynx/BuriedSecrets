@@ -4,7 +4,6 @@
 #include "General/General.hpp"
 #include "PhysicsEngine/Box2DEngine.hpp"
 
-
 General::General()
 	: debugManager(new DebugManager),
 	  dataManager(new DataManager),
@@ -15,7 +14,6 @@ General::General()
 	  soundsManager(nullptr)
 {}
 
-
 General::~General()
 {
 	clearGameModules();
@@ -25,12 +23,10 @@ General::~General()
 	delete debugManager;
 }
 
-
 QMainWindow * General::getMainWindow()
 {
 	return userInterface->getMainWindow();
 }
-
 
 void General::clearGameModules()
 {
@@ -45,7 +41,6 @@ void General::clearGameModules()
 
 	info("Done.");
 }
-
 
 void General::startNewGame()
 {
@@ -75,7 +70,6 @@ void General::startNewGame()
 	info("Done.");
 }
 
-
 void General::saveLevel()
 {
 	info("Saving level...");
@@ -83,25 +77,21 @@ void General::saveLevel()
 	info("Done.");
 }
 
-
 void General::toggleDisplayBasePolygons()
 {
 	graphics->toggleShowBasePolygons();
 }
-
 
 void General::toggleDisplayFPS()
 {
 	graphics->toggleShowFPS();
 }
 
-
 void General::pauseGame()
 {
 	mind->pauseGame();
 	graphics->pauseRendering();
 }
-
 
 void General::resumeGame()
 {

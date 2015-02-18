@@ -14,6 +14,7 @@ public:
 
 	void addItem(Item *item);
 	void removeItem(Item *item);
+	const QSet<int> &getItemsUids() const;
 	const QSet<Item *> &getItems() const;
 	int getWeight() const;
 	Item *getSlotItem(BS::Slot);
@@ -22,6 +23,7 @@ public:
 	virtual QJsonObject saveToJson() const;
 
 private:
+	QSet<int> itemsUids;
 	QSet<Item *> items;
 	QHash<BS::Slot, Item*> usedItems;
 };

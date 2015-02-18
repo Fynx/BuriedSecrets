@@ -30,7 +30,7 @@ void AnimatorRegenerate::act()
 		if (campPos.isNull())
 			continue;
 
-		for (int id : fac->getUnits()) {
+		for (int id : fac->getUnitsUids()) {
 			Unit *unit = dynamic_cast<Unit *>(mind->getObjectFromUid(id));
 			QPointF unitPos;
 

@@ -34,19 +34,19 @@ Camp *Faction::getCamp()
 	return camp;
 }
 
-const QSet<int> &Faction::getUnits() const
+const QSet<int> &Faction::getUnitsUids() const
 {
-	return units;
+	return unitsUids;
 }
 
-const QList<int> &Faction::getAllUnits() const
+const QList<int> &Faction::getAllUnitsUids() const
 {
-	return allUnits;
+	return allUnitsUids;
 }
 
 bool Faction::isAliveMember(int uid) const
 {
-	return units.contains(uid);
+	return unitsUids.contains(uid);
 }
 
 int Faction::getFood() const
@@ -87,8 +87,8 @@ void Faction::loadFromJson(const QJsonObject &json)
 
 	QJsonArray us = json[Attributes::Units].toArray();
 	for (const QJsonValue &value : us) {
-		units.insert(value.toInt());
-		allUnits.append(value.toInt());
+		unitsUids.insert(value.toInt());
+		allUnitsUids.append(value.toInt());
 	}
 }
 
@@ -99,7 +99,7 @@ QJsonObject Faction::saveToJson() const
 	json[Attributes::Food] = food;
 
 	QJsonArray us;
-	for (int u : units)
+	for (int u : unitsUids)
 		us.append(u);
 	json[Attributes::Units] = us;
 

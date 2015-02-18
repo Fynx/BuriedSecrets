@@ -11,8 +11,9 @@ public:
 	Object(const Prototype *prototype);
 	virtual ~Object();
 
+	static const int InvalidUid = 0;
 	/** If current UID is invalid, new UID is assigned. */
-	void assignUid();
+	int assignUid();
 	int getUid() const;
 	const Prototype *getPrototype() const;
 
@@ -43,7 +44,6 @@ protected:
 	const Prototype *prototype;
 
 	static void updateUid(int uid);
-	static const int InvalidUid = 0;
 	/** Every new UID is greater than every previous */
 	static int LastUid;
 
