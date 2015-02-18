@@ -3,14 +3,17 @@
  */
 #include "Mind/MapManager/MapManager.hpp"
 
-MapManager::MapManager(const QJsonObject &json)
-	: map(json)
+
+MapManager::MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId)
+	: map{json}, physicsEngine{physicsEngine}, playerFactionId{playerFactionId}
 {}
+
 
 const Map *MapManager::getMap() const
 {
 	return &map;
 }
+
 
 QList<QPointF> MapManager::getPath(const QPointF &from, const QPointF &to) const
 {

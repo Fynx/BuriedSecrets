@@ -46,7 +46,7 @@ ItemConstructor *Mind::itemConstructor()
 void Mind::loadFromJson(const QJsonObject &json)
 {
 	delete mapManager;
-	mapManager = new MapManager(json);
+	mapManager = new MapManager(json, physics, PlayerFactionId);
 
 	const QJsonArray &objs = json[Data::Objects].toArray();
 

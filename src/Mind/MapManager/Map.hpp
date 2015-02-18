@@ -20,9 +20,9 @@ public:
 	 */
 	bool canStepAt(const float x, const float y) const;
 
-	const QString & getName() const;
-	const QString & getDesc() const;
-	const QSizeF & getSize() const;
+	const QString &getName() const;
+	const QString &getDesc() const;
+	const QSizeF &getSize() const;
 
 private:
 	//TODO extract data into fields or something
