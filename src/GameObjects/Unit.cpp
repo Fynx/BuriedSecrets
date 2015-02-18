@@ -30,7 +30,7 @@ Item *Unit::getUsedItem()
 		return equipment->getSlotItem(Slot::Medicament);
 
 	case Command::Construct:
-		return equipment->getSlotItem(Slot::Fortificationn);
+		return equipment->getSlotItem(Slot::Fortification);
 
 	case Command::Deconstruct:
 		return equipment->getSlotItem(Slot::Tool);
@@ -238,9 +238,9 @@ void Unit::loadFromJson(const QJsonObject &json)
 
 	Object::loadFromJson(json);
 
-	hp        = json[Properties::HP].toInt();
-	psychosis = json[Properties::Psychosis].toInt();
-	equipmentUid = json[Properties::Equipment].toInt();
+	hp           = json[Properties::HP].toInt();
+	psychosis    = json[Properties::Psychosis].toInt();
+	equipmentUid = json[Attributes::Equipment].toInt();
 }
 
 QJsonObject Unit::saveToJson() const
@@ -249,7 +249,7 @@ QJsonObject Unit::saveToJson() const
 
 	json[Properties::HP]        = hp;
 	json[Properties::Psychosis] = psychosis;
-	json[Properties::Equipment] = equipment->getUid();
+	json[Attributes::Equipment] = equipment->getUid();
 
 	return json;
 }

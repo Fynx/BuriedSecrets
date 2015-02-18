@@ -56,9 +56,13 @@ namespace BS {
 		Tool,
 		Medicament,
 		Armor,
-		Fortificationn,
+		Fortification,
 		Perception
 	};
+
+	QString changeSlotToString(BS::Slot slot);
+	BS::Slot changeStringToSlot(const QString &string);
+	const QList<BS::Slot> getSlots();
 
 	enum class ItemType : quint8 {
 		Storyline,

@@ -17,7 +17,10 @@ public:
 	const QSet<int> &getItemsUids() const;
 	const QSet<Item *> &getItems() const;
 	int getWeight() const;
-	Item *getSlotItem(BS::Slot);
+	
+	void putItemIntoSlot(BS::Slot slot, Item *item);
+	int getSlotItemUid(BS::Slot slot) const;
+	Item *getSlotItem(BS::Slot slot);
 
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
@@ -25,5 +28,6 @@ public:
 private:
 	QSet<int> itemsUids;
 	QSet<Item *> items;
-	QHash<BS::Slot, Item*> usedItems;
+	QHash<BS::Slot, int> usedItemsUids;
+	QHash<BS::Slot, Item *> usedItems;
 };

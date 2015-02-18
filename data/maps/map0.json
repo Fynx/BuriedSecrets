@@ -98,6 +98,10 @@
 				51,
 				52
 			],
+			"slots": {
+				"weapon": 51,
+				"medicament": 52
+			},
 			"uid": 50
 		},
 

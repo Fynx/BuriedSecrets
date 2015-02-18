@@ -98,6 +98,9 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Equipment *eq = dynamic_cast<Equipment *>(object);
 			for (int itemUid : eq->getItemsUids())
 				eq->addItem(dynamic_cast<Item *>(getObjectFromUid(itemUid)));
+			for (BS::Slot slot : BS::getSlots())
+				if (eq->getSlotItemUid(slot) != Object::InvalidUid)
+					eq->putItemIntoSlot(slot, dynamic_cast<Item *>(getObjectFromUid(eq->getSlotItemUid(slot))));
 		}
 	}
 }

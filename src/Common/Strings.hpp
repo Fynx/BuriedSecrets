@@ -24,21 +24,24 @@ namespace Animators {
 	const QString Construct     = "AnimatorConstruct";
 	const QString EnterBuilding = "AnimatorEnterBuilding";
 	const QString LeaveBuilding = "AnimatorLeaveBuilding";
-	const QString Attack		= "AnimatorAttack";
-	const QString Weapon		= "AnimatorWeapon";
+	const QString Attack        = "AnimatorAttack";
+	const QString Weapon        = "AnimatorWeapon";
 }
 
 namespace Attributes {                                 // Converted into class fields
-	const QString UsesLeft      = "UsesLeft";          // Item
+	const QString DelayTime     = "delayTime";         // Item
+	const QString Equipment     = "equipment";
 	const QString Faction       = "faction";
 	const QString Food          = "food";
 	const QString HP            = "hp";
+	const QString Items         = "items";
 	const QString OffsetX       = "offsetX";
 	const QString OffsetY       = "offsetY";
 	const QString Psychosis     = "psychosis";
-	const QString DelayTime     = "delayTime";         // Item
+	const QString Slots         = "slots";
 	const QString Uid           = "uid";
 	const QString Units         = "units";
+	const QString UsesLeft      = "UsesLeft";          // Item
 }
 
 namespace Data {
@@ -71,14 +74,12 @@ namespace Properties {                                 // for Prototypes
 	const QString Dispersion    = "dispersion";        // Weapon
 	const QString Encumbrance   = "encumbrance";       // max for Unit
 	const QString Engineering   = "engineering";       // base for Unit
-	const QString Equipment     = "equipment";
 	const QString FireRate      = "fireRate";
 	const QString FoodDemand    = "foodDemand";        // base for Unit
 	const QString Healing       = "healing";           // base for Unit
 	const QString HP            = "hp";                // max for Unit ??
 	const QString Ingredients   = "ingredients";       // Item
 	const QString ItemType      = "itemType";
-	const QString Items         = "items";
 	const QString MagazineSize  = "magazineSize";      // Weapon
 	const QString MovementSpeed = "movementSpeed";     // Unit
 	const QString Name          = "name";

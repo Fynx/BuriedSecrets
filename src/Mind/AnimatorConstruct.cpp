@@ -36,7 +36,7 @@ void AnimatorConstruct::act()
 		if (QVector2D(to-from).length() > epsilon)
 			continue;
 
-		Item *castoramaSet = unit->getEquipment()->getSlotItem(BS::Slot::Fortificationn);
+		Item *castoramaSet = unit->getEquipment()->getSlotItem(BS::Slot::Fortification);
 		if (castoramaSet){
 
 			if (castoramaSet->getPrototype()->hasProperty(Properties::SpawnedType)){

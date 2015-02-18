@@ -50,18 +50,44 @@ int Equipment::getWeight() const
 void Equipment::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
-	for (QJsonValue val : json[Properties::Items].toArray())
+	for (QJsonValue val : json[Attributes::Items].toArray())
 		itemsUids.insert(val.toInt());
+	for (const QString &key : json[Attributes::Slots].toObject().keys())
+		usedItemsUids[BS::changeStringToSlot(key)] = json[Attributes::Slots].toObject()[key].toInt();
 }
 
 QJsonObject Equipment::saveToJson() const
 {
 	QJsonObject json = Object::saveToJson();
+
 	QJsonArray itms;
 	for (int itemUid : itemsUids)
 		itms.append(itemUid);
-	json[Properties::Items] = itms;
+	json[Attributes::Items] = itms;
+
+	QJsonObject used;
+	for (BS::Slot slot : usedItemsUids.keys())
+		used[BS::changeSlotToString(slot)] = usedItemsUids[slot];
+	json[Attributes::Slots] = used;
+
 	return json;
+}
+
+void Equipment::putItemIntoSlot(BS::Slot slot, Item *item)
+{
+	if (!items.contains(item)) {
+		err("Item must be inserted into the equipment, before it can be attached to the slot!");
+		return;
+	}
+	usedItems[slot] = item;
+	usedItemsUids[slot] = item->getUid();
+}
+
+int Equipment::getSlotItemUid(BS::Slot slot) const
+{
+	if (!usedItemsUids.contains(slot))
+		return Object::InvalidUid;
+	return usedItemsUids[slot];
 }
 
 Item *Equipment::getSlotItem(BS::Slot slot)
