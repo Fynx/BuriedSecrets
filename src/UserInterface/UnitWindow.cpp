@@ -17,13 +17,28 @@ UnitWindow::UnitWindow(Mind *mind) : mind_(mind), unit_(nullptr)
 	initLayout();
 }
 
+QWidget *UnitWindow::createTabWidget()
+{
+	tabWidget_ = new QTabWidget;
+
+	equipmentTab_ = new QWidget;
+	statsTab_ = new QWidget;
+	historyTab_ = new QWidget;
+
+	tabWidget_->addTab(equipmentTab_, "Equipment");
+	tabWidget_->addTab(statsTab_, "Stats");
+	tabWidget_->addTab(historyTab_, "History");
+
+	return tabWidget_;
+}
+
 void UnitWindow::initLayout()
 {
 	QVBoxLayout *layout  = new QVBoxLayout;
 	setLayout(layout);
 
 	layout->addWidget(title_);
-	layout->addStretch();
+	layout->addWidget(createTabWidget());
 	layout->addWidget(closeBtn_);
 }
 

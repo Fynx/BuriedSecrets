@@ -11,7 +11,12 @@ public:
 	CampEquipmentWindow();
 
 private:
+	QWidget *createTabWidget();
 	void initLayout();
+
+	QTabWidget *tabWidget_;
+	QWidget *equipmentTab_;
+	QWidget *constructorTab_;
 
 	QPushButton *closeBtn_;
 
