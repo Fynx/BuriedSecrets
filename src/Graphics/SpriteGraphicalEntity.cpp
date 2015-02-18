@@ -23,3 +23,10 @@ void SpriteGraphicalEntity::setPosition(const QPointF &position)
 }
 
 
+QSizeF SpriteGraphicalEntity::getSizePx() const
+{
+	const auto size = sprite.getGlobalBounds();
+	return QSizeF{size.width, size.height};
+}
+
+

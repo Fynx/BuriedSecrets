@@ -28,6 +28,10 @@ public:
 	QList<QPointF> getBasePolygon() const;
 	QPointF getBaseCentre() const;
 	/**
+	 * @brief Returns the size of the actual texture that is drawn on the screen.
+	 */
+	virtual QSizeF getSizePx() const = 0;
+	/**
 	 * @brief Updates the internal state of the Entity over the time that has passed since the last update.
 	 *
 	 * @param timeDelta Time since the last update (in ms).
