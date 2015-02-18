@@ -57,6 +57,10 @@ private:
 	QPointF getPosition(GraphicalEntity *entity) const;
 	void addEffect(const QString &effectName, Effect *effect, std::list<std::pair<QString, Effect *>> &effectsList);
 	bool removeEffect(const QString &effectName, std::list<std::pair<QString, Effect *>> &effectsList);
+	/**
+	 * @brief Draws the rubber band selection (if needed).
+	 */
+	void drawRubberBand();
 
 	GraphicsDataManager graphicsDataManager;
 	QTimer renderTimer;
@@ -67,6 +71,7 @@ private:
 	int frames;
 	std::list<std::pair<QString, Effect *>> preEffects;	// Effects drawn before the Entities.
 	std::list<std::pair<QString, Effect *>> postEffects;	// Effects drawn after the entities.
+	sf::RectangleShape rubberBand;
 
 	// This pointer is just for convenience as it points to the widget.
 	sf::RenderWindow *canvas;

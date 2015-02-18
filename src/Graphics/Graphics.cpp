@@ -16,6 +16,9 @@ Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataMa
 	canvas = widget;
 	fpsText.setFont(*graphicsDataManager.getFont("HEMIHEAD"));
 	fpsText.setColor(sf::Color::Red);
+	rubberBand.setFillColor(sf::Color{40, 200, 200, 127});
+	rubberBand.setOutlineColor(sf::Color{50, 210, 210, 200});
+	rubberBand.setOutlineThickness(1);
 	widget->setVerticalSyncEnabled(true);
 
 	addEffect("Selection", new SelectionEffect{}, preEffects);
@@ -152,6 +155,8 @@ void Graphics::render()
 		}
 	}
 
+	drawRubberBand();
+
 	if (showFPS) {
 		++frames;
 		float deltaTime = clock.getElapsedTime().asSeconds();
@@ -225,3 +230,15 @@ bool Graphics::removeEffect(const QString &effectName, std::list<std::pair< QStr
 
 	return false;
 }
+
+
+void Graphics::drawRubberBand()
+{
+	if (widget->isRubberBandVisible()) {
+		QRectF rect = widget->rubberBandRect();
+		rubberBand.setPosition(rect.left(), rect.top());
+		rubberBand.setSize(sf::Vector2f(rect.width(), rect.height()));
+		widget->draw(rubberBand);
+	}
+}
+

@@ -9,6 +9,7 @@
 
 #include "UserInterface/BoardWidget.hpp"
 
+
 class GraphicsWidget : public BoardWidget, public sf::RenderWindow {
 Q_OBJECT;
 public:
