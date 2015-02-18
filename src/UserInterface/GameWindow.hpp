@@ -32,6 +32,8 @@ private:
 	void initUnitsPanel();
 	void initWindows();
 	void refresh();
+	void pauseGame();
+	void resumeGame();
 
 	void keyPressEvent(QKeyEvent *event);
 	void mousePressEvent(QMouseEvent *event);
@@ -60,6 +62,7 @@ private slots:
 	void showCampMenu();
 	void showJournal();
 	void showUnitMenu(int uid);
+	void switchDisplayedUnit(int uid);
 	void closeCampMenu();
 	void closeJournal();
 	void closeUnitMenu();

@@ -23,7 +23,7 @@ GameWindow::GameWindow(Mind *mind, BoardWidget *boardWidget, QWidget *parent)
 	  campPanel_(new CampPanel),
 	  campEquipmentWindow_(new CampEquipmentWindow),
 	  journalWindow_(new JournalWindow),
-	  unitWindow_(new UnitWindow(mind_)),
+	  unitWindow_(new UnitWindow),
 	  updateTimer_(new QTimer),
 	  selectionManager_(mind_),
 	  isPaused_(false)
@@ -62,6 +62,7 @@ void GameWindow::initUnitsPanel()
 	connect(unitsPanel_, &UnitsPanel::healUnit,   &selectionManager_, &SelectionManager::healUnitByUid);
 	connect(unitsPanel_, &UnitsPanel::selectUnit, &selectionManager_, &SelectionManager::selectUnitByUid);
 	connect(unitsPanel_, &UnitsPanel::showUnit,   &selectionManager_, &SelectionManager::showUnitByUid);
+	connect(unitsPanel_, &UnitsPanel::selectUnit, this, &GameWindow::switchDisplayedUnit);
 }
 
 void GameWindow::initWindows()
@@ -87,6 +88,22 @@ void GameWindow::refresh()
 	campPanel_->refresh(mind_);
 }
 
+void GameWindow::pauseGame()
+{
+	if (!isPaused_) {
+		mind_->pauseGame();
+		isPaused_ = true;
+	}
+}
+
+void GameWindow::resumeGame()
+{
+	if (isPaused_) {
+		mind_->resumeGame();
+		isPaused_ = false;
+	}
+}
+
 void GameWindow::keyPressEvent(QKeyEvent *event)
 {
 	switch (event->key()) {
@@ -94,11 +111,10 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 			emit showMainMenu();
 			break;
 		case Qt::Key_P:
-			if (isPaused_)
-				mind_->resumeGame();
+			if (!isPaused_)
+				pauseGame();
 			else
-				mind_->pauseGame();
-			isPaused_ = !isPaused_;
+				resumeGame();
 			break;
 		default:
 			selectionManager_.keyPressEvent(event);
@@ -168,6 +184,8 @@ void GameWindow::adjustUnitsPanelGeometry()
 
 void GameWindow::showCampMenu()
 {
+	pauseGame();
+
 	journalWindow_->hide();
 
 	if (unitWindow_->isVisible()) {
@@ -180,6 +198,8 @@ void GameWindow::showCampMenu()
 
 void GameWindow::showJournal()
 {
+	pauseGame();
+
 	campEquipmentWindow_->hide();
 	journalWindow_->show();
 	unitWindow_->hide();
@@ -187,7 +207,7 @@ void GameWindow::showJournal()
 
 void GameWindow::showUnitMenu(int uid)
 {
-	unitWindow_->setUnit(uid);
+	pauseGame();
 
 	journalWindow_->hide();
 
@@ -196,11 +216,33 @@ void GameWindow::showUnitMenu(int uid)
 		tileLeft(campEquipmentWindow_);
 	}
 
+	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	if (unit == nullptr) {
+		err("Invalid unit UID to display");
+		return;
+	}
+	unitWindow_->setUnit(unit);
 	unitWindow_->show();
+}
+
+void GameWindow::switchDisplayedUnit(int uid)
+{
+	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	if (unit == nullptr) {
+		err("Invalid unit UID to display");
+		return;
+	}
+
+	if (unitWindow_->isVisible())
+		unitWindow_->setUnit(unit);
+
 }
 
 void GameWindow::closeCampMenu()
 {
+	if (!unitWindow_->isVisible())
+		resumeGame();
+
 	campEquipmentWindow_->hide();
 	tileCenter(unitWindow_);
 	tileCenter(campEquipmentWindow_);
@@ -208,11 +250,16 @@ void GameWindow::closeCampMenu()
 
 void GameWindow::closeJournal()
 {
+	resumeGame();
+
 	journalWindow_->hide();
 }
 
 void GameWindow::closeUnitMenu()
 {
+	if (!campEquipmentWindow_->isVisible())
+		resumeGame();
+
 	unitWindow_->hide();
 	tileCenter(unitWindow_);
 	tileCenter(campEquipmentWindow_);

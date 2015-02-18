@@ -1,10 +1,11 @@
-/*
- * { { license | lines_prepend:" * " }}
+/* YoLoDevelopment, 2015
+ * All rights reserved.
  */
 #pragma once
-#include <qt/QtWidgets/QWidget>
-class CampEquipmentTab
-{
+
+#include <QtWidgets>
+
+class CampEquipmentTab : public QWidget {
 
 public:
 	CampEquipmentTab();

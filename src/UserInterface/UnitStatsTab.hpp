@@ -1,14 +1,19 @@
-/*
- * { { license | lines_prepend:" * " }}
+/* YoLoDevelopment, 2015
+ * All rights reserved.
  */
 #pragma once
-#include <qt/QtWidgets/QWidget>
-class UnitStatsTab
-{
+
+#include <QtWidgets>
+
+class Unit;
+
+class UnitStatsTab : public QWidget {
 
 public:
-	UnitStatsTab();
+	UnitStatsTab(Unit *unit);
 
 private:
+	void initLayout();
+	Unit *unit_;
 
 };

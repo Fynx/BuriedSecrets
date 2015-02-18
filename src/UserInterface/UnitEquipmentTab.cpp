@@ -1,8 +1,16 @@
-/*
- { *{ *license|lines_prepend:" * " }}
+/* YoLoDevelopment, 2015
+ * All rights reserved.
  */
-#include "file:///home/soszu/Programowanie/ZPP/BuriedSecrets/src/UserInterface/UnitEquipmentTab.hpp"
+#include "UnitEquipmentTab.hpp"
 
-UnitEquipmentTab::UnitEquipmentTab()
+#include "GameObjects/Unit.hpp"
+
+UnitEquipmentTab::UnitEquipmentTab(Unit *unit) : unit_(unit)
 {
+	initLayout();
+}
+
+void UnitEquipmentTab::initLayout()
+{
+
 }

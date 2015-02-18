@@ -1,13 +1,19 @@
-/*
- * { { license | lines_prepend:" * " }}
+/* YoLoDevelopment, 2015
+ * All rights reserved.
  */
 #pragma once
+
 #include <QtWidgets>
-class UnitEquipmentTab {
+
+class Unit;
+
+class UnitEquipmentTab : public QWidget {
 
 public:
-	UnitEquipmentTab();
+	UnitEquipmentTab(Unit *unit);
 
 private:
+	void initLayout();
+	Unit *unit_;
 
 };

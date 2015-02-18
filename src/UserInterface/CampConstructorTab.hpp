@@ -1,9 +1,11 @@
-/*
+/* YoLoDevelopment, 2015
+ * All rights reserved.
  */
 #pragma once
-#include <qt/QtWidgets/QWidget>
-class CampConstructorTab
-{
+
+#include <QtWidgets>
+
+class CampConstructorTab : public QWidget {
 
 public:
 	CampConstructorTab();

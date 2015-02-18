@@ -9,6 +9,9 @@
 	Perspective.cpp
 	SelectionManager.cpp
 	UnitsPanel.cpp
+	UnitEquipmentTab.cpp
+	UnitHistoryTab.cpp
+	UnitStatsTab.cpp
 	UnitWidget.cpp
 	UnitWindow.cpp
 	UserInterface.cpp

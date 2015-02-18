@@ -120,7 +120,6 @@ void SelectionManager::mousePressEvent(const QMouseEvent *event)
 					unit->setCurrentPath(mind_->getMapManager()->getPath(pos, place));
 					if (unit->getState() == BS::State::Inside) {
 						unit->setCommand(BS::Command::LeaveBuilding);
-						qDebug() << "LeaveBuilding   http://ujeb.se/UuzV";
 					}
 					else
 						unit->setCommand(BS::Command::Move);
@@ -186,7 +185,6 @@ void SelectionManager::showUnitByUid(int uid)
 
 void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
 {
-	qDebug() << selectionRect;
 	QSet<Unit *> filteredUnits = filterSelection(objectInPixelsRect(selectionRect));
 
 	if (QApplication::keyboardModifiers() & Qt::ShiftModifier)

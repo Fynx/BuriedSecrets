@@ -1,18 +1,19 @@
-/*
- * { { license | lines_prepend:" * " }}
+/* YoLoDevelopment, 2015
+ * All rights reserved.
  */
-
 #pragma once
 
-#include <qt/QtWidgets/QWidget>
+#include <QtWidgets>
 
-class UnitHistoryTab
-{
+class Unit;
+
+class UnitHistoryTab : public QWidget {
 
 public:
-	UnitHistoryTab();
+	UnitHistoryTab(Unit *unit);
 
 private:
-	
+	void initLayout();
 
+	Unit *unit_;
 };
