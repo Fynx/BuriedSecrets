@@ -98,13 +98,13 @@ void General::toggleDisplayFPS()
 
 void General::pauseGame()
 {
-	// TODO pause Mind
+	mind->pauseGame();
 	graphics->pauseRendering();
 }
 
 
 void General::resumeGame()
 {
-	// TODO resume Mind
+	mind->resumeGame();
 	graphics->resumeRendering();
 }

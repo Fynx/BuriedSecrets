@@ -25,7 +25,8 @@ GameWindow::GameWindow(Mind *mind, BoardWidget *boardWidget, QWidget *parent)
 	  journalWindow_(new JournalWindow),
 	  unitWindow_(new UnitWindow(mind_)),
 	  updateTimer_(new QTimer),
-	  selectionManager_(mind_)
+	  selectionManager_(mind_),
+	  isPaused_(false)
 {
 	boardWidget_->setParent(this);
 	campPanel_->setParent(this);
@@ -91,6 +92,13 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 	switch (event->key()) {
 		case Qt::Key_Escape:
 			emit showMainMenu();
+			break;
+		case Qt::Key_P:
+			if (isPaused_)
+				mind_->resumeGame();
+			else
+				mind_->pauseGame();
+			isPaused_ = !isPaused_;
 			break;
 		default:
 			selectionManager_.keyPressEvent(event);

@@ -45,7 +45,6 @@ private:
 	void addUnitsToSelection(QSet<Unit *> units);
 	void markBuildingsSelected();
 
-	bool isPaused_;
 	Mind *mind_;
 	Viewport viewport_;
 

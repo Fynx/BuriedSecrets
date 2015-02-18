@@ -54,6 +54,7 @@ private:
 	QTimer *updateTimer_;
 
 	SelectionManager selectionManager_;
+	bool isPaused_;
 
 private slots:
 	void showCampMenu();
