@@ -156,23 +156,8 @@ void Graphics::render()
 	}
 
 	drawRubberBand();
+	drawFPS();
 
-	if (showFPS) {
-		++frames;
-		float deltaTime = clock.getElapsedTime().asSeconds();
-		clock.restart();
-		timeElapsed += deltaTime;
-		if (timeElapsed >= 1.0f) {
-			timeElapsed -= 1.0f;
-			fpsText.setString(std::to_string(frames));
-			frames = 0;
-		}
-
-		sf::View view = canvas->getView();
-		sf::Vector2f center = view.getCenter();
-		fpsText.setPosition(center.x + view.getSize().x / 2 - 45, center.y - view.getSize().y / 2 + 20);
-		canvas->draw(fpsText);
-	}
 	// This call has to be at the end to repaint the widget.
 	widget->repaint();
 }
@@ -239,6 +224,27 @@ void Graphics::drawRubberBand()
 		rubberBand.setPosition(rect.left(), rect.top());
 		rubberBand.setSize(sf::Vector2f(rect.width(), rect.height()));
 		widget->draw(rubberBand);
+	}
+}
+
+
+void Graphics::drawFPS()
+{
+	if (showFPS) {
+		++frames;
+		float deltaTime = clock.getElapsedTime().asSeconds();
+		clock.restart();
+		timeElapsed += deltaTime;
+		if (timeElapsed >= 1.0f) {
+			timeElapsed -= 1.0f;
+			fpsText.setString(std::to_string(frames));
+			frames = 0;
+		}
+
+		sf::View view = canvas->getView();
+		sf::Vector2f center = view.getCenter();
+		fpsText.setPosition(center.x + view.getSize().x / 2 - 45, center.y - view.getSize().y / 2 + 20);
+		canvas->draw(fpsText);
 	}
 }
 

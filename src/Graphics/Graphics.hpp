@@ -61,6 +61,7 @@ private:
 	 * @brief Draws the rubber band selection (if needed).
 	 */
 	void drawRubberBand();
+	void drawFPS();
 
 	GraphicsDataManager graphicsDataManager;
 	QTimer renderTimer;
