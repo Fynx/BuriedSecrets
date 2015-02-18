@@ -22,31 +22,31 @@ void SelectionEffect::draw(const GraphicalEntity *graphicalEntity, const QPointF
 	const Object *obj = graphicalEntity->getObject();
 	if (obj->property(TempData::IsSelected).toBool()) {
 		auto objType = obj->getPrototype()->getProperty("type").toString();
-		QPointF centre = graphicalEntity->getBaseCentre();
-		float radius = 0.0f;
+		float radiusPx = 0.0f;
+		QPointF scale = viewport->getWholeScale();
+
 		if (objType == "unit") {
-			radius = obj->getPrototype()->getProperty("baseRadius").toFloat();
+			float radius = obj->getPrototype()->getProperty("baseRadius").toFloat();
+			radiusPx = std::min(radius * scale.x(), radius * scale.y()) * 1.5f;
 		} else {
+			QPointF centre = graphicalEntity->getBaseCentre();
 			basePolygon = graphicalEntity->getBasePolygon();
 			for (const QPointF &p: basePolygon) {
-				radius = std::max(radius, BS::Geometry::distance(p, centre));
+				radiusPx = std::max(radiusPx, BS::Geometry::distance(p, centre));
+				qDebug() << radiusPx;
 			}
 		}
 
-		QPointF scale = viewport->getWholeScale();
-		float radiusPx = std::max(radius * scale.x(), radius * scale.y());
-
+		// FIXME this whole scale mumbo-jumbo might need to be reworked here.
+		// Selections work fine for now.
 		scale /= std::min(scale.x(), scale.y());
 		circleShape.setScale(scale.x(),  scale.y());
 		float maxNormScale = std::max(scale.x(), scale.y());
 
-		QPointF radiusDelta{radiusPx * scale.x() / maxNormScale,
-				radiusPx * scale.y() / maxNormScale};
-		centre.setX(centre.x() * scale.x() / maxNormScale);
-		centre.setY(centre.y() * scale.y() / maxNormScale);
+		QPointF radiusDelta{radiusPx * scale.x() / maxNormScale, radiusPx * scale.y() / maxNormScale};
 
-		centre = entityPosition - centre - radiusDelta;
-		circleShape.setPosition(centre.x(), centre.y());
+		QPointF position = entityPosition - 2 * radiusDelta;
+		circleShape.setPosition(position.x(), position.y());
 		circleShape.setRadius(radiusPx);
 		renderTarget->draw(circleShape);
 	}
