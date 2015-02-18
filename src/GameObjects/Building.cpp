@@ -53,7 +53,7 @@ void Building::removeUnit(int id)
 	units.remove(id);
 }
 
-QList<int> Building::getUnits()
+QList<int> Building::getUnits() const
 {
 	return units.toList();
 }

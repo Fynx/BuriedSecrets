@@ -78,6 +78,8 @@ void GameWindow::initWindows()
 
 void GameWindow::refresh()
 {
+	gameWidgetManager_.refresh();
+
 	unitsPanel_->refresh(mind_);
 	campPanel_->refresh(mind_);
 }

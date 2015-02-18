@@ -10,6 +10,7 @@
 class Mind;
 class Object;
 class Unit;
+class Building;
 
 class GameWidgetManager : public QObject {
 	Q_OBJECT
@@ -26,6 +27,8 @@ public:
 	void mousePressEvent(const QMouseEvent *event);
 	void gameWidgetResized(QSize sizeInPixels);
 
+	void refresh();
+
 public slots:
 	void addUnitToSelectionByUid(int uid);
 	void healUnitByUid(int uid);
@@ -38,10 +41,12 @@ private:
 	QSet<Unit *> fiterSelection(const QSet<Object *> &objects) const;
 	void selectUnits(const QSet<Unit *> &units);
 	void addUnitsToSelection(QSet<Unit *> units);
+	void markBuildingsSelected();
 
 	bool isPaused_;
 	Mind *mind_;
 	Viewport viewport_;
 	QSet<Unit *> selectedUnits_;
+	QSet<Building *> selectedBuildings_;
 	QMap<int, QSet<Unit *>> selectionGroups_;
 };

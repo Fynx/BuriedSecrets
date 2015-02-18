@@ -12,6 +12,7 @@ Unit::Unit(const Prototype *prototype)
 	: Object(prototype)
 {
 	property(TempData::IsSelected) = false;
+	location = nullptr;
 }
 
 BS::Type Unit::getType() const

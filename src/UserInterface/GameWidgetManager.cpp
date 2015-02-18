@@ -4,6 +4,9 @@
 #include "GameWidgetManager.hpp"
 
 #include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
+#include "GameObjects/Building.hpp"
+#include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
 
@@ -151,6 +154,11 @@ void GameWidgetManager::gameWidgetResized(QSize sizeInPixels)
 	viewport_.setViewSizeInPixels(sizeInPixels);
 }
 
+void GameWidgetManager::refresh()
+{
+	markBuildingsSelected();
+}
+
 void GameWidgetManager::addUnitToSelectionByUid(int uid)
 {
 	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
@@ -180,7 +188,7 @@ void GameWidgetManager::selectUnitByUid(int uid)
 
 void GameWidgetManager::showUnitByUid(int uid)
 {
-	//TODO conter viewport on unit position
+	//TODO center viewport on unit position
 }
 
 Unit *GameWidgetManager::unitByNumber(int number) const
@@ -207,10 +215,29 @@ Object *GameWidgetManager::objectInPixelsPos(QPoint pointInPixels) const
 QSet<Unit *> GameWidgetManager::fiterSelection(const QSet<Object *> &objects) const
 {
 	QSet<Unit *> units;
+	QSet<Building *> buildings;
+
 	for (auto &object : objects) {
 		Unit *unit = dynamic_cast<Unit *>(object);
-		if (unit)
+		if (unit && unit->getFaction() == mind_->PlayerFactionId)
 			units.insert(unit);
+
+		Building *building = dynamic_cast<Building *>(object);
+		if (building && building->getFaction() == mind_->PlayerFactionId)
+			buildings.insert(building);
+	}
+
+	if (units.count() > 0)
+		return units;
+
+	for (auto &building : buildings) {
+		for (auto &unitUid : building->getUnits()) {
+			Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(unitUid));
+			if (!unit)
+				err("Invalid object in building");
+			else
+				units.insert(unit);
+		}
 	}
 	return units;
 }
@@ -222,18 +249,34 @@ void GameWidgetManager::selectUnits(const QSet<Unit *> &units)
 
 	selectedUnits_ = units;
 
-	for (auto &unit : selectedUnits_) {
+	for (auto &unit : selectedUnits_)
 		unit->property(TempData::IsSelected) = QVariant(true);
-		qDebug() << unit->getName();
-	}
+
+	markBuildingsSelected();
 }
 
 void GameWidgetManager::addUnitsToSelection(QSet<Unit *> units)
 {
 	selectedUnits_.unite(units);
 
-	for (auto &unit : units) {
+	for (auto &unit : units)
 		unit->property(TempData::IsSelected) = QVariant(true);
-		qDebug() << unit->getName();
+
+	markBuildingsSelected();
+}
+
+void GameWidgetManager::markBuildingsSelected()
+{
+	for (auto &building : selectedBuildings_)
+		building->property(TempData::IsSelected) = QVariant(false);
+
+	selectedBuildings_.clear();
+
+	for (auto &unit : selectedUnits_) {
+		Building *building = dynamic_cast<Building *>(unit->getLocation());
+		if (building) {
+			building->property(TempData::IsSelected) = QVariant(true);
+			selectedBuildings_.insert(building);
+		}
 	}
 }

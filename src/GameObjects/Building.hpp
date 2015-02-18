@@ -18,7 +18,7 @@ public:
 
 	void insertUnit(int id);
 	void removeUnit(int id);
-	QList<int> getUnits();
+	QList<int> getUnits() const;
 
 	QPointF getOffset();
 
