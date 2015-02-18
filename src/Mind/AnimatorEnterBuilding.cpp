@@ -37,10 +37,10 @@ void AnimatorEnterBuilding::act()
 		if (QVector2D(to-from).length() > epsilon)
 			continue;
 
-		if ((target->getFaction() != 0) && (target->getFaction() != unit->getFaction()))
+		if ((target->getFactionId() != 0) && (target->getFactionId() != unit->getFactionId()))
 			continue;
 
-		target->setFaction(unit->getFaction());
+		target->setFactionId(unit->getFactionId());
 		target->insertUnit(unit->getUid());
 		unit->setLocation(target);
 		mind->physicsEngine()->removeObject(unit);
@@ -49,7 +49,7 @@ void AnimatorEnterBuilding::act()
 		QList<Item *> items = target->getItems(unit->getPerception());
 		for (Item *it : items){
 			target->removeItem(it);
-			mind->getFactionById(unit->getFaction())->getEquipment()->addItem(it);
+			mind->getFactionById(unit->getFactionId())->getEquipment()->addItem(it);
 		}
 
 		unit->setCommand(BS::Command::None);

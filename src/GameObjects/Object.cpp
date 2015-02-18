@@ -37,14 +37,14 @@ QString Object::getName() const
 	return prototype->getProperty(Properties::Name).toString();
 }
 
-int Object::getFaction() const
+int Object::getFactionId() const
 {
 	return factionId;
 }
 
-void Object::setFaction(int faction)
+void Object::setFactionId(const int factionId)
 {
-	factionId = faction;
+	this->factionId = factionId;
 }
 
 BS::State Object::getState() const
@@ -91,7 +91,7 @@ QJsonObject Object::saveToJson() const
 	json.insert(Properties::Name, getName());
 	json.insert(Properties::Type, BS::changeTypeToString(getType()));
 	json.insert(Attributes::Uid, getUid());
-	json.insert(Attributes::Faction, getFaction());
+	json.insert(Attributes::Faction, getFactionId());
 	return json;
 }
 

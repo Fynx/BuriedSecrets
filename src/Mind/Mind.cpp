@@ -79,9 +79,9 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 	for (Object *object : objects) {
 		if (object->getType() == BS::Type::Faction) {
-			factions.insert(object->getFaction(), dynamic_cast<Faction *>(object));
+			factions.insert(object->getFactionId(), dynamic_cast<Faction *>(object));
 			for (int objectUid : dynamic_cast<Faction *>(object)->getUnits())
-				getObjectFromUid(objectUid)->setFaction(object->getFaction());
+				getObjectFromUid(objectUid)->setFactionId(object->getFactionId());
 		}
 	}
 

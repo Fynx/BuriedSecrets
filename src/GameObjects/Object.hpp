@@ -19,8 +19,8 @@ public:
 	virtual BS::Type getType() const = 0;
 	QString getName() const;
 
-	int getFaction() const;
-	void setFaction(int faction);
+	int getFactionId() const;
+	void setFactionId(const int factionId);
 
 	BS::State getState() const;
 	void setState(BS::State state);

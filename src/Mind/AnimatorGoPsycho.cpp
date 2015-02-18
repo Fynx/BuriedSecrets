@@ -24,7 +24,7 @@ void AnimatorGoPsycho::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		Faction *fac = mind->getFactionById(unit->getFaction());
+		Faction *fac = mind->getFactionById(unit->getFactionId());
 		if (!fac->getCamp())
 			continue;
 		QPointF campPos = mind->physicsEngine()->getPosition(fac->getCamp());

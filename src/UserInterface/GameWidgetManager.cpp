@@ -219,11 +219,11 @@ QSet<Unit *> GameWidgetManager::fiterSelection(const QSet<Object *> &objects) co
 
 	for (auto &object : objects) {
 		Unit *unit = dynamic_cast<Unit *>(object);
-		if (unit && unit->getFaction() == mind_->PlayerFactionId)
+		if (unit && unit->getFactionId() == mind_->PlayerFactionId)
 			units.insert(unit);
 
 		Building *building = dynamic_cast<Building *>(object);
-		if (building && building->getFaction() == mind_->PlayerFactionId)
+		if (building && building->getFactionId() == mind_->PlayerFactionId)
 			buildings.insert(building);
 	}
 
