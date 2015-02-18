@@ -33,7 +33,6 @@ void SelectionEffect::draw(const GraphicalEntity *graphicalEntity, const QPointF
 			basePolygon = graphicalEntity->getBasePolygon();
 			for (const QPointF &p: basePolygon) {
 				radiusPx = std::max(radiusPx, BS::Geometry::distance(p, centre));
-				qDebug() << radiusPx;
 			}
 		}
 
