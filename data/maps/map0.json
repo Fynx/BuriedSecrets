@@ -29,7 +29,8 @@
 				"AnimatorUpdatePath",
 				"AnimatorEnterBuilding",
 				"AnimatorHeal",
-				"AnimatorLeaveBuilding"
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV"
 			],
 			"x": 3.0,
 			"y": 5.0,
@@ -44,7 +45,8 @@
 				"AnimatorUpdatePath",
 				"AnimatorEnterBuilding",
 				"AnimatorHeal",
-                                "AnimatorLeaveBuilding"
+                                "AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV"
 			],
 			"equipment": 50,
 			"x": 20.0,
@@ -60,7 +62,8 @@
 				"AnimatorEnterBuilding",
 				"AnimatorUpdatePath",
 				"AnimatorHeal",
-                                "AnimatorLeaveBuilding"
+                                "AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV"
 
 			],
 			"x": 30.0,
@@ -75,7 +78,8 @@
 				"AnimatorAnimation",
 				"AnimatorUpdatePath",
 				"AnimatorMove",
-                                "AnimatorLeaveBuilding"
+                                "AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV"
 
 			],
 			"x": 25.0,

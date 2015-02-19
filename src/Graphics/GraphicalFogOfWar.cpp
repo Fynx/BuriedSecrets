@@ -10,26 +10,42 @@ GraphicalFogOfWar::GraphicalFogOfWar(sf::RenderTarget *renderTarget, MapManager 
 	const QSizeF size = mapManager->getMap()->getSize();
 	QPointF sizeP{size.width(), size.height()};
 	sizeP = viewport->fromMetresToPixels(sizeP);
+	QPointF scale = viewport->getWholeScale();
+	float maxScale = std::max(scale.x(), scale.y());
+	scale /= maxScale;
+
 	textureSize.setWidth(sizeP.x());
 	textureSize.setHeight(sizeP.y());
+
 	FOWTexture.create(textureSize.width(), textureSize.height());
 	FOWTexture.clear(sf::Color::Black);
+	FOWSprite.setPosition(0, 0);
+
+	circle.setPointCount(40);
+	circle.setFillColor(sf::Color::Transparent);
+	circle.setScale(scale.x(), scale.y());
 	// TODO zoom.
 }
 
 
 void GraphicalFogOfWar::update()
 {
-	circle.setRadius(rand() % 50);
-	circle.setPosition(rand() % (int)textureSize.width(),
-			   textureSize.height() - (rand() % (int)textureSize.height()));
+	auto *updateDiff = mapManager->getVisibilityUpdatesDiff();
 
-	circle.setPointCount(20);
-	circle.setFillColor(sf::Color::Transparent);
-	FOWTexture.draw(circle, sf::RenderStates{sf::BlendMode::BlendMultiply});
+	for (const auto& visUpdate: *updateDiff) {
+		QPointF radiusP = {visUpdate.includeCircle.radius, visUpdate.includeCircle.radius};
+		radiusP = viewport->fromMetresToPixels(radiusP);
+		circle.setRadius(std::max(radiusP.x(), radiusP.y()));
+
+		QPointF pos = viewport->fromMetresToPixels(visUpdate.includeCircle.centre);
+		// Y is flipped when drawing on RenderTexture.
+		circle.setPosition(pos.x() - radiusP.x(), textureSize.height() - pos.y() - radiusP.y());
+
+		FOWTexture.draw(circle, sf::RenderStates{sf::BlendMode::BlendMultiply});
+	}
 
 	FOWSprite.setTexture(FOWTexture.getTexture());
-	FOWSprite.setPosition(0, 0);
+	delete updateDiff;
 }
 
 

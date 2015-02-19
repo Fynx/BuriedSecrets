@@ -8,7 +8,7 @@
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
-	: graphicsDataManager{dataManager}, showFPS{true}, showFOW{false}, timeElapsed{0.0f}, frames{0}
+	: graphicsDataManager{dataManager}, showFPS{true}, showFOW{true}, timeElapsed{0.0f}, frames{0}
 	, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}
 	, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}, drawOrder{new int[10000]}
 	, positions{new QPointF[10000]}, FOW{nullptr}

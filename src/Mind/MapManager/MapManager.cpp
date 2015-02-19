@@ -5,7 +5,8 @@
 
 
 MapManager::MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId)
-	: map{json}, physicsEngine{physicsEngine}, playerFactionId{playerFactionId}
+	: playerFactionId{playerFactionId}, map{json}, physicsEngine{physicsEngine},
+	visibilityUpdatesDiff{new VisibilityUpdateDiff{}}
 {}
 
 
@@ -27,12 +28,29 @@ QList<QPointF> MapManager::getPath(const QPointF &from, const QPointF &to) const
 
 void MapManager::clearFieldOfView(const int factionId)
 {
-	// TODO
+	FOVs[factionId].clear();
 }
 
 
 void MapManager::addVisibility(const BS::Geometry::Circle circle, const int factionId)
 {
-	// TODO
+	// FOV
+	VisibilityUpdate update;
+	update.includeCircle = circle;
+	// TODO actual visibility (exclude area behind buildings etc).
+	FOVs[factionId].append(update);
+	if (factionId == playerFactionId) {
+		visibilityUpdatesDiff->append(update);
+	}
+	// TODO FOW
 }
+
+
+MapManager::VisibilityUpdateDiff * MapManager::getVisibilityUpdatesDiff()
+{
+	auto *ptr = visibilityUpdatesDiff;
+	visibilityUpdatesDiff = new VisibilityUpdateDiff{};
+	return ptr;
+}
+
 

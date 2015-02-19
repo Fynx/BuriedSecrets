@@ -8,6 +8,7 @@
 #include "Common/Geometry.hpp"
 #include "GameObjects/Object.hpp"
 #include "Mind/MapManager/Map.hpp"
+#include "Mind/MapManager/VisibilityUpdate.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 
 
@@ -17,6 +18,8 @@
  */
 class MapManager {
 public:
+	typedef QList<VisibilityUpdate> VisibilityUpdateDiff;
+
 	MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId);
 
 	const Map *getMap() const;
@@ -59,10 +62,19 @@ public:
 	 * @param factionId The faction that should see the region.
 	 */
 	void addVisibility(const BS::Geometry::Circle circle, const int factionId);
+	/**
+	 * @brief Returns the diff of the visibility updates between the last call of this method and now.
+	 *
+	 * A call of this method discards the returned history. This call transfers the ownership of the returned
+	 * pointer to the caller.
+	 */
+	VisibilityUpdateDiff *getVisibilityUpdatesDiff();
 
 private:
+	const int playerFactionId;
 	Map map;
+	QHash<int, VisibilityUpdateDiff> FOVs;	// Per-faction FOVs.
 
 	const PhysicsEngine *physicsEngine;
-	const int playerFactionId;
+	VisibilityUpdateDiff *visibilityUpdatesDiff;
 };
