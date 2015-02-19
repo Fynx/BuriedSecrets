@@ -26,6 +26,7 @@ namespace Animators {
 	const QString LeaveBuilding = "AnimatorLeaveBuilding";
 	const QString Attack        = "AnimatorAttack";
 	const QString Weapon        = "AnimatorWeapon";
+	const QString UpdateFOV     = "AnimatorUpdateFOV";
 }
 
 namespace Attributes {                                 // Converted into class fields

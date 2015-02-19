@@ -19,6 +19,7 @@
 #include "Mind/AnimatorLeaveBuilding.hpp"
 #include "Mind/AnimatorWeapon.hpp"
 #include "Mind/AnimatorAttack.hpp"
+#include "Mind/AnimatorUpdateFOV.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -53,6 +54,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorLeaveBuilding(mind), Animators::LeaveBuilding, 100);
 	addAnimator(new AnimatorWeapon(mind), Animators::Weapon, 100);
 	addAnimator(new AnimatorAttack(mind), Animators::Attack, 100);
+	addAnimator(new AnimatorUpdateFOV(mind), Animators::UpdateFOV, 100);
 	info("done.");
 }
 

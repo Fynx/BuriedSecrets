@@ -23,3 +23,16 @@ QList<QPointF> MapManager::getPath(const QPointF &from, const QPointF &to) const
 
 	return result;
 }
+
+
+void MapManager::clearFieldOfView(const int factionId)
+{
+	// TODO
+}
+
+
+void MapManager::addVisibility(const BS::Geometry::Circle circle, const int factionId)
+{
+	// TODO
+}
+

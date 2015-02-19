@@ -19,6 +19,7 @@ set (Mind_SRCS
 	AnimatorLeaveBuilding.cpp
 	AnimatorAttack.cpp
 	AnimatorWeapon.cpp
+	AnimatorUpdateFOV.cpp
 	Event.cpp
 	Mind.cpp
 	ItemConstructor.cpp
