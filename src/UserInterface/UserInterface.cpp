@@ -107,6 +107,10 @@ void UserInterface::initDevActionsMenu()
 	connect(actionBasePolygonsToggle, &QAction::triggered, general_, &General::toggleDisplayBasePolygons);
 	menuDebug->addAction(actionBasePolygonsToggle);
 
+	QAction *actionFOWToggle = new QAction("Toggle Fog of War", mainWindow_);
+	connect(actionFOWToggle, &QAction::triggered, general_, &General::toggleDisplayFOW);
+	menuDebug->addAction(actionFOWToggle);
+
 	QAction *actionFPSToggle = new QAction("Toggle FPS", mainWindow_);
 	connect(actionFPSToggle, &QAction::triggered, general_, &General::toggleDisplayFPS);
 	menuDebug->addAction(actionFPSToggle);

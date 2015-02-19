@@ -1,8 +1,8 @@
 {
 	"mapName": "Map0",
 	"mapDesc": "map0.wtf",
-	"mapWidth" : 500.0,
-	"mapHeight" : 500.0,
+	"mapWidth" : 54,
+	"mapHeight" : 60,
 	"objects": [
 		{
 			"name": "SoszuHouse",

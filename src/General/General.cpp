@@ -60,7 +60,7 @@ void General::startNewGame()
 
 	//Initialize & load Graphics
 	graphics = new Graphics(physicsEngine, dataManager);
-	graphics->loadMap(mind->getMap());
+	graphics->loadMap(mind->getMapManager());
 
 	//start UI & Graphics
 	//WARNING starting newGame in UI must be after all data is loaded to Mind
@@ -81,6 +81,13 @@ void General::toggleDisplayBasePolygons()
 {
 	graphics->toggleShowBasePolygons();
 }
+
+
+void General::toggleDisplayFOW()
+{
+	graphics->toggleFogOfWar();
+}
+
 
 void General::toggleDisplayFPS()
 {

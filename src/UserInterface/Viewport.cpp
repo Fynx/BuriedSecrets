@@ -115,6 +115,12 @@ void Viewport::zoomIn(qreal zoomDelta)
 }
 
 
+float Viewport::getZoom() const
+{
+	return zoom;
+}
+
+
 void Viewport::updateView()
 {
 	QPointF topLeft = currentView.topLeft();

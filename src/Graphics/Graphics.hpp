@@ -11,6 +11,7 @@
 #include "Graphics/GraphicsWidget.hpp"
 #include "Graphics/GraphicalEntity.hpp"
 #include "Graphics/GraphicalEntityFactory.hpp"
+#include "Graphics/GraphicalFogOfWar.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
 #include "Mind/MapManager/Map.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
@@ -44,9 +45,10 @@ public:
 	 *
 	 * @return void
 	 */
-	void loadMap(const Map *map);
+	void loadMap(MapManager *mapManager);
 	void toggleShowBasePolygons();
 	void toggleShowFPS();
+	void toggleFogOfWar();
 
 private:
 	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QList< const Object * > &objects);
@@ -62,10 +64,15 @@ private:
 	 */
 	void drawRubberBand();
 	void drawFPS();
+	/**
+	 * @brief Updates and draws Fog of War if enabled.
+	 */
+	void drawFOW();
 
 	GraphicsDataManager graphicsDataManager;
 	QTimer renderTimer;
 	bool showFPS;
+	bool showFOW;
 	sf::Text fpsText;
 	float timeElapsed;
 	sf::Clock clock;
@@ -80,11 +87,12 @@ private:
 	GraphicalEntityFactory *graphicalEntityFactory;
 	const PhysicsEngine *physicsEngine;
 	const DataManager *dataManager;
-	const Map *map;
+	MapManager *mapManager;
 	Camera *camera;
 	sf::Sprite *mapSprite;
 	int *drawOrder;
 	QPointF *positions;
+	GraphicalFogOfWar *FOW;
 
 private slots:
 	/**

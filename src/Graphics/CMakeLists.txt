@@ -6,6 +6,7 @@ set (Graphics_SRCS
 	Camera.cpp
 	GraphicalEntity.cpp
 	GraphicalEntityFactory.cpp
+	GraphicalFogOfWar.cpp
 	Graphics.cpp
 	GraphicsDataManager.cpp
 	GraphicsWidget.cpp

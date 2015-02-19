@@ -57,6 +57,7 @@ public:
 	void setZoom(const float zoom);
 	void resetZoom();
 	void zoomIn(qreal zoomDelta);
+	float getZoom() const;
 
 private:
 	void updateView();

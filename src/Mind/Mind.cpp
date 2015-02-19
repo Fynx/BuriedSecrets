@@ -136,7 +136,7 @@ const Map *Mind::getMap() const
 	return mapManager->getMap();
 }
 
-const MapManager *Mind::getMapManager() const
+MapManager *Mind::getMapManager() const
 {
 	return mapManager;
 }

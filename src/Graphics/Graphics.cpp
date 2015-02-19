@@ -8,10 +8,10 @@
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
-	: graphicsDataManager{dataManager}, showFPS{true}, timeElapsed{0.0f}, frames{0}
+	: graphicsDataManager{dataManager}, showFPS{true}, showFOW{false}, timeElapsed{0.0f}, frames{0}
 	, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}
 	, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}, drawOrder{new int[10000]}
-	, positions{new QPointF[10000]}
+	, positions{new QPointF[10000]}, FOW{nullptr}
 {
 	canvas = widget;
 	fpsText.setFont(*graphicsDataManager.getFont("HEMIHEAD"));
@@ -31,6 +31,8 @@ Graphics::~Graphics()
 	mapSprite = nullptr;
 	delete camera;
 	delete drawOrder;
+	delete positions;
+	delete FOW;
 }
 
 
@@ -47,6 +49,9 @@ void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 
 	delete graphicalEntityFactory;
 	graphicalEntityFactory = new GraphicalEntityFactory{&graphicsDataManager, viewport->getPerspective()};
+
+	delete FOW;
+	FOW = new GraphicalFogOfWar{canvas, mapManager, viewport};
 
 	renderTimer.setInterval(framesIntervalms);
 	connect(&renderTimer, SIGNAL(timeout()), this, SLOT(render()));
@@ -68,12 +73,13 @@ void Graphics::resumeRendering()
 }
 
 
-void Graphics::loadMap(const Map *map)
+void Graphics::loadMap(MapManager *mapManager)
 {
-	this->map = map;
-	mapSprite = new sf::Sprite{*(graphicsDataManager.getTexture(map->getName()))};
+	this->mapManager = mapManager;
+	mapSprite = new sf::Sprite{*(graphicsDataManager.getTexture(mapManager->getMap()->getName()))};
 	mapSprite->setPosition(0, 0);
 }
+
 
 void Graphics::toggleShowBasePolygons()
 {
@@ -82,6 +88,7 @@ void Graphics::toggleShowBasePolygons()
 	}
 }
 
+
 void Graphics::toggleShowFPS()
 {
 	showFPS = !showFPS;
@@ -89,6 +96,13 @@ void Graphics::toggleShowFPS()
 	timeElapsed = 0.0f;
 	frames = 0;
 }
+
+
+void Graphics::toggleFogOfWar()
+{
+	showFOW = !showFOW;
+}
+
 
 void Graphics::render()
 {
@@ -156,6 +170,7 @@ void Graphics::render()
 	}
 
 	drawRubberBand();
+	drawFOW();
 	drawFPS();
 
 	// This call has to be at the end to repaint the widget.
@@ -248,3 +263,11 @@ void Graphics::drawFPS()
 	}
 }
 
+
+void Graphics::drawFOW()
+{
+	FOW->update();
+	if (showFOW) {
+		FOW->draw();
+	}
+}
