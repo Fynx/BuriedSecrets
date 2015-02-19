@@ -88,7 +88,7 @@ void SelectionManager::keyPressEvent(const QKeyEvent *event)
 
 void SelectionManager::mousePressEvent(const QMouseEvent *event)
 {
-	QPointF place = viewport_.fromPixelsToMetres(event->pos());
+	QPointF place = viewport_.getPhysicalCoordinates(event->pos());
 	Object *target = objectInPixelsPos(event->pos());
 
 	//Selection TODO see if still needed
@@ -203,7 +203,7 @@ Unit *SelectionManager::unitByNumber(int number) const
 
 Object *SelectionManager::objectInPixelsPos(QPoint pointInPixels) const
 {
-	QPointF point = viewport_.fromPixelsToMetres(pointInPixels);
+	QPointF point = viewport_.getPhysicalCoordinates(pointInPixels);
 
 	point -= QPointF(0.1, 0.1);
 	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
@@ -216,8 +216,8 @@ Object *SelectionManager::objectInPixelsPos(QPoint pointInPixels) const
 
 QSet<Object *> SelectionManager::objectInPixelsRect(QRect rectInPixels) const
 {
-	auto topLeftInMetres = viewport_.fromPixelsToMetres(rectInPixels.topLeft());
-	auto botomRightInMetres = viewport_.fromPixelsToMetres(rectInPixels.bottomRight());
+	auto topLeftInMetres = viewport_.getPhysicalCoordinates(rectInPixels.topLeft());
+	auto botomRightInMetres = viewport_.getPhysicalCoordinates(rectInPixels.bottomRight());
 	QRectF rectInMetres(topLeftInMetres, botomRightInMetres);
 	rectInMetres = rectInMetres.normalized();
 

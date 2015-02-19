@@ -39,8 +39,13 @@ public:
 	 */
 	QRectF getCurrentView() const;
 	QPointF getScaledPoint(const QPointF &point) const;
-	QPointF fromPixelsToMetres(const QPoint &pointInPixels) const;
+	// The two following methods return the point scaled.
+	QPointF fromPixelsToMetres(const QPointF &pointInPixels) const;
 	QPointF fromMetresToPixels(const QPointF &pointInMetres) const;
+	// The two following methods return the point scaled and moved so that it corresponds to the actual screen
+	// coordinates of the point.
+	QPointF getScreenCoordinates(const QPointF &physicalPoint) const;
+	QPointF getPhysicalCoordinates(const QPointF &screenPoint) const;
 	/**
 	 * @brief Returns the whole scale from metres to pixels including zoom.
 	 */

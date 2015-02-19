@@ -35,9 +35,21 @@ QPointF Viewport::fromMetresToPixels(const QPointF &pointInMetres) const
 }
 
 
-QPointF Viewport::fromPixelsToMetres(const QPoint &pointInPixels) const
+QPointF Viewport::fromPixelsToMetres(const QPointF &pointInPixels) const
 {
 	return perspective->fromPixelsToMetres(pointInPixels);
+}
+
+
+QPointF Viewport::getScreenCoordinates(const QPointF &physicalPoint) const
+{
+	return fromMetresToPixels(physicalPoint - currentView.topLeft());
+}
+
+
+QPointF Viewport::getPhysicalCoordinates(const QPointF &screenPoint) const
+{
+	return fromPixelsToMetres(screenPoint) + currentView.topLeft();
 }
 
 

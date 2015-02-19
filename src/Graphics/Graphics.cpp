@@ -236,7 +236,9 @@ void Graphics::drawRubberBand()
 {
 	if (widget->isRubberBandVisible()) {
 		QRectF rect = widget->rubberBandRect();
-		rubberBand.setPosition(rect.left(), rect.top());
+		QPointF offset = camera->getViewport()->fromMetresToPixels(
+				camera->getViewport()->getCurrentView().topLeft());
+		rubberBand.setPosition(rect.left() + offset.x(), rect.top() + offset.y());
 		rubberBand.setSize(sf::Vector2f(rect.width(), rect.height()));
 		widget->draw(rubberBand);
 	}
