@@ -90,34 +90,9 @@
 		"animations": {
 			"Idle": "SoszuIdle",
 			"Run": "SoszuWalking",
-			"Heal": "SoszuIdle"
-		}
-	},
-	"Soszu": {
-		"type": "unit",
-		"background": "Blah blah",
-		"position": "engineer",
-		"avatar": "no films here",
-		"baseRadius": 0.5,
-		"baseCentre": [0.5, 1],
-		"age": 123124,
-		"attack": 10,
-		"encumbrance" : 24,
-		"engineering": 10,
-		"healing": 10,
-		"perception": 10,
-		"defense": 10,
-		"hp": 100,
-		"psychosis": 100,
-		"capacity": 5,
-		"hunger": 2,
-		"sightRange": 10,
-		"movementSpeed": 5,
-		"regeneration": 1,
-		"animations": {
-			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking",
-			"Heal": "SoszuHeal"
+			"Heal": "SoszuIdle",
+			"Attack": "SoszuIdle",
+			"RunAttack": "SoszuWalking"
 		}
 	},
 	"Soszer": {
@@ -134,7 +109,7 @@
 		"healing": 10,
 		"perception": 10,
 		"defense": 10,
-		"hp": 100,
+		"hp": 170,
 		"psychosis": 100,
 		"capacity": 5,
 		"hunger": 2,
@@ -144,7 +119,10 @@
 		"animations": {
 			"Idle": "SoszuIdle",
 			"Run": "SoszuWalking",
-			"Heal": "SoszuHeal"
+			"Heal": "SoszuHeal",
+			"RunAttack": "SoszuRunAttack",
+			"Attack": "SoszuAttack"
+			
 		}
 	},
 	"Soszyslaw": {
@@ -188,7 +166,7 @@
 		"healing": 10,
 		"perception": 10,
 		"defense": 10,
-		"hp": 100,
+		"hp": 170,
 		"psychosis": 100,
 		"capacity": 5,
 		"hunger": 2,
@@ -314,7 +292,13 @@
 		"damage": 18,
 		"dispersion": 6,
 		"fireRate": 2,
-		"weight": 2
+		"weight": 2,
+		"range": 7,
+		"optimalRange": 4,
+		"shotsInterval" : 10,
+		"magazineSize" : 5,
+		"reloadTime" : 120
+		
 	},
 	"Medkit": {
 		"type": "item",

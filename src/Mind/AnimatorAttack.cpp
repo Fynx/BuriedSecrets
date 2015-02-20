@@ -54,23 +54,23 @@ void AnimatorAttack::act()
 		}
 		else{
 			if (unit->getState() != State::RunAttack)
-			unit->setState(State::RunAttack);
+				unit->setState(State::RunAttack);
 		}
 		weapon->setState(State::Shoot);
 
 		// Second argument should be modified depending on units attack skill
-		QVector2D direction = QVector2D(to-from);
+		QVector2D direction = QVector2D(to - from);
 
 		// UUUGGGLYYY
-		Unit *hit = dynamic_cast<Unit *> (mind->physicsEngine()->getFirstHit(from, direction, weapon->getPrototype()->getProperty(Properties::Range).toFloat()));
-		if (hit == target)
-			err("WACOR TRAFIONY!");
-		if (!hit)
+		Object *hit = mind->physicsEngine()->getFirstHit(from, direction, weapon->getPrototype()->getProperty(Properties::Range).toFloat());
+		info("Object hit: " + hit->getName());
+		if (!hit){
+			info("Miss!");
 			continue;
+		}
 
 		// UUUGGGLYYY
-		hit->property(TempData::Damage).fromValue(weapon->getPrototype()->getProperty(Properties::Damage).toInt() + hit->property(TempData::Damage).toInt());
-
+		hit->property(TempData::Damage).setValue(weapon->getPrototype()->getProperty(Properties::Damage).toInt() + hit->property(TempData::Damage).toInt());
 
 	}
 }

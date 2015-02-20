@@ -20,6 +20,7 @@
 #include "Mind/AnimatorWeapon.hpp"
 #include "Mind/AnimatorAttack.hpp"
 #include "Mind/AnimatorUpdateFOV.hpp"
+#include "Mind/AnimatorApplyDamage.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -44,6 +45,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimationAnimator(mind), Animators::Animation, 700);
 	addAnimator(new AnimatorMove(mind), Animators::Move, 40);
 	addAnimator(new AnimatorConsume(mind), Animators::Consume, 1000);
+	addAnimator(new AnimatorApplyDamage(mind), Animators::ApplyDamage, 40);
 	addAnimator(new AnimatorDie(mind), Animators::Die, 40);
 	addAnimator(new AnimatorUpdatePath(mind), Animators::UpdatePath, 100);
 	addAnimator(new AnimatorRegenerate(mind), Animators::Regenerate, 1000);
@@ -54,7 +56,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorLeaveBuilding(mind), Animators::LeaveBuilding, 100);
 	addAnimator(new AnimatorWeapon(mind), Animators::Weapon, 100);
 	addAnimator(new AnimatorAttack(mind), Animators::Attack, 100);
-	addAnimator(new AnimatorUpdateFOV(mind), Animators::UpdateFOV, 100);
+	addAnimator(new AnimatorUpdateFOV(mind), Animators::UpdateFOV, 50);
 	info("done.");
 }
 

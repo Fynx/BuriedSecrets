@@ -3,6 +3,7 @@
  */
 #include "Common/Strings.hpp"
 #include "Common/Enums.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include <QtGlobal>
 
@@ -59,6 +60,8 @@ void Unit::setHP(int hp)
 {
 	this->hp = qMin(float(hp), getMaxHP());
 	this->hp = qMax(this->hp, 0);
+	if (this->hp == 0)
+		info(getName() + " should be dead...");
 }
 
 float Unit::getMaxHP() const
@@ -223,8 +226,9 @@ void Unit::loadFromJson(const QJsonObject &json)
 	Object::loadFromJson(json);
 	Equipped::loadFromJson(json);
 
-	hp           = json[Properties::HP].toInt();
-	psychosis    = json[Properties::Psychosis].toInt();
+	hp           = json[Attributes::HP].toInt();
+	psychosis    = json[Attributes::Psychosis].toInt();
+	equipmentUid = json[Attributes::Equipment].toInt();
 }
 
 QJsonObject Unit::saveToJson() const
@@ -234,8 +238,9 @@ QJsonObject Unit::saveToJson() const
 	for (const QString &key : Equipped::saveToJson().keys())
 		json[key] = Equipped::saveToJson()[key];
 
-	json[Properties::HP]        = hp;
-	json[Properties::Psychosis] = psychosis;
+	json[Attributes::HP]        = hp;
+	json[Attributes::Psychosis] = psychosis;
+	json[Attributes::Equipment] = equipment->getUid();
 
 	return json;
 }

@@ -12,3 +12,9 @@ float32 RayCallback::ReportFixture(b2Fixture *fixture, const b2Vec2 &point, cons
 		obj = static_cast<Object *> (fixture->GetBody()->GetUserData());
 	return fraction;
 }
+
+
+Object *RayCallback::getResult()
+{
+	return obj;
+}

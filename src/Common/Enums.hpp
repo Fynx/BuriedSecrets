@@ -72,6 +72,7 @@ namespace BS {
 	};
 
 	State getStateFromString(const QString &str);
+	QString getStringFromState(BS::State state);
 
 	namespace Graphic {
 		// This is an enum for a reason (underlying value implicitly converted to a numeric type).

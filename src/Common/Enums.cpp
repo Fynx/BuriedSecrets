@@ -70,9 +70,14 @@ namespace BS {
 		return ::stateToString.key(str, BS::State::Idle);
 	}
 
+	QString getStringFromState(BS::State state)
+	{
+		return ::stateToString.value(state, QString("Invalid State"));
+	}
+
 	QString changeTypeToString(BS::Type type)
 	{
-		return ::typeToString.value(type, QString());
+		return ::typeToString.value(type, QString("Invalid Type"));
 	}
 
 	BS::Type changeStringToType(const QString &string)

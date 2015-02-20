@@ -34,7 +34,8 @@
 			],
 			"x": 3.0,
 			"y": 5.0,
-			"uid": 1
+			"uid": 1,
+			"hp": 110
 		},
 		{
 			"name": "Soszer",
@@ -45,13 +46,15 @@
 				"AnimatorUpdatePath",
 				"AnimatorEnterBuilding",
 				"AnimatorHeal",
-                                "AnimatorLeaveBuilding",
-				"AnimatorUpdateFOV"
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack"
 			],
 			"equipment": 50,
 			"x": 20.0,
 			"y": 40.0,
-			"uid": 2
+			"uid": 2,
+			"hp": 120
 		},
 		{
 			"name": "Soszyslaw",
@@ -62,29 +65,31 @@
 				"AnimatorEnterBuilding",
 				"AnimatorUpdatePath",
 				"AnimatorHeal",
-                                "AnimatorLeaveBuilding",
+				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV"
 
 			],
 			"x": 30.0,
 			"y": 30.0,
-			"uid" : 3
+			"uid" : 3,
+			"hp": 70
 		},
 		{
 			"name": "Soszman",
 			"type": "unit",
 			"animators": [
-				"AnimatorTest",
 				"AnimatorAnimation",
 				"AnimatorUpdatePath",
 				"AnimatorMove",
-                                "AnimatorLeaveBuilding",
-				"AnimatorUpdateFOV"
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV",
+				"AnimatorApplyDamage"
 
 			],
 			"x": 25.0,
 			"y": 25.0,
-			"uid": 4
+			"uid": 4,
+			"hp" : 150
 		},
 		{
 			"name": "soszes",
@@ -121,6 +126,9 @@
 		{
 			"name": "Revolvers",
 			"type": "item",
+			"animators": [
+				"AnimatorWeapon"
+			],
 			"uid": 51
 		},
 		{

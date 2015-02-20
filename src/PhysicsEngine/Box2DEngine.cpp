@@ -164,7 +164,7 @@ Object *Box2DEngine::getFirstHit(const QPointF &position, QVector2D direction, c
 
 	world.RayCast(&callback, b2Vec2(position.x(), position.y()), b2Vec2(dest.x(), dest.y()));
 
-	return nullptr;
+	return callback.getResult();
 }
 
 const QList<const Object *> Box2DEngine::getColliding(const Object *obj) const
