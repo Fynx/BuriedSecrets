@@ -30,7 +30,8 @@
 				"AnimatorEnterBuilding",
 				"AnimatorHeal",
 				"AnimatorLeaveBuilding",
-				"AnimatorUpdateFOV"
+				"AnimatorUpdateFOV",
+				"AnimatorApplyDamage"
 			],
 			"x": 3.0,
 			"y": 5.0,

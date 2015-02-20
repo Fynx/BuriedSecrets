@@ -71,7 +71,7 @@ namespace Properties {                                 // for Prototypes
 	const QString Damage        = "damage";            // Weapon
 	const QString DamageControl = "damageControl";     // base for Unit
 	const QString DefAnimators  = "defAnimators";
-	const QString Defense       = "defense";           // base for Unit
+	const QString Defense       = "defense";           // Armor
 	const QString Dispersion    = "dispersion";        // Weapon
 	const QString Encumbrance   = "encumbrance";       // max for Unit
 	const QString Engineering   = "engineering";       // base for Unit
@@ -100,6 +100,7 @@ namespace Properties {                                 // for Prototypes
 namespace TempData {                                   // kept in GO's map
 	const QString Damage        = "damage";
 	const QString IsSelected    = "isSelected";
+	const QString ShotAngle     = "shotAngle";
 	const QString State         = "state";
 	const QString X             = "x";
 	const QString Y             = "y";

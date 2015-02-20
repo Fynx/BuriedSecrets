@@ -5,6 +5,7 @@
 #include "Mind/AnimatorAttack.hpp"
 
 #include "Common/Strings.hpp"
+#include "Common/Geometry.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
@@ -40,14 +41,17 @@ void AnimatorAttack::act()
 
 		QPointF from = mind->physicsEngine()->getPosition(unit);
 		QPointF to = mind->physicsEngine()->getPosition(target);
-		if (to.isNull() || from.isNull())
+		if (to.isNull() || from.isNull()){
+			warn("Invalid points in attack animator");
 			continue;
+		}
 		float dist = QVector2D(to-from).length();
 		if (dist > weapon->getPrototype()->getProperty(Properties::Range).toFloat())
 			continue;
 
 
 		// Ok, letz attack!
+		info("Imma shootah'!");
 		if (dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat()){
 			unit->setState(State::Attack);
 			unit->setCurrentPath(QList<QPointF>());
@@ -58,18 +62,23 @@ void AnimatorAttack::act()
 		}
 		weapon->setState(State::Shoot);
 
-		// Second argument should be modified depending on units attack skill
+		// Calculate direction...
 		QVector2D direction = QVector2D(to - from);
+		float angle = Geometry::vecToAngle(direction);
+		int disp = weapon->getPrototype()->getProperty(Properties::Dispersion).toInt();
+		angle += (qrand() % disp) - (disp / 2);
+		unit->property(TempData::ShotAngle) = angle;
 
-		// UUUGGGLYYY
+		direction = Geometry::angleToVec(angle);
+
+		// Simulate shot
 		Object *hit = mind->physicsEngine()->getFirstHit(from, direction, weapon->getPrototype()->getProperty(Properties::Range).toFloat());
-		info("Object hit: " + hit->getName());
 		if (!hit){
 			info("Miss!");
 			continue;
 		}
+		info("Object hit: " + hit->getName());
 
-		// UUUGGGLYYY
 		hit->property(TempData::Damage).setValue(weapon->getPrototype()->getProperty(Properties::Damage).toInt() + hit->property(TempData::Damage).toInt());
 
 	}

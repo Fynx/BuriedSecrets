@@ -6,7 +6,7 @@
 		"capacity": 5,
 		"range": 10,
 		"attack": 0,
-		"defense": 0,
+		"damageControl": 0,
 		"searchTime": 0
 	},
 	"fortification": {
@@ -15,7 +15,7 @@
 		"basePolygon": [[1, 1], [1, 2], [2, 2], [2, 1]],
 		"hp": 10,
 		"attack": 0,
-		"defense": 0
+		"damageControl": 0
 	},
 	"equipment": {
 		"type": "equipment"
@@ -27,7 +27,7 @@
 		"capacity": 5,
 		"range": 10,
 		"attack": 0,
-		"defense": 0,
+		"damageControl": 0,
 		"searchTime": 0
 	},
 	"SoszuHouse2": {
@@ -37,7 +37,7 @@
 		"capacity": 5,
 		"range": 10,
 		"attack": 0,
-		"defense": 0,
+		"damageControl": 0,
 		"searchTime": 0
 	},
 	"unit": {
@@ -53,7 +53,7 @@
 		"engineering": 10,
 		"healing": 10,
 		"perception": 10,
-		"defense": 10,
+		"damageControl": 0.10,
 		"hp": 100,
 		"psychosis": 100,
 		"capacity": 5,
@@ -79,8 +79,8 @@
 		"engineering": 10,
 		"healing": 10,
 		"perception": 10,
-		"defense": 10,
-		"hp": 100,
+		"damageControl": 0,
+		"hp": 150,
 		"psychosis": 100,
 		"capacity": 5,
 		"hunger": 2,
@@ -108,7 +108,7 @@
 		"engineering": 10,
 		"healing": 10,
 		"perception": 10,
-		"defense": 10,
+		"damageControl": 0,
 		"hp": 170,
 		"psychosis": 100,
 		"capacity": 5,
@@ -138,7 +138,7 @@
 		"engineering": 10,
 		"healing": 10,
 		"perception": 10,
-		"defense": 10,
+		"damageControl": 0.1,
 		"hp": 100,
 		"psychosis": 100,
 		"capacity": 5,
@@ -165,7 +165,7 @@
 		"engineering": 10,
 		"healing": 10,
 		"perception": 10,
-		"defense": 10,
+		"damageControl": 0.5,
 		"hp": 170,
 		"psychosis": 100,
 		"capacity": 5,
@@ -196,7 +196,7 @@
 		"engineering": 2,
 		"healing": 2,
 		"perception": 8,
-		"defense": 8,
+		"damageControl": 0.8,
 		"hp": 30,
 		"psychosis": 100,
 		"capacity": 12,
@@ -220,7 +220,7 @@
 		"engineering": 8,
 		"healing": 1,
 		"perception": 6,
-		"defense": 5,
+		"damageControl": 0.5,
 		"hp": 25,
 		"psychosis": 100,
 		"capacity": 12,
@@ -244,7 +244,7 @@
 		"engineering": 1,
 		"healing": 8,
 		"perception": 4,
-		"defense": 3,
+		"damageControl": 0.3,
 		"hp": 20,
 		"psychosis": 100,
 		"capacity": 12,
@@ -290,14 +290,14 @@
 		"type": "item",
 		"itemType": "personal",
 		"damage": 18,
-		"dispersion": 6,
+		"dispersion": 60,
 		"fireRate": 2,
 		"weight": 2,
 		"range": 7,
 		"optimalRange": 4,
 		"shotsInterval" : 10,
 		"magazineSize" : 5,
-		"reloadTime" : 120
+		"reloadTime" : 50
 		
 	},
 	"Medkit": {
@@ -318,7 +318,7 @@
 	"Combat jacket": {
 		"type": "item",
 		"itemType": "personal",
-		"defense": 10,
+		"defense": 0.2,
 		"weight": 4
 	}
 }

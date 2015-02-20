@@ -6,7 +6,7 @@
 #include "GameObjects/Item.hpp"
 
 Item::Item(const Prototype *prototype)
-	: Object(prototype)
+	: Object(prototype), usesLeft(1), delay(0)
 {
 }
 

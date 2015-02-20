@@ -32,7 +32,7 @@ void AnimatorWeapon::act()
 			weapon->setUsesLeft(weapon->getUsesLeft() - 1);
 			weapon->setUseDelay(weapon->getPrototype()->getProperty(Properties::ShotsInterval).toInt());
 		}
-		if (weapon->getUsesLeft() == 0){
+		if (weapon->getUsesLeft() <= 0){
 			weapon->setUsesLeft(weapon->getPrototype()->getProperty(Properties::MagazineSize).toInt());
 			weapon->setUseDelay(weapon->getPrototype()->getProperty(Properties::ReloadTime).toInt());
 		}
