@@ -137,9 +137,11 @@ void Unit::removeItem(Item *item)
 float Unit::getDamageControl() const
 {
 	float baseValue = prototype->getProperty(Properties::DamageControl).toFloat();
-	float additionalValue = (getEquipment()->getSlotItem(BS::Slot::Armor) == nullptr)
-		? 0
-		: getEquipment()->getSlotItem(BS::Slot::Armor)->getPrototype()->getProperty(Properties::Defense).toFloat();
+	float additionalValue = 0;
+	if (getEquipment())
+		additionalValue = (getEquipment()->getSlotItem(BS::Slot::Armor) == nullptr)
+			? 0
+			: getEquipment()->getSlotItem(BS::Slot::Armor)->getPrototype()->getProperty(Properties::Defense).toFloat();
 	return  baseValue + additionalValue;
 }
 

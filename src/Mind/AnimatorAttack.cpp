@@ -86,7 +86,6 @@ void AnimatorAttack::act()
 		info("Object hit: " + hit->getName());
 
 		hit->property(TempData::Damage).setValue(weapon->getPrototype()->getProperty(Properties::Damage).toInt() + hit->property(TempData::Damage).toInt());
-
 	}
 }
 
