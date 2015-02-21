@@ -7,16 +7,14 @@
 #include "GameObjects/Location.hpp"
 #include "Common/Enums.hpp"
 
-class Unit : public Object {
+
+class Unit : public Object, public Equipped {
 public:
 	Unit(const Prototype *prototype);
 
 	BS::Type getType() const;
 
 	Item *getUsedItem();
-	Equipment *getEquipment();
-	void setEquipment(Equipment *eq);
-	int getEquipmentUid() const;
 
 	Location *getLocation();
 	void setLocation(Location *location);
@@ -74,8 +72,6 @@ private:
 	int hp;
 	int psychosis;
 	BS::Command command;
-	Equipment *equipment;
-	int equipmentUid;
 
 	QList<QPointF> currentPath;
 

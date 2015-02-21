@@ -17,10 +17,11 @@ public:
 	const QSet<int> &getItemsUids() const;
 	const QSet<Item *> &getItems() const;
 	int getWeight() const;
-	
+
 	void putItemIntoSlot(BS::Slot slot, Item *item);
 	int getSlotItemUid(BS::Slot slot) const;
 	Item *getSlotItem(BS::Slot slot);
+	const Item *getSlotItem(BS::Slot slot) const;
 
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
@@ -30,4 +31,19 @@ private:
 	QSet<Item *> items;
 	QHash<BS::Slot, int> usedItemsUids;
 	QHash<BS::Slot, Item *> usedItems;
+};
+
+class Equipped {
+public:
+	Equipment *getEquipment();
+	const Equipment *getEquipment() const;
+	void setEquipment(Equipment *eq);
+	int getEquipmentUid() const;
+
+	void loadFromJson(const QJsonObject &json);
+	QJsonObject saveToJson() const;
+
+private:
+	Equipment *equipment;
+	int equipmentUid;
 };

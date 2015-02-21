@@ -11,13 +11,12 @@
 
 
 // Add faction registration in reading function
-class Faction : public Object {
+class Faction : public Object, public Equipped {
 public:
 	Faction(const Prototype *prototype);
 
 	BS::Type getType() const;
 
-	Equipment *getEquipment();
 	Journal *getJournal();
 	QuestLog *getQuestLog();
 	Camp *getCamp();
@@ -37,7 +36,6 @@ public:
 private:
 	int food;
 	QHash<int, int> relations;
-	Equipment *equipment;
 	Journal *journal;
 	QuestLog *questLog;
 	Camp *camp;

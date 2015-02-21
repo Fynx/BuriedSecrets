@@ -52,8 +52,9 @@ void Equipment::loadFromJson(const QJsonObject &json)
 	Object::loadFromJson(json);
 	for (QJsonValue val : json[Attributes::Items].toArray())
 		itemsUids.insert(val.toInt());
-	for (const QString &key : json[Attributes::Slots].toObject().keys())
-		usedItemsUids[BS::changeStringToSlot(key)] = json[Attributes::Slots].toObject()[key].toInt();
+	if (json.contains(Attributes::Slots))
+		for (const QString &key : json[Attributes::Slots].toObject().keys())
+			usedItemsUids[BS::changeStringToSlot(key)] = json[Attributes::Slots].toObject()[key].toInt();
 }
 
 QJsonObject Equipment::saveToJson() const
@@ -95,4 +96,57 @@ Item *Equipment::getSlotItem(BS::Slot slot)
 	if ((!usedItems.contains(slot)) || (!items.contains(usedItems[slot])))
 		return nullptr;
 	return usedItems.value(slot);
+}
+
+const Item *Equipment::getSlotItem(BS::Slot slot) const
+{
+	if ((!usedItems.contains(slot)) || (!items.contains(usedItems[slot])))
+		return nullptr;
+	return usedItems.value(slot);
+}
+
+/**
+ * Equipped
+ */
+
+Equipment *Equipped::getEquipment()
+{
+	return equipment;
+}
+
+const Equipment *Equipped::getEquipment() const
+{
+	return equipment;
+}
+
+void Equipped::setEquipment(Equipment *eq)
+{
+	if (eq == nullptr) {
+		warn("Setting null equipment.");
+		equipmentUid = Object::InvalidUid;
+	} else {
+		equipmentUid = eq->getUid();
+	}
+
+	equipment = eq;
+}
+
+int Equipped::getEquipmentUid() const
+{
+	return equipmentUid;
+}
+
+void Equipped::loadFromJson(const QJsonObject &json)
+{
+	equipmentUid = json[Attributes::Equipment].toInt();
+}
+
+QJsonObject Equipped::saveToJson() const
+{
+	QJsonObject json;
+
+	if (equipment != nullptr)
+		json[Attributes::Equipment] = equipment->getUid();
+
+	return json;
 }

@@ -73,7 +73,10 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 	for (auto &p : objectsToAdd) {
 		p.first->assignUid();
-		addObject(p.first, QPointF(p.second.first, p.second.second));
+		if (p.second.first != 0.0 || p.second.second != 0.0)
+			addObject(p.first, QPointF(p.second.first, p.second.second));
+		else
+			addObject(p.first);
 	}
 
 	/** Set pointers */
@@ -82,18 +85,30 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 	for (Object *object : objects) {
 		if (object->getType() == BS::Type::Faction) {
-			factions.insert(object->getFactionId(), dynamic_cast<Faction *>(object));
-			for (int objectUid : dynamic_cast<Faction *>(object)->getUnitsUids())
+			Faction *faction = dynamic_cast<Faction *>(object);
+
+			factions.insert(object->getFactionId(), faction);
+			for (int objectUid : faction->getUnitsUids())
 				getObjectFromUid(objectUid)->setFactionId(object->getFactionId());
+
+			int eqUid = faction->getEquipmentUid();
+			if (eqUid == Object::InvalidUid) {
+				Equipment *eq = dynamic_cast<Equipment *>(createObject(BS::Type::Equipment, "equipment"));
+				eqUid = eq->assignUid();
+				addObject(eq);
+			}
+			faction->setEquipment(dynamic_cast<Equipment *>(getObjectFromUid(eqUid)));
 		} else if (object->getType() == BS::Type::Unit) {
 			Unit *unit = dynamic_cast<Unit *>(object);
 			int eqUid = unit->getEquipmentUid();
 			if (eqUid == Object::InvalidUid) {
-				Equipment *eq = dynamic_cast<Equipment *>(createDefaultObject(BS::Type::Equipment, "equipment"));
-				eqUid = eq->assignUid();
-				addObject(eq);
+// 				qDebug() << "creating new eq";
+// 				Object *eq = createObject(BS::Type::Equipment, "equipment");
+// 				eqUid = eq->assignUid();
+// 				addObject(eq);
+			} else {
+				unit->setEquipment(dynamic_cast<Equipment *>(getObjectFromUid(eqUid)));
 			}
-			unit->setEquipment(dynamic_cast<Equipment *>(getObjectFromUid(eqUid)));
 		} else if (object->getType() == BS::Type::Equipment) {
 			Equipment *eq = dynamic_cast<Equipment *>(object);
 			for (int itemUid : eq->getItemsUids())
@@ -159,6 +174,10 @@ void Mind::addObject(Object *object, const QPointF &position)
 
 void Mind::addObject(Object *object)
 {
+	if (object == nullptr) {
+		err("Adding null object.");
+		return;
+	}
 	objects.append(object);
 	uidToObject[object->getUid()] = object;
 }

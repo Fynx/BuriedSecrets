@@ -24,36 +24,20 @@ Item *Unit::getUsedItem()
 {
 	switch (command) {
 	case Command::Attack:
-		return equipment->getSlotItem(Slot::Weapon);
+		return getEquipment()->getSlotItem(Slot::Weapon);
 
 	case Command::Heal:
-		return equipment->getSlotItem(Slot::Medicament);
+		return getEquipment()->getSlotItem(Slot::Medicament);
 
 	case Command::Construct:
-		return equipment->getSlotItem(Slot::Fortification);
+		return getEquipment()->getSlotItem(Slot::Fortification);
 
 	case Command::Deconstruct:
-		return equipment->getSlotItem(Slot::Tool);
+		return getEquipment()->getSlotItem(Slot::Tool);
 	default:
 		return nullptr;
 		break;
 	}
-}
-
-Equipment *Unit::getEquipment()
-{
-	return equipment;
-}
-
-void Unit::setEquipment(Equipment *eq)
-{
-	equipment = eq;
-	equipmentUid = eq->getUid();
-}
-
-int Unit::getEquipmentUid() const
-{
-	return equipmentUid;
 }
 
 Location *Unit::getLocation()
@@ -102,7 +86,7 @@ float Unit::getEncumbrance() const
 {
 	return 0;
 	//TODO no equipment;
-	return equipment->getWeight();
+	return getEquipment()->getWeight();
 }
 
 float Unit::getMaxEncumbrance() const
@@ -134,12 +118,12 @@ float Unit::getRegeneration() const
 
 void Unit::addItem(Item *item)
 {
-	return equipment->addItem(item);
+	return getEquipment()->addItem(item);
 }
 
 void Unit::removeItem(Item *item)
 {
-	return equipment->removeItem(item);
+	return getEquipment()->removeItem(item);
 }
 
 /** Skills
@@ -150,27 +134,27 @@ void Unit::removeItem(Item *item)
 float Unit::getDamageControl() const
 {
 	float baseValue = prototype->getProperty(Properties::DamageControl).toFloat();
-	float additionalValue = (equipment->getSlotItem(BS::Slot::Armor) == nullptr)
+	float additionalValue = (getEquipment()->getSlotItem(BS::Slot::Armor) == nullptr)
 		? 0
-		: equipment->getSlotItem(BS::Slot::Armor)->getPrototype()->getProperty(Properties::Defense).toFloat();
+		: getEquipment()->getSlotItem(BS::Slot::Armor)->getPrototype()->getProperty(Properties::Defense).toFloat();
 	return  baseValue + additionalValue;
 }
 
 int Unit::getAttack() const
 {
 	int baseValue = prototype->getProperty(Properties::Attack).toInt();
-	int additionalValue = (equipment->getSlotItem(BS::Slot::Weapon) == nullptr)
+	int additionalValue = (getEquipment()->getSlotItem(BS::Slot::Weapon) == nullptr)
 		? 0
-		: equipment->getSlotItem(BS::Slot::Weapon)->getPrototype()->getProperty(Properties::Dispersion).toInt();
+		: getEquipment()->getSlotItem(BS::Slot::Weapon)->getPrototype()->getProperty(Properties::Dispersion).toInt();
 	return baseValue + additionalValue;
 }
 
 int Unit::getEngineering() const
 {
 	int baseValue = prototype->getProperty(Properties::Engineering).toInt();
-	int additionalValue = (equipment->getSlotItem(BS::Slot::Tool) == nullptr)
+	int additionalValue = (getEquipment()->getSlotItem(BS::Slot::Tool) == nullptr)
 		? 0
-		: equipment->getSlotItem(BS::Slot::Tool)->getPrototype()->getProperty(Properties::Engineering).toInt();
+		: getEquipment()->getSlotItem(BS::Slot::Tool)->getPrototype()->getProperty(Properties::Engineering).toInt();
 	return baseValue + additionalValue;
 }
 
@@ -237,19 +221,21 @@ void Unit::loadFromJson(const QJsonObject &json)
 	//TODO paths blablablah // <- Don't remember what...?
 
 	Object::loadFromJson(json);
+	Equipped::loadFromJson(json);
 
 	hp           = json[Properties::HP].toInt();
 	psychosis    = json[Properties::Psychosis].toInt();
-	equipmentUid = json[Attributes::Equipment].toInt();
 }
 
 QJsonObject Unit::saveToJson() const
 {
 	QJsonObject json = Object::saveToJson();
 
+	for (const QString &key : Equipped::saveToJson().keys())
+		json[key] = Equipped::saveToJson()[key];
+
 	json[Properties::HP]        = hp;
 	json[Properties::Psychosis] = psychosis;
-	json[Attributes::Equipment] = equipment->getUid();
 
 	return json;
 }

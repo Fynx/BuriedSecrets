@@ -14,11 +14,6 @@ BS::Type Faction::getType() const
 	return BS::Type::Faction;
 }
 
-Equipment *Faction::getEquipment()
-{
-	return equipment;
-}
-
 Journal *Faction::getJournal()
 {
 	return journal;
@@ -82,6 +77,7 @@ int Faction::consume(int f)
 void Faction::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
+	Equipped::loadFromJson(json);
 
 	food = json[Attributes::Food].toInt();
 
@@ -95,6 +91,8 @@ void Faction::loadFromJson(const QJsonObject &json)
 QJsonObject Faction::saveToJson() const
 {
 	QJsonObject json = Object::saveToJson();
+	for (const QString &key : Equipped::saveToJson().keys())
+		json[key] = Equipped::saveToJson()[key];
 
 	json[Attributes::Food] = food;
 

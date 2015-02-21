@@ -25,9 +25,10 @@ QList <Prototype *> DataManager::getAllPrototypes()
 
 const Prototype *DataManager::getPrototype(const QString &name) const
 {
-	if (!prototypes.contains(name))
+	if (!prototypes.contains(name)) {
 		err(QString("Prototype ") + name + QString(" not found!"));
-	Q_ASSERT(prototypes.contains(name));
+		return nullptr;
+	}
 	return prototypes[name];
 }
 
@@ -155,7 +156,7 @@ void DataManager::loadResources()
 					QByteArray resourceData = readRawData(preffix + obj[Data::Data].toString());
 					char *data = new char[resourceData.length()];
 					memcpy(data, resourceData.data(), resourceData.length());
-//
+
 					Resource *resource = new Resource(data, resourceData.length());
 					resources[key] = resource;
 				}

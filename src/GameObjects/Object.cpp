@@ -35,6 +35,8 @@ const Prototype *Object::getPrototype() const
 
 QString Object::getName() const
 {
+	if (prototype == nullptr)
+		return BS::changeTypeToString(getType());
 	return prototype->getProperty(Properties::Name).toString();
 }
 

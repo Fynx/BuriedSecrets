@@ -45,21 +45,3 @@ void Prototype::addAnimationData(const BS::State &state, const AnimationData *da
 	Q_ASSERT(!animationData.contains(state));
 	animationData[state] = data;
 }
-
-QDataStream &operator<<(QDataStream &out, const Prototype &prototype)
-{
-	out << prototype.properties;
-
-	return out;
-}
-
-QDataStream &operator>>(QDataStream &in, Prototype &prototype)
-{
-	in >> prototype.properties;
-
-	for (auto it = prototype.properties.begin(); it != prototype.properties.end(); ++it)
-		qDebug() << "\t\t" << it.key() << it.value();
-
-	return in;
-}
-

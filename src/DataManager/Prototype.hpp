@@ -22,7 +22,4 @@ public:
 private:
 	QMap <QString, QVariant> properties;
 	QMap <BS::State, const AnimationData *> animationData;
-
-	friend QDataStream &operator<<(QDataStream &out, const Prototype &prototype);
-	friend QDataStream &operator>>(QDataStream &in, Prototype &prototype);
 };
