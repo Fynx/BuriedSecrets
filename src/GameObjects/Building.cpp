@@ -4,7 +4,7 @@
 #include "GameObjects/Building.hpp"
 
 Building::Building(const Prototype *prototype)
-	: Object(prototype), offset(-1, 0.5)
+	: Location(prototype), offset(-1, 0.5)
 {}
 
 BS::Type Building::getType() const

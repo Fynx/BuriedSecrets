@@ -19,6 +19,6 @@ namespace BS {
 
 		float distance(const QPointF &a, const QPointF &b);
 		float vecToAngle(const QVector2D &v);
-		QVector2D angleToVec(const int a);
+		QVector2D angleToVec(float a);
 	}
 }

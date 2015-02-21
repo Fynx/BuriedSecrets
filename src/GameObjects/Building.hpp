@@ -6,7 +6,7 @@
 #include "GameObjects/Item.hpp"
 #include "GameObjects/Location.hpp"
 
-class Building : public Object, public Location {
+class Building : public Location {
 public:
 	Building(const Prototype *prototype);
 

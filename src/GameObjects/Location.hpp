@@ -3,7 +3,10 @@
  */
 #pragma once
 
-class Location {
+#include "GameObjects/Object.hpp"
+
+class Location : public Object {
 public:
+	Location(const Prototype *prototype);
 	virtual ~Location();
 };

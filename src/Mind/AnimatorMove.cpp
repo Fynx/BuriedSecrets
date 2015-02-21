@@ -22,10 +22,10 @@ void AnimatorMove::act()
 		if (!unit)
 			continue;
 
-		if ( !(obj->getState() == BS::Idle) && !(obj->getState() == BS::Run) && !(obj->getState() == BS::RunAttack))
-			continue;
+/*		if ( !(obj->getState() == BS::Idle) && !(obj->getState() == BS::Run) && !(obj->getState() == BS::RunAttack))
+			continue;*/
 
-		if (unit->getCurrentPath().size() == 0) {
+		if (unit->getCurrentPath().size() == 0 || obj->getState() == BS::Heal || obj->getState() == BS::Attack) {
 			if (obj->getState() == BS::Run){
 				obj->setState(BS::Idle);
 			}

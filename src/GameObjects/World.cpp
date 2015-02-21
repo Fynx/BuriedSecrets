@@ -4,5 +4,5 @@
 #include "GameObjects/World.hpp"
 
 World::World(const Prototype *prototype)
-	: Object(prototype)
+	: Location(prototype)
 {}

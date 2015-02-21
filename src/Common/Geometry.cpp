@@ -18,7 +18,8 @@ float BS::Geometry::vecToAngle(const QVector2D &v)
 }
 
 
-QVector2D BS::Geometry::angleToVec(const int a)
+QVector2D BS::Geometry::angleToVec(float a)
 {
-	return QVector2D(sin(a), cos(a));
+	a = a*M_PI / 180;
+	return QVector2D(cos(a), sin(a));
 }

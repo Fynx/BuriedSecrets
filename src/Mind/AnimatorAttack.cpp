@@ -30,8 +30,7 @@ void AnimatorAttack::act()
 		Item *weapon = unit->getUsedItem();
 		if (!weapon)
 			continue;
-		if (weapon->getState() != State::Idle)
-			continue;
+
 
 		Unit *target = dynamic_cast<Unit *>(mind->getObjectFromUid(unit->getTargetObject()));
 		if (!target){
@@ -40,26 +39,33 @@ void AnimatorAttack::act()
 		}
 
 		QPointF from = mind->physicsEngine()->getPosition(unit);
+		if (from.isNull() && unit->getState() == State::Inside)
+			from = mind->physicsEngine()->getPosition((Object *)unit->getLocation());
+
 		QPointF to = mind->physicsEngine()->getPosition(target);
 		if (to.isNull() || from.isNull()){
-			warn("Invalid points in attack animator");
+			err("Invalid points in attack animator");
 			continue;
 		}
 		float dist = QVector2D(to-from).length();
 		if (dist > weapon->getPrototype()->getProperty(Properties::Range).toFloat())
 			continue;
 
-
-		// Ok, letz attack!
-		info("Imma shootah'!");
-		if (dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat()){
-			unit->setState(State::Attack);
+		// We are close!
+		if (dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat() && unit->getState() != State::Inside){
 			unit->setCurrentPath(QList<QPointF>());
+			if (weapon->getState() != State::Idle)
+				continue;
+			unit->setState(State::Attack);
 		}
 		else{
-			if (unit->getState() != State::RunAttack)
+			if (weapon->getState() != State::Idle)
+				continue;
+			if (unit->getState() != State::RunAttack && unit->getState() != State::Inside)
 				unit->setState(State::RunAttack);
 		}
+
+		info(unit->getName() + " is attacking! Distance: " + QString::number(dist));
 		weapon->setState(State::Shoot);
 
 		// Calculate direction...
@@ -68,8 +74,8 @@ void AnimatorAttack::act()
 		int disp = weapon->getPrototype()->getProperty(Properties::Dispersion).toInt();
 		angle += (qrand() % disp) - (disp / 2);
 		unit->property(TempData::ShotAngle) = angle;
-
 		direction = Geometry::angleToVec(angle);
+		//info("Angle: " + QString::number(angle) + " dir " + QString::number(direction.x()) + " " + QString::number(direction.y()));
 
 		// Simulate shot
 		Object *hit = mind->physicsEngine()->getFirstHit(from, direction, weapon->getPrototype()->getProperty(Properties::Range).toFloat());
