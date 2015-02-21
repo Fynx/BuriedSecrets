@@ -18,7 +18,6 @@ namespace BS {
 		Faction,
 		Fortification,
 		Journal,
-		Mob,
 		Unit,
 	};
 

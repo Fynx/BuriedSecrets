@@ -26,7 +26,6 @@ static const QMap<BS::Type, QString> typeToString {
 	{BS::Type::Faction, "faction"},
 	{BS::Type::Fortification, "fortification"},
 	{BS::Type::Journal, "journal"},
-	{BS::Type::Mob, "mob"},
 	{BS::Type::Unit, "unit"},
 };
 

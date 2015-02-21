@@ -228,7 +228,6 @@ void Unit::loadFromJson(const QJsonObject &json)
 
 	hp           = json[Attributes::HP].toInt();
 	psychosis    = json[Attributes::Psychosis].toInt();
-	equipmentUid = json[Attributes::Equipment].toInt();
 }
 
 QJsonObject Unit::saveToJson() const
@@ -240,7 +239,6 @@ QJsonObject Unit::saveToJson() const
 
 	json[Attributes::HP]        = hp;
 	json[Attributes::Psychosis] = psychosis;
-	json[Attributes::Equipment] = equipment->getUid();
 
 	return json;
 }

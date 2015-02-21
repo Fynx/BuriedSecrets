@@ -8,7 +8,6 @@ set (GameObjects_SRCS
 	Journal.cpp
 	JournalEntry.cpp
 	Location.cpp
-	Mob.cpp
 	Object.cpp
 	QuestLog.cpp
 	Unit.cpp

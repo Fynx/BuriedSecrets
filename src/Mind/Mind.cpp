@@ -9,7 +9,6 @@
 #include "GameObjects/Camp.hpp"
 #include "GameObjects/Equipment.hpp"
 #include "GameObjects/Fortification.hpp"
-#include "GameObjects/Mob.hpp"
 #include "GameObjects/Unit.hpp"
 
 const int Mind::PlayerFactionId = 1;
@@ -285,11 +284,6 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 		case BS::Type::Item: {
 			Item *item = new Item(dataManager->getPrototype(name));
 			obj = item;
-			break;
-		}
-		case BS::Type::Mob: {
-			Mob *mob = new Mob(dataManager->getPrototype(name));
-			obj = mob;
 			break;
 		}
 		case BS::Type::Unit: {
