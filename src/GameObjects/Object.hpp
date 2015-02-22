@@ -15,6 +15,7 @@ public:
 	/** If current UID is invalid, new UID is assigned. */
 	int assignUid();
 	int getUid() const;
+	virtual bool isRemovable() const;
 	const Prototype *getPrototype() const;
 
 	virtual BS::Type getType() const = 0;

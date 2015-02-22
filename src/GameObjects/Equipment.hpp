@@ -10,8 +10,10 @@ class Equipment : public Object {
 public:
 	Equipment(const Prototype *prototype);
 
+	virtual bool isRemovable() const;
 	virtual BS::Type getType() const;
 
+	bool isEmpty() const;
 	void addItem(Item *item);
 	void removeItem(Item *item);
 	const QSet<int> &getItemsUids() const;

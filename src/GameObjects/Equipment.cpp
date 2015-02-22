@@ -9,9 +9,19 @@ Equipment::Equipment(const Prototype *prototype)
 	: Object(prototype)
 {}
 
+bool Equipment::isRemovable() const
+{
+	return isEmpty();
+}
+
 BS::Type Equipment::getType() const
 {
 	return BS::Type::Equipment;
+}
+
+bool Equipment::isEmpty() const
+{
+	return items.isEmpty();
 }
 
 void Equipment::addItem(Item *item)

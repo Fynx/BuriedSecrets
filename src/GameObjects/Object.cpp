@@ -28,6 +28,12 @@ int Object::getUid() const
 	return uid;
 }
 
+/** If the object is removable, it will not be saved to file */
+bool Object::isRemovable() const
+{
+	return false;
+}
+
 const Prototype *Object::getPrototype() const
 {
 	return prototype;

@@ -236,8 +236,9 @@ QJsonObject Unit::saveToJson() const
 {
 	QJsonObject json = Object::saveToJson();
 
-	for (const QString &key : Equipped::saveToJson().keys())
-		json[key] = Equipped::saveToJson()[key];
+	if (!getEquipment()->isEmpty())
+		for (const QString &key : Equipped::saveToJson().keys())
+			json[key] = Equipped::saveToJson()[key];
 
 	json[Attributes::HP]        = hp;
 	json[Attributes::Psychosis] = psychosis;

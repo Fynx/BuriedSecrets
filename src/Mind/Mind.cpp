@@ -139,6 +139,8 @@ QJsonObject Mind::saveToJson() const
 	json.insert(MapProperties::MapDesc, mapManager->getMap()->getDesc());
 
 	for (Object *obj : objects) {
+		if (obj->isRemovable())
+			continue;
 		qDebug() << "\tsave" << obj->getName();
 		QJsonObject objJson = obj->saveToJson();
 
