@@ -111,11 +111,15 @@ const Item *Equipment::getSlotItem(BS::Slot slot) const
 
 Equipment *Equipped::getEquipment()
 {
+	if (equipment == nullptr)
+		err("Returning null equipment.");
 	return equipment;
 }
 
 const Equipment *Equipped::getEquipment() const
 {
+	if (equipment == nullptr)
+		err("Returning null equipment.");
 	return equipment;
 }
 

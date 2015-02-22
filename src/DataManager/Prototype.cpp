@@ -39,7 +39,7 @@ const AnimationData *Prototype::getAnimationData(const BS::State &state) const
 	return it.value();
 }
 
-void Prototype::addAnimationData(const BS::State &state, const AnimationData *data)
+void Prototype::addAnimationData(BS::State state, const AnimationData *data)
 {
 	qDebug() << "Adding animationData for " << data->getName() << "(" << BS::changeStateToString(state) << ")";
 	Q_ASSERT(!animationData.contains(state));

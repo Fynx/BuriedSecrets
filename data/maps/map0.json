@@ -95,7 +95,7 @@
 		{
 			"name": "soszes",
 			"type": "faction",
-			"equipment": 53,
+			"equipment": 55,
 			"food": 1234,
 			"faction": 1,
 			"units": [1, 2, 3],

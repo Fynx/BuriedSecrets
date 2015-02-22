@@ -16,8 +16,8 @@ public:
 	QVariant getProperty(const QString &key) const;
 	void setProperty(const QString &key, const QVariant &value);
 	const AnimationData *getAnimationData(const BS::State &state) const;
-	const QList< const AnimationData * > getAnimationsData() const;
-	void addAnimationData(const BS::State &state, const AnimationData* data);
+	const QList<const AnimationData *> getAnimationsData() const;
+	void addAnimationData(BS::State state, const AnimationData *data);
 
 private:
 	QMap <QString, QVariant> properties;

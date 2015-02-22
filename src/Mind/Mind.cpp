@@ -82,7 +82,12 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 	//WARNING ItemConstructor is NOT used. Because what for.
 
-	for (Object *object : objects) {
+	info("Binding objects...");
+
+	int objectsSize = objects.size();
+	for (int i = 0; i < objectsSize; ++i) {
+		Object *object = objects[i];
+		qDebug() << "\t" << object->getName();
 		if (object->getType() == BS::Type::Faction) {
 			Faction *faction = dynamic_cast<Faction *>(object);
 
@@ -92,24 +97,28 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 			int eqUid = faction->getEquipmentUid();
 			if (eqUid == Object::InvalidUid) {
-				Equipment *eq = dynamic_cast<Equipment *>(createObject(BS::Type::Equipment, "equipment"));
+				Object *eq = createObject(BS::Type::Equipment, "equipment");
 				eqUid = eq->assignUid();
 				addObject(eq);
 			}
-			faction->setEquipment(dynamic_cast<Equipment *>(getObjectFromUid(eqUid)));
+			Object *eq = getObjectFromUid(eqUid);
+			Q_ASSERT(eq->getType() == BS::Type::Equipment);
+			faction->setEquipment(dynamic_cast<Equipment *>(eq));
 		} else if (object->getType() == BS::Type::Unit) {
 			Unit *unit = dynamic_cast<Unit *>(object);
+
 			int eqUid = unit->getEquipmentUid();
 			if (eqUid == Object::InvalidUid) {
-// 				qDebug() << "creating new eq";
-// 				Object *eq = createObject(BS::Type::Equipment, "equipment");
-// 				eqUid = eq->assignUid();
-// 				addObject(eq);
-			} else {
-				unit->setEquipment(dynamic_cast<Equipment *>(getObjectFromUid(eqUid)));
+				Object *eq = createObject(BS::Type::Equipment, "equipment");
+				eqUid = eq->assignUid();
+				addObject(eq);
 			}
+			Object *eq = getObjectFromUid(eqUid);
+			Q_ASSERT(eq->getType() == BS::Type::Equipment);
+			unit->setEquipment(dynamic_cast<Equipment *>(eq));
 		} else if (object->getType() == BS::Type::Equipment) {
 			Equipment *eq = dynamic_cast<Equipment *>(object);
+
 			for (int itemUid : eq->getItemsUids())
 				eq->addItem(dynamic_cast<Item *>(getObjectFromUid(itemUid)));
 			for (BS::Slot slot : BS::getSlots())
@@ -117,6 +126,8 @@ void Mind::loadFromJson(const QJsonObject &json)
 					eq->putItemIntoSlot(slot, dynamic_cast<Item *>(getObjectFromUid(eq->getSlotItemUid(slot))));
 		}
 	}
+
+	info("done.");
 }
 
 QJsonObject Mind::saveToJson() const
