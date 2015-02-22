@@ -105,9 +105,9 @@ void DataManager::loadPrototypes()
 		if (prototype->hasProperty(Data::Animations)) {
 			auto animations = prototype->getProperty(Data::Animations).toMap();
 
-			for (const QVariant &animation: animations) {
-				const AnimationData *animData = getAnimationData(animation.toString());
-				prototype->addAnimationData(animData->getState(), animData);
+			for (const QString &key : animations.keys()) {
+				const AnimationData *animData = getAnimationData(animations[key].toString());
+				prototype->addAnimationData(BS::changeStringToState(key), animData);
 			}
 		}
 
@@ -144,7 +144,7 @@ void DataManager::loadResources()
 				if (obj[Properties::Type].toString() == Resources::Animation) {
 					AnimationData *animation = new AnimationData(
 						key,
-						BS::getStateFromString(obj[TempData::State].toString()),
+						BS::changeStringToState(obj[TempData::State].toString()),
 						obj[AnimationProperties::FramesNumber].toInt(),
 						obj[AnimationProperties::Frames].toArray().toVariantList()
 					);

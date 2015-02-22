@@ -30,6 +30,7 @@ static const QMap<BS::Type, QString> typeToString {
 };
 
 static const QMap<BS::Slot, QString> slotToString {
+	{BS::Slot::Invalid,        "invalid"},
 	{BS::Slot::Weapon,         "weapon"},
 	{BS::Slot::Tool,           "tool"},
 	{BS::Slot::Medicament,     "medicament"},
@@ -51,12 +52,12 @@ namespace BS {
 
 	QString changeSlotToString(Slot slot)
 	{
-		return ::slotToString.value(slot);
+		return ::slotToString.value(slot, "Invalid Slot");
 	}
 
 	Slot changeStringToSlot(const QString &string)
 	{
-		return ::slotToString.key(string);
+		return ::slotToString.key(string, Invalid);
 	}
 
 	const QList<Slot> getSlots()
@@ -64,12 +65,12 @@ namespace BS {
 		return slots_;
 	}
 
-	State getStateFromString(const QString &str)
+	State changeStringToState(const QString &str)
 	{
 		return ::stateToString.key(str, BS::State::Idle);
 	}
 
-	QString getStringFromState(BS::State state)
+	QString changeStateToString(BS::State state)
 	{
 		return ::stateToString.value(state, QString("Invalid State"));
 	}

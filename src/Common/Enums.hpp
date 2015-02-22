@@ -51,6 +51,7 @@ namespace BS {
 	};
 
 	enum Slot {
+		Invalid,
 		Weapon,
 		Tool,
 		Medicament,
@@ -70,19 +71,19 @@ namespace BS {
 		Fortification,
 	};
 
-	State getStateFromString(const QString &str);
-	QString getStringFromState(BS::State state);
+	State changeStringToState(const QString &str);
+	QString changeStateToString(BS::State state);
 
 	namespace Graphic {
 		// This is an enum for a reason (underlying value implicitly converted to a numeric type).
 		enum Direction {
-			Right = 0,
-			RightUp = 1,
-			Up = 2,
-			LeftUp = 3,
-			Left = 4,
-			LeftDown = 5,
-			Down = 6,
+			Right     = 0,
+			RightUp   = 1,
+			Up        = 2,
+			LeftUp    = 3,
+			Left      = 4,
+			LeftDown  = 5,
+			Down      = 6,
 			RightDown = 7
 		};
 

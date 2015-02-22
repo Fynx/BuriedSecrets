@@ -50,7 +50,7 @@ private:
 
 	QHash<QString, Prototype *> prototypes;
 	QHash<QString, Resource *> resources;
-	QHash <QString, AnimationData *> animationData;
+	QHash<QString, AnimationData *> animationData;
 };
 
 template <class T>
