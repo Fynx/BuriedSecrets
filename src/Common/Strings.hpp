@@ -42,6 +42,7 @@ namespace Attributes {                                 // Converted into class f
 	const QString OffsetX       = "offsetX";
 	const QString OffsetY       = "offsetY";
 	const QString Psychosis     = "psychosis";
+	const QString Relations     = "relations";
 	const QString Slots         = "slots";
 	const QString Uid           = "uid";
 	const QString Units         = "units";

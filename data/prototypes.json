@@ -341,7 +341,7 @@
 		"dispersion": 15,
 		"fireRate": 2,
 		"weight": 2,
-		"range": 7,
+		"range": 12,
 		"optimalRange": 8,
 		"shotsInterval" : 10,
 		"magazineSize" : 5,

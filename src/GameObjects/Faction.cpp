@@ -86,6 +86,10 @@ void Faction::loadFromJson(const QJsonObject &json)
 		unitsUids.insert(value.toInt());
 		allUnitsUids.append(value.toInt());
 	}
+	QJsonArray rels = json[Attributes::Relations].toArray();
+	for (const QJsonValue &value : rels) {
+		relations[value.toArray().first().toInt()] = value.toArray().last().toInt();
+	}
 }
 
 QJsonObject Faction::saveToJson() const

@@ -14,7 +14,8 @@
 			"equipment": 2,
 			"food": 800,
 			"faction": 1,
-			"units": [4, 8, 12]
+			"units": [4, 8, 12],
+			"relations": [[1, 1505], [2, -100]]
 		},
 		{
 			"name": "equipment",
@@ -170,7 +171,8 @@
 			],
 			"food": 1200,
 			"faction": 2,
-			"units": [17, 20, 23, 26]
+			"units": [17, 20, 23, 26],
+			"relations": [[1, -5], [2, 100]]
 		},
 
 		{
