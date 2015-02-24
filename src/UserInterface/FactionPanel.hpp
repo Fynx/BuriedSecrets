@@ -7,24 +7,24 @@
 
 class Mind;
 
-static const QSize CampPanelSize{300, 100};
+static const QSize FactionPanelSize{300, 100};
 
-class CampPanel : public QFrame {
+class FactionPanel : public QFrame {
 	Q_OBJECT
 public:
-	CampPanel();
+	FactionPanel();
 	void refresh(const Mind *mind);
 
 private:
-	void initWidgets();
 	void initLayout();
-	void setFoodAmount(int food);
+	QLayout *createFoodLayout();
 
-	QPushButton *campEquipmentBtn_;
+	QPushButton *campBtn_;
 	QPushButton *journalBtn_;
-	QLabel *foodLabel_;
+
+	QLabel *foodAmount_;
 
 signals:
 	void journalActivated();
-	void campEQActivated();
+	void campActivated();
 };

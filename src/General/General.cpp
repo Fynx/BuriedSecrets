@@ -7,7 +7,7 @@
 General::General()
 	: debugManager(new DebugManager),
 	  dataManager(new DataManager),
-	  userInterface(new UserInterface(this)),
+	  userInterface(new UserInterface(this, dataManager)),
 	  graphics(nullptr),
 	  mind(nullptr),
 	  physicsEngine(nullptr),

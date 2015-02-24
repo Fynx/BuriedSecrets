@@ -1,9 +1,12 @@
 ﻿set (UserInterface_SRCS
 	BoardWidget.cpp
-	CampEquipmentWindow.cpp
-	CampPanel.cpp
+	CampConstructorTab.cpp
+	CampEquipmentTab.cpp
+	CampWindow.cpp
+	FactionPanel.cpp
 	GameWindow.cpp
 	IsometricPerspective.cpp
+	ItemWidget.cpp
 	JournalWindow.cpp
 	MainMenuWindow.cpp
 	Perspective.cpp
@@ -11,8 +14,8 @@
 	UnitsPanel.cpp
 	UnitEquipmentTab.cpp
 	UnitHistoryTab.cpp
+	UnitSection.cpp
 	UnitStatsTab.cpp
-	UnitWidget.cpp
 	UnitWindow.cpp
 	UserInterface.cpp
 	Viewport.cpp
@@ -20,14 +23,14 @@
 
 set (UserInterface_HDRS
 	BoardWidget.hpp
-	CampEquipmentWindow.hpp
-	CampPanel.hpp
+	CampWindow.hpp
+	FactionPanel.hpp
 	GameWindow.hpp
 	JournalWindow.hpp
 	MainMenuWindow.hpp
 	SelectionManager.hpp
 	UnitsPanel.hpp
-	UnitWidget.hpp
+	UnitSection.hpp
 	UnitWindow.hpp
 	UserInterface.hpp
 )

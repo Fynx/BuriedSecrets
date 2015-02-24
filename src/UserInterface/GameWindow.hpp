@@ -1,4 +1,4 @@
-﻿/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014
  * All rights reserved.
  */
 #pragma once
@@ -8,8 +8,9 @@
 #include "SelectionManager.hpp"
 
 class BoardWidget;
-class CampEquipmentWindow;
-class CampPanel;
+class CampWindow;
+class DataManager;
+class FactionPanel;
 class JournalWindow;
 class Mind;
 class UnitsPanel;
@@ -21,7 +22,7 @@ class GameWindow : public QWidget {
 public:
 	static const int UpdateTimerInterval; //in milliseconds
 
-	GameWindow(Mind *mind, BoardWidget *boardWidget, QWidget *parent = nullptr);
+	GameWindow(Mind *mind, DataManager *dataManager, BoardWidget *boardWidget, QWidget *parent = nullptr);
 
 	Viewport *viewport();
 
@@ -29,8 +30,11 @@ public slots:
 	void startUpdateLoop();
 
 private:
-	void initUnitsPanel();
 	void initWindows();
+    void initBoardWidget();
+	void initUnitsPanel();
+	void initFactionPanel();
+
 	void refresh();
 	void pauseGame();
 	void resumeGame();
@@ -43,13 +47,15 @@ private:
 	void tileRight(QWidget *widget);
 	void tileCenter(QWidget *widget);
 	void adjustUnitsPanelGeometry();
+	bool isSubwindowOpen();
 
-	Mind *mind_;
+	Mind *const mind_;
+	DataManager *const dataManager_;
 
 	BoardWidget *boardWidget_;
 	UnitsPanel *unitsPanel_;
-	CampPanel *campPanel_;
-	CampEquipmentWindow *campEquipmentWindow_;
+	FactionPanel *factionPanel_;
+	CampWindow *campWindow_;
 	JournalWindow *journalWindow_;
 	UnitWindow *unitWindow_;
 
@@ -59,13 +65,13 @@ private:
 	bool isPaused_;
 
 private slots:
-	void showCampMenu();
-	void showJournal();
-	void showUnitMenu(int uid);
-	void switchDisplayedUnit(int uid);
-	void closeCampMenu();
-	void closeJournal();
-	void closeUnitMenu();
+	void showCampWindow();
+	void showJournalWindow();
+	void showUnitWindow(int uid);
+	void switchUnitWindow(int uid);
+	void closeCampWindow();
+	void closeJournalWindow();
+	void closeUnitWindow();
 
 signals:
 	void showMainMenu();

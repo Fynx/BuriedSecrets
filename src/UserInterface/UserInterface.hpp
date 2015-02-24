@@ -17,7 +17,7 @@ class GameWindow;
 class UserInterface : public QObject {
 	Q_OBJECT
 public:
-	UserInterface(General *general);
+	UserInterface(General *general, DataManager *dataManager);
 	~UserInterface();
 
 	QMainWindow *getMainWindow();
@@ -36,7 +36,8 @@ private:
 		Instructions
 };
 
-	General *general_;
+	General *const general_;
+	DataManager *const dataManager_;
 
 	QMainWindow *mainWindow_;
 	GameWindow *gameWindow_;

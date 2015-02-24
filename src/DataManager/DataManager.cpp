@@ -141,7 +141,8 @@ void DataManager::loadResources()
 
 			for (const QString &key : json.keys()) {
 				const QJsonObject &obj = json[key].toObject();
-				if (obj[Properties::Type].toString() == Resources::Animation) {
+				QString typeString = obj[Properties::Type].toString();
+				if (typeString == Resources::Animation) {
 					AnimationData *animation = new AnimationData(
 						key,
 						BS::changeStringToState(obj[TempData::State].toString()),
@@ -150,8 +151,8 @@ void DataManager::loadResources()
 					);
 					qDebug() << animation;
 					animationData[key] = animation;
-				} else if (obj[Properties::Type].toString() == Resources::Texture ||
-					obj[Properties::Type].toString() == Resources::Font) {
+				} else if (typeString == Resources::Texture || typeString == Resources::Font
+				           || typeString == Resources::Image) {
 					/** Load the data from the file */
 					QByteArray resourceData = readRawData(preffix + obj[Data::Data].toString());
 					char *data = new char[resourceData.length()];

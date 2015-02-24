@@ -5,10 +5,15 @@
 
 #include "General/General.hpp"
 
+const QMargins MainMenuWindow::ContentsMargins{300, 32, 300, 32};
+const int MainMenuWindow::Spacing{20};
+
 MainMenuWindow::MainMenuWindow(const UserInterface *userInterface, QWidget *parent)
 	: QWidget(parent),
 	  userInterface_(userInterface)
 {
+	setContentsMargins(ContentsMargins);
+
 	initButtons();
 	initLayout();
 }
@@ -36,22 +41,37 @@ void MainMenuWindow::keyPressEvent(QKeyEvent *event)
 
 void MainMenuWindow::initButtons()
 {
-	continueBtn_ = new QPushButton("Continue");
+	QFont buttonFont("Times", 24);
+	QSizePolicy btnSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+
+	continueBtn_ = new QPushButton(tr("Continue"));
+	continueBtn_->setFont(buttonFont);
+	continueBtn_->setSizePolicy(btnSizePolicy);
 	connect(continueBtn_, &QPushButton::clicked, this, &MainMenuWindow::continueActivated);
 
-	newGameBtn_ = new QPushButton("New game");
+	newGameBtn_ = new QPushButton(tr("New game"));
+	newGameBtn_->setFont(buttonFont);
+	newGameBtn_->setSizePolicy(btnSizePolicy);
 	connect(newGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::newGameActivated);
 
-	loadGameBtn_ = new QPushButton("Load game");
+	loadGameBtn_ = new QPushButton(tr("Load game"));
+	loadGameBtn_->setFont(buttonFont);
+	loadGameBtn_->setSizePolicy(btnSizePolicy);
 	connect(loadGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::loadGameActivated);
 
-	saveGameBtn_ = new QPushButton("Save game");
+	saveGameBtn_ = new QPushButton(tr("Save game"));
+	saveGameBtn_->setFont(buttonFont);
+	saveGameBtn_->setSizePolicy(btnSizePolicy);
 	connect(saveGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::saveGameActivated);
 
-	instructionsBtn_ = new QPushButton("Instructions");
+	instructionsBtn_ = new QPushButton(tr("Instructions"));
+	instructionsBtn_->setFont(buttonFont);
+	instructionsBtn_->setSizePolicy(btnSizePolicy);
 	connect(instructionsBtn_, &QPushButton::clicked, this, &MainMenuWindow::instructionsActivated);
 
-	quitGameBtn_ = new QPushButton("Quit");
+	quitGameBtn_ = new QPushButton(tr("Quit"));
+	quitGameBtn_->setFont(buttonFont);
+	quitGameBtn_->setSizePolicy(btnSizePolicy);
 	connect(quitGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::quitActivated);
 
 	adjustButtonsVisibility();
@@ -59,15 +79,20 @@ void MainMenuWindow::initButtons()
 
 void MainMenuWindow::initLayout()
 {
-	QVBoxLayout *mainLayout = new QVBoxLayout;
+	auto mainLayout = new QVBoxLayout;
+	mainLayout->setSpacing(Spacing);
 	this->setLayout(mainLayout);
 
-	mainLayout->addWidget(new QLabel("Buried Secrets"));
-	mainLayout->addWidget(continueBtn_);
-	mainLayout->addWidget(newGameBtn_);
-	mainLayout->addWidget(loadGameBtn_);
-	mainLayout->addWidget(saveGameBtn_);
-	mainLayout->addWidget(instructionsBtn_);
-	mainLayout->addWidget(quitGameBtn_);
-	mainLayout->addStretch();
+	auto title = new QLabel(tr("Buried Secrets"));
+	title->setFont(QFont("Times", 36));
+	title->setAlignment(Qt::AlignCenter);
+	mainLayout->addWidget(title, 2);
+
+	mainLayout->addWidget(continueBtn_, 1);
+	mainLayout->addWidget(newGameBtn_, 1);
+	mainLayout->addWidget(loadGameBtn_,1);
+	mainLayout->addWidget(saveGameBtn_, 1);
+	mainLayout->addWidget(instructionsBtn_, 1);
+	mainLayout->addWidget(quitGameBtn_, 1);
+	mainLayout->addStretch(2);
 }

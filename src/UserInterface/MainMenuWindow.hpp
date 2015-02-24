@@ -17,6 +17,9 @@ public slots:
 	void adjustButtonsVisibility();
 
 private:
+	static const QMargins ContentsMargins;
+	static const int Spacing;
+
 	void keyPressEvent(QKeyEvent *event);
 
 	void initButtons();

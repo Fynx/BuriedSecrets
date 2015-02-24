@@ -9,25 +9,31 @@
 #include "UserInterface/UnitStatsTab.hpp"
 #include "GameObjects/Unit.hpp"
 
-UnitWindow::UnitWindow() : unit_(nullptr), tabWidget_(new QTabWidget)
+UnitWindow::UnitWindow(DataManager *dataManager)
+	: unit_(nullptr),
+	  dataManager_(dataManager)
 {
 	setAutoFillBackground(true);
-
-	title_ = new QLabel;
-
-	closeBtn_ = new QPushButton("Close");
-	connect (closeBtn_, &QPushButton::clicked, this, &UnitWindow::exit);
 
 	initLayout();
 }
 
 void UnitWindow::initLayout()
 {
-	QVBoxLayout *layout  = new QVBoxLayout;
+	auto layout  = new QVBoxLayout;
 	setLayout(layout);
 
+	title_ = new QLabel;
+	title_->setFont(QFont("Times", 18));
 	layout->addWidget(title_);
+
+	tabWidget_ = new QTabWidget;
+	tabWidget_->tabBar()->setFont(QFont("Times", 16));
 	layout->addWidget(tabWidget_);
+
+	closeBtn_ = new QPushButton(tr("Close"));
+	closeBtn_->setFont(QFont("Times", 16));
+	connect (closeBtn_, &QPushButton::clicked, this, &UnitWindow::exit);
 	layout->addWidget(closeBtn_);
 }
 
@@ -45,9 +51,9 @@ void UnitWindow::setUnit(Unit *unit)
 		delete widget;
 	}
 
-	tabWidget_->insertTab(EquipmentIndex, new UnitEquipmentTab(unit_), "Equipment");
-	tabWidget_->insertTab(HistoryIndex,   new UnitHistoryTab(unit_),   "History");
-	tabWidget_->insertTab(StatsIndex,     new UnitStatsTab(unit_),     "Stats");
+	tabWidget_->insertTab(EquipmentIndex, new UnitEquipmentTab(unit_, dataManager_), tr("Equipment"));
+	tabWidget_->insertTab(HistoryIndex,   new UnitHistoryTab(unit_, dataManager_),   tr("History"));
+	tabWidget_->insertTab(StatsIndex,     new UnitStatsTab(unit_),                   tr("Stats"));
 
 	tabWidget_->setCurrentIndex(oldIdx);
 }

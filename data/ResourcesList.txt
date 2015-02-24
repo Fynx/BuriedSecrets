@@ -1,3 +1,5 @@
-resources/Textures.json
 resources/Animations.json
 resources/Fonts.json
+resources/Items.json
+resources/Textures.json
+resources/Units.json

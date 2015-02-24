@@ -20,6 +20,132 @@
 	"equipment": {
 		"type": "equipment"
 	},
+	"unit": {
+		"type": "unit",
+		"profession": "Engineer",
+		"baseRadius": 1,
+		"baseCentre": [1, 1],
+		"age": 123124,
+		"attack": 10,
+		"encumbrance" : 24,
+		"engineering": 10,
+		"healing": 10,
+		"perception": 10,
+		"damageControl": 0.10,
+		"hp": 100,
+		"psychosis": 100,
+		"capacity": 5,
+		"hunger": 2,
+		"sightRange": 10,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+		}
+	},
+
+
+	"Expedition": {
+		"type": "faction",
+		"faction" : 1
+	},
+	"Senior Cebulez": {
+		"type": "unit",
+		"profession": "Megalomaniac Leader",
+		"background": "Experienced marksman from WTF Confederation Army. Also loves stories about World War II.",
+		"quote": "No bastard ever won a war by dying for his country. He won it by making the other poor dumb bastard die for his country.",
+		"avatar": "senior-cebulez-s",
+		"picture": "senior-cebulez",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 37,
+		"attack": 12,
+		"encumbrance" : 24,
+		"foodDemand": 1,
+		"engineering": 2,
+		"healing": 2,
+		"perception": 8,
+		"damageControl": 0.8,
+		"hp": 30,
+		"psychosis": 100,
+		"capacity": 12,
+		"hunger": 1,
+		"sightRange": 10,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking",
+			"Heal": "SoszuHeal",
+			"Attack": "SoszuAttack",
+			"RunAttack": "SoszuWalking"
+		}
+	},
+	"El Bogdano": {
+		"type": "unit",
+		"profession": "Ultimate Badass",
+		"background": "Madman who seeks only destruction (as his mom used to put it).",
+		"quote": "It's been several minutes since I've seen something explode. Not cool.",
+		"avatar": "el-bogdano-s",
+		"picture": "el-bogdano",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 35,
+		"attack": 6,
+		"encumbrance" : 24,
+		"foodDemand": 2,
+		"engineering": 8,
+		"healing": 1,
+		"perception": 6,
+		"damageControl": 0.5,
+		"hp": 25,
+		"psychosis": 100,
+		"capacity": 12,
+		"hunger": 1,
+		"sightRange": 10,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking",
+			"Heal": "SoszuHeal",
+			"Attack": "SoszuAttack",
+			"RunAttack": "SoszuWalking"
+		}
+	},
+	"Dr. D. Snee": {
+		"type": "unit",
+		"profession": "Heart surgeon",
+		"background": "Surgeon with battlefield experience. Well known for her weakness for the opposite sex.",
+		"quote": "As long as you know most men are like children, you know everything.",
+		"avatar": "d-snee-s",
+		"picture": "d-snee",
+		"baseRadius": 0.5,
+		"baseCentre": [0.5, 1],
+		"age": 32,
+		"attack": 4,
+		"encumbrance" : 24,
+		"foodDemand": 1,
+		"engineering": 1,
+		"healing": 8,
+		"perception": 4,
+		"damageControl": 0.3,
+		"hp": 20,
+		"psychosis": 100,
+		"capacity": 12,
+		"hunger": 1,
+		"sightRange": 10,
+		"movementSpeed": 5,
+		"regeneration": 1,
+		"animations": {
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking",
+			"Heal": "SoszuHeal",
+			"Attack": "SoszuAttack",
+			"RunAttack": "SoszuWalking"
+		}
+	},
+
+
 	"SoszuHouse": {
 		"type": "building",
 		"textureName": "SoszuHouse",
@@ -40,42 +166,20 @@
 		"damageControl": 0,
 		"searchTime": 0
 	},
-	"unit": {
-		"type": "unit",
-		"background": "Blah blah",
-		"position": "engineer",
-		"avatar": "no films here",
-		"baseRadius": 1,
-		"baseCentre": [1, 1],
-		"age": 123124,
-		"attack": 10,
-		"encumbrance" : 24,
-		"engineering": 10,
-		"healing": 10,
-		"perception": 10,
-		"damageControl": 0.10,
-		"hp": 100,
-		"psychosis": 100,
-		"capacity": 5,
-		"hunger": 2,
-		"sightRange": 10,
-		"movementSpeed": 5,
-		"regeneration": 1,
-		"animations": {
-			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking"
-		}
+
+	"Soszes": {
+		"type": "faction",
+		"faction" : 2
 	},
 	"Soszu": {
 		"type": "unit",
-		"background": "Blah blah",
-		"position": "engineer",
-		"avatar": "no films here",
+		"profession": "Proffesional mob",
 		"baseRadius": 0.5,
 		"baseCentre": [0.5, 1],
 		"age": 123124,
 		"attack": 10,
 		"encumbrance" : 24,
+		"foodDemand": 1,
 		"engineering": 10,
 		"healing": 10,
 		"perception": 10,
@@ -90,26 +194,25 @@
 		"animations": {
 			"Idle": "SoszuIdle",
 			"Run": "SoszuWalking",
-			"Heal": "SoszuIdle",
-			"Attack": "SoszuIdle",
+			"Heal": "SoszuHeal",
+			"Attack": "SoszuAttack",
 			"RunAttack": "SoszuWalking"
 		}
 	},
 	"Soszer": {
 		"type": "unit",
-		"background": "Blah blah",
-		"position": "engineer",
-		"avatar": "no films here",
+		"profession": "Proffesional mob",
 		"baseRadius": 0.5,
 		"baseCentre": [0.5, 1],
 		"age": 123124,
 		"attack": 10,
 		"encumbrance" : 24,
+		"foodDemand": 1,
 		"engineering": 10,
 		"healing": 10,
 		"perception": 10,
 		"damageControl": 0,
-		"hp": 170,
+		"hp": 150,
 		"psychosis": 100,
 		"capacity": 5,
 		"hunger": 2,
@@ -120,53 +223,24 @@
 			"Idle": "SoszuIdle",
 			"Run": "SoszuWalking",
 			"Heal": "SoszuHeal",
-			"RunAttack": "SoszuRunAttack",
-			"Attack": "SoszuAttack"
-			
-		}
-	},
-	"Soszyslaw": {
-		"type": "unit",
-		"background": "Blah blah",
-		"position": "engineer",
-		"avatar": "no films here",
-		"baseRadius": 0.5,
-		"baseCentre": [0.5, 1],
-		"age": 123124,
-		"attack": 10,
-		"encumbrance" : 24,
-		"engineering": 10,
-		"healing": 10,
-		"perception": 10,
-		"damageControl": 0.1,
-		"hp": 100,
-		"psychosis": 100,
-		"capacity": 5,
-		"hunger": 2,
-		"sightRange": 10,
-		"movementSpeed": 5,
-		"regeneration": 1,
-		"animations": {
-			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking",
-			"Heal": "SoszuHeal"
+			"Attack": "SoszuAttack",
+			"RunAttack": "SoszuWalking"
 		}
 	},
 	"Soszman": {
 		"type": "unit",
-		"background": "Blah blah",
-		"position": "engineer",
-		"avatar": "no films here",
+		"profession": "Proffesional mob",
 		"baseRadius": 0.5,
 		"baseCentre": [0.5, 1],
 		"age": 123124,
 		"attack": 10,
 		"encumbrance" : 24,
+		"foodDemand": 1,
 		"engineering": 10,
 		"healing": 10,
 		"perception": 10,
-		"damageControl": 0.5,
-		"hp": 170,
+		"damageControl": 0,
+		"hp": 150,
 		"psychosis": 100,
 		"capacity": 5,
 		"hunger": 2,
@@ -176,124 +250,90 @@
 		"animations": {
 			"Idle": "SoszuIdle",
 			"Run": "SoszuWalking",
-			"Heal": "SoszuHeal"
+			"Heal": "SoszuHeal",
+			"Attack": "SoszuAttack",
+			"RunAttack": "SoszuWalking"
 		}
 	},
-	"soszes": {
-		"type": "faction",
-		"faction" : 1
-	},
-	"El Bogdano": {
+	"Soszyslaw": {
 		"type": "unit",
-		"background": "Experienced marksman from WTF Confederation Army.",
-		"position": "sniper",
-		"avatar": "no films here",
+		"profession": "Proffesional mob",
 		"baseRadius": 0.5,
 		"baseCentre": [0.5, 1],
-		"age": 37,
-		"attack": 12,
+		"age": 123124,
+		"attack": 10,
 		"encumbrance" : 24,
-		"engineering": 2,
-		"healing": 2,
-		"perception": 8,
-		"damageControl": 0.8,
-		"hp": 30,
+		"foodDemand": 1,
+		"engineering": 10,
+		"healing": 10,
+		"perception": 10,
+		"damageControl": 0,
+		"hp": 150,
 		"psychosis": 100,
-		"capacity": 12,
-		"hunger": 1,
+		"capacity": 5,
+		"hunger": 2,
 		"sightRange": 10,
 		"movementSpeed": 5,
 		"regeneration": 1,
 		"animations": {
+			"Idle": "SoszuIdle",
+			"Run": "SoszuWalking",
+			"Heal": "SoszuHeal",
+			"Attack": "SoszuAttack",
+			"RunAttack": "SoszuWalking"
 		}
 	},
-	"Senior Cebulez": {
-		"type": "unit",
-		"background": "Former sapper, disarmed few thousand mines so far.",
-		"position": "engineer",
-		"avatar": "no films here",
-		"baseRadius": 0.5,
-		"baseCentre": [0.5, 1],
-		"age": 35,
-		"attack": 6,
-		"encumbrance" : 24,
-		"engineering": 8,
-		"healing": 1,
-		"perception": 6,
-		"damageControl": 0.5,
-		"hp": 25,
-		"psychosis": 100,
-		"capacity": 12,
-		"hunger": 1,
-		"sightRange": 10,
-		"movementSpeed": 5,
-		"regeneration": 1,
-		"animations": {
-		}
-	},
-	"Dr. D. Snee": {
-		"type": "unit",
-		"background": "Surgeon with battlefield experience. Many people live because of her.",
-		"position": "surgeon",
-		"avatar": "no films here",
-		"baseRadius": 0.5,
-		"baseCentre": [0.5, 1],
-		"age": 32,
-		"attack": 4,
-		"encumbrance" : 24,
-		"engineering": 1,
-		"healing": 8,
-		"perception": 4,
-		"damageControl": 0.3,
-		"hp": 20,
-		"psychosis": 100,
-		"capacity": 12,
-		"hunger": 1,
-		"sightRange": 10,
-		"movementSpeed": 5,
-		"regeneration": 1,
-		"animations": {
-		}
-	},
+
+
 	"Sniper rifle": {
 		"type": "item",
+		"picture": "sniper-rifle",
 		"itemType": "personal",
 		"damage": 40,
 		"fireRate": 0.3,
-		"weight": 3
+		"weight": 3,
+		"range": 20
 	},
 	"Pistol": {
 		"type": "item",
+		"picture": "pistol",
 		"itemType": "personal",
 		"damage": 15,
 		"dispersion": 2,
 		"fireRate": 0.8,
-		"weight": 1
+		"weight": 1,
+		"range": 6
 	},
 	"Assault rifle": {
 		"type": "item",
+		"picture": "assault-rifle",
 		"itemType": "personal",
 		"damage": 15,
 		"dispersion": 4,
 		"fireRate": 3,
-		"weight": 2
+		"weight": 2,
+		"range": 15
+
 	},
 	"Machete": {
 		"type": "item",
+		"picture": "machete",
 		"itemType": "personal",
 		"damage": 30,
 		"dispersion": 0,
 		"fireRate": 1,
-		"weight": 1
+		"weight": 1,
+		"range": 1
 	},
 	"Revolvers": {
 		"type": "item",
+		"picture": "revolvers",
 		"itemType": "personal",
 		"damage": 18,
 		"dispersion": 15,
 		"fireRate": 2,
 		"weight": 2,
-		"range": 12,
+		"range": 7,
 		"optimalRange": 8,
 		"shotsInterval" : 10,
 		"magazineSize" : 5,
@@ -302,12 +342,14 @@
 	},
 	"Medkit": {
 		"type": "item",
+		"picture": "medkit",
 		"itemType": "personal",
 		"healing": 10,
 		"weight": 1
 	},
 	"Wrench": {
 		"type": "item",
+		"picture": "wrench",
 		"itemType": "personal",
 		"damage": 15,
 		"dispersion": 0,
@@ -317,6 +359,7 @@
 	},
 	"Combat jacket": {
 		"type": "item",
+		"picture": "combat-jacket",
 		"itemType": "personal",
 		"defense": 0.2,
 		"weight": 4

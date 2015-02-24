@@ -108,32 +108,31 @@ void SelectionManager::mousePressEvent(const QMouseEvent *event)
 	//Commands
 	if (event->button() == Qt::RightButton) {
 		for (auto &unit : selectedUnits_) {
-			if (QApplication::keyboardModifiers() & Qt::AltModifier) {
-				unit->setTargetObject(target->getUid());
-				unit->setCommand(BS::Command::Heal);
+			if (target == nullptr) {
+				//TODO it should be via MapManager; only setting destination point
+				QPointF pos = QPointF(unit->property(TempData::X).toDouble(),
+				                      unit->property(TempData::Y).toDouble());
+				unit->setCurrentPath(mind_->getMapManager()->getPath(pos, place));
+				if (unit->getState() == BS::State::Inside) {
+					unit->setCommand(BS::Command::LeaveBuilding);
+				}
+				else
+					unit->setCommand(BS::Command::Move);
 			}
 			else {
-				if (target == nullptr) {
-					//TODO it should be via MapManager; only setting destination point
-					QPointF pos = QPointF(unit->property(TempData::X).toDouble(),
-					                      unit->property(TempData::Y).toDouble());
-					unit->setCurrentPath(mind_->getMapManager()->getPath(pos, place));
-					if (unit->getState() == BS::State::Inside) {
-						unit->setCommand(BS::Command::LeaveBuilding);
-					}
+				if (target->getType() == BS::Type::Unit) {
+					unit->setTargetObject(target->getUid());
+					if (mind_->getFactionById(unit->getFactionId())->isNeutralFaction(target->getFactionId())
+						|| unit->getFactionId() == target->getFactionId())
+						unit->setCommand(BS::Command::Heal);
 					else
-						unit->setCommand(BS::Command::Move);
+						unit->setCommand(BS::Command::Attack);
+
 				}
 				else {
-					if (target->getType() == BS::Type::Unit) {
+					if (target->getType() == BS::Type::Building) {
 						unit->setTargetObject(target->getUid());
-						unit->setCommand(BS::Command::Attack);
-					}
-					else {
-						if (target->getType() == BS::Type::Building) {
-							unit->setTargetObject(target->getUid());
-							unit->setCommand(BS::Command::EnterBuilding);
-						}
+						unit->setCommand(BS::Command::EnterBuilding);
 					}
 				}
 			}

@@ -63,11 +63,15 @@ namespace MapProperties {
 namespace Resources {
 	const QString Animation     = "animation";
 	const QString Font          = "font";
+	const QString Image         = "image";
 	const QString Texture       = "texture";
 }
 
 namespace Properties {                                 // for Prototypes
+	const QString Age           = "age";               // base for Unit
 	const QString Attack        = "attack";            // base for Unit
+	const QString Avatar        = "avatar";            // base for Unit
+	const QString Background    = "background";        // base for Unit
 	const QString Damage        = "damage";            // Weapon
 	const QString DamageControl = "damageControl";     // base for Unit
 	const QString DefAnimators  = "defAnimators";
@@ -86,7 +90,10 @@ namespace Properties {                                 // for Prototypes
 	const QString Name          = "name";
 	const QString OptimalRange  = "optimalRange";      // Weapon
 	const QString Perception    = "perception";        // base for Unit
+	const QString Picture       = "picture";           // base for Unit
+	const QString Profession    = "profession";        // base for Unit
 	const QString Psychosis     = "psychosis";         // max for Unit ??
+	const QString Quote         = "quote";             // base for Unit
 	const QString Range         = "range";             // Weapon
 	const QString Regeneration  = "regeneration";      // Unit
 	const QString ReloadTime    = "reloadTime";        // Weapon

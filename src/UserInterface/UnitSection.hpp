@@ -5,35 +5,35 @@
 
 #include <QtWidgets>
 
+class DataManager;
 class Unit;
 class Mind;
 
-
-class UnitWidget : public QFrame {
+class UnitSection : public QFrame {
 	Q_OBJECT
 public:
 	static const QSize WidgetSize;
 
-	UnitWidget(const Unit *unit);
+	UnitSection(const Unit *unit, DataManager *dataManager);
 
 	const Unit *unit();
 	QSize sizeHint() const;
 	void refresh();
 
 private:
+	static const QSize AvatarSize;
+
 	void mouseDoubleClickEvent(QMouseEvent *event);
 	void mousePressEvent(QMouseEvent *event);
 
-	void initWidgets();
 	void initLayout();
+	QLayout *createIconsLayout();
+	QLayout *createBarsLayout();
+	QWidget *createAvatarWidget();
 
-	const Unit* unit_;
+	const Unit *const unit_;
+	DataManager *const dataManager_;
 
-	QFrame *campIcon_;
-	QFrame *locationIcon_;
-	QFrame *behaviourIcon_;
-	QFrame *face_;
-	QLabel *name_;
 	QProgressBar *hpBar_;
 	QProgressBar *psychosisBar_;
 

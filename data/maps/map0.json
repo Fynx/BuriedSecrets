@@ -5,23 +5,32 @@
 	"mapHeight" : 60,
 	"objects": [
 		{
-			"name": "SoszuHouse",
-			"type": "building",
-			"animators": [],
-			"x": 2,
-			"y": 3,
-			"uid": 15
+			"name": "Expedition",
+			"uid": 1,
+			"type": "faction",
+			"animators": [
+				"AnimatorConsume"
+			],
+			"equipment": 2,
+			"food": 800,
+			"faction": 1,
+			"units": [4, 8, 12]
 		},
 		{
-			"name": "SoszuHouse2",
-			"type": "building",
-			"animators": [],
-			"x": 10.8,
-			"y": 13.4,
-			"uid": 16
+			"name": "equipment",
+			"uid": 2,
+			"type": "equipment",
+			"items": [3]
 		},
 		{
-			"name": "Soszu",
+			"name": "Combat jacket",
+			"type": "item",
+			"uid": 3
+		},
+
+		{
+			"name": "Senior Cebulez",
+			"uid": 4,
 			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
@@ -31,116 +40,307 @@
 				"AnimatorHeal",
 				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
+				"AnimatorAttack",
 				"AnimatorApplyDamage"
 			],
-			"x": 3.0,
-			"y": 5.0,
-			"uid": 1,
+			"equipment": 5,
+			"x": 40.0,
+			"y": 40.0,
 			"hp": 110
 		},
 		{
-			"name": "Soszer",
-			"type": "unit",
-			"animators": [
-				"AnimatorAnimation",
-				"AnimatorMove",
-				"AnimatorUpdatePath",
-				"AnimatorEnterBuilding",
-				"AnimatorHeal",
-				"AnimatorLeaveBuilding",
-				"AnimatorUpdateFOV",
-				"AnimatorAttack"
-			],
-			"equipment": 50,
-			"x": 20.0,
-			"y": 40.0,
-			"uid": 2,
-			"hp": 120
-		},
-		{
-			"name": "Soszyslaw",
-			"type": "unit",
-			"animators": [
-				"AnimatorAnimation",
-				"AnimatorMove",
-				"AnimatorEnterBuilding",
-				"AnimatorUpdatePath",
-				"AnimatorHeal",
-				"AnimatorLeaveBuilding",
-				"AnimatorUpdateFOV"
-
-			],
-			"x": 30.0,
-			"y": 30.0,
-			"uid" : 3,
-			"hp": 70
-		},
-		{
-			"name": "Soszman",
-			"type": "unit",
-			"animators": [
-				"AnimatorAnimation",
-				"AnimatorUpdatePath",
-				"AnimatorMove",
-				"AnimatorLeaveBuilding",
-				"AnimatorUpdateFOV",
-				"AnimatorApplyDamage"
-
-			],
-			"x": 25.0,
-			"y": 25.0,
-			"uid": 4,
-			"hp" : 150
-		},
-		{
-			"name": "soszes",
-			"type": "faction",
-			"equipment": 55,
-			"food": 1234,
-			"faction": 1,
-			"units": [1, 2, 3],
-			"uid": 5
-		},
-
-		{
 			"name": "equipment",
+			"uid": 5,
 			"type": "equipment",
-			"items": [
-				51,
-				52
-			],
+			"items": [6, 7],
 			"slots": {
-				"weapon": 51,
-				"medicament": 52
-			},
-			"uid": 50
+				"tool": 6,
+				"weapon": 7
+			}
 		},
 		{
-			"name": "equipment",
-			"type": "equipment",
-			"items": [
-				53
-			],
-			"uid": 55
+			"name": "Wrench",
+			"uid": 6,
+			"type": "item"
 		},
-
 		{
-			"name": "Revolvers",
+			"name": "Sniper rifle",
+			"uid": 7,
 			"type": "item",
 			"animators": [
 				"AnimatorWeapon"
+			]
+		},
+
+		{
+			"name": "El Bogdano",
+			"uid": 8,
+			"type": "unit",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorMove",
+				"AnimatorUpdatePath",
+				"AnimatorEnterBuilding",
+				"AnimatorHeal",
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage"
 			],
-			"uid": 51
+			"equipment": 9,
+			"x": 45.0,
+			"y": 40.0,
+			"hp": 110
+		},
+		{
+			"name": "equipment",
+			"uid": 9,
+			"type": "equipment",
+			"items": [10, 11],
+			"slots": {
+				"weapon": 10,
+				"armor": 11
+			}
+		},
+		{
+			"name": "Assault rifle",
+			"uid": 10,
+			"type": "item",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+		{
+			"name": "Combat jacket",
+			"uid": 11,
+			"type": "item"
+		},
+
+		{
+			"name": "Dr. D. Snee",
+			"uid": 12,
+			"type": "unit",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorMove",
+				"AnimatorUpdatePath",
+				"AnimatorEnterBuilding",
+				"AnimatorHeal",
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage"
+			],
+			"equipment": 13,
+			"x": 40.0,
+			"y": 45.0,
+			"hp": 110
+		},
+		{
+			"name": "equipment",
+			"uid": 13,
+			"type": "equipment",
+			"items": [14, 15],
+			"slots": {
+				"medicament": 14,
+				"weapon": 15
+			}
 		},
 		{
 			"name": "Medkit",
-			"type": "item",
-			"uid": 52
+			"uid": 14,
+			"type": "item"
 		},
 		{
-			"name": "Medkit",
+			"name": "Revolvers",
+			"uid": 15,
 			"type": "item",
-			"uid": 53
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"name": "Soszes",
+			"uid": 16,
+			"type": "faction",
+			"animators": [
+				"AnimatorConsume"
+			],
+			"food": 1200,
+			"faction": 2,
+			"units": [17, 20, 23, 26]
+		},
+
+		{
+			"name": "Soszu",
+			"uid": 17,
+			"type": "unit",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorMove",
+				"AnimatorUpdatePath",
+				"AnimatorEnterBuilding",
+				"AnimatorHeal",
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage"
+			],
+			"equipment": 18,
+			"x": 12.0,
+			"y": 12.0,
+			"hp": 120
+		},
+		{
+			"name": "equipment",
+			"uid": 18,
+			"type": "equipment",
+			"items": [19],
+			"slots": {
+				"weapon": 19
+			}
+		},
+		{
+			"name": "Machete",
+			"uid": 19,
+			"type": "item",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+		{
+			"name": "Soszer",
+			"uid": 20,
+			"type": "unit",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorMove",
+				"AnimatorUpdatePath",
+				"AnimatorEnterBuilding",
+				"AnimatorHeal",
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage"
+			],
+			"equipment": 21,
+			"x": 14.0,
+			"y": 14.0,
+			"hp": 120
+		},
+		{
+			"name": "equipment",
+			"uid": 21,
+			"type": "equipment",
+			"items": [22],
+			"slots": {
+				"weapon": 22
+			}
+		},
+		{
+			"name": "Pistol",
+			"uid": 22,
+			"type": "item",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+		{
+			"name": "Soszyslaw",
+			"uid" : 23,
+			"type": "unit",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorMove",
+				"AnimatorUpdatePath",
+				"AnimatorEnterBuilding",
+				"AnimatorHeal",
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage"
+			],
+			"equipment": 24,
+			"x": 16.0,
+			"y": 16.0,
+			"hp": 70
+		},
+		{
+			"name": "equipment",
+			"uid": 24,
+			"type": "equipment",
+			"items": [25],
+			"slots": {
+				"weapon": 25
+			}
+		},
+		{
+			"name": "Pistol",
+			"uid": 25,
+			"type": "item",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+		{
+			"name": "Soszman",
+			"uid": 26,
+			"type": "unit",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorMove",
+				"AnimatorUpdatePath",
+				"AnimatorEnterBuilding",
+				"AnimatorHeal",
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage"
+			],
+			"equipment": 27,
+			"x": 18.0,
+			"y": 18.0,
+			"hp" : 150
+		},
+		{
+			"name": "equipment",
+			"uid": 27,
+			"type": "equipment",
+			"items": [28],
+			"slots": {
+				"weapon": 28
+			}
+		},
+		{
+			"name": "Pistol",
+			"uid": 28,
+			"type": "item",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+				{
+			"name": "SoszuHouse",
+			"uid": 29,
+			"type": "building",
+			"animators": [],
+			"x": 2,
+			"y": 3
+		},
+		{
+			"name": "SoszuHouse2",
+			"uid": 30,
+			"type": "building",
+			"animators": [],
+			"x": 10.8,
+			"y": 13.4
 		}
 	]
 }

@@ -302,22 +302,10 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 		case BS::Type::Unit: {
 			Unit *unit = new Unit(dataManager->getPrototype(name));
 			obj = unit;
-
-			// ----- Cut here ----- //
-			QList<QPointF> tmpPath;
-			tmpPath.append(QPointF(50, 5));
-			tmpPath.append(QPointF(5, 50));
-			tmpPath.append(QPointF(5, 10));
-			tmpPath.append(QPointF(30, 50));
-			tmpPath.append(QPointF(50, 25));
-			tmpPath.append(QPointF(5, 5));
-			unit->setCurrentPath(tmpPath);
-			// ----- Cut here ----- //
-
 			break;
 		}
 		default: {
-			qDebug() << "blablabla...\n" << "blabla?";
+			err("No such Object type.");
 		}
 	}
 

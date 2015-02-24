@@ -5,20 +5,23 @@
 
 #include <QtWidgets>
 
+class DataManager;
 class Mind;
-class UnitWidget;
+class UnitSection;
 
 class UnitsPanel : public QFrame {
 	Q_OBJECT
 public:
-	UnitsPanel();
+	UnitsPanel(DataManager *dataManager);
 	QSize sizeHint() const;
 	void refresh(const Mind *mind);
 
 private:
-	void addUnitWidget(UnitWidget *unitWidget);
+	void addUnitSection(UnitSection *unitWidget);
 
-	QList <UnitWidget *> unitWidgets_;
+	DataManager *const dataManager_;
+
+	QList <UnitSection *> unitSections_;
 	QSignalMapper selectSignalMapper_;
 	QSignalMapper addSignalMapper_;
 	QSignalMapper healSignalMapper_;

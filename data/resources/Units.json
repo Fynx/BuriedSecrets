@@ -1,0 +1,26 @@
+{
+  "senior-cebulez-s": {
+    "type": "image",
+    "data": "images/units/senior-cebulez-s.png"
+  },
+  "senior-cebulez": {
+    "type": "image",
+    "data": "images/units/senior-cebulez.png"
+  },
+  "el-bogdano-s": {
+    "type": "image",
+    "data": "images/units/el-bogdano-s.png"
+  },
+  "el-bogdano": {
+    "type": "image",
+    "data": "images/units/el-bogdano.png"
+  },
+  "d-snee-s": {
+    "type": "image",
+    "data": "images/units/d-snee-s.png"
+  },
+  "d-snee": {
+    "type": "image",
+    "data": "images/units/d-snee.png"
+  }
+}

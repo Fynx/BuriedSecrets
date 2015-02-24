@@ -6,30 +6,26 @@
 #include <QtWidgets>
 
 class DataManager;
-class Unit;
+class Faction;
 
-class UnitWindow : public QFrame {
+class CampWindow : public QFrame {
 	Q_OBJECT
 public:
-	UnitWindow(DataManager *dataManager);
-
-public slots:
-	void setUnit(Unit *unit);
+	CampWindow(Faction *playerFaction, DataManager *dataManager);
 
 private:
 	static const int EquipmentIndex = 0;
-	static const int HistoryIndex = 1;
-	static const int StatsIndex = 2;
+	static const int ConstructorIndex = 1;
 
+	QWidget *createTabWidget();
 	void initLayout();
-
-	Unit *unit_;
-	DataManager *const dataManager_;
 
 	QTabWidget *tabWidget_;
 
-	QLabel *title_;
 	QPushButton *closeBtn_;
+
+	Faction *const playerFaction_;
+	DataManager *const dataManager_;
 
 signals:
 	void exit();

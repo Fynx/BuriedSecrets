@@ -1,0 +1,34 @@
+{
+  "assault-rifle": {
+    "type": "image",
+    "data": "images/items/assault-rifle.png"
+  },
+  "sniper-rifle": {
+    "type": "image",
+    "data": "images/items/sniper-rifle.png"
+  },
+  "pistol": {
+    "type": "image",
+    "data": "images/items/pistol.png"
+  },
+  "revolvers": {
+    "type": "image",
+    "data": "images/items/revolvers.png"
+  },
+  "machete": {
+    "type": "image",
+    "data": "images/items/machete.png"
+  },
+  "combat-jacket": {
+    "type": "image",
+    "data": "images/items/combat-jacket.png"
+  },
+  "medkit": {
+    "type": "image",
+    "data": "images/items/medkit.png"
+  },
+  "wrench": {
+    "type": "image",
+    "data": "images/items/wrench.png"
+  }
+}

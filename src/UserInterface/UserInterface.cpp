@@ -11,8 +11,9 @@
 #include "UserInterface/GameWindow.hpp"
 
 
-UserInterface::UserInterface(General *general)
+UserInterface::UserInterface(General *general, DataManager *dataManager)
 	: general_(general),
+	  dataManager_(dataManager),
 	  mainWindow_(new QMainWindow),
 	  gameWindow_(nullptr),
 	  mainMenuWindow_(new MainMenuWindow(this))
@@ -44,7 +45,7 @@ bool UserInterface::gameInProgress() const
 
 void UserInterface::newGame(Mind *mind, BoardWidget *boardWidget)
 {
-	gameWindow_ = new GameWindow(mind, boardWidget);
+	gameWindow_ = new GameWindow(mind, dataManager_, boardWidget);
 
 	connect(gameWindow_, &GameWindow::showMainMenu, this, &UserInterface::onShowMainMenu);
 	stackedWidget_->insertWidget(static_cast<int>(Window::Game), gameWindow_);

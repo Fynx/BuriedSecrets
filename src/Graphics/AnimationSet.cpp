@@ -17,6 +17,10 @@ AnimationSet::AnimationSet(AnimationSet::SetType && animationSet)
 const Animation *AnimationSet::getAnimationForState(const BS::State &state) const
 {
  	auto it = animationSet.find(state);
+	//FIXME TMP
+	if (it == animationSet.end())
+		it = animationSet.find(BS::State::Idle);
+
 	assert(it != animationSet.end());
 	return it.value();
 }
