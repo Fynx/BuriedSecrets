@@ -5,6 +5,7 @@
 #include "Mind/AnimatorGoPsycho.hpp"
 
 #include "DebugManager/DebugManager.hpp"
+#include "Common/Strings.hpp"
 #include "GameObjects/Unit.hpp"
 #include "GameObjects/Faction.hpp"
 #include "Mind.hpp"
@@ -24,21 +25,9 @@ void AnimatorGoPsycho::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		Faction *fac = mind->getFactionById(unit->getFactionId());
-		if (!fac->getCamp())
-			continue;
-		QPointF campPos = mind->physicsEngine()->getPosition(fac->getCamp());
-		if (campPos.isNull())
-			continue;
 
-		QPointF unitPos;
-
-		unitPos = mind->physicsEngine()->getPosition(unit);
-		if (unitPos.isNull())
-			continue;
-
-		if (QVector2D(unitPos - campPos).length() > fac->getCamp()->getRange()){
-			unit->setPsychosis(unit->getPsychosis()-1);
+		if (unit->property(TempData::NearCamp) == false){
+			unit->setPsychosis(unit->getPsychosis() - 1);
 		}
 		if (unit->getPsychosis() == 0){
 			//ToDo - Psychosis effect

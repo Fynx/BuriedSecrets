@@ -21,6 +21,7 @@
 #include "Mind/AnimatorAttack.hpp"
 #include "Mind/AnimatorUpdateFOV.hpp"
 #include "Mind/AnimatorApplyDamage.hpp"
+#include "Mind/AnimatorNearCamp.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -57,6 +58,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorWeapon(mind), Animators::Weapon, 100);
 	addAnimator(new AnimatorAttack(mind), Animators::Attack, 100);
 	addAnimator(new AnimatorUpdateFOV(mind), Animators::UpdateFOV, 50);
+	addAnimator(new AnimatorNearCamp(mind), Animators::NearCamp, 1000);
 	info("done.");
 }
 

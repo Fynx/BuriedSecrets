@@ -27,6 +27,7 @@ namespace Animators {
 	const QString Attack        = "AnimatorAttack";
 	const QString Weapon        = "AnimatorWeapon";
 	const QString UpdateFOV     = "AnimatorUpdateFOV";
+	const QString NearCamp      = "AnimatorNearCamp";
 }
 
 namespace Attributes {                                 // Converted into class fields
@@ -113,6 +114,7 @@ namespace Properties {                                 // for Prototypes
 namespace TempData {                                   // kept in GO's map
 	const QString Damage        = "damage";
 	const QString IsSelected    = "isSelected";
+	const QString NearCamp      = "nearCamp";
 	const QString ShotAngle     = "shotAngle";
 	const QString State         = "state";
 	const QString X             = "x";

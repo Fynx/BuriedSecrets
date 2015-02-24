@@ -5,6 +5,7 @@
 #include "Mind/AnimatorRegenerate.hpp"
 
 #include "DebugManager/DebugManager.hpp"
+#include "Common/Strings.hpp"
 #include "GameObjects/Unit.hpp"
 #include "GameObjects/Faction.hpp"
 #include "Mind.hpp"
@@ -24,23 +25,12 @@ void AnimatorRegenerate::act()
 		Faction *fac = dynamic_cast<Faction *>(obj);
 		if (!fac)
 			continue;
-		if (!fac->getCamp())
-			continue;
-		QPointF campPos = mind->physicsEngine()->getPosition(fac->getCamp());
-		if (campPos.isNull())
-			continue;
 
 		for (int id : fac->getUnitsUids()) {
 			Unit *unit = dynamic_cast<Unit *>(mind->getObjectFromUid(id));
-			QPointF unitPos;
-
 			if (!unit)
 				continue;
-			unitPos = mind->physicsEngine()->getPosition(unit);
-			if (unitPos.isNull())
-				continue;
-
-			if (QVector2D(unitPos - campPos).length() < fac->getCamp()->getRange()){
+			if (unit->property(TempData::NearCamp) == true){
 				unit->setPsychosis(unit->getPsychosis() + unit->getRegeneration());
 				unit->setHP(unit->getHP() + unit->getRegeneration());
 			}
