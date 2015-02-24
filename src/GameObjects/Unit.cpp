@@ -43,7 +43,7 @@ Item *Unit::getUsedItem()
 	}
 }
 
-Location *Unit::getLocation()
+Location *Unit::getLocation() const
 {
 	return location;
 }
@@ -107,8 +107,11 @@ float Unit::getFoodDemand() const
 
 float Unit::getSightRange() const
 {
-	//TODO update with things
-	return prototype->getProperty(Properties::SightRange).toFloat();
+	float result = float(getPerception()) * prototype->getProperty(Properties::SightRange).toFloat();
+	if (getLocation() && attitude == Attitude::BuildingAggressive)
+		result += getLocation()->getPrototype()->getProperty(Properties::BigRangeBonus).toFloat();
+
+	return result;
 }
 
 float Unit::getSpeed() const
@@ -139,12 +142,15 @@ void Unit::removeItem(Item *item)
 float Unit::getDamageControl() const
 {
 	float baseValue = prototype->getProperty(Properties::DamageControl).toFloat();
-	float additionalValue = 0;
-	if (getEquipment())
-		additionalValue = (getEquipment()->getSlotItem(BS::Slot::Armor) == nullptr)
+	float additionalValue = (getEquipment()->getSlotItem(Slot::Armor) == nullptr)
 			? 0
-			: getEquipment()->getSlotItem(BS::Slot::Armor)->getPrototype()->getProperty(Properties::Defense).toFloat();
-	return  baseValue + additionalValue;
+			: getEquipment()->getSlotItem(Slot::Armor)->getPrototype()->getProperty(Properties::Defense).toFloat();
+
+	if (getLocation() && attitude == Attitude::BuildingDefensive)
+		additionalValue += getLocation()->getPrototype()->getProperty(Properties::BigDefBonus).toFloat();
+	if (getLocation() && attitude == Attitude::BuildingAggressive)
+		additionalValue += getLocation()->getPrototype()->getProperty(Properties::SmallDefBonus).toFloat();
+	return qMin(baseValue + additionalValue, 1.0f);
 }
 
 int Unit::getAttack() const
@@ -152,8 +158,11 @@ int Unit::getAttack() const
 	int baseValue = prototype->getProperty(Properties::Attack).toInt();
 	int additionalValue = (getEquipment()->getSlotItem(BS::Slot::Weapon) == nullptr)
 		? 0
-		: getEquipment()->getSlotItem(BS::Slot::Weapon)->getPrototype()->getProperty(Properties::Dispersion).toInt();
-	return baseValue + additionalValue;
+		: getEquipment()->getSlotItem(Slot::Weapon)->getPrototype()->getProperty(Properties::Dispersion).toInt();
+
+	if (getLocation() && attitude == Attitude::BuildingAggressive)
+		additionalValue += getLocation()->getPrototype()->getProperty(Properties::BigAttBonus).toInt();
+	return qMax(0, baseValue + additionalValue);
 }
 
 int Unit::getEngineering() const
@@ -168,14 +177,19 @@ int Unit::getEngineering() const
 int Unit::getHealing() const
 {
 	int baseValue = prototype->getProperty(Properties::Healing).toInt();
-	int additionalValue = prototype->getProperty(Properties::Healing).toInt();
+	int additionalValue = (getEquipment()->getSlotItem(Slot::Medicament) == nullptr)
+		? 0
+		: getEquipment()->getSlotItem(Slot::Medicament)->getPrototype()->getProperty(Properties::Healing).toInt();
 	return baseValue + additionalValue;
 }
 
 int Unit::getPerception() const
 {
 	int baseValue = prototype->getProperty(Properties::Perception).toInt();
-	int additionalValue = prototype->getProperty(Properties::Perception).toInt();
+	int additionalValue = (getEquipment()->getSlotItem(Slot::Perception) == nullptr)
+		? 0
+		: getEquipment()->getSlotItem(Slot::Perception)->getPrototype()->getProperty(Properties::Perception).toInt();
+
 	return baseValue + additionalValue;
 }
 

@@ -52,7 +52,8 @@ void AnimatorEnterBuilding::act()
 			mind->getFactionById(unit->getFactionId())->getEquipment()->addItem(it);
 		}
 
-		unit->setCommand(BS::Command::None);
-		unit->setState(BS::State::Inside);
+		unit->setAttitude(Attitude::BuildingAggressive);
+		unit->setCommand(Command::None);
+		unit->setState(State::Inside);
 	}
 }

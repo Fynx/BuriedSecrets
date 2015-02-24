@@ -16,7 +16,7 @@ public:
 
 	Item *getUsedItem();
 
-	Location *getLocation();
+	Location *getLocation() const;
 	void setLocation(Location *location);
 
 	float getHP() const;

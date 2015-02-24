@@ -69,7 +69,7 @@
 		"psychosis": 100,
 		"capacity": 12,
 		"hunger": 1,
-		"sightRange": 10,
+		"sightRange": 1.0,
 		"movementSpeed": 5,
 		"regeneration": 1,
 		"animations": {
@@ -101,7 +101,7 @@
 		"psychosis": 100,
 		"capacity": 12,
 		"hunger": 1,
-		"sightRange": 10,
+		"sightRange": 1.0,
 		"movementSpeed": 5,
 		"regeneration": 1,
 		"animations": {
@@ -133,7 +133,7 @@
 		"psychosis": 100,
 		"capacity": 12,
 		"hunger": 1,
-		"sightRange": 10,
+		"sightRange": 1.0,
 		"movementSpeed": 5,
 		"regeneration": 1,
 		"animations": {
@@ -154,7 +154,11 @@
 		"range": 10,
 		"attack": 0,
 		"damageControl": 0,
-		"searchTime": 0
+		"searchTime": 0,
+		"bigAttBonus": -6,
+		"bigDefBonus": 0.4,
+		"smallDefBonus": 0.1,
+		"bigRangeBonus": 5
 	},
 	"SoszuHouse2": {
 		"type": "building",
@@ -164,7 +168,11 @@
 		"range": 10,
 		"attack": 0,
 		"damageControl": 0,
-		"searchTime": 0
+		"searchTime": 0,
+		"bigAttBonus": -6,
+		"bigDefBonus": 0.4,
+		"smallDefBonus": 0.1,
+		"bigRangeBonus": 5
 	},
 
 	"Soszes": {

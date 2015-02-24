@@ -16,7 +16,10 @@ void AnimatorUpdateFOV::act()
 		const Unit *unit = static_cast<const Unit *>(obj);
 		if (unit != nullptr) {
 			BS::Geometry::Circle circle;
-			circle.centre = mind->physicsEngine()->getPosition(obj);
+			if (unit->getState() != BS::State::Inside)
+				circle.centre = mind->physicsEngine()->getPosition(obj);
+			else
+				circle.centre = mind->physicsEngine()->getPosition(unit->getLocation());
 			circle.radius = unit->getSightRange();
 
 			int factionId = obj->getFactionId();
