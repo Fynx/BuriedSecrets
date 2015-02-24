@@ -28,6 +28,7 @@ namespace Animators {
 	const QString Weapon        = "AnimatorWeapon";
 	const QString UpdateFOV     = "AnimatorUpdateFOV";
 	const QString NearCamp      = "AnimatorNearCamp";
+	const QString WatchTarget   = "AnimatorWatchTarget";
 }
 
 namespace Attributes {                                 // Converted into class fields

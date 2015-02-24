@@ -21,6 +21,7 @@ set (Mind_SRCS
 	AnimatorWeapon.cpp
 	AnimatorUpdateFOV.cpp
 	AnimatorNearCamp.cpp
+	AnimatorWatchTarget.cpp
 	Event.cpp
 	Mind.cpp
 	ItemConstructor.cpp

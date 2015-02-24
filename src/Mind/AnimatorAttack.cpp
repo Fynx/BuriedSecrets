@@ -25,8 +25,11 @@ void AnimatorAttack::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		if (unit->getCommand() != Command::Attack)
+		if (unit->getCommand() != Command::Attack){
+			if (unit->getState() == State::Attack || unit->getState() == State::RunAttack)
+				unit->setState(State::Idle);
 			continue;
+		}
 		Item *weapon = unit->getUsedItem();
 		if (!weapon)
 			continue;

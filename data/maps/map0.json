@@ -42,7 +42,8 @@
 				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
-				"AnimatorApplyDamage"
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
 			],
 			"equipment": 5,
 			"x": 40.0,
@@ -86,7 +87,8 @@
 				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
-				"AnimatorApplyDamage"
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
 			],
 			"equipment": 9,
 			"x": 45.0,
@@ -130,7 +132,8 @@
 				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
-				"AnimatorApplyDamage"
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
 			],
 			"equipment": 13,
 			"x": 40.0,
@@ -188,7 +191,8 @@
 				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
-				"AnimatorApplyDamage"
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
 			],
 			"equipment": 18,
 			"x": 12.0,
@@ -226,7 +230,8 @@
 				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
-				"AnimatorApplyDamage"
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
 			],
 			"equipment": 21,
 			"x": 14.0,
@@ -264,7 +269,8 @@
 				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
-				"AnimatorApplyDamage"
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
 			],
 			"equipment": 24,
 			"x": 16.0,
@@ -302,7 +308,8 @@
 				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
-				"AnimatorApplyDamage"
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
 			],
 			"equipment": 27,
 			"x": 18.0,
