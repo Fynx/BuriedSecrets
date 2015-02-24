@@ -51,6 +51,9 @@ public:
 
 	/** Action-wise */
 
+	void setAttitude(BS::Attitude a);
+	BS::Attitude getAttitude();
+
 	void setCommand(BS::Command c);
 	BS::Command getCommand();
 
@@ -72,6 +75,7 @@ private:
 	int hp;
 	int psychosis;
 	BS::Command command;
+	BS::Attitude attitude;
 
 	QList<QPointF> currentPath;
 

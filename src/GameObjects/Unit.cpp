@@ -14,6 +14,8 @@ Unit::Unit(const Prototype *prototype)
 {
 	property(TempData::IsSelected) = false;
 	location = nullptr;
+	attitude = Attitude::Aggressive;
+	command = Command::None;
 }
 
 BS::Type Unit::getType() const
@@ -207,6 +209,16 @@ QPointF Unit::getTargetPoint()
 void Unit::setTargetPoint(QPointF p)
 {
 	targetPoint = p;
+}
+
+BS::Attitude Unit::getAttitude()
+{
+	return attitude;
+}
+
+void Unit::setAttitude(Attitude a)
+{
+	attitude = a;
 }
 
 BS::Command Unit::getCommand()

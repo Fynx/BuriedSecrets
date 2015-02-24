@@ -38,6 +38,14 @@ namespace BS {
 		Delay          // Weapon
 	};
 
+	enum class Attitude : quint8 {
+		Aggressive,
+		Guard,
+		Coward,
+		BuildingAggressive,
+		BuildingDefensive
+	};
+
 	enum class Command : quint8 {
 		None,  //Srsly, this should be first
 		Attack,

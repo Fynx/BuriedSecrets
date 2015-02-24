@@ -30,6 +30,8 @@ namespace Animators {
 }
 
 namespace Attributes {                                 // Converted into class fields
+	const QString Attitude      = "attitude";
+	const QString Command       = "command";
 	const QString DelayTime     = "delayTime";         // Item
 	const QString Equipment     = "equipment";
 	const QString Faction       = "faction";
