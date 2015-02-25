@@ -15,7 +15,6 @@
  *  - scale,
  *  - position of the viewport,
  *  - perspective.
- *
  */
 class Viewport {
 public:

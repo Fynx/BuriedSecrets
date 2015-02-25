@@ -27,8 +27,11 @@ public:
 
 private:
 	sf::Sprite FOWSprite;
+	sf::Sprite tempSprite;
 	sf::RenderTexture FOWTexture;
+	sf::RenderTexture tempTexture;
 	sf::CircleShape circle;
+	sf::ConvexShape polygon;
 	QSizeF textureSize;
 
 	sf::RenderTarget *renderTarget;

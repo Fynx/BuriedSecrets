@@ -6,6 +6,7 @@
 #include <QtCore/QPointF>
 
 #include "Common/Geometry.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Object.hpp"
 #include "Mind/MapManager/Map.hpp"
 #include "Mind/MapManager/VisibilityUpdate.hpp"
@@ -71,6 +72,12 @@ public:
 	VisibilityUpdateDiff *getVisibilityUpdatesDiff();
 
 private:
+	/**
+	 * @brief Returns a point slightly out of circle which lies on the line which contains the centre and point p.
+	 * Of the 2 possible points, the one closer to p is chosen.
+	 */
+	QPointF getPointOnCircleInline(const BS::Geometry::Circle &circle, const QPointF &p);
+
 	const int playerFactionId;
 	Map map;
 	QHash<int, VisibilityUpdateDiff> FOVs;	// Per-faction FOVs.

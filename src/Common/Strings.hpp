@@ -77,6 +77,9 @@ namespace Properties {                                 // for Prototypes
 	const QString Attack        = "attack";            // base for Unit
 	const QString Avatar        = "avatar";            // base for Unit
 	const QString Background    = "background";        // base for Unit
+	const QString BaseCentre    = "baseCentre";
+	const QString BasePolygon   = "basePolygon";
+	const QString BaseRadius    = "baseRadius";
 	const QString BigDefBonus   = "bigDefBonus";       // Bonus from location
 	const QString BigAttBonus   = "bigAttBonus";       // Bonus from location
 	const QString BigRangeBonus = "bigRangeBonus";     // Bonus from location

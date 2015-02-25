@@ -111,6 +111,26 @@ void DataManager::loadPrototypes()
 			}
 		}
 
+		// Parsing for centre and base polygon (for those objects that have it).
+		if (prototype->hasProperty(Properties::BaseCentre)) {
+			const QVariantList centre = prototype->getProperty(Properties::BaseCentre).toList();
+			prototype->setBaseCentre(QPointF(centre[0].toFloat(), centre[1].toFloat()));
+		} else if (prototype->hasProperty(Properties::BasePolygon)) {
+			const QVariantList polygon = prototype->getProperty(Properties::BasePolygon).toList();
+			QList<QPointF> basePolygon;
+			QPointF baseCentre;
+
+			for (const QVariant &p: polygon) {
+				const QVariantList &point = p.toList();
+				basePolygon.append(QPointF{point[0].toFloat(), point[1].toFloat()});
+				baseCentre += basePolygon.back();
+			}
+
+			baseCentre /= basePolygon.length();
+			prototype->setBasePolygon(basePolygon);
+			prototype->setBaseCentre(baseCentre);
+		}
+
 		prototypes[name] = prototype;
 	}
 

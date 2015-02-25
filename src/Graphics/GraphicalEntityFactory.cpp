@@ -39,24 +39,19 @@ GraphicalEntity* GraphicalEntityFactory::get(const Object* object)
 
 			// Get centre, radius and build a polygon emulating circle.
 			const float radius = object->getPrototype()->getProperty("baseRadius").toFloat();
-			const QVariantList centre = object->getPrototype()->getProperty("baseCentre").toList();
-			const float centreX = centre[0].toFloat();
-			const float centreY = centre[1].toFloat();
-
+			QPointF centre = object->getPrototype()->getBaseCentre();
 			// Clockwise
-			basePolygon.append(perspective->fromMetresToPixels(QPointF{centreX - radius, centreY}));
-			basePolygon.append(perspective->fromMetresToPixels(QPointF{centreX, centreY - radius}));
-			basePolygon.append(perspective->fromMetresToPixels(QPointF{centreX + radius, centreY}));
-			basePolygon.append(perspective->fromMetresToPixels(QPointF{centreX, centreY + radius}));
+			basePolygon.append(perspective->fromMetresToPixels(QPointF{centre.x() - radius, centre.y()}));
+			basePolygon.append(perspective->fromMetresToPixels(QPointF{centre.x(), centre.y() - radius}));
+			basePolygon.append(perspective->fromMetresToPixels(QPointF{centre.x() + radius, centre.y()}));
+			basePolygon.append(perspective->fromMetresToPixels(QPointF{centre.x(), centre.y() + radius}));
 
 			ptr = new AnimatedGraphicalEntity(object, basePolygon, AnimationSet{s});
 		} else if (objectType == "building") {
-			// Convert basePolygon from prototype to a QList<QPointF>
-			const QVariantList polygon = object->getPrototype()->getProperty("basePolygon").toList();
-			for (const QVariant &p: polygon) {
-				const QVariantList &point = p.toList();
-				basePolygon.append(perspective->fromMetresToPixels(
-						QPointF{point[0].toFloat(), point[1].toFloat()}));
+			// Convert base polygon from metres to pixels.
+			basePolygon = object->getPrototype()->getBasePolygon();
+			for (QPointF &p: basePolygon) {
+				p = perspective->fromMetresToPixels(p);
 			}
 
 			ptr = new StaticGraphicalEntity(object, basePolygon, graphicsDataManager->getTexture(
