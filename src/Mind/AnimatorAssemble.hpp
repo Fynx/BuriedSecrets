@@ -5,9 +5,9 @@
 
 #include "Mind/Animator.hpp"
 
-class AnimatorConstruct : public Animator {
+class AnimatorAssemble : public Animator {
 public:
-	AnimatorConstruct(Mind *mind);
+	AnimatorAssemble(Mind *mind);
 
 	void act();
 private:

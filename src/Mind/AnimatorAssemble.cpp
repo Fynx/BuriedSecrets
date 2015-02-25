@@ -2,7 +2,7 @@
  * All rights reserved.
  */
 
-#include "Mind/AnimatorConstruct.hpp"
+#include "Mind/AnimatorAssemble.hpp"
 
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
@@ -13,19 +13,19 @@
 using namespace BS;
 
 
-AnimatorConstruct::AnimatorConstruct(Mind *mind) : Animator(mind)
+AnimatorAssemble::AnimatorAssemble(Mind *mind) : Animator(mind)
 {
 	info("Animator Construct created.");
 }
 
 
-void AnimatorConstruct::act()
+void AnimatorAssemble::act()
 {
 	for (Object * obj : objects){
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		if (unit->getCommand() != Command::Construct)
+		if (unit->getCommand() != Command::Assemble)
 			continue;
 
 		QPointF from = mind->physicsEngine()->getPosition(unit);

@@ -48,13 +48,12 @@ namespace BS {
 
 	enum class Command : quint8 {
 		None,  //Srsly, this should be first
+		Assemble,
 		Attack,
-		Construct,
-		Deconstruct,
-		EnterBuilding,
-		EnterFortification,
+		Disassemble,
+		Enter,
 		Heal,
-		LeaveBuilding,
+		Leave,
 		Move
 	};
 

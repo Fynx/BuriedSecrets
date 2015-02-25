@@ -37,19 +37,21 @@ public slots:
 	void selectionByRectEnded(const QRect &selectionRect);
 
 private:
+	void makePrimaryAction(Unit *unit, QPointF point, Object *target);
+	void makeSecondaryAction(Unit *unit, QPointF point, Object *target);
+	bool isFriendly(Object *object);
+
 	Unit *unitByNumber(int number) const;
 	Object *objectInPixelsPos(QPoint pointInPixels) const;
 	QSet<Object *> objectInPixelsRect(QRect rectInPixels) const;
+
 	QSet<Unit *> filterSelection(const QSet<Object *> &objects) const;
 	void selectUnits(const QSet<Unit *> &units);
 	void addUnitsToSelection(QSet<Unit *> units);
 	void markBuildingsSelected();
 
-	Mind *mind_;
+	Mind *const mind_;
 	Viewport viewport_;
-
-	bool isRubberBandVisible_;
-	QRect rubberBandRectInMetres_;
 
 	QSet<Unit *> selectedUnits_;
 	QSet<Building *> selectedBuildings_;

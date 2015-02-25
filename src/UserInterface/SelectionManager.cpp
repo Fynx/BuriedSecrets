@@ -91,51 +91,16 @@ void SelectionManager::mousePressEvent(const QMouseEvent *event)
 	QPointF place = viewport_.getPhysicalCoordinates(event->pos());
 	Object *target = objectInPixelsPos(event->pos());
 
-	//Selection TODO see if still needed
-	if (event->button() == Qt::LeftButton) {
-		if (QApplication::keyboardModifiers() & Qt::ShiftModifier) {
-			if (target != nullptr)
-				addUnitsToSelection(filterSelection({target}));
+	if (event->button() == Qt::RightButton) {
+		if (event->modifiers() & Qt::AltModifier) {
+			//SecondaryAction
+			if (selectedUnits_.size() == 1)
+			makePrimaryAction(*selectedUnits_.begin(), place, target);
 		}
 		else {
-			if (target == nullptr)
-				selectUnits({});
-			else
-				selectUnits(filterSelection({target}));
-		}
-	}
-
-	//Commands
-	if (event->button() == Qt::RightButton) {
-		for (auto &unit : selectedUnits_) {
-			if (target == nullptr) {
-				//TODO it should be via MapManager; only setting destination point
-				QPointF pos = QPointF(unit->property(TempData::X).toDouble(),
-				                      unit->property(TempData::Y).toDouble());
-				unit->setCurrentPath(mind_->getMapManager()->getPath(pos, place));
-				if (unit->getState() == BS::State::Inside) {
-					unit->setCommand(BS::Command::LeaveBuilding);
-				}
-				else
-					unit->setCommand(BS::Command::Move);
-			}
-			else {
-				if (target->getType() == BS::Type::Unit) {
-					unit->setTargetObject(target->getUid());
-					if (mind_->getFactionById(unit->getFactionId())->isNeutralFaction(target->getFactionId())
-						|| unit->getFactionId() == target->getFactionId())
-						unit->setCommand(BS::Command::Heal);
-					else
-						unit->setCommand(BS::Command::Attack);
-
-				}
-				else {
-					if (target->getType() == BS::Type::Building) {
-						unit->setTargetObject(target->getUid());
-						unit->setCommand(BS::Command::EnterBuilding);
-					}
-				}
-			}
+			// Primary Action
+			for (auto &unit : selectedUnits_)
+				makePrimaryAction(unit, place, target);
 		}
 	}
 }
@@ -190,6 +155,83 @@ void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
 		addUnitsToSelection(filteredUnits);
 	else
 		selectUnits(filteredUnits);
+}
+
+void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *target)
+{
+	if (target == nullptr) {
+		if (unit->getState() == BS::State::Inside) {
+			unit->setCommand(BS::Command::Leave);
+			unit->setTargetPoint(point);
+		}
+		else {
+			unit->setCommand(BS::Command::Move);
+			unit->setTargetPoint(point);
+		}
+	}
+	else {
+		switch (target->getType()) {
+			case BS::Type::Unit:
+				if (!isFriendly(target)) {
+					unit->setTargetObject(target->getUid());
+					unit->setCommand(BS::Command::Attack);
+				}
+				break;
+			case BS::Type::Building:
+				//TODO check if isFriendly
+				unit->setTargetObject(target->getUid());
+				unit->setCommand(BS::Command::Enter);
+				break;
+			case BS::Type::Fortification:
+				if (unit->getState() != BS::State::Inside) {
+					unit->setTargetObject(target->getUid());
+					unit->setCommand(BS::Command::Enter);
+				}
+				break;
+			case BS::Type::Camp:
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+void SelectionManager::makeSecondaryAction(Unit *unit, QPointF point, Object *target)
+{
+	if (target == nullptr) {
+		if (unit->getState() != BS::State::Inside) {
+			unit->setCommand(BS::Command::Assemble);
+			unit->setTargetPoint(point);
+		}
+	}
+	else {
+		switch (target->getType()) {
+			case BS::Type::Unit:
+				if (isFriendly(target)) {
+					unit->setTargetObject(target->getUid());
+					unit->setCommand(BS::Command::Heal);
+				}
+				break;
+			case BS::Type::Building:
+				break;
+			case BS::Type::Fortification:
+				if (unit->getState() != BS::State::Inside) {
+					unit->setTargetObject(target->getUid());
+					unit->setCommand(BS::Command::Disassemble);
+				}
+				break;
+			case BS::Type::Camp:
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+bool SelectionManager::isFriendly(Object* object)
+{
+	return mind_->getPlayerFaction()->isNeutralFaction(object->getFactionId())
+	       || Mind::PlayerFactionId == object->getFactionId();
 }
 
 Unit *SelectionManager::unitByNumber(int number) const

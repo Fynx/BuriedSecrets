@@ -32,10 +32,10 @@ Item *Unit::getUsedItem()
 	case Command::Heal:
 		return getEquipment()->getSlotItem(Slot::Medicament);
 
-	case Command::Construct:
+	case Command::Assemble:
 		return getEquipment()->getSlotItem(Slot::Fortification);
 
-	case Command::Deconstruct:
+	case Command::Disassemble:
 		return getEquipment()->getSlotItem(Slot::Tool);
 	default:
 		return nullptr;

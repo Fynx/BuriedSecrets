@@ -21,7 +21,7 @@ namespace Animators {
 	const QString Regenerate    = "AnimatorRegenerate";
 	const QString GoPsycho      = "AnimatorGoPsycho";
 	const QString Heal          = "AnimatorHeal";
-	const QString Construct     = "AnimatorConstruct";
+	const QString Assemble      = "AnimatorAssemble";
 	const QString EnterBuilding = "AnimatorEnterBuilding";
 	const QString LeaveBuilding = "AnimatorLeaveBuilding";
 	const QString Attack        = "AnimatorAttack";

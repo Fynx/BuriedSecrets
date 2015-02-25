@@ -14,7 +14,7 @@
 #include "Mind/AnimatorRegenerate.hpp"
 #include "Mind/AnimatorGoPsycho.hpp"
 #include "Mind/AnimatorHeal.hpp"
-#include "Mind/AnimatorConstruct.hpp"
+#include "Mind/AnimatorAssemble.hpp"
 #include "Mind/AnimatorEnterBuilding.hpp"
 #include "Mind/AnimatorLeaveBuilding.hpp"
 #include "Mind/AnimatorWeapon.hpp"
@@ -53,7 +53,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorRegenerate(mind), Animators::Regenerate, 1000);
 	addAnimator(new AnimatorGoPsycho(mind), Animators::GoPsycho, 1000);
 	addAnimator(new AnimatorHeal(mind), Animators::Heal, 100);
-	addAnimator(new AnimatorConstruct(mind), Animators::Construct, 100);
+	addAnimator(new AnimatorAssemble(mind), Animators::Assemble, 100);
 	addAnimator(new AnimatorEnterBuilding(mind), Animators::EnterBuilding, 100);
 	addAnimator(new AnimatorLeaveBuilding(mind), Animators::LeaveBuilding, 100);
 	addAnimator(new AnimatorWeapon(mind), Animators::Weapon, 100);

@@ -24,7 +24,7 @@ void AnimatorEnterBuilding::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		if (unit->getCommand() != Command::EnterBuilding)
+		if (unit->getCommand() != Command::Enter)
 			continue;
 		Building *target = dynamic_cast<Building *>(mind->getObjectFromUid(unit->getTargetObject()));
 		if (!target)

@@ -27,10 +27,10 @@ void AnimatorUpdatePath::act()
 		QPointF from = mind->physicsEngine()->getPosition(unit);
 		QPointF to(0, 0);
 
-		if ((comm == Command::Attack && unit->getState() != State::Attack) || (comm == Command::Heal) || (comm == Command::EnterBuilding))
+		if ((comm == Command::Attack && unit->getState() != State::Attack) || (comm == Command::Heal) || (comm == Command::Enter))
 			to = mind->physicsEngine()->getPosition(mind->getObjectFromUid(unit->getTargetObject()));
 
-		if ((comm == Command::Construct) || (comm == Command::Move))
+		if ((comm == Command::Assemble) || (comm == Command::Move))
 			to = unit->getTargetPoint();
 
 		if (from.isNull() || to.isNull())
