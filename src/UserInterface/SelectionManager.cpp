@@ -92,10 +92,10 @@ void SelectionManager::mousePressEvent(const QMouseEvent *event)
 	Object *target = objectInPixelsPos(event->pos());
 
 	if (event->button() == Qt::RightButton) {
-		if (event->modifiers() & Qt::AltModifier) {
+		if (event->modifiers() & Qt::ControlModifier) {
 			//SecondaryAction
 			if (selectedUnits_.size() == 1)
-			makePrimaryAction(*selectedUnits_.begin(), place, target);
+			makeSecondaryAction(*selectedUnits_.begin(), place, target);
 		}
 		else {
 			// Primary Action
