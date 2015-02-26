@@ -2,39 +2,40 @@
  * All rights reserved.
  */
 #include "Common/Enums.hpp"
+#include "Common/Strings.hpp"
 #include <QtCore>
 
 //TODO change to hashmaps
 
 static const QMap<BS::State, QString> stateToString {
-	{BS::State::Idle, "Idle"},
-	{BS::State::Attack, "Attack"},
-	{BS::State::RunAttack, "RunAttack"},
-	{BS::State::Run, "Run"},
-	{BS::State::Heal, "Heal"},
-	{BS::State::Inside, "Inside"},
-	{BS::State::Shoot, "Shoot"},
-	{BS::State::Delay, "Delay"},
+	{BS::State::Attack,    States::Attack},
+	{BS::State::Delay,     States::Delay},
+	{BS::State::Idle,      States::Idle},
+	{BS::State::Inside,    States::Inside},
+	{BS::State::Heal,      States::Heal},
+	{BS::State::RunAttack, States::RunAttack},
+	{BS::State::Run,       States::Run},
+	{BS::State::Shoot,     States::Shoot},
 };
 
 static const QMap<BS::Type, QString> typeToString {
-	{BS::Type::Invalid, "invalid"},
-	{BS::Type::Item, "item"},
-	{BS::Type::Equipment, "equipment"},
-	{BS::Type::Faction, "faction"},
-	{BS::Type::Journal, "journal"},
-	{BS::Type::Location, "location"},
-	{BS::Type::Unit, "unit"},
+	{BS::Type::Invalid,   Types::Invalid},
+	{BS::Type::Item,      Types::Item},
+	{BS::Type::Equipment, Types::Equipment},
+	{BS::Type::Faction,   Types::Faction},
+	{BS::Type::Journal,   Types::Journal},
+	{BS::Type::Location,  Types::Location},
+	{BS::Type::Unit,      Types::Unit},
 };
 
 static const QMap<BS::Slot, QString> slotToString {
-	{BS::Slot::Invalid,        "invalid"},
-	{BS::Slot::Weapon,         "weapon"},
-	{BS::Slot::Tool,           "tool"},
-	{BS::Slot::Medicament,     "medicament"},
-	{BS::Slot::Armor,          "armor"},
-	{BS::Slot::Fortification,  "fortification"},
-	{BS::Slot::Perception,     "perception"},
+	{BS::Slot::Armor,          Slots::Armor},
+	{BS::Slot::Invalid,        Slots::Invalid},
+	{BS::Slot::Fortification,  Slots::Fortification},
+	{BS::Slot::Medicament,     Slots::Medicament},
+	{BS::Slot::Perception,     Slots::Perception},
+	{BS::Slot::Tool,           Slots::Tool},
+	{BS::Slot::Weapon,         Slots::Weapon},
 };
 
 static const QList<BS::Slot> slots_ {
@@ -50,7 +51,7 @@ namespace BS {
 
 	QString changeSlotToString(Slot slot)
 	{
-		return ::slotToString.value(slot, "Invalid Slot");
+		return ::slotToString.value(slot, Slots::Invalid);
 	}
 
 	Slot changeStringToSlot(const QString &string)
@@ -70,17 +71,16 @@ namespace BS {
 
 	QString changeStateToString(BS::State state)
 	{
-		return ::stateToString.value(state, QString("Invalid State"));
+		return ::stateToString.value(state, States::Invalid);
 	}
 
 	QString changeTypeToString(BS::Type type)
 	{
-		return ::typeToString.value(type, QString("Invalid Type"));
+		return ::typeToString.value(type, Types::Invalid);
 	}
 
 	BS::Type changeStringToType(const QString &string)
 	{
 		return ::typeToString.key(string, BS::Type::Invalid);
 	}
-
 }

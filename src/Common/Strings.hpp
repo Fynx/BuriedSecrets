@@ -116,6 +116,28 @@ namespace Properties {                                 // for Prototypes
 	const QString Weight        = "weight";
 }
 
+namespace Slots {
+	const QString Armor         = "Armor";
+	const QString Fortification = "Fortification";
+	const QString Invalid       = "Invalid";
+	const QString Medicament    = "Medicament";
+	const QString Perception    = "Perception";
+	const QString Tool          = "Tool";
+	const QString Weapon        = "Weapon";
+}
+
+namespace States {
+	const QString Attack    = "Attack";
+	const QString Delay     = "Delay";
+	const QString Heal      = "Heal";
+	const QString Idle      = "Idle";
+	const QString Inside    = "Inside";
+	const QString Invalid   = "Invalid";
+	const QString Run       = "Run";
+	const QString RunAttack = "RunAttack";
+	const QString Shoot     = "Shoot";
+}
+
 namespace TempData {                                   // kept in GO's map
 	const QString Damage        = "damage";
 	const QString IsSelected    = "isSelected";
@@ -124,4 +146,14 @@ namespace TempData {                                   // kept in GO's map
 	const QString State         = "state";
 	const QString X             = "x";
 	const QString Y             = "y";
+}
+
+namespace Types {
+	const QString Invalid   = "invalid";
+	const QString Item      = "item";
+	const QString Equipment = "equipment";
+	const QString Faction   = "faction";
+	const QString Journal   = "journal";
+	const QString Location  = "location";
+	const QString Unit      = "unit";
 }

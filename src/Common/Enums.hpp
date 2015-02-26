@@ -26,14 +26,14 @@ namespace BS {
 	// about why and try to solve it together with someone.
 	// For now it's just going to be a standard enum, because I'm stuck here and don't want it to stay that way.
 	enum State {
-		Idle,
 		Attack,        // Unit
-		RunAttack,     // Unit
-		Run,           // Unit
+		Delay,         // Weapon
 		Heal,          // Unit
+		Idle,
 		Inside,        // Unit
+		Run,           // Unit
+		RunAttack,     // Unit
 		Shoot,         // Weapon
-		Delay          // Weapon
 	};
 
 	enum class Attitude : quint8 {
@@ -56,13 +56,13 @@ namespace BS {
 	};
 
 	enum Slot {
-		Invalid,
-		Weapon,
-		Tool,
-		Medicament,
 		Armor,
+		Invalid,
 		Fortification,
-		Perception
+		Medicament,
+		Perception,
+		Tool,
+		Weapon,
 	};
 
 	QString changeSlotToString(BS::Slot slot);
