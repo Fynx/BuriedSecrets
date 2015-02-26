@@ -22,9 +22,11 @@ set (Mind_SRCS
 	AnimatorUpdateFOV.cpp
 	AnimatorNearCamp.cpp
 	AnimatorWatchTarget.cpp
+	Effect.cpp
 	Event.cpp
 	Mind.cpp
 	ItemConstructor.cpp
+	ObjectEffectData.cpp
 )
 
 set (Mind_HDRS

@@ -203,7 +203,8 @@ QPointF Graphics::getPosition(GraphicalEntity *entity) const
 }
 
 
-void Graphics::addEffect(const QString &effectName, Effect *effect, std::list<std::pair<QString, Effect *>> &effectsList)
+void Graphics::addEffect(const QString &effectName, GraphicalEffect *effect,
+			 std::list<std::pair<QString, GraphicalEffect *>> &effectsList)
 {
 	int id = effect->getOrderId();
 	auto elem = std::make_pair("BasePolygons", effect);
@@ -218,7 +219,7 @@ void Graphics::addEffect(const QString &effectName, Effect *effect, std::list<st
 }
 
 
-bool Graphics::removeEffect(const QString &effectName, std::list<std::pair< QString, Effect *>> &effectsList)
+bool Graphics::removeEffect(const QString &effectName, std::list<std::pair< QString, GraphicalEffect *>> &effectsList)
 {
 	for (auto it = effectsList.begin(); it != effectsList.end(); ++it) {
 		if (it->first == effectName) {

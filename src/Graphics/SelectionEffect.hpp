@@ -5,10 +5,10 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Effect.hpp"
+#include "GraphicalEffect.hpp"
 
 
-class SelectionEffect: public Effect {
+class SelectionEffect: public GraphicalEffect {
 public:
 	SelectionEffect();
 	void draw(const GraphicalEntity *graphicalEntity, const QPointF &entityPosition, const Viewport *viewport,

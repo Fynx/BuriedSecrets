@@ -8,6 +8,7 @@
 #include "GameObjects/Object.hpp"
 #include "GameObjects/Faction.hpp"
 #include "Mind/AnimatorManager.hpp"
+#include "Mind/Effect.hpp"
 #include "Mind/Event.hpp"
 #include "Mind/ItemConstructor.hpp"
 #include "MapManager/MapManager.hpp"
@@ -55,6 +56,15 @@ public:
 	void pauseGame();
 	void resumeGame();
 
+	const QLinkedList<Effect> *getActiveEffects() const;
+	QLinkedList<Effect>::iterator addEffect(const Effect &effect);
+	/**
+	 * @brief Deletes the effect from the list.
+	 *
+	 * Warning: This method invalidates (only) the passed iterator.
+	 */
+	void deleteEffect(QLinkedList<Effect>::iterator effectIterator);
+
 private:
 	Object *createObject(BS::Type type, const QString &name);
 	Object *createObjectFromJson(const QString &name, const QJsonObject &json);
@@ -70,4 +80,5 @@ private:
 	QVector<Object *> objects;
 	QHash<const int, Object *> uidToObject;
 	QHash<const int, Faction *> factions;
+	QLinkedList<Effect> activeEffects;
 };

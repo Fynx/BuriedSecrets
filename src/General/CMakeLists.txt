@@ -17,10 +17,10 @@ target_link_libraries (BuriedSecrets
 	DebugManager
 	GameObjects
 	Graphics
+	UserInterface
 	Mind
 	PhysicsEngine
 	SoundsManager
-	UserInterface
 	MapManager
 	Common
 )

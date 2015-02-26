@@ -4,10 +4,10 @@
 #pragma once
 
 
-#include "Graphics/Effect.hpp"
+#include "Graphics/GraphicalEffect.hpp"
 
 
-class BasePolygonEffect: public Effect {
+class BasePolygonEffect: public GraphicalEffect {
 public:
 	BasePolygonEffect();
 	void draw(const GraphicalEntity *graphicalEntity, const QPointF &entityPosition, const Viewport *viewport,

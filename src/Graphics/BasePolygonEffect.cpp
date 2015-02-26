@@ -6,7 +6,7 @@
 #include "Common/Enums.hpp"
 
 
-BasePolygonEffect::BasePolygonEffect() : Effect{}
+BasePolygonEffect::BasePolygonEffect() : GraphicalEffect{}
 {
 	polygon.setFillColor(sf::Color::Transparent);
 	polygon.setOutlineThickness(2);

@@ -7,7 +7,7 @@
 #include "Common/Strings.hpp"
 
 
-SelectionEffect::SelectionEffect() : Effect{}
+SelectionEffect::SelectionEffect() : GraphicalEffect{}
 {
 	circleShape.setPointCount(20);
 	circleShape.setFillColor(sf::Color::Transparent);

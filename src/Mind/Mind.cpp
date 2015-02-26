@@ -175,6 +175,21 @@ void Mind::resumeGame()
 	animatorManager->resumeGame();
 }
 
+const QLinkedList<Effect> *Mind::getActiveEffects() const
+{
+	return &activeEffects;
+}
+
+QLinkedList<Effect>::iterator Mind::addEffect(const Effect &effect)
+{
+	return activeEffects.insert(activeEffects.end(), effect);
+}
+
+void Mind::deleteEffect(QLinkedList<Effect>::iterator effectIterator)
+{
+	activeEffects.erase(effectIterator);
+}
+
 void Mind::addObject(Object *object, const QPointF &position)
 {
 	addObject(object);

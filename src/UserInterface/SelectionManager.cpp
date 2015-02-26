@@ -7,7 +7,9 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Location.hpp"
 #include "GameObjects/Unit.hpp"
+#include "Mind/Effect.hpp"
 #include "Mind/Mind.hpp"
+#include "Mind/ObjectEffectData.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
 
 const float SelectionManager::pixelToMetresScale = 30.0f;
@@ -295,13 +297,20 @@ QSet<Unit *> SelectionManager::filterSelection(const QSet<Object *> &objects) co
 
 void SelectionManager::selectUnits(const QSet<Unit *> &units)
 {
-	for (auto &unit : selectedUnits_)
+	for (auto &unit : selectedUnits_) {
 		unit->property(TempData::IsSelected) = QVariant(false);
+		const auto selection = unitToEffect_.find(unit);
+		mind_->deleteEffect(selection.value());
+		unitToEffect_.erase(selection);
+	}
 
 	selectedUnits_ = units;
 
-	for (auto &unit : selectedUnits_)
+	for (auto &unit : selectedUnits_) {
+		// TODO(Soszu): Looks like this could be extracted to a method.
 		unit->property(TempData::IsSelected) = QVariant(true);
+		unitToEffect_.insert(unit, mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(unit))));
+	}
 
 	markBuildingsSelected();
 }
@@ -310,16 +319,22 @@ void SelectionManager::addUnitsToSelection(QSet<Unit *> units)
 {
 	selectedUnits_.unite(units);
 
-	for (auto &unit : units)
+	for (auto &unit : units) {
 		unit->property(TempData::IsSelected) = QVariant(true);
+		unitToEffect_.insert(unit, mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(unit))));
+	}
 
 	markBuildingsSelected();
 }
 
 void SelectionManager::markBuildingsSelected()
 {
-	for (auto &building : selectedBuildings_)
+	for (auto &building : selectedBuildings_) {
 		building->property(TempData::IsSelected) = QVariant(false);
+		const auto selection = locationToEffect_.find(building);
+		mind_->deleteEffect(selection.value());
+		locationToEffect_.erase(selection);
+	}
 
 	selectedBuildings_.clear();
 
@@ -328,6 +343,8 @@ void SelectionManager::markBuildingsSelected()
 		if (building) {
 			building->property(TempData::IsSelected) = QVariant(true);
 			selectedBuildings_.insert(building);
+			locationToEffect_.insert(building, mind_->addEffect(Effect(Effects::Selection,
+										   new ObjectEffectData(building))));
 		}
 	}
 }

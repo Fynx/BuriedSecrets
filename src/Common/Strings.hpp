@@ -58,6 +58,11 @@ namespace Data {
 	const QString Properties    = "properties";
 }
 
+namespace Effects {
+	const QString Selection     = "SelectionEffect";	// Unit selection.
+	const QString BasePolygon   = "BasePolygonEffect";	// Display base polygon and other debug info.
+}
+
 namespace MapProperties {
 	const QString MapDesc       = "mapDesc";
 	const QString MapName       = "mapName";

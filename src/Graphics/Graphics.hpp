@@ -7,8 +7,8 @@
 #include <QtCore/QVector>
 
 #include "Graphics/Camera.hpp"
-#include "Graphics/Effect.hpp"
 #include "Graphics/GraphicsWidget.hpp"
+#include "Graphics/GraphicalEffect.hpp"
 #include "Graphics/GraphicalEntity.hpp"
 #include "Graphics/GraphicalEntityFactory.hpp"
 #include "Graphics/GraphicalFogOfWar.hpp"
@@ -57,8 +57,9 @@ private:
 	 * @brief Returns the graphical position of the entity.
 	 */
 	QPointF getPosition(GraphicalEntity *entity) const;
-	void addEffect(const QString &effectName, Effect *effect, std::list<std::pair<QString, Effect *>> &effectsList);
-	bool removeEffect(const QString &effectName, std::list<std::pair<QString, Effect *>> &effectsList);
+	void addEffect(const QString &effectName, GraphicalEffect *effect,
+		       std::list< std::pair< QString, GraphicalEffect * > > &effectsList);
+	bool removeEffect(const QString &effectName, std::list< std::pair< QString, GraphicalEffect * > > &effectsList);
 	/**
 	 * @brief Draws the rubber band selection (if needed).
 	 */
@@ -77,8 +78,8 @@ private:
 	float timeElapsed;
 	sf::Clock clock;
 	int frames;
-	std::list<std::pair<QString, Effect *>> preEffects;	// Effects drawn before the Entities.
-	std::list<std::pair<QString, Effect *>> postEffects;	// Effects drawn after the entities.
+	std::list<std::pair<QString, GraphicalEffect *>> preEffects;	// Effects drawn before the Entities.
+	std::list<std::pair<QString, GraphicalEffect *>> postEffects;	// Effects drawn after the entities.
 	sf::RectangleShape rubberBand;
 
 	// This pointer is just for convenience as it points to the widget.

@@ -7,6 +7,7 @@
 
 #include "UserInterface/Viewport.hpp"
 
+class Effect;
 class Mind;
 class Object;
 class Unit;
@@ -56,4 +57,7 @@ private:
 	QSet<Unit *> selectedUnits_;
 	QSet<Location *> selectedBuildings_;
 	QMap<int, QSet<Unit *> > selectionGroups_;
+
+	QHash<Unit *, QLinkedList<Effect>::iterator> unitToEffect_;
+	QHash<Location *, QLinkedList<Effect>::iterator> locationToEffect_;
 };

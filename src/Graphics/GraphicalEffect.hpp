@@ -17,7 +17,7 @@
  * data (sort of like Animators).
  *
  */
-class Effect {
+class GraphicalEffect {
 public:
 	/**
 	 * @brief Draws the desire effect.
@@ -40,5 +40,5 @@ public:
 	 */
 	virtual int getOrderId() const = 0;
 
-	virtual ~Effect() {}
+	virtual ~GraphicalEffect() = default;
 };
