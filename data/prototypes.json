@@ -20,6 +20,10 @@
 	"equipment": {
 		"type": "equipment"
 	},
+	"camp": {
+		"type": "location",
+		"range": 20
+	},
 	"unit": {
 		"type": "unit",
 		"profession": "Engineer",

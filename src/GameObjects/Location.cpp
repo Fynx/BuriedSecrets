@@ -2,6 +2,7 @@
  * All rights reserved.
  */
 #include "GameObjects/Location.hpp"
+#include "Common/Strings.hpp"
 
 Location::Location(const Prototype *prototype)
 	: Object(prototype), offset(-1, 0.5)
@@ -39,13 +40,19 @@ QList<Item *> Location::getItems(int searchDifficulty) const
 void Location::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
+	rangeOfHealing = json[Properties::Range].toDouble();
 	//TODO
 }
 
 QJsonObject Location::saveToJson() const
 {
 	//TODO
-	return Object::saveToJson();
+	QJsonObject json = Object::saveToJson();
+
+	if (rangeOfHealing != 0)
+		json[Properties::Range] = rangeOfHealing;
+
+	return json;
 }
 
 void Location::insertUnit(int id)
