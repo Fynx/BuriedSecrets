@@ -22,6 +22,8 @@ public:
 
 	QPointF getOffset();
 
+	qreal getRange() const;
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
@@ -29,4 +31,6 @@ private:
 	QPointF offset;
 	QMap<Item *, int> items;
 	QSet<int> units;
+
+	qreal rangeOfHealing;
 };

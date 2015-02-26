@@ -5,9 +5,9 @@
 
 #include "GameObjects/Equipment.hpp"
 #include "GameObjects/Journal.hpp"
+#include "GameObjects/Location.hpp"
 #include "GameObjects/QuestLog.hpp"
 #include "GameObjects/Unit.hpp"
-#include "GameObjects/Camp.hpp"
 
 
 // Add faction registration in reading function
@@ -19,7 +19,7 @@ public:
 
 	Journal *getJournal();
 	QuestLog *getQuestLog();
-	Camp *getCamp();
+	Location *getCamp();
 
 	const QSet<int> &getUnitsUids() const;
 	const QList<int> &getAllUnitsUids() const;
@@ -38,7 +38,7 @@ private:
 	QHash<int, int> relations;
 	Journal *journal;
 	QuestLog *questLog;
-	Camp *camp;
+	Location *camp;
 	QSet<int> unitsUids;
 	QList<int> allUnitsUids;
 };

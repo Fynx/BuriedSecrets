@@ -67,3 +67,8 @@ QPointF Location::getOffset()
 {
 	return offset;
 }
+
+qreal Location::getRange() const
+{
+	return rangeOfHealing;
+}

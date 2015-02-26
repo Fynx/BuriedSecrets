@@ -5,8 +5,8 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
-#include "GameObjects/Camp.hpp"
 #include "GameObjects/Equipment.hpp"
+#include "GameObjects/Location.hpp"
 #include "GameObjects/Unit.hpp"
 
 const int Mind::PlayerFactionId = 1;
@@ -264,11 +264,6 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 	switch (type) {
 		case BS::Type::Invalid: {
 			qDebug() << "Explosion: Invalid object type";
-			break;
-		}
-		case BS::Type::Camp: {
-			Camp *camp = new Camp(dataManager->getPrototype(name));
-			obj = camp;
 			break;
 		}
 		case BS::Type::Equipment: {

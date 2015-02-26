@@ -24,7 +24,7 @@ QuestLog *Faction::getQuestLog()
 	return questLog;
 }
 
-Camp *Faction::getCamp()
+Location *Faction::getCamp()
 {
 	return camp;
 }

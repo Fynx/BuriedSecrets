@@ -185,8 +185,6 @@ void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *targ
 					unit->setCommand(BS::Command::Enter);
 				}
 				break;
-			case BS::Type::Camp:
-				break;
 			default:
 				break;
 		}
@@ -215,8 +213,6 @@ void SelectionManager::makeSecondaryAction(Unit *unit, QPointF point, Object *ta
 					unit->setTargetObject(target->getUid());
 					unit->setCommand(BS::Command::Disassemble);
 				}
-				break;
-			case BS::Type::Camp:
 				break;
 			default:
 				break;

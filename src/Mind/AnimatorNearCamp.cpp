@@ -12,16 +12,14 @@
 
 using namespace BS;
 
-
 AnimatorNearCamp::AnimatorNearCamp(Mind *mind) : Animator(mind)
 {
 	info("AnimatorNearCamp created.");
 }
 
-
 void AnimatorNearCamp::act()
 {
-	for (Object * obj : objects){
+	for (Object * obj : objects) {
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;

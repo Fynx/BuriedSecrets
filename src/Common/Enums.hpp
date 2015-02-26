@@ -12,7 +12,6 @@ namespace BS {
 	enum class Type : quint8 {
 		Invalid,
 		Item,
-		Camp,
 		Equipment,
 		Faction,
 		Journal,
