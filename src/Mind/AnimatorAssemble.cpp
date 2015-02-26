@@ -12,16 +12,14 @@
 
 using namespace BS;
 
-
 AnimatorAssemble::AnimatorAssemble(Mind *mind) : Animator(mind)
 {
 	info("Animator Construct created.");
 }
 
-
 void AnimatorAssemble::act()
 {
-	for (Object * obj : objects){
+	for (Object * obj : objects) {
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
@@ -41,7 +39,7 @@ void AnimatorAssemble::act()
 
 			if (castoramaSet->getPrototype()->hasProperty(Properties::SpawnedType)){
 				QString  spawned = castoramaSet->getPrototype()->getProperty(Properties::SpawnedType).toString();
-				Object *fort = mind->createDefaultObject(BS::Type::Fortification, spawned);
+				Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
 				mind->addObject(fort, unit->getTargetPoint());
 				unit->getEquipment()->removeItem(castoramaSet);
 			}

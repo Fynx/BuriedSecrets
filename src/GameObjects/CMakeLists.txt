@@ -1,9 +1,7 @@
 set (GameObjects_SRCS
-	Building.cpp
 	Camp.cpp
 	Equipment.cpp
 	Faction.cpp
-	Fortification.cpp
 	Item.cpp
 	Journal.cpp
 	JournalEntry.cpp

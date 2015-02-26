@@ -12,12 +12,11 @@ namespace BS {
 	enum class Type : quint8 {
 		Invalid,
 		Item,
-		Building,
 		Camp,
 		Equipment,
 		Faction,
-		Fortification,
 		Journal,
+		Location,
 		Unit,
 	};
 

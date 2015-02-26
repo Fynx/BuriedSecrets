@@ -10,7 +10,7 @@
 class Mind;
 class Object;
 class Unit;
-class Building;
+class Location;
 
 class SelectionManager : public QObject {
 	Q_OBJECT
@@ -54,6 +54,6 @@ private:
 	Viewport viewport_;
 
 	QSet<Unit *> selectedUnits_;
-	QSet<Building *> selectedBuildings_;
-	QMap<int, QSet<Unit *>> selectionGroups_;
+	QSet<Location *> selectedBuildings_;
+	QMap<int, QSet<Unit *> > selectionGroups_;
 };

@@ -6,17 +6,15 @@
 
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
-#include "GameObjects/Building.hpp"
+#include "GameObjects/Location.hpp"
 #include "Mind/Mind.hpp"
 
 using namespace BS;
-
 
 AnimatorLeaveBuilding::AnimatorLeaveBuilding(Mind *mind) : Animator(mind)
 {
 	info("Animator Leave Building created.");
 }
-
 
 void AnimatorLeaveBuilding::act()
 {
@@ -26,7 +24,7 @@ void AnimatorLeaveBuilding::act()
 			continue;
 		if (unit->getCommand() != Command::Leave)
 			continue;
-		Building *building = dynamic_cast<Building *>(unit->getLocation());
+		Location *building = dynamic_cast<Location *>(unit->getLocation());
 		if (!building)
 			continue;
 

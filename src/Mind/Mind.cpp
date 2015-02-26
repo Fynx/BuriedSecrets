@@ -5,10 +5,8 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
-#include "GameObjects/Building.hpp"
 #include "GameObjects/Camp.hpp"
 #include "GameObjects/Equipment.hpp"
-#include "GameObjects/Fortification.hpp"
 #include "GameObjects/Unit.hpp"
 
 const int Mind::PlayerFactionId = 1;
@@ -57,8 +55,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 			err("Object without a name! Skipping.");
 			continue;
 		}
-		qDebug() << "\tload" << obj[Properties::Name].toString() << "("
-			<< obj[Properties::Type].toString() << "," << obj[Attributes::Uid].toInt() << ")";
+		qDebug() << "\tload" << obj[Properties::Name].toString() << obj[Attributes::Uid].toInt();
 		Object *object = createObjectFromJson(obj[Properties::Name].toString(), obj);
 
 		for (const QJsonValue &value : obj[Data::Animators].toArray())
@@ -269,11 +266,6 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 			qDebug() << "Explosion: Invalid object type";
 			break;
 		}
-		case BS::Type::Building: {
-			Building *building = new Building(dataManager->getPrototype(name));
-			obj = building;
-			break;
-		}
 		case BS::Type::Camp: {
 			Camp *camp = new Camp(dataManager->getPrototype(name));
 			obj = camp;
@@ -289,14 +281,14 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 			obj = faction;
 			break;
 		}
-		case BS::Type::Fortification: {
-			Fortification *fortification = new Fortification(dataManager->getPrototype(name));
-			obj = fortification;
-			break;
-		}
 		case BS::Type::Item: {
 			Item *item = new Item(dataManager->getPrototype(name));
 			obj = item;
+			break;
+		}
+		case BS::Type::Location: {
+			Location *location = new Location(dataManager->getPrototype(name));
+			obj = location;
 			break;
 		}
 		case BS::Type::Unit: {
@@ -314,7 +306,8 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 
 Object *Mind::createObjectFromJson(const QString &name, const QJsonObject &json)
 {
-	BS::Type type = BS::changeStringToType(json[Properties::Type].toString());
+	QString typeString = dataManager->getPrototype(name)->getProperty(Properties::Type).toString();
+	BS::Type type = BS::changeStringToType(typeString);
 	Object *obj = createObject(type, name);
 	obj->loadFromJson(json);
 

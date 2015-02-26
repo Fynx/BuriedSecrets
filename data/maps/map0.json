@@ -7,7 +7,6 @@
 		{
 			"name": "Expedition",
 			"uid": 1,
-			"type": "faction",
 			"animators": [
 				"AnimatorConsume"
 			],
@@ -20,19 +19,16 @@
 		{
 			"name": "equipment",
 			"uid": 2,
-			"type": "equipment",
 			"items": [3]
 		},
 		{
 			"name": "Combat jacket",
-			"type": "item",
 			"uid": 3
 		},
 
 		{
 			"name": "Senior Cebulez",
 			"uid": 4,
-			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
@@ -53,7 +49,6 @@
 		{
 			"name": "equipment",
 			"uid": 5,
-			"type": "equipment",
 			"items": [6, 7],
 			"slots": {
 				"tool": 6,
@@ -62,13 +57,11 @@
 		},
 		{
 			"name": "Wrench",
-			"uid": 6,
-			"type": "item"
+			"uid": 6
 		},
 		{
 			"name": "Sniper rifle",
 			"uid": 7,
-			"type": "item",
 			"animators": [
 				"AnimatorWeapon"
 			]
@@ -77,7 +70,6 @@
 		{
 			"name": "El Bogdano",
 			"uid": 8,
-			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
@@ -98,7 +90,6 @@
 		{
 			"name": "equipment",
 			"uid": 9,
-			"type": "equipment",
 			"items": [10, 11],
 			"slots": {
 				"weapon": 10,
@@ -108,21 +99,18 @@
 		{
 			"name": "Assault rifle",
 			"uid": 10,
-			"type": "item",
 			"animators": [
 				"AnimatorWeapon"
 			]
 		},
 		{
 			"name": "Combat jacket",
-			"uid": 11,
-			"type": "item"
+			"uid": 11
 		},
 
 		{
 			"name": "Dr. D. Snee",
 			"uid": 12,
-			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
@@ -143,7 +131,6 @@
 		{
 			"name": "equipment",
 			"uid": 13,
-			"type": "equipment",
 			"items": [14, 15],
 			"slots": {
 				"medicament": 14,
@@ -152,13 +139,11 @@
 		},
 		{
 			"name": "Medkit",
-			"uid": 14,
-			"type": "item"
+			"uid": 14
 		},
 		{
 			"name": "Revolvers",
 			"uid": 15,
-			"type": "item",
 			"animators": [
 				"AnimatorWeapon"
 			]
@@ -168,7 +153,6 @@
 		{
 			"name": "Soszes",
 			"uid": 16,
-			"type": "faction",
 			"animators": [
 				"AnimatorConsume"
 			],
@@ -181,7 +165,6 @@
 		{
 			"name": "Soszu",
 			"uid": 17,
-			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
@@ -202,7 +185,6 @@
 		{
 			"name": "equipment",
 			"uid": 18,
-			"type": "equipment",
 			"items": [19],
 			"slots": {
 				"weapon": 19
@@ -211,7 +193,6 @@
 		{
 			"name": "Machete",
 			"uid": 19,
-			"type": "item",
 			"animators": [
 				"AnimatorWeapon"
 			]
@@ -220,7 +201,6 @@
 		{
 			"name": "Soszer",
 			"uid": 20,
-			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
@@ -241,7 +221,6 @@
 		{
 			"name": "equipment",
 			"uid": 21,
-			"type": "equipment",
 			"items": [22],
 			"slots": {
 				"weapon": 22
@@ -250,7 +229,6 @@
 		{
 			"name": "Pistol",
 			"uid": 22,
-			"type": "item",
 			"animators": [
 				"AnimatorWeapon"
 			]
@@ -259,7 +237,6 @@
 		{
 			"name": "Soszyslaw",
 			"uid" : 23,
-			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
@@ -280,7 +257,6 @@
 		{
 			"name": "equipment",
 			"uid": 24,
-			"type": "equipment",
 			"items": [25],
 			"slots": {
 				"weapon": 25
@@ -289,7 +265,6 @@
 		{
 			"name": "Pistol",
 			"uid": 25,
-			"type": "item",
 			"animators": [
 				"AnimatorWeapon"
 			]
@@ -298,7 +273,6 @@
 		{
 			"name": "Soszman",
 			"uid": 26,
-			"type": "unit",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
@@ -319,7 +293,6 @@
 		{
 			"name": "equipment",
 			"uid": 27,
-			"type": "equipment",
 			"items": [28],
 			"slots": {
 				"weapon": 28
@@ -335,10 +308,9 @@
 		},
 
 
-				{
+		{
 			"name": "SoszuHouse",
 			"uid": 29,
-			"type": "building",
 			"animators": [],
 			"x": 2,
 			"y": 3
@@ -346,7 +318,6 @@
 		{
 			"name": "SoszuHouse2",
 			"uid": 30,
-			"type": "building",
 			"animators": [],
 			"x": 10.8,
 			"y": 13.4

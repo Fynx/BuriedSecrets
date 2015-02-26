@@ -6,7 +6,7 @@
 
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
-#include "GameObjects/Building.hpp"
+#include "GameObjects/Location.hpp"
 #include "Mind/Mind.hpp"
 
 using namespace BS;
@@ -26,7 +26,7 @@ void AnimatorEnterBuilding::act()
 			continue;
 		if (unit->getCommand() != Command::Enter)
 			continue;
-		Building *target = dynamic_cast<Building *>(mind->getObjectFromUid(unit->getTargetObject()));
+		Location *target = dynamic_cast<Location *>(mind->getObjectFromUid(unit->getTargetObject()));
 		if (!target)
 			continue;
 

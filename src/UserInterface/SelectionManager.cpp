@@ -5,7 +5,7 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
-#include "GameObjects/Building.hpp"
+#include "GameObjects/Location.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
@@ -177,12 +177,9 @@ void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *targ
 					unit->setCommand(BS::Command::Attack);
 				}
 				break;
-			case BS::Type::Building:
+			//TODO changed from Building/Fortification - check
+			case BS::Type::Location:
 				//TODO check if isFriendly
-				unit->setTargetObject(target->getUid());
-				unit->setCommand(BS::Command::Enter);
-				break;
-			case BS::Type::Fortification:
 				if (unit->getState() != BS::State::Inside) {
 					unit->setTargetObject(target->getUid());
 					unit->setCommand(BS::Command::Enter);
@@ -212,9 +209,8 @@ void SelectionManager::makeSecondaryAction(Unit *unit, QPointF point, Object *ta
 					unit->setCommand(BS::Command::Heal);
 				}
 				break;
-			case BS::Type::Building:
-				break;
-			case BS::Type::Fortification:
+			case BS::Type::Location:
+				//TODO check if disassemblable - location, not fortification
 				if (unit->getState() != BS::State::Inside) {
 					unit->setTargetObject(target->getUid());
 					unit->setCommand(BS::Command::Disassemble);
@@ -274,14 +270,14 @@ QSet<Object *> SelectionManager::objectInPixelsRect(QRect rectInPixels) const
 QSet<Unit *> SelectionManager::filterSelection(const QSet<Object *> &objects) const
 {
 	QSet<Unit *> units;
-	QSet<Building *> buildings;
+	QSet<Location *> buildings;
 
 	for (auto &object : objects) {
 		Unit *unit = dynamic_cast<Unit *>(object);
 		if (unit && unit->getFactionId() == Mind::PlayerFactionId)
 			units.insert(unit);
 
-		Building *building = dynamic_cast<Building *>(object);
+		Location *building = dynamic_cast<Location *>(object);
 		if (building && building->getFactionId() == Mind::PlayerFactionId)
 			buildings.insert(building);
 	}
@@ -332,7 +328,7 @@ void SelectionManager::markBuildingsSelected()
 	selectedBuildings_.clear();
 
 	for (auto &unit : selectedUnits_) {
-		Building *building = dynamic_cast<Building *>(unit->getLocation());
+		Location *building = dynamic_cast<Location *>(unit->getLocation());
 		if (building) {
 			building->property(TempData::IsSelected) = QVariant(true);
 			selectedBuildings_.insert(building);

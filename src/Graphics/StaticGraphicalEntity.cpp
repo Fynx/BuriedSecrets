@@ -7,8 +7,10 @@
 using namespace sf;
 
 
-StaticGraphicalEntity::StaticGraphicalEntity(const Object* object, const QList<QPointF> &basePolygon,
-					     const Texture *texture)
+StaticGraphicalEntity::StaticGraphicalEntity(
+	const Object* object,
+	const QList<QPointF> &basePolygon,
+	const Texture *texture)
 	: SpriteGraphicalEntity{object, basePolygon}
 {
 	sprite.setTexture(*texture);
