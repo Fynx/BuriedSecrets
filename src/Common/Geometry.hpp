@@ -3,6 +3,8 @@
  */
 #pragma once
 
+#include <cmath>
+
 #include <QList>
 #include <QPointF>
 #include <QVector2D>
@@ -10,7 +12,20 @@
 
 namespace BS {
 	namespace Geometry {
+		const float PI = 3.1415926535f;
+		typedef QList<QPointF> Polygon;
+
 		struct Circle {
+			Circle() {
+				radius = 0.0f;
+			};
+
+			Circle(const QPointF &centre, const float radius) : centre{centre}, radius{radius}
+			{}
+
+			float getLength() const {
+				return 2.0f * PI * radius;
+			}
 			QPointF centre;
 			float radius;
 		};
@@ -33,8 +48,6 @@ namespace BS {
 
 			float A, B, C;
 		};
-
-		typedef QList<QPointF> Polygon;
 
 		float distance(const QPointF &a, const QPointF &b);
 		float vecToAngle(const QVector2D &v);

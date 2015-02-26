@@ -6,6 +6,8 @@
 #include <QList>
 #include <QRectF>
 
+#include "Common/Strings.hpp"
+
 
 MapManager::MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId)
 	: playerFactionId{playerFactionId}, map{json}, physicsEngine{physicsEngine},
@@ -24,6 +26,26 @@ QList<QPointF> MapManager::getPath(const QPointF &from, const QPointF &to) const
 	QList<QPointF> result{to};
 
 	// TODO
+
+	return result;
+}
+
+
+QList<const Object *> MapManager::getVisibleObjects(const Unit *unit) const
+{
+	QList<const Object *> result;
+	float radius = unit->getSightRange();
+	QPointF radiusP{radius, radius};
+	QPointF pos = physicsEngine->getPosition(unit);
+	auto objects = physicsEngine->getObjectsInRect(QRectF{pos - radiusP, pos + radiusP});
+
+	VisibilityUpdate FOV = getUnitFOV(unit);
+
+	for (const Object *obj: objects) {
+		if (obj != unit && canBeSeen(obj, FOV)) {
+			result.append(obj);
+		}
+	}
 
 	return result;
 }
@@ -118,6 +140,83 @@ QPointF MapManager::getPointOnCircleInline(const BS::Geometry::Circle &circle, c
 	QPointF resTwo{xTwo, l.getY(xTwo)};
 
 	return (BS::Geometry::distance(resOne, p) < BS::Geometry::distance(resTwo, p)) ? resOne : resTwo;
+}
+
+
+VisibilityUpdate MapManager::getUnitFOV(const Unit *unit) const
+{
+	float radius = unit->getSightRange();
+	QPointF pos = physicsEngine->getPosition(unit);
+	Q_ASSERT(FOVs.contains(unit->getFactionId()));
+	const auto &FOV = FOVs[unit->getFactionId()];
+
+	// Find the entry for the unit.
+	for (const auto &entry: FOV) {
+		if (entry.includeCircle.centre == pos && entry.includeCircle.radius == radius) {
+			return entry;
+		}
+	}
+
+	err("Visibility for the unit '" + unit->getName() +
+			"' not found! Are you sure it has AnimatorUpdateFOV turned on?");
+	Q_ASSERT(false);	// FOV for the unit not found.
+	return VisibilityUpdate{};
+}
+
+
+bool MapManager::canBeSeen(const Object *object, const VisibilityUpdate &FOV) const
+{
+	const Prototype *prot = object->getPrototype();
+	QPointF pos = physicsEngine->getPosition(object);
+	const int pointsPerMetre = 3;
+
+	if (prot->hasProperty(Properties::BaseRadius)) {
+		// Check a constant (per metre of length) number of points on the circle.
+		float radius = prot->getProperty(Properties::BaseRadius).toFloat();
+		BS::Geometry::Circle circle{pos, radius};
+		int pointsCount = circle.getLength() * pointsPerMetre;
+		QPointF pointDiff{0.0f, radius};
+		QTransform transform;
+		transform.rotate(360.0f / pointsCount);
+
+		while (pointsCount--) {
+			if (canBeSeen(circle.centre + pointDiff, object, FOV)) {
+				return true;
+			}
+
+			pointDiff = pointDiff * transform;
+		}
+	} else if (prot->hasProperty(Properties::BasePolygon)) {
+		const auto basePolygon = prot->getBasePolygon();
+		for (int i = 0; i < basePolygon.length(); ++i) {
+			int j = (i + 1) % basePolygon.length();
+			int pointsCount = BS::Geometry::distance(basePolygon.at(i), basePolygon.at(j)) * pointsPerMetre;
+			QPointF pointDiff = (basePolygon.at(j) - basePolygon.at(i)) / pointsCount;
+			QPointF point = basePolygon.at(i);
+
+			while (pointsCount--) {
+				if (canBeSeen(point, object, FOV)) {
+					return true;
+				}
+
+				point += pointDiff;
+			}
+		}
+	}
+
+	return canBeSeen(pos, object, FOV);
+}
+
+
+bool MapManager::canBeSeen(const QPointF &point, const Object *target, const VisibilityUpdate &FOV) const
+{
+	// There are two approaches possible here:
+	//  - use FOV data,
+	//  - use raytracing from physics.
+	// For now we'll stick to the second one and see how it works.
+
+	return physicsEngine->getFirstHit(FOV.includeCircle.centre, QVector2D{point - FOV.includeCircle.centre},
+					  FOV.includeCircle.radius) == target;
 }
 
 

@@ -8,6 +8,7 @@
 #include "Common/Geometry.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Object.hpp"
+#include "GameObjects/Unit.hpp"
 #include "Mind/MapManager/Map.hpp"
 #include "Mind/MapManager/VisibilityUpdate.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
@@ -41,11 +42,19 @@ public:
 	/**
 	 * @brief Returns the region currently visible to the units from the given faction.
 	 */
-	QList<BS::Geometry::Circle> getVisibleRegion(const int factionId) const;
+	VisibilityUpdateDiff getVisibleRegion(const int factionId) const;
 	/**
 	 * @brief Returns a list of all the objects visible to the units from faction factionId.
+	 *
+	 * This is an approximation.
 	 */
-	QList<Object *> getVisibleObjects(const int factionId) const;
+	QList<const Object *> getVisibleObjects(const int factionId) const;
+	/**
+	 * @brief Returns a list of all the objects visible to the unit.
+	 *
+	 * This is an approximation.
+	 */
+	QList<const Object *> getVisibleObjects(const Unit *unit) const;
 
 	/**
 	 * @brief Clears the current Field of View of a faction. This should be called prior to updating FOV with a
@@ -77,6 +86,9 @@ private:
 	 * Of the 2 possible points, the one closer to p is chosen.
 	 */
 	QPointF getPointOnCircleInline(const BS::Geometry::Circle &circle, const QPointF &p);
+	VisibilityUpdate getUnitFOV(const Unit *unit) const;
+	bool canBeSeen(const Object *object, const VisibilityUpdate &FOV) const;
+	bool canBeSeen(const QPointF &point, const Object *target, const VisibilityUpdate &FOV) const;
 
 	const int playerFactionId;
 	Map map;
