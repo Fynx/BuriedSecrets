@@ -7,11 +7,11 @@
 #include "DataManager/DataManager.hpp"
 #include "GameObjects/Object.hpp"
 #include "GameObjects/Faction.hpp"
-#include "Mind/AnimatorManager.hpp"
+#include "Mind/Animators/AnimatorManager.hpp"
 #include "Mind/Effect.hpp"
 #include "Mind/Event.hpp"
 #include "Mind/ItemConstructor.hpp"
-#include "MapManager/MapManager.hpp"
+#include "Mind/MapManager/MapManager.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "SoundsManager/SoundsManager.hpp"
 
