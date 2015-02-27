@@ -1,56 +1,14 @@
 {
-	"building": {
-		"type": "location",
-		"textureName": "SoszuHouse",
-		"basePolygon": [[1, 1], [1, 2], [2, 2], [2, 1]],
-		"capacity": 5,
-		"range": 10,
-		"attack": 0,
-		"damageControl": 0,
-		"searchTime": 0
-	},
-	"fortification": {
-		"type": "location",
-		"textureName": "SoszuHouse",
-		"basePolygon": [[1, 1], [1, 2], [2, 2], [2, 1]],
-		"hp": 10,
-		"attack": 0,
-		"damageControl": 0
-	},
-	"equipment": {
+	"BasicEquipment": {
 		"type": "equipment"
 	},
-	"camp": {
-		"type": "location"
+	
+	
+	"BasicFaction": {
+		"type": "faction"
 	},
-	"unit": {
-		"type": "unit",
-		"profession": "Engineer",
-		"baseRadius": 1,
-		"baseCentre": [1, 1],
-		"age": 123124,
-		"attack": 10,
-		"encumbrance" : 24,
-		"engineering": 10,
-		"healing": 10,
-		"perception": 10,
-		"damageControl": 0.10,
-		"hp": 100,
-		"psychosis": 100,
-		"capacity": 5,
-		"hunger": 2,
-		"sightRange": 10,
-		"movementSpeed": 5,
-		"regeneration": 1,
-		"animations": {
-		}
-	},
-
-
-	"Expedition": {
-		"type": "faction",
-		"faction" : 1
-	},
+	
+	
 	"Senior Cebulez": {
 		"type": "unit",
 		"profession": "Megalomaniac Leader",
@@ -83,6 +41,8 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
+	
+	
 	"El Bogdano": {
 		"type": "unit",
 		"profession": "Ultimate Badass",
@@ -115,6 +75,8 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
+	
+	
 	"Dr. D. Snee": {
 		"type": "unit",
 		"profession": "Heart surgeon",
@@ -147,42 +109,9 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-
-
-	"SoszuHouse": {
-		"type": "location",
-		"textureName": "SoszuHouse",
-		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]],
-		"capacity": 5,
-		"range": 10,
-		"attack": 0,
-		"damageControl": 0,
-		"searchTime": 0,
-		"bigAttBonus": -6,
-		"bigDefBonus": 0.4,
-		"smallDefBonus": 0.1,
-		"bigRangeBonus": 5
-	},
-	"SoszuHouse2": {
-		"type": "location",
-		"textureName": "SoszuHouse",
-		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]],
-		"capacity": 5,
-		"range": 10,
-		"attack": 0,
-		"damageControl": 0,
-		"searchTime": 0,
-		"bigAttBonus": -6,
-		"bigDefBonus": 0.4,
-		"smallDefBonus": 0.1,
-		"bigRangeBonus": 5
-	},
-
-	"Soszes": {
-		"type": "faction",
-		"faction" : 2
-	},
-	"Soszu": {
+	
+	
+	"MobPeasant": {
 		"type": "unit",
 		"profession": "Proffesional mob",
 		"baseRadius": 0.5,
@@ -210,7 +139,9 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	"Soszer": {
+	
+	
+	"MobWoman": {
 		"type": "unit",
 		"profession": "Proffesional mob",
 		"baseRadius": 0.5,
@@ -238,7 +169,9 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	"Soszman": {
+	
+	
+	"MobSoldier": {
 		"type": "unit",
 		"profession": "Proffesional mob",
 		"baseRadius": 0.5,
@@ -266,7 +199,9 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	"Soszyslaw": {
+	
+	
+	"MobTank": {
 		"type": "unit",
 		"profession": "Proffesional mob",
 		"baseRadius": 0.5,
@@ -294,63 +229,85 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-
-
+	
+	
 	"Sniper rifle": {
 		"type": "item",
 		"picture": "sniper-rifle",
 		"itemType": "personal",
 		"damage": 40,
-		"fireRate": 0.3,
 		"weight": 3,
 		"range": 20
 	},
+	
+	
 	"Pistol": {
 		"type": "item",
 		"picture": "pistol",
 		"itemType": "personal",
 		"damage": 15,
 		"dispersion": 2,
-		"fireRate": 0.8,
 		"weight": 1,
 		"range": 6
 	},
+	
+	
 	"Assault rifle": {
 		"type": "item",
 		"picture": "assault-rifle",
 		"itemType": "personal",
 		"damage": 15,
 		"dispersion": 4,
-		"fireRate": 3,
 		"weight": 2,
 		"range": 15
-
 	},
-	"Machete": {
-		"type": "item",
-		"picture": "machete",
-		"itemType": "personal",
-		"damage": 30,
-		"dispersion": 0,
-		"fireRate": 1,
-		"weight": 1,
-		"range": 1
-	},
+	
+	
 	"Revolvers": {
 		"type": "item",
 		"picture": "revolvers",
 		"itemType": "personal",
 		"damage": 18,
 		"dispersion": 15,
-		"fireRate": 2,
 		"weight": 2,
 		"range": 12,
 		"optimalRange": 8,
 		"shotsInterval" : 10,
 		"magazineSize" : 5,
 		"reloadTime" : 50
-
 	},
+	
+	
+	"Machete": {
+		"type": "item",
+		"picture": "machete",
+		"itemType": "personal",
+		"damage": 20,
+		"dispersion": 5,
+		"weight": 2,
+		"range": 2,
+		"optimalRange": 2,
+		"shotsInterval" : 5,
+		"magazineSize" : 1000,
+		"reloadTime" : 1000
+	},
+	
+	
+	"Spear": {
+		"type": "item",
+		"picture": "spear",
+		"itemType": "personal",
+		"damage": 15,
+		"dispersion": 5,
+		"weight": 4,
+		"range": 3,
+		"optimalRange": 3,
+		"shotsInterval" : 3,
+		"magazineSize" : 1000,
+		"reloadTime" : 1000
+	},
+	
+	
 	"Medkit": {
 		"type": "item",
 		"picture": "medkit",
@@ -358,6 +315,8 @@
 		"healing": 10,
 		"weight": 1
 	},
+	
+	
 	"Wrench": {
 		"type": "item",
 		"picture": "wrench",
@@ -365,14 +324,47 @@
 		"damage": 15,
 		"dispersion": 0,
 		"engineering": 6,
-		"fireRate": 0.8,
 		"weight": 2
 	},
+	
+	
 	"Combat jacket": {
 		"type": "item",
 		"picture": "combat-jacket",
 		"itemType": "personal",
 		"defense": 0.2,
 		"weight": 4
+	},
+	
+	
+	"PlayerCamp": {
+		"type": "location",
+		"textureName": "SoszuHouse",
+		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]],
+		"capacity": 5,
+		"range": 10,
+		"attack": 0,
+		"damageControl": 0,
+		"searchTime": 0,
+		"bigAttBonus": -6,
+		"bigDefBonus": 0.4,
+		"smallDefBonus": 0.1,
+		"bigRangeBonus": 5
+	},
+	
+	
+	"MobHouse": {
+		"type": "location",
+		"textureName": "SoszuHouse",
+		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]],
+		"capacity": 5,
+		"range": 10,
+		"attack": 0,
+		"damageControl": 0,
+		"searchTime": 0,
+		"bigAttBonus": -6,
+		"bigDefBonus": 0.4,
+		"smallDefBonus": 0.1,
+		"bigRangeBonus": 5
 	}
 }

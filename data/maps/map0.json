@@ -5,35 +5,38 @@
 	"mapHeight" : 60,
 	"objects": [
 		{
-			"name": "Expedition",
 			"uid": 1,
+			"name": "BasicFaction",
 			"animators": [
 				"AnimatorConsume"
 			],
 			"equipment": 2,
 			"food": 800,
 			"faction": 1,
-			"units": [4, 8, 12],
+			"units": [4, 6, 8],
 			"relations": [[1, 1505], [2, -100]]
 		},
+		
+		
 		{
-			"name": "equipment",
 			"uid": 2,
-			"items": [3]
+			"name": "BasicEquipment",
+			"items": [57]
 		},
-		{
-			"name": "Combat jacket",
-			"uid": 3
-		},
+		
 
 		{
-			"name": "camp",
-			"range": 20
+			"uid": 3,
+			"name": "PlayerCamp",
+			"range": 20,
+			"x": 50,
+			"y": 50
 		},
-
+		
+		
 		{
-			"name": "Senior Cebulez",
 			"uid": 4,
+			"name": "Senior Cebulez",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
@@ -51,30 +54,55 @@
 			"y": 40.0,
 			"hp": 110
 		},
+		
+		
 		{
-			"name": "equipment",
 			"uid": 5,
-			"items": [6, 7],
+			"name": "BasicEquipment",
+			"items": [54, 55],
 			"slots": {
-				"tool": 6,
-				"weapon": 7
+				"tool": 54,
+				"weapon": 55
 			}
 		},
+		
+		
 		{
-			"name": "Wrench",
-			"uid": 6
-		},
-		{
-			"name": "Sniper rifle",
-			"uid": 7,
-			"animators": [
-				"AnimatorWeapon"
-			]
-		},
-
-		{
+			"uid": 6,
 			"name": "El Bogdano",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorMove",
+				"AnimatorUpdatePath",
+				"AnimatorEnterBuilding",
+				"AnimatorHeal",
+				"AnimatorLeaveBuilding",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 7,
+			"x": 45.0,
+			"y": 40.0,
+			"hp": 110
+		},
+		
+		
+		{
+			"uid": 7,
+			"name": "BasicEquipment",
+			"items": [53, 56],
+			"slots": {
+				"weapon": 56,
+				"armor": 53
+			}
+		},
+		
+		
+		{
 			"uid": 8,
+			"name": "Dr. D. Snee",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
@@ -88,241 +116,259 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 9,
-			"x": 45.0,
-			"y": 40.0,
-			"hp": 110
-		},
-		{
-			"name": "equipment",
-			"uid": 9,
-			"items": [10, 11],
-			"slots": {
-				"weapon": 10,
-				"armor": 11
-			}
-		},
-		{
-			"name": "Assault rifle",
-			"uid": 10,
-			"animators": [
-				"AnimatorWeapon"
-			]
-		},
-		{
-			"name": "Combat jacket",
-			"uid": 11
-		},
-
-		{
-			"name": "Dr. D. Snee",
-			"uid": 12,
-			"animators": [
-				"AnimatorAnimation",
-				"AnimatorMove",
-				"AnimatorUpdatePath",
-				"AnimatorEnterBuilding",
-				"AnimatorHeal",
-				"AnimatorLeaveBuilding",
-				"AnimatorUpdateFOV",
-				"AnimatorAttack",
-				"AnimatorApplyDamage",
-				"AnimatorWatchTarget"
-			],
-			"equipment": 13,
 			"x": 40.0,
 			"y": 45.0,
 			"hp": 110
 		},
+		
+		
 		{
-			"name": "equipment",
-			"uid": 13,
-			"items": [14, 15],
+			"uid": 9,
+			"name": "BasicEquipment",
+			"items": [51, 52],
 			"slots": {
-				"medicament": 14,
-				"weapon": 15
+				"medicament": 51,
+				"weapon": 52
 			}
 		},
+		
+		
 		{
-			"name": "Medkit",
-			"uid": 14
+			"uid": 51,
+			"name": "Medkit"
 		},
+		
+		
 		{
+			"uid": 52,
 			"name": "Revolvers",
-			"uid": 15,
 			"animators": [
 				"AnimatorWeapon"
 			]
 		},
-
-
+		
+		
 		{
-			"name": "Soszes",
-			"uid": 16,
+			"uid": 53,
+			"name": "Combat jacket"
+		},
+		
+		
+		{
+			"uid": 54,
+			"name": "Wrench"
+		},
+		
+		
+		{
+			"uid": 55,
+			"name": "Sniper rifle",
 			"animators": [
-				"AnimatorConsume"
-			],
-			"food": 1200,
+				"AnimatorWeapon"
+			]
+		},
+		
+		
+		{
+			"uid": 56,
+			"name": "Assault rifle",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+		
+		
+		{
+			"uid": 57,
+			"name": "Combat jacket"
+		},
+		
+		
+		
+		
+		
+		
+		
+		
+		{
+			"uid": 101,
+			"name": "BasicFaction",
 			"faction": 2,
-			"units": [17, 20, 23, 26],
+			"units": [102, 104, 106, 108],
 			"relations": [[1, -5], [2, 100]]
 		},
-
+		
+		
 		{
-			"name": "Soszu",
-			"uid": 17,
+			"uid": 102,
+			"name": "MobPeasant",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
-				"AnimatorEnterBuilding",
-				"AnimatorHeal",
-				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
 				"AnimatorApplyDamage",
 				"AnimatorWatchTarget"
 			],
-			"equipment": 18,
+			"equipment": 103,
 			"x": 12.0,
 			"y": 12.0,
 			"hp": 120
 		},
+		
+		
 		{
-			"name": "equipment",
-			"uid": 18,
-			"items": [19],
+			"uid": 103,
+			"name": "BasicEquipment",
+			"items": [151],
 			"slots": {
-				"weapon": 19
+				"weapon": 151
 			}
 		},
+		
+		
 		{
-			"name": "Machete",
-			"uid": 19,
-			"animators": [
-				"AnimatorWeapon"
-			]
-		},
-
-		{
-			"name": "Soszer",
-			"uid": 20,
+			"uid": 104,
+			"name": "MobPeasant",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
-				"AnimatorEnterBuilding",
-				"AnimatorHeal",
-				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
 				"AnimatorApplyDamage",
 				"AnimatorWatchTarget"
 			],
-			"equipment": 21,
+			"equipment": 105,
 			"x": 14.0,
 			"y": 14.0,
 			"hp": 120
 		},
+		
+		
 		{
-			"name": "equipment",
-			"uid": 21,
-			"items": [22],
+			"uid": 105,
+			"name": "BasicEquipment",
+			"items": [152],
 			"slots": {
-				"weapon": 22
+				"weapon": 152
 			}
 		},
+		
+		
 		{
-			"name": "Pistol",
-			"uid": 22,
-			"animators": [
-				"AnimatorWeapon"
-			]
-		},
-
-		{
-			"name": "Soszyslaw",
-			"uid" : 23,
+			"uid" : 106,
+			"name": "MobTank",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
-				"AnimatorEnterBuilding",
-				"AnimatorHeal",
-				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
 				"AnimatorApplyDamage",
 				"AnimatorWatchTarget"
 			],
-			"equipment": 24,
+			"equipment": 107,
 			"x": 16.0,
 			"y": 16.0,
-			"hp": 70
+			"hp": 150
 		},
+		
 		{
-			"name": "equipment",
-			"uid": 24,
-			"items": [25],
+			"uid": 107,
+			"name": "BasicEquipment",
+			"items": [153],
 			"slots": {
-				"weapon": 25
+				"weapon": 153
 			}
 		},
+		
+		
 		{
-			"name": "Pistol",
-			"uid": 25,
-			"animators": [
-				"AnimatorWeapon"
-			]
-		},
-
-		{
-			"name": "Soszman",
-			"uid": 26,
+			"uid": 108,
+			"name": "MobWoman",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
-				"AnimatorEnterBuilding",
-				"AnimatorHeal",
-				"AnimatorLeaveBuilding",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
 				"AnimatorApplyDamage",
 				"AnimatorWatchTarget"
 			],
-			"equipment": 27,
+			"equipment": 109,
 			"x": 18.0,
 			"y": 18.0,
-			"hp" : 150
+			"hp" : 70
 		},
+		
+		
 		{
-			"name": "equipment",
-			"uid": 27,
-			"items": [28],
+			"uid": 109,
+			"name": "BasicEquipment",
+			"items": [154],
 			"slots": {
-				"weapon": 28
+				"weapon": 154
 			}
 		},
+		
+		
 		{
-			"name": "Pistol",
-			"uid": 28,
+			"uid": 151,
+			"name": "Machete",
 			"type": "item",
 			"animators": [
 				"AnimatorWeapon"
 			]
 		},
-
-
+		
+		
 		{
-			"name": "SoszuHouse",
-			"uid": 29,
+			"uid": 152,
+			"name": "Machete",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+		
+		
+		{
+			"uid": 153,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+		
+		
+		{
+			"uid": 154,
+			"name": "Machete",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+		
+		
+		
+		
+		
+		
+		
+		
+		{
+			"uid": 1001,
+			"name": "MobHouse",
 			"animators": [],
 			"x": 2,
 			"y": 3
 		},
+		
+		
 		{
-			"name": "SoszuHouse2",
-			"uid": 30,
+			"uid": 1002,
+			"name": "MobHouse",
 			"animators": [],
 			"x": 10.8,
 			"y": 13.4

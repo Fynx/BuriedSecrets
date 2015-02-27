@@ -95,7 +95,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 			int eqUid = faction->getEquipmentUid();
 			if (eqUid == Object::InvalidUid) {
-				Object *eq = createObject(BS::Type::Equipment, "equipment");
+				Object *eq = createObject(BS::Type::Equipment, "BasicEquipment");
 				eqUid = eq->assignUid();
 				addObject(eq);
 			}
@@ -110,7 +110,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 			int eqUid = unit->getEquipmentUid();
 			if (eqUid == Object::InvalidUid) {
-				Object *eq = createObject(BS::Type::Equipment, "equipment");
+				Object *eq = createObject(BS::Type::Equipment, "BasicEquipment");
 				eqUid = eq->assignUid();
 				addObject(eq);
 			}
