@@ -34,16 +34,19 @@ void AnimatorAssemble::act()
 		if (QVector2D(to-from).length() > epsilon)
 			continue;
 
-		Item *castoramaSet = unit->getEquipment()->getSlotItem(BS::Slot::Fortification);
+		Item *castoramaSet = unit->getUsedItem();
 		if (castoramaSet){
-
 			if (castoramaSet->getPrototype()->hasProperty(Properties::SpawnedType)){
 				QString  spawned = castoramaSet->getPrototype()->getProperty(Properties::SpawnedType).toString();
 				Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
 				mind->addObject(fort, unit->getTargetPoint());
 				unit->getEquipment()->removeItem(castoramaSet);
 			}
+			else
+				warn("Invalid Fortification item");
 		}
+		else
+			warn("No Fortification item");
 		unit->setCommand(Command::None);
 	}
 }

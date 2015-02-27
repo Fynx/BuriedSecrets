@@ -337,31 +337,35 @@
 	},
 	
 	
-	"PlayerCamp": {
-		"type": "location",
-		"textureName": "SoszuHouse",
-		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]],
-		"capacity": 5,
-		"range": 10,
-		"attack": 0,
-		"damageControl": 0,
-		"searchTime": 0,
-		"bigAttBonus": -6,
-		"bigDefBonus": 0.4,
-		"smallDefBonus": 0.1,
-		"bigRangeBonus": 5
+	"IKEA fence": {
+		"type": "item",
+		"picture": "ikeaFence",
+		"itemType": "personal",
+		"defense": 0.2,
+		"weight": 4,
+		"spawnedType": "Wired fence"
 	},
 	
 	
-	"MobHouse": {
+	"Wired fence": {
+		"type": "location",
+		"textureName": "WiredFence",
+		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]]
+	},
+	
+	
+	"Player Camp": {
+		"type": "location",
+		"textureName": "SoszuHouse",
+		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]]
+	},
+	
+	
+	"Mob House": {
 		"type": "location",
 		"textureName": "SoszuHouse",
 		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]],
 		"capacity": 5,
-		"range": 10,
-		"attack": 0,
-		"damageControl": 0,
-		"searchTime": 0,
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
 		"smallDefBonus": 0.1,

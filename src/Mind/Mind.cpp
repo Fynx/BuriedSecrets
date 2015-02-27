@@ -246,6 +246,7 @@ Object *Mind::createDefaultObject(BS::Type type, QString prototype)
 {
 	const Prototype *proto = dataManager->getPrototype(prototype);
 	Object *obj = createObject(type, prototype);
+	obj->assignUid();
 	if (proto->hasProperty(Properties::DefAnimators)){
 		// May require change to some Prototype field
 		for (QString anim : proto->getProperty(Properties::DefAnimators).toStringList()){

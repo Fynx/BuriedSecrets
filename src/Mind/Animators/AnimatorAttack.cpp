@@ -34,7 +34,6 @@ void AnimatorAttack::act()
 		if (!weapon)
 			continue;
 
-
 		Unit *target = dynamic_cast<Unit *>(mind->getObjectFromUid(unit->getTargetObject()));
 		if (!target){
 			err("Invalid target in attack animator");
