@@ -7,10 +7,10 @@
 #include "Graphics/SelectionEffect.hpp"
 
 
-Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager* dataManager)
+Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager, const Mind *mind)
 	: graphicsDataManager{dataManager}, showFPS{true}, showFOW{true}, timeElapsed{0.0f}, frames{0}
 	, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}
-	, dataManager{dataManager}, camera{nullptr}, mapSprite{nullptr}, drawOrder{new int[10000]}
+	, dataManager{dataManager}, mind{mind}, camera{nullptr}, mapSprite{nullptr}, drawOrder{new int[10000]}
 	, positions{new QPointF[10000]}, FOW{nullptr}
 {
 	canvas = widget;
@@ -73,9 +73,9 @@ void Graphics::resumeRendering()
 }
 
 
-void Graphics::loadMap(MapManager *mapManager)
+void Graphics::loadMap()
 {
-	this->mapManager = mapManager;
+	this->mapManager = mind->getMapManager();
 	mapSprite = new sf::Sprite{*(graphicsDataManager.getTexture(mapManager->getMap()->getName()))};
 	mapSprite->setPosition(0, 0);
 }

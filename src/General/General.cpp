@@ -59,8 +59,8 @@ void General::startNewGame()
 	mind->loadFromJson(json);
 
 	//Initialize & load Graphics
-	graphics = new Graphics(physicsEngine, dataManager);
-	graphics->loadMap(mind->getMapManager());
+	graphics = new Graphics(physicsEngine, dataManager, mind);
+	graphics->loadMap();
 
 	//start UI & Graphics
 	//WARNING starting newGame in UI must be after all data is loaded to Mind

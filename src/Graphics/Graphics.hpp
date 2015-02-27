@@ -14,6 +14,7 @@
 #include "Graphics/GraphicalFogOfWar.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
 #include "Mind/MapManager/Map.hpp"
+#include "Mind/Mind.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "UserInterface/Viewport.hpp"
 
@@ -24,7 +25,7 @@
 class Graphics: public QObject {
 Q_OBJECT;
 public:
-	Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager);
+	Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager, const Mind *mind);
 	~Graphics();
 
 	Graphics(const Graphics &other) = delete;
@@ -45,7 +46,7 @@ public:
 	 *
 	 * @return void
 	 */
-	void loadMap(MapManager *mapManager);
+	void loadMap();
 	void toggleShowBasePolygons();
 	void toggleShowFPS();
 	void toggleFogOfWar();
@@ -88,6 +89,7 @@ private:
 	GraphicalEntityFactory *graphicalEntityFactory;
 	const PhysicsEngine *physicsEngine;
 	const DataManager *dataManager;
+	const Mind *mind;
 	MapManager *mapManager;
 	Camera *camera;
 	sf::Sprite *mapSprite;
