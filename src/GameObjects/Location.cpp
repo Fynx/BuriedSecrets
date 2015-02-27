@@ -48,10 +48,7 @@ void Location::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
 
-	assemblable = (bool) json[Properties::Assemblable].toInt();
-	transparent = (bool) json[Properties::Transparent].toInt();
-	capacity = json[Properties::Capacity].toInt();
-	rangeOfHealing = json[Properties::Range].toDouble();
+	rangeOfHealing = json[Attributes::CampRange].toDouble();
 
 	if (json.contains(Attributes::Items)) {
 		for (const QJsonValue &uid : json[Attributes::Items].toArray())
@@ -67,14 +64,8 @@ QJsonObject Location::saveToJson() const
 {
 	QJsonObject json = Object::saveToJson();
 
-	if (assemblable)
-		json[Properties::Assemblable] = (int) assemblable;
-	if (transparent)
-		json[Properties::Transparent] = (int) transparent;
-	if (capacity)
-		json[Properties::Capacity] = capacity;
 	if (rangeOfHealing != 0)
-		json[Properties::Range] = rangeOfHealing;
+		json[Attributes::CampRange] = rangeOfHealing;
 
 	QJsonArray its;
 	for (Item *item : items.keys())
@@ -113,17 +104,17 @@ QPointF Location::getOffset()
 
 bool Location::isAssemblable() const
 {
-	return assemblable;
+	return prototype->getProperty(Properties::Assemblable).toBool();
 }
 
 bool Location::isTransparent() const
 {
-	return transparent;
+	return prototype->getProperty(Properties::Transparent).toBool();
 }
 
 int Location::getCapacity() const
 {
-	return capacity;
+	return prototype->getProperty(Properties::Capacity).toInt();
 }
 
 qreal Location::getRange() const

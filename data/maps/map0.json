@@ -40,6 +40,7 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorAssemble",
+				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
 				"AnimatorEnterBuilding",
@@ -75,6 +76,7 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorAssemble",
+				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
 				"AnimatorEnterBuilding",
@@ -110,6 +112,7 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorAssemble",
+				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
 				"AnimatorEnterBuilding",
@@ -232,6 +235,7 @@
 			"name": "MobPeasant",
 			"animators": [
 				"AnimatorAnimation",
+				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
 				"AnimatorUpdateFOV",
@@ -261,6 +265,7 @@
 			"name": "MobPeasant",
 			"animators": [
 				"AnimatorAnimation",
+				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
 				"AnimatorUpdateFOV",
@@ -290,6 +295,7 @@
 			"name": "MobTank",
 			"animators": [
 				"AnimatorAnimation",
+				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
 				"AnimatorUpdateFOV",
@@ -318,6 +324,7 @@
 			"name": "MobWoman",
 			"animators": [
 				"AnimatorAnimation",
+				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
 				"AnimatorUpdateFOV",

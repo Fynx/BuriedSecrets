@@ -261,9 +261,9 @@ void Mind::removeObject(Object *object)
 {
 	qDebug() << "removeObject:" << object->getUid();
 	animatorManager->removeObject(object);
+	physics->removeObject(object);
 	objects.removeAll(object);
 	uidToObject.remove(object->getUid());
-	physics->removeObject(object);
 }
 
 Object *Mind::getObjectFromUid(const int uid)

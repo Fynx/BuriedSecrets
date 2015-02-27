@@ -11,6 +11,7 @@
 class Unit : public Object, public Equipped {
 public:
 	Unit(const Prototype *prototype);
+	virtual ~Unit();
 
 	BS::Type getType() const;
 

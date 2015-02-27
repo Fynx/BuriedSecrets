@@ -22,7 +22,12 @@ void AnimatorDie::act()
 			continue;
 		if (unit->getHP() <= 0){
 			info("Unit dies. Id: " + QString::number(unit->getUid()));
+			if (unit->getLocation())
+				unit->getLocation()->removeUnit(unit->getUid());
+			if (mind->getFactionById(unit->getFactionId()))
+				mind->getFactionById(unit->getFactionId())->removeUnit(unit->getUid());
 			mind->removeObject(unit);
+			//delete unit;
 		}
 	}
 }

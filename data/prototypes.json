@@ -375,6 +375,7 @@
 	"Wired fence": {
 		"type": "location",
 		"textureName": "WiredFence",
+		"capacity": 0,
 		"basePolygon": [[0, 4], [6, 4], [6, 3], [0, 3]]
 	},
 	
@@ -394,6 +395,7 @@
 	"Player Camp": {
 		"type": "location",
 		"textureName": "PlayerCamp",
+		"capacity": 0,
 		"basePolygon": [[0, 10.5], [2.5, 14], [7, 8], [4, 6]]
 	},
 	

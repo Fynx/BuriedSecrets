@@ -31,12 +31,15 @@ void AnimatorAttack::act()
 			continue;
 		}
 		Item *weapon = unit->getUsedItem();
-		if (!weapon)
+		if (!weapon){
+			unit->setCommand(Command::None);
 			continue;
+		}
 
 		Unit *target = dynamic_cast<Unit *>(mind->getObjectFromUid(unit->getTargetObject()));
 		if (!target){
-			err("Invalid target in attack animator");
+			unit->setCommand(Command::None);
+			warn("Invalid target in attack animator");
 			continue;
 		}
 
@@ -47,6 +50,7 @@ void AnimatorAttack::act()
 		QPointF to = mind->physicsEngine()->getPosition(target);
 		if (to.isNull() || from.isNull()){
 			err("Invalid points in attack animator");
+			unit->setCommand(Command::None);
 			continue;
 		}
 		float dist = QVector2D(to-from).length();

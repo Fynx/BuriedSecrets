@@ -29,6 +29,7 @@ public:
 
 	void modifyRelation(int uid, int diff);
 	int consume(int f);
+	void removeUnit(int uid);
 
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;

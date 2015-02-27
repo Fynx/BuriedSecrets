@@ -18,6 +18,10 @@ Unit::Unit(const Prototype *prototype)
 	command = Command::None;
 }
 
+Unit::~Unit()
+{
+}
+
 BS::Type Unit::getType() const
 {
 	return Type::Unit;

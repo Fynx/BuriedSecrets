@@ -37,8 +37,15 @@ void AnimatorEnterBuilding::act()
 		if (QVector2D(to-from).length() > epsilon)
 			continue;
 
-		if ((target->getFactionId() != 0) && (target->getFactionId() != unit->getFactionId()))
+		if ((target->getFactionId() != 0) && (target->getFactionId() != unit->getFactionId())){
+			unit->setCommand(Command::None);
 			continue;
+		}
+
+		if (target->getCapacity() <= target->getUnitsUids().size()){
+			unit->setCommand(Command::None);
+			continue;
+		}
 
 		target->setFactionId(unit->getFactionId());
 		target->insertUnit(unit->getUid());

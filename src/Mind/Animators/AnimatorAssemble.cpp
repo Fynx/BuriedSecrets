@@ -26,6 +26,12 @@ void AnimatorAssemble::act()
 		if (unit->getCommand() != Command::Assemble)
 			continue;
 
+		Item *ikeaSet = unit->getUsedItem();
+		if (!ikeaSet){
+			unit->setCommand(Command::None);
+			continue;
+		}
+
 		QPointF from = mind->physicsEngine()->getPosition(unit);
 		QPointF to = unit->getTargetPoint();
 
@@ -34,19 +40,15 @@ void AnimatorAssemble::act()
 		if (QVector2D(to-from).length() > epsilon)
 			continue;
 
-		Item *castoramaSet = unit->getUsedItem();
-		if (castoramaSet){
-			if (castoramaSet->getPrototype()->hasProperty(Properties::SpawnedType)){
-				QString  spawned = castoramaSet->getPrototype()->getProperty(Properties::SpawnedType).toString();
-				Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
-				mind->addObject(fort, unit->getTargetPoint());
-				unit->getEquipment()->removeItem(castoramaSet);
-			}
-			else
-				warn("Invalid Fortification item");
+		if (ikeaSet->getPrototype()->hasProperty(Properties::SpawnedType)){
+			QString  spawned = ikeaSet->getPrototype()->getProperty(Properties::SpawnedType).toString();
+			Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
+			mind->addObject(fort, unit->getTargetPoint());
+			unit->getEquipment()->removeItem(ikeaSet);
 		}
 		else
-			warn("No Fortification item");
+			warn("Invalid Fortification item");
+
 		unit->setCommand(Command::None);
 	}
 }

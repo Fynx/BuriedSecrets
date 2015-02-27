@@ -74,6 +74,11 @@ int Faction::consume(int f)
 	return 0;
 }
 
+void Faction::removeUnit(int uid)
+{
+	unitsUids.remove(uid);
+}
+
 void Faction::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
