@@ -7,7 +7,7 @@
 SpriteGraphicalEntity::SpriteGraphicalEntity(const Object *object, const QList<QPointF> &basePolygon)
 	: GraphicalEntity{object, basePolygon}
 {
-	sprite.setScale(0.05, 0.05);
+	sprite.setScale(0.1, 0.1);
 }
 
 

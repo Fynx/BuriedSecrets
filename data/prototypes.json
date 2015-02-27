@@ -341,30 +341,91 @@
 		"type": "item",
 		"picture": "ikeaFence",
 		"itemType": "personal",
-		"defense": 0.2,
 		"weight": 4,
-		"spawnedType": "Wired fence"
+		"spawnedType": "Wired fence",
+		"ingredients": ["Wooden planks", "Wire"]
+	},
+	
+	
+	"IKEA bunker": {
+		"type": "item",
+		"picture": "ikeaBunker",
+		"itemType": "personal",
+		"weight": 8,
+		"spawnedType": "Bunker"
+	},
+	
+	
+	"Wooden planks": {
+		"type": "item",
+		"picture": "woodenPlanks",
+		"itemType": "personal",
+		"weight": 2
+	},
+	
+	
+	"Wire": {
+		"type": "item",
+		"picture": "wire",
+		"itemType": "personal",
+		"weight": 1
 	},
 	
 	
 	"Wired fence": {
 		"type": "location",
 		"textureName": "WiredFence",
-		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]]
+		"basePolygon": [[0, 4], [6, 4], [6, 3], [0, 3]]
+	},
+	
+	
+	"Bunker": {
+		"type": "location",
+		"textureName": "Bunker",
+		"basePolygon": [[0, 5], [5, 7], [6, 3], [2, 2]],
+		"capacity": 3,
+		"bigAttBonus": -7,
+		"bigDefBonus": 0.7,
+		"smallDefBonus": 0.3,
+		"bigRangeBonus": 3
 	},
 	
 	
 	"Player Camp": {
 		"type": "location",
-		"textureName": "SoszuHouse",
-		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]]
+		"textureName": "PlayerCamp",
+		"basePolygon": [[0, 10.5], [2.5, 14], [7, 8], [4, 6]]
 	},
 	
 	
-	"Mob House": {
+	"Mob House1": {
 		"type": "location",
-		"textureName": "SoszuHouse",
-		"basePolygon": [[0.5, 1.9], [1.2, 0.6], [1.75, 1], [0.9, 2.4]],
+		"textureName": "MobHouse1",
+		"basePolygon": [[0.5, 10], [2, 14], [7, 8], [4, 6]],
+		"capacity": 5,
+		"bigAttBonus": -6,
+		"bigDefBonus": 0.4,
+		"smallDefBonus": 0.1,
+		"bigRangeBonus": 5
+	},
+	
+	
+	"Mob House2": {
+		"type": "location",
+		"textureName": "MobHouse2",
+		"basePolygon": [[0, 16], [3.4, 17], [7, 12], [5, 8]],
+		"capacity": 5,
+		"bigAttBonus": -6,
+		"bigDefBonus": 0.4,
+		"smallDefBonus": 0.1,
+		"bigRangeBonus": 5
+	},
+	
+	
+	"Mob House3": {
+		"type": "location",
+		"textureName": "MobHouse3",
+		"basePolygon": [[2.4, 14], [8, 9], [7, 7], [0.6, 11]],
 		"capacity": 5,
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,

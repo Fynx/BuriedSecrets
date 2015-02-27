@@ -21,7 +21,7 @@
 		{
 			"uid": 2,
 			"name": "BasicEquipment",
-			"items": [57]
+			"items": [57, 59, 60]
 		},
 		
 
@@ -29,8 +29,8 @@
 			"uid": 3,
 			"name": "Player Camp",
 			"range": 20,
-			"x": 50,
-			"y": 50
+			"x": 31,
+			"y": 34
 		},
 		
 		
@@ -60,10 +60,11 @@
 		{
 			"uid": 5,
 			"name": "BasicEquipment",
-			"items": [54, 55],
+			"items": [54, 55, 61],
 			"slots": {
 				"tool": 54,
-				"weapon": 55
+				"weapon": 55,
+				"fortification": 61
 			}
 		},
 		
@@ -193,6 +194,23 @@
 			"name": "IKEA fence"
 		},
 		
+		
+		{
+			"uid": 59,
+			"name": "Wooden planks"
+		},
+		
+		
+		{
+			"uid": 60,
+			"name": "Wire"
+		},
+		
+		
+		{
+			"uid": 61,
+			"name": "IKEA bunker"
+		},
 		
 		
 		
@@ -369,16 +387,16 @@
 		
 		{
 			"uid": 1001,
-			"name": "Mob House",
+			"name": "Mob House1",
 			"animators": [],
-			"x": 2,
-			"y": 3
+			"x": 12,
+			"y": 28
 		},
 		
 		
 		{
 			"uid": 1002,
-			"name": "Mob House",
+			"name": "Mob House1",
 			"animators": [],
 			"x": 10.8,
 			"y": 13.4
@@ -387,10 +405,28 @@
 		
 		{
 			"uid": 1003,
+			"name": "Mob House2",
+			"animators": [],
+			"x": 5.8,
+			"y": 18
+		},
+		
+		
+		{
+			"uid": 1004,
+			"name": "Mob House3",
+			"animators": [],
+			"x": 22,
+			"y": 15
+		},
+		
+		
+		{
+			"uid": 1005,
 			"name": "Wired fence",
 			"animators": [],
-			"x": 35,
-			"y": 35
+			"x": 37.5,
+			"y": 33.5
 		}
 		
 	]
