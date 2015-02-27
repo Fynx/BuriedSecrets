@@ -37,3 +37,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 add_subdirectory (src)
 
 install (DIRECTORY data DESTINATION "${BuriedSecrets_BINARY_DIR}")
+
+# UI Resources
+qt5_add_resources (UI_data_RESOURCES UI_data/UI_data.qrc)
+add_library (UI_Data ${UI_data_RESOURCES})

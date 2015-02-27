@@ -18,6 +18,8 @@ UserInterface::UserInterface(General *general, DataManager *dataManager)
 	  gameWindow_(nullptr),
 	  mainMenuWindow_(new MainMenuWindow(this))
 {
+	Q_INIT_RESOURCE(UI_data);
+
 	initWindows();
 	initLayout();
 	initDevActionsMenu();

@@ -1,0 +1,19 @@
+<RCC>
+	<qresource prefix="/icons">
+		<file alias="aggresive">icons/aggresive.png</file>
+		<file alias="camp">icons/camp.png</file>
+		<file alias="coward">icons/coward.png</file>
+		<file alias="food">icons/food.png</file>
+		<file alias="guard">icons/guard.jpg</file>
+		<file alias="house">icons/house.png</file>
+		<file alias="journal">icons/journal.png</file>
+		<file alias="skull">icons/skull.png</file>
+	</qresource>
+	<qresource prefix="/cursors">
+		<file alias="arrow-down">cursors/arrow-down.png</file>
+		<file alias="heal-cross">cursors/heal-cross.png</file>
+		<file alias="pointer-primary">cursors/pointer-primary.png</file>
+		<file alias="pointer-secondary">cursors/pointer-secondary.png</file>
+		<file alias="target">cursors/target.png</file>
+	</qresource>
+</RCC>
