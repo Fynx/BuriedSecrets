@@ -18,7 +18,8 @@ const qreal SelectionManager::ViewportZoomDelta = 0.05f;
 
 SelectionManager::SelectionManager(Mind *mind)
 	: mind_(mind),
-	  viewport_(new IsometricPerspective(pixelToMetresScale))
+	  viewport_(new IsometricPerspective(pixelToMetresScale)),
+	  selectedLocation_(nullptr)
 {
 	//init Viewport
 	viewport_.setMapSize(mind_->getMap()->getSize());
@@ -283,6 +284,9 @@ QSet<Unit *> SelectionManager::filterSelection(const QSet<Object *> &objects) co
 	if (units.count() > 0)
 		return units;
 
+	if (buildings.count() > 1)
+		return {};
+
 	for (auto &building : buildings) {
 		for (auto &unitUid : building->getUnitsUids()) {
 			Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(unitUid));
@@ -297,20 +301,13 @@ QSet<Unit *> SelectionManager::filterSelection(const QSet<Object *> &objects) co
 
 void SelectionManager::selectUnits(const QSet<Unit *> &units)
 {
-	for (auto &unit : selectedUnits_) {
-		unit->property(TempData::IsSelected) = QVariant(false);
-		const auto selection = unitToEffect_.find(unit);
-		mind_->deleteEffect(selection.value());
-		unitToEffect_.erase(selection);
-	}
+	for (auto &unit : selectedUnits_)
+		unmarkObjectSelected(unit);
 
 	selectedUnits_ = units;
 
-	for (auto &unit : selectedUnits_) {
-		// TODO(Soszu): Looks like this could be extracted to a method.
-		unit->property(TempData::IsSelected) = QVariant(true);
-		unitToEffect_.insert(unit, mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(unit))));
-	}
+	for (auto &unit : selectedUnits_)
+		markObjectSelected(unit);
 
 	markBuildingsSelected();
 }
@@ -319,32 +316,44 @@ void SelectionManager::addUnitsToSelection(QSet<Unit *> units)
 {
 	selectedUnits_.unite(units);
 
-	for (auto &unit : units) {
-		unit->property(TempData::IsSelected) = QVariant(true);
-		unitToEffect_.insert(unit, mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(unit))));
-	}
+	for (auto &unit : units)
+		markObjectSelected(unit);
 
 	markBuildingsSelected();
 }
 
 void SelectionManager::markBuildingsSelected()
 {
-	for (auto &building : selectedBuildings_) {
-		building->property(TempData::IsSelected) = QVariant(false);
-		const auto selection = locationToEffect_.find(building);
-		mind_->deleteEffect(selection.value());
-		locationToEffect_.erase(selection);
-	}
+	if (selectedLocation_ != nullptr)
+		unmarkObjectSelected(selectedLocation_);
 
-	selectedBuildings_.clear();
+	selectedLocation_ = nullptr;
 
 	for (auto &unit : selectedUnits_) {
-		Location *building = unit->getLocation();
-		if (building && !selectedBuildings_.contains(building)) {
-			building->property(TempData::IsSelected) = QVariant(true);
-			selectedBuildings_.insert(building);
-			locationToEffect_.insert(building, mind_->addEffect(Effect(Effects::Selection,
-										   new ObjectEffectData(building))));
+		Location *location = unit->getLocation();
+		if (location) {
+			if (selectedLocation_ == nullptr) {
+				selectedLocation_ = location;
+				markObjectSelected(location);
+			}
+			else
+				if (selectedLocation_ != selectedLocation_)
+					err("Probably more than 1 location selected");
 		}
 	}
+}
+
+void SelectionManager::markObjectSelected(Object *object)
+{
+	object->property(TempData::IsSelected) = QVariant(true);
+	auto effectIterator = mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(object)));
+	objectToSelectionEffect_.insert(object, effectIterator);
+}
+
+void SelectionManager::unmarkObjectSelected(Object *object)
+{
+	object->property(TempData::IsSelected) = QVariant(false);
+	const auto selection = objectToSelectionEffect_.find(object);
+	mind_->deleteEffect(selection.value());
+	objectToSelectionEffect_.erase(selection);
 }

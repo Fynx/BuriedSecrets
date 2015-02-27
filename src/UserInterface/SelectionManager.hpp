@@ -50,14 +50,15 @@ private:
 	void selectUnits(const QSet<Unit *> &units);
 	void addUnitsToSelection(QSet<Unit *> units);
 	void markBuildingsSelected();
+	void markObjectSelected(Object *);
+	void unmarkObjectSelected(Object *);
 
 	Mind *const mind_;
 	Viewport viewport_;
 
 	QSet<Unit *> selectedUnits_;
-	QSet<Location *> selectedBuildings_;
+	Location * selectedLocation_;
 	QMap<int, QSet<Unit *> > selectionGroups_;
 
-	QHash<Unit *, QLinkedList<Effect>::iterator> unitToEffect_;
-	QHash<Location *, QLinkedList<Effect>::iterator> locationToEffect_;
+	QHash<Object *, QLinkedList<Effect>::iterator> objectToSelectionEffect_;
 };
