@@ -98,7 +98,6 @@ QJsonObject Object::saveToJson() const
 {
 	QJsonObject json;
 	json.insert(Properties::Name, getName());
-	json.insert(Properties::Type, BS::changeTypeToString(getType()));
 	json.insert(Attributes::Uid, getUid());
 	json.insert(Attributes::Faction, getFactionId());
 	return json;

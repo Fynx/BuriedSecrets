@@ -284,7 +284,7 @@ QSet<Unit *> SelectionManager::filterSelection(const QSet<Object *> &objects) co
 		return units;
 
 	for (auto &building : buildings) {
-		for (auto &unitUid : building->getUnits()) {
+		for (auto &unitUid : building->getUnitsUids()) {
 			Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(unitUid));
 			if (!unit)
 				err("Invalid object in building");

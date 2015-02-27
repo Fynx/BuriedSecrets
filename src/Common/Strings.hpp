@@ -79,6 +79,7 @@ namespace Resources {
 
 namespace Properties {                                 // for Prototypes
 	const QString Age           = "age";               // base for Unit
+	const QString Assemblable   = "assemblable";
 	const QString Attack        = "attack";            // base for Unit
 	const QString Avatar        = "avatar";            // base for Unit
 	const QString Background    = "background";        // base for Unit
@@ -88,6 +89,7 @@ namespace Properties {                                 // for Prototypes
 	const QString BigDefBonus   = "bigDefBonus";       // Bonus from location
 	const QString BigAttBonus   = "bigAttBonus";       // Bonus from location
 	const QString BigRangeBonus = "bigRangeBonus";     // Bonus from location
+	const QString Capacity      = "capacity";
 	const QString Damage        = "damage";            // Weapon
 	const QString DamageControl = "damageControl";     // base for Unit
 	const QString DefAnimators  = "defAnimators";
@@ -117,6 +119,7 @@ namespace Properties {                                 // for Prototypes
 	const QString SightRange    = "sightRange";        // base for Unit
 	const QString SmallDefBonus = "smallDefBonus";       // Bonus from location
 	const QString SpawnedType   = "spawnedType";       // Item - Fortification
+	const QString Transparent   = "transparent";
 	const QString Type          = "type";
 	const QString Weight        = "weight";
 }

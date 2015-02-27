@@ -32,7 +32,7 @@ void AnimatorLeaveBuilding::act()
 		to = mind->physicsEngine()->getPosition(building) + building->getOffset();
 
 		building->removeUnit(unit->getUid());
-		if (building->getUnits().size() == 0)
+		if (building->getUnitsUids().size() == 0)
 			building->setFactionId(0);
 
 		mind->physicsEngine()->addObject(unit, to);

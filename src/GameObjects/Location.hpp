@@ -15,13 +15,17 @@ public:
 	void addItem(int searchDifficulty, Item *item);
 	void removeItem(Item *item);
 	QList<Item *> getItems(int searchDifficulty = 1000) const;
+	const QSet<int> &getItemsUids() const;
 
 	void insertUnit(int id);
 	void removeUnit(int id);
-	QList<int> getUnits() const;
+	QList<int> getUnitsUids() const;
 
 	QPointF getOffset();
 
+	bool isAssemblable() const;
+	bool isTransparent() const;
+	int getCapacity() const;
 	qreal getRange() const;
 
 	virtual void loadFromJson(const QJsonObject &json);
@@ -29,8 +33,13 @@ public:
 
 private:
 	QPointF offset;
+	/** Items, searchDifficulty */
 	QMap<Item *, int> items;
-	QSet<int> units;
+	QSet<int> itemsUids;
+	QSet<int> unitsUids;
 
+	bool assemblable;
+	bool transparent;
+	int capacity;
 	qreal rangeOfHealing;
 };

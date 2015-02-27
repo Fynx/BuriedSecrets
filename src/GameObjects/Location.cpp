@@ -37,42 +37,93 @@ QList<Item *> Location::getItems(int searchDifficulty) const
 	return result;
 }
 
+const QSet<int> &Location::getItemsUids() const
+{
+	return itemsUids;
+}
+
+//TODO Search difficulty
+
 void Location::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
+
+	assemblable = (bool) json[Properties::Assemblable].toInt();
+	transparent = (bool) json[Properties::Transparent].toInt();
+	capacity = json[Properties::Capacity].toInt();
 	rangeOfHealing = json[Properties::Range].toDouble();
-	//TODO
+
+	if (json.contains(Attributes::Items)) {
+		for (const QJsonValue &uid : json[Attributes::Items].toArray())
+			itemsUids.insert(uid.toInt());
+	}
+	if (json.contains(Attributes::Units)) {
+		for (const QJsonValue &uid : json[Attributes::Units].toArray())
+			unitsUids.insert(uid.toInt());
+	}
 }
 
 QJsonObject Location::saveToJson() const
 {
-	//TODO
 	QJsonObject json = Object::saveToJson();
 
+	if (assemblable)
+		json[Properties::Assemblable] = (int) assemblable;
+	if (transparent)
+		json[Properties::Transparent] = (int) transparent;
+	if (capacity)
+		json[Properties::Capacity] = capacity;
 	if (rangeOfHealing != 0)
 		json[Properties::Range] = rangeOfHealing;
+
+	QJsonArray its;
+	for (Item *item : items.keys())
+		its.append(item->getUid());
+	if (!its.isEmpty())
+		json[Attributes::Items] = its;
+
+	QJsonArray uts;
+	for (int unitUid : unitsUids)
+		uts.append(unitUid);
+	if (!uts.isEmpty())
+		json[Attributes::Units] = uts;
 
 	return json;
 }
 
 void Location::insertUnit(int id)
 {
-	units.insert(id);
+	unitsUids.insert(id);
 }
 
 void Location::removeUnit(int id)
 {
-	units.remove(id);
+	unitsUids.remove(id);
 }
 
-QList<int> Location::getUnits() const
+QList<int> Location::getUnitsUids() const
 {
-	return units.toList();
+	return unitsUids.toList();
 }
 
 QPointF Location::getOffset()
 {
 	return offset;
+}
+
+bool Location::isAssemblable() const
+{
+	return assemblable;
+}
+
+bool Location::isTransparent() const
+{
+	return transparent;
+}
+
+int Location::getCapacity() const
+{
+	return capacity;
 }
 
 qreal Location::getRange() const

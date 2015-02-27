@@ -85,7 +85,8 @@ void Mind::loadFromJson(const QJsonObject &json)
 	for (int i = 0; i < objectsSize; ++i) {
 		Object *object = objects[i];
 		qDebug() << "\t" << object->getName();
-		if (object->getType() == BS::Type::Faction) {
+		switch (object->getType()) {
+		case BS::Type::Faction: {
 			Faction *faction = dynamic_cast<Faction *>(object);
 
 			factions.insert(object->getFactionId(), faction);
@@ -101,7 +102,10 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Object *eq = getObjectFromUid(eqUid);
 			Q_ASSERT(eq->getType() == BS::Type::Equipment);
 			faction->setEquipment(dynamic_cast<Equipment *>(eq));
-		} else if (object->getType() == BS::Type::Unit) {
+
+			break;
+		}
+		case BS::Type::Unit: {
 			Unit *unit = dynamic_cast<Unit *>(object);
 
 			int eqUid = unit->getEquipmentUid();
@@ -113,7 +117,10 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Object *eq = getObjectFromUid(eqUid);
 			Q_ASSERT(eq->getType() == BS::Type::Equipment);
 			unit->setEquipment(dynamic_cast<Equipment *>(eq));
-		} else if (object->getType() == BS::Type::Equipment) {
+
+			break;
+		}
+		case BS::Type::Equipment: {
 			Equipment *eq = dynamic_cast<Equipment *>(object);
 
 			for (int itemUid : eq->getItemsUids())
@@ -121,6 +128,27 @@ void Mind::loadFromJson(const QJsonObject &json)
 			for (BS::Slot slot : BS::getSlots())
 				if (eq->getSlotItemUid(slot) != Object::InvalidUid)
 					eq->putItemIntoSlot(slot, dynamic_cast<Item *>(getObjectFromUid(eq->getSlotItemUid(slot))));
+
+			break;
+		}
+		case BS::Type::Location: {
+			Location *loc = dynamic_cast<Location *>(object);
+
+			for (int itemUid : loc->getItemsUids()) {
+				Item *item = dynamic_cast<Item *>(getObjectFromUid(itemUid));
+				Q_ASSERT(item->getType() == BS::Type::Item);
+				loc->addItem(0, item);
+			}
+			for (int unitUid : loc->getUnitsUids()) {
+				loc->insertUnit(unitUid);
+				Object *unit = getObjectFromUid(unitUid);
+				Q_ASSERT(unit->getType() == BS::Type::Unit);
+				dynamic_cast<Unit *>(unit)->setLocation(loc);
+			}
+
+			break;
+		}
+		default:;
 		}
 	}
 

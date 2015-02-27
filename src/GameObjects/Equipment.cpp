@@ -159,7 +159,7 @@ QJsonObject Equipped::saveToJson() const
 {
 	QJsonObject json;
 
-	if (equipment != nullptr)
+	if (equipment != nullptr && !equipment->isRemovable())
 		json[Attributes::Equipment] = equipment->getUid();
 
 	return json;

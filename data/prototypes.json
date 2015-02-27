@@ -21,8 +21,7 @@
 		"type": "equipment"
 	},
 	"camp": {
-		"type": "location",
-		"range": 20
+		"type": "location"
 	},
 	"unit": {
 		"type": "unit",

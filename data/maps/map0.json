@@ -27,6 +27,11 @@
 		},
 
 		{
+			"name": "camp",
+			"range": 20
+		},
+
+		{
 			"name": "Senior Cebulez",
 			"uid": 4,
 			"animators": [
