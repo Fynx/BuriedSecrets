@@ -125,13 +125,13 @@ namespace Properties {                                 // for Prototypes
 }
 
 namespace Slots {
-	const QString Armor         = "Armor";
-	const QString Fortification = "Fortification";
-	const QString Invalid       = "Invalid";
-	const QString Medicament    = "Medicament";
-	const QString Perception    = "Perception";
-	const QString Tool          = "Tool";
-	const QString Weapon        = "Weapon";
+	const QString Armor         = "armor";
+	const QString Fortification = "fortification";
+	const QString Invalid       = "invalid";
+	const QString Medicament    = "medicament";
+	const QString Perception    = "perception";
+	const QString Tool          = "tool";
+	const QString Weapon        = "weapon";
 }
 
 namespace States {

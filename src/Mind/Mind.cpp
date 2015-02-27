@@ -123,11 +123,19 @@ void Mind::loadFromJson(const QJsonObject &json)
 		case BS::Type::Equipment: {
 			Equipment *eq = dynamic_cast<Equipment *>(object);
 
-			for (int itemUid : eq->getItemsUids())
-				eq->addItem(dynamic_cast<Item *>(getObjectFromUid(itemUid)));
-			for (BS::Slot slot : BS::getSlots())
-				if (eq->getSlotItemUid(slot) != Object::InvalidUid)
-					eq->putItemIntoSlot(slot, dynamic_cast<Item *>(getObjectFromUid(eq->getSlotItemUid(slot))));
+			for (int itemUid : eq->getItemsUids()) {
+				Object *item = getObjectFromUid(itemUid);
+				Q_ASSERT(item->getType() == BS::Type::Item);
+				eq->addItem(dynamic_cast<Item *>(item));
+			}
+			for (BS::Slot slot : BS::getSlots()) {
+				int itemUid = eq->getSlotItemUid(slot);
+				if (itemUid != Object::InvalidUid) {
+					Object *item = getObjectFromUid(itemUid);
+					Q_ASSERT(item->getType() == BS::Type::Item);
+					eq->putItemIntoSlot(slot, dynamic_cast<Item *>(item));
+				}
+			}
 
 			break;
 		}

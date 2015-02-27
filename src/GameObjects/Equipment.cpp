@@ -110,6 +110,8 @@ Item *Equipment::getSlotItem(BS::Slot slot)
 
 const Item *Equipment::getSlotItem(BS::Slot slot) const
 {
+	if (slot == BS::Slot::Invalid)
+		err("Trying to access invalid equipment slot.");
 	if ((!usedItems.contains(slot)) || (!items.contains(usedItems[slot])))
 		return nullptr;
 	return usedItems.value(slot);
