@@ -388,7 +388,8 @@
 		"bigAttBonus": -7,
 		"bigDefBonus": 0.7,
 		"smallDefBonus": 0.3,
-		"bigRangeBonus": 3
+		"bigRangeBonus": 3,
+		"spawnedType": "IKEA bunker"
 	},
 	
 	

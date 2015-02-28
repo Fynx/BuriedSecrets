@@ -23,6 +23,7 @@
 #include "Mind/Animators/AnimatorApplyDamage.hpp"
 #include "Mind/Animators/AnimatorNearCamp.hpp"
 #include "Mind/Animators/AnimatorWatchTarget.hpp"
+#include "Mind/Animators/AnimatorDisassemble.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -61,6 +62,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorUpdateFOV(mind), Animators::UpdateFOV, 50);
 	addAnimator(new AnimatorNearCamp(mind), Animators::NearCamp, 1000);
 	addAnimator(new AnimatorWatchTarget(mind), Animators::WatchTarget, 40);
+	addAnimator(new AnimatorDisassemble(mind), Animators::Disassemble, 100);
 	info("done.");
 }
 

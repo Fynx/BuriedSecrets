@@ -40,6 +40,7 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorAssemble",
+				"AnimatorDisassemble",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
@@ -76,6 +77,7 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorAssemble",
+				"AnimatorDisassemble",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",
@@ -112,6 +114,7 @@
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorAssemble",
+				"AnimatorDisassemble",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorUpdatePath",

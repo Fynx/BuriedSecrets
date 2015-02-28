@@ -14,7 +14,7 @@ using namespace BS;
 
 AnimatorAssemble::AnimatorAssemble(Mind *mind) : Animator(mind)
 {
-	info("Animator Construct created.");
+	info("Animator Assemble created.");
 }
 
 void AnimatorAssemble::act()

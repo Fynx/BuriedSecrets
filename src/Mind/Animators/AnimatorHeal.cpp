@@ -26,8 +26,10 @@ void AnimatorHeal::act()
 		if (unit->getCommand() != Command::Heal)
 			continue;
 		Unit *target = dynamic_cast<Unit *>(mind->getObjectFromUid(unit->getTargetObject()));
-		if (!target)
+		if (!target){
+			unit->setCommand(Command::None);
 			continue;
+		}
 
 		QPointF from = mind->physicsEngine()->getPosition(unit);
 		QPointF to = mind->physicsEngine()->getPosition(target);
