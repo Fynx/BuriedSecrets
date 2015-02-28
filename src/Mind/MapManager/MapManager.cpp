@@ -39,12 +39,12 @@ QList<const Object *> MapManager::getVisibleObjects(const Unit *unit) const
 	QPointF pos = physicsEngine->getPosition(unit);
 	auto objects = physicsEngine->getObjectsInRect(QRectF{pos - radiusP, pos + radiusP});
 
-	VisibilityUpdate FOV = getUnitFOV(unit);
+	//VisibilityUpdate FOV = getUnitFOV(unit);
 
 	for (const Object *obj: objects) {
-		if (obj != unit && canBeSeen(obj, FOV)) {
+		//if (obj != unit && canBeSeen(obj, FOV)) {
 			result.append(obj);
-		}
+		//}
 	}
 
 	return result;

@@ -25,6 +25,7 @@
 #include "Mind/Animators/AnimatorWatchTarget.hpp"
 #include "Mind/Animators/AnimatorDisassemble.hpp"
 #include "Mind/Animators/AnimatorEffects.hpp"
+#include "Mind/Animators/AnimatorMobAttitude.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -65,6 +66,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorWatchTarget(mind), Animators::WatchTarget, 40);
 	addAnimator(new AnimatorDisassemble(mind), Animators::Disassemble, 100);
 	addAnimator(new AnimatorEffects(mind), Animators::Effects, 50);
+	addAnimator(new AnimatorMobAttitude(mind), Animators::MobAttitude, 500);
 	info("done.");
 }
 

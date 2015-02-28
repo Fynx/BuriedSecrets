@@ -51,6 +51,8 @@ int Faction::getFood() const
 
 bool Faction::isNeutralFaction(int uid) const
 {
+	if (uid == 0)
+		return true;
 	if (!relations.contains(uid))
 		qDebug() << "No such faction! " << uid;
 	return relations.value(uid) > 0;
@@ -70,7 +72,7 @@ int Faction::consume(int f)
 		food = 0;
 		return res;
 	}
-	food -=f;
+	food -= f;
 	return 0;
 }
 

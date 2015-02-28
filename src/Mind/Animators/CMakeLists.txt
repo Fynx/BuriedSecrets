@@ -23,6 +23,7 @@ set (Anims_SRCS
 	AnimatorWatchTarget.cpp
 	AnimatorDisassemble.cpp
 	AnimatorEffects.cpp
+	AnimatorMobAttitude.cpp
 )
 
 set (Anims_HDRS
