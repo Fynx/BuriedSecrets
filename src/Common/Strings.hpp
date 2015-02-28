@@ -32,6 +32,7 @@ namespace Animators {
 	const QString Disassemble   = "AnimatorDisassemble";
 	const QString Effects		= "AnimatorEffects";
 	const QString MobAttitude	= "AnimatorMobAttitude";
+	const QString BuildingDmg	= "AnimatorBuildingDmg";
 }
 
 namespace Attributes {                                 // Converted into class fields

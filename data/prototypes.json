@@ -368,7 +368,10 @@
 		"bigDefBonus": 0.7,
 		"smallDefBonus": 0.3,
 		"bigRangeBonus": 3,
-		"spawnedType": "IKEA bunker"
+		"spawnedType": "IKEA bunker",
+		"defAnimators": [
+			"AnimatorBuildingDmg"
+		]
 	},
 	
 	

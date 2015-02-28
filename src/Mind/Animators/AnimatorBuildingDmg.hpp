@@ -1,0 +1,15 @@
+/* YoLoDevelopment, 2014
+ * All rights reserved.
+ */
+#pragma once
+
+#include "Mind/Animators/Animator.hpp"
+
+class AnimatorBuildingDmg : public Animator {
+public:
+	AnimatorBuildingDmg(Mind *mind);
+
+	void act();
+};
+
+

@@ -15,13 +15,17 @@ AnimatorEffects::AnimatorEffects(Mind *mind) : Animator(mind)
 
 void AnimatorEffects::act()
 {
-	for (auto effect = mind->getActiveEffects()->begin(); effect != mind->getActiveEffects()->end(); ++effect){
-		if (effect->isInfinite())
+	auto effect = mind->getActiveEffects()->begin();
+	while (effect != mind->getActiveEffects()->end()){
+		if (effect->isInfinite()){
+			effect++;
 			continue;
+		}
 		effect->setTimeout(effect->getTimeout() - 1);
 
 		if (effect->getTimeout() == 0)
-			mind->deleteEffect(effect);
+			mind->deleteEffect(effect++);
+		effect++;
 	}
 }
 

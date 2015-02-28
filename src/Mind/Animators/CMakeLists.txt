@@ -24,6 +24,7 @@ set (Anims_SRCS
 	AnimatorDisassemble.cpp
 	AnimatorEffects.cpp
 	AnimatorMobAttitude.cpp
+	AnimatorBuildingDmg.cpp
 )
 
 set (Anims_HDRS

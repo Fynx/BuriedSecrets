@@ -402,7 +402,9 @@
 		{
 			"uid": 1001,
 			"name": "Mob House1",
-			"animators": [],
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
 			"x": 12,
 			"y": 28
 		},
@@ -411,7 +413,9 @@
 		{
 			"uid": 1002,
 			"name": "Mob House1",
-			"animators": [],
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
 			"x": 10.8,
 			"y": 13.4
 		},
@@ -420,7 +424,9 @@
 		{
 			"uid": 1003,
 			"name": "Mob House2",
-			"animators": [],
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
 			"x": 5.8,
 			"y": 18
 		},
@@ -429,7 +435,9 @@
 		{
 			"uid": 1004,
 			"name": "Mob House3",
-			"animators": [],
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
 			"x": 22,
 			"y": 15
 		},
