@@ -32,7 +32,6 @@ public:
 	virtual QJsonObject saveToJson() const;
 
 private:
-	QPointF offset;
 	/** Items, searchDifficulty */
 	QMap<Item *, int> items;
 	QSet<int> itemsUids;

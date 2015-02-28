@@ -31,7 +31,7 @@ void AnimatorEnterBuilding::act()
 			continue;
 
 		QPointF from = mind->physicsEngine()->getPosition(unit);
-		QPointF to = mind->physicsEngine()->getPosition(target);
+		QPointF to = mind->physicsEngine()->getPosition(target) + target->getOffset();
 		if (to.isNull() || from.isNull())
 			continue;
 		if (QVector2D(to-from).length() > epsilon)

@@ -5,7 +5,7 @@
 #include "Common/Strings.hpp"
 
 Location::Location(const Prototype *prototype)
-	: Object(prototype), offset(-1, 0.5)
+	: Object(prototype)
 {}
 
 Location::~Location()
@@ -99,7 +99,9 @@ QList<int> Location::getUnitsUids() const
 
 QPointF Location::getOffset()
 {
-	return offset;
+	if (prototype->hasProperty(Properties::OffsetX))
+		return QPointF(prototype->getProperty(Properties::OffsetX).toFloat(), prototype->getProperty(Properties::OffsetY).toFloat());
+	return QPointF(5, 5);
 }
 
 bool Location::isAssemblable() const

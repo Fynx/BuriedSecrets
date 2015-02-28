@@ -30,7 +30,7 @@
 		"psychosis": 100,
 		"sightRange": 1.0,
 		"movementSpeed": 5,
-		"regeneration": 1,
+		"regeneration": 10,
 		"animations": {
 			"Idle": "SoszuIdle",
 			"Run": "SoszuWalking",
@@ -62,7 +62,7 @@
 		"psychosis": 100,
 		"sightRange": 1.0,
 		"movementSpeed": 5,
-		"regeneration": 1,
+		"regeneration": 10,
 		"animations": {
 			"Idle": "SoszuIdle",
 			"Run": "SoszuWalking",
@@ -94,7 +94,7 @@
 		"psychosis": 100,
 		"sightRange": 1.0,
 		"movementSpeed": 5,
-		"regeneration": 1,
+		"regeneration": 10,
 		"animations": {
 			"Idle": "SoszuIdle",
 			"Run": "SoszuWalking",
@@ -371,7 +371,9 @@
 		"spawnedType": "IKEA bunker",
 		"defAnimators": [
 			"AnimatorBuildingDmg"
-		]
+		],
+		"offsetX": 0,
+		"offsetY": 3
 	},
 	
 	
@@ -391,7 +393,9 @@
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
 		"smallDefBonus": 0.1,
-		"bigRangeBonus": 5
+		"bigRangeBonus": 5,
+		"offsetX": 2,
+		"offsetY": 3
 	},
 	
 	
@@ -403,7 +407,9 @@
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
 		"smallDefBonus": 0.1,
-		"bigRangeBonus": 5
+		"bigRangeBonus": 5,
+		"offsetX": 2,
+		"offsetY": 4
 	},
 	
 	
@@ -415,6 +421,8 @@
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
 		"smallDefBonus": 0.1,
-		"bigRangeBonus": 5
+		"bigRangeBonus": 5,
+		"offsetX": 2,
+		"offsetY": 3
 	}
 }

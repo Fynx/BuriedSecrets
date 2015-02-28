@@ -45,8 +45,6 @@ namespace Attributes {                                 // Converted into class f
 	const QString Food          = "food";
 	const QString HP            = "hp";
 	const QString Items         = "items";
-	const QString OffsetX       = "offsetX";
-	const QString OffsetY       = "offsetY";
 	const QString Psychosis     = "psychosis";
 	const QString Relations     = "relations";
 	const QString Slots         = "slots";
@@ -112,6 +110,8 @@ namespace Properties {                                 // for Prototypes
 	const QString MovementSpeed = "movementSpeed";     // Unit
 	const QString Name          = "name";
 	const QString OptimalRange  = "optimalRange";      // Weapon
+	const QString OffsetX       = "offsetX";           // For building
+	const QString OffsetY       = "offsetY";           // For building
 	const QString Perception    = "perception";        // base for Unit
 	const QString Picture       = "picture";           // base for Unit
 	const QString Profession    = "profession";        // base for Unit

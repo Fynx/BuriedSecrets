@@ -11,7 +11,7 @@ public:
 
 	void act();
 private:
-	const float epsilon = 3;
+	const float epsilon = 1;
 };
 
 
