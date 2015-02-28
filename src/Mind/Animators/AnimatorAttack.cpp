@@ -9,6 +9,7 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
+#include "Mind/ShotEffectData.hpp"
 
 using namespace BS;
 
@@ -76,22 +77,26 @@ void AnimatorAttack::act()
 
 		// Calculate direction...
 		QVector2D direction = QVector2D(to - from);
+		QPointF hitPoint(0,0);
 		float angle = Geometry::vecToAngle(direction);
 		int disp = weapon->getPrototype()->getProperty(Properties::Dispersion).toInt();
+
 		angle += (qrand() % disp) - (disp / 2);
-		unit->property(TempData::ShotAngle) = angle;
 		direction = Geometry::angleToVec(angle);
-		//info("Angle: " + QString::number(angle) + " dir " + QString::number(direction.x()) + " " + QString::number(direction.y()));
 
 		// Simulate shot
 		Object *hit = mind->physicsEngine()->getFirstHit(from, direction, weapon->getPrototype()->getProperty(Properties::Range).toFloat());
+
 		if (!hit){
 			info("Miss!");
-			continue;
+			hitPoint = from + (direction * weapon->getPrototype()->getProperty(Properties::Range).toFloat()).toPointF();
 		}
-		info("Object hit: " + hit->getName());
-
-		hit->property(TempData::Damage).setValue(weapon->getPrototype()->getProperty(Properties::Damage).toInt() + hit->property(TempData::Damage).toInt());
+		else{
+			info("Object hit: " + hit->getName());
+			hit->property(TempData::Damage).setValue(weapon->getPrototype()->getProperty(Properties::Damage).toInt() + hit->property(TempData::Damage).toInt());
+			hitPoint = mind->physicsEngine()->getPosition(hit);
+		}
+		mind->addEffect(Effect(Effects::Shot, new ShotEffectData(unit, hitPoint), 15));
 	}
 }
 

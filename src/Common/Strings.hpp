@@ -65,6 +65,7 @@ namespace Data {
 namespace Effects {
 	const QString Selection     = "SelectionEffect";	// Unit selection.
 	const QString BasePolygon   = "BasePolygonEffect";	// Display base polygon and other debug info.
+	const QString Shot          = "ShotEffect";
 }
 
 namespace MapProperties {
@@ -153,7 +154,6 @@ namespace TempData {                                   // kept in GO's map
 	const QString Damage        = "damage";
 	const QString IsSelected    = "isSelected";
 	const QString NearCamp      = "nearCamp";
-	const QString ShotAngle     = "shotAngle";
 	const QString State         = "state";
 	const QString X             = "x";
 	const QString Y             = "y";
