@@ -3,11 +3,12 @@
  */
 #include "Graphics/Graphics.hpp"
 
+#include "Mind/ObjectEffectData.hpp"
 #include "Graphics/BasePolygonEffect.hpp"
 #include "Graphics/SelectionEffect.hpp"
 
 
-Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager, const Mind *mind)
+Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager, Mind *mind)
 	: graphicsDataManager{dataManager}, showFPS{true}, showFOW{true}, timeElapsed{0.0f}, frames{0}
 	, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}
 	, dataManager{dataManager}, mind{mind}, camera{nullptr}, mapSprite{nullptr}, drawOrder{new int[10000]}
@@ -20,8 +21,6 @@ Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataMa
 	rubberBand.setOutlineColor(sf::Color{50, 210, 210, 200});
 	rubberBand.setOutlineThickness(1);
 	widget->setVerticalSyncEnabled(true);
-
-	addEffect("Selection", new SelectionEffect{}, preEffects);
 }
 
 
@@ -33,6 +32,7 @@ Graphics::~Graphics()
 	delete drawOrder;
 	delete positions;
 	delete FOW;
+	delete graphicalEntityFactory;
 }
 
 
@@ -48,7 +48,7 @@ void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 	camera = new Camera{physicsEngine, viewport};
 
 	delete graphicalEntityFactory;
-	graphicalEntityFactory = new GraphicalEntityFactory{&graphicsDataManager, viewport->getPerspective()};
+	graphicalEntityFactory = new GraphicalEntityFactory{&graphicsDataManager, viewport};
 
 	delete FOW;
 	FOW = new GraphicalFogOfWar{canvas, mapManager, viewport};
@@ -81,14 +81,6 @@ void Graphics::loadMap()
 }
 
 
-void Graphics::toggleShowBasePolygons()
-{
-	if (!removeEffect("BasePolygons", postEffects)) {
-		addEffect("BasePolygons", new BasePolygonEffect{}, postEffects);
-	}
-}
-
-
 void Graphics::toggleShowFPS()
 {
 	showFPS = !showFPS;
@@ -109,7 +101,7 @@ void Graphics::render()
 	canvas->clear(sf::Color::Black);
 	canvas->setView(camera->getCurrentView());
 
-	// Draw the map
+	// Draw the map (can be a separate function).
 	if (mapSprite != nullptr) {
 		canvas->draw(*mapSprite);
 	}
@@ -118,6 +110,7 @@ void Graphics::render()
 	auto visibleObjects = camera->getVisibleObjects();
 	auto visibleGraphicalEntities = getGraphicalEntitiesFor(visibleObjects);
 
+	// This can be split out into separate function
 	for (int i = 0; i < visibleGraphicalEntities.size(); ++i) {
 		drawOrder[i] = i;
 		positions[i] = getPosition(visibleGraphicalEntities[i]);
@@ -134,7 +127,9 @@ void Graphics::render()
 
 		return aP.x() < bP.x();
 	      });
+	// End of separate function.
 
+	updateEffects(visibleGraphicalEntities);
 
 	GraphicalEntity *obj;
 
@@ -142,31 +137,19 @@ void Graphics::render()
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
 		obj = visibleGraphicalEntities[idx];
 		updateEntity(obj, 0, positions[idx]);
-
-		// TODO FIXME When refactoring graphics, one might want to bind viewport and canvas to the effect
-		// (pass it in constructor or sth like that).
-		for (const auto &effect: preEffects) {
-			effect.second->draw(obj, positions[idx], camera->getViewport(), canvas);
-		}
+		visibleGraphicalEntities[idx]->drawPreEffects(canvas);
 	}
 
 	// Draw entities.
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
 		obj = visibleGraphicalEntities[idx];
 		obj->draw(canvas);
-
-		for (const auto &effect: postEffects) {
-			effect.second->draw(obj, positions[idx], camera->getViewport(), canvas);
-		}
 	}
 
 	// Draw post effects.
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
 		obj = visibleGraphicalEntities[idx];
-
-		for (const auto &effect: postEffects) {
-			effect.second->draw(obj, positions[idx], camera->getViewport(), canvas);
-		}
+		visibleGraphicalEntities[idx]->drawPostEffects(canvas);
 	}
 
 	drawRubberBand();
@@ -182,7 +165,7 @@ QVector<GraphicalEntity *> Graphics::getGraphicalEntitiesFor(const QList<const O
 {
 	QVector<GraphicalEntity *> res;
 	for (const auto& obj: objects) {
-		res.append(graphicalEntityFactory->get(obj));
+		res.append(graphicalEntityFactory->getOrCreate(obj));
 	}
 	return res;
 }
@@ -200,36 +183,6 @@ void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime, cons
 QPointF Graphics::getPosition(GraphicalEntity *entity) const
 {
 	return camera->getPerspective()->fromMetresToPixels(physicsEngine->getPosition(entity->getObject()));
-}
-
-
-void Graphics::addEffect(const QString &effectName, GraphicalEffect *effect,
-			 std::list<std::pair<QString, GraphicalEffect *>> &effectsList)
-{
-	int id = effect->getOrderId();
-	auto elem = std::make_pair("BasePolygons", effect);
-	for (auto it = effectsList.begin(); it != effectsList.end(); ++it) {
-		if (it->second->getOrderId() > id) {
-			effectsList.insert(it, elem);
-			return;
-		}
-	}
-
-	effectsList.push_back(elem);
-}
-
-
-bool Graphics::removeEffect(const QString &effectName, std::list<std::pair< QString, GraphicalEffect *>> &effectsList)
-{
-	for (auto it = effectsList.begin(); it != effectsList.end(); ++it) {
-		if (it->first == effectName) {
-			delete it->second;
-			effectsList.erase(it);
-			return true;
-		}
-	}
-
-	return false;
 }
 
 
@@ -274,3 +227,38 @@ void Graphics::drawFOW()
 		FOW->draw();
 	}
 }
+
+
+void Graphics::updateEffects(QVector<GraphicalEntity *> &visibleEntities)
+{
+	// Get, filter and assign effects to entities.
+	const auto *effects = mind->getActiveEffects();
+
+	for (auto entity : visibleEntities) {
+		entity->resetActiveEffects();
+	}
+
+	for (const Effect &effect : *effects) {
+		const ObjectEffectData *objData = dynamic_cast<const ObjectEffectData *>(effect.getEffectData());
+
+		if (objData == nullptr) {
+			// Not an object effect - TODO
+			warn("An unknown type of effect for: '" + effect.getName() + "'");
+			continue;
+		}
+
+		GraphicalEntity *entity = graphicalEntityFactory->get(objData->getObject());
+		if (entity == nullptr) {
+			// We don't care, we don't have that entity in our Graphical memory anywhere.
+			continue;
+		}
+
+		entity->addOrMarkEffectActive(effect);
+	}
+
+	// Remove unused effects from all reset entities.
+	for (auto entity : visibleEntities) {
+		entity->removeInactiveEffects();
+	}
+}
+

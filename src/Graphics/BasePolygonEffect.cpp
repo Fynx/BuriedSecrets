@@ -4,9 +4,10 @@
 #include "Graphics/BasePolygonEffect.hpp"
 
 #include "Common/Enums.hpp"
+#include "Graphics/GraphicalEntity.hpp"
 
 
-BasePolygonEffect::BasePolygonEffect() : GraphicalEffect{}
+BasePolygonEffect::BasePolygonEffect(const Viewport *viewport) : GraphicalEffect{viewport}
 {
 	polygon.setFillColor(sf::Color::Transparent);
 	polygon.setOutlineThickness(2);
@@ -20,13 +21,11 @@ BasePolygonEffect::BasePolygonEffect() : GraphicalEffect{}
 }
 
 
-
-void BasePolygonEffect::draw(const GraphicalEntity *graphicalEntity, const QPointF &entityPosition,
-			     const Viewport *viewport, sf::RenderTarget *renderTarget)
+void BasePolygonEffect::draw(const GraphicalEntity *graphicalEntity, sf::RenderTarget *renderTarget)
 {
 	const auto points = graphicalEntity->getBasePolygon();
 	QPointF centre = graphicalEntity->getBaseCentre();
-	QPointF upperLeft = entityPosition - centre;
+	QPointF upperLeft = graphicalEntity->getPosition() - centre;
 
 	// Draw the base polygon.
 	polygon.setPointCount(points.size());

@@ -65,6 +65,8 @@ public:
 	 */
 	void deleteEffect(QLinkedList<Effect>::iterator effectIterator);
 
+	void toggleBasePolygons();
+
 private:
 	Object *createObject(BS::Type type, const QString &name);
 	Object *createObjectFromJson(const QString &name, const QJsonObject &json);
@@ -81,4 +83,6 @@ private:
 	QHash<const int, Object *> uidToObject;
 	QHash<const int, Faction *> factions;
 	QLinkedList<Effect> activeEffects;
+
+	bool basePolygonsEffectOn;
 };

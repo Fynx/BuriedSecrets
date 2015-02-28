@@ -339,8 +339,8 @@ void SelectionManager::markBuildingsSelected()
 	selectedBuildings_.clear();
 
 	for (auto &unit : selectedUnits_) {
-		Location *building = dynamic_cast<Location *>(unit->getLocation());
-		if (building) {
+		Location *building = unit->getLocation();
+		if (building && !selectedBuildings_.contains(building)) {
 			building->property(TempData::IsSelected) = QVariant(true);
 			selectedBuildings_.insert(building);
 			locationToEffect_.insert(building, mind_->addEffect(Effect(Effects::Selection,

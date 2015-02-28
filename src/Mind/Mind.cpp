@@ -5,6 +5,7 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/ObjectEffectData.hpp"
 #include "GameObjects/Equipment.hpp"
 #include "GameObjects/Location.hpp"
 #include "GameObjects/Unit.hpp"
@@ -17,7 +18,8 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	  soundsManager(soundsManager),
 	  animatorManager(new AnimatorManager(this)),
 	  mapManager(nullptr),
-	  constructor(new ItemConstructor(dataManager, this))
+	  constructor(new ItemConstructor(dataManager, this)),
+	  basePolygonsEffectOn(false)
 {
 	info("Mind initialized");
 	soundsManager->onEvent(QString("test: success"));
@@ -224,6 +226,28 @@ QLinkedList<Effect>::iterator Mind::addEffect(const Effect &effect)
 void Mind::deleteEffect(QLinkedList<Effect>::iterator effectIterator)
 {
 	activeEffects.erase(effectIterator);
+}
+
+void Mind::toggleBasePolygons()
+{
+	// Remove all occurences of base polygons.
+	for (auto it = activeEffects.begin(); it != activeEffects.end();) {
+		auto iter = it;
+		++iter;
+		if (it->getName() == Effects::BasePolygon) {
+			activeEffects.erase(it);
+		}
+		it = iter;
+	}
+
+	if (!basePolygonsEffectOn) {
+		// Add base polygons to everything.
+		for (const auto *object : objects) {
+			addEffect(Effect{Effects::BasePolygon, new ObjectEffectData{object}});
+		}
+	}
+
+	basePolygonsEffectOn = !basePolygonsEffectOn;
 }
 
 void Mind::addObject(Object *object, const QPointF &position)

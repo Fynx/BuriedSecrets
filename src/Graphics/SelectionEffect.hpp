@@ -5,14 +5,14 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "GraphicalEffect.hpp"
+#include "Graphics/GraphicalEffect.hpp"
 
 
 class SelectionEffect: public GraphicalEffect {
 public:
-	SelectionEffect();
-	void draw(const GraphicalEntity *graphicalEntity, const QPointF &entityPosition, const Viewport *viewport,
-		  sf::RenderTarget *renderTarget) override;
+	// We don't use the EffectData as we already have the object from the entity when drawing.
+	SelectionEffect(const Viewport *viewport);
+	void draw(const GraphicalEntity *graphicalEntity, sf::RenderTarget *renderTarget) override;
 	int getOrderId() const override;
 
 private:

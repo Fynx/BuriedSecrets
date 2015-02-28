@@ -4,6 +4,8 @@ set (Graphics_SRCS
 	AnimationSet.cpp
 	BasePolygonEffect.cpp
 	Camera.cpp
+	GraphicalEffectFactory.cpp
+	GraphicalEffect.cpp
 	GraphicalEntity.cpp
 	GraphicalEntityFactory.cpp
 	GraphicalFogOfWar.cpp

@@ -79,7 +79,7 @@ void General::saveLevel()
 
 void General::toggleDisplayBasePolygons()
 {
-	graphics->toggleShowBasePolygons();
+	mind->toggleBasePolygons();
 }
 
 

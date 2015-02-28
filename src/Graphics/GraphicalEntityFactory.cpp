@@ -8,8 +8,8 @@
 #include "Graphics/StaticGraphicalEntity.hpp"
 
 
-GraphicalEntityFactory::GraphicalEntityFactory(GraphicsDataManager *graphicsDataManager, const Perspective *perspective)
-	: graphicsDataManager{graphicsDataManager}, perspective{perspective}
+GraphicalEntityFactory::GraphicalEntityFactory(GraphicsDataManager *graphicsDataManager, const Viewport *viewport)
+	: graphicalEffectFactory{viewport}, graphicsDataManager{graphicsDataManager}, viewport{viewport}
 {}
 
 
@@ -19,7 +19,25 @@ GraphicalEntityFactory::~GraphicalEntityFactory()
 }
 
 
-GraphicalEntity* GraphicalEntityFactory::get(const Object* object)
+GraphicalEntity* GraphicalEntityFactory::get(const Object* object) const
+{
+	auto iter = map.find(object);
+
+	if (iter != map.end()) {
+		return iter.value();
+	}
+
+	return nullptr;
+}
+
+
+GraphicalEntity* GraphicalEntityFactory::get(Object* object) const
+{
+	return get(static_cast<const Object*>(object));
+}
+
+
+GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 {
 	auto iter = map.find(object);
 	GraphicalEntity *ptr = nullptr;
@@ -41,21 +59,22 @@ GraphicalEntity* GraphicalEntityFactory::get(const Object* object)
 			const float radius = object->getPrototype()->getProperty("baseRadius").toFloat();
 			QPointF centre = object->getPrototype()->getBaseCentre();
 			// Clockwise
-			basePolygon.append(perspective->fromMetresToPixels(QPointF{centre.x() - radius, centre.y()}));
-			basePolygon.append(perspective->fromMetresToPixels(QPointF{centre.x(), centre.y() - radius}));
-			basePolygon.append(perspective->fromMetresToPixels(QPointF{centre.x() + radius, centre.y()}));
-			basePolygon.append(perspective->fromMetresToPixels(QPointF{centre.x(), centre.y() + radius}));
+			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x() - radius, centre.y()}));
+			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x(), centre.y() - radius}));
+			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x() + radius, centre.y()}));
+			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x(), centre.y() + radius}));
 
-			ptr = new AnimatedGraphicalEntity(object, basePolygon, AnimationSet{s});
+			ptr = new AnimatedGraphicalEntity(object, basePolygon, &graphicalEffectFactory, AnimationSet{s});
 		} else if (objectType == "location") {
 			// Convert base polygon from metres to pixels.
 			basePolygon = object->getPrototype()->getBasePolygon();
 			for (QPointF &p: basePolygon) {
-				p = perspective->fromMetresToPixels(p);
+				p = viewport->fromMetresToPixels(p);
 			}
 
-			ptr = new StaticGraphicalEntity(object, basePolygon, graphicsDataManager->getTexture(
-					object->getPrototype()->getProperty("textureName").toString()));
+			ptr = new StaticGraphicalEntity(object, basePolygon, &graphicalEffectFactory,
+					graphicsDataManager->getTexture(
+							object->getPrototype()->getProperty("textureName").toString()));
 		} else {
 			qDebug() << "FAIL!";
 			Q_ASSERT(false);	// Not a known type.
@@ -71,10 +90,11 @@ GraphicalEntity* GraphicalEntityFactory::get(const Object* object)
 }
 
 
-GraphicalEntity* GraphicalEntityFactory::get(Object* object)
+GraphicalEntity *GraphicalEntityFactory::getOrCreate(Object *object)
 {
-	return get(static_cast<const Object*>(object));
+	return getOrCreate(static_cast<const Object*>(object));
 }
+
 
 
 void GraphicalEntityFactory::deleteObjects()

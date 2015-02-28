@@ -10,8 +10,9 @@ using namespace sf;
 StaticGraphicalEntity::StaticGraphicalEntity(
 	const Object* object,
 	const QList<QPointF> &basePolygon,
+	GraphicalEffectFactory *graphicalEffectFactory,
 	const Texture *texture)
-	: SpriteGraphicalEntity{object, basePolygon}
+	: SpriteGraphicalEntity{object, basePolygon, graphicalEffectFactory}
 {
 	sprite.setTexture(*texture);
 }

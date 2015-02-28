@@ -12,7 +12,7 @@
 class AnimatedGraphicalEntity: public SpriteGraphicalEntity {
 public:
 	AnimatedGraphicalEntity(const Object *object, const QList<QPointF> &basePolygon,
-				const AnimationSet &animationSet);
+				GraphicalEffectFactory *graphicalEffectFactory, const AnimationSet &animationSet);
 
 	void setDirection(const BS::Graphic::Direction &direction) override;
 	void update(const float timeDelta) override;

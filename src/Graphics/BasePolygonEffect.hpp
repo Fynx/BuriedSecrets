@@ -2,16 +2,13 @@
  * All rights reserved.
  */
 #pragma once
-
-
 #include "Graphics/GraphicalEffect.hpp"
 
 
 class BasePolygonEffect: public GraphicalEffect {
 public:
-	BasePolygonEffect();
-	void draw(const GraphicalEntity *graphicalEntity, const QPointF &entityPosition, const Viewport *viewport,
-		  sf::RenderTarget *renderTarget) override;
+	BasePolygonEffect(const Viewport *viewport);
+	void draw(const GraphicalEntity *graphicalEntity, sf::RenderTarget *renderTarget) override;
 	int getOrderId() const override;
 
 private:

@@ -8,7 +8,7 @@
 
 #include "Graphics/Camera.hpp"
 #include "Graphics/GraphicsWidget.hpp"
-#include "Graphics/GraphicalEffect.hpp"
+#include "Graphics/GraphicalEffectFactory.hpp"
 #include "Graphics/GraphicalEntity.hpp"
 #include "Graphics/GraphicalEntityFactory.hpp"
 #include "Graphics/GraphicalFogOfWar.hpp"
@@ -25,7 +25,7 @@
 class Graphics: public QObject {
 Q_OBJECT;
 public:
-	Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager, const Mind *mind);
+	Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager, Mind *mind);
 	~Graphics();
 
 	Graphics(const Graphics &other) = delete;
@@ -47,7 +47,6 @@ public:
 	 * @return void
 	 */
 	void loadMap();
-	void toggleShowBasePolygons();
 	void toggleShowFPS();
 	void toggleFogOfWar();
 
@@ -58,9 +57,6 @@ private:
 	 * @brief Returns the graphical position of the entity.
 	 */
 	QPointF getPosition(GraphicalEntity *entity) const;
-	void addEffect(const QString &effectName, GraphicalEffect *effect,
-		       std::list< std::pair< QString, GraphicalEffect * > > &effectsList);
-	bool removeEffect(const QString &effectName, std::list< std::pair< QString, GraphicalEffect * > > &effectsList);
 	/**
 	 * @brief Draws the rubber band selection (if needed).
 	 */
@@ -70,6 +66,10 @@ private:
 	 * @brief Updates and draws Fog of War if enabled.
 	 */
 	void drawFOW();
+	/**
+	 * @brief Gets effects from mind and updates the inside state of entities to use them.
+	 */
+	void updateEffects(QVector<GraphicalEntity *> &visibleEntities);
 
 	GraphicsDataManager graphicsDataManager;
 	QTimer renderTimer;
@@ -79,9 +79,8 @@ private:
 	float timeElapsed;
 	sf::Clock clock;
 	int frames;
-	std::list<std::pair<QString, GraphicalEffect *>> preEffects;	// Effects drawn before the Entities.
-	std::list<std::pair<QString, GraphicalEffect *>> postEffects;	// Effects drawn after the entities.
 	sf::RectangleShape rubberBand;
+	QSet<GraphicalEntity *> wasReset;	// A helper set for updating effects.
 
 	// This pointer is just for convenience as it points to the widget.
 	sf::RenderWindow *canvas;
@@ -89,7 +88,7 @@ private:
 	GraphicalEntityFactory *graphicalEntityFactory;
 	const PhysicsEngine *physicsEngine;
 	const DataManager *dataManager;
-	const Mind *mind;
+	Mind *mind;
 	MapManager *mapManager;
 	Camera *camera;
 	sf::Sprite *mapSprite;

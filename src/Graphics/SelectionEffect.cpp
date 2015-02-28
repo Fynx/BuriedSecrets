@@ -5,9 +5,10 @@
 
 #include "Common/Geometry.hpp"
 #include "Common/Strings.hpp"
+#include "Graphics/GraphicalEntity.hpp"
 
 
-SelectionEffect::SelectionEffect() : GraphicalEffect{}
+SelectionEffect::SelectionEffect(const Viewport *viewport) : GraphicalEffect{viewport}
 {
 	circleShape.setPointCount(20);
 	circleShape.setFillColor(sf::Color::Transparent);
@@ -16,39 +17,36 @@ SelectionEffect::SelectionEffect() : GraphicalEffect{}
 }
 
 
-void SelectionEffect::draw(const GraphicalEntity *graphicalEntity, const QPointF &entityPosition,
-			   const Viewport *viewport, sf::RenderTarget *renderTarget)
+void SelectionEffect::draw(const GraphicalEntity *graphicalEntity, sf::RenderTarget *renderTarget)
 {
 	const Object *obj = graphicalEntity->getObject();
-	if (obj->property(TempData::IsSelected).toBool()) {
-		auto objType = obj->getPrototype()->getProperty("type").toString();
-		float radiusPx = 0.0f;
-		QPointF scale = viewport->getWholeScale();
+	auto objType = obj->getType();
+	float radiusPx = 0.0f;
+	QPointF scale = viewport->getWholeScale();
 
-		if (objType == "unit") {
-			float radius = obj->getPrototype()->getProperty("baseRadius").toFloat();
-			radiusPx = std::min(radius * scale.x(), radius * scale.y()) * 1.5f;
-		} else {
-			QPointF centre = graphicalEntity->getBaseCentre();
-			basePolygon = graphicalEntity->getBasePolygon();
-			for (const QPointF &p: basePolygon) {
-				radiusPx = std::max(radiusPx, BS::Geometry::distance(p, centre));
-			}
+	if (objType == BS::Type::Unit) {
+		float radius = obj->getPrototype()->getProperty(Properties::BaseRadius).toFloat();
+		radiusPx = std::min(radius * scale.x(), radius * scale.y()) * 1.5f;
+	} else {
+		QPointF centre = graphicalEntity->getBaseCentre();
+		basePolygon = graphicalEntity->getBasePolygon();
+		for (const QPointF &p: basePolygon) {
+			radiusPx = std::max(radiusPx, BS::Geometry::distance(p, centre));
 		}
-
-		// FIXME this whole scale mumbo-jumbo might need to be reworked here.
-		// Selections work fine for now.
-		scale /= std::min(scale.x(), scale.y());
-		circleShape.setScale(scale.x(),  scale.y());
-		float maxNormScale = std::max(scale.x(), scale.y());
-
-		QPointF radiusDelta{radiusPx * scale.x() / maxNormScale, radiusPx * scale.y() / maxNormScale};
-
-		QPointF position = entityPosition - 2 * radiusDelta;
-		circleShape.setPosition(position.x(), position.y());
-		circleShape.setRadius(radiusPx);
-		renderTarget->draw(circleShape);
 	}
+
+	// FIXME this whole scale mumbo-jumbo might need to be reworked here.
+	// Selections work fine for now.
+	scale /= std::min(scale.x(), scale.y());
+	circleShape.setScale(scale.x(),  scale.y());
+	float maxNormScale = std::max(scale.x(), scale.y());
+
+	QPointF radiusDelta{radiusPx * scale.x() / maxNormScale, radiusPx * scale.y() / maxNormScale};
+
+	QPointF position = graphicalEntity->getPosition() - 2 * radiusDelta;
+	circleShape.setPosition(position.x(), position.y());
+	circleShape.setRadius(radiusPx);
+	renderTarget->draw(circleShape);
 }
 
 

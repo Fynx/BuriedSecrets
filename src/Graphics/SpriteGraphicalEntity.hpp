@@ -10,7 +10,8 @@
 
 class SpriteGraphicalEntity: public GraphicalEntity {
 public:
-	SpriteGraphicalEntity(const Object *object, const QList<QPointF> &basePolygon);
+	SpriteGraphicalEntity(const Object *object, const QList<QPointF> &basePolygon,
+				GraphicalEffectFactory *graphicalEffectFactory);
 
 	void draw(sf::RenderTarget *renderTarget) override;
 	void setPosition(const QPointF &position) override;
