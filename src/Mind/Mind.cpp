@@ -211,7 +211,7 @@ void Mind::resumeGame()
 	animatorManager->resumeGame();
 }
 
-const QLinkedList<Effect> *Mind::getActiveEffects() const
+QLinkedList<Effect> * const Mind::getActiveEffects()
 {
 	return &activeEffects;
 }

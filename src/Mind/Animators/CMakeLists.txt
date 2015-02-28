@@ -22,6 +22,7 @@ set (Anims_SRCS
 	AnimatorNearCamp.cpp
 	AnimatorWatchTarget.cpp
 	AnimatorDisassemble.cpp
+	AnimatorEffects.cpp
 )
 
 set (Anims_HDRS

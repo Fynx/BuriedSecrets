@@ -56,7 +56,7 @@ public:
 	void pauseGame();
 	void resumeGame();
 
-	const QLinkedList<Effect> *getActiveEffects() const;
+	QLinkedList<Effect> * const getActiveEffects();
 	QLinkedList<Effect>::iterator addEffect(const Effect &effect);
 	/**
 	 * @brief Deletes the effect from the list.

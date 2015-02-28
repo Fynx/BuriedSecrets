@@ -30,6 +30,7 @@ namespace Animators {
 	const QString NearCamp      = "AnimatorNearCamp";
 	const QString WatchTarget   = "AnimatorWatchTarget";
 	const QString Disassemble   = "AnimatorDisassemble";
+	const QString Effects		= "AnimatorEffects";
 }
 
 namespace Attributes {                                 // Converted into class fields

@@ -24,6 +24,7 @@
 #include "Mind/Animators/AnimatorNearCamp.hpp"
 #include "Mind/Animators/AnimatorWatchTarget.hpp"
 #include "Mind/Animators/AnimatorDisassemble.hpp"
+#include "Mind/Animators/AnimatorEffects.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -63,6 +64,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorNearCamp(mind), Animators::NearCamp, 1000);
 	addAnimator(new AnimatorWatchTarget(mind), Animators::WatchTarget, 40);
 	addAnimator(new AnimatorDisassemble(mind), Animators::Disassemble, 100);
+	addAnimator(new AnimatorEffects(mind), Animators::Effects, 50);
 	info("done.");
 }
 
