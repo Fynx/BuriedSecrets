@@ -16,7 +16,6 @@
 	UnitEquipmentTab.cpp
 	UnitHistoryTab.cpp
 	UnitSection.cpp
-	UnitStatsTab.cpp
 	UnitWindow.cpp
 	UserInterface.cpp
 	Viewport.cpp

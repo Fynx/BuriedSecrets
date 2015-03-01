@@ -7,7 +7,8 @@
 
 class Mind;
 
-static const QSize FactionPanelSize{300, 100};
+static const QSize FactionPanelSize{200, 100};
+static const QSize IconsSize{64, 64};
 
 class FactionPanel : public QFrame {
 	Q_OBJECT

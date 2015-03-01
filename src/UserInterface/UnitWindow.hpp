@@ -19,7 +19,6 @@ public slots:
 private:
 	static const int EquipmentIndex = 0;
 	static const int HistoryIndex = 1;
-	static const int StatsIndex = 2;
 
 	void initLayout();
 

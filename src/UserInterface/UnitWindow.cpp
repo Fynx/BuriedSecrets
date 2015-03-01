@@ -6,7 +6,6 @@
 #include "DebugManager/DebugManager.hpp"
 #include "UserInterface/UnitEquipmentTab.hpp"
 #include "UserInterface/UnitHistoryTab.hpp"
-#include "UserInterface/UnitStatsTab.hpp"
 #include "GameObjects/Unit.hpp"
 
 UnitWindow::UnitWindow(DataManager *dataManager)
@@ -53,7 +52,6 @@ void UnitWindow::setUnit(Unit *unit)
 
 	tabWidget_->insertTab(EquipmentIndex, new UnitEquipmentTab(unit_, dataManager_), tr("Equipment"));
 	tabWidget_->insertTab(HistoryIndex,   new UnitHistoryTab(unit_, dataManager_),   tr("History"));
-	tabWidget_->insertTab(StatsIndex,     new UnitStatsTab(unit_),                   tr("Stats"));
 
 	tabWidget_->setCurrentIndex(oldIdx);
 }
