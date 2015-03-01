@@ -7,7 +7,7 @@ set (Mind_SRCS
 	Mind.cpp
 	ItemConstructor.cpp
 	ObjectEffectData.cpp
-	ShotEffectData.cpp
+	PointToPointEffectData.cpp
 )
 
 set (Mind_HDRS

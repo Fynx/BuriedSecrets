@@ -9,7 +9,7 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
-#include "Mind/ShotEffectData.hpp"
+#include "Mind/PointToPointEffectData.hpp"
 
 using namespace BS;
 
@@ -59,7 +59,8 @@ void AnimatorAttack::act()
 			continue;
 
 		// We are close!
-		if (dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat() && unit->getState() != State::Inside){
+		if (dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat() &&
+				unit->getState() != State::Inside){
 			unit->setCurrentPath(QList<QPointF>());
 			if (weapon->getState() != State::Idle)
 				continue;
@@ -85,18 +86,23 @@ void AnimatorAttack::act()
 		direction = Geometry::angleToVec(angle);
 
 		// Simulate shot
-		Object *hit = mind->physicsEngine()->getFirstHit(from, direction, weapon->getPrototype()->getProperty(Properties::Range).toFloat());
+		Object *hit = mind->physicsEngine()->getFirstHit(from, direction,
+				weapon->getPrototype()->getProperty(Properties::Range).toFloat());
 
 		if (!hit){
 			info("Miss!");
-			hitPoint = from + (direction * weapon->getPrototype()->getProperty(Properties::Range).toFloat()).toPointF();
+			hitPoint = from + (direction *
+					weapon->getPrototype()->getProperty(Properties::Range).toFloat()).toPointF();
 		}
 		else{
 			info("Object hit: " + hit->getName());
-			hit->property(TempData::Damage).setValue(weapon->getPrototype()->getProperty(Properties::Damage).toInt() + hit->property(TempData::Damage).toInt());
+			hit->property(TempData::Damage).setValue(
+					weapon->getPrototype()->getProperty(Properties::Damage).toInt() +
+					hit->property(TempData::Damage).toInt());
 			hitPoint = mind->physicsEngine()->getPosition(hit);
 		}
-		mind->addEffect(Effect(Effects::Shot, new ShotEffectData(unit, hitPoint), 15));
+		mind->addEffect(Effect(Effects::Shot,
+				new PointToPointEffectData(mind->physicsEngine()->getPosition(unit), hitPoint), 15));
 	}
 }
 

@@ -3,8 +3,10 @@
  */
 #include "Graphics/GraphicalEntityFactory.hpp"
 
+#include "Common/Strings.hpp"
 #include "Graphics/AnimatedGraphicalEntity.hpp"
 #include "Graphics/AnimationSet.hpp"
+#include "Graphics/ShotEffectGraphicalEntity.hpp"
 #include "Graphics/StaticGraphicalEntity.hpp"
 
 
@@ -21,9 +23,9 @@ GraphicalEntityFactory::~GraphicalEntityFactory()
 
 GraphicalEntity* GraphicalEntityFactory::get(const Object* object) const
 {
-	auto iter = map.find(object);
+	auto iter = objectEntities.find(object);
 
-	if (iter != map.end()) {
+	if (iter != objectEntities.end()) {
 		return iter.value();
 	}
 
@@ -39,10 +41,10 @@ GraphicalEntity* GraphicalEntityFactory::get(Object* object) const
 
 GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 {
-	auto iter = map.find(object);
+	auto iter = objectEntities.find(object);
 	GraphicalEntity *ptr = nullptr;
 
-	if (iter == map.end()) {
+	if (iter == objectEntities.end()) {
 		auto objectType = object->getPrototype()->getProperty("type").toString();
 		QList<QPointF> basePolygon;
 
@@ -81,7 +83,7 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 		}
 
 		Q_ASSERT(ptr != nullptr);
-		map[object] = ptr;
+		objectEntities[object] = ptr;
 	} else {
 		ptr = iter.value();
 	}
@@ -96,11 +98,38 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(Object *object)
 }
 
 
+EffectGraphicalEntity *GraphicalEntityFactory::getOrCreateEffectEntity(const Effect &effect)
+{
+	auto iter = effectEntities.find(effect.getEffectData());
+	EffectGraphicalEntity *ptr = nullptr;
+
+	if (iter == effectEntities.end()) {
+		QString name = effect.getName();
+		if (name == Effects::Shot) {
+			ptr = new ShotEffectGraphicalEntity{viewport};
+		}
+
+		if (!ptr) {
+			warn("Unknown EffectEntity type! Effect name: " + effect.getName());
+			return ptr;
+		}
+		effectEntities[effect.getEffectData()] = ptr;
+	} else {
+		ptr = iter.value();
+	}
+
+	// Reusing objects for new pointers.
+	ptr->updateData(effect.getEffectData());
+
+	return ptr;
+}
+
 
 void GraphicalEntityFactory::deleteObjects()
 {
 	// Free the GraphicalObjects.
-	qDeleteAll(map);
+	qDeleteAll(objectEntities);
+	qDeleteAll(effectEntities);
 }
 
 

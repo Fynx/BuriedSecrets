@@ -110,17 +110,20 @@ void Graphics::render()
 	auto visibleGraphicalEntities = getGraphicalEntitiesFor(visibleObjects);
 
 	// This can be split out into separate function
+	for (auto *entity : visibleGraphicalEntities) {
+		updateEntity(entity, 0, getPosition(entity));
+	}
+
+	updateEffects(visibleGraphicalEntities);
+
 	for (int i = 0; i < visibleGraphicalEntities.size(); ++i) {
 		drawOrder[i] = i;
-		// FIXME remove positions?
-		updateEntity(visibleGraphicalEntities[i], 0, getPosition(visibleGraphicalEntities[i]));
 	}
 
 	qSort(drawOrder, drawOrder + visibleGraphicalEntities.size(),
 	      [&](const int &a, const int &b) -> bool {
-		QPointF aP = visibleGraphicalEntities[a]->getPosition() + visibleGraphicalEntities[a]->getBaseCentre();
-		// FIXME w/o bacecentre?
-		QPointF bP = visibleGraphicalEntities[b]->getPosition() + visibleGraphicalEntities[b]->getBaseCentre();
+		QPointF aP = visibleGraphicalEntities[a]->getPosition();
+		QPointF bP = visibleGraphicalEntities[b]->getPosition();
 
 		if (aP.y() != bP.y()) {
 			return aP.y() < bP.y();
@@ -130,11 +133,9 @@ void Graphics::render()
 	      });
 	// End of separate function.
 
-	updateEffects(visibleGraphicalEntities);
-
 	GraphicalEntity *obj;
 
-	// Draw pre effects (update entities as well).
+	// Draw pre effects.
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
 		obj = visibleGraphicalEntities[idx];
 		visibleGraphicalEntities[idx]->drawPreEffects(canvas);
@@ -243,17 +244,19 @@ void Graphics::updateEffects(QVector<GraphicalEntity *> &visibleEntities)
 
 		if (objData == nullptr) {
 			// Not an object effect - TODO
-			warn("An unknown type of effect for: '" + effect.getName() + "'");
-			continue;
-		}
+			EffectGraphicalEntity *effectEntity = graphicalEntityFactory->getOrCreateEffectEntity(effect);
+			if (effectEntity != nullptr) {
+				visibleEntities.append(effectEntity);
+			}
+		} else {
+			GraphicalEntity *entity = graphicalEntityFactory->get(objData->getObject());
+			if (entity == nullptr) {
+				// We don't care, we don't have that entity in our Graphical memory anywhere.
+				continue;
+			}
 
-		GraphicalEntity *entity = graphicalEntityFactory->get(objData->getObject());
-		if (entity == nullptr) {
-			// We don't care, we don't have that entity in our Graphical memory anywhere.
-			continue;
+			entity->addOrMarkEffectActive(effect);
 		}
-
-		entity->addOrMarkEffectActive(effect);
 	}
 
 	// Remove unused effects from all reset entities.

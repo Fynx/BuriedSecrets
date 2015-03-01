@@ -5,6 +5,7 @@
 
 #include <QHash>
 
+#include "Graphics/EffectGraphicalEntity.hpp"
 #include "Graphics/GraphicalEffectFactory.hpp"
 #include "Graphics/GraphicalEntity.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
@@ -35,6 +36,13 @@ public:
 	 */
 	GraphicalEntity *getOrCreate(const Object *object);
 	/**
+	 * @brief
+	 *
+	 * @param effectData ...
+	 * @return GraphicalEntity*
+	 */
+	EffectGraphicalEntity *getOrCreateEffectEntity(const Effect &effect);
+	/**
 	 * @brief Deletes all the allocated objects along with mapping.
 	 */
 	void deleteObjects();
@@ -44,7 +52,8 @@ private:
 
 	GraphicalEffectFactory graphicalEffectFactory;
 
-	QHash <const Object *, GraphicalEntity *> map;
+	QHash <const Object *, GraphicalEntity *> objectEntities;
+	QHash <const EffectData *, EffectGraphicalEntity *> effectEntities;
 	GraphicsDataManager *graphicsDataManager;
 	const Viewport *viewport;;
 };
