@@ -288,6 +288,15 @@ void Mind::removeObject(Object *object)
 	physics->removeObject(object);
 	objects.removeAll(object);
 	uidToObject.remove(object->getUid());
+
+	//TODO I wonder it would probably be better with this logic here implemented in AnimatorDie
+	if (object->getType() == BS::Type::Unit)
+		removeObject(dynamic_cast<Unit *>(object)->getEquipment());
+	if (object->getType() == BS::Type::Faction)
+		removeObject(dynamic_cast<Faction *>(object)->getEquipment());
+	if (object->getType() == BS::Type::Equipment)
+		for (Item *item : dynamic_cast<Equipment *>(object)->getItems())
+			removeObject(item);
 }
 
 Object *Mind::getObjectFromUid(const int uid)
