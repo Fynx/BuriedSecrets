@@ -19,14 +19,14 @@ const qreal SelectionManager::ViewportZoomDelta = 0.05f;
 SelectionManager::SelectionManager(Mind *mind)
 	: mind_(mind),
 	  viewport_(new IsometricPerspective(pixelToMetresScale)),
-	  selectedLocation_(nullptr)
+	  selectedLocationUid_(Object::InvalidUid)
 {
 	//init Viewport
 	viewport_.setMapSize(mind_->getMap()->getSize());
 
 	//init selectionGroups
 	for (int i = 0; i < 10; ++i)
-		selectionGroups_.insert(i, {});
+		selectionGroupsUids_.insert(i, {});
 }
 
 Viewport *SelectionManager::viewport()
@@ -63,29 +63,18 @@ void SelectionManager::keyPressEvent(const QKeyEvent *event)
 
 	//Selection groups
 	if (event->key() >= Qt::Key_0 && event->key() <= Qt::Key_9) {
-		int number = event->key() - Qt::Key_0;
+		int groupNumber = event->key() - Qt::Key_0;
+
 		if (event->modifiers() & Qt::ControlModifier)
-			selectionGroups_[number] = selectedUnits_;
+			selectionGroupsUids_[groupNumber] = selectedUnitsUids_;
 		else
-			selectUnits(selectionGroups_[number]);
+			selectUnits(selectionGroupsUids_[groupNumber]);
 	}
 
 	//Specific unit selection
 	if (event->key() >= Qt::Key_F1 && event->key() <= Qt::Key_F12) {
 		int number = event->key() - Qt::Key_F1 + 1; //index from 1
-		Unit *unit = unitByNumber(number);
-
-		if (unit != nullptr) {
-			if (event->modifiers() & Qt::ShiftModifier)
-				addUnitsToSelection({unit});
-			else if (event->modifiers() & Qt::AltModifier) {
-				for (auto &selectedUnit : selectedUnits_) {
-					selectedUnit->setTargetObject(unit->getUid());
-					selectedUnit->setCommand(BS::Command::Heal);
-				}
-			} else
-				selectUnits({unit});
-		}
+		pickUnit(unitNumberToUid(number));
 	}
 }
 
@@ -97,13 +86,17 @@ void SelectionManager::mousePressEvent(const QMouseEvent *event)
 	if (event->button() == Qt::RightButton) {
 		if (event->modifiers() & Qt::ControlModifier) {
 			//SecondaryAction
-			if (selectedUnits_.size() == 1)
-			makeSecondaryAction(*selectedUnits_.begin(), place, target);
+			if (selectedUnitsUids_.size() == 1) {
+				Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnitsUids_.begin()));
+				makeSecondaryAction(unit, place, target);
+			}
 		}
 		else {
 			// Primary Action
-			for (auto &unit : selectedUnits_)
+			for (auto &uid : selectedUnitsUids_) {
+				Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
 				makePrimaryAction(unit, place, target);
+			}
 		}
 	}
 }
@@ -115,44 +108,39 @@ void SelectionManager::gameWidgetResized(QSize sizeInPixels)
 
 void SelectionManager::refresh()
 {
+	removeDeadFromSelection();
 	markBuildingsSelected();
 }
 
-void SelectionManager::addUnitToSelectionByUid(int uid)
+void SelectionManager::showUnit(int uid)
 {
+	//TODO center viewport on unit
+}
+
+void SelectionManager::pickUnit(int uid)
+{
+	if (!mind_->getPlayerFaction()->isAliveMember(uid))
+		return;
+
 	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
 	if (unit == nullptr)
 		return;
-	addUnitsToSelection({unit});
-}
 
-void SelectionManager::healUnitByUid(int uid)
-{
-	Unit *target = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
-	if (target == nullptr)
-		return;
-	for (auto &unit : selectedUnits_) {
-		unit->setTargetObject(target->getUid());
-		unit->setCommand(BS::Command::Heal);
-	}
-}
-
-void SelectionManager::selectUnitByUid(int uid)
-{
-	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
-	if (unit == nullptr)
-		return;
-	selectUnits({unit});
-}
-
-void SelectionManager::showUnitByUid(int uid)
-{
-	//TODO center viewport on unit position
+	if (QApplication::keyboardModifiers() & Qt::ShiftModifier)
+		addUnitsToSelection({unit->getUid()});
+	else if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
+		if (selectedUnitsUids_.size() == 1) {
+			Unit *selectedUnit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnitsUids_.begin()));
+			selectedUnit->setTargetObject(unit->getUid());
+			selectedUnit->setCommand(BS::Command::Heal);
+		}
+	} else
+		selectUnits({unit->getUid()});
 }
 
 void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
 {
-	QSet<Unit *> filteredUnits = filterSelection(objectInPixelsRect(selectionRect));
+	auto filteredUnits = filterSelection(objectInPixelsRect(selectionRect));
 
 	if (QApplication::keyboardModifiers() & Qt::ShiftModifier)
 		addUnitsToSelection(filteredUnits);
@@ -225,16 +213,24 @@ void SelectionManager::makeSecondaryAction(Unit *unit, QPointF point, Object *ta
 
 bool SelectionManager::isFriendly(Object* object)
 {
+	//TODO move to faction?
 	return mind_->getPlayerFaction()->isNeutralFaction(object->getFactionId())
 	       || Mind::PlayerFactionId == object->getFactionId();
 }
 
-Unit *SelectionManager::unitByNumber(int number) const
+int SelectionManager::unitNumberToUid(int number) const
 {
-	QList<int> allUnits = mind_->getPlayerFaction()->getAllUnitsUids();
+	auto faction = mind_->getPlayerFaction();
+	auto allUnits = faction->getAllUnitsUids();
+
 	if (number < 1 || number > allUnits.size())
-		return nullptr;
-	return dynamic_cast<Unit *>(mind_->getObjectFromUid(allUnits[number - 1]));
+		return Object::InvalidUid;
+
+	auto uid = allUnits[number - 1];
+	if (faction->isAliveMember(uid))
+		return uid;
+
+	return Object::InvalidUid;
 }
 
 Object *SelectionManager::objectInPixelsPos(QPoint pointInPixels) const
@@ -266,15 +262,15 @@ QSet<Object *> SelectionManager::objectInPixelsRect(QRect rectInPixels) const
 	return result;
 }
 
-QSet<Unit *> SelectionManager::filterSelection(const QSet<Object *> &objects) const
+QSet<int> SelectionManager::filterSelection(const QSet<Object *> &objects) const
 {
-	QSet<Unit *> units;
+	QSet<int> units;
 	QSet<Location *> buildings;
 
 	for (auto &object : objects) {
 		Unit *unit = dynamic_cast<Unit *>(object);
 		if (unit && unit->getFactionId() == Mind::PlayerFactionId)
-			units.insert(unit);
+			units.insert(unit->getUid());
 
 		Location *building = dynamic_cast<Location *>(object);
 		if (building && building->getFactionId() == Mind::PlayerFactionId)
@@ -293,67 +289,81 @@ QSet<Unit *> SelectionManager::filterSelection(const QSet<Object *> &objects) co
 			if (!unit)
 				err("Invalid object in building");
 			else
-				units.insert(unit);
+				units.insert(unit->getUid());
 		}
 	}
 	return units;
 }
 
-void SelectionManager::selectUnits(const QSet<Unit *> &units)
+void SelectionManager::selectUnits(const QSet<int> &unitsUids)
 {
-	for (auto &unit : selectedUnits_)
-		unmarkObjectSelected(unit);
+	for (auto &uid : selectedUnitsUids_)
+		removeSelectionEffect(uid);
 
-	selectedUnits_ = units;
+	selectedUnitsUids_ = unitsUids;
 
-	for (auto &unit : selectedUnits_)
-		markObjectSelected(unit);
+	for (auto &uid : selectedUnitsUids_)
+		addSelectionEffect(uid);
 
 	markBuildingsSelected();
 }
 
-void SelectionManager::addUnitsToSelection(QSet<Unit *> units)
+void SelectionManager::addUnitsToSelection(QSet<int> unitsUids)
 {
-	selectedUnits_.unite(units);
+	selectedUnitsUids_.unite(unitsUids);
 
-	for (auto &unit : units)
-		markObjectSelected(unit);
+	for (auto &uid : unitsUids)
+		addSelectionEffect(uid);
 
 	markBuildingsSelected();
 }
 
 void SelectionManager::markBuildingsSelected()
 {
-	if (selectedLocation_ != nullptr)
-		unmarkObjectSelected(selectedLocation_);
+	if (selectedLocationUid_ != Object::InvalidUid)
+		removeSelectionEffect(selectedLocationUid_);
 
-	selectedLocation_ = nullptr;
+	selectedLocationUid_ = Object::InvalidUid;
 
-	for (auto &unit : selectedUnits_) {
+	for (auto &uid : selectedUnitsUids_) {
+		Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
 		Location *location = unit->getLocation();
 		if (location) {
-			if (selectedLocation_ == nullptr) {
-				selectedLocation_ = location;
-				markObjectSelected(location);
+			if (selectedLocationUid_ == Object::InvalidUid) {
+				selectedLocationUid_ = location->getUid();
+				addSelectionEffect(location->getUid());
 			}
 			else
-				if (selectedLocation_ != selectedLocation_)
+				if (location->getUid() != selectedLocationUid_)
 					err("Probably more than 1 location selected");
 		}
 	}
 }
 
-void SelectionManager::markObjectSelected(Object *object)
+void SelectionManager::addSelectionEffect(int objUid)
 {
+	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
 	object->property(TempData::IsSelected) = QVariant(true);
 	auto effectIterator = mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(object)));
-	objectToSelectionEffect_.insert(object, effectIterator);
+
+	uidToSelectionEffect_.insert(objUid, effectIterator);
 }
 
-void SelectionManager::unmarkObjectSelected(Object *object)
+void SelectionManager::removeSelectionEffect(int objUid)
 {
+	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
 	object->property(TempData::IsSelected) = QVariant(false);
-	const auto selection = objectToSelectionEffect_.find(object);
+
+	const auto selection = uidToSelectionEffect_.find(objUid);
 	mind_->deleteEffect(selection.value());
-	objectToSelectionEffect_.erase(selection);
+
+	uidToSelectionEffect_.erase(selection);
+}
+
+void SelectionManager::removeDeadFromSelection()
+{
+	auto selectedUnitsUidsCopy_ = selectedUnitsUids_;
+	for (auto uid : selectedUnitsUidsCopy_)
+		if (!mind_->getPlayerFaction()->isAliveMember(uid))
+			selectedUnitsUids_.remove(uid);
 }

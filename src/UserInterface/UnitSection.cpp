@@ -6,8 +6,8 @@
 #include "GameObjects/Unit.hpp"
 #include "Common/Strings.hpp"
 #include "DataManager/DataManager.hpp"
+#include "UserInterface/UnitsPanel.hpp"
 
-const QSize UnitSection::WidgetSize{160, 130};
 const QSize UnitSection::AvatarSize{64, 64};
 
 UnitSection::UnitSection(const Unit *unit, DataManager *dataManager)
@@ -28,7 +28,7 @@ const Unit *UnitSection::unit()
 
 QSize UnitSection::sizeHint() const
 {
-	return WidgetSize;
+	return UnitsPanel::SectionSize;
 }
 
 void UnitSection::refresh()
@@ -54,18 +54,7 @@ void UnitSection::mouseDoubleClickEvent(QMouseEvent *event)
 
 void UnitSection::mousePressEvent(QMouseEvent *event)
 {
-	if (event->button() == Qt::LeftButton) {
-		if (QApplication::keyboardModifiers() & Qt::ShiftModifier)
-			emit add();
-		else
-			emit select();
-	}
-	if (event->button() == Qt::RightButton) {
-		if (QApplication::keyboardModifiers() & Qt::AltModifier)
-			emit heal();
-		else
-			emit showUnit();
-	}
+	emit pickUnit();
 
 	QWidget::mousePressEvent(event);
 }

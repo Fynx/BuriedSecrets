@@ -3,6 +3,7 @@
 	CampConstructorTab.cpp
 	CampEquipmentTab.cpp
 	CampWindow.cpp
+	DeadSection.cpp
 	FactionPanel.cpp
 	GameWindow.cpp
 	IsometricPerspective.cpp

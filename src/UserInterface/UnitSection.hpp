@@ -12,8 +12,6 @@ class Mind;
 class UnitSection : public QFrame {
 	Q_OBJECT
 public:
-	static const QSize WidgetSize;
-
 	UnitSection(const Unit *unit, DataManager *dataManager);
 
 	const Unit *unit();
@@ -38,9 +36,7 @@ private:
 	QProgressBar *psychosisBar_;
 
 signals:
-	void select();
-	void add();
-	void heal();
+	void pickUnit();
 	void showUnit();
 	void showMenu();
 };

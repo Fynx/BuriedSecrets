@@ -3,19 +3,23 @@
  */
 #include "UnitsPanel.hpp"
 
+#include "UserInterface/DeadSection.hpp"
 #include "UserInterface/UnitSection.hpp"
 #include "Mind/Mind.hpp"
 
-UnitsPanel::UnitsPanel(DataManager *dataManager) : dataManager_(dataManager)
+const QSize UnitsPanel::SectionSize{160, 130};
+
+UnitsPanel::UnitsPanel(DataManager *dataManager, const Mind *mind)
+	: dataManager_(dataManager),
+	  mind_(mind)
 {
-	setLayout(new QHBoxLayout);
 	setAutoFillBackground(true);
-	connect(&addSignalMapper_, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
-	        this, &UnitsPanel::addUnit);
-	connect(&healSignalMapper_, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
-	        this, &UnitsPanel::healUnit);
-	connect(&selectSignalMapper_, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
-	        this, &UnitsPanel::selectUnit);
+
+	panelLayout_  = new QHBoxLayout;
+	setLayout(panelLayout_);
+
+	connect(&pickSignalMapper_, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
+	        this, &UnitsPanel::pickUnit);
 	connect(&showMenuSignalMapper_, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
 	        this, &UnitsPanel::showUnitMenu);
 	connect(&showUnitSignalMapper_, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
@@ -24,29 +28,16 @@ UnitsPanel::UnitsPanel(DataManager *dataManager) : dataManager_(dataManager)
 
 QSize UnitsPanel::sizeHint() const
 {
-	if (unitSections_.isEmpty())
-		return QSize{0, UnitSection::WidgetSize.height()};
+	if (panelLayout_->count() == 0)
+		return QSize{0, SectionSize.height()};
 
-	int totalWidth = unitSections_[0]->sizeHint().width() * unitSections_.size();
-	int totalHeight = unitSections_[0]->sizeHint().height();
-	return QSize{totalWidth, totalHeight};
+	return QSize{SectionSize.width() * panelLayout_->count(), SectionSize.height()};
 }
 
-void UnitsPanel::refresh(const Mind *mind)
+void UnitsPanel::refresh()
 {
-	QList <int> allUnits = mind->getPlayerFaction()->getAllUnitsUids();
-
-	//check if there are new units
-	int iter = unitSections_.size();
-
-	if (iter < allUnits.size()) {
-		while (iter < allUnits.size()) {
-			const Unit *unit = dynamic_cast<const Unit *>(mind->getObjectFromUid(allUnits[iter]));
-			UnitSection *unitWidget = new UnitSection(unit, dataManager_);
-
-			addUnitSection(unitWidget);
-			++iter;
-		}
+	if (didUnitsChange()) {
+		rebuild();
 		emit sizeChanged();
 	}
 
@@ -54,26 +45,61 @@ void UnitsPanel::refresh(const Mind *mind)
 		iter->refresh();
 }
 
-void UnitsPanel::addUnitSection(UnitSection *unitSection)
+bool UnitsPanel::didUnitsChange()
 {
-	unitSections_.append(unitSection);
-	layout()->addWidget(unitSection);
+	QList<int> allUnits = mind_->getPlayerFaction()->getAllUnitsUids();
 
-	connect(unitSection, &UnitSection::add,
-	        &addSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
-	connect(unitSection, &UnitSection::heal,
-			&healSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
-	connect(unitSection, &UnitSection::select,
-	        &selectSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
+	if (allUnits.size() != unitsStates_.size())
+		return true;
+
+	for (int i = 0; i < allUnits.size(); ++i) {
+		// check uid
+		if (allUnits[i] != unitsStates_[i].first)
+			return true;
+		//check state
+		if (mind_->getPlayerFaction()->isAliveMember(allUnits[i]) != unitsStates_[i].second)
+			return true;
+	}
+	return false;
+}
+
+void UnitsPanel::rebuild()
+{
+	unitsStates_.clear();
+	unitSections_.clear();
+
+	QLayoutItem *child;
+	while ((child = panelLayout_->takeAt(0)) != nullptr)
+		delete child;
+
+	auto faction = mind_->getPlayerFaction();
+
+	for (int uid : faction->getAllUnitsUids()) {
+		unitsStates_.append({uid, faction->isAliveMember(uid)});
+		if (unitsStates_.back().second)
+			appendUnitSection(uid);
+		else {
+			panelLayout_->addWidget(new DeadSection);
+		}
+	}
+}
+
+void UnitsPanel::appendUnitSection(int uid)
+{
+	const Unit *unit = dynamic_cast<const Unit *>(mind_->getObjectFromUid(uid));
+	UnitSection *unitSection = new UnitSection(unit, dataManager_);
+
+	unitSections_.insert(unitSection);
+	panelLayout_->addWidget(unitSection);
+
+	connect(unitSection, &UnitSection::pickUnit,
+	        &pickSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 	connect(unitSection, &UnitSection::showMenu,
 			&showMenuSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 	connect(unitSection, &UnitSection::showUnit,
 			&showUnitSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 
-	addSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
-	healSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
-	selectSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
+	pickSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
 	showMenuSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
 	showUnitSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
-
 }

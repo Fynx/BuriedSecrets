@@ -12,27 +12,32 @@ class UnitSection;
 class UnitsPanel : public QFrame {
 	Q_OBJECT
 public:
-	UnitsPanel(DataManager *dataManager);
+	static const QSize SectionSize;
+
+	UnitsPanel(DataManager *dataManager, const Mind *mind);
 	QSize sizeHint() const;
-	void refresh(const Mind *mind);
+	void refresh();
 
 private:
-	void addUnitSection(UnitSection *unitWidget);
+	bool didUnitsChange();
+	void rebuild();
+	void appendUnitSection(int uid);
 
 	DataManager *const dataManager_;
+	const Mind *const mind_;
 
-	QList <UnitSection *> unitSections_;
-	QSignalMapper selectSignalMapper_;
-	QSignalMapper addSignalMapper_;
-	QSignalMapper healSignalMapper_;
+	QList<QPair<int, bool>> unitsStates_; //id, isAlive
+	QSet<UnitSection *> unitSections_;
+	QHBoxLayout *panelLayout_;
+
+	QSignalMapper pickSignalMapper_;
 	QSignalMapper showMenuSignalMapper_;
 	QSignalMapper showUnitSignalMapper_;
 
 signals:
-	void addUnit(int uid);
-	void healUnit(int uid);
-	void selectUnit(int uid);
+	void pickUnit(int uid);
 	void showUnit(int uid);
 	void showUnitMenu(int uid);
+
 	void sizeChanged();
 };

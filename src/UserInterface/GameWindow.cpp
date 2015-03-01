@@ -78,13 +78,11 @@ void GameWindow::initBoardWidget()
 
 void GameWindow::initUnitsPanel()
 {
-	unitsPanel_ = new UnitsPanel(dataManager_);
+	unitsPanel_ = new UnitsPanel(dataManager_, mind_);
 	unitsPanel_->setParent(this);
-	connect(unitsPanel_, &UnitsPanel::addUnit,    &selectionManager_, &SelectionManager::addUnitToSelectionByUid);
-	connect(unitsPanel_, &UnitsPanel::healUnit,   &selectionManager_, &SelectionManager::healUnitByUid);
-	connect(unitsPanel_, &UnitsPanel::selectUnit, &selectionManager_, &SelectionManager::selectUnitByUid);
-	connect(unitsPanel_, &UnitsPanel::showUnit,   &selectionManager_, &SelectionManager::showUnitByUid);
-	connect(unitsPanel_, &UnitsPanel::selectUnit, this, &GameWindow::switchUnitWindow);
+	connect(unitsPanel_, &UnitsPanel::pickUnit, &selectionManager_, &SelectionManager::pickUnit);
+	connect(unitsPanel_, &UnitsPanel::showUnit, &selectionManager_, &SelectionManager::showUnit);
+	connect(unitsPanel_, &UnitsPanel::pickUnit, this, &GameWindow::switchUnitWindow);
 	connect(unitsPanel_, &UnitsPanel::showUnitMenu, this, &GameWindow::showUnitWindow);
 	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameWindow::adjustUnitsPanelGeometry);
 }
@@ -101,7 +99,7 @@ void GameWindow::refresh()
 {
 	selectionManager_.refresh();
 
-	unitsPanel_->refresh(mind_);
+	unitsPanel_->refresh();
 	factionPanel_->refresh(mind_);
 }
 
