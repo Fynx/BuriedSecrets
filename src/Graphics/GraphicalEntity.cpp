@@ -80,14 +80,14 @@ void GraphicalEntity::addOrMarkEffectActive(const Effect &effect)
 		if (graphicalEffect == nullptr) {
 			return;	// Effect not supported.
 		}
-		QMap<int, GraphicalEffect *> &effectsMap = graphicalEffectFactory->isPreEffect(effect) ?
+		EffectsMap &effectsMap = graphicalEffectFactory->isPreEffect(effect) ?
 				preEffects: postEffects;
-		if (effectsMap.contains(graphicalEffect->getOrderId())) {
-			// Remove the old effect.
-			auto iter = effectsMap.find(graphicalEffect->getOrderId());
-			removeEffect(effectsMap, reverseMap[iter.value()], iter);
-		}
-		effectsMap[graphicalEffect->getOrderId()] = graphicalEffect;
+// 		if (effectsMap.contains()) {
+// 			// Remove the old effect.
+// 			auto iter = effectsMap.find(graphicalEffect->getOrderId());
+// 			removeEffect(effectsMap, reverseMap[iter.value()], iter);
+// 		}
+		effectsMap.insertMulti(graphicalEffect->getOrderId(), graphicalEffect);
 		reverseMap[graphicalEffect] = p;
 		presentEffects.insert(p);
 	}
@@ -102,7 +102,7 @@ void GraphicalEntity::removeInactiveEffects()
 }
 
 
-void GraphicalEntity::removeInactiveEffects(QMap<int, GraphicalEffect *> &effectsMap)
+void GraphicalEntity::removeInactiveEffects(EffectsMap &effectsMap)
 {
 	for (auto it = effectsMap.begin(); it != effectsMap.end();) {
 		const auto p = reverseMap[it.value()];
@@ -116,7 +116,7 @@ void GraphicalEntity::removeInactiveEffects(QMap<int, GraphicalEffect *> &effect
 }
 
 
-void GraphicalEntity::drawEffects(sf::RenderTarget *renderTarget, QMap<int, GraphicalEffect *> &effectsMap)
+void GraphicalEntity::drawEffects(sf::RenderTarget *renderTarget, EffectsMap &effectsMap)
 {
 	for (auto *effect : effectsMap) {
 		effect->draw(this, renderTarget);
@@ -124,8 +124,7 @@ void GraphicalEntity::drawEffects(sf::RenderTarget *renderTarget, QMap<int, Grap
 }
 
 
-void GraphicalEntity::removeEffect(QMap<int, GraphicalEffect *> &effectsMap,
-				   EffectId effectId, QMap< int, GraphicalEffect * >::iterator iter)
+void GraphicalEntity::removeEffect(EffectsMap &effectsMap, EffectId effectId, EffectsMap::iterator iter)
 {
 	presentEffects.remove(effectId);
 	reverseMap.remove(iter.value());

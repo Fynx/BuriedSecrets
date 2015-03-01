@@ -71,15 +71,15 @@ protected:
 
 private:
 	typedef const EffectData * EffectId;
-	void drawEffects(sf::RenderTarget *renderTarget, QMap<int, GraphicalEffect *> &effectsMap);
-	void removeInactiveEffects(QMap<int, GraphicalEffect *> &effectsMap);
-	void removeEffect(QMap< int, GraphicalEffect * > &effectsMap, GraphicalEntity::EffectId effectId, QMap< int,
-			  GraphicalEffect * >::iterator iter);
+	typedef QMultiMap<int, GraphicalEffect *> EffectsMap;
+	void drawEffects(sf::RenderTarget *renderTarget, EffectsMap &effectsMap);
+	void removeInactiveEffects(EffectsMap &effectsMap);
+	void removeEffect(EffectsMap &effectsMap, GraphicalEntity::EffectId effectId, EffectsMap::iterator iter);
 
 	GraphicalEffectFactory *graphicalEffectFactory;
 	QSet<EffectId> activeEffects;
 	QSet<EffectId> presentEffects;
-	QMap<int, GraphicalEffect *> preEffects;
-	QMap<int, GraphicalEffect *> postEffects;
+	EffectsMap preEffects;
+	EffectsMap postEffects;
 	QHash<GraphicalEffect *, EffectId> reverseMap;
 };
