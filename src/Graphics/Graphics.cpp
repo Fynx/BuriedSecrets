@@ -12,7 +12,7 @@ Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataMa
 	: graphicsDataManager{dataManager}, showFPS{true}, showFOW{true}, timeElapsed{0.0f}, frames{0}
 	, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}
 	, dataManager{dataManager}, mind{mind}, camera{nullptr}, mapSprite{nullptr}, drawOrder{new int[10000]}
-	, positions{new QPointF[10000]}, FOW{nullptr}
+	, FOW{nullptr}
 {
 	canvas = widget;
 	fpsText.setFont(*graphicsDataManager.getFont("HEMIHEAD"));
@@ -30,7 +30,6 @@ Graphics::~Graphics()
 	mapSprite = nullptr;
 	delete camera;
 	delete drawOrder;
-	delete positions;
 	delete FOW;
 	delete graphicalEntityFactory;
 }
@@ -113,13 +112,15 @@ void Graphics::render()
 	// This can be split out into separate function
 	for (int i = 0; i < visibleGraphicalEntities.size(); ++i) {
 		drawOrder[i] = i;
-		positions[i] = getPosition(visibleGraphicalEntities[i]);
+		// FIXME remove positions?
+		updateEntity(visibleGraphicalEntities[i], 0, getPosition(visibleGraphicalEntities[i]));
 	}
 
 	qSort(drawOrder, drawOrder + visibleGraphicalEntities.size(),
 	      [&](const int &a, const int &b) -> bool {
-		QPointF aP = positions[a] + visibleGraphicalEntities[a]->getBaseCentre();
-		QPointF bP = positions[b] + visibleGraphicalEntities[b]->getBaseCentre();
+		QPointF aP = visibleGraphicalEntities[a]->getPosition() + visibleGraphicalEntities[a]->getBaseCentre();
+		// FIXME w/o bacecentre?
+		QPointF bP = visibleGraphicalEntities[b]->getPosition() + visibleGraphicalEntities[b]->getBaseCentre();
 
 		if (aP.y() != bP.y()) {
 			return aP.y() < bP.y();
@@ -136,7 +137,6 @@ void Graphics::render()
 	// Draw pre effects (update entities as well).
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
 		obj = visibleGraphicalEntities[idx];
-		updateEntity(obj, 0, positions[idx]);
 		visibleGraphicalEntities[idx]->drawPreEffects(canvas);
 	}
 
@@ -173,9 +173,9 @@ QVector<GraphicalEntity *> Graphics::getGraphicalEntitiesFor(const QList<const O
 
 void Graphics::updateEntity(GraphicalEntity *entity, const float deltaTime, const QPointF &position)
 {
+	entity->setPosition(position);
 	entity->setDirection(static_cast<BS::Graphic::Direction>(
 		camera->discretizeAngle(physicsEngine->getAngle(entity->getObject()))));
-	entity->setPosition(position);
 	entity->update(deltaTime);
 }
 

@@ -93,7 +93,6 @@ private:
 	Camera *camera;
 	sf::Sprite *mapSprite;
 	int *drawOrder;
-	QPointF *positions;
 	GraphicalFogOfWar *FOW;
 
 private slots:
