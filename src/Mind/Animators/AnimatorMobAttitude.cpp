@@ -25,9 +25,11 @@ void AnimatorMobAttitude::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		if (unit->getCommand() == Command::Attack &&
-			mind->getFactionById(unit->getFactionId())->isNeutralFaction(mind->getObjectFromUid(unit->getTargetObject())->getFactionId()))
-			unit->setCommand(Command::None);
+		if (unit->getCommand() == Command::Attack && mind->getObjectFromUid(unit->getTargetObject())){
+			Object *target = mind->getObjectFromUid(unit->getTargetObject());
+			if (mind->getFactionById(unit->getFactionId())->isNeutralFaction(target->getFactionId()))
+				unit->setCommand(Command::None);
+		}
 		if (unit->getCommand() != Command::None && unit->getCommand() != Command::Move)
 			continue;
 		QPointF from = mind->physicsEngine()->getPosition(unit);

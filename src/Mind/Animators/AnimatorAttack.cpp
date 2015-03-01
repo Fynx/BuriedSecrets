@@ -101,7 +101,8 @@ void AnimatorAttack::act()
 					hit->property(TempData::Damage).toInt());
 			hitPoint = mind->physicsEngine()->getPosition(hit);
 		}
-		mind->addEffect(Effect(Effects::Shot,
+		if (unit->getState() != State::Inside)
+			mind->addEffect(Effect(Effects::Shot,
 				new PointToPointEffectData(mind->physicsEngine()->getPosition(unit), hitPoint), 15));
 	}
 }
