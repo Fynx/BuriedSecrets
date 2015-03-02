@@ -9,12 +9,13 @@
 #include "GameObjects/Unit.hpp"
 #include "Mind/Effect.hpp"
 #include "Mind/Mind.hpp"
-#include "Mind/ObjectEffectData.hpp"
+#include "Mind/SelectionEffectData.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
 
 const float SelectionManager::pixelToMetresScale = 30.0f;
 const int SelectionManager::ViewportMoveDelta = 10;
 const qreal SelectionManager::ViewportZoomDelta = 0.05f;
+const QColor SelectionManager::SelectionColor = QColor("Cyan");
 
 SelectionManager::SelectionManager(Mind *mind)
 	: mind_(mind),
@@ -344,7 +345,8 @@ void SelectionManager::addSelectionEffect(int objUid)
 {
 	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
 	object->property(TempData::IsSelected) = QVariant(true);
-	auto effectIterator = mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(object)));
+	auto effectIterator = mind_->addEffect(Effect(Effects::Selection,
+						      new SelectionEffectData(object, SelectionColor)));
 
 	uidToSelectionEffect_.insert(objUid, effectIterator);
 }

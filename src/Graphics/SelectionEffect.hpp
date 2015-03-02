@@ -2,7 +2,6 @@
  * All rights reserved.
  */
 #pragma once
-
 #include <SFML/Graphics.hpp>
 
 #include "Graphics/GraphicalEffect.hpp"
@@ -10,8 +9,7 @@
 
 class SelectionEffect: public GraphicalEffect {
 public:
-	// We don't use the EffectData as we already have the object from the entity when drawing.
-	SelectionEffect(const Viewport *viewport);
+	SelectionEffect(const Viewport *viewport, const sf::Color &color);
 	void draw(const GraphicalEntity *graphicalEntity, sf::RenderTarget *renderTarget) override;
 	int getOrderId() const override;
 

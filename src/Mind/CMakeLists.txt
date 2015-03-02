@@ -8,6 +8,7 @@ set (Mind_SRCS
 	ItemConstructor.cpp
 	ObjectEffectData.cpp
 	PointToPointEffectData.cpp
+	SelectionEffectData.cpp
 )
 
 set (Mind_HDRS

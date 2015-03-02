@@ -19,6 +19,7 @@ public:
 	static const float pixelToMetresScale; // Number of pixels per meter
 	static const int ViewportMoveDelta;
 	static const qreal ViewportZoomDelta;
+	static const QColor SelectionColor;
 
 	SelectionManager(Mind *mind);
 

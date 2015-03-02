@@ -8,11 +8,11 @@
 #include "Graphics/GraphicalEntity.hpp"
 
 
-SelectionEffect::SelectionEffect(const Viewport *viewport) : GraphicalEffect{viewport}
+SelectionEffect::SelectionEffect(const Viewport *viewport, const sf::Color &color) : GraphicalEffect{viewport}
 {
 	circleShape.setPointCount(20);
 	circleShape.setFillColor(sf::Color::Transparent);
-	circleShape.setOutlineColor(sf::Color::Cyan);
+	circleShape.setOutlineColor(color);
 	circleShape.setOutlineThickness(1);
 }
 
