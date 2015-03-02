@@ -2,13 +2,13 @@
 	"BasicEquipment": {
 		"type": "equipment"
 	},
-	
-	
+
+
 	"BasicFaction": {
 		"type": "faction"
 	},
-	
-	
+
+
 	"Senior Cebulez": {
 		"type": "unit",
 		"profession": "Megalomaniac Leader",
@@ -39,8 +39,8 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	
-	
+
+
 	"El Bogdano": {
 		"type": "unit",
 		"profession": "Ultimate Badass",
@@ -71,8 +71,8 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	
-	
+
+
 	"Dr. D. Snee": {
 		"type": "unit",
 		"profession": "Heart surgeon",
@@ -103,8 +103,8 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	
-	
+
+
 	"MobPeasant": {
 		"type": "unit",
 		"profession": "Proffesional mob",
@@ -126,8 +126,8 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	
-	
+
+
 	"MobWoman": {
 		"type": "unit",
 		"profession": "Proffesional mob",
@@ -149,8 +149,8 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	
-	
+
+
 	"MobSoldier": {
 		"type": "unit",
 		"profession": "Proffesional mob",
@@ -172,8 +172,8 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	
-	
+
+
 	"MobTank": {
 		"type": "unit",
 		"profession": "Proffesional mob",
@@ -195,8 +195,8 @@
 			"RunAttack": "SoszuWalking"
 		}
 	},
-	
-	
+
+
 	"Sniper rifle": {
 		"type": "item",
 		"picture": "sniper-rifle",
@@ -210,8 +210,8 @@
 		"magazineSize" : 5,
 		"reloadTime" : 60
 	},
-	
-	
+
+
 	"Pistol": {
 		"type": "item",
 		"picture": "pistol",
@@ -225,8 +225,8 @@
 		"magazineSize" : 8,
 		"reloadTime" : 30
 	},
-	
-	
+
+
 	"Assault rifle": {
 		"type": "item",
 		"picture": "assault-rifle",
@@ -240,8 +240,8 @@
 		"magazineSize" : 80,
 		"reloadTime" : 55
 	},
-	
-	
+
+
 	"Revolvers": {
 		"type": "item",
 		"picture": "revolvers",
@@ -255,8 +255,8 @@
 		"magazineSize" : 5,
 		"reloadTime" : 50
 	},
-	
-	
+
+
 	"Machete": {
 		"type": "item",
 		"picture": "machete",
@@ -270,8 +270,8 @@
 		"magazineSize" : 1000,
 		"reloadTime" : 1
 	},
-	
-	
+
+
 	"Spear": {
 		"type": "item",
 		"picture": "spear",
@@ -285,8 +285,8 @@
 		"magazineSize" : 1000,
 		"reloadTime" : 1
 	},
-	
-	
+
+
 	"Medkit": {
 		"type": "item",
 		"picture": "medkit",
@@ -294,8 +294,8 @@
 		"healing": 10,
 		"weight": 1
 	},
-	
-	
+
+
 	"Wrench": {
 		"type": "item",
 		"picture": "wrench",
@@ -305,8 +305,8 @@
 		"engineering": 6,
 		"weight": 2
 	},
-	
-	
+
+
 	"Combat jacket": {
 		"type": "item",
 		"picture": "combat-jacket",
@@ -314,8 +314,8 @@
 		"defense": 0.2,
 		"weight": 4
 	},
-	
-	
+
+
 	"IKEA fence": {
 		"type": "item",
 		"picture": "ikeaFence",
@@ -324,8 +324,8 @@
 		"spawnedType": "Wired fence",
 		"ingredients": ["Wooden planks", "Wire"]
 	},
-	
-	
+
+
 	"IKEA bunker": {
 		"type": "item",
 		"picture": "ikeaBunker",
@@ -333,32 +333,32 @@
 		"weight": 8,
 		"spawnedType": "Bunker"
 	},
-	
-	
+
+
 	"Wooden planks": {
 		"type": "item",
 		"picture": "woodenPlanks",
 		"itemType": "personal",
 		"weight": 2
 	},
-	
-	
+
+
 	"Wire": {
 		"type": "item",
 		"picture": "wire",
 		"itemType": "personal",
 		"weight": 1
 	},
-	
-	
+
+
 	"Wired fence": {
 		"type": "location",
 		"textureName": "WiredFence",
 		"capacity": 0,
 		"basePolygon": [[0, 4], [6, 4], [6, 3], [0, 3]]
 	},
-	
-	
+
+
 	"Bunker": {
 		"type": "location",
 		"textureName": "Bunker",
@@ -375,20 +375,20 @@
 		"offsetX": 0,
 		"offsetY": 3
 	},
-	
-	
+
+
 	"Player Camp": {
 		"type": "location",
 		"textureName": "PlayerCamp",
 		"capacity": 0,
-		"basePolygon": [[0, 10.5], [2.5, 14], [7, 8], [4, 6]]
+		"basePolygon": [[0, 10.2], [2.68, 13.08], [6.66, 8.6], [4, 6]]
 	},
-	
-	
+
+
 	"Mob House1": {
 		"type": "location",
 		"textureName": "MobHouse1",
-		"basePolygon": [[0.5, 10], [2, 14], [7, 8], [4, 6]],
+		"basePolygon": [[0.5, 10.2], [2, 13], [6.8, 8], [5.3, 5.5]],
 		"capacity": 5,
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
@@ -397,12 +397,12 @@
 		"offsetX": 2,
 		"offsetY": 3
 	},
-	
-	
+
+
 	"Mob House2": {
 		"type": "location",
 		"textureName": "MobHouse2",
-		"basePolygon": [[0, 16], [3.4, 17], [7, 12], [5, 8]],
+		"basePolygon": [[0.1, 15.2], [2.6, 15.9], [6.2, 11.7], [4.4, 9], [0.2, 14.6]],
 		"capacity": 5,
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
@@ -411,12 +411,12 @@
 		"offsetX": 2,
 		"offsetY": 4
 	},
-	
-	
+
+
 	"Mob House3": {
 		"type": "location",
 		"textureName": "MobHouse3",
-		"basePolygon": [[2.4, 14], [8, 9], [7, 7], [0.6, 11]],
+		"basePolygon": [[2.7, 13], [5.7, 12.1], [8.2, 9], [7.8, 6.6], [0.7, 11.2]],
 		"capacity": 5,
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,

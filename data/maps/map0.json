@@ -16,14 +16,14 @@
 			"units": [4, 6, 8],
 			"relations": [[1, 1505], [2, -100]]
 		},
-		
-		
+
+
 		{
 			"uid": 2,
 			"name": "BasicEquipment",
 			"items": [57, 59, 60]
 		},
-		
+
 
 		{
 			"uid": 3,
@@ -32,8 +32,8 @@
 			"x": 31,
 			"y": 34
 		},
-		
-		
+
+
 		{
 			"uid": 4,
 			"name": "Senior Cebulez",
@@ -57,8 +57,8 @@
 			"y": 40.0,
 			"hp": 110
 		},
-		
-		
+
+
 		{
 			"uid": 5,
 			"name": "BasicEquipment",
@@ -69,8 +69,8 @@
 				"fortification": 61
 			}
 		},
-		
-		
+
+
 		{
 			"uid": 6,
 			"name": "El Bogdano",
@@ -94,8 +94,8 @@
 			"y": 40.0,
 			"hp": 110
 		},
-		
-		
+
+
 		{
 			"uid": 7,
 			"name": "BasicEquipment",
@@ -106,8 +106,8 @@
 				"fortification": 58
 			}
 		},
-		
-		
+
+
 		{
 			"uid": 8,
 			"name": "Dr. D. Snee",
@@ -131,8 +131,8 @@
 			"y": 45.0,
 			"hp": 110
 		},
-		
-		
+
+
 		{
 			"uid": 9,
 			"name": "BasicEquipment",
@@ -142,14 +142,14 @@
 				"weapon": 52
 			}
 		},
-		
-		
+
+
 		{
 			"uid": 51,
 			"name": "Medkit"
 		},
-		
-		
+
+
 		{
 			"uid": 52,
 			"name": "Revolvers",
@@ -157,20 +157,20 @@
 				"AnimatorWeapon"
 			]
 		},
-		
-		
+
+
 		{
 			"uid": 53,
 			"name": "Combat jacket"
 		},
-		
-		
+
+
 		{
 			"uid": 54,
 			"name": "Wrench"
 		},
-		
-		
+
+
 		{
 			"uid": 55,
 			"name": "Sniper rifle",
@@ -178,8 +178,8 @@
 				"AnimatorWeapon"
 			]
 		},
-		
-		
+
+
 		{
 			"uid": 56,
 			"name": "Assault rifle",
@@ -187,43 +187,43 @@
 				"AnimatorWeapon"
 			]
 		},
-		
-		
+
+
 		{
 			"uid": 57,
 			"name": "Combat jacket"
 		},
-		
-		
+
+
 		{
 			"uid": 58,
 			"name": "IKEA fence"
 		},
-		
-		
+
+
 		{
 			"uid": 59,
 			"name": "Wooden planks"
 		},
-		
-		
+
+
 		{
 			"uid": 60,
 			"name": "Wire"
 		},
-		
-		
+
+
 		{
 			"uid": 61,
 			"name": "IKEA bunker"
 		},
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
 		{
 			"uid": 101,
 			"name": "BasicFaction",
@@ -231,8 +231,8 @@
 			"units": [102, 104, 106, 108],
 			"relations": [[1, -5], [2, 100]]
 		},
-		
-		
+
+
 		{
 			"uid": 102,
 			"name": "MobPeasant",
@@ -252,8 +252,8 @@
 			"y": 12.0,
 			"hp": 120
 		},
-		
-		
+
+
 		{
 			"uid": 103,
 			"name": "BasicEquipment",
@@ -262,8 +262,8 @@
 				"weapon": 151
 			}
 		},
-		
-		
+
+
 		{
 			"uid": 104,
 			"name": "MobPeasant",
@@ -283,8 +283,8 @@
 			"y": 14.0,
 			"hp": 120
 		},
-		
-		
+
+
 		{
 			"uid": 105,
 			"name": "BasicEquipment",
@@ -293,8 +293,8 @@
 				"weapon": 152
 			}
 		},
-		
-		
+
+
 		{
 			"uid" : 106,
 			"name": "MobTank",
@@ -314,7 +314,7 @@
 			"y": 16.0,
 			"hp": 150
 		},
-		
+
 		{
 			"uid": 107,
 			"name": "BasicEquipment",
@@ -323,8 +323,8 @@
 				"weapon": 153
 			}
 		},
-		
-		
+
+
 		{
 			"uid": 108,
 			"name": "MobWoman",
@@ -344,8 +344,8 @@
 			"y": 18.0,
 			"hp" : 70
 		},
-		
-		
+
+
 		{
 			"uid": 109,
 			"name": "BasicEquipment",
@@ -354,8 +354,8 @@
 				"weapon": 154
 			}
 		},
-		
-		
+
+
 		{
 			"uid": 151,
 			"name": "Machete",
@@ -364,8 +364,8 @@
 				"AnimatorWeapon"
 			]
 		},
-		
-		
+
+
 		{
 			"uid": 152,
 			"name": "Machete",
@@ -373,8 +373,8 @@
 				"AnimatorWeapon"
 			]
 		},
-		
-		
+
+
 		{
 			"uid": 153,
 			"name": "Spear",
@@ -382,8 +382,8 @@
 				"AnimatorWeapon"
 			]
 		},
-		
-		
+
+
 		{
 			"uid": 154,
 			"name": "Machete",
@@ -391,14 +391,14 @@
 				"AnimatorWeapon"
 			]
 		},
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
 		{
 			"uid": 1001,
 			"name": "Mob House1",
@@ -408,8 +408,8 @@
 			"x": 12,
 			"y": 28
 		},
-		
-		
+
+
 		{
 			"uid": 1002,
 			"name": "Mob House1",
@@ -419,19 +419,19 @@
 			"x": 10.8,
 			"y": 13.4
 		},
-		
-		
+
+
 		{
 			"uid": 1003,
 			"name": "Mob House2",
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
-			"x": 5.8,
-			"y": 18
+			"x": 5.35,
+			"y": 18.16
 		},
-		
-		
+
+
 		{
 			"uid": 1004,
 			"name": "Mob House3",
@@ -441,8 +441,8 @@
 			"x": 22,
 			"y": 15
 		},
-		
-		
+
+
 		{
 			"uid": 1005,
 			"name": "Wired fence",
@@ -450,6 +450,6 @@
 			"x": 37.5,
 			"y": 33.5
 		}
-		
+
 	]
 }
