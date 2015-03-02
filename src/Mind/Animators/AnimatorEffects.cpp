@@ -10,22 +10,27 @@
 AnimatorEffects::AnimatorEffects(Mind *mind) : Animator(mind)
 {
 	info("AnimatorEffects created.");
+	timer.start();
 }
 
 
 void AnimatorEffects::act()
 {
+	const int timeDelta = timer.elapsed();
+	timer.restart();
 	auto effect = mind->getActiveEffects()->begin();
 	while (effect != mind->getActiveEffects()->end()){
-		if (effect->isInfinite()){
-			effect++;
-			continue;
-		}
-		effect->setTimeout(effect->getTimeout() - 1);
+		auto nextEffect = effect;
+		nextEffect++;
 
-		if (effect->getTimeout() == 0)
-			mind->deleteEffect(effect++);
-		effect++;
+		if (!effect->isInfinite()) {
+			if (effect->getTimeout() - timeDelta <= 0)
+				mind->deleteEffect(effect);
+			else
+				effect->setTimeout(effect->getTimeout() - timeDelta);
+		}
+
+		effect = nextEffect;
 	}
 }
 

@@ -78,7 +78,7 @@ void AnimatorAttack::act()
 
 		// Calculate direction...
 		QVector2D direction = QVector2D(to - from);
-		QPointF hitPoint(0,0);
+		QPointF hitPoint(0, 0);
 		float angle = Geometry::vecToAngle(direction);
 		int disp = weapon->getPrototype()->getProperty(Properties::Dispersion).toInt();
 
@@ -103,7 +103,7 @@ void AnimatorAttack::act()
 		}
 		if (unit->getState() != State::Inside)
 			mind->addEffect(Effect(Effects::Shot,
-				new PointToPointEffectData(mind->physicsEngine()->getPosition(unit), hitPoint), 15));
+				new PointToPointEffectData(mind->physicsEngine()->getPosition(unit), hitPoint), 600));
 	}
 }
 

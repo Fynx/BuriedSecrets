@@ -7,28 +7,30 @@
 #include "DebugManager/DebugManager.hpp"
 #include "Graphics/BasePolygonEffect.hpp"
 #include "Graphics/SelectionEffect.hpp"
-#include "Mind/SelectionEffectData.hpp"
 
 
 GraphicalEffectFactory::GraphicalEffectFactory(const Viewport *viewport)
 	: viewport{viewport}
-{}
+{
+	preEffects.insert(Effects::Selection);
+	preEffects.insert(Effects::EnterCommand);
+	preEffects.insert(Effects::FriendlyCommand);
+	preEffects.insert(Effects::HostileCommand);
+}
 
 
 GraphicalEffect *GraphicalEffectFactory::get(const Effect &effect)
 {
-	if (effect.getName() == Effects::Selection) {
-		const SelectionEffectData *sdata = dynamic_cast<const SelectionEffectData *>(effect.getEffectData());
-		if (sdata == nullptr) {
-			err("GraphicalEffectFactory: Got data for SelectionEffect, but data pointer doesn't cast to "
-					"SelectionEffectData. Skipping.");
-			return nullptr;
-		}
-		QColor color = sdata->getColor();
-		return new SelectionEffect{viewport,
-				sf::Color{(sf::Uint8)color.red(), (sf::Uint8)color.green(), (sf::Uint8)color.blue(),
-					  (sf::Uint8)color.alpha()}};
-	} else if (effect.getName() == Effects::BasePolygon) {
+	QString name = effect.getName();
+	if (name == Effects::Selection) {
+		return new SelectionEffect{viewport, sf::Color::Cyan};
+	} else if (name == Effects::FriendlyCommand) {
+		return new SelectionEffect{viewport, sf::Color::Green};
+	} else if (name == Effects::HostileCommand) {
+		return new SelectionEffect{viewport, sf::Color::Red};
+	} else if (name == Effects::EnterCommand) {
+		return new SelectionEffect{viewport, sf::Color::Cyan};
+	} else if (name == Effects::BasePolygon) {
 		return new BasePolygonEffect{viewport};
 	}
 
@@ -39,13 +41,7 @@ GraphicalEffect *GraphicalEffectFactory::get(const Effect &effect)
 
 bool GraphicalEffectFactory::isPreEffect(const Effect &effect) const
 {
-	if (effect.getName() == Effects::Selection) {
-		return true;
-	} else if (effect.getName() == Effects::BasePolygon) {
-		return false;
-	}
-
-	return false;
+	return preEffects.contains(effect.getName());
 }
 
 

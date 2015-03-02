@@ -9,7 +9,6 @@
 #include "GameObjects/Unit.hpp"
 #include "Mind/Effect.hpp"
 #include "Mind/Mind.hpp"
-#include "Mind/SelectionEffectData.hpp"
 #include "Mind/ObjectEffectData.hpp"
 #include "Mind/PointEffectData.hpp"
 #include "UserInterface/BoardWidget.hpp"
@@ -358,8 +357,7 @@ void SelectionManager::addSelectionEffect(int objUid)
 {
 	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
 	object->property(TempData::IsSelected) = QVariant(true);
-	auto effectIterator = mind_->addEffect(Effect(Effects::Selection,
-	                                              new SelectionEffectData(object, SelectionColor)));
+	auto effectIterator = mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(object)));
 
 	uidToSelectionEffect_.insert(objUid, effectIterator);
 }

@@ -25,5 +25,6 @@ public:
 	bool isPreEffect(const Effect& effect) const;
 
 private:
+	QSet<QString> preEffects;
 	const Viewport *viewport;
 };

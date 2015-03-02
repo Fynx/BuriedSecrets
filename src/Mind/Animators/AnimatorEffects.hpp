@@ -10,6 +10,9 @@ public:
 	AnimatorEffects(Mind *mind);
 
 	void act();
+
+private:
+	QTime timer;
 };
 
 

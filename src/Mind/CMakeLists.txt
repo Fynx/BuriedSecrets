@@ -9,7 +9,6 @@ set (Mind_SRCS
 	ObjectEffectData.cpp
 	PointEffectData.cpp
 	PointToPointEffectData.cpp
-	SelectionEffectData.cpp
 )
 
 set (Mind_HDRS

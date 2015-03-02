@@ -11,7 +11,7 @@
 
 class Effect {
 public:
-	static const int CommandEffectTimeout = 3000;
+	static const int CommandEffectTimeout = 280;	// Empirically set constant.
 	/**
 	 * @brief Creates an effect with name, data and timeout.
 	 *
