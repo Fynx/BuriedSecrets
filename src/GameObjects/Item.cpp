@@ -4,6 +4,7 @@
 
 #include "Common/Strings.hpp"
 #include "GameObjects/Item.hpp"
+#include "Common/Enums.hpp"
 
 Item::Item(const Prototype *prototype)
 	: Object(prototype), usesLeft(1), delay(0)
@@ -18,16 +19,11 @@ BS::Type Item::getType() const
 BS::ItemType Item::getItemType() const
 {
 	QString s = prototype->getProperty(Properties::ItemType).toString();
-	if (!stringToItemType.contains(s)) {
+	if (BS::changeStringToItemType(s) == BS::ItemType::Invalid) {
 		qDebug() << "Unknown itemType";
 		exit(0);
 	}
-	return stringToItemType[s];
-}
-
-bool Item::isEquippable() const
-{
-	return equippable[getItemType()];
+	return BS::changeStringToItemType(s);
 }
 
 QString Item::getName() const
@@ -71,17 +67,3 @@ QJsonObject Item::saveToJson() const
 {
 	return Object::saveToJson();
 }
-
-const QMap<BS::ItemType, bool> Item::equippable {
-	{BS::ItemType::Storyline,     true},
-	{BS::ItemType::Material,      false},
-	{BS::ItemType::Personal,      true},
-	{BS::ItemType::Fortification, true},
-};
-
-const QMap<QString, BS::ItemType> Item::stringToItemType {
-	{"storyline",     BS::ItemType::Storyline},
-	{"material",      BS::ItemType::Material},
-	{"personal",      BS::ItemType::Personal},
-	{"fortification", BS::ItemType::Fortification},
-};

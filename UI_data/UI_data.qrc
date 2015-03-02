@@ -1,6 +1,7 @@
 <RCC>
 	<qresource prefix="/icons">
 		<file alias="aggresive">icons/aggresive.png</file>
+		<file alias="banana-for-scale">icons/banana-for-scale.png</file>
 		<file alias="camp">icons/camp.png</file>
 		<file alias="coward">icons/coward.png</file>
 		<file alias="food">icons/food.png</file>

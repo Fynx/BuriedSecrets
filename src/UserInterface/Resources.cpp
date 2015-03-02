@@ -2,7 +2,6 @@
  * All rights reserved.
  */
 #include "UserInterface/Resources.hpp"
-#include <X11/Xcursor/Xcursor.h>
 
 QCursor BSCursor(const QString &cursor)
 {

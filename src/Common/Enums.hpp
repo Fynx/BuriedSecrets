@@ -36,6 +36,9 @@ namespace BS {
 		Shoot,         // Weapon
 	};
 
+	State changeStringToState(const QString &str);
+	QString changeStateToString(BS::State state);
+
 	enum class Attitude : quint8 {
 		Aggressive,
 		Guard,
@@ -70,14 +73,25 @@ namespace BS {
 	const QList<BS::Slot> getSlots();
 
 	enum class ItemType : quint8 {
-		Storyline,
-		Material,
-		Personal,
+		Armor,
 		Fortification,
+		Invalid,
+		Junk,
+		Perception,
+		Tool,
+		Medicament,
+
+		// Weapons
+		AssaultRifle,
+		DualPistols,
+		Melee,
+		Pistol,
+		Shotgun,
+		SniperRifle,
 	};
 
-	State changeStringToState(const QString &str);
-	QString changeStateToString(BS::State state);
+	QString changeItemTypeToString(BS::ItemType type);
+	BS::ItemType changeStringToItemType(const QString &str);
 
 	namespace Graphic {
 		// This is an enum for a reason (underlying value implicitly converted to a numeric type).

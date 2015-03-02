@@ -200,8 +200,10 @@
 	"Sniper rifle": {
 		"type": "item",
 		"picture": "sniper-rifle",
-		"itemType": "personal",
+		"itemType": "Sniper rifle",
 		"damage": 70,
+		"description": "Look at that chick, just look at her... As you see this rifle has very good optics.",
+		"quality": 8,
 		"dispersion": 2,
 		"weight": 2,
 		"range": 35,
@@ -215,8 +217,10 @@
 	"Pistol": {
 		"type": "item",
 		"picture": "pistol",
-		"itemType": "personal",
+		"itemType": "Pistol",
 		"damage": 15,
+		"description": "Pistol - basic weapon of drug dealers and pimps. Children can use it as well.",
+		"quality": 3,
 		"dispersion": 15,
 		"weight": 2,
 		"range": 12,
@@ -230,8 +234,10 @@
 	"Assault rifle": {
 		"type": "item",
 		"picture": "assault-rifle",
-		"itemType": "personal",
+		"itemType": "Assault rifle",
 		"damage": 15,
+		"description": "Your grandpa at WW2 didn't have this access to this stuff, but you do - make good use of it.",
+		"quality": 6,
 		"dispersion": 10,
 		"weight": 2,
 		"range": 20,
@@ -245,8 +251,10 @@
 	"Revolvers": {
 		"type": "item",
 		"picture": "revolvers",
-		"itemType": "personal",
+		"itemType": "Dual pistols",
 		"damage": 25,
+		"description": "Fellin' like some gold stealin' and shootin' Indians? Take this, might be helpful.",
+		"quality": 4,
 		"dispersion": 15,
 		"weight": 2,
 		"range": 12,
@@ -260,8 +268,10 @@
 	"Machete": {
 		"type": "item",
 		"picture": "machete",
-		"itemType": "personal",
+		"itemType": "Melee",
 		"damage": 20,
+		"description": "Is your name Dany Treho? Do you want to participate in riot in Africa? Going to Cracow? If any of this is true this one is a must.",
+		"quality": 4,
 		"dispersion": 5,
 		"weight": 2,
 		"range": 3,
@@ -275,8 +285,10 @@
 	"Spear": {
 		"type": "item",
 		"picture": "spear",
-		"itemType": "personal",
+		"itemType": "Melee",
 		"damage": 15,
+		"description": "They say it is the easiest weapon to build during zombie apocalypse. Well hard to check for real, but you can always build one and poke some strangers. ",
+		"quality": 2,
 		"dispersion": 5,
 		"weight": 4,
 		"range": 4,
@@ -290,8 +302,10 @@
 	"Medkit": {
 		"type": "item",
 		"picture": "medkit",
-		"itemType": "personal",
-		"healing": 10,
+		"itemType": "Medicament",
+		"description": "It won't cure your cancer, but might help you go through the day. Before use, read the package leaflet.",
+		"quality": 5,
+		"healing": 7,
 		"weight": 1
 	},
 
@@ -299,8 +313,10 @@
 	"Wrench": {
 		"type": "item",
 		"picture": "wrench",
-		"itemType": "personal",
+		"itemType": "Tool",
 		"damage": 15,
+		"description": "Wrench. Normal wrench. Just-a-wrench. Not-funny-wrench. Move-along-wrench.",
+		"quality": 4,
 		"dispersion": 0,
 		"engineering": 6,
 		"weight": 2
@@ -309,8 +325,10 @@
 
 	"Combat jacket": {
 		"type": "item",
+		"itemType": "Armor",
+		"description": "Imagine how fabulous John Travolta would look in this one. Or your mum. Hmmm... maybe just John.",
+		"quality": 3,
 		"picture": "combat-jacket",
-		"itemType": "personal",
 		"defense": 0.2,
 		"weight": 4
 	},
@@ -319,7 +337,9 @@
 	"IKEA fence": {
 		"type": "item",
 		"picture": "ikeaFence",
-		"itemType": "personal",
+		"itemType": "Fortification",
+		"description": "As Gandalf would say: They shall not pass. At least for a while.",
+		"quality": 5,
 		"weight": 4,
 		"spawnedType": "Wired fence",
 		"ingredients": ["Wooden planks", "Wire"]
@@ -329,7 +349,9 @@
 	"IKEA bunker": {
 		"type": "item",
 		"picture": "ikeaBunker",
-		"itemType": "personal",
+		"itemType": "Fortification",
+		"description": "German design, Swedish materials, your sweat & tears. No more, no less.",
+		"quality": 10,
 		"weight": 8,
 		"spawnedType": "Bunker"
 	},
@@ -338,7 +360,9 @@
 	"Wooden planks": {
 		"type": "item",
 		"picture": "woodenPlanks",
-		"itemType": "personal",
+		"itemType": "Junk",
+		"description": "Not more that yesterday it was someone's fence or child's bed, aren't you ashamed? I wouldn't be.",
+		"quality": 1,
 		"weight": 2
 	},
 
@@ -346,7 +370,9 @@
 	"Wire": {
 		"type": "item",
 		"picture": "wire",
-		"itemType": "personal",
+		"itemType": "Junk",
+		"description": "Good for: strangulation, iterior design, ground obstacles, toys & much, much more. If you don't have enough then just look around.",
+		"quality": 2,
 		"weight": 1
 	},
 

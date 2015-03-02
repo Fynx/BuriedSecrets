@@ -7,12 +7,13 @@
 
 class Item : public Object {
 public:
+	static const int StarLimit = 10;
+
 	Item(const Prototype *prototype);
 
 	BS::Type getType() const;
 
 	BS::ItemType getItemType() const;
-	bool isEquippable() const;
 
 	QString getName() const;
 	int getWeight() const;
@@ -29,7 +30,4 @@ public:
 private:
 	int usesLeft;
 	int delay;
-
-	static const QMap<BS::ItemType, bool> equippable;
-	static const QMap<QString, BS::ItemType> stringToItemType;
 };

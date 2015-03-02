@@ -30,8 +30,8 @@ static const QMap<BS::Type, QString> typeToString {
 
 static const QMap<BS::Slot, QString> slotToString {
 	{BS::Slot::Armor,          Slots::Armor},
-	{BS::Slot::Invalid,        Slots::Invalid},
 	{BS::Slot::Fortification,  Slots::Fortification},
+	{BS::Slot::Invalid,        Slots::Invalid},
 	{BS::Slot::Medicament,     Slots::Medicament},
 	{BS::Slot::Perception,     Slots::Perception},
 	{BS::Slot::Tool,           Slots::Tool},
@@ -45,6 +45,22 @@ static const QList<BS::Slot> slots_ {
 	BS::Slot::Armor,
 	BS::Slot::Fortification,
 	BS::Slot::Perception,
+};
+
+static const QMap<BS::ItemType, QString> itemTypeToString {
+	{BS::ItemType::Armor,         ItemTypes::Armor},
+	{BS::ItemType::Fortification, ItemTypes::Fortification},
+	{BS::ItemType::Invalid,       ItemTypes::Invalid},
+	{BS::ItemType::Junk,          ItemTypes::Junk},
+	{BS::ItemType::Medicament,    ItemTypes::Medicament},
+	{BS::ItemType::Perception,    ItemTypes::Perception},
+	{BS::ItemType::Tool,          ItemTypes::Tool},
+	{BS::ItemType::AssaultRifle,  ItemTypes::AssaultRifle},
+	{BS::ItemType::DualPistols,   ItemTypes::DualPistols},
+	{BS::ItemType::Melee,         ItemTypes::Melee},
+	{BS::ItemType::Pistol,        ItemTypes::Pistol},
+	{BS::ItemType::Shotgun,       ItemTypes::Shotgun},
+	{BS::ItemType::SniperRifle,   ItemTypes::SniperRifle},
 };
 
 namespace BS {
@@ -64,14 +80,14 @@ namespace BS {
 		return slots_;
 	}
 
-	State changeStringToState(const QString &str)
-	{
-		return ::stateToString.key(str, BS::State::Idle);
-	}
-
 	QString changeStateToString(BS::State state)
 	{
 		return ::stateToString.value(state, States::Invalid);
+	}
+
+	State changeStringToState(const QString &str)
+	{
+		return ::stateToString.key(str, BS::State::Idle);
 	}
 
 	QString changeTypeToString(BS::Type type)
@@ -82,5 +98,15 @@ namespace BS {
 	BS::Type changeStringToType(const QString &string)
 	{
 		return ::typeToString.key(string, BS::Type::Invalid);
+	}
+
+	QString changeItemTypeToString(BS::ItemType type)
+	{
+		return ::itemTypeToString.value(type, ItemTypes::Invalid);
+	}
+
+	BS::ItemType changeStringToItemType(const QString &str)
+	{
+		return ::itemTypeToString.key(str, BS::ItemType::Invalid);
 	}
 }

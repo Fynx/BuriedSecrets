@@ -20,6 +20,7 @@ namespace Icons {
 	const QString House       = Prefix + "house";
 	const QString Journal     = Prefix + "journal";
 	const QString Skull       = Prefix + "skull";
+	const QString Star        = Prefix + "banana-for-scale";
 }
 
 namespace Cursors {

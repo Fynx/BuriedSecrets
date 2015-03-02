@@ -100,6 +100,7 @@ namespace Properties {                                 // for Prototypes
 	const QString Capacity      = "capacity";
 	const QString Damage        = "damage";            // Weapon
 	const QString DamageControl = "damageControl";     // base for Unit
+	const QString Description   = "description";       // Item description
 	const QString DefAnimators  = "defAnimators";
 	const QString Defense       = "defense";           // Armor
 	const QString Dispersion    = "dispersion";        // Weapon
@@ -121,12 +122,13 @@ namespace Properties {                                 // for Prototypes
 	const QString Profession    = "profession";        // base for Unit
 	const QString Psychosis     = "psychosis";         // max for Unit ??
 	const QString Quote         = "quote";             // base for Unit
+	const QString Quality       = "quality";           // Item quality
 	const QString Range         = "range";             // Weapon
 	const QString Regeneration  = "regeneration";      // Unit
 	const QString ReloadTime    = "reloadTime";        // Weapon
 	const QString ShotsInterval = "shotsInterval";     // Weapon
 	const QString SightRange    = "sightRange";        // base for Unit
-	const QString SmallDefBonus = "smallDefBonus";       // Bonus from location
+	const QString SmallDefBonus = "smallDefBonus";     // Bonus from location
 	const QString SpawnedType   = "spawnedType";       // Item - Fortification
 	const QString Transparent   = "transparent";
 	const QString Type          = "type";
@@ -172,4 +174,21 @@ namespace Types {
 	const QString Journal   = "journal";
 	const QString Location  = "location";
 	const QString Unit      = "unit";
+}
+
+namespace ItemTypes {
+	const QString Armor         = "Armor";
+	const QString Fortification = "Fortification";
+	const QString Invalid       = "Invalid";
+	const QString Junk          = "Junk";
+	const QString Medicament    = "Medicament";
+	const QString Perception    = "Perception";
+	const QString Tool          = "Tool";
+	//Weapons
+	const QString AssaultRifle  = "Assault rifle";
+	const QString DualPistols   = "Dual pistols";
+	const QString Melee         = "Melee";
+	const QString Pistol        = "Pistol";
+	const QString Shotgun       = "Shotgun";
+	const QString SniperRifle   = "Sniper rifle";
 }

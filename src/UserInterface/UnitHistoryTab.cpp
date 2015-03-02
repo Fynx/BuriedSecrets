@@ -44,7 +44,8 @@ QWidget* UnitHistoryTab::createPictureWidget()
 QLayout* UnitHistoryTab::createDataLayout()
 {
 	QFormLayout *layout = new QFormLayout;
-	layout->setVerticalSpacing(8); // For now, because we don't have much content
+	layout->setVerticalSpacing(VerticalSpacing);
+	layout->setHorizontalSpacing(HorizontalSpacing);
 
 	layout->addRow(keyLabel(tr("Name")), valueLabel(unit_->getName()));
 
