@@ -98,7 +98,7 @@ void MapManager::addVisibility(const BS::Geometry::Circle circle, const int fact
 		}
 
 		BS::Geometry::Polygon ommitPolygon;
-		ommitPolygon.append(centre);
+// 		ommitPolygon.append(centre);	// TODO uncomment when height is fixed.
 		ommitPolygon.append(left);
 		ommitPolygon.append(getPointOnCircleInline(circle, left));
 		ommitPolygon.append(getPointOnCircleInline(circle, right));
@@ -126,7 +126,7 @@ MapManager::VisibilityUpdateDiff * MapManager::getVisibilityUpdatesDiff()
 QPointF MapManager::getPointOnCircleInline(const BS::Geometry::Circle &circle, const QPointF &p)
 {
 	BS::Geometry::Line l{p, circle.centre};
-	const float f = 1.2;	// The coefficient controlling how far the radius will reach.
+	const float f = 2;	// The coefficient controlling how far the radius will reach.
 	float a = l.A * l.A + l.B * l.B;
 	float b = -2.0f * l.B * l.B * circle.centre.x() + 2.0f * l.A * l.B * circle.centre.y() + 2.0f * l.A * l.C;
 	float c = l.B * l.B * circle.centre.x() * circle.centre.x() +
