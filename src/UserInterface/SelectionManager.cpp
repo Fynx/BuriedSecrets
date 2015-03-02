@@ -11,6 +11,7 @@
 #include "Mind/Mind.hpp"
 #include "Mind/SelectionEffectData.hpp"
 #include "Mind/ObjectEffectData.hpp"
+#include "Mind/PointEffectData.hpp"
 #include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
 #include "UserInterface/Resources.hpp"
@@ -139,6 +140,8 @@ void SelectionManager::pickUnit(int uid)
 			Unit *selectedUnit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnitsUids_.begin()));
 			selectedUnit->setTargetObject(unit->getUid());
 			selectedUnit->setCommand(BS::Command::Heal);
+			mind_->addEffect(Effect(Effects::FriendlyCommand, new ObjectEffectData(unit),
+			                 Effect::CommandEffectTimeout));
 		}
 	} else
 		selectUnits({unit->getUid()});
@@ -157,14 +160,13 @@ void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
 void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *target)
 {
 	if (target == nullptr) {
-		if (unit->getState() == BS::State::Inside) {
+		if (unit->getState() == BS::State::Inside)
 			unit->setCommand(BS::Command::Leave);
-			unit->setTargetPoint(point);
-		}
-		else {
+		else
 			unit->setCommand(BS::Command::Move);
-			unit->setTargetPoint(point);
-		}
+
+		unit->setTargetPoint(point);
+		mind_->addEffect(Effect(Effects::MoveCommand, new PointEffectData(point), Effect::CommandEffectTimeout));
 	}
 	else {
 		switch (target->getType()) {
@@ -172,6 +174,8 @@ void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *targ
 				if (!isFriendly(target)) {
 					unit->setTargetObject(target->getUid());
 					unit->setCommand(BS::Command::Attack);
+					mind_->addEffect(Effect(Effects::HostileCommand, new ObjectEffectData(target),
+					                 Effect::CommandEffectTimeout));
 				}
 				break;
 			//TODO changed from Building/Fortification - check
@@ -180,6 +184,8 @@ void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *targ
 				if (unit->getState() != BS::State::Inside) {
 					unit->setTargetObject(target->getUid());
 					unit->setCommand(BS::Command::Enter);
+					mind_->addEffect(Effect(Effects::EnterCommand, new ObjectEffectData(target),
+					                 Effect::CommandEffectTimeout));
 				}
 				break;
 			default:
@@ -202,6 +208,8 @@ void SelectionManager::makeSecondaryAction(Unit *unit, QPointF point, Object *ta
 				if (isFriendly(target)) {
 					unit->setTargetObject(target->getUid());
 					unit->setCommand(BS::Command::Heal);
+					mind_->addEffect(Effect(Effects::FriendlyCommand, new ObjectEffectData(target),
+					                 Effect::CommandEffectTimeout));
 				}
 				break;
 			case BS::Type::Location:
@@ -387,8 +395,11 @@ void SelectionManager::adjustCursor()
 	if (obj != nullptr) {
 		switch (obj->getType()) {
 			case BS::Type::Location:
+				//TODO check if there is place in building
 				if (isFriendly(obj))
 					cursor = BSCursor(Cursors::ArrowDown);
+				else
+					cursor = BSCursor(Cursors::Target);
 				break;
 			case BS::Type::Unit:
 				if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
@@ -397,6 +408,8 @@ void SelectionManager::adjustCursor()
 					else
 						cursor = BSCursor(Cursors::Target);
 				}
+				else
+					cursor = BSCursor(Cursors::PointerPrimary);
 				break;
 			default:
 				break;

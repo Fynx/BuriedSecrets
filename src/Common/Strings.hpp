@@ -62,9 +62,13 @@ namespace Data {
 }
 
 namespace Effects {
-	const QString Selection     = "SelectionEffect";	// Unit selection.
-	const QString BasePolygon   = "BasePolygonEffect";	// Display base polygon and other debug info.
-	const QString Shot          = "ShotEffect";
+	const QString BasePolygon     = "BasePolygonEffect";	// Display base polygon and other debug info.
+	const QString EnterCommand    = "EnterCommand";
+	const QString FriendlyCommand = "FriendlyCommand";
+	const QString HostileCommand  = "HostileCommand";
+	const QString MoveCommand     = "MoveCommand";
+	const QString Selection       = "SelectionEffect";	// Unit selection.
+	const QString Shot            = "ShotEffect";
 }
 
 namespace MapProperties {

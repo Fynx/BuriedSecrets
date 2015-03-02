@@ -11,6 +11,7 @@
 
 class Effect {
 public:
+	static const int CommandEffectTimeout = 3000;
 	/**
 	 * @brief Creates an effect with name, data and timeout.
 	 *
