@@ -10,15 +10,19 @@
 #include "Mind/Effect.hpp"
 #include "Mind/Mind.hpp"
 #include "Mind/SelectionEffectData.hpp"
+#include "Mind/ObjectEffectData.hpp"
+#include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
+#include "UserInterface/Resources.hpp"
 
 const float SelectionManager::pixelToMetresScale = 30.0f;
 const int SelectionManager::ViewportMoveDelta = 10;
 const qreal SelectionManager::ViewportZoomDelta = 0.05f;
 const QColor SelectionManager::SelectionColor = QColor("Cyan");
 
-SelectionManager::SelectionManager(Mind *mind)
+SelectionManager::SelectionManager(Mind *mind, BoardWidget *boardWidget)
 	: mind_(mind),
+	  boardWidget_(boardWidget),
 	  viewport_(new IsometricPerspective(pixelToMetresScale)),
 	  selectedLocationUid_(Object::InvalidUid)
 {
@@ -111,6 +115,7 @@ void SelectionManager::refresh()
 {
 	removeDeadFromSelection();
 	markBuildingsSelected();
+	adjustCursor();
 }
 
 void SelectionManager::showUnit(int uid)
@@ -346,7 +351,7 @@ void SelectionManager::addSelectionEffect(int objUid)
 	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
 	object->property(TempData::IsSelected) = QVariant(true);
 	auto effectIterator = mind_->addEffect(Effect(Effects::Selection,
-						      new SelectionEffectData(object, SelectionColor)));
+	                                              new SelectionEffectData(object, SelectionColor)));
 
 	uidToSelectionEffect_.insert(objUid, effectIterator);
 }
@@ -368,4 +373,35 @@ void SelectionManager::removeDeadFromSelection()
 	for (auto uid : selectedUnitsUidsCopy_)
 		if (!mind_->getPlayerFaction()->isAliveMember(uid))
 			selectedUnitsUids_.remove(uid);
+}
+
+void SelectionManager::adjustCursor()
+{
+	QPoint boardPos = boardWidget_->mapFromGlobal(boardWidget_->cursor().pos());
+	if (!boardWidget_->geometry().contains(boardPos))
+		return;
+
+	QCursor cursor = BSCursor(Cursors::PointerPrimary);
+
+	auto obj = objectInPixelsPos(boardPos);
+	if (obj != nullptr) {
+		switch (obj->getType()) {
+			case BS::Type::Location:
+				if (isFriendly(obj))
+					cursor = BSCursor(Cursors::ArrowDown);
+				break;
+			case BS::Type::Unit:
+				if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
+					if (isFriendly(obj))
+						cursor = BSCursor(Cursors::HealCross);
+					else
+						cursor = BSCursor(Cursors::Target);
+				}
+				break;
+			default:
+				break;
+		}
+	}
+
+	boardWidget_->setCursor(cursor);
 }

@@ -9,7 +9,7 @@
 #include "UserInterface/Viewport.hpp"
 #include "UserInterface/MainMenuWindow.hpp"
 #include "UserInterface/GameWindow.hpp"
-
+#include "UserInterface/Resources.hpp"
 
 UserInterface::UserInterface(General *general, DataManager *dataManager)
 	: general_(general),
@@ -23,6 +23,8 @@ UserInterface::UserInterface(General *general, DataManager *dataManager)
 	initWindows();
 	initLayout();
 	initDevActionsMenu();
+
+	stackedWidget_->setCursor(BSCursor(Cursors::PointerPrimary));
 }
 
 UserInterface::~UserInterface()

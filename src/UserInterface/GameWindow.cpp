@@ -21,7 +21,7 @@ GameWindow::GameWindow(Mind *mind, DataManager *dataManager, BoardWidget *boardW
 	  dataManager_(dataManager),
 	  boardWidget_(boardWidget),
 	  updateTimer_(new QTimer),
-	  selectionManager_(mind_),
+	  selectionManager_(mind, boardWidget),
 	  isPaused_(false)
 {
 
@@ -46,6 +46,7 @@ void GameWindow::startUpdateLoop()
 
 	update();
 	updateTimer_->start(UpdateTimerInterval);
+	info("Loop started successfully.");
 }
 
 void GameWindow::initWindows()

@@ -3,7 +3,9 @@
  */
 #pragma once
 
-#include <QtCore>
+#include <QtWidgets>
+
+QCursor BSCursor(const QString &cursor);
 
 const QString DataPrefix = ":/";
 

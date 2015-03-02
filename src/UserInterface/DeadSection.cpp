@@ -4,7 +4,7 @@
 #include "DeadSection.hpp"
 
 #include "UserInterface/UnitsPanel.hpp"
-#include "UserInterface/ResourcesStrings.hpp"
+#include "UserInterface/Resources.hpp"
 
 DeadSection::DeadSection()
 {

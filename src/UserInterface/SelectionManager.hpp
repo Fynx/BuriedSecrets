@@ -7,6 +7,7 @@
 
 #include "UserInterface/Viewport.hpp"
 
+class BoardWidget;
 class Effect;
 class Mind;
 class Object;
@@ -21,7 +22,7 @@ public:
 	static const qreal ViewportZoomDelta;
 	static const QColor SelectionColor;
 
-	SelectionManager(Mind *mind);
+	SelectionManager(Mind *mind, BoardWidget *boardWidget);
 
 	Viewport *viewport();
 
@@ -52,8 +53,10 @@ private:
 	void addSelectionEffect(int objUid);
 	void removeSelectionEffect(int objUid);
 	void removeDeadFromSelection();
+    void adjustCursor();
 
 	Mind *const mind_;
+	BoardWidget *boardWidget_;
 	Viewport viewport_;
 
 	QSet<int> selectedUnitsUids_;

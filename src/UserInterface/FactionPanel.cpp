@@ -4,7 +4,7 @@
 #include "FactionPanel.hpp"
 
 #include "Mind/Mind.hpp"
-#include "UserInterface/ResourcesStrings.hpp"
+#include "UserInterface/Resources.hpp"
 
 FactionPanel::FactionPanel()
 {

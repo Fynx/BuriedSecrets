@@ -6,6 +6,8 @@
 #include "GameObjects/Faction.hpp"
 #include "UserInterface/CampEquipmentTab.hpp"
 #include "UserInterface/CampConstructorTab.hpp"
+#include "UserInterface/Resources.hpp"
+#include "UserInterface/UserInterface.hpp"
 
 CampWindow::CampWindow(Faction *playerFaction, DataManager *dataManager)
 	: playerFaction_(playerFaction),
