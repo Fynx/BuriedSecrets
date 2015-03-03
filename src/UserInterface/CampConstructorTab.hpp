@@ -4,12 +4,20 @@
 #pragma once
 
 #include <QtWidgets>
+#include "UserInterface/ItemsDisplay.hpp"
 
-class CampConstructorTab : public QWidget {
+class DataManager;
+class Equipment;
+class ItemConstructor;
+
+class CampConstructorTab : public ItemsDisplay, public QWidget {
 
 public:
-	CampConstructorTab();
+	CampConstructorTab(Equipment *eq, ItemConstructor *ic, DataManager *dm);
 
 private:
+    void initLayout();
 
+	Equipment *eq_;
+	ItemConstructor *itemConstructor_;
 };

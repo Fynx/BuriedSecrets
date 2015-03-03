@@ -52,7 +52,7 @@ void GameWindow::startUpdateLoop()
 void GameWindow::initWindows()
 {
 	// CampWindow
-	campWindow_ = new CampWindow(mind_->getPlayerFaction(), dataManager_);
+	campWindow_ = new CampWindow(mind_, dataManager_);
 	campWindow_->setParent(this);
 	campWindow_->hide();
 	connect(campWindow_, &CampWindow::exit, this, &GameWindow::closeCampWindow);

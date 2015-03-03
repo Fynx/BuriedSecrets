@@ -6,12 +6,12 @@
 #include <QtWidgets>
 
 class DataManager;
-class Faction;
+class Mind;
 
 class CampWindow : public QFrame {
 	Q_OBJECT
 public:
-	CampWindow(Faction *playerFaction, DataManager *dataManager);
+	CampWindow(Mind *mind, DataManager *dataManager);
 
 private:
 	static const int EquipmentIndex = 0;
@@ -24,7 +24,7 @@ private:
 
 	QPushButton *closeBtn_;
 
-	Faction *const playerFaction_;
+	Mind *const mind_;
 	DataManager *const dataManager_;
 
 signals:

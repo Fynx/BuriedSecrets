@@ -3,14 +3,14 @@
  */
 #include "CampWindow.hpp"
 
-#include "GameObjects/Faction.hpp"
+#include "Mind/Mind.hpp"
 #include "UserInterface/CampEquipmentTab.hpp"
 #include "UserInterface/CampConstructorTab.hpp"
 #include "UserInterface/Resources.hpp"
 #include "UserInterface/UserInterface.hpp"
 
-CampWindow::CampWindow(Faction *playerFaction, DataManager *dataManager)
-	: playerFaction_(playerFaction),
+CampWindow::CampWindow(Mind *mind, DataManager *dataManager)
+	: mind_(mind),
 	  dataManager_(dataManager)
 {
 	setAutoFillBackground(true);
@@ -23,10 +23,11 @@ QWidget *CampWindow::createTabWidget()
 	tabWidget_ = new QTabWidget;
 	tabWidget_->tabBar()->setFont(QFont("Times", 16));
 
-	auto equipmentTab = new CampEquipmentTab(playerFaction_->getEquipment(), dataManager_);
+	auto factionEq = mind_->getPlayerFaction()->getEquipment();
+	auto equipmentTab = new CampEquipmentTab(factionEq, dataManager_);
 	tabWidget_->insertTab(EquipmentIndex, equipmentTab, tr("Equipment"));
 
-	auto constructorTab = new CampConstructorTab;
+	auto constructorTab = new CampConstructorTab(factionEq, mind_->itemConstructor(), dataManager_);
 	tabWidget_->insertTab(ConstructorIndex, constructorTab, tr("Constructor"));
 
 	return tabWidget_;

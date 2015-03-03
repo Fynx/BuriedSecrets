@@ -7,6 +7,7 @@
 	FactionPanel.cpp
 	GameWindow.cpp
 	IsometricPerspective.cpp
+	ItemsDisplay.cpp
 	ItemWidget.cpp
 	JournalWindow.cpp
 	MainMenuWindow.cpp
