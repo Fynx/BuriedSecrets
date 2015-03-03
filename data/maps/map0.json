@@ -438,6 +438,12 @@
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
+			"items": [
+				{
+					"uid": 1006,
+					"searchDifficulty": 200
+				}
+			],
 			"x": 22,
 			"y": 15
 		},
@@ -449,6 +455,14 @@
 			"animators": [],
 			"x": 37.5,
 			"y": 33.5
+		},
+
+		{
+			"uid": 1006,
+			"name": "Machete",
+			"animators": [
+				"AnimatorWeapon"
+			]
 		}
 
 	]

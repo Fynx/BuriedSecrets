@@ -37,7 +37,12 @@ QList<Item *> Location::getItems(int searchDifficulty) const
 	return result;
 }
 
-const QSet<int> &Location::getItemsUids() const
+const QMap<Item *, int> &Location::getItemsDifficulty() const
+{
+	return items;
+}
+
+const QMap<int, int> &Location::getItemsUids() const
 {
 	return itemsUids;
 }
@@ -51,8 +56,11 @@ void Location::loadFromJson(const QJsonObject &json)
 	rangeOfHealing = json[Attributes::CampRange].toDouble();
 
 	if (json.contains(Attributes::Items)) {
-		for (const QJsonValue &uid : json[Attributes::Items].toArray())
-			itemsUids.insert(uid.toInt());
+		for (const QJsonValue &val : json[Attributes::Items].toArray()) {
+			int itemUid = val.toObject()[Attributes::Uid].toInt();
+			int itemSD  = val.toObject()[Attributes::SearchDifficulty].toInt();
+			itemsUids[itemUid] = itemSD;
+		}
 	}
 	if (json.contains(Attributes::Units)) {
 		for (const QJsonValue &uid : json[Attributes::Units].toArray())
@@ -68,8 +76,12 @@ QJsonObject Location::saveToJson() const
 		json[Attributes::CampRange] = rangeOfHealing;
 
 	QJsonArray its;
-	for (Item *item : items.keys())
-		its.append(item->getUid());
+	for (Item *item : items.keys()) {
+		QJsonObject itemEntry;
+		itemEntry[Attributes::Uid] = item->getUid();
+		itemEntry[Attributes::SearchDifficulty] = items[item];
+		its.append(itemEntry);
+	}
 	if (!its.isEmpty())
 		json[Attributes::Items] = its;
 

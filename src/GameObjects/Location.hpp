@@ -15,7 +15,8 @@ public:
 	void addItem(int searchDifficulty, Item *item);
 	void removeItem(Item *item);
 	QList<Item *> getItems(int searchDifficulty = 1000) const;
-	const QSet<int> &getItemsUids() const;
+	const QMap<Item *, int> &getItemsDifficulty() const;
+	const QMap<int, int> &getItemsUids() const;
 
 	void insertUnit(int id);
 	void removeUnit(int id);
@@ -34,7 +35,7 @@ public:
 private:
 	/** Items, searchDifficulty */
 	QMap<Item *, int> items;
-	QSet<int> itemsUids;
+	QMap<int, int> itemsUids;
 	QSet<int> unitsUids;
 
 	bool assemblable;

@@ -36,21 +36,22 @@ namespace Animators {
 }
 
 namespace Attributes {                                 // Converted into class fields
-	const QString Attitude      = "attitude";
-	const QString CampRange     = "campRange";
-	const QString Command       = "command";
-	const QString DelayTime     = "delayTime";         // Item
-	const QString Equipment     = "equipment";
-	const QString Faction       = "faction";
-	const QString Food          = "food";
-	const QString HP            = "hp";
-	const QString Items         = "items";
-	const QString Psychosis     = "psychosis";
-	const QString Relations     = "relations";
-	const QString Slots         = "slots";
-	const QString Uid           = "uid";
-	const QString Units         = "units";
-	const QString UsesLeft      = "UsesLeft";          // Item
+	const QString Attitude         = "attitude";
+	const QString CampRange        = "campRange";
+	const QString Command          = "command";
+	const QString DelayTime        = "delayTime";         // Item
+	const QString Equipment        = "equipment";
+	const QString Faction          = "faction";
+	const QString Food             = "food";
+	const QString HP               = "hp";
+	const QString Items            = "items";
+	const QString Psychosis        = "psychosis";
+	const QString Relations        = "relations";
+	const QString SearchDifficulty = "searchDifficulty";
+	const QString Slots            = "slots";
+	const QString Uid              = "uid";
+	const QString Units            = "units";
+	const QString UsesLeft         = "UsesLeft";          // Item
 }
 
 namespace Data {

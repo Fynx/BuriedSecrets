@@ -144,10 +144,14 @@ void Mind::loadFromJson(const QJsonObject &json)
 		case BS::Type::Location: {
 			Location *loc = dynamic_cast<Location *>(object);
 
-			for (int itemUid : loc->getItemsUids()) {
+			for (int itemUid : loc->getItemsUids().keys()) {
 				Item *item = dynamic_cast<Item *>(getObjectFromUid(itemUid));
 				Q_ASSERT(item->getType() == BS::Type::Item);
-				loc->addItem(0, item);
+				loc->addItem(loc->getItemsUids()[itemUid], item);
+
+				for (Item *item : loc->getItemsDifficulty().keys())
+					qDebug() << "\t\t\tcontains item" << item->getName()
+						<< "with search difficulty" << loc->getItemsDifficulty()[item];
 			}
 			for (int unitUid : loc->getUnitsUids()) {
 				loc->insertUnit(unitUid);
