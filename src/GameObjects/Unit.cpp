@@ -229,7 +229,7 @@ void Unit::setTargetPoint(QPointF p)
 	targetPoint = p;
 }
 
-BS::Attitude Unit::getAttitude()
+BS::Attitude Unit::getAttitude() const
 {
 	return attitude;
 }

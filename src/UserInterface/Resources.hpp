@@ -12,15 +12,17 @@ const QString DataPrefix = ":/";
 namespace Icons {
 	const QString Prefix = DataPrefix + "icons/";
 
-	const QString Aggresive   = Prefix + "aggresive";
-	const QString Camp        = Prefix + "camp";
-	const QString Coward      = Prefix + "coward";
-	const QString Food        = Prefix + "food";
-	const QString Guard       = Prefix + "guard";
-	const QString House       = Prefix + "house";
-	const QString Journal     = Prefix + "journal";
-	const QString Skull       = Prefix + "skull";
-	const QString Star        = Prefix + "banana-for-scale";
+	const QString Aggresive        = Prefix + "aggresive";
+	const QString Camp             = Prefix + "camp";
+	const QString CampSelected     = Prefix + "camp-selected";
+	const QString Coward           = Prefix + "coward";
+	const QString Food             = Prefix + "food";
+	const QString Guard            = Prefix + "guard";
+	const QString Location         = Prefix + "house";
+	const QString LocationSelected = Prefix + "house-selected";
+	const QString Journal          = Prefix + "journal";
+	const QString Skull            = Prefix + "skull";
+	const QString Star             = Prefix + "banana-for-scale";
 }
 
 namespace Cursors {

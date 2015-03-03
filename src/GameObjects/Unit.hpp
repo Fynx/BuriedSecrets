@@ -53,7 +53,7 @@ public:
 	/** Action-wise */
 
 	void setAttitude(BS::Attitude a);
-	BS::Attitude getAttitude();
+	BS::Attitude getAttitude() const;
 
 	void setCommand(BS::Command c);
 	BS::Command getCommand();

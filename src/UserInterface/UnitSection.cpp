@@ -6,9 +6,13 @@
 #include "GameObjects/Unit.hpp"
 #include "Common/Strings.hpp"
 #include "DataManager/DataManager.hpp"
+#include "DebugManager/DebugManager.hpp"
+#include "UserInterface/Resources.hpp"
 #include "UserInterface/UnitsPanel.hpp"
 
 const QSize UnitSection::AvatarSize{64, 64};
+const QSize UnitSection::IconSize{16, 16};
+const int UnitSection::BarWidth{10};
 
 UnitSection::UnitSection(const Unit *unit, DataManager *dataManager)
 	: unit_(unit),
@@ -33,6 +37,32 @@ QSize UnitSection::sizeHint() const
 
 void UnitSection::refresh()
 {
+	switch(unit_->getAttitude()) {
+		case BS::Attitude::BuildingAggressive:
+		case BS::Attitude::Aggressive:
+			attitudeIcon_->setPixmap(QPixmap(Icons::Aggresive).scaled(IconSize));
+			break;
+		case BS::Attitude::BuildingDefensive:
+		case BS::Attitude::Guard:
+			attitudeIcon_->setPixmap(QPixmap(Icons::Guard).scaled(IconSize));
+			break;
+		case BS::Attitude::Coward:
+			attitudeIcon_->setPixmap(QPixmap(Icons::Coward).scaled(IconSize));
+			break;
+		default:
+			err("Unknown attitude");
+	}
+
+	if (unit_->getState() == BS::State::Inside)
+		locationIcon_->setPixmap(QPixmap(Icons::LocationSelected).scaled(IconSize));
+	else
+		locationIcon_->setPixmap(QPixmap(Icons::Location).scaled(IconSize));
+
+	if (unit_->property(TempData::NearCamp).toBool())
+		campIcon_->setPixmap(QPixmap(Icons::CampSelected).scaled(IconSize));
+	else
+		campIcon_->setPixmap(QPixmap(Icons::Camp).scaled(IconSize));
+
 	hpBar_->setMaximum(unit_->getMaxHP());
 	hpBar_->setValue(unit_->getHP());
 
@@ -70,9 +100,9 @@ void UnitSection::initLayout()
 	mainLayout->addWidget(name);
 
 	auto hLayout = new QHBoxLayout;
+	hLayout->addLayout(createIconsLayout());
 	hLayout->addWidget(createAvatarWidget());
 	hLayout->addLayout(createBarsLayout());
-	hLayout->addLayout(createIconsLayout());
 	mainLayout->addLayout(hLayout);
 }
 
@@ -80,14 +110,14 @@ QLayout *UnitSection::createIconsLayout()
 {
 	auto iconsLayout = new QVBoxLayout;
 
-	auto locationIcon = new QFrame;
-	iconsLayout->addWidget(locationIcon);
+	attitudeIcon_ = new QLabel;
+	iconsLayout->addWidget(attitudeIcon_);
 
-	auto campIcon = new QFrame;
-	iconsLayout->addWidget(campIcon);
+	campIcon_ = new QLabel;
+	iconsLayout->addWidget(campIcon_);
 
-	auto behaviourIcon = new QFrame;
-	iconsLayout->addWidget(behaviourIcon);
+	locationIcon_ = new QLabel;
+	iconsLayout->addWidget(locationIcon_);
 
 	return iconsLayout;
 }
@@ -112,12 +142,14 @@ QLayout *UnitSection::createBarsLayout()
 	hpBar_->setTextVisible(false);
 	hpBar_->setOrientation(Qt::Vertical);
 	hpBar_->setMinimum(0);
+	hpBar_->setMaximumWidth(BarWidth);
 	barsLayout->addWidget(hpBar_);
 
 	psychosisBar_ = new QProgressBar;
 	psychosisBar_->setTextVisible(false);
 	psychosisBar_->setOrientation(Qt::Vertical);
 	psychosisBar_->setMinimum(0);
+	psychosisBar_->setMaximumWidth(BarWidth);
 	barsLayout->addWidget(psychosisBar_);
 
 	return barsLayout;

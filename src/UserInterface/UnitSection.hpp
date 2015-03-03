@@ -20,6 +20,8 @@ public:
 
 private:
 	static const QSize AvatarSize;
+	static const QSize IconSize;
+	static const int BarWidth;
 
 	void mouseDoubleClickEvent(QMouseEvent *event);
 	void mousePressEvent(QMouseEvent *event);
@@ -31,6 +33,10 @@ private:
 
 	const Unit *const unit_;
 	DataManager *const dataManager_;
+
+	QLabel *locationIcon_;
+	QLabel *campIcon_;
+	QLabel *attitudeIcon_;
 
 	QProgressBar *hpBar_;
 	QProgressBar *psychosisBar_;
