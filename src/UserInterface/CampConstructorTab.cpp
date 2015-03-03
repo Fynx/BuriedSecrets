@@ -21,7 +21,7 @@ CampConstructorTab::CampConstructorTab(Equipment *eq, ItemConstructor *ic, DataM
 
 void CampConstructorTab::refresh()
 {
-	setItemsList(itemConstructor_->possibleItems(eq_));
+	setItemsList(itemConstructor_->possibleItems(eq_).toList());
 }
 
 void CampConstructorTab::initLayout()

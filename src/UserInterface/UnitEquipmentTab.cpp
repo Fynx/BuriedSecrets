@@ -13,7 +13,7 @@ UnitEquipmentTab::UnitEquipmentTab(Unit *unit, DataManager *dataManager)
 {
 	initLayout();
 
-	setItemsList(unit->getEquipment()->getItems());
+	setItemsList(unit->getEquipment()->getItems().toList());
 }
 
 void UnitEquipmentTab::initLayout()

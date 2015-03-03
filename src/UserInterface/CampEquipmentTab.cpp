@@ -18,7 +18,7 @@ CampEquipmentTab::CampEquipmentTab(Equipment *eq, DataManager *dataManager)
 
 void CampEquipmentTab::refresh()
 {
-	setItemsList(eq_->getItems());
+	setItemsList(eq_->getItems().toList());
 }
 
 void CampEquipmentTab::initLayout()

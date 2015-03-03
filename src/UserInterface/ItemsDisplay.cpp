@@ -41,16 +41,16 @@ void ItemsDisplay::connectDisplays()
 	QObject::connect(itemsList_, &QListWidget::currentItemChanged, this, &ItemsDisplay::onCurrentChanged);
 }
 
-void ItemsDisplay::setItemsList(const QSet<Item *> &items)
+void ItemsDisplay::setItemsList(const QList<Item *> &items)
 {
-	QSet<const Prototype *> prototypes;
-	for (auto &item : items)
-		prototypes.insert(item->getPrototype());
+	QList<const Prototype *> prototypes;
+	for (auto item : items)
+		prototypes.append(item->getPrototype());
 
 	setItemsList(prototypes);
 }
 
-void ItemsDisplay::setItemsList(const QSet<const Prototype *> &prototypes)
+void ItemsDisplay::setItemsList(const QList<const Prototype *> &prototypes)
 {
 	//FIXME itemsList->clear is hard to handle due to signals, hence this hack with inReset_
 	inReset_ = true;
@@ -59,7 +59,8 @@ void ItemsDisplay::setItemsList(const QSet<const Prototype *> &prototypes)
 	itemWidget_->clear();
 	inReset_ = false;
 
-	for (auto proto : prototypes) {
+	for (int i = 0; i < prototypes.count(); ++ i) {
+		auto proto = prototypes[i];
 		QString itemName = proto->getProperty(Properties::Picture).toString();
 		const Resource *res = dataManager_->getResource(itemName);
 		QImage img;
@@ -69,9 +70,9 @@ void ItemsDisplay::setItemsList(const QSet<const Prototype *> &prototypes)
 		auto name = proto->getProperty(Properties::Name).toString();
 		auto lwi = new QListWidgetItem(icon, name, itemsList_);
 // 		lwi->setFlags(Qt::ItemFlag::ItemIsSelectable & Qt::ItemIsDragEnabled & Qt::ItemIsEnabled);
-		lwi->setData(Qt::UserRole, QVariant({name}));
+		lwi->setData(Qt::UserRole, QVariant(i));
 		lwi->setFont(QFont("Times", 18));
-		usedPrototypes_.insert(name, proto);
+		usedPrototypes_.insert(i, proto);
 	}
 
 	if (!prototypes.isEmpty())
@@ -87,5 +88,5 @@ const Prototype *ItemsDisplay::currentPrototype() const
 void ItemsDisplay::onCurrentChanged(QListWidgetItem *item)
 {
 	if (!inReset_)
-		itemWidget_->setPrototype(usedPrototypes_[item->data(Qt::UserRole).toString()]);
+		itemWidget_->setPrototype(usedPrototypes_[item->data(Qt::UserRole).toInt()]);
 }

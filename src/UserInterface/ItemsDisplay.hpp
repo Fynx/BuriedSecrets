@@ -22,8 +22,8 @@ protected:
 	QListWidget *createItemsList();
 	void connectDisplays();
 
-	void setItemsList(const QSet<Item *> &items);
-	void setItemsList(const QSet<const Prototype *> &prototypes);
+	void setItemsList(const QList<Item *> &items);
+	void setItemsList(const QList<const Prototype *> &prototypes);
 
 	const Prototype *currentPrototype() const;
 
@@ -33,7 +33,7 @@ private:
 	ItemWidget *itemWidget_;
 	QListWidget *itemsList_;
 
-	QMap<QString, const Prototype *> usedPrototypes_;
+	QMap<int, const Prototype *> usedPrototypes_;
 	bool inReset_;
 
 private slots:
