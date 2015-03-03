@@ -15,22 +15,38 @@ const QFont ItemWidget::DetailsFont{"Times", 16};
 const QFont ItemWidget::TitlesFont{"Arial", 16, QFont::Bold};
 
 
-ItemWidget::ItemWidget(DataManager *dataManager) : item_(nullptr), dataManager_(dataManager)
+ItemWidget::ItemWidget(DataManager *dataManager) : prototype_(nullptr), dataManager_(dataManager)
 {
 	setAutoFillBackground(true);
 	initLayout();
+
+	//TODO fill with mock item
 }
 
-const Item *ItemWidget::item() const
+const Prototype *ItemWidget::prototype() const
 {
-	return item_;
+	return prototype_;
 }
 
 void ItemWidget::setItem(const Item *item)
 {
-	item_ = item;
+	prototype_ = item->getPrototype();
 
 	fillWidget();
+}
+
+void ItemWidget::setPrototype(const Prototype* prototype)
+{
+	prototype_ = prototype;
+
+	fillWidget();
+}
+
+void ItemWidget::clear()
+{
+	prototype_ = nullptr;
+
+	//TODO fill with mock item
 }
 
 void ItemWidget::initLayout()
@@ -103,26 +119,26 @@ QLayout *ItemWidget::createDetailsPart()
 
 void ItemWidget::fillWidget()
 {
-	QString pictureName = item_->getPrototype()->getProperty(Properties::Picture).toString();
+	QString pictureName = prototype_->getProperty(Properties::Picture).toString();
 	const Resource *res = dataManager_->getResource(pictureName);
 	QImage img;
 	img.loadFromData(reinterpret_cast<const uchar *>(res->getData()), res->getDataLength());
 	QPixmap pixmap(QPixmap::fromImage(img).scaled(PictureSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
 	pictureLabel_->setPixmap(pixmap);
 
-	nameLabel_->setText(item_->getName());
+	nameLabel_->setText(prototype_->getProperty(Properties::Name).toString());
 
 	// Details
-	descriptionLabel_->setText(item_->getPrototype()->getProperty(Properties::Description).toString());
+	descriptionLabel_->setText(prototype_->getProperty(Properties::Description).toString());
 
-	weightLabel_->setNum(item_->getWeight());
-	fillQuality(item_->getPrototype()->getProperty(Properties::Quality).toInt());
-	itemTypeLabel_->setText(BS::changeItemTypeToString(item_->getItemType()));
+	weightLabel_->setNum(prototype_->getProperty(Properties::Weight).toInt());
+	fillQuality(prototype_->getProperty(Properties::Quality).toInt());
+	itemTypeLabel_->setText(prototype_->getProperty(Properties::ItemType).toString());
 
-	auto components = item_->getPrototype()->getProperty(Properties::Ingredients).toStringList();
+	auto components = prototype_->getProperty(Properties::Ingredients).toStringList();
 	QString componentsTxt;
 	for (QString name : components)
-		componentsTxt += QString("- ") + name + QString("\n");
+		componentsTxt += name + QString("\n");
 	componentsLabel_->setVisible(components.count() > 0);
 	componentsTitle_->setVisible(components.count() > 0);
 	componentsLabel_->setText(componentsTxt);

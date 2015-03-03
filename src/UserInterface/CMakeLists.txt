@@ -25,6 +25,8 @@
 
 set (UserInterface_HDRS
 	BoardWidget.hpp
+	CampEquipmentTab.hpp
+	CampConstructorTab.hpp
 	CampWindow.hpp
 	FactionPanel.hpp
 	GameWindow.hpp

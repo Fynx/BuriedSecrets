@@ -9,7 +9,7 @@
 class DataManager;
 class Unit;
 
-class UnitEquipmentTab : public ItemsDisplay, public QWidget {
+class UnitEquipmentTab : public ItemsDisplay {
 
 public:
 	UnitEquipmentTab(Unit *unit, DataManager *dataManager);

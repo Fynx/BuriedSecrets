@@ -8,8 +8,9 @@
 class DataManager;
 class Item;
 class ItemWidget;
+class Prototype;
 
-class ItemsDisplay : public QObject {
+class ItemsDisplay : public QWidget {
 
 public:
 	static const QSize IconSize;
@@ -21,7 +22,10 @@ protected:
 	QListWidget *createItemsList();
 	void connectDisplays();
 
-	void setItemsList(QSet<Item *> items);
+	void setItemsList(const QSet<Item *> &items);
+	void setItemsList(const QSet<const Prototype *> &prototypes);
+
+	const Prototype *currentPrototype() const;
 
 	DataManager *const dataManager_;
 
@@ -29,8 +33,9 @@ private:
 	ItemWidget *itemWidget_;
 	QListWidget *itemsList_;
 
-	QMap<int, Item *> itemsUids_; //due to this map Mind is needless
+	QMap<QString, const Prototype *> usedPrototypes_;
+	bool inReset_;
 
 private slots:
-	void onItemActivated(QListWidgetItem *item);
+	void onCurrentChanged(QListWidgetItem *item);
 };

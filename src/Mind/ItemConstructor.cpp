@@ -9,26 +9,26 @@
 
 ItemConstructor::ItemConstructor(DataManager *dm, Mind *m) : mind(m)
 {
-	for (Prototype *proto : dm->getAllPrototypes()){
+	for (const Prototype *proto : dm->getAllPrototypes()){
 		if (proto->hasProperty(Properties::Type)
 			&& proto->getProperty(Properties::Type).toString() == BS::changeTypeToString(BS::Type::Item))
-			allItems.append(proto);
+			allItems.insert(proto);
 	}
 }
 
-QList<Prototype *> ItemConstructor::possibleItems(Equipment *eq)
+QSet<const Prototype *> ItemConstructor::possibleItems(Equipment *eq)
 {
 	// If no equipment given - return all the item prototypes
 	if (!eq)
 		return allItems;
 
-	QList<Prototype *> result;
+	QSet<const Prototype *> result;
 	QSet<QString> names;
 
 	for (Item *it : eq->getItems())
 		names.insert(it->getName());
 
-	for (Prototype *proto : allItems){
+	for (auto proto : allItems){
 		if (!proto->hasProperty(Properties::Ingredients))
 			continue;
 
@@ -40,13 +40,13 @@ QList<Prototype *> ItemConstructor::possibleItems(Equipment *eq)
 			}
 		}
 		if (isPossible)
-			result.append(proto);
+			result.insert(proto);
 	}
 
 	return result;
 }
 
-Item *ItemConstructor::constructItem(Prototype *proto, Equipment *eq)
+Item *ItemConstructor::constructItem(const Prototype *proto, Equipment *eq)
 {
 	Item *result;
 	// Add Ingredients consumption

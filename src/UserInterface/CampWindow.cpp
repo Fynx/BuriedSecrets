@@ -30,6 +30,8 @@ QWidget *CampWindow::createTabWidget()
 	auto constructorTab = new CampConstructorTab(factionEq, mind_->itemConstructor(), dataManager_);
 	tabWidget_->insertTab(ConstructorIndex, constructorTab, tr("Constructor"));
 
+	connect(constructorTab, &CampConstructorTab::itemConstructed, equipmentTab, &CampEquipmentTab::refresh);
+
 	return tabWidget_;
 }
 

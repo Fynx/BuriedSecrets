@@ -12,10 +12,10 @@ class ItemConstructor {
 
 public:
 	ItemConstructor(DataManager *, Mind *);
-	QList<Prototype *> possibleItems(Equipment *eq = nullptr);
-	Item *constructItem(Prototype *, Equipment *eq);
+	QSet<const Prototype *> possibleItems(Equipment *eq = nullptr);
+	Item *constructItem(const Prototype *, Equipment *eq);
 
 private:
-	QList<Prototype *> allItems;
+	QSet<const Prototype *> allItems;
 	Mind *mind;
 };

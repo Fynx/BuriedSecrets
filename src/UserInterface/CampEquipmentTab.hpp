@@ -9,10 +9,14 @@
 class DataManager;
 class Equipment;
 
-class CampEquipmentTab : public ItemsDisplay, public QWidget {
+class CampEquipmentTab : public ItemsDisplay {
+	Q_OBJECT
 
 public:
 	CampEquipmentTab(Equipment *eq, DataManager *dataManager);
+
+public slots:
+	void refresh();
 
 private:
 	void initLayout();

@@ -7,15 +7,19 @@
 
 class DataManager;
 class Item;
+class Prototype;
 
 class ItemWidget : public QWidget {
 
 public:
 	ItemWidget(DataManager *dataManager);
 
-	const Item *item() const;
+	const Prototype *prototype() const;
 
 	void setItem(const Item *item);
+	void setPrototype(const Prototype *prototype);
+
+	void clear();
 
 private:
 	static const QSize PictureSize;
@@ -32,7 +36,7 @@ private:
 	void fillWidget();
 	void fillQuality(int q);
 
-	const Item *item_;
+	const Prototype *prototype_;
 	DataManager *const dataManager_;
 
 	QLabel *pictureLabel_;

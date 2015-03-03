@@ -15,7 +15,13 @@ CampConstructorTab::CampConstructorTab(Equipment *eq, ItemConstructor *ic, DataM
 {
 	initLayout();
 
-// 	TODO setItemsList from itemConstructor_->possibleItems(eq_);
+	connect(this, &CampConstructorTab::itemConstructed, this, &CampConstructorTab::refresh);
+	refresh();
+}
+
+void CampConstructorTab::refresh()
+{
+	setItemsList(itemConstructor_->possibleItems(eq_));
 }
 
 void CampConstructorTab::initLayout()
@@ -26,4 +32,19 @@ void CampConstructorTab::initLayout()
 	layout->addWidget(createItemWidget(), 1);
 	layout->addWidget(createItemsList(), 1);
 	connectDisplays();
+
+	constructBtn_ = new QPushButton(tr("Construct"));
+	constructBtn_->setFont(QFont("Times", 20));
+	connect(constructBtn_, &QPushButton::clicked, this, &CampConstructorTab::onConstruct);
+	layout->addWidget(constructBtn_);
+}
+
+void CampConstructorTab::onConstruct()
+{
+	if (currentPrototype() == nullptr)
+		return;
+
+	auto item = itemConstructor_->constructItem(currentPrototype(), eq_);
+
+	emit itemConstructed(item);
 }

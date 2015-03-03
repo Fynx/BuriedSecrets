@@ -13,6 +13,11 @@ CampEquipmentTab::CampEquipmentTab(Equipment *eq, DataManager *dataManager)
 {
 	initLayout();
 
+	refresh();
+}
+
+void CampEquipmentTab::refresh()
+{
 	setItemsList(eq_->getItems());
 }
 
