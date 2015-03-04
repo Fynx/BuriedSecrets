@@ -15,3 +15,5 @@ add_subdirectory (UserInterface)
 
 add_subdirectory (Tools)
 add_subdirectory (General)
+
+add_subdirectory (ContentEditor)
