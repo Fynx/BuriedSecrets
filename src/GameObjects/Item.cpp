@@ -36,6 +36,22 @@ int Item::getWeight() const
 	return prototype->getProperty(Properties::Weight).toInt();
 }
 
+QSet<BS::Slot> Item::getAvailableSlots() const
+{
+	QSet<BS::Slot> result;
+	if (!prototype->hasProperty(Properties::Slots))
+		return result;
+	QVariantList arr = prototype->getProperty(Properties::Slots).toList();
+	for (const QVariant &val : arr)
+		result.insert(BS::changeStringToSlot(val.toString()));
+	return result;
+}
+
+bool Item::isSlotAvailable(BS::Slot slot) const
+{
+	return getAvailableSlots().contains(slot);
+}
+
 int Item::getUseDelay()
 {
 	return delay;

@@ -129,6 +129,7 @@ namespace Properties {                                 // for Prototypes
 	const QString ReloadTime    = "reloadTime";        // Weapon
 	const QString ShotsInterval = "shotsInterval";     // Weapon
 	const QString SightRange    = "sightRange";        // base for Unit
+	const QString Slots         = "slots";
 	const QString SmallDefBonus = "smallDefBonus";     // Bonus from location
 	const QString SpawnedType   = "spawnedType";       // Item - Fortification
 	const QString Transparent   = "transparent";

@@ -18,6 +18,9 @@ public:
 	QString getName() const;
 	int getWeight() const;
 
+	QSet<BS::Slot> getAvailableSlots() const;
+	bool isSlotAvailable(BS::Slot slot) const;
+
 	int getUsesLeft();
 	void setUsesLeft(int n);
 

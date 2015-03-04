@@ -89,7 +89,12 @@ void Equipment::putItemIntoSlot(BS::Slot slot, Item *item)
 	if (!items.contains(item)) {
 		err("Item must be inserted into the equipment, before it can be attached to the slot!");
 		return;
+	} else if (!item->isSlotAvailable(slot)) {
+		err("Trying to insert item " + item->getName() + " into the wrong slot ("
+			+ BS::changeSlotToString(slot) + ")");
+		return;
 	}
+
 	usedItems[slot] = item;
 	usedItemsUids[slot] = item->getUid();
 }

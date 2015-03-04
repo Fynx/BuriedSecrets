@@ -210,7 +210,8 @@
 		"optimalRange": 20,
 		"shotsInterval" : 20,
 		"magazineSize" : 5,
-		"reloadTime" : 60
+		"reloadTime" : 60,
+		"slots": ["weapon"]
 	},
 
 
@@ -227,7 +228,8 @@
 		"optimalRange": 8,
 		"shotsInterval" : 5,
 		"magazineSize" : 8,
-		"reloadTime" : 30
+		"reloadTime" : 30,
+		"slots": ["weapon"]
 	},
 
 
@@ -244,7 +246,8 @@
 		"optimalRange": 12,
 		"shotsInterval" : 3,
 		"magazineSize" : 80,
-		"reloadTime" : 55
+		"reloadTime" : 55,
+		"slots": ["weapon"]
 	},
 
 
@@ -253,7 +256,7 @@
 		"picture": "revolvers",
 		"itemType": "Dual pistols",
 		"damage": 25,
-		"description": "Fellin' like some gold stealin' and shootin' Indians? Take this, might be helpful.",
+		"description": "Feelin' like some gold stealin' and shootin' Indians? Take this, might be helpful.",
 		"quality": 4,
 		"dispersion": 15,
 		"weight": 2,
@@ -261,7 +264,8 @@
 		"optimalRange": 8,
 		"shotsInterval" : 10,
 		"magazineSize" : 5,
-		"reloadTime" : 50
+		"reloadTime" : 50,
+		"slots": ["weapon"]
 	},
 
 
@@ -278,7 +282,8 @@
 		"optimalRange": 3,
 		"shotsInterval" : 10,
 		"magazineSize" : 1000,
-		"reloadTime" : 1
+		"reloadTime" : 1,
+		"slots": ["weapon"]
 	},
 
 
@@ -295,7 +300,8 @@
 		"optimalRange": 3,
 		"shotsInterval" : 6,
 		"magazineSize" : 1000,
-		"reloadTime" : 1
+		"reloadTime" : 1,
+		"slots": ["weapon"]
 	},
 
 
@@ -306,7 +312,8 @@
 		"description": "It won't cure your cancer, but might help you go through the day. Before use, read the package leaflet.",
 		"quality": 5,
 		"healing": 7,
-		"weight": 1
+		"weight": 1,
+		"slots": ["medicament"]
 	},
 
 
@@ -319,7 +326,8 @@
 		"quality": 4,
 		"dispersion": 0,
 		"engineering": 6,
-		"weight": 2
+		"weight": 2,
+		"slots": ["tool", "weapon"]
 	},
 
 
@@ -330,7 +338,8 @@
 		"quality": 3,
 		"picture": "combat-jacket",
 		"defense": 0.2,
-		"weight": 4
+		"weight": 4,
+		"slots": ["armor"]
 	},
 
 
@@ -342,7 +351,8 @@
 		"quality": 5,
 		"weight": 4,
 		"spawnedType": "Wired fence",
-		"ingredients": ["Wooden planks", "Wire"]
+		"ingredients": ["Wooden planks", "Wire"],
+		"slots": ["fortification"]
 	},
 
 
@@ -353,7 +363,8 @@
 		"description": "German design, Swedish materials, your sweat & tears. No more, no less.",
 		"quality": 10,
 		"weight": 8,
-		"spawnedType": "Bunker"
+		"spawnedType": "Bunker",
+		"slots": ["fortification"]
 	},
 
 
