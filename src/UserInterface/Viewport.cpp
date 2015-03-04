@@ -66,9 +66,26 @@ QPointF Viewport::getWholeScale() const
 }
 
 
-void Viewport::moveViewInMetres(const QPointF &deltaInMetres)
+void Viewport::moveViewInMetres(QPointF deltaInMetres)
 {
+	QPointF newTopLeft = currentView.topLeft() + deltaInMetres;
+	QPointF newBottomRight = currentView.bottomRight() + deltaInMetres;
+	if (currentView.width() <= mapSize.width()) {
+		// Excess to left.
+		deltaInMetres.setX(deltaInMetres.x() + std::max(-newTopLeft.x(), 0.0));
+		// Excess to right
+		deltaInMetres.setX(deltaInMetres.x() - std::max(newBottomRight.x() - mapSize.width(), 0.0));
+	}
+
+	if (currentView.height() <= mapSize.height()) {
+		// Excess up.
+		deltaInMetres.setY(deltaInMetres.y() + std::max(-newTopLeft.y(), 0.0));
+		// Excess down.
+		deltaInMetres.setY(deltaInMetres.y() - std::max(newBottomRight.y() - mapSize.height(), 0.0));
+	}
+
 	currentView = QRectF{currentView.topLeft() + deltaInMetres, currentView.bottomRight() + deltaInMetres};
+	updateView();
 }
 
 
@@ -89,9 +106,7 @@ void Viewport::setViewSizeInMetres(const QSizeF &sizeInMetres)
 void Viewport::setViewSizeInPixels(const QSize &sizeInPixels)
 {
 	QSizeF sizeInMetres = perspective->fromPixelsToMetres(sizeInPixels);
-	viewWidth = sizeInMetres.width();
-	viewHeight = sizeInMetres.height();
-	updateView();
+	setViewSizeInMetres(sizeInMetres);
 }
 
 
@@ -139,7 +154,19 @@ void Viewport::updateView()
 // 	float finalWidth = viewWidth * zoom;
 // 	float finalHeight = viewHeight * zoom;
 	currentView = QRectF(topLeft, QPointF(topLeft.x() + viewWidth, topLeft.y() + viewHeight));
-// 	FIXME don't allow the rect to go beyond the map
+	if (currentView.width() > mapSize.width()) {
+		// Center X in the view.
+		qreal offset = (currentView.width() - mapSize.width()) / 2;
+		currentView.setLeft(-offset);
+		currentView.setRight(2 * offset + mapSize.width());
+	}
+
+	if (currentView.height() > mapSize.height()) {
+		// Center Y in the view.
+		qreal offset = (currentView.height() - mapSize.height()) / 2;
+		currentView.setTop(-offset);
+		currentView.setBottom(2 * offset + mapSize.height());
+	}
 }
 
 

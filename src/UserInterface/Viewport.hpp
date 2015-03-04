@@ -51,7 +51,7 @@ public:
 	QPointF getWholeScale() const;
 
 	void moveViewInPixels(const QPoint &deltaInPixels);
-	void moveViewInMetres(const QPointF &deltaInMetres);
+	void moveViewInMetres(QPointF deltaInMetres);
 	void setViewSizeInMetres(const QSizeF &sizeInMetres);
 	void setViewSizeInPixels(const QSize &sizeInPixels);
 	/**
