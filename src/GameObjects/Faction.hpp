@@ -21,6 +21,8 @@ public:
 	QuestLog *getQuestLog();
 	Location *getCamp();
 
+	int getCampUid() const;
+	void setCamp(Location *);
 	const QSet<int> &getUnitsUids() const;
 	const QList<int> &getAllUnitsUids() const;
 	bool isAliveMember(int uid) const;
@@ -39,6 +41,7 @@ private:
 	QHash<int, int> relations;
 	Journal *journal;
 	QuestLog *questLog;
+	int campUid;
 	Location *camp;
 	QSet<int> unitsUids;
 	QList<int> allUnitsUids;

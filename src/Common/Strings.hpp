@@ -37,6 +37,7 @@ namespace Animators {
 
 namespace Attributes {                                 // Converted into class fields
 	const QString Attitude         = "attitude";
+	const QString CampId           = "campId";			// Faction, converted to pointer
 	const QString CampRange        = "campRange";
 	const QString Command          = "command";
 	const QString DelayTime        = "delayTime";         // Item

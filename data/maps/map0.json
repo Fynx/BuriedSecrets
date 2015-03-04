@@ -8,10 +8,12 @@
 			"uid": 1,
 			"name": "BasicFaction",
 			"animators": [
-				"AnimatorConsume"
+				"AnimatorConsume",
+				"AnimatorRegenerate"
 			],
 			"equipment": 2,
 			"food": 800,
+			"campId": 3,
 			"faction": 1,
 			"units": [4, 6, 8],
 			"relations": [[1, 1505], [2, -100]]
@@ -28,7 +30,7 @@
 		{
 			"uid": 3,
 			"name": "Player Camp",
-			"range": 20,
+			"campRange": 25,
 			"x": 31,
 			"y": 34
 		},
@@ -50,7 +52,8 @@
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
 				"AnimatorApplyDamage",
-				"AnimatorWatchTarget"
+				"AnimatorWatchTarget",
+				"AnimatorNearCamp"
 			],
 			"equipment": 5,
 			"x": 40.0,
@@ -87,7 +90,8 @@
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
 				"AnimatorApplyDamage",
-				"AnimatorWatchTarget"
+				"AnimatorWatchTarget",
+				"AnimatorNearCamp"
 			],
 			"equipment": 7,
 			"x": 45.0,
@@ -124,7 +128,8 @@
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
 				"AnimatorApplyDamage",
-				"AnimatorWatchTarget"
+				"AnimatorWatchTarget",
+				"AnimatorNearCamp"
 			],
 			"equipment": 9,
 			"x": 40.0,

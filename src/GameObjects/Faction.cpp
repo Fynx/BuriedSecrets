@@ -29,6 +29,17 @@ Location *Faction::getCamp()
 	return camp;
 }
 
+void Faction::setCamp(Location *c)
+{
+	camp = c;
+	campUid = c->getUid();
+}
+
+int Faction::getCampUid() const
+{
+	return campUid;
+}
+
 const QSet<int> &Faction::getUnitsUids() const
 {
 	return unitsUids;
@@ -87,6 +98,7 @@ void Faction::loadFromJson(const QJsonObject &json)
 	Equipped::loadFromJson(json);
 
 	food = json[Attributes::Food].toInt();
+	campUid = json[Attributes::CampId].toInt();
 
 	QJsonArray us = json[Attributes::Units].toArray();
 	for (const QJsonValue &value : us) {
@@ -106,6 +118,7 @@ QJsonObject Faction::saveToJson() const
 		json[key] = Equipped::saveToJson()[key];
 
 	json[Attributes::Food] = food;
+	json[Attributes::CampId] = campUid;
 
 	QJsonArray us;
 	for (int u : unitsUids)

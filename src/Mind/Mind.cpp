@@ -105,6 +105,10 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Q_ASSERT(eq->getType() == BS::Type::Equipment);
 			faction->setEquipment(dynamic_cast<Equipment *>(eq));
 
+			Location *camp = dynamic_cast<Location *>(getObjectFromUid(faction->getCampUid()));
+			if (camp)
+				faction->setCamp(camp);
+
 			break;
 		}
 		case BS::Type::Unit: {

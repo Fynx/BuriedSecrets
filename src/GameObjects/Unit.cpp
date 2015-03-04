@@ -16,6 +16,7 @@ Unit::Unit(const Prototype *prototype)
 	location = nullptr;
 	attitude = Attitude::Aggressive;
 	command = Command::None;
+	setPsychosis(0);
 }
 
 Unit::~Unit()
@@ -82,7 +83,7 @@ float Unit::getPsychosis() const
 
 void Unit::setPsychosis(int psychosis)
 {
-	this->psychosis = qMin(float(hp), getMaxPsychosis());
+	this->psychosis = qMin(float(psychosis), getMaxPsychosis());
 	this->psychosis = qMax(this->psychosis, 0);
 }
 
