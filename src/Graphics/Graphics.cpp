@@ -110,8 +110,20 @@ void Graphics::render()
 	auto visibleGraphicalEntities = getGraphicalEntitiesFor(visibleObjects);
 
 	// This can be split out into separate function
-	for (auto *entity : visibleGraphicalEntities) {
-		updateEntity(entity, 0, getPosition(entity));
+	QSizeF mapSize = camera->getPerspective()->fromMetresToPixels(mind->getMap()->getSize());
+	for (int i = 0; i < visibleGraphicalEntities.size(); ++i) {
+		updateEntity(visibleGraphicalEntities[i], 0, getPosition(visibleGraphicalEntities[i]));
+		QSizeF size = visibleGraphicalEntities[i]->getSizePx();
+		QPointF pos = visibleGraphicalEntities[i]->getPosition();
+		QPointF baseCentre = visibleGraphicalEntities[i]->getBaseCentre();
+		pos -= baseCentre;	// Upper left corner of the texture.
+		if (pos.x() + size.width() < 0.0 || pos.x() > mapSize.width() ||
+			pos.y() + size.height() < 0.0 || pos.y() > mapSize.height()) {
+			// The entity is outside map, remove it.
+			std::swap(visibleGraphicalEntities[i], visibleGraphicalEntities.back());
+			visibleGraphicalEntities.pop_back();
+			--i;
+		}
 	}
 
 	updateEffects(visibleGraphicalEntities);
