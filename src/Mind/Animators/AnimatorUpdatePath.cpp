@@ -40,6 +40,11 @@ void AnimatorUpdatePath::act()
 		if (from.isNull() || to.isNull())
 			continue;
 
+		if (comm == Command::Move && QVector2D(from-to).length() < epsilon){
+			unit->setCommand(Command::None);
+			continue;
+		}
+
 		unit->setCurrentPath(mind->getMapManager()->getPath(from, to));
 	}
 }

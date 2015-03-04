@@ -5,13 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
-class AnimatorUpdatePath : public Animator {
+class AnimatorAggressiveAtt : public Animator {
 public:
-	AnimatorUpdatePath(Mind *mind);
+	AnimatorAggressiveAtt(Mind *mind);
 
 	void act();
-
-private:
-	const float epsilon = 0.5;
 };
 

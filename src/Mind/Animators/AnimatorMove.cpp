@@ -7,6 +7,7 @@
 #include "GameObjects/Unit.hpp"
 #include "DebugManager/DebugManager.hpp"
 
+using namespace BS;
 
 AnimatorMove::AnimatorMove(Mind *mind) : Animator(mind)
 {
@@ -24,10 +25,9 @@ void AnimatorMove::act()
 
 /*		if ( !(obj->getState() == BS::Idle) && !(obj->getState() == BS::Run) && !(obj->getState() == BS::RunAttack))
 			continue;*/
-
-		if (unit->getCurrentPath().size() == 0 || obj->getState() == BS::Heal || obj->getState() == BS::Attack) {
-			if (obj->getState() == BS::Run){
-				obj->setState(BS::Idle);
+		if (unit->getCurrentPath().size() == 0 || obj->getState() == State::Heal || obj->getState() == State::Attack) {
+			if (obj->getState() == State::Run){
+				obj->setState(State::Idle);
 			}
 			mind->physicsEngine()->setVelocity(obj, dir);
 			continue;
@@ -38,8 +38,8 @@ void AnimatorMove::act()
 		if (dir.length() < epsilon)
 			unit->getCurrentPath().removeFirst();
 		else {
-			if (obj->getState() == BS::Idle)
-				obj->setState(BS::Run);
+			if (obj->getState() == State::Idle)
+				obj->setState(State::Run);
 			dir.normalize();
 			dir = dir * unit->getSpeed();
 			mind->physicsEngine()->setVelocity(obj, dir);
