@@ -48,8 +48,19 @@ QSet<const Prototype *> ItemConstructor::possibleItems(Equipment *eq)
 
 Item *ItemConstructor::constructItem(const Prototype *proto, Equipment *eq)
 {
+	for (QString ing : proto->getProperty(Properties::Ingredients).toStringList()){
+		bool found = false;
+		for (Item *it : eq->getItems()){
+			if (it->getName() == ing){
+				eq->removeItem(it);
+				found = true;
+				break;
+			}
+		}
+		if (!found)
+			warn("Damn... creating item from nonexisting ingredients");
+	}
 	Item *result;
-	// Add Ingredients consumption
 	result = new Item(proto);
 	mind->addObject(result);
 	eq->addItem(result);
