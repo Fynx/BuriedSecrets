@@ -6,6 +6,7 @@
 #include "DataManager/DataManager.hpp"
 #include "GameObjects/Equipment.hpp"
 #include "Mind/ItemConstructor.hpp"
+#include "UserInterface/ItemsListWidget.hpp"
 #include "UserInterface/ItemWidget.hpp"
 
 CampConstructorTab::CampConstructorTab(Equipment *eq, ItemConstructor *ic, DataManager *dm)
@@ -14,6 +15,8 @@ CampConstructorTab::CampConstructorTab(Equipment *eq, ItemConstructor *ic, DataM
 	  itemConstructor_(ic)
 {
 	initLayout();
+
+	disableDragAndDrop();
 
 	connect(this, &CampConstructorTab::itemConstructed, this, &CampConstructorTab::refresh);
 	refresh();

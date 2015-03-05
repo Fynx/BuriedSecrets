@@ -36,7 +36,12 @@ void Equipment::addItem(Item *item)
 
 void Equipment::removeItem(Item *item)
 {
+	for (auto slot : usedItems.keys())
+		if (usedItems[slot]->getUid() == item->getUid())
+			removeFromSlot(slot);
+
 	items.remove(item);
+	itemsUids.remove(item->getUid());
 }
 
 const QSet<int> &Equipment::getItemsUids() const
@@ -82,6 +87,12 @@ QJsonObject Equipment::saveToJson() const
 	json[Attributes::Slots] = used;
 
 	return json;
+}
+
+void Equipment::removeFromSlot(BS::Slot slot)
+{
+	usedItems.remove(slot);
+	usedItemsUids.remove(slot);
 }
 
 void Equipment::putItemIntoSlot(BS::Slot slot, Item *item)

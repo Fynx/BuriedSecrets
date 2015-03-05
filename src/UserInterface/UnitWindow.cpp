@@ -4,12 +4,14 @@
 #include "UnitWindow.hpp"
 
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/Mind.hpp"
 #include "UserInterface/UnitEquipmentTab.hpp"
 #include "UserInterface/UnitHistoryTab.hpp"
 #include "GameObjects/Unit.hpp"
 
-UnitWindow::UnitWindow(DataManager *dataManager)
+UnitWindow::UnitWindow(Mind *mind, DataManager *dataManager)
 	: unit_(nullptr),
+	  mind_(mind),
 	  dataManager_(dataManager)
 {
 	setAutoFillBackground(true);
@@ -50,7 +52,7 @@ void UnitWindow::setUnit(Unit *unit)
 		delete widget;
 	}
 
-	tabWidget_->insertTab(EquipmentIndex, new UnitEquipmentTab(unit_, dataManager_), tr("Equipment"));
+	tabWidget_->insertTab(EquipmentIndex, new UnitEquipmentTab(unit_, mind_, dataManager_), tr("Equipment"));
 	tabWidget_->insertTab(HistoryIndex,   new UnitHistoryTab(unit_, dataManager_),   tr("History"));
 
 	tabWidget_->setCurrentIndex(oldIdx);

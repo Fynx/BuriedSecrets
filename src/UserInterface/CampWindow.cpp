@@ -24,7 +24,7 @@ QWidget *CampWindow::createTabWidget()
 	tabWidget_->tabBar()->setFont(QFont("Times", 16));
 
 	auto factionEq = mind_->getPlayerFaction()->getEquipment();
-	auto equipmentTab = new CampEquipmentTab(factionEq, dataManager_);
+	auto equipmentTab = new CampEquipmentTab(factionEq, mind_, dataManager_);
 	tabWidget_->insertTab(EquipmentIndex, equipmentTab, tr("Equipment"));
 
 	auto constructorTab = new CampConstructorTab(factionEq, mind_->itemConstructor(), dataManager_);

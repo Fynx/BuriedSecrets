@@ -8,6 +8,7 @@
 	GameWindow.cpp
 	IsometricPerspective.cpp
 	ItemsDisplay.cpp
+	ItemsListWidget.cpp
 	ItemWidget.cpp
 	JournalWindow.cpp
 	MainMenuWindow.cpp
@@ -32,9 +33,11 @@ set (UserInterface_HDRS
 	FactionPanel.hpp
 	GameWindow.hpp
 	ItemsDisplay.hpp
+	ItemsListWidget.hpp
 	JournalWindow.hpp
 	MainMenuWindow.hpp
 	SelectionManager.hpp
+	SlotWidget.hpp
 	UnitsPanel.hpp
 	UnitSection.hpp
 	UnitWindow.hpp

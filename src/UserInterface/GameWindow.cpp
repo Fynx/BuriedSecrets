@@ -58,7 +58,7 @@ void GameWindow::initWindows()
 	connect(campWindow_, &CampWindow::exit, this, &GameWindow::closeCampWindow);
 
 	// UnitWindow
-	unitWindow_ = new UnitWindow(dataManager_);
+	unitWindow_ = new UnitWindow(mind_, dataManager_);
 	unitWindow_->setParent(this);
 	unitWindow_->hide();
 	connect(unitWindow_, &UnitWindow::exit, this, &GameWindow::closeUnitWindow);

@@ -5,15 +5,20 @@
 
 #include "DataManager/DataManager.hpp"
 #include "GameObjects/Equipment.hpp"
+#include "Mind/Mind.hpp"
+#include "UserInterface/ItemsListWidget.hpp"
 #include "UserInterface/ItemWidget.hpp"
 
-CampEquipmentTab::CampEquipmentTab(Equipment *eq, DataManager *dataManager)
+CampEquipmentTab::CampEquipmentTab(Equipment *eq, Mind *mind, DataManager *dataManager)
 	: ItemsDisplay(dataManager),
-	  eq_(eq)
+	  eq_(eq),
+	  mind_(mind)
 {
 	initLayout();
 
 	refresh();
+	connect(this, &ItemsDisplay::itemMovedIn, this, &CampEquipmentTab::onItemMovedIn);
+	connect(this, &ItemsDisplay::itemMovedOut, this, &CampEquipmentTab::onItemMovedOut);
 }
 
 void CampEquipmentTab::refresh()
@@ -29,4 +34,30 @@ void CampEquipmentTab::initLayout()
 	layout->addWidget(createItemWidget(), 1);
 	layout->addWidget(createItemsList(), 1);
 	connectDisplays();
+}
+
+Item* CampEquipmentTab::uidToItem(int uid)
+{
+	for (auto item : eq_->getItems())
+		if (item->getUid() == uid)
+			return item;
+
+	return nullptr;
+}
+
+void CampEquipmentTab::onItemMovedIn(int uid)
+{
+	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	if (item == nullptr)
+		return;
+	eq_->addItem(item);
+
+	refresh();
+}
+
+void CampEquipmentTab::onItemMovedOut(int uid)
+{
+	eq_->removeItem(uidToItem(uid));
+
+	refresh();
 }

@@ -7,6 +7,7 @@
 
 class DataManager;
 class Item;
+class ItemsListWidget;
 class ItemWidget;
 class Prototype;
 
@@ -20,20 +21,23 @@ public:
 
 protected:
 	ItemWidget *createItemWidget();
-	QListWidget *createItemsList();
+	ItemsListWidget *createItemsList();
 	void connectDisplays();
+
+	void disableDragAndDrop();
 
 	void setItemsList(const QList<Item *> &items);
 	void setItemsList(const QList<const Prototype *> &prototypes);
 	void setItemsList(const QList<QPair<const Prototype *, QVariant>> &dataPairs);
 
 	const Prototype *currentPrototype() const;
+	QVariant currentData() const;
 
 	DataManager *const dataManager_;
 
 private:
 	ItemWidget *itemWidget_;
-	QListWidget *itemsList_;
+	ItemsListWidget *itemsList_;
 
 	QMap<QVariant, const Prototype *> usedPrototypes_;
 	bool inReset_;
@@ -43,4 +47,8 @@ private slots:
 
 signals:
 	void itemChanged(QVariant data);
+	void itemMovedIn(int uid);
+	void itemMovedOut(int uid);
+	void itemLinkedIn(int uid);
+	void itemLinkedOut(int uid);
 };

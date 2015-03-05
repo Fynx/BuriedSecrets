@@ -4,6 +4,8 @@
 #include "ItemsDisplay.hpp"
 
 #include "DataManager/DataManager.hpp"
+#include "DebugManager/DebugManager.hpp"
+#include "UserInterface/ItemsListWidget.hpp"
 #include "UserInterface/ItemWidget.hpp"
 #include "GameObjects/Item.hpp"
 #include "Common/Strings.hpp"
@@ -27,24 +29,34 @@ ItemWidget *ItemsDisplay::createItemWidget()
 	return itemWidget_;
 }
 
-QListWidget *ItemsDisplay::createItemsList()
+ItemsListWidget *ItemsDisplay::createItemsList()
 {
 	//if was created before, then nullptr
 	if (itemsList_ != nullptr)
 		return nullptr;
 
-	itemsList_ = new QListWidget;
+	itemsList_ = new ItemsListWidget;
 	itemsList_->setSelectionMode(QAbstractItemView::SingleSelection);
-	itemsList_->setDragEnabled(true);
-	itemsList_->viewport()->setAcceptDrops(true);
-	itemsList_->setDropIndicatorShown(true);
-	itemsList_->setDragDropMode(QAbstractItemView::InternalMove);
 	return itemsList_;
 }
 
 void ItemsDisplay::connectDisplays()
 {
-	QObject::connect(itemsList_, &QListWidget::currentItemChanged, this, &ItemsDisplay::onCurrentChanged);
+	if (itemsList_ == nullptr || itemWidget_ == nullptr) {
+		err("Displays are not initialized!");
+		return;
+	}
+
+	connect(itemsList_, &ItemsListWidget::currentItemChanged, this, &ItemsDisplay::onCurrentChanged);
+	connect(itemsList_, &ItemsListWidget::itemMovedOut, this, &ItemsDisplay::itemMovedOut);
+	connect(itemsList_, &ItemsListWidget::itemMovedIn, this, &ItemsDisplay::itemMovedIn);
+	connect(itemsList_, &ItemsListWidget::itemLinkedOut, this, &ItemsDisplay::itemLinkedOut);
+	connect(itemsList_, &ItemsListWidget::itemLinkedIn, this, &ItemsDisplay::itemLinkedIn);
+}
+
+void ItemsDisplay::disableDragAndDrop()
+{
+	itemsList_->disableDragAndDrop();
 }
 
 void ItemsDisplay::setItemsList(const QList<Item *> &items)
@@ -97,6 +109,14 @@ void ItemsDisplay::setItemsList(const QList<QPair<const Prototype *, QVariant>> 
 const Prototype *ItemsDisplay::currentPrototype() const
 {
 	return itemWidget_->prototype();
+}
+
+QVariant ItemsDisplay::currentData() const
+{
+	if (itemsList_->count() == 0)
+		return {};
+
+	return itemsList_->currentItem()->data(Qt::UserRole);
 }
 
 void ItemsDisplay::onCurrentChanged(QListWidgetItem *item)

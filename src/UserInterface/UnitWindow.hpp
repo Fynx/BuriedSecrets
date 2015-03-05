@@ -6,12 +6,13 @@
 #include <QtWidgets>
 
 class DataManager;
+class Mind;
 class Unit;
 
 class UnitWindow : public QFrame {
 	Q_OBJECT
 public:
-	UnitWindow(DataManager *dataManager);
+	UnitWindow(Mind *mind, DataManager *dataManager);
 
 public slots:
 	void setUnit(Unit *unit);
@@ -23,6 +24,7 @@ private:
 	void initLayout();
 
 	Unit *unit_;
+	Mind *const mind_;
 	DataManager *const dataManager_;
 
 	QTabWidget *tabWidget_;

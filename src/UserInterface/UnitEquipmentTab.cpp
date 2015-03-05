@@ -6,19 +6,24 @@
 #include "Common/Strings.hpp"
 #include "DataManager/DataManager.hpp"
 #include "GameObjects/Unit.hpp"
+#include "Mind/Mind.hpp"
+#include "UserInterface/ItemsListWidget.hpp"
 #include "UserInterface/ItemWidget.hpp"
 #include "UserInterface/SlotWidget.hpp"
 
-UnitEquipmentTab::UnitEquipmentTab(Unit *unit, DataManager *dataManager)
+UnitEquipmentTab::UnitEquipmentTab(Unit *unit, Mind *mind, DataManager *dataManager)
 	: ItemsDisplay(dataManager),
-	  unit_(unit)
+	  unit_(unit),
+	  mind_(mind)
 {
 	initLayout();
 
+	connect(this, &ItemsDisplay::itemChanged, this, &UnitEquipmentTab::updateSlotsMarks);
 	connect(this, &ItemsDisplay::itemChanged, this, &UnitEquipmentTab::updateSlots);
-	connect(this, &ItemsDisplay::itemChanged, this, &UnitEquipmentTab::updateSlots);
+	connect(this, &ItemsDisplay::itemMovedIn, this, &UnitEquipmentTab::onItemMovedIn);
+	connect(this, &ItemsDisplay::itemMovedOut, this, &UnitEquipmentTab::onItemMovedOut);
 
-	setItemsList(unit->getEquipment()->getItems().toList());
+	refresh();
 }
 
 void UnitEquipmentTab::initLayout()
@@ -49,19 +54,13 @@ QLayout *UnitEquipmentTab::createSlotsLayout()
 
 	for (auto slot : displayedSlots_) {
 		auto sw = new SlotWidget(slot);
+		connect(sw, &SlotWidget::itemLinkedIn, this, &UnitEquipmentTab::onSlotLinkedIn);
+		connect(sw, &SlotWidget::itemLinkedOut, this, &UnitEquipmentTab::onSlotLinkedOut);
 		slotWidgets_.insert(slot, sw);
 		formLayout->addRow(slotTitle(slot), sw);
-
-		auto item = unit_->getEquipment()->getSlotItem(slot);
-		if (item != nullptr) {
-			QString pictureName = item->getPrototype()->getProperty(Properties::Picture).toString();
-			const Resource *res = dataManager_->getResource(pictureName);
-			QImage img;
-			img.loadFromData(reinterpret_cast<const uchar *>(res->getData()), res->getDataLength());
-
-			sw->setItem(QPixmap::fromImage(img), item->getName(), item->getUid());
-		}
 	}
+
+	updateSlots();
 
 	return formLayout;
 }
@@ -87,14 +86,17 @@ Item *UnitEquipmentTab::uidToItem(int uid)
 	return nullptr;
 }
 
-void UnitEquipmentTab::updateSlots(QVariant itemData)
+void UnitEquipmentTab::updateSlotsMarks()
 {
 	for (auto sw : slotWidgets_) {
 		sw->markEnabled(false);
 		sw->markLinked(false);
 	}
 
-	auto item = uidToItem(itemData.toInt());
+	if (currentData() == QVariant::Invalid)
+		return;
+
+	auto item = uidToItem(currentData().toInt());
 	if (item == nullptr)
 		return;
 
@@ -102,4 +104,65 @@ void UnitEquipmentTab::updateSlots(QVariant itemData)
 		sw->markEnabled(item->isSlotAvailable(sw->slot()));
 		sw->markLinked(sw->itemUid() == item->getUid());
 	}
+}
+
+void UnitEquipmentTab::updateSlots()
+{
+	for (auto sw : slotWidgets_) {
+		auto item = unit_->getEquipment()->getSlotItem(sw->slot());
+		if (item != nullptr) {
+			QString pictureName = item->getPrototype()->getProperty(Properties::Picture).toString();
+			const Resource *res = dataManager_->getResource(pictureName);
+			QImage img;
+			img.loadFromData(reinterpret_cast<const uchar *>(res->getData()), res->getDataLength());
+
+			sw->setItem(QPixmap::fromImage(img), item->getName(), item->getUid());
+		}
+		else
+			sw->clearItem();
+	}
+
+	updateSlotsMarks();
+}
+
+void UnitEquipmentTab::refresh()
+{
+	setItemsList(unit_->getEquipment()->getItems().toList());
+
+	updateSlotsMarks();
+}
+
+void UnitEquipmentTab::onItemMovedIn(int uid)
+{
+	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	if (item == nullptr)
+		return;
+	unit_->getEquipment()->addItem(item);
+
+	refresh();
+}
+
+void UnitEquipmentTab::onItemMovedOut(int uid)
+{
+	unit_->getEquipment()->removeItem(uidToItem(uid));
+
+	setItemsList(unit_->getEquipment()->getItems().toList());
+
+	updateSlots();
+}
+
+void UnitEquipmentTab::onSlotLinkedIn(BS::Slot slot, int uid)
+{
+	auto item = uidToItem(uid);
+	if (!item->getAvailableSlots().contains(slot))
+		return;
+
+	unit_->getEquipment()->putItemIntoSlot(slot, item);
+	updateSlots();
+}
+
+void UnitEquipmentTab::onSlotLinkedOut(BS::Slot slot, int uid)
+{
+	unit_->getEquipment()->removeFromSlot(slot);
+	updateSlots();
 }
