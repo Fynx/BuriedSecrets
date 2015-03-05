@@ -11,6 +11,7 @@ class ItemWidget;
 class Prototype;
 
 class ItemsDisplay : public QWidget {
+	Q_OBJECT
 
 public:
 	static const QSize IconSize;
@@ -24,6 +25,7 @@ protected:
 
 	void setItemsList(const QList<Item *> &items);
 	void setItemsList(const QList<const Prototype *> &prototypes);
+	void setItemsList(const QList<QPair<const Prototype *, QVariant>> &dataPairs);
 
 	const Prototype *currentPrototype() const;
 
@@ -33,9 +35,12 @@ private:
 	ItemWidget *itemWidget_;
 	QListWidget *itemsList_;
 
-	QMap<int, const Prototype *> usedPrototypes_;
+	QMap<QVariant, const Prototype *> usedPrototypes_;
 	bool inReset_;
 
 private slots:
 	void onCurrentChanged(QListWidgetItem *item);
+
+signals:
+	void itemChanged(QVariant data);
 };

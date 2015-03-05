@@ -16,6 +16,7 @@ namespace Icons {
 	const QString Camp             = Prefix + "camp";
 	const QString CampSelected     = Prefix + "camp-selected";
 	const QString Coward           = Prefix + "coward";
+	const QString Empty            = Prefix + "empty";
 	const QString Food             = Prefix + "food";
 	const QString Guard            = Prefix + "guard";
 	const QString Location         = Prefix + "house";

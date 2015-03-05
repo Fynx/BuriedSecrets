@@ -16,7 +16,7 @@
 #include "UserInterface/Resources.hpp"
 
 const float SelectionManager::pixelToMetresScale = 30.0f;
-const int SelectionManager::ViewportMoveDelta = 10;
+const int SelectionManager::ViewportMoveDelta = 20;
 const qreal SelectionManager::ViewportZoomDelta = 0.05f;
 const QColor SelectionManager::SelectionColor = QColor("Cyan");
 

@@ -14,6 +14,7 @@
 	Perspective.cpp
 	Resources.cpp
 	SelectionManager.cpp
+	SlotWidget.cpp
 	UnitsPanel.cpp
 	UnitEquipmentTab.cpp
 	UnitHistoryTab.cpp
@@ -30,6 +31,7 @@ set (UserInterface_HDRS
 	CampWindow.hpp
 	FactionPanel.hpp
 	GameWindow.hpp
+	ItemsDisplay.hpp
 	JournalWindow.hpp
 	MainMenuWindow.hpp
 	SelectionManager.hpp
