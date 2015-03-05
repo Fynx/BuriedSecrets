@@ -31,7 +31,7 @@ GraphicsDataManager::~GraphicsDataManager()
 
 const Texture* GraphicsDataManager::getTexture(const QString& name)
 {
-	Texture *result;
+	Texture *result = nullptr;
 
 	auto it = textures.find(name);
 	if (it == textures.end()) {

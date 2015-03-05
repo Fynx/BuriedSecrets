@@ -6,6 +6,7 @@
 #include "Common/Strings.hpp"
 #include "Graphics/AnimatedGraphicalEntity.hpp"
 #include "Graphics/AnimationSet.hpp"
+#include "Graphics/MoveCommandEffectGraphicalEntity.hpp"
 #include "Graphics/ShotEffectGraphicalEntity.hpp"
 #include "Graphics/StaticGraphicalEntity.hpp"
 
@@ -107,6 +108,9 @@ EffectGraphicalEntity *GraphicalEntityFactory::getOrCreateEffectEntity(const Eff
 		QString name = effect.getName();
 		if (name == Effects::Shot) {
 			ptr = new ShotEffectGraphicalEntity{viewport};
+		} else if (name == Effects::MoveCommand) {
+			ptr = new MoveCommandEffectGraphicalEntity{viewport,
+					graphicsDataManager->getTexture(Resources::ArrowDownCursor)};
 		}
 
 		if (!ptr) {

@@ -126,5 +126,9 @@
 	"MobHouse3": {
 		"type": "texture",
 		"data": "images/MobHouse3.png"
+	},
+	"ArrowDown": {
+		"type": "texture",
+		"data": "images/arrow-down.png"
 	}
 }

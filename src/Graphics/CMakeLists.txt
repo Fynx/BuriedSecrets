@@ -14,6 +14,7 @@ set (Graphics_SRCS
 	GraphicsDataManager.cpp
 	GraphicsWidget.cpp
 	LineShape.cpp
+	MoveCommandEffectGraphicalEntity.cpp
 	SelectionEffect.cpp
 	ShotEffectGraphicalEntity.cpp
 	SpriteGraphicalEntity.cpp

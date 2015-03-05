@@ -86,6 +86,7 @@ namespace Resources {
 	const QString Font          = "font";
 	const QString Image         = "image";
 	const QString Texture       = "texture";
+	const QString ArrowDownCursor = "ArrowDown";
 }
 
 namespace Properties {                                 // for Prototypes
