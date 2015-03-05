@@ -351,6 +351,7 @@
 		"quality": 5,
 		"weight": 4,
 		"spawnedType": "Wired fence",
+		"transparent": 1,
 		"ingredients": ["Wooden planks", "Wire"],
 		"slots": ["fortification"]
 	},
@@ -392,7 +393,8 @@
 		"type": "location",
 		"textureName": "WiredFence",
 		"capacity": 0,
-		"basePolygon": [[0, 4], [6, 4], [6, 3], [0, 3]]
+		"basePolygon": [[0, 4], [6, 4], [6, 3], [0, 3]],
+		"transparent": 1
 	},
 
 

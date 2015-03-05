@@ -69,42 +69,45 @@ void MapManager::addVisibility(const BS::Geometry::Circle circle, const int fact
 	auto objects = physicsEngine->getObjectsInRect(boundingRect);
 	for (const Object *obj: objects) {
 		const Prototype *prot = obj->getPrototype();
-		QPointF pos = physicsEngine->getPosition(obj);
-		QPointF baseCentre;
-		QPointF centre;
-		QPointF left, right;
-		if (prot->hasProperty("baseRadius")) {
-			// It's an object with a circular base.
-			// TODO FIXME not doing it now, because of lack of time to do the math.
-			// If we want this in the future, here's where we'd implement it.
-			continue;	//Not supported.
-		} else if (prot->hasProperty("basePolygon")) {
-			baseCentre = prot->getBaseCentre();
-			left = right = centre = pos;
-			const auto basePolygon = prot->getBasePolygon();
+		qDebug() << obj->getName() << prot->hasProperty(Properties::Transparent);
+		if (!prot->hasProperty(Properties::Transparent)) {
+			QPointF pos = physicsEngine->getPosition(obj);
+			QPointF baseCentre;
+			QPointF centre;
+			QPointF left, right;
+			if (prot->hasProperty("baseRadius")) {
+				// It's an object with a circular base.
+				// TODO FIXME not doing it now, because of lack of time to do the math.
+				// If we want this in the future, here's where we'd implement it.
+				continue;	//Not supported.
+			} else if (prot->hasProperty("basePolygon")) {
+				baseCentre = prot->getBaseCentre();
+				left = right = centre = pos;
+				const auto basePolygon = prot->getBasePolygon();
 
-			for (QPointF p: basePolygon) {
-				p += pos - baseCentre;
-				if (BS::Geometry::toLeft(circle.centre, left, p)) {
-					left = p;
-				} else if (!BS::Geometry::toLeft(circle.centre, right, p)) {
-					right = p;
+				for (QPointF p: basePolygon) {
+					p += pos - baseCentre;
+					if (BS::Geometry::toLeft(circle.centre, left, p)) {
+						left = p;
+					} else if (!BS::Geometry::toLeft(circle.centre, right, p)) {
+						right = p;
+					}
 				}
+			} else {
+				warn("MapManager: Object '" + obj->getName() +
+						"' does not have baseRadius nor basePolygon. Skipping");
+				continue;
 			}
-		} else {
-			warn("MapManager: Object '" + obj->getName() +
-					"' does not have baseRadius nor basePolygon. Skipping");
-			continue;
+
+			BS::Geometry::Polygon ommitPolygon;
+			// ommitPolygon.append(centre);	// TODO uncomment when height is fixed.
+			ommitPolygon.append(left);
+			ommitPolygon.append(getPointOnCircleInline(circle, left));
+			ommitPolygon.append(getPointOnCircleInline(circle, right));
+			ommitPolygon.append(right);
+
+			update.ommitPolygons.append(ommitPolygon);
 		}
-
-		BS::Geometry::Polygon ommitPolygon;
-// 		ommitPolygon.append(centre);	// TODO uncomment when height is fixed.
-		ommitPolygon.append(left);
-		ommitPolygon.append(getPointOnCircleInline(circle, left));
-		ommitPolygon.append(getPointOnCircleInline(circle, right));
-		ommitPolygon.append(right);
-
-		update.ommitPolygons.append(ommitPolygon);
 	}
 
 	FOVs[factionId].append(update);
