@@ -116,6 +116,7 @@ void SelectionManager::refresh()
 	removeDeadFromSelection();
 	markBuildingsSelected();
 	adjustCursor();
+	checkForMoveCommand();
 }
 
 void SelectionManager::showUnit(int uid)
@@ -390,12 +391,15 @@ void SelectionManager::adjustCursor()
 	QCursor cursor = BSCursor(Cursors::PointerPrimary);
 
 	auto obj = objectInPixelsPos(boardPos);
+	Location *l;
 	if (obj != nullptr) {
 		switch (obj->getType()) {
 			case BS::Type::Location:
-				//TODO check if there is place in building
-				if (isFriendly(obj))
-					cursor = BSCursor(Cursors::ArrowDown);
+				l = dynamic_cast<Location *>(obj);
+				if (isFriendly(obj)) {
+					if (l->getCapacity() - l->getUnitsUids().size() > 0)
+						cursor = BSCursor(Cursors::ArrowDown);
+				}
 				else
 					cursor = BSCursor(Cursors::Target);
 				break;
@@ -415,4 +419,27 @@ void SelectionManager::adjustCursor()
 	}
 
 	boardWidget_->setCursor(cursor);
+}
+
+void SelectionManager::checkForMoveCommand()
+{
+	if (!(QApplication::mouseButtons() & Qt::RightButton)
+	    || QApplication::keyboardModifiers() & Qt::ControlModifier)
+		return;
+
+	QPoint pos = boardWidget_->mapFromGlobal(boardWidget_->cursor().pos());
+	if (!boardWidget_->geometry().contains(pos))
+		return;
+
+	QPointF place = viewport_.getPhysicalCoordinates(pos);
+	Object *target = objectInPixelsPos(pos);
+
+	if (target != nullptr)
+		return;
+
+	for (auto &uid : selectedUnitsUids_) {
+		Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+		unit->setCommand(BS::Command::Move);
+		unit->setTargetPoint(place);
+	}
 }

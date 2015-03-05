@@ -54,6 +54,7 @@ private:
 	void removeSelectionEffect(int objUid);
 	void removeDeadFromSelection();
     void adjustCursor();
+    void checkForMoveCommand();
 
 	Mind *const mind_;
 	BoardWidget *boardWidget_;
