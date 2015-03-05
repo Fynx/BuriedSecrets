@@ -69,7 +69,6 @@ void MapManager::addVisibility(const BS::Geometry::Circle circle, const int fact
 	auto objects = physicsEngine->getObjectsInRect(boundingRect);
 	for (const Object *obj: objects) {
 		const Prototype *prot = obj->getPrototype();
-		qDebug() << obj->getName() << prot->hasProperty(Properties::Transparent);
 		if (!prot->hasProperty(Properties::Transparent)) {
 			QPointF pos = physicsEngine->getPosition(obj);
 			QPointF baseCentre;
