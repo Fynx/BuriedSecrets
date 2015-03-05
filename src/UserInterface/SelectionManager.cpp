@@ -16,7 +16,9 @@
 #include "UserInterface/Resources.hpp"
 
 const float SelectionManager::pixelToMetresScale = 30.0f;
-const int SelectionManager::ViewportMoveDelta = 20;
+const int SelectionManager::ViewportKeyMoveDelta = 300;
+const int SelectionManager::ViewportEdgeMoveDelta = 15;
+const int SelectionManager::EdgeViewportMoveTimerInterval = 10;
 const qreal SelectionManager::ViewportZoomDelta = 0.05f;
 const QColor SelectionManager::SelectionColor = QColor("Cyan");
 
@@ -24,10 +26,15 @@ SelectionManager::SelectionManager(Mind *mind, BoardWidget *boardWidget)
 	: mind_(mind),
 	  boardWidget_(boardWidget),
 	  viewport_(new IsometricPerspective(pixelToMetresScale)),
+	  edgeMoveTimer_(new QTimer),
 	  selectedLocationUid_(Object::InvalidUid)
 {
 	//init Viewport
 	viewport_.setMapSize(mind_->getMap()->getSize());
+
+	connect(edgeMoveTimer_, &QTimer::timeout, this, &SelectionManager::checkForViewportMove);
+
+	edgeMoveTimer_->start(EdgeViewportMoveTimerInterval);
 
 	//init selectionGroups
 	for (int i = 0; i < 10; ++i)
@@ -44,16 +51,16 @@ void SelectionManager::keyPressEvent(const QKeyEvent *event)
 	//Viewport
 	switch (event->key()) {
 		case Qt::Key_W:
-			viewport_.moveViewInPixels({0, ViewportMoveDelta * (-1)});
+			viewport_.moveViewInPixels({0, ViewportKeyMoveDelta * (-1)});
 			break;
 		case Qt::Key_S:
-			viewport_.moveViewInPixels({0, ViewportMoveDelta});
+			viewport_.moveViewInPixels({0, ViewportKeyMoveDelta});
 			break;
 		case Qt::Key_A:
-			viewport_.moveViewInPixels({ViewportMoveDelta * (-1), 0});
+			viewport_.moveViewInPixels({ViewportKeyMoveDelta * (-1), 0});
 			break;
 		case Qt::Key_D:
-			viewport_.moveViewInPixels({ViewportMoveDelta, 0});
+			viewport_.moveViewInPixels({ViewportKeyMoveDelta, 0});
 			break;
 		case Qt::Key_Plus:
 			viewport_.zoomIn(ViewportZoomDelta);
@@ -117,6 +124,7 @@ void SelectionManager::refresh()
 	markBuildingsSelected();
 	adjustCursor();
 	checkForMoveCommand();
+	checkForViewportMove();
 }
 
 void SelectionManager::showUnit(int uid)
@@ -442,4 +450,22 @@ void SelectionManager::checkForMoveCommand()
 		unit->setCommand(BS::Command::Move);
 		unit->setTargetPoint(place);
 	}
+}
+
+void SelectionManager::checkForViewportMove()
+{
+	QPoint pos = boardWidget_->cursor().pos();
+	QRect global = QApplication::desktop()->screenGeometry();
+
+	if (pos.x() == global.right())
+		viewport_.moveViewInPixels({ViewportEdgeMoveDelta, 0});
+
+	if (pos.x() == global.left())
+		viewport_.moveViewInPixels({(-1) * ViewportEdgeMoveDelta, 0});
+
+	if (pos.y() == global.bottom())
+		viewport_.moveViewInPixels({0, ViewportEdgeMoveDelta});
+
+	if (pos.y() == global.top())
+		viewport_.moveViewInPixels({0, (-1) * ViewportEdgeMoveDelta});
 }

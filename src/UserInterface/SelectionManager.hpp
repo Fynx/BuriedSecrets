@@ -18,7 +18,9 @@ class SelectionManager : public QObject {
 	Q_OBJECT
 public:
 	static const float pixelToMetresScale; // Number of pixels per meter
-	static const int ViewportMoveDelta;
+	static const int ViewportKeyMoveDelta;
+	static const int ViewportEdgeMoveDelta;
+	static const int EdgeViewportMoveTimerInterval;
 	static const qreal ViewportZoomDelta;
 	static const QColor SelectionColor;
 
@@ -53,16 +55,21 @@ private:
 	void addSelectionEffect(int objUid);
 	void removeSelectionEffect(int objUid);
 	void removeDeadFromSelection();
-    void adjustCursor();
-    void checkForMoveCommand();
+	void adjustCursor();
+	void checkForMoveCommand();
 
 	Mind *const mind_;
 	BoardWidget *boardWidget_;
 	Viewport viewport_;
+	QTimer *edgeMoveTimer_;
 
 	QSet<int> selectedUnitsUids_;
 	int selectedLocationUid_;
 	QMap<int, QSet<int>> selectionGroupsUids_;
 
 	QHash<int, QLinkedList<Effect>::iterator> uidToSelectionEffect_;
+
+private slots:
+	void checkForViewportMove();
+
 };
