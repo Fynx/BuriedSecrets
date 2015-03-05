@@ -156,16 +156,16 @@ void Viewport::updateView()
 	currentView = QRectF(topLeft, QPointF(topLeft.x() + viewWidth, topLeft.y() + viewHeight));
 	if (currentView.width() > mapSize.width()) {
 		// Center X in the view.
-		qreal offset = (currentView.width() - mapSize.width()) / 2;
+		qreal offset = (currentView.width() - mapSize.width()) / 2.0;
 		currentView.setLeft(-offset);
-		currentView.setRight(2 * offset + mapSize.width());
+		currentView.setRight(offset + mapSize.width());
 	}
 
 	if (currentView.height() > mapSize.height()) {
 		// Center Y in the view.
-		qreal offset = (currentView.height() - mapSize.height()) / 2;
+		qreal offset = (currentView.height() - mapSize.height()) / 2.0;
 		currentView.setTop(-offset);
-		currentView.setBottom(2 * offset + mapSize.height());
+		currentView.setBottom(offset + mapSize.height());
 	}
 }
 
