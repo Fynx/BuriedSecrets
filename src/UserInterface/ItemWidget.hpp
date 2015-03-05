@@ -22,6 +22,9 @@ public:
 	void clear();
 
 private:
+	static const int EmptyIndex = 0;
+	static const int FilledIndex = 1;
+
 	static const QSize PictureSize;
 	static const QSize StarSize;
 	static const QMargins DetailsContentMargin;
@@ -38,6 +41,8 @@ private:
 
 	const Prototype *prototype_;
 	DataManager *const dataManager_;
+
+	QStackedLayout *layout_;
 
 	QLabel *pictureLabel_;
 	QLabel *nameLabel_;

@@ -46,5 +46,7 @@ void CampConstructorTab::onConstruct()
 
 	auto item = itemConstructor_->constructItem(currentPrototype(), eq_);
 
+	refresh();
+
 	emit itemConstructed(item);
 }

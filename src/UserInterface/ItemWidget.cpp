@@ -1,3 +1,4 @@
+
 /* YoLoDevelopment, 2015
  * All rights reserved.
  */
@@ -18,9 +19,8 @@ const QFont ItemWidget::TitlesFont{"Arial", 16, QFont::Bold};
 ItemWidget::ItemWidget(DataManager *dataManager) : prototype_(nullptr), dataManager_(dataManager)
 {
 	setAutoFillBackground(true);
-	initLayout();
 
-	//TODO fill with mock item
+	initLayout();
 }
 
 const Prototype *ItemWidget::prototype() const
@@ -46,15 +46,27 @@ void ItemWidget::clear()
 {
 	prototype_ = nullptr;
 
-	//TODO fill with mock item
+	layout_->setCurrentIndex(EmptyIndex);
 }
 
 void ItemWidget::initLayout()
 {
-	auto layout = new QHBoxLayout;
-	setLayout(layout);
-	layout->addLayout(createMainPart(), 1);
-	layout->addLayout(createDetailsPart(), 2);
+	layout_ = new QStackedLayout;
+	setLayout(layout_);
+
+	auto empty = new QLabel(tr("No items"));
+	empty->setFont(QFont("Times", 24));
+	empty->setAlignment(Qt::AlignCenter);
+	layout_->insertWidget(EmptyIndex, empty);
+
+	auto filled = new QWidget;
+	auto hLayout = new QHBoxLayout;
+	filled->setLayout(hLayout);
+	hLayout->addLayout(createMainPart(), 1);
+	hLayout->addLayout(createDetailsPart(), 2);
+	layout_->insertWidget(FilledIndex, filled);
+
+	layout_->setCurrentIndex(EmptyIndex);
 }
 
 QLayout *ItemWidget::createMainPart()
@@ -119,6 +131,8 @@ QLayout *ItemWidget::createDetailsPart()
 
 void ItemWidget::fillWidget()
 {
+	layout_->setCurrentIndex(FilledIndex);
+
 	QString pictureName = prototype_->getProperty(Properties::Picture).toString();
 	const Resource *res = dataManager_->getResource(pictureName);
 	QImage img;
