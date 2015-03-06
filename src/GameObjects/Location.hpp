@@ -41,5 +41,5 @@ private:
 	bool assemblable;
 	bool transparent;
 	int capacity;
-	qreal rangeOfHealing;
+	qreal range;
 };

@@ -6,6 +6,7 @@
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "Mind/ObjectEffectData.hpp"
+#include "GameObjects/Environment.hpp"
 #include "GameObjects/Equipment.hpp"
 #include "GameObjects/Location.hpp"
 #include "GameObjects/Unit.hpp"
@@ -356,7 +357,12 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 	Object *obj;
 	switch (type) {
 		case BS::Type::Invalid: {
-			qDebug() << "Explosion: Invalid object type";
+			err("Explosion: Invalid object type (name=" + name + ")");
+			break;
+		}
+		case BS::Type::Environment: {
+			Environment *environment = new Environment(dataManager->getPrototype(name));
+			obj = environment;
 			break;
 		}
 		case BS::Type::Equipment: {

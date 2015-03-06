@@ -1,4 +1,5 @@
 set (GameObjects_SRCS
+	Environment.cpp
 	Equipment.cpp
 	Faction.cpp
 	Item.cpp

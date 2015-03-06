@@ -463,5 +463,12 @@
 		"bigRangeBonus": 5,
 		"offsetX": 2,
 		"offsetY": 3
+	},
+
+
+	"TypicalObstacle": {
+		"type": "environment",
+		"transparent": true,
+		"obstacle": true
 	}
 }

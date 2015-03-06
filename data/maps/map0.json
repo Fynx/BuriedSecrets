@@ -469,7 +469,12 @@
 			"animators": [
 				"AnimatorWeapon"
 			]
-		}
+		},
 
+
+		{
+			"uid": 1401,
+			"name": "TypicalObstacle"
+		}
 	]
 }

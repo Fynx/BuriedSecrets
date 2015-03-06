@@ -119,6 +119,7 @@ namespace Properties {                                 // for Prototypes
 	const QString MagazineSize  = "magazineSize";      // Weapon
 	const QString MovementSpeed = "movementSpeed";     // Unit
 	const QString Name          = "name";
+	const QString Obstacle      = "obstacle";
 	const QString OptimalRange  = "optimalRange";      // Weapon
 	const QString OffsetX       = "offsetX";           // For building
 	const QString OffsetY       = "offsetY";           // For building
@@ -173,13 +174,14 @@ namespace TempData {                                   // kept in GO's map
 }
 
 namespace Types {
-	const QString Invalid   = "invalid";
-	const QString Item      = "item";
-	const QString Equipment = "equipment";
-	const QString Faction   = "faction";
-	const QString Journal   = "journal";
-	const QString Location  = "location";
-	const QString Unit      = "unit";
+	const QString Invalid     = "invalid";
+	const QString Item        = "item";
+	const QString Environment = "environment";
+	const QString Equipment   = "equipment";
+	const QString Faction     = "faction";
+	const QString Journal     = "journal";
+	const QString Location    = "location";
+	const QString Unit        = "unit";
 }
 
 namespace ItemTypes {

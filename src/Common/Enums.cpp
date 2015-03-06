@@ -19,13 +19,14 @@ static const QMap<BS::State, QString> stateToString {
 };
 
 static const QMap<BS::Type, QString> typeToString {
-	{BS::Type::Invalid,   Types::Invalid},
-	{BS::Type::Item,      Types::Item},
-	{BS::Type::Equipment, Types::Equipment},
-	{BS::Type::Faction,   Types::Faction},
-	{BS::Type::Journal,   Types::Journal},
-	{BS::Type::Location,  Types::Location},
-	{BS::Type::Unit,      Types::Unit},
+	{BS::Type::Invalid,     Types::Invalid},
+	{BS::Type::Item,        Types::Item},
+	{BS::Type::Environment, Types::Environment},
+	{BS::Type::Equipment,   Types::Equipment},
+	{BS::Type::Faction,     Types::Faction},
+	{BS::Type::Journal,     Types::Journal},
+	{BS::Type::Location,    Types::Location},
+	{BS::Type::Unit,        Types::Unit},
 };
 
 static const QMap<BS::Slot, QString> slotToString {

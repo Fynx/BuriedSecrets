@@ -53,7 +53,7 @@ void Location::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
 
-	rangeOfHealing = json[Attributes::CampRange].toDouble();
+	range = json[Attributes::CampRange].toDouble();
 
 	if (json.contains(Attributes::Items)) {
 		for (const QJsonValue &val : json[Attributes::Items].toArray()) {
@@ -72,8 +72,8 @@ QJsonObject Location::saveToJson() const
 {
 	QJsonObject json = Object::saveToJson();
 
-	if (rangeOfHealing != 0)
-		json[Attributes::CampRange] = rangeOfHealing;
+	if (range != 0)
+		json[Attributes::CampRange] = range;
 
 	QJsonArray its;
 	for (Item *item : items.keys()) {
@@ -133,5 +133,5 @@ int Location::getCapacity() const
 
 qreal Location::getRange() const
 {
-	return rangeOfHealing;
+	return range;
 }
