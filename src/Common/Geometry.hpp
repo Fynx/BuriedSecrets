@@ -7,6 +7,7 @@
 
 #include <QList>
 #include <QPointF>
+#include <QRectF>
 #include <QVector2D>
 
 
@@ -59,5 +60,6 @@ namespace BS {
 		 * @brief True if c is to the left of the vector from a to b. False otherwise.
 		 */
 		bool toLeft(const QPointF &a, const QPointF &b, const QPointF &c);
+		QRectF scaleRect(const QRectF &rect, const float scale);
 	}
 }

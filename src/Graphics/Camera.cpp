@@ -3,6 +3,8 @@
  */
 #include "Graphics/Camera.hpp"
 
+#include "Common/Geometry.hpp"
+
 
 Camera::Camera(const PhysicsEngine *physicsEngine, const Viewport *viewport)
 	: physicsEngine{physicsEngine}, viewport{viewport}
@@ -11,7 +13,7 @@ Camera::Camera(const PhysicsEngine *physicsEngine, const Viewport *viewport)
 
 QList<const Object *> Camera::getVisibleObjects() const
 {
-	return physicsEngine->getObjectsInRect(viewport->getCurrentView());
+	return physicsEngine->getObjectsInRect(BS::Geometry::scaleRect(viewport->getCurrentView(), 2.0f));
 }
 
 

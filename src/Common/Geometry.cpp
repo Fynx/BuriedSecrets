@@ -4,6 +4,7 @@
 #include "Common/Geometry.hpp"
 
 #include <cmath>
+#include <QDebug>
 
 
 float BS::Geometry::distance(const QPointF &a, const QPointF &b)
@@ -47,3 +48,13 @@ bool BS::Geometry::toLeft(const QPointF &a, const QPointF &b, const QPointF &c)
 {
 	return det(a, b, c) < 0.0f;
 }
+
+
+QRectF BS::Geometry::scaleRect(const QRectF &rect, const float scale)
+{
+	QPointF centre = rect.center();
+	QPointF newTopLeft = centre + (rect.topLeft() - centre) * scale;
+	QPointF newBottomRight = centre + (rect.bottomRight() - centre) * scale;
+	return QRectF{newTopLeft, newBottomRight};
+}
+
