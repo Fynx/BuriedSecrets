@@ -93,12 +93,13 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Faction *faction = dynamic_cast<Faction *>(object);
 
 			factions.insert(object->getFactionId(), faction);
-			for (int objectUid : faction->getUnitsUids())
+			for (int objectUid : faction->getUnitsUids()) {
 				getObjectFromUid(objectUid)->setFactionId(object->getFactionId());
+			}
 
 			int eqUid = faction->getEquipmentUid();
 			if (eqUid == Object::InvalidUid) {
-				Object *eq = createObject(BS::Type::Equipment, "BasicEquipment");
+				Object *eq = createObject(BS::Type::Equipment, BasicPrototypes::BasicEquipment);
 				eqUid = eq->assignUid();
 				addObject(eq);
 			}
@@ -106,9 +107,12 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Q_ASSERT(eq->getType() == BS::Type::Equipment);
 			faction->setEquipment(dynamic_cast<Equipment *>(eq));
 
-			Location *camp = dynamic_cast<Location *>(getObjectFromUid(faction->getCampUid()));
-			if (camp)
+			if (faction->getCampUid()) {
+				Location *camp = dynamic_cast<Location *>(getObjectFromUid(faction->getCampUid()));
 				faction->setCamp(camp);
+			} else {
+				warn("Faction has no camp");
+			}
 
 			break;
 		}
@@ -117,7 +121,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 			int eqUid = unit->getEquipmentUid();
 			if (eqUid == Object::InvalidUid) {
-				Object *eq = createObject(BS::Type::Equipment, "BasicEquipment");
+				Object *eq = createObject(BS::Type::Equipment, BasicPrototypes::BasicEquipment);
 				eqUid = eq->assignUid();
 				addObject(eq);
 			}

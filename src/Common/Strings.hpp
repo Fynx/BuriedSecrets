@@ -30,10 +30,10 @@ namespace Animators {
 	const QString NearCamp      = "AnimatorNearCamp";
 	const QString WatchTarget   = "AnimatorWatchTarget";
 	const QString Disassemble   = "AnimatorDisassemble";
-	const QString Effects		= "AnimatorEffects";
-	const QString MobAttitude	= "AnimatorMobAttitude";
-	const QString BuildingDmg	= "AnimatorBuildingDmg";
-	const QString AggressiveAtt	= "AnimatorAggressiveAtt";
+	const QString Effects       = "AnimatorEffects";
+	const QString MobAttitude   = "AnimatorMobAttitude";
+	const QString BuildingDmg   = "AnimatorBuildingDmg";
+	const QString AggressiveAtt = "AnimatorAggressiveAtt";
 }
 
 namespace Attributes {                                 // Converted into class fields
@@ -140,6 +140,10 @@ namespace Properties {                                 // for Prototypes
 	const QString Transparent   = "transparent";
 	const QString Type          = "type";
 	const QString Weight        = "weight";
+}
+
+namespace BasicPrototypes {
+	const QString BasicEquipment = "BasicEquipment";
 }
 
 namespace Slots {

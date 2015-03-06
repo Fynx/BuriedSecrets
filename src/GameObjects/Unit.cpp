@@ -281,8 +281,6 @@ void Unit::loadFromJson(const QJsonObject &json)
 			patrolRoute.append(QPointF(val.toArray()[0].toDouble(), val.toArray()[1].toDouble()));
 		}
 	}
-
-	qDebug() << "patrolRoute:" << patrolRoute;
 }
 
 QJsonObject Unit::saveToJson() const
