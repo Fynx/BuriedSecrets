@@ -4,8 +4,6 @@
 #include "Graphics/Graphics.hpp"
 
 #include "Mind/ObjectEffectData.hpp"
-#include "Graphics/BasePolygonEffect.hpp"
-#include "Graphics/SelectionEffect.hpp"
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager, Mind *mind)

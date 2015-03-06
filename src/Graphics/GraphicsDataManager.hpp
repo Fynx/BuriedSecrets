@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "DataManager/DataManager.hpp"
-#include "Graphics/Animation.hpp"
+#include "Graphics/Entities/Animation.hpp"
 
 
 /**

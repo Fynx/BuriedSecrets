@@ -1,26 +1,13 @@
+add_subdirectory(Common)
+add_subdirectory(Entities)
+add_subdirectory(Effects)
+
 set (Graphics_SRCS
-	AnimatedGraphicalEntity.cpp
-	Animation.cpp
-	AnimationSet.cpp
-	AntipsychosisEffect.cpp
-	BasePolygonEffect.cpp
 	Camera.cpp
-	CircleEffect.cpp
-	EffectGraphicalEntity.cpp
-	GraphicalEffectFactory.cpp
-	GraphicalEffect.cpp
-	GraphicalEntity.cpp
-	GraphicalEntityFactory.cpp
 	GraphicalFogOfWar.cpp
 	Graphics.cpp
 	GraphicsDataManager.cpp
 	GraphicsWidget.cpp
-	LineShape.cpp
-	MoveCommandEffectGraphicalEntity.cpp
-	SelectionEffect.cpp
-	ShotEffectGraphicalEntity.cpp
-	SpriteGraphicalEntity.cpp
-	StaticGraphicalEntity.cpp
 )
 
 set (Graphics_HDRS
@@ -31,7 +18,7 @@ set (Graphics_HDRS
 qt5_wrap_cpp (Graphics_SRCS ${Graphics_HDRS})
 
 add_library (Graphics ${Graphics_SRCS})
-target_link_libraries (Graphics ${Qt5Widgets_LIBRARIES})
+target_link_libraries (Graphics Entities Effects GraphicsCommon ${Qt5Widgets_LIBRARIES})
 
 if (BUILD_TESTS)
 	add_subdirectory (tests)

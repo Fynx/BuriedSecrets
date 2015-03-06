@@ -8,9 +8,9 @@
 
 #include "Graphics/Camera.hpp"
 #include "Graphics/GraphicsWidget.hpp"
-#include "Graphics/GraphicalEffectFactory.hpp"
-#include "Graphics/GraphicalEntity.hpp"
-#include "Graphics/GraphicalEntityFactory.hpp"
+#include "Graphics/Effects/GraphicalEffectFactory.hpp"
+#include "Graphics/Entities/GraphicalEntity.hpp"
+#include "Graphics/Entities/GraphicalEntityFactory.hpp"
 #include "Graphics/GraphicalFogOfWar.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
 #include "Mind/MapManager/Map.hpp"
