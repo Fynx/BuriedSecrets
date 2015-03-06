@@ -54,6 +54,7 @@ Item *ItemConstructor::constructItem(const Prototype *proto, Equipment *eq)
 			if (it->getName() == ing){
 				eq->removeItem(it);
 				found = true;
+				mind->removeObject(it);
 				break;
 			}
 		}

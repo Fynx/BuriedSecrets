@@ -115,6 +115,10 @@
 		"type": "texture",
 		"data": "images/PlayerCamp.png"
 	},
+	"Destination": {
+		"type": "texture",
+		"data": "images/Destination.png"
+	},
 	"MobHouse1": {
 		"type": "texture",
 		"data": "images/MobHouse1.png"
@@ -126,6 +130,10 @@
 	"MobHouse3": {
 		"type": "texture",
 		"data": "images/MobHouse3.png"
+	},
+	"Empty": {
+		"type": "texture",
+		"data": "images/Empty.png"
 	},
 	"ArrowDown": {
 		"type": "texture",

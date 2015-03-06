@@ -68,7 +68,7 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x(), centre.y() + radius}));
 
 			ptr = new AnimatedGraphicalEntity(object, basePolygon, &graphicalEffectFactory, AnimationSet{s});
-		} else if (objectType == "location") {
+		} else if (objectType == "location" || objectType == "environment") {
 			// Convert base polygon from metres to pixels.
 			basePolygon = object->getPrototype()->getBasePolygon();
 			for (QPointF &p: basePolygon) {

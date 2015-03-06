@@ -351,7 +351,6 @@
 		"quality": 5,
 		"weight": 4,
 		"spawnedType": "Wired fence",
-		"transparent": 1,
 		"ingredients": ["Wooden planks", "Wire"],
 		"slots": ["fortification"]
 	},
@@ -394,7 +393,7 @@
 		"textureName": "WiredFence",
 		"capacity": 0,
 		"basePolygon": [[0, 4], [6, 4], [6, 3], [0, 3]],
-		"transparent": 1
+		"transparent": true
 	},
 
 
@@ -424,10 +423,18 @@
 	},
 
 
+	"Destination": {
+		"type": "location",
+		"textureName": "Destination",
+		"capacity": 0,
+		"basePolygon": [[0, 10.2], [2.68, 13.08], [6.66, 8.6], [4, 6]]
+	},
+
+
 	"Mob House1": {
 		"type": "location",
 		"textureName": "MobHouse1",
-		"basePolygon": [[0.5, 10.2], [2, 13], [6.8, 8], [5.3, 5.5]],
+		"basePolygon": [[0.5, 10.2], [2, 13], [6.8, 8], [5.3, 5.5], [2, 5.6]],
 		"capacity": 5,
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
@@ -441,7 +448,7 @@
 	"Mob House2": {
 		"type": "location",
 		"textureName": "MobHouse2",
-		"basePolygon": [[0.1, 15.2], [2.6, 15.9], [6.2, 11.7], [4.4, 9], [0.2, 14.6]],
+		"basePolygon": [[0.1, 15.2], [2.6, 15.9], [6.2, 11.7], [4.4, 9], [2, 10]],
 		"capacity": 5,
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
@@ -455,7 +462,7 @@
 	"Mob House3": {
 		"type": "location",
 		"textureName": "MobHouse3",
-		"basePolygon": [[2.7, 13], [5.7, 12.1], [8.2, 9], [7.8, 6.6], [0.7, 11.2]],
+		"basePolygon": [[2.7, 13], [5.7, 12.1], [8.2, 9], [7.8, 6.6], [4, 7.2], [0.7, 11.2]],
 		"capacity": 5,
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
@@ -466,8 +473,91 @@
 	},
 
 
-	"TypicalObstacle": {
+	"Lake1": {
 		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[0, 0], [15, 35], [21, 33], [22, 22], [28, 20], [46,3]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Lake2": {
+		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[0, 0], [6, 2], [8.5, 11], [9.5, 14], [9.5, 17], [7, 23.5], [0, 24]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Lake3": {
+		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[0, 0], [4, -2], [12, 6], [27, 8.3], [27, 28], [-1, 21], [-2, 12]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Lake4": {
+		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[0, 1], [1, 21], [6, 12], [9, 0], [20, -19], [20, -24], [11, -20]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Crack1": {
+		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[0, 1], [20, 22], [21.5, 34], [0, 30]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Crack2": {
+		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[0, 0], [11, -9], [11, 12], [0, 6]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Crack3": {
+		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[0, 0], [4.5, 9], [0, 14], [-5, 13], [-4.5, 6]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Forest1": {
+		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[-2, -1], [22, 19], [3, 20]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Forest2": {
+		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[0, 0], [14, 2], [12, 32], [-8, 24]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Forest3": {
+		"type": "environment",
+		"textureName": "Empty",
+		"basePolygon": [[0, 0], [4, 3], [-6, 44], [-12, 33]],
 		"transparent": true,
 		"obstacle": true
 	}

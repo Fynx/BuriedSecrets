@@ -35,6 +35,7 @@ void Box2DEngine::addObject(Object *obj, const QPointF &pos, const float angle)
 			pos.x() - ((b2CircleShape*) shape)->m_radius, pos.y() - ((b2CircleShape*) shape)->m_radius);
 		break;
 	}
+	case BS::Type::Environment:
 	case BS::Type::Location: {
 		// We assume location
 		shape = new b2PolygonShape();

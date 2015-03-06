@@ -1,8 +1,8 @@
 {
 	"mapName": "Map0",
 	"mapDesc": "map0.wtf",
-	"mapWidth" : 54,
-	"mapHeight" : 60,
+	"mapWidth" : 66,
+	"mapHeight" : 299,
 	"objects": [
 		{
 			"uid": 1,
@@ -31,8 +31,8 @@
 			"uid": 3,
 			"name": "Player Camp",
 			"campRange": 25,
-			"x": 31,
-			"y": 34
+			"x": 56,
+			"y": 290
 		},
 
 
@@ -40,6 +40,7 @@
 			"uid": 4,
 			"name": "Senior Cebulez",
 			"animators": [
+				"AnimatorAggressiveAtt",
 				"AnimatorAnimation",
 				"AnimatorAssemble",
 				"AnimatorDisassemble",
@@ -56,8 +57,8 @@
 				"AnimatorNearCamp"
 			],
 			"equipment": 5,
-			"x": 40.0,
-			"y": 40.0,
+			"x": 50.0,
+			"y": 280.0,
 			"hp": 110
 		},
 
@@ -78,6 +79,7 @@
 			"uid": 6,
 			"name": "El Bogdano",
 			"animators": [
+				"AnimatorAggressiveAtt",
 				"AnimatorAnimation",
 				"AnimatorAssemble",
 				"AnimatorDisassemble",
@@ -94,8 +96,8 @@
 				"AnimatorNearCamp"
 			],
 			"equipment": 7,
-			"x": 45.0,
-			"y": 40.0,
+			"x": 55.0,
+			"y": 278.0,
 			"hp": 110
 		},
 
@@ -116,6 +118,7 @@
 			"uid": 8,
 			"name": "Dr. D. Snee",
 			"animators": [
+				"AnimatorAggressiveAtt",
 				"AnimatorAnimation",
 				"AnimatorAssemble",
 				"AnimatorDisassemble",
@@ -132,8 +135,8 @@
 				"AnimatorNearCamp"
 			],
 			"equipment": 9,
-			"x": 40.0,
-			"y": 45.0,
+			"x": 50.0,
+			"y": 290.0,
 			"hp": 110
 		},
 
@@ -253,8 +256,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 103,
-			"x": 12.0,
-			"y": 12.0,
+			"x": 7.0,
+			"y": 277.0,
 			"hp": 120
 		},
 
@@ -284,8 +287,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 105,
-			"x": 14.0,
-			"y": 14.0,
+			"x": 10.0,
+			"y": 290.0,
 			"hp": 120
 		},
 
@@ -347,8 +350,7 @@
 			"equipment": 109,
 			"x": 18.0,
 			"y": 18.0,
-			"hp" : 70,
-			"patrolRoute": [[18.0, 18.0], [20.0, 20.0], [21.0, 21.0]]
+			"hp" : 70
 		},
 
 
@@ -411,70 +413,392 @@
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
-			"x": 12,
-			"y": 28
+			"x": 5.5,
+			"y": 287
 		},
 
 
 		{
 			"uid": 1002,
-			"name": "Mob House1",
+			"name": "Mob House3",
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
-			"x": 10.8,
-			"y": 13.4
+			"x": 26,
+			"y": 217
 		},
 
 
 		{
 			"uid": 1003,
-			"name": "Mob House2",
+			"name": "Mob House3",
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
-			"x": 5.35,
-			"y": 18.16
+			"x": 16,
+			"y": 208
 		},
 
 
 		{
 			"uid": 1004,
-			"name": "Mob House3",
+			"name": "Mob House1",
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
-			"items": [
-				{
-					"uid": 1006,
-					"searchDifficulty": 200
-				}
-			],
-			"x": 22,
-			"y": 15
+
+			"x": 27,
+			"y": 175
 		},
 
 
 		{
 			"uid": 1005,
-			"name": "Wired fence",
-			"animators": [],
-			"x": 37.5,
-			"y": 33.5
+			"name": "Mob House2",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 30.5,
+			"y": 181
 		},
+		
+
 
 		{
 			"uid": 1006,
-			"name": "Machete",
+			"name": "Mob House1",
 			"animators": [
-				"AnimatorWeapon"
-			]
+				"AnimatorBuildingDmg"
+			],
+			"x": 35,
+			"y": 185
+		},
+		
+
+
+		{
+			"uid": 1007,
+			"name": "Mob House1",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 51,
+			"y": 187
 		},
 
 
 		{
-			"uid": 1401,
-			"name": "TypicalObstacle"
+			"uid": 1008,
+			"name": "Wired fence",
+			"animators": [],
+			"x": 41,
+			"y": 185
+		},
+		
+
+
+		{
+			"uid": 1009,
+			"name": "Wired fence",
+			"animators": [],
+			"x": 47,
+			"y": 185
+		},
+		
+
+
+		{
+			"uid": 1010,
+			"name": "Mob House3",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 48,
+			"y": 144
+		},
+		
+
+
+		{
+			"uid": 1011,
+			"name": "Mob House2",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 62,
+			"y": 135
+		},
+		
+
+
+		{
+			"uid": 1012,
+			"name": "Mob House2",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 19,
+			"y": 142
+		},
+		
+
+
+		{
+			"uid": 1013,
+			"name": "Mob House3",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 5,
+			"y": 128
+		},
+		
+
+
+		{
+			"uid": 1014,
+			"name": "Mob House2",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 41,
+			"y": 92
+		},
+		
+
+
+		{
+			"uid": 1015,
+			"name": "Mob House1",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 27,
+			"y": 80
+		},
+		
+
+
+		{
+			"uid": 1016,
+			"name": "Mob House3",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 37,
+			"y": 40
+		},
+		
+
+
+		{
+			"uid": 1017,
+			"name": "Mob House1",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 63,
+			"y": 75
+		},
+		
+
+
+		{
+			"uid": 1018,
+			"name": "Mob House3",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 8,
+			"y": 80
+		},
+		
+
+
+		{
+			"uid": 1019,
+			"name": "Mob House3",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 42,
+			"y": 83
+		},
+		
+
+
+		{
+			"uid": 1020,
+			"name": "Mob House2",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 31,
+			"y": 60
+		},
+		
+
+
+		{
+			"uid": 1021,
+			"name": "Mob House1",
+			"animators": [
+				"AnimatorBuildingDmg"
+			],
+			"x": 20,
+			"y": 92
+		},
+		
+
+
+		{
+			"uid": 1022,
+			"name": "Wired fence",
+			"animators": [],
+			"x": 3,
+			"y": 40
+		},
+		
+
+
+		{
+			"uid": 1023,
+			"name": "Wired fence",
+			"animators": [],
+			"x": 9,
+			"y": 40
+		},
+		
+
+
+		{
+			"uid": 1024,
+			"name": "Wired fence",
+			"animators": [],
+			"x": 15,
+			"y": 40
+		},
+		
+
+
+		{
+			"uid": 1025,
+			"name": "Destination",
+			"animators": [],
+			"x": 5,
+			"y": 10
+		},
+		
+
+
+		{
+			"uid": 1026,
+			"name": "Wired fence",
+			"animators": [],
+			"x": 23,
+			"y": 172
+		},
+		
+
+
+		{
+			"uid": 1027,
+			"name": "Lake1",
+			"animators": [],
+			"x": 42,
+			"y": 20
+		},
+		
+
+
+		{
+			"uid": 1028,
+			"name": "Lake2",
+			"animators": [],
+			"x": 6,
+			"y": 205.5
+		},
+		
+
+
+		{
+			"uid": 1029,
+			"name": "Lake3",
+			"animators": [],
+			"x": 29,
+			"y": 238
+		},
+		
+
+
+		{
+			"uid": 1030,
+			"name": "Lake4",
+			"animators": [],
+			"x": 55,
+			"y": 230
+		},
+		
+
+
+		{
+			"uid": 1031,
+			"name": "Crack1",
+			"animators": [],
+			"x": 11,
+			"y": 158
+		},
+		
+
+
+		{
+			"uid": 1032,
+			"name": "Crack2",
+			"animators": [],
+			"x": 60.5,
+			"y": 160
+		},
+		
+
+
+		{
+			"uid": 1033,
+			"name": "Crack3",
+			"animators": [],
+			"x": 48.5,
+			"y": 75
+		},
+		
+
+
+		{
+			"uid": 1034,
+			"name": "Forest1",
+			"animators": [],
+			"x": 13,
+			"y": 120
+		},
+		
+
+
+		{
+			"uid": 1035,
+			"name": "Forest2",
+			"animators": [],
+			"x": 48,
+			"y": 115
+		},
+		
+
+
+		{
+			"uid": 1036,
+			"name": "Forest3",
+			"animators": [],
+			"x": 28,
+			"y": 52
 		}
+
+
 	]
 }
