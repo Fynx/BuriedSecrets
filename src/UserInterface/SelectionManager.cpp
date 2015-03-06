@@ -48,6 +48,8 @@ Viewport *SelectionManager::viewport()
 
 void SelectionManager::keyPressEvent(const QKeyEvent *event)
 {
+	removeDeadFromSelection();
+
 	//Viewport
 	switch (event->key()) {
 		case Qt::Key_W:
@@ -92,6 +94,8 @@ void SelectionManager::keyPressEvent(const QKeyEvent *event)
 
 void SelectionManager::mousePressEvent(const QMouseEvent *event)
 {
+	removeDeadFromSelection();
+
 	QPointF place = viewport_.getPhysicalCoordinates(event->pos());
 	Object *target = objectInPixelsPos(event->pos());
 
@@ -129,6 +133,9 @@ void SelectionManager::refresh()
 
 void SelectionManager::showUnit(int uid)
 {
+	if (!mind_->getPlayerFaction()->isAliveMember(uid))
+		return;
+
 	//TODO center viewport on unit
 }
 

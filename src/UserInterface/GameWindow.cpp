@@ -29,7 +29,7 @@ GameWindow::GameWindow(Mind *mind, DataManager *dataManager, BoardWidget *boardW
 	initUnitsPanel();
 	initFactionPanel();
 
-	//WARNING if initialized before boardWidget goes below
+	//WARNING if initialized before boardWidget - goes below
 	initWindows();
 
 	connect(updateTimer_, &QTimer::timeout, this, &GameWindow::refresh);
