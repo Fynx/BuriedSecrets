@@ -14,7 +14,8 @@
 		<file alias="skull">icons/skull.png</file>
 	</qresource>
 	<qresource prefix="/cursors">
-		<file alias="arrow-down">cursors/arrow-down.png</file>
+		<file alias="arrow-down-primary">cursors/arrow-down-primary.png</file>
+		<file alias="arrow-down-secondary">cursors/arrow-down-secondary.png</file>
 		<file alias="heal-cross">cursors/heal-cross.png</file>
 		<file alias="pointer-primary">cursors/pointer-primary.png</file>
 		<file alias="pointer-secondary">cursors/pointer-secondary.png</file>

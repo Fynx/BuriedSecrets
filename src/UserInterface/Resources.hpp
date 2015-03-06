@@ -29,9 +29,10 @@ namespace Icons {
 namespace Cursors {
 	const QString Prefix           = DataPrefix + "cursors/";
 
-	const QString ArrowDown        = Prefix + "arrow-down";
-	const QString HealCross        = Prefix + "heal-cross";
-	const QString PointerPrimary   = Prefix + "pointer-primary";
-	const QString PointerSecondary = Prefix + "pointer-secondary";
-	const QString Target           = Prefix + "target";
+	const QString ArrowDownPrimary   = Prefix + "arrow-down-primary";
+	const QString ArrowDownSecondary = Prefix + "arrow-down-secondary";
+	const QString HealCross          = Prefix + "heal-cross";
+	const QString PointerPrimary     = Prefix + "pointer-primary";
+	const QString PointerSecondary   = Prefix + "pointer-secondary";
+	const QString Target             = Prefix + "target";
 }

@@ -392,39 +392,62 @@ void SelectionManager::removeDeadFromSelection()
 
 void SelectionManager::adjustCursor()
 {
+	// cursor not in boardWidget
 	QPoint boardPos = boardWidget_->mapFromGlobal(boardWidget_->cursor().pos());
 	if (!boardWidget_->geometry().contains(boardPos))
 		return;
 
+	// no units selected
+	if (selectedUnitsUids_.isEmpty()) {
+		boardWidget_->setCursor(BSCursor((Cursors::PointerPrimary)));
+		return;
+	}
+
+	// check if only one unit
+	Unit *unit = nullptr;
+	if (selectedUnitsUids_.size() == 1)
+		unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnitsUids_.begin()));
+
+	// set default cursor
 	QCursor cursor = BSCursor(Cursors::PointerPrimary);
 
+	// adjust cursor
 	auto obj = objectInPixelsPos(boardPos);
 	Location *l;
 	if (obj != nullptr) {
 		switch (obj->getType()) {
 			case BS::Type::Location:
 				l = dynamic_cast<Location *>(obj);
+				// check for etering location
 				if (isFriendly(obj)) {
 					if (l->getCapacity() - l->getUnitsUids().size() > 0)
-						cursor = BSCursor(Cursors::ArrowDown);
+						cursor = BSCursor(Cursors::ArrowDownPrimary);
 				}
 				else
+					//check for hostile location attack
 					cursor = BSCursor(Cursors::Target);
 				break;
 			case BS::Type::Unit:
-				if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
-					if (isFriendly(obj))
-						cursor = BSCursor(Cursors::HealCross);
-					else
-						cursor = BSCursor(Cursors::Target);
+				// check for heal
+				if (isFriendly(obj)) {
+					if (QApplication::keyboardModifiers() & Qt::ControlModifier && unit != nullptr)
+						if (unit->getEquipment()->getSlotItem(BS::Medicament) != nullptr)
+							cursor = BSCursor(Cursors::HealCross);
 				}
 				else
-					cursor = BSCursor(Cursors::PointerPrimary);
+					//check for hostile unit attack
+					cursor = BSCursor(Cursors::Target);
 				break;
 			default:
 				break;
 		}
 	}
+	else
+		// check for contruction placement
+		if (QApplication::keyboardModifiers() & Qt::ControlModifier && unit != nullptr) {
+			if (unit->getEquipment()->getSlotItem(BS::Fortification) != nullptr)
+				cursor = BSCursor(Cursors::ArrowDownSecondary);
+		}
 
 	boardWidget_->setCursor(cursor);
 }
@@ -447,8 +470,10 @@ void SelectionManager::checkForMoveCommand()
 
 	for (auto &uid : selectedUnitsUids_) {
 		Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
-		unit->setCommand(BS::Command::Move);
-		unit->setTargetPoint(place);
+		if (unit->getCommand() == BS::Command::Move) {
+			unit->setCommand(BS::Command::Move);
+			unit->setTargetPoint(place);
+		}
 	}
 }
 
