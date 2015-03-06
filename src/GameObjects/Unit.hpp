@@ -61,6 +61,9 @@ public:
 	QList<QPointF> &getCurrentPath();
 	void setCurrentPath(const QList<QPointF> &path);
 
+	QVector<QPointF> getPatrolRoute() const;
+	void setPatrolRoute(const QVector<QPointF> &route);
+
 	int getTargetObject() const;
 	void setTargetObject(int uid);
 
@@ -79,6 +82,7 @@ private:
 	BS::Attitude attitude;
 
 	QList<QPointF> currentPath;
+	QVector<QPointF> patrolRoute;
 
 	int targetObjectUid;
 	QPointF targetPoint;

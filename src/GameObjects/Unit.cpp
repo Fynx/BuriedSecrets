@@ -210,6 +210,16 @@ void Unit::setCurrentPath(const QList<QPointF> &path)
 	currentPath = path;
 }
 
+QVector<QPointF> Unit::getPatrolRoute() const
+{
+	return patrolRoute;
+}
+
+void Unit::setPatrolRoute(const QVector< QPointF > &route)
+{
+	patrolRoute = route;
+}
+
 int Unit::getTargetObject() const
 {
 	return targetObjectUid;
@@ -261,6 +271,18 @@ void Unit::loadFromJson(const QJsonObject &json)
 
 	hp           = json[Attributes::HP].toInt();
 	psychosis    = json[Attributes::Psychosis].toInt();
+
+	if (json.contains(Attributes::PatrolRoute)) {
+		for (const QJsonValue &val : json[Attributes::PatrolRoute].toArray()) {
+			if (!val.isArray() || val.toArray().size() != 2) {
+				err("Invalid route");
+				return;
+			}
+			patrolRoute.append(QPointF(val.toArray()[0].toDouble(), val.toArray()[1].toDouble()));
+		}
+	}
+
+	qDebug() << "patrolRoute:" << patrolRoute;
 }
 
 QJsonObject Unit::saveToJson() const
@@ -273,6 +295,14 @@ QJsonObject Unit::saveToJson() const
 
 	json[Attributes::HP]        = hp;
 	json[Attributes::Psychosis] = psychosis;
+
+	QJsonArray jPatrolRoute;
+	for (const QPointF &point : patrolRoute) {
+		QJsonArray jPoint({point.x(), point.y()});
+		jPatrolRoute.append(jPoint);
+	}
+	if (!jPatrolRoute.isEmpty())
+		json[Attributes::PatrolRoute] = jPatrolRoute;
 
 	return json;
 }

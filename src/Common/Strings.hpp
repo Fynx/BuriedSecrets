@@ -47,6 +47,7 @@ namespace Attributes {                                 // Converted into class f
 	const QString Food             = "food";
 	const QString HP               = "hp";
 	const QString Items            = "items";
+	const QString PatrolRoute      = "patrolRoute";
 	const QString Psychosis        = "psychosis";
 	const QString Relations        = "relations";
 	const QString SearchDifficulty = "searchDifficulty";
