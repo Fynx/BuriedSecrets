@@ -20,6 +20,9 @@ public:
 	 */
 	virtual void update(const GraphicalEntity *graphicalEntity) = 0;
 
+	constexpr static float PointsPerPixel = 0.06;	// How many points the circle should have per one pixel
+							// of length.
+
 protected:
 	void setGeometry(const QPointF &position, const float radius);
 	void setOutlineThickness(const float thickness);
