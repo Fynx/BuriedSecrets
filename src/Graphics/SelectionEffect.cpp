@@ -8,16 +8,19 @@
 #include "Graphics/GraphicalEntity.hpp"
 
 
-SelectionEffect::SelectionEffect(const Viewport *viewport, const sf::Color &color) : GraphicalEffect{viewport}
+SelectionEffect::SelectionEffect(const Viewport *viewport, const sf::Color &color) : CircleEffect{viewport, color}
 {
-	circleShape.setPointCount(20);
-	circleShape.setFillColor(sf::Color::Transparent);
-	circleShape.setOutlineColor(color);
-	circleShape.setOutlineThickness(1);
+	setOutlineThickness(1.5f);
 }
 
 
-void SelectionEffect::draw(const GraphicalEntity *graphicalEntity, sf::RenderTarget *renderTarget)
+int SelectionEffect::getOrderId() const
+{
+	return BS::Graphic::EffectOrder::Selection;
+}
+
+
+void SelectionEffect::update(const GraphicalEntity *graphicalEntity)
 {
 	const Object *obj = graphicalEntity->getObject();
 	auto objType = obj->getType();
@@ -26,7 +29,7 @@ void SelectionEffect::draw(const GraphicalEntity *graphicalEntity, sf::RenderTar
 
 	if (objType == BS::Type::Unit) {
 		float radius = obj->getPrototype()->getProperty(Properties::BaseRadius).toFloat();
-		radiusPx = std::min(radius * scale.x(), radius * scale.y()) * 1.5f;
+		radiusPx = std::max(radius * scale.x(), radius * scale.y());
 	} else {
 		QPointF centre = graphicalEntity->getBaseCentre();
 		basePolygon = graphicalEntity->getBasePolygon();
@@ -35,22 +38,6 @@ void SelectionEffect::draw(const GraphicalEntity *graphicalEntity, sf::RenderTar
 		}
 	}
 
-	// FIXME this whole scale mumbo-jumbo might need to be reworked here.
-	// Selections work fine for now.
-	scale /= std::min(scale.x(), scale.y());
-	circleShape.setScale(scale.x(),  scale.y());
-	float maxNormScale = std::max(scale.x(), scale.y());
-
-	QPointF radiusDelta{radiusPx * scale.x() / maxNormScale, radiusPx * scale.y() / maxNormScale};
-
-	QPointF position = graphicalEntity->getPosition() - 2 * radiusDelta;
-	circleShape.setPosition(position.x(), position.y());
-	circleShape.setRadius(radiusPx);
-	renderTarget->draw(circleShape);
+	setGeometry(graphicalEntity->getPosition(), radiusPx * 1.5f);
 }
 
-
-int SelectionEffect::getOrderId() const
-{
-	return BS::Graphic::EffectOrder::Selection;
-}

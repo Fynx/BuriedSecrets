@@ -112,7 +112,8 @@ namespace BS {
 		// Please bear in mind that pre and post effects are stored and sorted separately.
 		enum EffectOrder {
 			BasePolygon = 99999999,
-			Selection = 0
+			Selection = 1,
+			Antipsychosis = 0
 		};
 	}
 }

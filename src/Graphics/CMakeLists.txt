@@ -2,8 +2,10 @@ set (Graphics_SRCS
 	AnimatedGraphicalEntity.cpp
 	Animation.cpp
 	AnimationSet.cpp
+	AntipsychosisEffect.cpp
 	BasePolygonEffect.cpp
 	Camera.cpp
+	CircleEffect.cpp
 	EffectGraphicalEntity.cpp
 	GraphicalEffectFactory.cpp
 	GraphicalEffect.cpp

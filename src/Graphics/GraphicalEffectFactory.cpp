@@ -5,6 +5,7 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Graphics/AntipsychosisEffect.hpp"
 #include "Graphics/BasePolygonEffect.hpp"
 #include "Graphics/SelectionEffect.hpp"
 
@@ -16,6 +17,7 @@ GraphicalEffectFactory::GraphicalEffectFactory(const Viewport *viewport)
 	preEffects.insert(Effects::EnterCommand);
 	preEffects.insert(Effects::FriendlyCommand);
 	preEffects.insert(Effects::HostileCommand);
+	preEffects.insert(Effects::Antipsychosis);
 }
 
 
@@ -32,6 +34,8 @@ GraphicalEffect *GraphicalEffectFactory::get(const Effect &effect)
 		return new SelectionEffect{viewport, sf::Color::Cyan};
 	} else if (name == Effects::BasePolygon) {
 		return new BasePolygonEffect{viewport};
+	} else if (name == Effects::Antipsychosis) {
+		return new AntipsychosisEffect{viewport};
 	}
 
 	err("GraphicalEffectFactory: Cannot produce an effect for: " + effect.getName());

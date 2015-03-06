@@ -73,6 +73,7 @@ namespace Effects {
 	const QString MoveCommand     = "MoveCommand";
 	const QString Selection       = "SelectionEffect";	// Unit selection.
 	const QString Shot            = "ShotEffect";
+	const QString Antipsychosis   = "AntipsychosisEffect";
 }
 
 namespace MapProperties {

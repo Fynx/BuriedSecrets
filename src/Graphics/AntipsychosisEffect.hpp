@@ -2,17 +2,12 @@
  * All rights reserved.
  */
 #pragma once
-#include <SFML/Graphics.hpp>
-
 #include "Graphics/CircleEffect.hpp"
 
 
-class SelectionEffect: public CircleEffect {
+class AntipsychosisEffect : public CircleEffect {
 public:
-	SelectionEffect(const Viewport *viewport, const sf::Color &color);
+	AntipsychosisEffect(const Viewport *viewport);
 	int getOrderId() const override;
 	void update(const GraphicalEntity *graphicalEntity) override;
-
-private:
-	QList<QPointF> basePolygon;
 };

@@ -175,6 +175,9 @@ void Mind::loadFromJson(const QJsonObject &json)
 		}
 	}
 
+	// Add antipsychosis.
+	addEffect(Effect(Effects::Antipsychosis, new ObjectEffectData(getFactionById(PlayerFactionId)->getCamp())));
+
 	info("done.");
 }
 
