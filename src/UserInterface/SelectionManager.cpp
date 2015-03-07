@@ -31,6 +31,8 @@ SelectionManager::SelectionManager(Mind *mind, BoardWidget *boardWidget)
 {
 	//init Viewport
 	viewport_.setMapSize(mind_->getMap()->getSize());
+	auto campPos = mind_->physicsEngine()->getPosition(mind_->getPlayerFaction()->getCamp());
+	viewport_.centerOnPointInMetres(campPos);
 
 	connect(edgeMoveTimer_, &QTimer::timeout, this, &SelectionManager::checkForViewportMove);
 
@@ -136,7 +138,9 @@ void SelectionManager::showUnit(int uid)
 	if (!mind_->getPlayerFaction()->isAliveMember(uid))
 		return;
 
-	//TODO center viewport on unit
+	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	auto unitPos = mind_->physicsEngine()->getPosition(unit);
+	viewport_.centerOnPointInMetres(unitPos);
 }
 
 void SelectionManager::pickUnit(int uid)

@@ -2,13 +2,16 @@
  * All rights reserved.
  */
 #include "UserInterface/Viewport.hpp"
+
 #include <QDebug>
+#include "UserInterface/Perspective.hpp"
 
 Viewport::Viewport(const Perspective *perspective)
-	: perspective{perspective}, zoom{1.0f}, currentView{0, 0, 0, 0}
-{
-	viewWidth = viewHeight = 0;
-}
+	: perspective{perspective},
+	  zoom{1.0f},
+	  mapSize{0,0},
+	  currentView{0, 0, 0, 0}
+{}
 
 
 Viewport::~Viewport()
@@ -68,23 +71,7 @@ QPointF Viewport::getWholeScale() const
 
 void Viewport::moveViewInMetres(QPointF deltaInMetres)
 {
-	QPointF newTopLeft = currentView.topLeft() + deltaInMetres;
-	QPointF newBottomRight = currentView.bottomRight() + deltaInMetres;
-	if (currentView.width() <= mapSize.width()) {
-		// Excess to left.
-		deltaInMetres.setX(deltaInMetres.x() + std::max(-newTopLeft.x(), 0.0));
-		// Excess to right
-		deltaInMetres.setX(deltaInMetres.x() - std::max(newBottomRight.x() - mapSize.width(), 0.0));
-	}
-
-	if (currentView.height() <= mapSize.height()) {
-		// Excess up.
-		deltaInMetres.setY(deltaInMetres.y() + std::max(-newTopLeft.y(), 0.0));
-		// Excess down.
-		deltaInMetres.setY(deltaInMetres.y() - std::max(newBottomRight.y() - mapSize.height(), 0.0));
-	}
-
-	currentView = QRectF{currentView.topLeft() + deltaInMetres, currentView.bottomRight() + deltaInMetres};
+	currentView.translate(deltaInMetres);
 	updateView();
 }
 
@@ -97,8 +84,9 @@ void Viewport::moveViewInPixels(const QPoint &deltaInPixels)
 
 void Viewport::setViewSizeInMetres(const QSizeF &sizeInMetres)
 {
-	viewWidth = sizeInMetres.width();
-	viewHeight = sizeInMetres.height();
+	auto currentCenter = currentView.center();
+	currentView.setSize(sizeInMetres);
+	currentView.moveCenter(currentCenter);
 	updateView();
 }
 
@@ -107,6 +95,13 @@ void Viewport::setViewSizeInPixels(const QSize &sizeInPixels)
 {
 	QSizeF sizeInMetres = perspective->fromPixelsToMetres(sizeInPixels);
 	setViewSizeInMetres(sizeInMetres);
+}
+
+
+void Viewport::centerOnPointInMetres(const QPointF &point)
+{
+	currentView.moveCenter(point);
+	updateView();
 }
 
 
@@ -150,23 +145,21 @@ float Viewport::getZoom() const
 
 void Viewport::updateView()
 {
-	QPointF topLeft = currentView.topLeft();
-// 	float finalWidth = viewWidth * zoom;
-// 	float finalHeight = viewHeight * zoom;
-	currentView = QRectF(topLeft, QPointF(topLeft.x() + viewWidth, topLeft.y() + viewHeight));
-	if (currentView.width() > mapSize.width()) {
-		// Center X in the view.
-		qreal offset = (currentView.width() - mapSize.width()) / 2.0;
-		currentView.setLeft(-offset);
-		currentView.setRight(offset + mapSize.width());
-	}
+	currentView = viewWithinMap(currentView);
+}
 
-	if (currentView.height() > mapSize.height()) {
-		// Center Y in the view.
-		qreal offset = (currentView.height() - mapSize.height()) / 2.0;
-		currentView.setTop(-offset);
-		currentView.setBottom(offset + mapSize.height());
-	}
+
+QRectF Viewport::viewWithinMap(QRectF newView)
+{
+	qreal deltaLeft = qMax(0.0, newView.right() - mapSize.width());
+	qreal deltaUp = qMax(0.0, newView.bottom() - mapSize.height());
+	newView.translate((-1) * deltaLeft, (-1) * deltaUp);
+
+	qreal deltaRight = qMax(0.0, 0 - newView.left());
+	qreal deltaDown = qMax(0.0, 0 - newView.top());
+	newView.translate(deltaRight, deltaDown);
+
+	return newView;
 }
 
 

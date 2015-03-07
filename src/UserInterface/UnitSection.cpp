@@ -84,7 +84,11 @@ void UnitSection::mouseDoubleClickEvent(QMouseEvent *event)
 
 void UnitSection::mousePressEvent(QMouseEvent *event)
 {
-	emit pickUnit();
+	if (event->button() == Qt::LeftButton)
+		emit pickUnit();
+
+	if (event->button() == Qt::RightButton)
+		emit showUnit();
 
 	QWidget::mousePressEvent(event);
 }

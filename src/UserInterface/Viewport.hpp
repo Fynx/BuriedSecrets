@@ -3,9 +3,9 @@
  */
 #pragma once
 
-#include "UserInterface/Perspective.hpp"
+#include <QtCore>
 
-#include <QDebug>
+class Perspective;
 
 /**
  * @brief This class represents the viewport.
@@ -54,6 +54,7 @@ public:
 	void moveViewInMetres(QPointF deltaInMetres);
 	void setViewSizeInMetres(const QSizeF &sizeInMetres);
 	void setViewSizeInPixels(const QSize &sizeInPixels);
+    void centerOnPointInMetres(const QPointF &point);
 	/**
 	 * @brief Sets the map size. Arguments are in metres.
 	 */
@@ -65,12 +66,11 @@ public:
 
 private:
 	void updateView();
+	QRectF viewWithinMap(QRectF newView);
 
 	const Perspective *perspective;
 	float zoom;
 	QSizeF mapSize;
-	float viewWidth;
-	float viewHeight;
 	QRectF currentView;
 };
 

@@ -4,6 +4,7 @@
 #include "Graphics/Graphics.hpp"
 
 #include "Mind/ObjectEffectData.hpp"
+#include "UserInterface/Perspective.hpp"
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager, Mind *mind)
