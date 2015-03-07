@@ -3,6 +3,7 @@
  */
 
 #include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Item.hpp"
 #include "Common/Enums.hpp"
 
@@ -16,14 +17,18 @@ BS::Type Item::getType() const
 	return BS::Type::Item;
 }
 
-BS::ItemType Item::getItemType() const
+QVector<BS::ItemType> Item::getItemTypes() const
 {
-	QString s = prototype->getProperty(Properties::ItemType).toString();
-	if (BS::changeStringToItemType(s) == BS::ItemType::Invalid) {
-		qDebug() << "Unknown itemType";
-		exit(0);
+	QVector<BS::ItemType> result;
+	QList<QVariant> s = prototype->getProperty(Properties::ItemTypes).toList();
+	for (const QVariant &val : s) {
+		BS::ItemType itemType = BS::changeStringToItemType(val.toString());
+		if (itemType == BS::ItemType::Invalid)
+			err("Unknown itemType");
+		else
+			result.append(itemType);
 	}
-	return BS::changeStringToItemType(s);
+	return result;
 }
 
 QString Item::getName() const
@@ -39,11 +44,8 @@ int Item::getWeight() const
 QSet<BS::Slot> Item::getAvailableSlots() const
 {
 	QSet<BS::Slot> result;
-	if (!prototype->hasProperty(Properties::Slots))
-		return result;
-	QVariantList arr = prototype->getProperty(Properties::Slots).toList();
-	for (const QVariant &val : arr)
-		result.insert(BS::changeStringToSlot(val.toString()));
+	for (BS::ItemType itemType : getItemTypes())
+		result.insert(BS::getCorrespondingSlot(itemType));
 	return result;
 }
 

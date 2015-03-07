@@ -116,7 +116,7 @@ namespace Properties {                                 // for Prototypes
 	const QString Healing       = "healing";           // base for Unit
 	const QString HP            = "hp";                // max for Unit
 	const QString Ingredients   = "ingredients";       // Item
-	const QString ItemType      = "itemType";
+	const QString ItemTypes     = "itemTypes";
 	const QString MagazineSize  = "magazineSize";      // Weapon
 	const QString MovementSpeed = "movementSpeed";     // Unit
 	const QString Name          = "name";

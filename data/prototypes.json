@@ -200,7 +200,7 @@
 	"Sniper rifle": {
 		"type": "item",
 		"picture": "sniper-rifle",
-		"itemType": "Sniper rifle",
+		"itemTypes": ["Sniper rifle"],
 		"damage": 70,
 		"description": "Look at that chick, just look at her... As you see this rifle has very good optics.",
 		"quality": 8,
@@ -210,15 +210,14 @@
 		"optimalRange": 20,
 		"shotsInterval" : 20,
 		"magazineSize" : 5,
-		"reloadTime" : 60,
-		"slots": ["weapon"]
+		"reloadTime" : 60
 	},
 
 
 	"Pistol": {
 		"type": "item",
 		"picture": "pistol",
-		"itemType": "Pistol",
+		"itemTypes": ["Pistol"],
 		"damage": 15,
 		"description": "Pistol - basic weapon of drug dealers and pimps. Children can use it as well.",
 		"quality": 3,
@@ -228,15 +227,14 @@
 		"optimalRange": 8,
 		"shotsInterval" : 5,
 		"magazineSize" : 8,
-		"reloadTime" : 30,
-		"slots": ["weapon"]
+		"reloadTime" : 30
 	},
 
 
 	"Assault rifle": {
 		"type": "item",
 		"picture": "assault-rifle",
-		"itemType": "Assault rifle",
+		"itemTypes": ["Assault rifle"],
 		"damage": 15,
 		"description": "Your grandpa at WW2 didn't have this access to this stuff, but you do - make good use of it.",
 		"quality": 6,
@@ -246,15 +244,14 @@
 		"optimalRange": 12,
 		"shotsInterval" : 3,
 		"magazineSize" : 80,
-		"reloadTime" : 55,
-		"slots": ["weapon"]
+		"reloadTime" : 55
 	},
 
 
 	"Revolvers": {
 		"type": "item",
 		"picture": "revolvers",
-		"itemType": "Dual pistols",
+		"itemTypes": ["Dual pistols"],
 		"damage": 25,
 		"description": "Feelin' like some gold stealin' and shootin' Indians? Take this, might be helpful.",
 		"quality": 4,
@@ -264,15 +261,14 @@
 		"optimalRange": 8,
 		"shotsInterval" : 10,
 		"magazineSize" : 5,
-		"reloadTime" : 50,
-		"slots": ["weapon"]
+		"reloadTime" : 50
 	},
 
 
 	"Machete": {
 		"type": "item",
 		"picture": "machete",
-		"itemType": "Melee",
+		"itemTypes": ["Melee"],
 		"damage": 25,
 		"description": "Is your name Dany Treho? Do you want to participate in riot in Africa? Going to Cracow? If any of this is true this one is a must.",
 		"quality": 4,
@@ -282,15 +278,14 @@
 		"optimalRange": 3,
 		"shotsInterval" : 10,
 		"magazineSize" : 1000,
-		"reloadTime" : 1,
-		"slots": ["weapon"]
+		"reloadTime" : 1
 	},
 
 
 	"Spear": {
 		"type": "item",
 		"picture": "spear",
-		"itemType": "Melee",
+		"itemTypes": ["Melee"],
 		"damage": 15,
 		"description": "They say it is the easiest weapon to build during zombie apocalypse. Well hard to check for real, but you can always build one and poke some strangers. ",
 		"quality": 2,
@@ -308,7 +303,7 @@
 	"Pitchfork": {
 		"type": "item",
 		"picture": "pitchfork",
-		"itemType": "Melee",
+		"itemTypes": ["Melee"],
 		"damage": 10,
 		"description": "They say it is the easiest weapon to build during zombie apocalypse. Well hard to check for real, but you can always build one and poke some strangers. ",
 		"quality": 1.5,
@@ -318,53 +313,49 @@
 		"optimalRange": 3,
 		"shotsInterval" : 10,
 		"magazineSize" : 1000,
-		"reloadTime" : 1,
-		"slots": ["weapon"]
+		"reloadTime" : 1
 	},
 
 
 	"Medkit": {
 		"type": "item",
 		"picture": "medkit",
-		"itemType": "Medicament",
+		"itemTypes": ["Medicament"],
 		"description": "It won't cure your cancer, but might help you go through the day. Before use, read the package leaflet.",
 		"quality": 5,
 		"healing": 7,
-		"weight": 1,
-		"slots": ["medicament"]
+		"weight": 1
 	},
 
 
 	"Wrench": {
 		"type": "item",
 		"picture": "wrench",
-		"itemType": "Tool",
+		"itemTypes": ["Tool", "Melee"],
 		"damage": 15,
 		"description": "Wrench. Normal wrench. Just-a-wrench. Not-funny-wrench. Move-along-wrench.",
 		"quality": 4,
 		"dispersion": 0,
 		"engineering": 6,
-		"weight": 2,
-		"slots": ["tool", "weapon"]
+		"weight": 2
 	},
 
 
 	"Combat jacket": {
 		"type": "item",
-		"itemType": "Armor",
+		"itemTypes": ["Armor"],
 		"description": "Imagine how fabulous John Travolta would look in this one. Or your mum. Hmmm... maybe just John.",
 		"quality": 3,
 		"picture": "combat-jacket",
 		"defense": 0.2,
-		"weight": 4,
-		"slots": ["armor"]
+		"weight": 4
 	},
 
 
 	"IKEA fence": {
 		"type": "item",
 		"picture": "ikeaFence",
-		"itemType": "Fortification",
+		"itemTypes": ["Fortification"],
 		"description": "As Gandalf would say: They shall not pass. At least for a while.",
 		"quality": 5,
 		"weight": 4,
@@ -377,19 +368,18 @@
 	"IKEA bunker": {
 		"type": "item",
 		"picture": "ikeaBunker",
-		"itemType": "Fortification",
+		"itemTypes": ["Fortification"],
 		"description": "German design, Swedish materials, your sweat & tears. No more, no less.",
 		"quality": 10,
 		"weight": 8,
-		"spawnedType": "Bunker",
-		"slots": ["fortification"]
+		"spawnedType": "Bunker"
 	},
 
 
 	"Wooden planks": {
 		"type": "item",
 		"picture": "woodenPlanks",
-		"itemType": "Junk",
+		"itemTypes": ["Junk"],
 		"description": "Not more that yesterday it was someone's fence or child's bed, aren't you ashamed? I wouldn't be.",
 		"quality": 1,
 		"weight": 2
@@ -399,7 +389,7 @@
 	"Wire": {
 		"type": "item",
 		"picture": "wire",
-		"itemType": "Junk",
+		"itemTypes": ["Junk"],
 		"description": "Good for: strangulation, iterior design, ground obstacles, toys & much, much more. If you don't have enough then just look around.",
 		"quality": 2,
 		"weight": 1

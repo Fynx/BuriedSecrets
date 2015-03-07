@@ -94,6 +94,8 @@ namespace BS {
 	QString changeItemTypeToString(BS::ItemType type);
 	BS::ItemType changeStringToItemType(const QString &str);
 
+	BS::Slot getCorrespondingSlot(BS::ItemType type);
+
 	namespace Graphic {
 		// This is an enum for a reason (underlying value implicitly converted to a numeric type).
 		enum Direction {

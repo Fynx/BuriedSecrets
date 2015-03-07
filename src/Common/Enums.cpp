@@ -64,6 +64,22 @@ static const QMap<BS::ItemType, QString> itemTypeToString {
 	{BS::ItemType::SniperRifle,   ItemTypes::SniperRifle},
 };
 
+static const QMap<BS::ItemType, BS::Slot> correspondingSlot {
+	{BS::ItemType::Armor,         BS::Slot::Armor},
+	{BS::ItemType::Fortification, BS::Slot::Fortification},
+	{BS::ItemType::Invalid,       BS::Slot::Invalid},
+	{BS::ItemType::Junk,          BS::Slot::Invalid},
+	{BS::ItemType::Medicament,    BS::Slot::Medicament},
+	{BS::ItemType::Perception,    BS::Slot::Perception},
+	{BS::ItemType::Tool,          BS::Slot::Tool},
+	{BS::ItemType::AssaultRifle,  BS::Slot::Weapon},
+	{BS::ItemType::DualPistols,   BS::Slot::Weapon},
+	{BS::ItemType::Melee,         BS::Slot::Weapon},
+	{BS::ItemType::Pistol,        BS::Slot::Weapon},
+	{BS::ItemType::Shotgun,       BS::Slot::Weapon},
+	{BS::ItemType::SniperRifle,   BS::Slot::Weapon},
+};
+
 namespace BS {
 
 	QString changeSlotToString(Slot slot)
@@ -81,33 +97,38 @@ namespace BS {
 		return slots_;
 	}
 
-	QString changeStateToString(BS::State state)
+	QString changeStateToString(State state)
 	{
 		return ::stateToString.value(state, States::Invalid);
 	}
 
 	State changeStringToState(const QString &str)
 	{
-		return ::stateToString.key(str, BS::State::Idle);
+		return ::stateToString.key(str, State::Idle);
 	}
 
-	QString changeTypeToString(BS::Type type)
+	QString changeTypeToString(Type type)
 	{
 		return ::typeToString.value(type, Types::Invalid);
 	}
 
-	BS::Type changeStringToType(const QString &string)
+	Type changeStringToType(const QString &string)
 	{
-		return ::typeToString.key(string, BS::Type::Invalid);
+		return ::typeToString.key(string, Type::Invalid);
 	}
 
-	QString changeItemTypeToString(BS::ItemType type)
+	QString changeItemTypeToString(ItemType type)
 	{
 		return ::itemTypeToString.value(type, ItemTypes::Invalid);
 	}
 
-	BS::ItemType changeStringToItemType(const QString &str)
+	ItemType changeStringToItemType(const QString &str)
 	{
-		return ::itemTypeToString.key(str, BS::ItemType::Invalid);
+		return ::itemTypeToString.key(str, ItemType::Invalid);
+	}
+
+	Slot getCorrespondingSlot(ItemType type)
+	{
+		return ::correspondingSlot[type];
 	}
 }

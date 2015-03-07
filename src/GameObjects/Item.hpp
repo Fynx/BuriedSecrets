@@ -13,7 +13,7 @@ public:
 
 	BS::Type getType() const;
 
-	BS::ItemType getItemType() const;
+	QVector<BS::ItemType> getItemTypes() const;
 
 	QString getName() const;
 	int getWeight() const;

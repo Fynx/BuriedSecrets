@@ -147,7 +147,15 @@ void ItemWidget::fillWidget()
 
 	weightLabel_->setNum(prototype_->getProperty(Properties::Weight).toInt());
 	fillQuality(prototype_->getProperty(Properties::Quality).toInt());
-	itemTypeLabel_->setText(prototype_->getProperty(Properties::ItemType).toString());
+
+	QString itemTypesString;
+	for (const QVariant &val : prototype_->getProperty(Properties::ItemTypes).toList()) {
+		if (!itemTypesString.isEmpty())
+			itemTypesString += ", ";
+		itemTypesString += val.toString();
+	}
+
+	itemTypeLabel_->setText(itemTypesString);
 
 	auto components = prototype_->getProperty(Properties::Ingredients).toStringList();
 	QString componentsTxt;
