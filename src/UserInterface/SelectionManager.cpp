@@ -174,7 +174,7 @@ void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
 
 void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *target)
 {
-	if (target == nullptr) {
+	if (target == nullptr || target->getType() == BS::Type::Environment) {
 		if (unit->getState() == BS::State::Inside)
 			unit->setCommand(BS::Command::Leave);
 		else
@@ -472,7 +472,7 @@ void SelectionManager::checkForMoveCommand()
 	QPointF place = viewport_.getPhysicalCoordinates(pos);
 	Object *target = objectInPixelsPos(pos);
 
-	if (target != nullptr)
+	if (target != nullptr && target->getType() != BS::Type::Environment)
 		return;
 
 	for (auto &uid : selectedUnitsUids_) {
