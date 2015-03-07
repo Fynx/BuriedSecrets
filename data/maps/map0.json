@@ -256,6 +256,7 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 103,
+			"patrolRoute": [[7, 277], [17, 277]],
 			"x": 7.0,
 			"y": 277.0,
 			"hp": 120

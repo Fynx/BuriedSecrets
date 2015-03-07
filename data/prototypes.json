@@ -28,7 +28,7 @@
 		"damageControl": 0.8,
 		"hp": 130,
 		"psychosis": 100,
-		"sightRange": 1.0,
+		"sightRange": 2.0,
 		"movementSpeed": 5,
 		"regeneration": 2,
 		"animations": {
@@ -60,7 +60,7 @@
 		"damageControl": 0.5,
 		"hp": 125,
 		"psychosis": 100,
-		"sightRange": 1.0,
+		"sightRange": 2.0,
 		"movementSpeed": 5,
 		"regeneration": 3,
 		"animations": {
@@ -92,7 +92,7 @@
 		"damageControl": 0.3,
 		"hp": 120,
 		"psychosis": 100,
-		"sightRange": 1.0,
+		"sightRange": 2.0,
 		"movementSpeed": 5,
 		"regeneration": 1,
 		"animations": {
@@ -116,7 +116,7 @@
 		"damageControl": 0,
 		"hp": 150,
 		"psychosis": 100,
-		"sightRange": 10,
+		"sightRange": 1,
 		"movementSpeed": 5,
 		"animations": {
 			"Idle": "SoszuIdle",

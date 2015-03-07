@@ -54,9 +54,7 @@ void AnimatorMobAttitude::act()
 
 		if (unit->getCurrentPath().size() == 0){
 			unit->setCommand(Command::Move);
-			QSizeF limit = mind->getMapManager()->getMap()->getSize();
-			to = QPointF(qrand() % (int)limit.width(), qrand() % (int)limit.height());
-			unit->setCurrentPath(mind->getMapManager()->getPath(from, to));
+			unit->setCurrentPath(unit->getPatrolRoute().toList());
 		}
 	}
 }
