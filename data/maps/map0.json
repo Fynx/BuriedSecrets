@@ -269,8 +269,9 @@
 		{
 			"uid": 103,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [201],
 			"slots": {
+				"weapon" : 201
 			}
 		},
 
@@ -299,8 +300,9 @@
 		{
 			"uid": 105,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [202],
 			"slots": {
+				"weapon" : 202
 			}
 		},
 
@@ -329,8 +331,9 @@
 		{
 			"uid": 107,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [203],
 			"slots": {
+				"weapon" : 203
 			}
 		},
 
@@ -359,8 +362,9 @@
 		{
 			"uid": 109,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [204],
 			"slots": {
+				"weapon" : 204
 			}
 		},
 
@@ -389,8 +393,9 @@
 		{
 			"uid": 111,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [205],
 			"slots": {
+				"weapon" : 205
 			}
 		},
 
@@ -419,8 +424,9 @@
 		{
 			"uid": 113,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [206],
 			"slots": {
+				"weapon" : 206
 			}
 		},
 
@@ -449,8 +455,9 @@
 		{
 			"uid": 115,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [207],
 			"slots": {
+				"weapon" : 207
 			}
 		},
 
@@ -480,8 +487,9 @@
 		{
 			"uid": 117,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [208],
 			"slots": {
+				"weapon" : 208
 			}
 		},
 
@@ -511,8 +519,9 @@
 		{
 			"uid": 119,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [209],
 			"slots": {
+				"weapon" : 209
 			}
 		},
 
@@ -542,8 +551,9 @@
 		{
 			"uid": 121,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [210],
 			"slots": {
+				"weapon" : 210
 			}
 		},
 
@@ -573,8 +583,9 @@
 		{
 			"uid": 123,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [211],
 			"slots": {
+				"weapon" : 211
 			}
 		},
 
@@ -604,8 +615,9 @@
 		{
 			"uid": 125,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [212],
 			"slots": {
+				"weapon" : 212
 			}
 		},
 
@@ -635,8 +647,9 @@
 		{
 			"uid": 127,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [213],
 			"slots": {
+				"weapon" : 213
 			}
 		},
 
@@ -665,8 +678,9 @@
 		{
 			"uid": 129,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [214],
 			"slots": {
+				"weapon" : 214
 			}
 		},
 
@@ -695,8 +709,9 @@
 		{
 			"uid": 131,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [215],
 			"slots": {
+				"weapon" : 215
 			}
 		},
 
@@ -725,8 +740,9 @@
 		{
 			"uid": 133,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [216],
 			"slots": {
+				"weapon" : 216
 			}
 		},
 
@@ -755,8 +771,9 @@
 		{
 			"uid": 135,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [217],
 			"slots": {
+				"weapon" : 217
 			}
 		},
 
@@ -785,8 +802,9 @@
 		{
 			"uid": 137,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [218],
 			"slots": {
+				"weapon" : 218
 			}
 		},
 
@@ -816,8 +834,9 @@
 		{
 			"uid": 139,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [219],
 			"slots": {
+				"weapon" : 219
 			}
 		},
 
@@ -847,8 +866,9 @@
 		{
 			"uid": 141,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [220],
 			"slots": {
+				"weapon" : 220
 			}
 		},
 
@@ -877,8 +897,9 @@
 		{
 			"uid": 143,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [221],
 			"slots": {
+				"weapon" : 221
 			}
 		},
 
@@ -907,8 +928,9 @@
 		{
 			"uid": 145,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [222],
 			"slots": {
+				"weapon" : 222
 			}
 		},
 
@@ -937,8 +959,9 @@
 		{
 			"uid": 147,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [223],
 			"slots": {
+				"weapon" : 223
 			}
 		},
 
@@ -967,8 +990,9 @@
 		{
 			"uid": 149,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [224],
 			"slots": {
+				"weapon" : 224
 			}
 		},
 
@@ -998,8 +1022,9 @@
 		{
 			"uid": 151,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [225],
 			"slots": {
+				"weapon" : 225
 			}
 		},
 
@@ -1028,8 +1053,9 @@
 		{
 			"uid": 153,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [226],
 			"slots": {
+				"weapon" : 226
 			}
 		},
 
@@ -1058,8 +1084,9 @@
 		{
 			"uid": 155,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [227],
 			"slots": {
+				"weapon" : 227
 			}
 		},
 
@@ -1088,8 +1115,9 @@
 		{
 			"uid": 157,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [228],
 			"slots": {
+				"weapon" : 228
 			}
 		},
 
@@ -1118,8 +1146,9 @@
 		{
 			"uid": 159,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [229],
 			"slots": {
+				"weapon" : 229
 			}
 		},
 
@@ -1149,8 +1178,9 @@
 		{
 			"uid": 161,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [230],
 			"slots": {
+				"weapon" : 230
 			}
 		},
 
@@ -1180,9 +1210,291 @@
 		{
 			"uid": 163,
 			"name": "BasicEquipment",
-			"items": [],
+			"items": [231],
 			"slots": {
+				"weapon" : 231
 			}
+		},
+		
+		
+
+
+		{
+			"uid": 201,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 202,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 203,
+			"name": "Machete",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 204,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 205,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 206,
+			"name": "Machete",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 207,
+			"name": "Machete",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 208,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 209,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 210,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 211,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 212,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 213,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 214,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 215,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 216,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 217,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 218,
+			"name": "Machete",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 219,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 220,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 221,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 222,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 223,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 224,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 225,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 226,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 227,
+			"name": "Spear",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 228,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 229,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 230,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 231,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
 		},
 
 

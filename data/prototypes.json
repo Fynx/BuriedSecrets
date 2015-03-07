@@ -273,7 +273,7 @@
 		"type": "item",
 		"picture": "machete",
 		"itemType": "Melee",
-		"damage": 20,
+		"damage": 25,
 		"description": "Is your name Dany Treho? Do you want to participate in riot in Africa? Going to Cracow? If any of this is true this one is a must.",
 		"quality": 4,
 		"dispersion": 5,
@@ -298,7 +298,25 @@
 		"weight": 4,
 		"range": 4,
 		"optimalRange": 3,
-		"shotsInterval" : 6,
+		"shotsInterval" : 7,
+		"magazineSize" : 1000,
+		"reloadTime" : 1,
+		"slots": ["weapon"]
+	},
+
+
+	"Pitchfork": {
+		"type": "item",
+		"picture": "pitchfork",
+		"itemType": "Melee",
+		"damage": 10,
+		"description": "They say it is the easiest weapon to build during zombie apocalypse. Well hard to check for real, but you can always build one and poke some strangers. ",
+		"quality": 1.5,
+		"dispersion": 5,
+		"weight": 6,
+		"range": 4,
+		"optimalRange": 3,
+		"shotsInterval" : 10,
 		"magazineSize" : 1000,
 		"reloadTime" : 1,
 		"slots": ["weapon"]
