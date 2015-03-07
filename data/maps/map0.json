@@ -236,7 +236,10 @@
 			"uid": 101,
 			"name": "BasicFaction",
 			"faction": 2,
-			"units": [102, 104, 106, 108],
+			"units": [102, 104, 106, 108, 110, 112, 114, 116,
+					  118, 120, 122, 124, 126, 128, 130, 132, 134, 136,
+					  138, 140, 142, 144, 146, 148, 150,
+					  152, 154, 156, 158, 160, 162],
 			"relations": [[1, -5], [2, 100]]
 		},
 
@@ -266,9 +269,8 @@
 		{
 			"uid": 103,
 			"name": "BasicEquipment",
-			"items": [151],
+			"items": [],
 			"slots": {
-				"weapon": 151
 			}
 		},
 
@@ -297,21 +299,20 @@
 		{
 			"uid": 105,
 			"name": "BasicEquipment",
-			"items": [152],
+			"items": [],
 			"slots": {
-				"weapon": 152
 			}
 		},
 
 
 		{
-			"uid" : 106,
+			"uid": 106,
 			"name": "MobTank",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorDie",
-				"AnimatorMobAttitude",
 				"AnimatorMove",
+				"AnimatorMobAttitude",
 				"AnimatorUpdatePath",
 				"AnimatorUpdateFOV",
 				"AnimatorAttack",
@@ -319,24 +320,24 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 107,
-			"x": 16.0,
-			"y": 16.0,
-			"hp": 150
+			"x": 12.0,
+			"y": 3.0,
+			"hp": 120
 		},
+
 
 		{
 			"uid": 107,
 			"name": "BasicEquipment",
-			"items": [153],
+			"items": [],
 			"slots": {
-				"weapon": 153
 			}
 		},
 
 
 		{
 			"uid": 108,
-			"name": "MobWoman",
+			"name": "MobSoldier",
 			"animators": [
 				"AnimatorAnimation",
 				"AnimatorDie",
@@ -349,57 +350,843 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 109,
-			"x": 18.0,
-			"y": 18.0,
-			"hp" : 70
+			"x": 19.0,
+			"y": 8.0,
+			"hp": 120
 		},
 
 
 		{
 			"uid": 109,
 			"name": "BasicEquipment",
-			"items": [154],
+			"items": [],
 			"slots": {
-				"weapon": 154
 			}
 		},
 
 
 		{
-			"uid": 151,
-			"name": "Machete",
-			"type": "item",
+			"uid": 110,
+			"name": "MobSoldier",
 			"animators": [
-				"AnimatorWeapon"
-			]
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 111,
+			"x": 3.0,
+			"y": 22.0,
+			"hp": 120
+		},
+
+
+		{
+			"uid": 111,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 112,
+			"name": "MobTank",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 113,
+			"x": 13.0,
+			"y": 30.0,
+			"hp": 120
+		},
+
+
+		{
+			"uid": 113,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 114,
+			"name": "MobTank",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 115,
+			"x": 20.0,
+			"y": 22.0,
+			"hp": 120
+		},
+
+
+		{
+			"uid": 115,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 116,
+			"name": "MobWoman",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"patrolRoute": [[2, 26], [23,14]],
+			"equipment": 117,
+			"x": 2.0,
+			"y": 26.0,
+			"hp": 80
+		},
+
+
+		{
+			"uid": 117,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 118,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"patrolRoute": [[9, 16], [22, 40], [13, 69], [30, 93], [13, 69], [22, 40]],
+			"equipment": 119,
+			"x": 9.0,
+			"y": 16.0,
+			"hp": 100
+		},
+
+
+		{
+			"uid": 119,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 120,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"patrolRoute": [[3, 83], [2, 60], [30, 93], [10, 100]],
+			"equipment": 121,
+			"x": 3.0,
+			"y": 83.0,
+			"hp": 100
+		},
+
+
+		{
+			"uid": 121,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 122,
+			"name": "MobWoman",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"patrolRoute": [[31, 92], [40, 50], [60, 37], [40, 50]],
+			"equipment": 123,
+			"x": 31.0,
+			"y": 92.0,
+			"hp": 80
+		},
+
+
+		{
+			"uid": 123,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 124,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"patrolRoute": [[62, 37], [53, 90], [17, 113], [53, 90]],
+			"equipment": 125,
+			"x": 62.0,
+			"y": 37.0,
+			"hp": 80
+		},
+
+
+		{
+			"uid": 125,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 126,
+			"name": "MobSoldier",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"patrolRoute": [[30, 106], [26,88], [35, 83], [37, 102]],
+			"equipment": 127,
+			"x": 30.0,
+			"y": 106.0,
+			"hp": 80
+		},
+
+
+		{
+			"uid": 127,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 128,
+			"name": "MobSoldier",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 129,
+			"x": 33.0,
+			"y": 77.0,
+			"hp": 120
+		},
+
+
+		{
+			"uid": 129,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 130,
+			"name": "MobSoldier",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 131,
+			"x": 37.0,
+			"y": 80.0,
+			"hp": 80
+		},
+
+
+		{
+			"uid": 131,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 132,
+			"name": "MobSoldier",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 133,
+			"x": 25.5,
+			"y": 78.0,
+			"hp": 100
+		},
+
+
+		{
+			"uid": 133,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 134,
+			"name": "MobSoldier",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 135,
+			"x": 14.0,
+			"y": 80.0,
+			"hp": 100
+		},
+
+
+		{
+			"uid": 135,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 136,
+			"name": "MobTank",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 137,
+			"x": 63.0,
+			"y": 83.0,
+			"hp": 80
+		},
+
+
+		{
+			"uid": 137,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 138,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 139,
+			"patrolRoute": [[2, 133], [53, 136]],
+			"x": 2.0,
+			"y": 133.0,
+			"hp": 80
+		},
+
+
+		{
+			"uid": 139,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 140,
+			"name": "MobWoman",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 141,
+			"patrolRoute": [[2, 136], [53, 139]],
+			"x": 2.0,
+			"y": 136.0,
+			"hp": 80
+		},
+
+
+		{
+			"uid": 141,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 142,
+			"name": "MobSoldier",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 143,
+			"x": 17.0,
+			"y": 142.0,
+			"hp": 120
+		},
+
+
+		{
+			"uid": 143,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 144,
+			"name": "MobSoldier",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 145,
+			"x": 8.0,
+			"y": 130.0,
+			"hp": 120
+		},
+
+
+		{
+			"uid": 145,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 146,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 147,
+			"x": 47.0,
+			"y": 133.0,
+			"hp": 80
+		},
+
+
+		{
+			"uid": 147,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 148,
+			"name": "MobSoldier",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 149,
+			"x": 63.0,
+			"y": 130.0,
+			"hp": 120
+		},
+
+
+		{
+			"uid": 149,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 150,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 151,
+			"patrolRoute": [[63, 118], [51, 160], [60, 210], [40, 220], [60, 210], [51, 160]],
+			"x": 63,
+			"y": 118.0,
+			"hp": 80
+			},
+
+
+		{
+			"uid": 151,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
 		},
 
 
 		{
 			"uid": 152,
-			"name": "Machete",
+			"name": "MobSoldier",
 			"animators": [
-				"AnimatorWeapon"
-			]
-		},
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 153,
+			"x": 13,
+			"y": 214.0,
+			"hp": 120
+			},
 
 
 		{
 			"uid": 153,
-			"name": "Spear",
-			"animators": [
-				"AnimatorWeapon"
-			]
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
 		},
 
 
 		{
 			"uid": 154,
-			"name": "Machete",
+			"name": "MobSoldier",
 			"animators": [
-				"AnimatorWeapon"
-			]
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 155,
+			"x": 19,
+			"y": 221.0,
+			"hp": 120
+			},
+
+
+		{
+			"uid": 155,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
 		},
+
+
+		{
+			"uid": 156,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 157,
+			"x": 25,
+			"y": 180.0,
+			"hp": 80
+			},
+
+
+		{
+			"uid": 157,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 158,
+			"name": "MobWoman",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 159,
+			"x": 53,
+			"y": 200.0,
+			"hp": 80
+			},
+
+
+		{
+			"uid": 159,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 160,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 161,
+			"patrolRoute": [[12, 183], [21, 210], [50, 206]],
+			"x": 12,
+			"y": 183.0,
+			"hp": 80
+			},
+
+
+		{
+			"uid": 161,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+		{
+			"uid": 162,
+			"name": "MobWoman",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 163,
+			"patrolRoute": [[32, 224], [39, 188], [47, 188], [45, 224]],
+			"x": 32,
+			"y": 224,
+			"hp": 80
+			},
+
+
+		{
+			"uid": 163,
+			"name": "BasicEquipment",
+			"items": [],
+			"slots": {
+			}
+		},
+
+
+
 
 
 

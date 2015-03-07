@@ -139,7 +139,7 @@
 		"damageControl": 0,
 		"hp": 150,
 		"psychosis": 100,
-		"sightRange": 10,
+		"sightRange": 1,
 		"movementSpeed": 5,
 		"animations": {
 			"Idle": "SoszuIdle",
@@ -162,7 +162,7 @@
 		"damageControl": 0,
 		"hp": 150,
 		"psychosis": 100,
-		"sightRange": 10,
+		"sightRange": 1,
 		"movementSpeed": 5,
 		"animations": {
 			"Idle": "SoszuIdle",
