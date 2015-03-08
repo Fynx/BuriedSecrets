@@ -1847,7 +1847,7 @@
 		{
 			"uid": 1025,
 			"name": "Destination",
-			"animators": [],
+			"animators": ["AnimatorResult"],
 			"x": 5,
 			"y": 10
 		},
