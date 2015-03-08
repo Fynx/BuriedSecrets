@@ -25,10 +25,10 @@ void ImageVisibilityMap::update(const VisibilityUpdate &visibilityUpdate)
 	QColor ommitColor = Qt::black;
 
 	// Resize tempImage only when needed.
-	if ((tempImage.width() < visibilityUpdate.includeCircle.radius * 2) ||
-		(tempImage.height() < visibilityUpdate.includeCircle.radius * 2)) {
-		tempImage = QImage{QSize{(int)(visibilityUpdate.includeCircle.radius * 2),
-			(int)(visibilityUpdate.includeCircle.radius * 2)},
+	if ((tempImage.width() < visibilityUpdate.includeCircle.radius * 4) ||
+		(tempImage.height() < visibilityUpdate.includeCircle.radius * 4)) {
+		tempImage = QImage{QSize{(int)(visibilityUpdate.includeCircle.radius * 4),
+			(int)(visibilityUpdate.includeCircle.radius * 4)},
 			QImage::Format_ARGB32_Premultiplied};
 	}
 	tempImage.fill(ommitColor);

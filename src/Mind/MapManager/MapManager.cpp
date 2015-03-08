@@ -7,6 +7,7 @@
 #include <QRectF>
 
 #include "Common/Strings.hpp"
+#include "GameObjects/Unit.hpp"
 
 
 MapManager::MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId)
@@ -91,7 +92,7 @@ void MapManager::clearFieldOfView(const int factionId)
 }
 
 
-void MapManager::addVisibility(const BS::Geometry::Circle circle, const int factionId)
+void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle circle, const int factionId)
 {
 	// FOV
 	VisibilityUpdate update;
@@ -103,7 +104,7 @@ void MapManager::addVisibility(const BS::Geometry::Circle circle, const int fact
 	auto objects = physicsEngine->getObjectsInRect(boundingRect);
 	for (const Object *obj: objects) {
 		const Prototype *prot = obj->getPrototype();
-		if (!prot->hasProperty(Properties::Transparent)) {
+		if (!prot->hasProperty(Properties::Transparent) && unit->getLocation() != obj) {
 			QPointF pos = physicsEngine->getPosition(obj);
 			QPointF baseCentre;
 			QPointF centre;
@@ -183,6 +184,7 @@ QPointF MapManager::getPointOnCircleInline(const BS::Geometry::Circle &circle, c
 	delta = sqrt(delta);
 	float xOne = (-b - delta) / 2.0f / a;
 	float xTwo = (-b + delta) / 2.0f / a;
+
 	QPointF resOne{xOne, l.getY(xOne)};
 	QPointF resTwo{xTwo, l.getY(xTwo)};
 

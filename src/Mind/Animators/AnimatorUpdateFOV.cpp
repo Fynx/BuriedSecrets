@@ -30,7 +30,7 @@ void AnimatorUpdateFOV::act()
 				mind->getMapManager()->clearFieldOfView(factionId);
 			}
 
-			mind->getMapManager()->addVisibility(circle, factionId);
+			mind->getMapManager()->addVisibility(unit, circle, factionId);
 		}
 	}
 }
