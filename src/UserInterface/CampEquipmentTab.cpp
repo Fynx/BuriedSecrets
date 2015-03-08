@@ -12,18 +12,28 @@
 CampEquipmentTab::CampEquipmentTab(Equipment *eq, Mind *mind, DataManager *dataManager)
 	: ItemsDisplay(dataManager),
 	  eq_(eq),
-	  mind_(mind)
+	  mind_(mind),
+	  knownEquipmentSize_(0)
 {
 	initLayout();
 
 	refresh();
 	connect(this, &ItemsDisplay::itemMovedIn, this, &CampEquipmentTab::onItemMovedIn);
 	connect(this, &ItemsDisplay::itemMovedOut, this, &CampEquipmentTab::onItemMovedOut);
+
+	//WARNING
+	knownEquipmentSize_ = 0;
 }
 
 void CampEquipmentTab::refresh()
 {
 	setItemsList(eq_->getItems().toList());
+	knownEquipmentSize_ = eq_->getItems().size();
+}
+
+int CampEquipmentTab::knownEquipmentSize() const
+{
+	return knownEquipmentSize_;
 }
 
 void CampEquipmentTab::initLayout()

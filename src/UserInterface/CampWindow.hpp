@@ -5,6 +5,7 @@
 
 #include <QtWidgets>
 
+class CampEquipmentTab;
 class DataManager;
 class Mind;
 
@@ -12,6 +13,8 @@ class CampWindow : public QFrame {
 	Q_OBJECT
 public:
 	CampWindow(Mind *mind, DataManager *dataManager);
+	void refresh();
+	int knownEquipmentSize() const;
 
 private:
 	static const int EquipmentIndex = 0;
@@ -26,6 +29,8 @@ private:
 
 	Mind *const mind_;
 	DataManager *const dataManager_;
+
+	CampEquipmentTab *campEquipmentTab_;
 
 signals:
 	void exit();

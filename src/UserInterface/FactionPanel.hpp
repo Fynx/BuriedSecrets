@@ -15,6 +15,7 @@ class FactionPanel : public QFrame {
 public:
 	FactionPanel();
 	void refresh(const Mind *mind);
+	void setCampIconFlash(bool flash);
 
 private:
 	void initLayout();
@@ -24,6 +25,8 @@ private:
 	QPushButton *journalBtn_;
 
 	QLabel *foodAmount_;
+
+	bool campIconFlash_;
 
 signals:
 	void journalActivated();

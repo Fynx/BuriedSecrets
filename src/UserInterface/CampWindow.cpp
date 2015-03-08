@@ -18,19 +18,29 @@ CampWindow::CampWindow(Mind *mind, DataManager *dataManager)
 	initLayout();
 }
 
+void CampWindow::refresh()
+{
+	campEquipmentTab_->refresh();
+}
+
+int CampWindow::knownEquipmentSize() const
+{
+	return campEquipmentTab_->knownEquipmentSize();
+}
+
 QWidget *CampWindow::createTabWidget()
 {
 	tabWidget_ = new QTabWidget;
 	tabWidget_->tabBar()->setFont(QFont("Times", 16));
 
 	auto factionEq = mind_->getPlayerFaction()->getEquipment();
-	auto equipmentTab = new CampEquipmentTab(factionEq, mind_, dataManager_);
-	tabWidget_->insertTab(EquipmentIndex, equipmentTab, tr("Equipment"));
+	campEquipmentTab_ = new CampEquipmentTab(factionEq, mind_, dataManager_);
+	tabWidget_->insertTab(EquipmentIndex, campEquipmentTab_, tr("Equipment"));
 
 	auto constructorTab = new CampConstructorTab(factionEq, mind_->itemConstructor(), dataManager_);
 	tabWidget_->insertTab(ConstructorIndex, constructorTab, tr("Constructor"));
 
-	connect(constructorTab, &CampConstructorTab::itemConstructed, equipmentTab, &CampEquipmentTab::refresh);
+	connect(constructorTab, &CampConstructorTab::itemConstructed, campEquipmentTab_, &CampEquipmentTab::refresh);
 
 	return tabWidget_;
 }

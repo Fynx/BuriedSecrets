@@ -35,7 +35,7 @@ GameWindow::GameWindow(Mind *mind, DataManager *dataManager, BoardWidget *boardW
 	connect(updateTimer_, &QTimer::timeout, this, &GameWindow::refresh);
 }
 
-Viewport * GameWindow::viewport()
+Viewport *GameWindow::viewport()
 {
 	return selectionManager_.viewport();
 }
@@ -103,6 +103,11 @@ void GameWindow::refresh()
 		emit gameEnded(mind_->getGameState());
 		return;
 	}
+
+	if (campWindow_->knownEquipmentSize() != mind_->getPlayerFaction()->getEquipment()->getItems().count())
+		factionPanel_->setCampIconFlash(true);
+	else
+		factionPanel_->setCampIconFlash(false);
 
 	selectionManager_.refresh();
 
@@ -220,6 +225,7 @@ void GameWindow::showCampWindow()
 		tileLeft(campWindow_);
 	}
 
+	campWindow_->refresh();
 	campWindow_->show();
 }
 

@@ -19,6 +19,7 @@ public:
 
 public slots:
 	void refresh();
+	int knownEquipmentSize() const;
 
 private:
 	void initLayout();
@@ -26,6 +27,7 @@ private:
 
 	Equipment *eq_;
 	Mind *mind_;
+	int knownEquipmentSize_;
 
 private slots:
 	void onItemMovedIn(int uid);
