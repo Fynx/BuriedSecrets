@@ -3,12 +3,13 @@
  */
 #pragma once
 
+#include "GameObjects/Object.hpp"
 #include "GameObjects/Equipment.hpp"
-#include "GameObjects/Journal.hpp"
-#include "GameObjects/Location.hpp"
-#include "GameObjects/QuestLog.hpp"
-#include "GameObjects/Unit.hpp"
 
+class Journal;
+class Location;
+class QuestLog;
+class Unit;
 
 // Add faction registration in reading function
 class Faction : public Object, public Equipped {
@@ -28,6 +29,7 @@ public:
 	bool isAliveMember(int uid) const;
 	int getFood() const;
 	bool isNeutralFaction(int uid) const;
+	bool isFriendly(Object *obj);
 
 	void modifyRelation(int uid, int diff);
 	int consume(int f);

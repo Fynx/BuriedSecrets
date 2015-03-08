@@ -190,7 +190,7 @@ void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *targ
 	else {
 		switch (target->getType()) {
 			case BS::Type::Unit:
-				if (!isFriendly(target)) {
+				if (!mind_->getPlayerFaction()->isFriendly(target)) {
 					unit->setTargetObject(target->getUid());
 					unit->setCommand(BS::Command::Attack);
 					mind_->addEffect(Effect(Effects::HostileCommand, new ObjectEffectData(target),
@@ -199,7 +199,7 @@ void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *targ
 				break;
 			//TODO changed from Building/Fortification - check
 			case BS::Type::Location:
-				//TODO check if isFriendly
+				if (mind_->getPlayerFaction()->isFriendly(target))
 				if (unit->getState() != BS::State::Inside) {
 					unit->setTargetObject(target->getUid());
 					unit->setCommand(BS::Command::Enter);
@@ -224,7 +224,7 @@ void SelectionManager::makeSecondaryAction(Unit *unit, QPointF point, Object *ta
 	else {
 		switch (target->getType()) {
 			case BS::Type::Unit:
-				if (isFriendly(target)) {
+				if (mind_->getPlayerFaction()->isFriendly(target)) {
 					unit->setTargetObject(target->getUid());
 					unit->setCommand(BS::Command::Heal);
 					mind_->addEffect(Effect(Effects::FriendlyCommand, new ObjectEffectData(target),
@@ -242,13 +242,6 @@ void SelectionManager::makeSecondaryAction(Unit *unit, QPointF point, Object *ta
 				break;
 		}
 	}
-}
-
-bool SelectionManager::isFriendly(Object* object)
-{
-	//TODO move to faction?
-	return mind_->getPlayerFaction()->isNeutralFaction(object->getFactionId())
-	       || Mind::PlayerFactionId == object->getFactionId();
 }
 
 int SelectionManager::unitNumberToUid(int number) const
@@ -375,6 +368,9 @@ void SelectionManager::markBuildingsSelected()
 
 void SelectionManager::addSelectionEffect(int objUid)
 {
+	if (uidToSelectionEffect_.contains(objUid))
+		return;
+
 	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
 	object->property(TempData::IsSelected) = QVariant(true);
 	auto effectIterator = mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(object)));
@@ -384,6 +380,9 @@ void SelectionManager::addSelectionEffect(int objUid)
 
 void SelectionManager::removeSelectionEffect(int objUid)
 {
+	if (!uidToSelectionEffect_.contains(objUid))
+		return;
+
 	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
 	object->property(TempData::IsSelected) = QVariant(false);
 
@@ -430,7 +429,7 @@ void SelectionManager::adjustCursor()
 			case BS::Type::Location:
 				l = dynamic_cast<Location *>(obj);
 				// check for etering location
-				if (isFriendly(obj)) {
+				if (mind_->getPlayerFaction()->isFriendly(obj)) {
 					if (l->getCapacity() - l->getUnitsUids().size() > 0)
 						cursor = BSCursor(Cursors::ArrowDownPrimary);
 				}
@@ -440,7 +439,7 @@ void SelectionManager::adjustCursor()
 				break;
 			case BS::Type::Unit:
 				// check for heal
-				if (isFriendly(obj)) {
+				if (mind_->getPlayerFaction()->isFriendly(obj)) {
 					if (QApplication::keyboardModifiers() & Qt::ControlModifier && unit != nullptr)
 						if (unit->getEquipment()->getSlotItem(BS::Medicament) != nullptr)
 							cursor = BSCursor(Cursors::HealCross);

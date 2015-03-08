@@ -1,8 +1,13 @@
 /* YoLoDevelopment, 2014
  * All rights reserved.
  */
-#include "Common/Strings.hpp"
 #include "GameObjects/Faction.hpp"
+
+#include "Common/Strings.hpp"
+#include "GameObjects/Journal.hpp"
+#include "GameObjects/Location.hpp"
+#include "GameObjects/QuestLog.hpp"
+#include "GameObjects/Unit.hpp"
 
 Faction::Faction(const Prototype *prototype)
 	: Object(prototype)
@@ -67,6 +72,11 @@ bool Faction::isNeutralFaction(int uid) const
 	if (!relations.contains(uid))
 		qDebug() << "No such faction! " << uid;
 	return relations.value(uid) > 0;
+}
+
+bool Faction::isFriendly(Object* obj)
+{
+	return isNeutralFaction(obj->getFactionId()) || obj->getFactionId() == getFactionId();
 }
 
 void Faction::modifyRelation(int uid, int diff)

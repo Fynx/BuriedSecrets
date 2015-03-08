@@ -42,7 +42,6 @@ public slots:
 private:
 	void makePrimaryAction(Unit *unit, QPointF point, Object *target);
 	void makeSecondaryAction(Unit *unit, QPointF point, Object *target);
-	bool isFriendly(Object *object);
 
 	int unitNumberToUid(int number) const;
 	Object *objectInPixelsPos(QPoint pointInPixels) const;
@@ -71,5 +70,4 @@ private:
 
 private slots:
 	void checkForViewportMove();
-
 };
