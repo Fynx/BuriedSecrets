@@ -164,6 +164,9 @@ void Graphics::render()
 		visibleGraphicalEntities[idx]->drawPreEffects(canvas);
 	}
 
+	drawFOW();
+	drawRubberBand();
+
 	// Draw entities.
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
 		obj = visibleGraphicalEntities[idx];
@@ -176,8 +179,6 @@ void Graphics::render()
 		visibleGraphicalEntities[idx]->drawPostEffects(canvas);
 	}
 
-	drawRubberBand();
-	drawFOW();
 	drawFPS();
 
 	// This call has to be at the end to repaint the widget.
