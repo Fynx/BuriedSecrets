@@ -37,7 +37,8 @@ void AnimatorLeaveBuilding::act()
 
 		mind->physicsEngine()->addObject(unit, to);
 		unit->setLocation(nullptr);
-		unit->setCommand(BS::Command::None);
-		unit->setState(BS::State::Idle);
+		unit->setCommand(Command::None);
+		unit->setState(State::Idle);
+		unit->setAttitude(Attitude::Aggressive);
 	}
 }
