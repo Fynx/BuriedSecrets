@@ -1513,6 +1513,12 @@
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
+			"items": [
+				{
+					"uid": 2001,
+					"searchDifficulty": 1
+				}
+			],
 			"x": 5.5,
 			"y": 287
 		},
@@ -1534,6 +1540,12 @@
 			"name": "Mob House3",
 			"animators": [
 				"AnimatorBuildingDmg"
+			],
+			"items": [
+				{
+					"uid": 2002,
+					"searchDifficulty": 1
+				}
 			],
 			"x": 16,
 			"y": 208
@@ -1613,6 +1625,16 @@
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
+			"items": [
+				{
+					"uid": 2003,
+					"searchDifficulty": 1
+				},
+				{
+					"uid": 2000,
+					"searchDifficulty": 1
+				}
+			],
 			"x": 48,
 			"y": 144
 		},
@@ -1649,6 +1671,12 @@
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
+			"items": [
+				{
+					"uid": 2004,
+					"searchDifficulty": 1
+				}
+			],
 			"x": 5,
 			"y": 128
 		},
@@ -1660,6 +1688,12 @@
 			"name": "Mob House2",
 			"animators": [
 				"AnimatorBuildingDmg"
+			],
+			"items": [
+				{
+					"uid": 2005,
+					"searchDifficulty": 1
+				}
 			],
 			"x": 41,
 			"y": 92
@@ -1685,6 +1719,17 @@
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
+			"items": [
+				{
+					"uid": 2006,
+					"searchDifficulty": 1
+				},
+				{
+					"uid": 2007,
+					"searchDifficulty": 1
+				}
+			],
+			
 			"x": 37,
 			"y": 40
 		},
@@ -1708,6 +1753,12 @@
 			"name": "Mob House3",
 			"animators": [
 				"AnimatorBuildingDmg"
+			],
+			"items": [
+				{
+					"uid": 2008,
+					"searchDifficulty": 1
+				}
 			],
 			"x": 8,
 			"y": 80
@@ -1744,6 +1795,12 @@
 			"name": "Mob House1",
 			"animators": [
 				"AnimatorBuildingDmg"
+			],
+			"items": [
+				{
+					"uid": 2009,
+					"searchDifficulty": 1
+				}
 			],
 			"x": 20,
 			"y": 92
@@ -1897,8 +1954,80 @@
 			"animators": [],
 			"x": 28,
 			"y": 52
+		},
+
+
+
+
+
+
+
+		{
+			"uid": 2000,
+			"name": "Tire armor"
+		},
+		
+
+
+		{
+			"uid": 2001,
+			"name": "Natives bone"
+		},
+		
+
+
+		{
+			"uid": 2002,
+			"name": "Wire"
+		},
+		
+
+
+		{
+			"uid": 2003,
+			"name": "Crystal lense"
+		},
+		
+
+
+		{
+			"uid": 2004,
+			"name": "Moms kiss"
+		},
+		
+
+
+		{
+			"uid": 2005,
+			"name": "Wooden planks"
+		},
+		
+
+
+		{
+			"uid": 2006,
+			"name": "Crystal lense"
+		},
+		
+
+
+		{
+			"uid": 2007,
+			"name": "Wooden planks"
+		},
+		
+
+
+		{
+			"uid": 2008,
+			"name": "Tire armor"
+		},
+		
+
+
+		{
+			"uid": 2009,
+			"name": "IKEA fence"
 		}
-
-
 	]
 }

@@ -46,5 +46,25 @@
 	"wire": {
 		"type": "image",
 		"data": "images/items/wire.png"
+	},
+	"bone": {
+		"type": "image",
+		"data": "images/items/bone.png"
+	},
+	"kiss": {
+		"type": "image",
+		"data": "images/items/kiss.png"
+	},
+	"lense": {
+		"type": "image",
+		"data": "images/items/lense.png"
+	},
+	"thrower": {
+		"type": "image",
+		"data": "images/items/thrower.png"
+	},
+	"tireArmor": {
+		"type": "image",
+		"data": "images/items/tireArmor.png"
 	}
 }
