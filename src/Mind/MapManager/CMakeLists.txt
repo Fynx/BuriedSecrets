@@ -1,6 +1,9 @@
 set (MapManager_SRCS
-        MapManager.cpp
+	DiffVisibilityMap.cpp
+	ImageVisibilityMap.cpp
+	MapManager.cpp
 	Map.cpp
+	VisibilityMap.cpp
 )
 
 set (MapManager_HDRS

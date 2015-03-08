@@ -2,6 +2,8 @@
  * All rights reserved.
  */
 #pragma once
+#include <cassert>
+
 #include <QtCore/QList>
 #include <QtCore/QPointF>
 
@@ -10,6 +12,9 @@
 #include "GameObjects/Object.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/MapManager/Map.hpp"
+#include "Mind/MapManager/DiffVisibilityMap.hpp"
+#include "Mind/MapManager/ImageVisibilityMap.hpp"
+#include "Mind/MapManager/VisibilityMap.hpp"
 #include "Mind/MapManager/VisibilityUpdate.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 
@@ -20,8 +25,6 @@
  */
 class MapManager {
 public:
-	typedef QList<VisibilityUpdate> VisibilityUpdateDiff;
-
 	MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId);
 
 	const Map *getMap() const;
@@ -38,6 +41,11 @@ public:
 	 * @brief True if the point has been seen by the faction.
 	 */
 	bool hasBeenSeen(const QPointF &point, const int factionId) const;
+	bool hasBeenSeen(const Object *object, const int factionId) const;
+	/**
+	 * @brief True if the object has been seen by the player's faction.
+	 */
+	bool hasBeenSeen(const Object *object) const;
 
 	/**
 	 * @brief Returns the region currently visible to the units from the given faction.
@@ -86,14 +94,14 @@ private:
 	 * Of the 2 possible points, the one closer to p is chosen.
 	 */
 	QPointF getPointOnCircleInline(const BS::Geometry::Circle &circle, const QPointF &p);
-	VisibilityUpdate getUnitFOV(const Unit *unit) const;
-	bool canBeSeen(const Object *object, const VisibilityUpdate &FOV) const;
-	bool canBeSeen(const QPointF &point, const Object *target, const VisibilityUpdate &FOV) const;
 
 	const int playerFactionId;
 	Map map;
-	QHash<int, VisibilityUpdateDiff> FOVs;	// Per-faction FOVs.
+	QHash<int, DiffVisibilityMap> FOVs;	// Per-faction FOVs.
+	QHash<int, ImageVisibilityMap> FOWs;
 
 	const PhysicsEngine *physicsEngine;
 	VisibilityUpdateDiff *visibilityUpdatesDiff;
 };
+
+

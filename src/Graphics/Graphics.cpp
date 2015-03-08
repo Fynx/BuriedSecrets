@@ -106,6 +106,18 @@ void Graphics::render()
 
 	// All the drawing logic for objects goes here.
 	auto visibleObjects = camera->getVisibleObjects();
+
+	if (showFOW) {
+		// Filter out everything outside of FOW.
+		for (int i = 0; i < visibleObjects.length(); ++i) {
+			if (!mapManager->hasBeenSeen(visibleObjects[i])) {
+				std::swap(visibleObjects[i], visibleObjects.back());
+				visibleObjects.pop_back();
+				--i;
+			}
+		}
+	}
+
 	auto visibleGraphicalEntities = getGraphicalEntitiesFor(visibleObjects);
 
 	// This can be split out into separate function

@@ -7,6 +7,7 @@
 
 #include <QList>
 #include <QPointF>
+#include <QPolygonF>
 #include <QRectF>
 #include <QVector2D>
 
@@ -14,7 +15,7 @@
 namespace BS {
 	namespace Geometry {
 		const float PI = 3.1415926535f;
-		typedef QList<QPointF> Polygon;
+		typedef QPolygonF Polygon;
 
 		struct Circle {
 			Circle() {

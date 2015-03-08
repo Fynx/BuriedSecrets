@@ -12,3 +12,5 @@ struct VisibilityUpdate {
 	BS::Geometry::Circle includeCircle;
 	QList<BS::Geometry::Polygon> ommitPolygons;
 };
+
+typedef QList<VisibilityUpdate> VisibilityUpdateDiff;
