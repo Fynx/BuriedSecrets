@@ -12,7 +12,7 @@
 				"AnimatorRegenerate"
 			],
 			"equipment": 2,
-			"food": 800,
+			"food": 2500,
 			"campId": 3,
 			"faction": 1,
 			"units": [4, 6, 8],
