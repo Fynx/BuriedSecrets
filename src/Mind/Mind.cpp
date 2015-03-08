@@ -44,6 +44,11 @@ ItemConstructor *Mind::itemConstructor()
 	return constructor;
 }
 
+AnimatorManager *Mind::getAnimatorManager()
+{
+	return animatorManager;
+}
+
 void Mind::loadFromJson(const QJsonObject &json)
 {
 	delete mapManager;

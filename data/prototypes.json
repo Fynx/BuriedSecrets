@@ -27,7 +27,7 @@
 		"perception": 8,
 		"damageControl": 0.8,
 		"hp": 130,
-		"psychosis": 100,
+		"psychosis": 75,
 		"sightRange": 3.0,
 		"movementSpeed": 5,
 		"regeneration": 1.5,
@@ -59,7 +59,7 @@
 		"perception": 6,
 		"damageControl": 0.5,
 		"hp": 125,
-		"psychosis": 100,
+		"psychosis": 75,
 		"sightRange": 3.0,
 		"movementSpeed": 5,
 		"regeneration": 1.5,
@@ -91,7 +91,7 @@
 		"perception": 4,
 		"damageControl": 0.3,
 		"hp": 110,
-		"psychosis": 100,
+		"psychosis": 75,
 		"sightRange": 3.0,
 		"movementSpeed": 5,
 		"regeneration": 1,
@@ -208,7 +208,7 @@
 		"weight": 2,
 		"range": 35,
 		"optimalRange": 20,
-		"shotsInterval" : 20,
+		"shotsInterval" : 30,
 		"magazineSize" : 5,
 		"reloadTime" : 60,
 		"slots": ["weapon"]
@@ -431,6 +431,18 @@
 	},
 
 
+	"IKEA camp": {
+		"type": "item",
+		"picture": "ikeaCamp",
+		"itemTypes": ["Fortification"],
+		"description": "[No funny description here.]",
+		"quality": 10,
+		"weight": 1,
+		"spawnedType": "Player Camp",
+		"slots": ["fortification"]
+	},
+
+
 	"Wooden planks": {
 		"type": "item",
 		"picture": "woodenPlanks",
@@ -501,6 +513,7 @@
 	"Player Camp": {
 		"type": "location",
 		"textureName": "PlayerCamp",
+		"spawnedType": "IKEA camp",
 		"capacity": 0,
 		"basePolygon": [[0, 10.2], [2.68, 13.08], [6.66, 8.6], [4, 6]]
 	},

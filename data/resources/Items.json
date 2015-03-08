@@ -66,5 +66,9 @@
 	"tireArmor": {
 		"type": "image",
 		"data": "images/items/tireArmor.png"
+	},
+	"ikeaCamp": {
+		"type": "image",
+		"data": "images/items/ikeaCamp.png"
 	}
 }

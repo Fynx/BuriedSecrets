@@ -135,3 +135,8 @@ qreal Location::getRange() const
 {
 	return range;
 }
+
+void Location::setRange(qreal r)
+{
+	range = r;
+}

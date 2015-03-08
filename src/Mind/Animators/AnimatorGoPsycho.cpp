@@ -30,7 +30,12 @@ void AnimatorGoPsycho::act()
 			unit->setPsychosis(unit->getPsychosis() - 1);
 		}
 		if (unit->getPsychosis() == 0){
-			//ToDo - Psychosis effect
+			mind->getAnimatorManager()->removeObject(Animators::AggressiveAtt, unit);
+			mind->getAnimatorManager()->removeObject(Animators::GoPsycho, unit);
+			mind->getAnimatorManager()->removeObject(Animators::NearCamp, unit);
+			mind->getFactionById(unit->getFactionId())->removeUnit(unit->getUid());
+			unit->setFactionId(2);
+			mind->getAnimatorManager()->addObject(Animators::MobAttitude, unit);
 		}
 	}
 }

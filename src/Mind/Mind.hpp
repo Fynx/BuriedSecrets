@@ -28,6 +28,7 @@ public:
 
 	PhysicsEngine *physicsEngine();
 	ItemConstructor *itemConstructor();
+	AnimatorManager *getAnimatorManager();
 
 	void loadFromJson(const QJsonObject &json);
 	QJsonObject saveToJson() const;

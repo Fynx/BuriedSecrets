@@ -7,6 +7,7 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
+#include "Mind/ObjectEffectData.hpp"
 #include "Common/Enums.hpp"
 #include "Common/Strings.hpp"
 
@@ -45,6 +46,11 @@ void AnimatorAssemble::act()
 			Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
 			mind->addObject(fort, unit->getTargetPoint());
 			unit->getEquipment()->removeItem(ikeaSet);
+			if (spawned == "Player Camp"){		//ToDo
+				mind->getFactionById(unit->getFactionId())->setCamp((Location *)fort);
+				((Location *)fort)->setRange(25);
+				mind->addEffect(Effect(Effects::Antipsychosis, new ObjectEffectData(fort)));
+			}
 		}
 		else
 			warn("Invalid Fortification item");
