@@ -4,6 +4,7 @@
 #pragma once
 
 #include <QtWidgets>
+#include "Common/Enums.hpp"
 
 class BoardWidget;
 class DataManager;
@@ -13,6 +14,7 @@ class InterfaceDataManager;
 class Viewport;
 class MainMenuWindow;
 class GameWindow;
+class PostGameWindow;
 
 class UserInterface : public QObject {
 	Q_OBJECT
@@ -31,6 +33,7 @@ private:
 	enum class Window : quint8 {
 		MainMenu,
 		Game,
+		PostGameMenu,
 		LoadGame,
 		SaveGame,
 		Instructions
@@ -41,6 +44,7 @@ private:
 
 	QMainWindow *mainWindow_;
 	GameWindow *gameWindow_;
+	PostGameWindow *postGameWindow_;
 	MainMenuWindow *mainMenuWindow_;
 	QStackedWidget *stackedWidget_;
 
@@ -50,9 +54,12 @@ private:
 
 	//DEV TMP
 	void initDevActionsMenu();
+	bool gameEnded_;
 
 private slots:
 	void onShowMainMenu();
+	void onGameEnded(BS::GameState gs);
+	void onAfterGame();
 	void onNewGame();
 	void onContinueGame();
 };

@@ -20,6 +20,7 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	  animatorManager(new AnimatorManager(this)),
 	  mapManager(nullptr),
 	  constructor(new ItemConstructor(dataManager, this)),
+	  gameState(BS::GameState::Running),
 	  basePolygonsEffectOn(false)
 {
 	info("Mind initialized");
@@ -227,6 +228,16 @@ void Mind::pauseGame()
 void Mind::resumeGame()
 {
 	animatorManager->resumeGame();
+}
+
+BS::GameState Mind::getGameState() const
+{
+	return gameState;
+}
+
+void Mind::setGameState(BS::GameState gameState)
+{
+	this->gameState = gameState;
 }
 
 QLinkedList<Effect> * const Mind::getActiveEffects()

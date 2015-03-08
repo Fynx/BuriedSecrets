@@ -98,6 +98,12 @@ void GameWindow::initFactionPanel()
 
 void GameWindow::refresh()
 {
+	if (mind_->getGameState() != BS::GameState::Running) {
+		updateTimer_->stop();
+		emit gameEnded(mind_->getGameState());
+		return;
+	}
+
 	selectionManager_.refresh();
 
 	unitsPanel_->refresh();

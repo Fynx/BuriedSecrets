@@ -4,6 +4,7 @@
 #pragma once
 #include <QtCore>
 
+#include "Common/Enums.hpp"
 #include "DataManager/DataManager.hpp"
 #include "GameObjects/Object.hpp"
 #include "GameObjects/Faction.hpp"
@@ -56,6 +57,9 @@ public:
 	void pauseGame();
 	void resumeGame();
 
+	BS::GameState getGameState() const;
+	void setGameState(BS::GameState gameState);
+
 	QLinkedList<Effect> * const getActiveEffects();
 	QLinkedList<Effect>::iterator addEffect(const Effect &effect);
 	/**
@@ -79,6 +83,7 @@ private:
 	MapManager *mapManager;
 	ItemConstructor *constructor;
 
+	BS::GameState gameState;
 	QVector<Object *> objects;
 	QHash<const int, Object *> uidToObject;
 	QHash<const int, Faction *> factions;

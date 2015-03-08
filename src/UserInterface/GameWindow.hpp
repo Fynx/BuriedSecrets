@@ -5,7 +5,8 @@
 
 #include <QtWidgets>
 
-#include "SelectionManager.hpp"
+#include "UserInterface/SelectionManager.hpp"
+#include "Common/Enums.hpp"
 
 class BoardWidget;
 class CampWindow;
@@ -75,4 +76,5 @@ private slots:
 
 signals:
 	void showMainMenu();
+	void gameEnded(BS::GameState gameState);
 };

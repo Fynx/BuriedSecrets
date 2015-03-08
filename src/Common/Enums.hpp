@@ -9,6 +9,13 @@
 
 
 namespace BS {
+	enum GameState : quint8 {
+		Lost,
+		Running,
+		Won,
+	};
+
+
 	enum class Type : quint8 {
 		Invalid,
 		Item,

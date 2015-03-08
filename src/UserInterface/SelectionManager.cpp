@@ -199,11 +199,18 @@ void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *targ
 				break;
 			//TODO changed from Building/Fortification - check
 			case BS::Type::Location:
-				if (mind_->getPlayerFaction()->isFriendly(target))
-				if (unit->getState() != BS::State::Inside) {
+				if (mind_->getPlayerFaction()->isFriendly(target)) {
+					if (unit->getState() != BS::State::Inside) {
+						unit->setTargetObject(target->getUid());
+						unit->setCommand(BS::Command::Enter);
+						mind_->addEffect(Effect(Effects::EnterCommand, new ObjectEffectData(target),
+						                 Effect::CommandEffectTimeout));
+					}
+				}
+				else {
 					unit->setTargetObject(target->getUid());
-					unit->setCommand(BS::Command::Enter);
-					mind_->addEffect(Effect(Effects::EnterCommand, new ObjectEffectData(target),
+					unit->setCommand(BS::Command::Attack);
+					mind_->addEffect(Effect(Effects::HostileCommand, new ObjectEffectData(target),
 					                 Effect::CommandEffectTimeout));
 				}
 				break;

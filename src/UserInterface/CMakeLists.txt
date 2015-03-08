@@ -13,6 +13,7 @@
 	JournalWindow.cpp
 	MainMenuWindow.cpp
 	Perspective.cpp
+	PostGameWindow.cpp
 	Resources.cpp
 	SelectionManager.cpp
 	SlotWidget.cpp
@@ -36,6 +37,7 @@ set (UserInterface_HDRS
 	ItemsListWidget.hpp
 	JournalWindow.hpp
 	MainMenuWindow.hpp
+	PostGameWindow.hpp
 	SelectionManager.hpp
 	SlotWidget.hpp
 	UnitsPanel.hpp
