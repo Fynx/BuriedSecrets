@@ -778,5 +778,453 @@
 	"DrSneeAttackUpLeft3": {
 		"type": "texture",
 		"data": "images/units/DrSnee/Walk_Fire/UpLeft3.png"
+	},
+	"SeniorCebulezWalkUp0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up0.png"
+	},
+	"SeniorCebulezWalkUp1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up1.png"
+	},
+	"SeniorCebulezWalkUp2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up2.png"
+	},
+	"SeniorCebulezWalkUp3": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up3.png"
+	},
+	"SeniorCebulezWalkUp4": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up4.png"
+	},
+	"SeniorCebulezWalkUp5": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up5.png"
+	},
+	"SeniorCebulezWalkUp6": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up6.png"
+	},
+	"SeniorCebulezWalkUp7": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up7.png"
+	},
+	"SeniorCebulezWalkUp8": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up8.png"
+	},
+	"SeniorCebulezWalkUp9": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up9.png"
+	},
+	"SeniorCebulezWalkUp10": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Up10.png"
+	},
+	"SeniorCebulezWalkUpRight0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight0.png"
+	},
+	"SeniorCebulezWalkUpRight1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight1.png"
+	},
+	"SeniorCebulezWalkUpRight2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight2.png"
+	},
+	"SeniorCebulezWalkUpRight3": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight3.png"
+	},
+	"SeniorCebulezWalkUpRight4": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight4.png"
+	},
+	"SeniorCebulezWalkUpRight5": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight5.png"
+	},
+	"SeniorCebulezWalkUpRight6": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight6.png"
+	},
+	"SeniorCebulezWalkUpRight7": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight7.png"
+	},
+	"SeniorCebulezWalkUpRight8": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight8.png"
+	},
+	"SeniorCebulezWalkUpRight9": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight9.png"
+	},
+	"SeniorCebulezWalkUpRight10": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpRight10.png"
+	},
+	"SeniorCebulezWalkRight0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right0.png"
+	},
+	"SeniorCebulezWalkRight1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right1.png"
+	},
+	"SeniorCebulezWalkRight2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right2.png"
+	},
+	"SeniorCebulezWalkRight3": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right3.png"
+	},
+	"SeniorCebulezWalkRight4": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right4.png"
+	},
+	"SeniorCebulezWalkRight5": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right5.png"
+	},
+	"SeniorCebulezWalkRight6": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right6.png"
+	},
+	"SeniorCebulezWalkRight7": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right7.png"
+	},
+	"SeniorCebulezWalkRight8": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right8.png"
+	},
+	"SeniorCebulezWalkRight9": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right9.png"
+	},
+	"SeniorCebulezWalkRight10": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Right10.png"
+	},
+	"SeniorCebulezWalkDownRight0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight0.png"
+	},
+	"SeniorCebulezWalkDownRight1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight1.png"
+	},
+	"SeniorCebulezWalkDownRight2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight2.png"
+	},
+	"SeniorCebulezWalkDownRight3": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight3.png"
+	},
+	"SeniorCebulezWalkDownRight4": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight4.png"
+	},
+	"SeniorCebulezWalkDownRight5": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight5.png"
+	},
+	"SeniorCebulezWalkDownRight6": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight6.png"
+	},
+	"SeniorCebulezWalkDownRight7": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight7.png"
+	},
+	"SeniorCebulezWalkDownRight8": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight8.png"
+	},
+	"SeniorCebulezWalkDownRight9": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight9.png"
+	},
+	"SeniorCebulezWalkDownRight10": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownRight10.png"
+	},
+	"SeniorCebulezWalkDown0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down0.png"
+	},
+	"SeniorCebulezWalkDown1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down1.png"
+	},
+	"SeniorCebulezWalkDown2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down2.png"
+	},
+	"SeniorCebulezWalkDown3": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down3.png"
+	},
+	"SeniorCebulezWalkDown4": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down4.png"
+	},
+	"SeniorCebulezWalkDown5": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down5.png"
+	},
+	"SeniorCebulezWalkDown6": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down6.png"
+	},
+	"SeniorCebulezWalkDown7": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down7.png"
+	},
+	"SeniorCebulezWalkDown8": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down8.png"
+	},
+	"SeniorCebulezWalkDown9": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down9.png"
+	},
+	"SeniorCebulezWalkDown10": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Down10.png"
+	},
+	"SeniorCebulezWalkDownLeft0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft0.png"
+	},
+	"SeniorCebulezWalkDownLeft1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft1.png"
+	},
+	"SeniorCebulezWalkDownLeft2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft2.png"
+	},
+	"SeniorCebulezWalkDownLeft3": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft3.png"
+	},
+	"SeniorCebulezWalkDownLeft4": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft4.png"
+	},
+	"SeniorCebulezWalkDownLeft5": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft5.png"
+	},
+	"SeniorCebulezWalkDownLeft6": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft6.png"
+	},
+	"SeniorCebulezWalkDownLeft7": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft7.png"
+	},
+	"SeniorCebulezWalkDownLeft8": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft8.png"
+	},
+	"SeniorCebulezWalkDownLeft9": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft9.png"
+	},
+	"SeniorCebulezWalkDownLeft10": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/DownLeft10.png"
+	},
+	"SeniorCebulezWalkLeft0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left0.png"
+	},
+	"SeniorCebulezWalkLeft1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left1.png"
+	},
+	"SeniorCebulezWalkLeft2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left2.png"
+	},
+	"SeniorCebulezWalkLeft3": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left3.png"
+	},
+	"SeniorCebulezWalkLeft4": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left4.png"
+	},
+	"SeniorCebulezWalkLeft5": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left5.png"
+	},
+	"SeniorCebulezWalkLeft6": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left6.png"
+	},
+	"SeniorCebulezWalkLeft7": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left7.png"
+	},
+	"SeniorCebulezWalkLeft8": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left8.png"
+	},
+	"SeniorCebulezWalkLeft9": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left9.png"
+	},
+	"SeniorCebulezWalkLeft10": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/Left10.png"
+	},
+	"SeniorCebulezWalkUpLeft0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft0.png"
+	},
+	"SeniorCebulezWalkUpLeft1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft1.png"
+	},
+	"SeniorCebulezWalkUpLeft2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft2.png"
+	},
+	"SeniorCebulezWalkUpLeft3": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft3.png"
+	},
+	"SeniorCebulezWalkUpLeft4": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft4.png"
+	},
+	"SeniorCebulezWalkUpLeft5": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft5.png"
+	},
+	"SeniorCebulezWalkUpLeft6": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft6.png"
+	},
+	"SeniorCebulezWalkUpLeft7": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft7.png"
+	},
+	"SeniorCebulezWalkUpLeft8": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft8.png"
+	},
+	"SeniorCebulezWalkUpLeft9": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft9.png"
+	},
+	"SeniorCebulezWalkUpLeft10": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Walk/UpLeft10.png"
+	},
+	"SeniorCebulezShootUp0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Up0.png"
+	},
+	"SeniorCebulezShootUp1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Up1.png"
+	},
+	"SeniorCebulezShootUp2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Up2.png"
+	},
+	"SeniorCebulezShootUpRight0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/UpRight0.png"
+	},
+	"SeniorCebulezShootUpRight1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/UpRight1.png"
+	},
+	"SeniorCebulezShootUpRight2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/UpRight2.png"
+	},
+	"SeniorCebulezShootRight0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Right0.png"
+	},
+	"SeniorCebulezShootRight1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Right1.png"
+	},
+	"SeniorCebulezShootRight2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Right2.png"
+	},
+	"SeniorCebulezShootDownRight0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/DownRight0.png"
+	},
+	"SeniorCebulezShootDownRight1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/DownRight1.png"
+	},
+	"SeniorCebulezShootDownRight2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/DownRight2.png"
+	},
+	"SeniorCebulezShootDown0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Down0.png"
+	},
+	"SeniorCebulezShootDown1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Down1.png"
+	},
+	"SeniorCebulezShootDown2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Down2.png"
+	},
+	"SeniorCebulezShootDownLeft0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/DownLeft0.png"
+	},
+	"SeniorCebulezShootDownLeft1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/DownLeft1.png"
+	},
+	"SeniorCebulezShootDownLeft2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/DownLeft2.png"
+	},
+	"SeniorCebulezShootLeft0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Left0.png"
+	},
+	"SeniorCebulezShootLeft1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Left1.png"
+	},
+	"SeniorCebulezShootLeft2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/Left2.png"
+	},
+	"SeniorCebulezShootUpLeft0": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/UpLeft0.png"
+	},
+	"SeniorCebulezShootUpLeft1": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/UpLeft1.png"
+	},
+	"SeniorCebulezShootUpLeft2": {
+		"type": "texture",
+		"data": "images/units/SeniorCebulez/Shoot/UpLeft2.png"
 	}
 }

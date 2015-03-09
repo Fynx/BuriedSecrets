@@ -17,7 +17,7 @@
 		"avatar": "senior-cebulez-s",
 		"picture": "senior-cebulez",
 		"baseRadius": 1,
-		"baseCentre": [1, 2],
+		"baseCentre": [1.8, 5],
 		"age": 37,
 		"attack": 12,
 		"encumbrance" : 24,
@@ -32,11 +32,11 @@
 		"movementSpeed": 5,
 		"regeneration": 1.5,
 		"animations": {
-			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking",
-			"Heal": "SoszuHeal",
-			"Attack": "SoszuAttack",
-			"RunAttack": "SoszuWalking"
+			"Idle": "SeniorCebulezIdle",
+			"Run": "SeniorCebulezWalk",
+			"Heal": "SeniorCebulezHeal",
+			"Attack": "SeniorCebulezAttack",
+			"RunAttack": "SeniorCebulezAttackRun"
 		}
 	},
 
