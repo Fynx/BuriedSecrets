@@ -15,6 +15,8 @@ public:
 	void setEnding(BS::GameState gs);
 
 private:
+	static const QMargins ContentsMargins;
+
 	void initLayout();
 
 	QLabel *textLabel_;

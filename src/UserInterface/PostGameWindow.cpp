@@ -3,9 +3,12 @@
  */
 #include "PostGameWindow.hpp"
 
+const QMargins PostGameWindow::ContentsMargins{300, 32, 300, 32};
+
 PostGameWindow::PostGameWindow(): QWidget()
 {
 	initLayout();
+	setContentsMargins(ContentsMargins);
 
 	connect(mainMenuBtn_, &QPushButton::clicked, this, &PostGameWindow::goToMainMenu);
 }
@@ -33,11 +36,13 @@ void PostGameWindow::initLayout()
 	textLabel_ = new QLabel;
 	textLabel_->setFont(QFont("Times", 36));
 	textLabel_->setAlignment(Qt::AlignCenter);
-	layout->addWidget(textLabel_, 1);
+	layout->addWidget(textLabel_, 2);
 
 	mainMenuBtn_ = new QPushButton(tr("Go to MainMenu"));
 	mainMenuBtn_->setFont(QFont("Times", 24));
+	mainMenuBtn_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+
 	layout->addWidget(mainMenuBtn_, 1);
 
-	layout->addStretch(1);
+	layout->addStretch(2);
 }

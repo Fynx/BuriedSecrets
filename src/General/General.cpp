@@ -23,7 +23,7 @@ General::~General()
 	delete debugManager;
 }
 
-QMainWindow * General::getMainWindow()
+QMainWindow *General::getMainWindow()
 {
 	return userInterface->getMainWindow();
 }

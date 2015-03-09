@@ -391,7 +391,8 @@ void SelectionManager::removeSelectionEffect(int objUid)
 		return;
 
 	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
-	object->property(TempData::IsSelected) = QVariant(false);
+	if (object != nullptr)
+		object->property(TempData::IsSelected) = QVariant(false);
 
 	const auto selection = uidToSelectionEffect_.find(objUid);
 	mind_->deleteEffect(selection.value());
@@ -403,8 +404,10 @@ void SelectionManager::removeDeadFromSelection()
 {
 	auto selectedUnitsUidsCopy_ = selectedUnitsUids_;
 	for (auto uid : selectedUnitsUidsCopy_)
-		if (!mind_->getPlayerFaction()->isAliveMember(uid))
+		if (!mind_->getPlayerFaction()->isAliveMember(uid)) {
 			selectedUnitsUids_.remove(uid);
+			removeSelectionEffect(uid);
+		}
 }
 
 void SelectionManager::adjustCursor()

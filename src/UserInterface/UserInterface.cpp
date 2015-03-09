@@ -25,7 +25,7 @@ UserInterface::UserInterface(General *general, DataManager *dataManager)
 
 	initWindows();
 	initLayout();
-	initDevActionsMenu();
+// 	initDevActionsMenu();
 
 	stackedWidget_->setCursor(BSCursor(Cursors::PointerPrimary));
 }
@@ -35,12 +35,12 @@ UserInterface::~UserInterface()
 	delete mainWindow_;
 }
 
-QMainWindow * UserInterface::getMainWindow()
+QMainWindow *UserInterface::getMainWindow()
 {
 	return mainWindow_;
 }
 
-Viewport * UserInterface::getViewport()
+Viewport *UserInterface::getViewport()
 {
 	return gameWindow_->viewport();
 }

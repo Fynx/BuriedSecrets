@@ -21,7 +21,7 @@ MainMenuWindow::MainMenuWindow(const UserInterface *userInterface, QWidget *pare
 void MainMenuWindow::adjustButtonsVisibility()
 {
 	continueBtn_->setVisible(userInterface_->gameInProgress());
-	saveGameBtn_->setVisible(userInterface_->gameInProgress());
+// 	saveGameBtn_->setVisible(userInterface_->gameInProgress());
 }
 
 void MainMenuWindow::keyPressEvent(QKeyEvent *event)
@@ -53,7 +53,7 @@ void MainMenuWindow::initButtons()
 	newGameBtn_->setFont(buttonFont);
 	newGameBtn_->setSizePolicy(btnSizePolicy);
 	connect(newGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::newGameActivated);
-
+/*
 	loadGameBtn_ = new QPushButton(tr("Load game"));
 	loadGameBtn_->setFont(buttonFont);
 	loadGameBtn_->setSizePolicy(btnSizePolicy);
@@ -67,7 +67,7 @@ void MainMenuWindow::initButtons()
 	instructionsBtn_ = new QPushButton(tr("Instructions"));
 	instructionsBtn_->setFont(buttonFont);
 	instructionsBtn_->setSizePolicy(btnSizePolicy);
-	connect(instructionsBtn_, &QPushButton::clicked, this, &MainMenuWindow::instructionsActivated);
+	connect(instructionsBtn_, &QPushButton::clicked, this, &MainMenuWindow::instructionsActivated);*/
 
 	quitGameBtn_ = new QPushButton(tr("Quit"));
 	quitGameBtn_->setFont(buttonFont);
@@ -86,13 +86,13 @@ void MainMenuWindow::initLayout()
 	auto title = new QLabel(tr("Buried Secrets"));
 	title->setFont(QFont("Times", 36));
 	title->setAlignment(Qt::AlignCenter);
-	mainLayout->addWidget(title, 2);
+	mainLayout->addWidget(title, 3);
 
 	mainLayout->addWidget(continueBtn_, 1);
 	mainLayout->addWidget(newGameBtn_, 1);
-	mainLayout->addWidget(loadGameBtn_,1);
-	mainLayout->addWidget(saveGameBtn_, 1);
-	mainLayout->addWidget(instructionsBtn_, 1);
+// 	mainLayout->addWidget(loadGameBtn_,1);
+// 	mainLayout->addWidget(saveGameBtn_, 1);
+// 	mainLayout->addWidget(instructionsBtn_, 1);
 	mainLayout->addWidget(quitGameBtn_, 1);
-	mainLayout->addStretch(2);
+	mainLayout->addStretch(3);
 }
