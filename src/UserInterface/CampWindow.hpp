@@ -5,6 +5,7 @@
 
 #include <QtWidgets>
 
+class CampConstructorTab;
 class CampEquipmentTab;
 class DataManager;
 class Mind;
@@ -31,6 +32,7 @@ private:
 	DataManager *const dataManager_;
 
 	CampEquipmentTab *campEquipmentTab_;
+	CampConstructorTab *campConstructorTab_;
 
 signals:
 	void exit();

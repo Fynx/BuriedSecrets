@@ -20,9 +20,6 @@ CampEquipmentTab::CampEquipmentTab(Equipment *eq, Mind *mind, DataManager *dataM
 	refresh();
 	connect(this, &ItemsDisplay::itemMovedIn, this, &CampEquipmentTab::onItemMovedIn);
 	connect(this, &ItemsDisplay::itemMovedOut, this, &CampEquipmentTab::onItemMovedOut);
-
-	//WARNING
-	knownEquipmentSize_ = 0;
 }
 
 void CampEquipmentTab::refresh()
