@@ -169,7 +169,7 @@ void DataManager::loadResources()
 						obj[AnimationProperties::FramesNumber].toInt(),
 						obj[AnimationProperties::Frames].toArray().toVariantList()
 					);
-					qDebug() << animation;
+					qDebug() << key << obj[TempData::State].toString();
 					animationData[key] = animation;
 				} else if (typeString == Resources::Texture || typeString == Resources::Font
 				           || typeString == Resources::Image) {

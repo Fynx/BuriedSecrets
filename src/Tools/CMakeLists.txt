@@ -14,3 +14,4 @@ if (BUILD_TESTS)
 endif (BUILD_TESTS)
 
 add_executable(AnimationCreator AnimationCreator.cpp)
+add_executable(TextureCreator TextureCreator.cpp)

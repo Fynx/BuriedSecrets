@@ -54,7 +54,7 @@ const Texture* GraphicsDataManager::getTexture(const QString& name)
 
 const Animation *GraphicsDataManager::getAnimation(const QString &name)
 {
-	Animation *result;
+	Animation *result = nullptr;
 
 	auto it = animations.find(name);
 	if (it == animations.end()) {

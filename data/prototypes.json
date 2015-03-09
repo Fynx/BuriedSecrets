@@ -68,7 +68,7 @@
 			"Run": "SoszuWalking",
 			"Heal": "SoszuHeal",
 			"Attack": "SoszuAttack",
-			"RunAttack": "SoszuWalking"
+			"RunAttack": "SoszuRunAttack"
 		}
 	},
 
@@ -81,7 +81,7 @@
 		"avatar": "d-snee-s",
 		"picture": "d-snee",
 		"baseRadius": 1,
-		"baseCentre": [1, 2],
+		"baseCentre": [1.25, 4.4],
 		"age": 32,
 		"attack": 4,
 		"encumbrance" : 24,
@@ -96,11 +96,11 @@
 		"movementSpeed": 5,
 		"regeneration": 1,
 		"animations": {
-			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking",
-			"Heal": "SoszuHeal",
-			"Attack": "SoszuAttack",
-			"RunAttack": "SoszuWalking"
+			"Idle": "DrSneeIdle",
+			"Run": "DrSneeWalk",
+			"Heal": "DrSneeHeal",
+			"Attack": "DrSneeAttack",
+			"RunAttack": "DrSneeAttackRun"
 		}
 	},
 

@@ -12,17 +12,16 @@ string directions[] = {"Up", "UpRight", "Right", "DownRight", "Down", "DownLeft"
 
 int main()
 {
-	string pathPrefix;
+// 	string pathPrefix;
 	string baseName;
-	string extension;
+// 	string extension;
 	int framesNumber;
 
-	cout << "Input path prefix, base name, extension (with dot), number of frames:\n";
-	cin >> pathPrefix >> baseName >> extension >> framesNumber;
+	cout << "Input base name, number of frames:\n";
+	cin >> baseName >> framesNumber;
 	for (int i = 0; i < 8; ++i) {
-		for (int frame = 1; frame <= framesNumber; ++frame) {
-			string filename = baseName + directions[i] + (frame != 1 ? to_string(frame) : "");
-			cout << filename << "\nTexture\n" << pathPrefix << filename << extension << "\n";
+		for (int frame = 0; frame < framesNumber; ++frame) {
+			cout << "\"" << baseName << directions[i] << std::to_string(frame) << "\",\n";
 		}
 	}
 

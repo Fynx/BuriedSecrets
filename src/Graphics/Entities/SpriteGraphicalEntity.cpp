@@ -8,7 +8,6 @@ SpriteGraphicalEntity::SpriteGraphicalEntity(const Object *object, const QList<Q
 						GraphicalEffectFactory *graphicalEffectFactory)
 	: GraphicalEntity{object, basePolygon, graphicalEffectFactory}
 {
-	sprite.setScale(0.1, 0.1);
 }
 
 

@@ -138,5 +138,645 @@
 	"ArrowDown": {
 		"type": "texture",
 		"data": "images/arrow-down.png"
+	},
+	"DrSneeIdleUp": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Idle/Up.png"
+	},
+	"DrSneeIdleUpRight": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Idle/UpRight.png"
+	},
+	"DrSneeIdleRight": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Idle/Right.png"
+	},
+	"DrSneeIdleDownRight": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Idle/DownRight.png"
+	},
+	"DrSneeIdleDown": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Idle/Down.png"
+	},
+	"DrSneeIdleDownLeft": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Idle/DownLeft.png"
+	},
+	"DrSneeIdleLeft": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Idle/Left.png"
+	},
+	"DrSneeIdleUpLeft": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Idle/UpLeft.png"
+	},
+	"DrSneeWalkUp0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up0.png"
+	},
+	"DrSneeWalkUp1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up1.png"
+	},
+	"DrSneeWalkUp2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up2.png"
+	},
+	"DrSneeWalkUp3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up3.png"
+	},
+	"DrSneeWalkUp4": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up4.png"
+	},
+	"DrSneeWalkUp5": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up5.png"
+	},
+	"DrSneeWalkUp6": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up6.png"
+	},
+	"DrSneeWalkUp7": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up7.png"
+	},
+	"DrSneeWalkUp8": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up8.png"
+	},
+	"DrSneeWalkUp9": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up9.png"
+	},
+	"DrSneeWalkUp10": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up10.png"
+	},
+	"DrSneeWalkUp11": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up11.png"
+	},
+	"DrSneeWalkUp12": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up12.png"
+	},
+	"DrSneeWalkUp13": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up13.png"
+	},
+	"DrSneeWalkUp14": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Up14.png"
+	},
+	"DrSneeWalkUpRight0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight0.png"
+	},
+	"DrSneeWalkUpRight1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight1.png"
+	},
+	"DrSneeWalkUpRight2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight2.png"
+	},
+	"DrSneeWalkUpRight3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight3.png"
+	},
+	"DrSneeWalkUpRight4": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight4.png"
+	},
+	"DrSneeWalkUpRight5": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight5.png"
+	},
+	"DrSneeWalkUpRight6": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight6.png"
+	},
+	"DrSneeWalkUpRight7": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight7.png"
+	},
+	"DrSneeWalkUpRight8": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight8.png"
+	},
+	"DrSneeWalkUpRight9": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight9.png"
+	},
+	"DrSneeWalkUpRight10": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight10.png"
+	},
+	"DrSneeWalkUpRight11": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight11.png"
+	},
+	"DrSneeWalkUpRight12": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight12.png"
+	},
+	"DrSneeWalkUpRight13": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight13.png"
+	},
+	"DrSneeWalkUpRight14": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpRight14.png"
+	},
+	"DrSneeWalkRight0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right0.png"
+	},
+	"DrSneeWalkRight1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right1.png"
+	},
+	"DrSneeWalkRight2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right2.png"
+	},
+	"DrSneeWalkRight3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right3.png"
+	},
+	"DrSneeWalkRight4": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right4.png"
+	},
+	"DrSneeWalkRight5": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right5.png"
+	},
+	"DrSneeWalkRight6": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right6.png"
+	},
+	"DrSneeWalkRight7": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right7.png"
+	},
+	"DrSneeWalkRight8": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right8.png"
+	},
+	"DrSneeWalkRight9": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right9.png"
+	},
+	"DrSneeWalkRight10": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right10.png"
+	},
+	"DrSneeWalkRight11": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right11.png"
+	},
+	"DrSneeWalkRight12": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right12.png"
+	},
+	"DrSneeWalkRight13": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right13.png"
+	},
+	"DrSneeWalkRight14": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Right14.png"
+	},
+	"DrSneeWalkDownRight0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight0.png"
+	},
+	"DrSneeWalkDownRight1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight1.png"
+	},
+	"DrSneeWalkDownRight2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight2.png"
+	},
+	"DrSneeWalkDownRight3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight3.png"
+	},
+	"DrSneeWalkDownRight4": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight4.png"
+	},
+	"DrSneeWalkDownRight5": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight5.png"
+	},
+	"DrSneeWalkDownRight6": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight6.png"
+	},
+	"DrSneeWalkDownRight7": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight7.png"
+	},
+	"DrSneeWalkDownRight8": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight8.png"
+	},
+	"DrSneeWalkDownRight9": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight9.png"
+	},
+	"DrSneeWalkDownRight10": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight10.png"
+	},
+	"DrSneeWalkDownRight11": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight11.png"
+	},
+	"DrSneeWalkDownRight12": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight12.png"
+	},
+	"DrSneeWalkDownRight13": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight13.png"
+	},
+	"DrSneeWalkDownRight14": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownRight14.png"
+	},
+	"DrSneeWalkDown0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down0.png"
+	},
+	"DrSneeWalkDown1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down1.png"
+	},
+	"DrSneeWalkDown2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down2.png"
+	},
+	"DrSneeWalkDown3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down3.png"
+	},
+	"DrSneeWalkDown4": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down4.png"
+	},
+	"DrSneeWalkDown5": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down5.png"
+	},
+	"DrSneeWalkDown6": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down6.png"
+	},
+	"DrSneeWalkDown7": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down7.png"
+	},
+	"DrSneeWalkDown8": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down8.png"
+	},
+	"DrSneeWalkDown9": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down9.png"
+	},
+	"DrSneeWalkDown10": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down10.png"
+	},
+	"DrSneeWalkDown11": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down11.png"
+	},
+	"DrSneeWalkDown12": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down12.png"
+	},
+	"DrSneeWalkDown13": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down13.png"
+	},
+	"DrSneeWalkDown14": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Down14.png"
+	},
+	"DrSneeWalkDownLeft0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft0.png"
+	},
+	"DrSneeWalkDownLeft1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft1.png"
+	},
+	"DrSneeWalkDownLeft2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft2.png"
+	},
+	"DrSneeWalkDownLeft3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft3.png"
+	},
+	"DrSneeWalkDownLeft4": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft4.png"
+	},
+	"DrSneeWalkDownLeft5": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft5.png"
+	},
+	"DrSneeWalkDownLeft6": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft6.png"
+	},
+	"DrSneeWalkDownLeft7": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft7.png"
+	},
+	"DrSneeWalkDownLeft8": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft8.png"
+	},
+	"DrSneeWalkDownLeft9": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft9.png"
+	},
+	"DrSneeWalkDownLeft10": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft10.png"
+	},
+	"DrSneeWalkDownLeft11": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft11.png"
+	},
+	"DrSneeWalkDownLeft12": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft12.png"
+	},
+	"DrSneeWalkDownLeft13": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft13.png"
+	},
+	"DrSneeWalkDownLeft14": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/DownLeft14.png"
+	},
+	"DrSneeWalkLeft0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left0.png"
+	},
+	"DrSneeWalkLeft1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left1.png"
+	},
+	"DrSneeWalkLeft2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left2.png"
+	},
+	"DrSneeWalkLeft3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left3.png"
+	},
+	"DrSneeWalkLeft4": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left4.png"
+	},
+	"DrSneeWalkLeft5": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left5.png"
+	},
+	"DrSneeWalkLeft6": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left6.png"
+	},
+	"DrSneeWalkLeft7": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left7.png"
+	},
+	"DrSneeWalkLeft8": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left8.png"
+	},
+	"DrSneeWalkLeft9": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left9.png"
+	},
+	"DrSneeWalkLeft10": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left10.png"
+	},
+	"DrSneeWalkLeft11": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left11.png"
+	},
+	"DrSneeWalkLeft12": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left12.png"
+	},
+	"DrSneeWalkLeft13": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left13.png"
+	},
+	"DrSneeWalkLeft14": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/Left14.png"
+	},
+	"DrSneeWalkUpLeft0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft0.png"
+	},
+	"DrSneeWalkUpLeft1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft1.png"
+	},
+	"DrSneeWalkUpLeft2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft2.png"
+	},
+	"DrSneeWalkUpLeft3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft3.png"
+	},
+	"DrSneeWalkUpLeft4": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft4.png"
+	},
+	"DrSneeWalkUpLeft5": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft5.png"
+	},
+	"DrSneeWalkUpLeft6": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft6.png"
+	},
+	"DrSneeWalkUpLeft7": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft7.png"
+	},
+	"DrSneeWalkUpLeft8": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft8.png"
+	},
+	"DrSneeWalkUpLeft9": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft9.png"
+	},
+	"DrSneeWalkUpLeft10": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft10.png"
+	},
+	"DrSneeWalkUpLeft11": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft11.png"
+	},
+	"DrSneeWalkUpLeft12": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft12.png"
+	},
+	"DrSneeWalkUpLeft13": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft13.png"
+	},
+	"DrSneeWalkUpLeft14": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk/UpLeft14.png"
+	},
+	"DrSneeAttackUp0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Up0.png"
+	},
+	"DrSneeAttackUp1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Up1.png"
+	},
+	"DrSneeAttackUp2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Up2.png"
+	},
+	"DrSneeAttackUp3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Up3.png"
+	},
+	"DrSneeAttackUpRight0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/UpRight0.png"
+	},
+	"DrSneeAttackUpRight1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/UpRight1.png"
+	},
+	"DrSneeAttackUpRight2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/UpRight2.png"
+	},
+	"DrSneeAttackUpRight3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/UpRight3.png"
+	},
+	"DrSneeAttackRight0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Right0.png"
+	},
+	"DrSneeAttackRight1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Right1.png"
+	},
+	"DrSneeAttackRight2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Right2.png"
+	},
+	"DrSneeAttackRight3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Right3.png"
+	},
+	"DrSneeAttackDownRight0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/DownRight0.png"
+	},
+	"DrSneeAttackDownRight1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/DownRight1.png"
+	},
+	"DrSneeAttackDownRight2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/DownRight2.png"
+	},
+	"DrSneeAttackDownRight3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/DownRight3.png"
+	},
+	"DrSneeAttackDown0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Down0.png"
+	},
+	"DrSneeAttackDown1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Down1.png"
+	},
+	"DrSneeAttackDown2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Down2.png"
+	},
+	"DrSneeAttackDown3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Down3.png"
+	},
+	"DrSneeAttackDownLeft0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/DownLeft0.png"
+	},
+	"DrSneeAttackDownLeft1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/DownLeft1.png"
+	},
+	"DrSneeAttackDownLeft2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/DownLeft2.png"
+	},
+	"DrSneeAttackDownLeft3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/DownLeft3.png"
+	},
+	"DrSneeAttackLeft0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Left0.png"
+	},
+	"DrSneeAttackLeft1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Left1.png"
+	},
+	"DrSneeAttackLeft2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Left2.png"
+	},
+	"DrSneeAttackLeft3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/Left3.png"
+	},
+	"DrSneeAttackUpLeft0": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/UpLeft0.png"
+	},
+	"DrSneeAttackUpLeft1": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/UpLeft1.png"
+	},
+	"DrSneeAttackUpLeft2": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/UpLeft2.png"
+	},
+	"DrSneeAttackUpLeft3": {
+		"type": "texture",
+		"data": "images/units/DrSnee/Walk_Fire/UpLeft3.png"
 	}
 }

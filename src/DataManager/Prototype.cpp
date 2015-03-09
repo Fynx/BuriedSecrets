@@ -3,6 +3,8 @@
  */
 #include "DataManager/Prototype.hpp"
 
+#include <cassert>
+
 
 bool Prototype::hasProperty(const QString &key) const
 {
@@ -40,7 +42,7 @@ const QList<const AnimationData *> Prototype::getAnimationsData() const
 const AnimationData *Prototype::getAnimationData(const BS::State &state) const
 {
 	auto it = animationData.find(state);
-	Q_ASSERT(it != animationData.end());
+	assert(it != animationData.end());
 	return it.value();
 }
 
@@ -48,7 +50,7 @@ const AnimationData *Prototype::getAnimationData(const BS::State &state) const
 void Prototype::addAnimationData(BS::State state, const AnimationData *data)
 {
 	qDebug() << "Adding animationData for " << data->getName() << "(" << BS::changeStateToString(state) << ")";
-	Q_ASSERT(!animationData.contains(state));
+	assert(!animationData.contains(state));
 	animationData[state] = data;
 }
 

@@ -55,7 +55,7 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 			const auto animationsList = object->getPrototype()->getAnimationsData();
 			for (const auto& anim: animationsList) {
 				s[anim->getState()] = graphicsDataManager->getAnimation(anim->getName());
-				qDebug() << anim->getName() << " for " << anim->getState();
+				qDebug() << anim->getName() << " for " << BS::changeStateToString(anim->getState());
 			}
 
 			// Get centre, radius and build a polygon emulating circle.
