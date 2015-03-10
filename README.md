@@ -17,3 +17,12 @@ http://http://opengameart.org/content/cowboy-platform-and-isometric-sprite-sheet
 
 Knife goblin for Tank Mob from:
 http://opengameart.org/content/flare-mod-hobgoblin
+
+Elite Goblin Spearman for Solider Mob from:
+http://opengameart.org/content/flare-mod-goblin-spearman-elite
+
+Goblin Spearman for Peasant Mob from:
+http://http://opengameart.org/content/flare-mod-goblin-spearman
+
+Goblin Shaman for Woman Mob from:
+http://http://opengameart.org/content/flare-mod-goblin-shaman
