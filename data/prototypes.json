@@ -109,7 +109,7 @@
 		"type": "unit",
 		"profession": "Proffesional mob",
 		"baseRadius": 1,
-		"baseCentre": [1, 2],
+		"baseCentre": [2.3, 5.6],
 		"attack": 10,
 		"encumbrance" : 24,
 		"perception": 20,
@@ -119,11 +119,11 @@
 		"sightRange": 1,
 		"movementSpeed": 6,
 		"animations": {
-			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking",
-			"Heal": "SoszuHeal",
-			"Attack": "SoszuAttack",
-			"RunAttack": "SoszuWalking"
+			"Idle": "MobPeasantIdle",
+			"Run": "MobPeasantRun",
+			"Heal": "MobPeasantHeal",
+			"Attack": "MobPeasantAttack",
+			"RunAttack": "MobPeasantRunAttack"
 		}
 	},
 
