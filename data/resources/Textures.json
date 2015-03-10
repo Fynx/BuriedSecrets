@@ -3018,5 +3018,709 @@
 	"MobSoldierAttackUpLeft13": {
 		"type": "texture",
 		"data": "images/units/MobSoldier/Attack/UpLeft13.png"
+	},
+	"MobWomanWalkUp0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Up0.png"
+	},
+	"MobWomanWalkUp1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Up1.png"
+	},
+	"MobWomanWalkUp2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Up2.png"
+	},
+	"MobWomanWalkUp3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Up3.png"
+	},
+	"MobWomanWalkUp4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Up4.png"
+	},
+	"MobWomanWalkUp5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Up5.png"
+	},
+	"MobWomanWalkUp6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Up6.png"
+	},
+	"MobWomanWalkUp7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Up7.png"
+	},
+	"MobWomanWalkUp8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Up8.png"
+	},
+	"MobWomanWalkUpRight0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpRight0.png"
+	},
+	"MobWomanWalkUpRight1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpRight1.png"
+	},
+	"MobWomanWalkUpRight2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpRight2.png"
+	},
+	"MobWomanWalkUpRight3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpRight3.png"
+	},
+	"MobWomanWalkUpRight4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpRight4.png"
+	},
+	"MobWomanWalkUpRight5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpRight5.png"
+	},
+	"MobWomanWalkUpRight6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpRight6.png"
+	},
+	"MobWomanWalkUpRight7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpRight7.png"
+	},
+	"MobWomanWalkUpRight8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpRight8.png"
+	},
+	"MobWomanWalkRight0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Right0.png"
+	},
+	"MobWomanWalkRight1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Right1.png"
+	},
+	"MobWomanWalkRight2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Right2.png"
+	},
+	"MobWomanWalkRight3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Right3.png"
+	},
+	"MobWomanWalkRight4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Right4.png"
+	},
+	"MobWomanWalkRight5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Right5.png"
+	},
+	"MobWomanWalkRight6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Right6.png"
+	},
+	"MobWomanWalkRight7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Right7.png"
+	},
+	"MobWomanWalkRight8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Right8.png"
+	},
+	"MobWomanWalkDownRight0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownRight0.png"
+	},
+	"MobWomanWalkDownRight1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownRight1.png"
+	},
+	"MobWomanWalkDownRight2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownRight2.png"
+	},
+	"MobWomanWalkDownRight3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownRight3.png"
+	},
+	"MobWomanWalkDownRight4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownRight4.png"
+	},
+	"MobWomanWalkDownRight5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownRight5.png"
+	},
+	"MobWomanWalkDownRight6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownRight6.png"
+	},
+	"MobWomanWalkDownRight7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownRight7.png"
+	},
+	"MobWomanWalkDownRight8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownRight8.png"
+	},
+	"MobWomanWalkDown0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Down0.png"
+	},
+	"MobWomanWalkDown1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Down1.png"
+	},
+	"MobWomanWalkDown2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Down2.png"
+	},
+	"MobWomanWalkDown3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Down3.png"
+	},
+	"MobWomanWalkDown4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Down4.png"
+	},
+	"MobWomanWalkDown5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Down5.png"
+	},
+	"MobWomanWalkDown6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Down6.png"
+	},
+	"MobWomanWalkDown7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Down7.png"
+	},
+	"MobWomanWalkDown8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Down8.png"
+	},
+	"MobWomanWalkDownLeft0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownLeft0.png"
+	},
+	"MobWomanWalkDownLeft1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownLeft1.png"
+	},
+	"MobWomanWalkDownLeft2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownLeft2.png"
+	},
+	"MobWomanWalkDownLeft3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownLeft3.png"
+	},
+	"MobWomanWalkDownLeft4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownLeft4.png"
+	},
+	"MobWomanWalkDownLeft5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownLeft5.png"
+	},
+	"MobWomanWalkDownLeft6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownLeft6.png"
+	},
+	"MobWomanWalkDownLeft7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownLeft7.png"
+	},
+	"MobWomanWalkDownLeft8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/DownLeft8.png"
+	},
+	"MobWomanWalkLeft0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Left0.png"
+	},
+	"MobWomanWalkLeft1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Left1.png"
+	},
+	"MobWomanWalkLeft2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Left2.png"
+	},
+	"MobWomanWalkLeft3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Left3.png"
+	},
+	"MobWomanWalkLeft4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Left4.png"
+	},
+	"MobWomanWalkLeft5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Left5.png"
+	},
+	"MobWomanWalkLeft6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Left6.png"
+	},
+	"MobWomanWalkLeft7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Left7.png"
+	},
+	"MobWomanWalkLeft8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/Left8.png"
+	},
+	"MobWomanWalkUpLeft0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpLeft0.png"
+	},
+	"MobWomanWalkUpLeft1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpLeft1.png"
+	},
+	"MobWomanWalkUpLeft2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpLeft2.png"
+	},
+	"MobWomanWalkUpLeft3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpLeft3.png"
+	},
+	"MobWomanWalkUpLeft4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpLeft4.png"
+	},
+	"MobWomanWalkUpLeft5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpLeft5.png"
+	},
+	"MobWomanWalkUpLeft6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpLeft6.png"
+	},
+	"MobWomanWalkUpLeft7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpLeft7.png"
+	},
+	"MobWomanWalkUpLeft8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Walk/UpLeft8.png"
+	},
+	"MobWomanAttackUp0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up0.png"
+	},
+	"MobWomanAttackUp1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up1.png"
+	},
+	"MobWomanAttackUp2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up2.png"
+	},
+	"MobWomanAttackUp3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up3.png"
+	},
+	"MobWomanAttackUp4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up4.png"
+	},
+	"MobWomanAttackUp5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up5.png"
+	},
+	"MobWomanAttackUp6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up6.png"
+	},
+	"MobWomanAttackUp7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up7.png"
+	},
+	"MobWomanAttackUp8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up8.png"
+	},
+	"MobWomanAttackUp9": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up9.png"
+	},
+	"MobWomanAttackUp10": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up10.png"
+	},
+	"MobWomanAttackUp11": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up11.png"
+	},
+	"MobWomanAttackUp12": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Up12.png"
+	},
+	"MobWomanAttackUpRight0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight0.png"
+	},
+	"MobWomanAttackUpRight1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight1.png"
+	},
+	"MobWomanAttackUpRight2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight2.png"
+	},
+	"MobWomanAttackUpRight3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight3.png"
+	},
+	"MobWomanAttackUpRight4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight4.png"
+	},
+	"MobWomanAttackUpRight5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight5.png"
+	},
+	"MobWomanAttackUpRight6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight6.png"
+	},
+	"MobWomanAttackUpRight7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight7.png"
+	},
+	"MobWomanAttackUpRight8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight8.png"
+	},
+	"MobWomanAttackUpRight9": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight9.png"
+	},
+	"MobWomanAttackUpRight10": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight10.png"
+	},
+	"MobWomanAttackUpRight11": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight11.png"
+	},
+	"MobWomanAttackUpRight12": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpRight12.png"
+	},
+	"MobWomanAttackRight0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right0.png"
+	},
+	"MobWomanAttackRight1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right1.png"
+	},
+	"MobWomanAttackRight2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right2.png"
+	},
+	"MobWomanAttackRight3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right3.png"
+	},
+	"MobWomanAttackRight4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right4.png"
+	},
+	"MobWomanAttackRight5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right5.png"
+	},
+	"MobWomanAttackRight6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right6.png"
+	},
+	"MobWomanAttackRight7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right7.png"
+	},
+	"MobWomanAttackRight8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right8.png"
+	},
+	"MobWomanAttackRight9": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right9.png"
+	},
+	"MobWomanAttackRight10": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right10.png"
+	},
+	"MobWomanAttackRight11": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right11.png"
+	},
+	"MobWomanAttackRight12": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Right12.png"
+	},
+	"MobWomanAttackDownRight0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight0.png"
+	},
+	"MobWomanAttackDownRight1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight1.png"
+	},
+	"MobWomanAttackDownRight2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight2.png"
+	},
+	"MobWomanAttackDownRight3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight3.png"
+	},
+	"MobWomanAttackDownRight4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight4.png"
+	},
+	"MobWomanAttackDownRight5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight5.png"
+	},
+	"MobWomanAttackDownRight6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight6.png"
+	},
+	"MobWomanAttackDownRight7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight7.png"
+	},
+	"MobWomanAttackDownRight8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight8.png"
+	},
+	"MobWomanAttackDownRight9": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight9.png"
+	},
+	"MobWomanAttackDownRight10": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight10.png"
+	},
+	"MobWomanAttackDownRight11": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight11.png"
+	},
+	"MobWomanAttackDownRight12": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownRight12.png"
+	},
+	"MobWomanAttackDown0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down0.png"
+	},
+	"MobWomanAttackDown1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down1.png"
+	},
+	"MobWomanAttackDown2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down2.png"
+	},
+	"MobWomanAttackDown3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down3.png"
+	},
+	"MobWomanAttackDown4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down4.png"
+	},
+	"MobWomanAttackDown5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down5.png"
+	},
+	"MobWomanAttackDown6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down6.png"
+	},
+	"MobWomanAttackDown7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down7.png"
+	},
+	"MobWomanAttackDown8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down8.png"
+	},
+	"MobWomanAttackDown9": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down9.png"
+	},
+	"MobWomanAttackDown10": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down10.png"
+	},
+	"MobWomanAttackDown11": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down11.png"
+	},
+	"MobWomanAttackDown12": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Down12.png"
+	},
+	"MobWomanAttackDownLeft0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft0.png"
+	},
+	"MobWomanAttackDownLeft1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft1.png"
+	},
+	"MobWomanAttackDownLeft2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft2.png"
+	},
+	"MobWomanAttackDownLeft3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft3.png"
+	},
+	"MobWomanAttackDownLeft4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft4.png"
+	},
+	"MobWomanAttackDownLeft5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft5.png"
+	},
+	"MobWomanAttackDownLeft6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft6.png"
+	},
+	"MobWomanAttackDownLeft7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft7.png"
+	},
+	"MobWomanAttackDownLeft8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft8.png"
+	},
+	"MobWomanAttackDownLeft9": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft9.png"
+	},
+	"MobWomanAttackDownLeft10": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft10.png"
+	},
+	"MobWomanAttackDownLeft11": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft11.png"
+	},
+	"MobWomanAttackDownLeft12": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/DownLeft12.png"
+	},
+	"MobWomanAttackLeft0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left0.png"
+	},
+	"MobWomanAttackLeft1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left1.png"
+	},
+	"MobWomanAttackLeft2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left2.png"
+	},
+	"MobWomanAttackLeft3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left3.png"
+	},
+	"MobWomanAttackLeft4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left4.png"
+	},
+	"MobWomanAttackLeft5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left5.png"
+	},
+	"MobWomanAttackLeft6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left6.png"
+	},
+	"MobWomanAttackLeft7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left7.png"
+	},
+	"MobWomanAttackLeft8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left8.png"
+	},
+	"MobWomanAttackLeft9": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left9.png"
+	},
+	"MobWomanAttackLeft10": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left10.png"
+	},
+	"MobWomanAttackLeft11": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left11.png"
+	},
+	"MobWomanAttackLeft12": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/Left12.png"
+	},
+	"MobWomanAttackUpLeft0": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft0.png"
+	},
+	"MobWomanAttackUpLeft1": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft1.png"
+	},
+	"MobWomanAttackUpLeft2": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft2.png"
+	},
+	"MobWomanAttackUpLeft3": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft3.png"
+	},
+	"MobWomanAttackUpLeft4": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft4.png"
+	},
+	"MobWomanAttackUpLeft5": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft5.png"
+	},
+	"MobWomanAttackUpLeft6": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft6.png"
+	},
+	"MobWomanAttackUpLeft7": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft7.png"
+	},
+	"MobWomanAttackUpLeft8": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft8.png"
+	},
+	"MobWomanAttackUpLeft9": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft9.png"
+	},
+	"MobWomanAttackUpLeft10": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft10.png"
+	},
+	"MobWomanAttackUpLeft11": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft11.png"
+	},
+	"MobWomanAttackUpLeft12": {
+		"type": "texture",
+		"data": "images/units/MobWoman/Attack/UpLeft12.png"
 	}
 }
