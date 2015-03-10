@@ -2314,5 +2314,709 @@
 	"MobPeasantAttackUpLeft8": {
 		"type": "texture",
 		"data": "images/units/MobPeasant/Attack/UpLeft8.png"
+	},
+	"MobSoldierWalkUp0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Up0.png"
+	},
+	"MobSoldierWalkUp1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Up1.png"
+	},
+	"MobSoldierWalkUp2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Up2.png"
+	},
+	"MobSoldierWalkUp3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Up3.png"
+	},
+	"MobSoldierWalkUp4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Up4.png"
+	},
+	"MobSoldierWalkUp5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Up5.png"
+	},
+	"MobSoldierWalkUp6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Up6.png"
+	},
+	"MobSoldierWalkUp7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Up7.png"
+	},
+	"MobSoldierWalkUpRight0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpRight0.png"
+	},
+	"MobSoldierWalkUpRight1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpRight1.png"
+	},
+	"MobSoldierWalkUpRight2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpRight2.png"
+	},
+	"MobSoldierWalkUpRight3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpRight3.png"
+	},
+	"MobSoldierWalkUpRight4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpRight4.png"
+	},
+	"MobSoldierWalkUpRight5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpRight5.png"
+	},
+	"MobSoldierWalkUpRight6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpRight6.png"
+	},
+	"MobSoldierWalkUpRight7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpRight7.png"
+	},
+	"MobSoldierWalkRight0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Right0.png"
+	},
+	"MobSoldierWalkRight1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Right1.png"
+	},
+	"MobSoldierWalkRight2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Right2.png"
+	},
+	"MobSoldierWalkRight3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Right3.png"
+	},
+	"MobSoldierWalkRight4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Right4.png"
+	},
+	"MobSoldierWalkRight5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Right5.png"
+	},
+	"MobSoldierWalkRight6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Right6.png"
+	},
+	"MobSoldierWalkRight7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Right7.png"
+	},
+	"MobSoldierWalkDownRight0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownRight0.png"
+	},
+	"MobSoldierWalkDownRight1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownRight1.png"
+	},
+	"MobSoldierWalkDownRight2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownRight2.png"
+	},
+	"MobSoldierWalkDownRight3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownRight3.png"
+	},
+	"MobSoldierWalkDownRight4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownRight4.png"
+	},
+	"MobSoldierWalkDownRight5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownRight5.png"
+	},
+	"MobSoldierWalkDownRight6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownRight6.png"
+	},
+	"MobSoldierWalkDownRight7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownRight7.png"
+	},
+	"MobSoldierWalkDown0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Down0.png"
+	},
+	"MobSoldierWalkDown1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Down1.png"
+	},
+	"MobSoldierWalkDown2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Down2.png"
+	},
+	"MobSoldierWalkDown3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Down3.png"
+	},
+	"MobSoldierWalkDown4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Down4.png"
+	},
+	"MobSoldierWalkDown5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Down5.png"
+	},
+	"MobSoldierWalkDown6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Down6.png"
+	},
+	"MobSoldierWalkDown7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Down7.png"
+	},
+	"MobSoldierWalkDownLeft0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownLeft0.png"
+	},
+	"MobSoldierWalkDownLeft1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownLeft1.png"
+	},
+	"MobSoldierWalkDownLeft2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownLeft2.png"
+	},
+	"MobSoldierWalkDownLeft3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownLeft3.png"
+	},
+	"MobSoldierWalkDownLeft4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownLeft4.png"
+	},
+	"MobSoldierWalkDownLeft5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownLeft5.png"
+	},
+	"MobSoldierWalkDownLeft6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownLeft6.png"
+	},
+	"MobSoldierWalkDownLeft7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/DownLeft7.png"
+	},
+	"MobSoldierWalkLeft0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Left0.png"
+	},
+	"MobSoldierWalkLeft1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Left1.png"
+	},
+	"MobSoldierWalkLeft2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Left2.png"
+	},
+	"MobSoldierWalkLeft3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Left3.png"
+	},
+	"MobSoldierWalkLeft4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Left4.png"
+	},
+	"MobSoldierWalkLeft5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Left5.png"
+	},
+	"MobSoldierWalkLeft6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Left6.png"
+	},
+	"MobSoldierWalkLeft7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/Left7.png"
+	},
+	"MobSoldierWalkUpLeft0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpLeft0.png"
+	},
+	"MobSoldierWalkUpLeft1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpLeft1.png"
+	},
+	"MobSoldierWalkUpLeft2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpLeft2.png"
+	},
+	"MobSoldierWalkUpLeft3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpLeft3.png"
+	},
+	"MobSoldierWalkUpLeft4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpLeft4.png"
+	},
+	"MobSoldierWalkUpLeft5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpLeft5.png"
+	},
+	"MobSoldierWalkUpLeft6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpLeft6.png"
+	},
+	"MobSoldierWalkUpLeft7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Walk/UpLeft7.png"
+	},
+	"MobSoldierAttackUp0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up0.png"
+	},
+	"MobSoldierAttackUp1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up1.png"
+	},
+	"MobSoldierAttackUp2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up2.png"
+	},
+	"MobSoldierAttackUp3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up3.png"
+	},
+	"MobSoldierAttackUp4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up4.png"
+	},
+	"MobSoldierAttackUp5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up5.png"
+	},
+	"MobSoldierAttackUp6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up6.png"
+	},
+	"MobSoldierAttackUp7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up7.png"
+	},
+	"MobSoldierAttackUp8": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up8.png"
+	},
+	"MobSoldierAttackUp9": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up9.png"
+	},
+	"MobSoldierAttackUp10": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up10.png"
+	},
+	"MobSoldierAttackUp11": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up11.png"
+	},
+	"MobSoldierAttackUp12": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up12.png"
+	},
+	"MobSoldierAttackUp13": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Up13.png"
+	},
+	"MobSoldierAttackUpRight0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight0.png"
+	},
+	"MobSoldierAttackUpRight1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight1.png"
+	},
+	"MobSoldierAttackUpRight2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight2.png"
+	},
+	"MobSoldierAttackUpRight3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight3.png"
+	},
+	"MobSoldierAttackUpRight4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight4.png"
+	},
+	"MobSoldierAttackUpRight5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight5.png"
+	},
+	"MobSoldierAttackUpRight6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight6.png"
+	},
+	"MobSoldierAttackUpRight7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight7.png"
+	},
+	"MobSoldierAttackUpRight8": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight8.png"
+	},
+	"MobSoldierAttackUpRight9": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight9.png"
+	},
+	"MobSoldierAttackUpRight10": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight10.png"
+	},
+	"MobSoldierAttackUpRight11": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight11.png"
+	},
+	"MobSoldierAttackUpRight12": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight12.png"
+	},
+	"MobSoldierAttackUpRight13": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpRight13.png"
+	},
+	"MobSoldierAttackRight0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right0.png"
+	},
+	"MobSoldierAttackRight1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right1.png"
+	},
+	"MobSoldierAttackRight2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right2.png"
+	},
+	"MobSoldierAttackRight3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right3.png"
+	},
+	"MobSoldierAttackRight4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right4.png"
+	},
+	"MobSoldierAttackRight5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right5.png"
+	},
+	"MobSoldierAttackRight6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right6.png"
+	},
+	"MobSoldierAttackRight7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right7.png"
+	},
+	"MobSoldierAttackRight8": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right8.png"
+	},
+	"MobSoldierAttackRight9": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right9.png"
+	},
+	"MobSoldierAttackRight10": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right10.png"
+	},
+	"MobSoldierAttackRight11": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right11.png"
+	},
+	"MobSoldierAttackRight12": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right12.png"
+	},
+	"MobSoldierAttackRight13": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Right13.png"
+	},
+	"MobSoldierAttackDownRight0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight0.png"
+	},
+	"MobSoldierAttackDownRight1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight1.png"
+	},
+	"MobSoldierAttackDownRight2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight2.png"
+	},
+	"MobSoldierAttackDownRight3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight3.png"
+	},
+	"MobSoldierAttackDownRight4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight4.png"
+	},
+	"MobSoldierAttackDownRight5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight5.png"
+	},
+	"MobSoldierAttackDownRight6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight6.png"
+	},
+	"MobSoldierAttackDownRight7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight7.png"
+	},
+	"MobSoldierAttackDownRight8": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight8.png"
+	},
+	"MobSoldierAttackDownRight9": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight9.png"
+	},
+	"MobSoldierAttackDownRight10": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight10.png"
+	},
+	"MobSoldierAttackDownRight11": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight11.png"
+	},
+	"MobSoldierAttackDownRight12": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight12.png"
+	},
+	"MobSoldierAttackDownRight13": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownRight13.png"
+	},
+	"MobSoldierAttackDown0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down0.png"
+	},
+	"MobSoldierAttackDown1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down1.png"
+	},
+	"MobSoldierAttackDown2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down2.png"
+	},
+	"MobSoldierAttackDown3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down3.png"
+	},
+	"MobSoldierAttackDown4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down4.png"
+	},
+	"MobSoldierAttackDown5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down5.png"
+	},
+	"MobSoldierAttackDown6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down6.png"
+	},
+	"MobSoldierAttackDown7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down7.png"
+	},
+	"MobSoldierAttackDown8": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down8.png"
+	},
+	"MobSoldierAttackDown9": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down9.png"
+	},
+	"MobSoldierAttackDown10": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down10.png"
+	},
+	"MobSoldierAttackDown11": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down11.png"
+	},
+	"MobSoldierAttackDown12": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down12.png"
+	},
+	"MobSoldierAttackDown13": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Down13.png"
+	},
+	"MobSoldierAttackDownLeft0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft0.png"
+	},
+	"MobSoldierAttackDownLeft1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft1.png"
+	},
+	"MobSoldierAttackDownLeft2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft2.png"
+	},
+	"MobSoldierAttackDownLeft3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft3.png"
+	},
+	"MobSoldierAttackDownLeft4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft4.png"
+	},
+	"MobSoldierAttackDownLeft5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft5.png"
+	},
+	"MobSoldierAttackDownLeft6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft6.png"
+	},
+	"MobSoldierAttackDownLeft7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft7.png"
+	},
+	"MobSoldierAttackDownLeft8": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft8.png"
+	},
+	"MobSoldierAttackDownLeft9": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft9.png"
+	},
+	"MobSoldierAttackDownLeft10": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft10.png"
+	},
+	"MobSoldierAttackDownLeft11": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft11.png"
+	},
+	"MobSoldierAttackDownLeft12": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft12.png"
+	},
+	"MobSoldierAttackDownLeft13": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/DownLeft13.png"
+	},
+	"MobSoldierAttackLeft0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left0.png"
+	},
+	"MobSoldierAttackLeft1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left1.png"
+	},
+	"MobSoldierAttackLeft2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left2.png"
+	},
+	"MobSoldierAttackLeft3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left3.png"
+	},
+	"MobSoldierAttackLeft4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left4.png"
+	},
+	"MobSoldierAttackLeft5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left5.png"
+	},
+	"MobSoldierAttackLeft6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left6.png"
+	},
+	"MobSoldierAttackLeft7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left7.png"
+	},
+	"MobSoldierAttackLeft8": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left8.png"
+	},
+	"MobSoldierAttackLeft9": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left9.png"
+	},
+	"MobSoldierAttackLeft10": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left10.png"
+	},
+	"MobSoldierAttackLeft11": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left11.png"
+	},
+	"MobSoldierAttackLeft12": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left12.png"
+	},
+	"MobSoldierAttackLeft13": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/Left13.png"
+	},
+	"MobSoldierAttackUpLeft0": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft0.png"
+	},
+	"MobSoldierAttackUpLeft1": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft1.png"
+	},
+	"MobSoldierAttackUpLeft2": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft2.png"
+	},
+	"MobSoldierAttackUpLeft3": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft3.png"
+	},
+	"MobSoldierAttackUpLeft4": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft4.png"
+	},
+	"MobSoldierAttackUpLeft5": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft5.png"
+	},
+	"MobSoldierAttackUpLeft6": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft6.png"
+	},
+	"MobSoldierAttackUpLeft7": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft7.png"
+	},
+	"MobSoldierAttackUpLeft8": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft8.png"
+	},
+	"MobSoldierAttackUpLeft9": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft9.png"
+	},
+	"MobSoldierAttackUpLeft10": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft10.png"
+	},
+	"MobSoldierAttackUpLeft11": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft11.png"
+	},
+	"MobSoldierAttackUpLeft12": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft12.png"
+	},
+	"MobSoldierAttackUpLeft13": {
+		"type": "texture",
+		"data": "images/units/MobSoldier/Attack/UpLeft13.png"
 	}
 }
