@@ -1226,5 +1226,517 @@
 	"SeniorCebulezShootUpLeft2": {
 		"type": "texture",
 		"data": "images/units/SeniorCebulez/Shoot/UpLeft2.png"
+	},
+	"MobTankWalkUp0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Up0.png"
+	},
+	"MobTankWalkUp1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Up1.png"
+	},
+	"MobTankWalkUp2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Up2.png"
+	},
+	"MobTankWalkUp3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Up3.png"
+	},
+	"MobTankWalkUp4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Up4.png"
+	},
+	"MobTankWalkUp5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Up5.png"
+	},
+	"MobTankWalkUp6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Up6.png"
+	},
+	"MobTankWalkUpRight0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpRight0.png"
+	},
+	"MobTankWalkUpRight1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpRight1.png"
+	},
+	"MobTankWalkUpRight2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpRight2.png"
+	},
+	"MobTankWalkUpRight3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpRight3.png"
+	},
+	"MobTankWalkUpRight4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpRight4.png"
+	},
+	"MobTankWalkUpRight5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpRight5.png"
+	},
+	"MobTankWalkUpRight6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpRight6.png"
+	},
+	"MobTankWalkRight0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Right0.png"
+	},
+	"MobTankWalkRight1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Right1.png"
+	},
+	"MobTankWalkRight2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Right2.png"
+	},
+	"MobTankWalkRight3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Right3.png"
+	},
+	"MobTankWalkRight4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Right4.png"
+	},
+	"MobTankWalkRight5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Right5.png"
+	},
+	"MobTankWalkRight6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Right6.png"
+	},
+	"MobTankWalkDownRight0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownRight0.png"
+	},
+	"MobTankWalkDownRight1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownRight1.png"
+	},
+	"MobTankWalkDownRight2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownRight2.png"
+	},
+	"MobTankWalkDownRight3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownRight3.png"
+	},
+	"MobTankWalkDownRight4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownRight4.png"
+	},
+	"MobTankWalkDownRight5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownRight5.png"
+	},
+	"MobTankWalkDownRight6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownRight6.png"
+	},
+	"MobTankWalkDown0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Down0.png"
+	},
+	"MobTankWalkDown1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Down1.png"
+	},
+	"MobTankWalkDown2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Down2.png"
+	},
+	"MobTankWalkDown3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Down3.png"
+	},
+	"MobTankWalkDown4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Down4.png"
+	},
+	"MobTankWalkDown5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Down5.png"
+	},
+	"MobTankWalkDown6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Down6.png"
+	},
+	"MobTankWalkDownLeft0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownLeft0.png"
+	},
+	"MobTankWalkDownLeft1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownLeft1.png"
+	},
+	"MobTankWalkDownLeft2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownLeft2.png"
+	},
+	"MobTankWalkDownLeft3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownLeft3.png"
+	},
+	"MobTankWalkDownLeft4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownLeft4.png"
+	},
+	"MobTankWalkDownLeft5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownLeft5.png"
+	},
+	"MobTankWalkDownLeft6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/DownLeft6.png"
+	},
+	"MobTankWalkLeft0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Left0.png"
+	},
+	"MobTankWalkLeft1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Left1.png"
+	},
+	"MobTankWalkLeft2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Left2.png"
+	},
+	"MobTankWalkLeft3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Left3.png"
+	},
+	"MobTankWalkLeft4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Left4.png"
+	},
+	"MobTankWalkLeft5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Left5.png"
+	},
+	"MobTankWalkLeft6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/Left6.png"
+	},
+	"MobTankWalkUpLeft0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpLeft0.png"
+	},
+	"MobTankWalkUpLeft1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpLeft1.png"
+	},
+	"MobTankWalkUpLeft2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpLeft2.png"
+	},
+	"MobTankWalkUpLeft3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpLeft3.png"
+	},
+	"MobTankWalkUpLeft4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpLeft4.png"
+	},
+	"MobTankWalkUpLeft5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpLeft5.png"
+	},
+	"MobTankWalkUpLeft6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Walk/UpLeft6.png"
+	},
+	"MobTankAttackUp0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Up0.png"
+	},
+	"MobTankAttackUp1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Up1.png"
+	},
+	"MobTankAttackUp2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Up2.png"
+	},
+	"MobTankAttackUp3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Up3.png"
+	},
+	"MobTankAttackUp4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Up4.png"
+	},
+	"MobTankAttackUp5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Up5.png"
+	},
+	"MobTankAttackUp6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Up6.png"
+	},
+	"MobTankAttackUp7": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Up7.png"
+	},
+	"MobTankAttackUp8": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Up8.png"
+	},
+	"MobTankAttackUpRight0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpRight0.png"
+	},
+	"MobTankAttackUpRight1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpRight1.png"
+	},
+	"MobTankAttackUpRight2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpRight2.png"
+	},
+	"MobTankAttackUpRight3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpRight3.png"
+	},
+	"MobTankAttackUpRight4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpRight4.png"
+	},
+	"MobTankAttackUpRight5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpRight5.png"
+	},
+	"MobTankAttackUpRight6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpRight6.png"
+	},
+	"MobTankAttackUpRight7": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpRight7.png"
+	},
+	"MobTankAttackUpRight8": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpRight8.png"
+	},
+	"MobTankAttackRight0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Right0.png"
+	},
+	"MobTankAttackRight1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Right1.png"
+	},
+	"MobTankAttackRight2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Right2.png"
+	},
+	"MobTankAttackRight3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Right3.png"
+	},
+	"MobTankAttackRight4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Right4.png"
+	},
+	"MobTankAttackRight5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Right5.png"
+	},
+	"MobTankAttackRight6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Right6.png"
+	},
+	"MobTankAttackRight7": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Right7.png"
+	},
+	"MobTankAttackRight8": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Right8.png"
+	},
+	"MobTankAttackDownRight0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownRight0.png"
+	},
+	"MobTankAttackDownRight1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownRight1.png"
+	},
+	"MobTankAttackDownRight2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownRight2.png"
+	},
+	"MobTankAttackDownRight3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownRight3.png"
+	},
+	"MobTankAttackDownRight4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownRight4.png"
+	},
+	"MobTankAttackDownRight5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownRight5.png"
+	},
+	"MobTankAttackDownRight6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownRight6.png"
+	},
+	"MobTankAttackDownRight7": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownRight7.png"
+	},
+	"MobTankAttackDownRight8": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownRight8.png"
+	},
+	"MobTankAttackDown0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Down0.png"
+	},
+	"MobTankAttackDown1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Down1.png"
+	},
+	"MobTankAttackDown2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Down2.png"
+	},
+	"MobTankAttackDown3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Down3.png"
+	},
+	"MobTankAttackDown4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Down4.png"
+	},
+	"MobTankAttackDown5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Down5.png"
+	},
+	"MobTankAttackDown6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Down6.png"
+	},
+	"MobTankAttackDown7": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Down7.png"
+	},
+	"MobTankAttackDown8": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Down8.png"
+	},
+	"MobTankAttackDownLeft0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownLeft0.png"
+	},
+	"MobTankAttackDownLeft1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownLeft1.png"
+	},
+	"MobTankAttackDownLeft2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownLeft2.png"
+	},
+	"MobTankAttackDownLeft3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownLeft3.png"
+	},
+	"MobTankAttackDownLeft4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownLeft4.png"
+	},
+	"MobTankAttackDownLeft5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownLeft5.png"
+	},
+	"MobTankAttackDownLeft6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownLeft6.png"
+	},
+	"MobTankAttackDownLeft7": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownLeft7.png"
+	},
+	"MobTankAttackDownLeft8": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/DownLeft8.png"
+	},
+	"MobTankAttackLeft0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Left0.png"
+	},
+	"MobTankAttackLeft1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Left1.png"
+	},
+	"MobTankAttackLeft2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Left2.png"
+	},
+	"MobTankAttackLeft3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Left3.png"
+	},
+	"MobTankAttackLeft4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Left4.png"
+	},
+	"MobTankAttackLeft5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Left5.png"
+	},
+	"MobTankAttackLeft6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Left6.png"
+	},
+	"MobTankAttackLeft7": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Left7.png"
+	},
+	"MobTankAttackLeft8": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/Left8.png"
+	},
+	"MobTankAttackUpLeft0": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpLeft0.png"
+	},
+	"MobTankAttackUpLeft1": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpLeft1.png"
+	},
+	"MobTankAttackUpLeft2": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpLeft2.png"
+	},
+	"MobTankAttackUpLeft3": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpLeft3.png"
+	},
+	"MobTankAttackUpLeft4": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpLeft4.png"
+	},
+	"MobTankAttackUpLeft5": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpLeft5.png"
+	},
+	"MobTankAttackUpLeft6": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpLeft6.png"
+	},
+	"MobTankAttackUpLeft7": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpLeft7.png"
+	},
+	"MobTankAttackUpLeft8": {
+		"type": "texture",
+		"data": "images/units/MobTank/Attack/UpLeft8.png"
 	}
 }
