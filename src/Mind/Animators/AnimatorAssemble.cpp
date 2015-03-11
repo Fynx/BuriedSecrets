@@ -46,6 +46,7 @@ void AnimatorAssemble::act()
 			Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
 			mind->addObject(fort, unit->getTargetPoint());
 			unit->getEquipment()->removeItem(ikeaSet);
+			fort->setFactionId(unit->getFactionId());
 			if (spawned == "Player Camp"){		//ToDo
 				mind->getFactionById(unit->getFactionId())->setCamp((Location *)fort);
 				((Location *)fort)->setRange(25);

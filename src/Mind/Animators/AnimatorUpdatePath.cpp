@@ -31,6 +31,12 @@ void AnimatorUpdatePath::act()
 			to = mind->physicsEngine()->getPosition(mind->getObjectFromUid(unit->getTargetObject()));
 		if (comm == Command::Enter){
 			Location *target = (Location *)mind->getObjectFromUid(unit->getTargetObject());
+			if (!target){
+				unit->setCommand(Command::None);
+				unit->setState(State::Idle);
+				continue;
+			}
+
 			to = mind->physicsEngine()->getPosition(target) + target->getOffset();
 		}
 

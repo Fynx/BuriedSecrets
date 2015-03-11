@@ -338,6 +338,9 @@
 		"magazineSize" : 200,
 		"reloadTime" : 2,
 		"ingredients": ["Crystal lense", "Natives bone"],
+		"defAnimators": [
+			"AnimatorWeapon"
+		],
 		"slots": ["weapon"]
 	},
 

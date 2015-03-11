@@ -99,7 +99,8 @@ void AnimatorAttack::act()
 			hit->property(TempData::Damage).setValue(
 					weapon->getPrototype()->getProperty(Properties::Damage).toInt() +
 					hit->property(TempData::Damage).toInt());
-			hitPoint = mind->physicsEngine()->getPosition(hit);
+			float hitDist = QVector2D(mind->physicsEngine()->getPosition(hit) - from).length();
+			hitPoint = from + (hitDist * direction.normalized()).toPointF();
 		}
 		if (unit->getState() != State::Inside)
 			mind->addEffect(Effect(Effects::Shot,
