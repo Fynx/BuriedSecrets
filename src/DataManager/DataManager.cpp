@@ -1,8 +1,11 @@
 /* YoLoDevelopment, 2014
  * All rights reserved.
  */
-#include "Common/Strings.hpp"
 #include "DataManager/DataManager.hpp"
+
+#include <cassert>
+
+#include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
 
 DataManager::DataManager()
@@ -16,6 +19,8 @@ DataManager::~DataManager()
 	qDeleteAll(prototypes);
 	qDeleteAll(resources);
 	qDeleteAll(animationData);
+	qDeleteAll(textureSets);
+	qDeleteAll(texturesData);
 }
 
 QList <Prototype *> DataManager::getAllPrototypes()
@@ -40,6 +45,16 @@ const Resource *DataManager::getResource(const QString &name) const
 const AnimationData *DataManager::getAnimationData(const QString &name) const
 {
 	return animationData[name];
+}
+
+const TextureSet *DataManager::getTextureSet(const QString &name) const
+{
+	if (!textureSets.contains(name)) {
+		err("TextureSet " + name + " not found!");
+		assert(false);
+	}
+
+	return textureSets[name];
 }
 
 QJsonObject DataManager::loadJsonFromFile(const QString &path)
@@ -150,6 +165,8 @@ void DataManager::loadResources()
 	QString resourcesListStr = readRawData(preffix + "ResourcesList.txt");
 	QStringList resourcesList = resourcesListStr.split('\n', QString::SkipEmptyParts);
 
+	QHash<QString, QList<QPair<QString, QString>>> textureSetsData;
+
 	/** Load all the resources from the list. */
 	int counter = 1;
 	for (QString resourcePath: resourcesList) {
@@ -180,9 +197,35 @@ void DataManager::loadResources()
 
 					Resource *resource = new Resource(data, resourceData.length());
 					resources[key] = resource;
+				} else if (typeString == Resources::TextureSet) {
+					// Load the data from the file.
+					QVariantMap texturesMap = obj[Data::Textures].toObject().toVariantMap();
+					QList<QPair<QString, QString>> textureSet;
+					for (auto it = texturesMap.constBegin(); it != texturesMap.constEnd(); ++it) {
+						textureSet.append({it.key(), it.value().toString()});
+					}
+					textureSetsData[key] = textureSet;
+				} else if (typeString == "NewTexture") {
+					// Create a new TextureData object.
+					QByteArray textureData = readRawData(preffix + obj[Data::Path].toString());
+					int rows = obj[Data::Rows].toInt();
+					int columns = obj[Data::Columns].toInt();
+
+					texturesData[key] = new TextureData(rows, columns, textureData);
 				}
 			}
 		}
+	}
+
+	// Second pass - assemble TextureSets from TextureData
+	for (auto it = textureSetsData.constBegin(); it != textureSetsData.constEnd(); ++it) {
+		QList<QPair<QString, TextureData *>> textures;
+		for (auto iter = it.value().constBegin(); iter != it.value().constEnd(); ++iter) {
+			assert(texturesData.contains(iter->second));
+			textures.append({iter->first, *texturesData.find(iter->second)});
+		}
+
+		textureSets[it.key()] = new TextureSet(textures);
 	}
 
 	info("done.");

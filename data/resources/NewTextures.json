@@ -1,0 +1,8 @@
+{
+	"SeniorCebulezRunHandgun": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 11,
+		"path": "images/units/SeniorCebulez/WalkHandgun.png"
+	}
+}

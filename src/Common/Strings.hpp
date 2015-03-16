@@ -64,6 +64,10 @@ namespace Data {
 	const QString Data          = "data";
 	const QString Objects       = "objects";
 	const QString Properties    = "properties";
+	const QString Path          = "path";
+	const QString Rows          = "rows";
+	const QString Columns       = "columns";
+	const QString Textures      = "textures";
 }
 
 namespace Effects {
@@ -90,6 +94,7 @@ namespace Resources {
 	const QString Image         = "image";
 	const QString Texture       = "texture";
 	const QString ArrowDownCursor = "ArrowDown";
+	const QString TextureSet    = "TextureSet";
 }
 
 namespace Properties {                                 // for Prototypes

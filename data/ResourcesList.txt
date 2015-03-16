@@ -3,3 +3,5 @@ resources/Fonts.json
 resources/Items.json
 resources/Textures.json
 resources/Units.json
+resources/NewTextures.json
+resources/TextureSets.json

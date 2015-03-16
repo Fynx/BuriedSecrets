@@ -1,0 +1,8 @@
+{
+	"SeniorCebulez": {
+		"type" : "TextureSet",
+		"textures": {
+			"RunHandgun": "SeniorCebulezRunHandgun"
+		}
+	}
+}

@@ -81,9 +81,11 @@ namespace BS {
 	const QList<BS::Slot> getSlots();
 
 	enum class ItemType : quint8 {
+		Invalid,
+
+		// Armor
 		Armor,
 		Fortification,
-		Invalid,
 		Junk,
 		Perception,
 		Tool,

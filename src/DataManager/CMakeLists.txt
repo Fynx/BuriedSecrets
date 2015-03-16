@@ -3,6 +3,8 @@ set (DataManager_SRCS
 	DataManager.cpp
 	Prototype.cpp
 	Resource.cpp
+	TextureData.cpp
+	TextureSet.cpp
 )
 
 set (DataManager_HDRS

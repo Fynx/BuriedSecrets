@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -9,10 +9,11 @@
 class Resource {
 public:
 	Resource(const char *data, const std::size_t &length);
+	~Resource();
 	const char *getData() const;
 	const std::size_t getDataLength() const;
 
 private:
-	const char *data;
+	char *data;
 	const std::size_t length;
 };

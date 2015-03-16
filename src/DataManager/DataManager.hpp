@@ -8,6 +8,7 @@
 #include "DataManager/AnimationData.hpp"
 #include "DataManager/Prototype.hpp"
 #include "DataManager/Resource.hpp"
+#include "DataManager/TextureSet.hpp"
 #include "DebugManager/DebugManager.hpp"
 
 #include <QtWidgets>
@@ -21,6 +22,7 @@ public:
 	const Prototype *getPrototype(const QString &name) const;
 	const Resource *getResource(const QString &name) const;
 	const AnimationData *getAnimationData(const QString &name) const;
+	const TextureSet *getTextureSet(const QString &name) const;
 
 	template <class T>
 	void loadFromFile(const QString &path, T &s);
@@ -51,6 +53,8 @@ private:
 	QHash<QString, Prototype *> prototypes;
 	QHash<QString, Resource *> resources;
 	QHash<QString, AnimationData *> animationData;
+	QHash<QString, TextureData *> texturesData;
+	QHash<QString, TextureSet *> textureSets;
 };
 
 template <class T>
