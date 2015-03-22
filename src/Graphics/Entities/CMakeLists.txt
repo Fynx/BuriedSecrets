@@ -9,6 +9,7 @@ set (Entities_SRCS
 	ShotEffectGraphicalEntity.cpp
 	SpriteGraphicalEntity.cpp
 	StaticGraphicalEntity.cpp
+	UnitGraphicalEntity.cpp
 )
 
 set (Entities_HDRS

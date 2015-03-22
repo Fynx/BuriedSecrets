@@ -23,8 +23,7 @@ public:
 	void removeFromSlot(BS::Slot slot);
 	void putItemIntoSlot(BS::Slot slot, Item *item);
 	int getSlotItemUid(BS::Slot slot) const;
-	Item *getSlotItem(BS::Slot slot);
-	const Item *getSlotItem(BS::Slot slot) const;
+	Item *getSlotItem(BS::Slot slot) const;
 
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;

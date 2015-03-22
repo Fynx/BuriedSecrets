@@ -6,6 +6,7 @@
 #include <cassert>
 
 #include "Common/Strings.hpp"
+#include "DataManager/TextureSetData.hpp"
 #include "DebugManager/DebugManager.hpp"
 
 DataManager::DataManager()
@@ -124,6 +125,11 @@ void DataManager::loadPrototypes()
 				const AnimationData *animData = getAnimationData(animations[key].toString());
 				prototype->addAnimationData(BS::changeStringToState(key), animData);
 			}
+		}
+
+		if (prototype->hasProperty(Data::TextureSet)) {
+			prototype->setTextureSetData(new TextureSetData(getTextureSet(
+					prototype->getProperty(Data::TextureSet).toString())));
 		}
 
 		// Parsing for centre and base polygon (for those objects that have it).

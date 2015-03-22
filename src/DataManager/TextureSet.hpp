@@ -13,14 +13,15 @@
 
 class TextureSet {
 public:
+	typedef QList<QPair<ImageMetaData, Resource *>> Frames;
 	TextureSet(const QList<QPair<QString, TextureData *>> &textures);
 
 	/**
 	 * @brief Returns images for all frames for every combination of State, Direction, Frame number etc available in
 	 * the texture set.
 	 */
-	QList<QPair<ImageMetaData, Resource *>> getAllImages();
+	Frames getAllImages() const;
 
 private:
-	QList<QPair<ImageMetaData, Resource *>> images;
+	Frames images;
 };

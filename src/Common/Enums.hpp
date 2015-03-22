@@ -5,6 +5,7 @@
 #include <type_traits>
 
 #include <QtCore/QHash>
+#include <QtCore/QSet>
 #include <QtCore/QString>
 
 
@@ -34,13 +35,13 @@ namespace BS {
 	// about why and try to solve it together with someone.
 	// For now it's just going to be a standard enum, because I'm stuck here and don't want it to stay that way.
 	enum State {
-		Attack,        // Unit
-		Delay,         // Weapon
+		Attack = 0,        // Unit
 		Heal,          // Unit
 		Idle,
 		Inside,        // Unit
 		Run,           // Unit
 		RunAttack,     // Unit
+		Delay,         // Weapon
 		Shoot,         // Weapon
 	};
 
@@ -81,15 +82,7 @@ namespace BS {
 	const QList<BS::Slot> getSlots();
 
 	enum class ItemType : quint8 {
-		Invalid,
-
-		// Armor
-		Armor,
-		Fortification,
-		Junk,
-		Perception,
-		Tool,
-		Medicament,
+		Invalid = 0,
 
 		// Weapons
 		AssaultRifle,
@@ -98,6 +91,29 @@ namespace BS {
 		Pistol,
 		Shotgun,
 		SniperRifle,
+
+		// Armor
+		Armor,
+		Fortification,
+		Junk,
+		Perception,
+		Tool,
+		Medicament,
+	};
+
+	inline uint qHash(const ItemType &itemType) {
+		return static_cast<quint8>(itemType);
+	}
+
+	// The set of the item types that are weapons.
+	const static QSet<ItemType> WeaponTypes {
+		ItemType::Invalid,
+		ItemType::AssaultRifle,
+		ItemType::DualPistols,
+		ItemType::Melee,
+		ItemType::Pistol,
+		ItemType::Shotgun,
+		ItemType::SniperRifle
 	};
 
 	QString changeItemTypeToString(BS::ItemType type);
@@ -115,7 +131,8 @@ namespace BS {
 			Left      = 4,
 			LeftDown  = 5,
 			Down      = 6,
-			RightDown = 7
+			RightDown = 7,
+			Invalid   = 8
 		};
 
 		// Ditto.

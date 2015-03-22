@@ -31,13 +31,7 @@
 		"sightRange": 3.0,
 		"movementSpeed": 5,
 		"regeneration": 1.5,
-		"animations": {
-			"Idle": "SeniorCebulezIdle",
-			"Run": "SeniorCebulezWalk",
-			"Heal": "SeniorCebulezHeal",
-			"Attack": "SeniorCebulezAttack",
-			"RunAttack": "SeniorCebulezAttackRun"
-		}
+		"textureSet": "SeniorCebulez"
 	},
 
 

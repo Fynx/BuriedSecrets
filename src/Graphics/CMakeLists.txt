@@ -5,6 +5,7 @@ add_subdirectory(Effects)
 set (Graphics_SRCS
 	Camera.cpp
 	GraphicalFogOfWar.cpp
+	GraphicalTextureSet.cpp
 	Graphics.cpp
 	GraphicsDataManager.cpp
 	GraphicsWidget.cpp

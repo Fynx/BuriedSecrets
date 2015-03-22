@@ -15,7 +15,7 @@ public:
 
 	BS::Type getType() const;
 
-	Item *getUsedItem();
+	Item *getUsedItem() const;
 
 	Location *getLocation() const;
 	void setLocation(Location *location);

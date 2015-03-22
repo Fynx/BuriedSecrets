@@ -14,7 +14,7 @@ class TextureData {
 public:
 	typedef QList<QPair<QPair<BS::Graphic::Direction, int>, Resource *>> TextureFrames;
 
-	TextureData(const int rows, const int columns, const QString &data);
+	TextureData(const int rows, const int columns, const QByteArray &data);
 	~TextureData();
 	TextureFrames getFrames();
 

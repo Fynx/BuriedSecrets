@@ -2,8 +2,12 @@
  * All rights reserved.
  */
 #include "Common/Enums.hpp"
-#include "Common/Strings.hpp"
+
+#include <cassert>
+
 #include <QtCore>
+
+#include "Common/Strings.hpp"
 
 //TODO change to hashmaps
 
@@ -124,6 +128,7 @@ namespace BS {
 
 	ItemType changeStringToItemType(const QString &str)
 	{
+		assert(!::itemTypeToString.keys(str).empty());
 		return ::itemTypeToString.key(str, ItemType::Invalid);
 	}
 

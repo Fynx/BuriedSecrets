@@ -13,7 +13,7 @@
 TextureSet::TextureSet(const QList<QPair<QString, TextureData *>> &textures)
 {
 	// Parse the strings and create the list of images.
-	QRegExp re("([A-Z][a-z]+)([A-Za-z]*)");
+	QRegExp re("([A-Z][a-z]+)([A-Za-z ]*)");
 
 	for (const auto &entry : textures) {
 		ImageMetaData metaData;
@@ -39,7 +39,7 @@ TextureSet::TextureSet(const QList<QPair<QString, TextureData *>> &textures)
 }
 
 
-QList<QPair<ImageMetaData, Resource *>> TextureSet::getAllImages()
+QList<QPair<ImageMetaData, Resource *>> TextureSet::getAllImages() const
 {
 	return images;
 }

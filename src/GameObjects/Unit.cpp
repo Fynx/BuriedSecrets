@@ -28,7 +28,7 @@ BS::Type Unit::getType() const
 	return Type::Unit;
 }
 
-Item *Unit::getUsedItem()
+Item *Unit::getUsedItem() const
 {
 	switch (command) {
 	case Command::Attack:

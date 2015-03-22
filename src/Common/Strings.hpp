@@ -68,6 +68,7 @@ namespace Data {
 	const QString Rows          = "rows";
 	const QString Columns       = "columns";
 	const QString Textures      = "textures";
+	const QString TextureSet    = "textureSet";
 }
 
 namespace Effects {

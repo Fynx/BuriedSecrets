@@ -4,11 +4,13 @@
 #include "Graphics/Entities/GraphicalEntityFactory.hpp"
 
 #include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "Graphics/Entities/AnimationSet.hpp"
 #include "Graphics/Entities/AnimatedGraphicalEntity.hpp"
 #include "Graphics/Entities/MoveCommandEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/ShotEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/StaticGraphicalEntity.hpp"
+#include "Graphics/Entities/UnitGraphicalEntity.hpp"
 
 
 GraphicalEntityFactory::GraphicalEntityFactory(GraphicsDataManager *graphicsDataManager, const Viewport *viewport)
@@ -50,14 +52,6 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 		QList<QPointF> basePolygon;
 
 		if (objectType == "unit") {
-			// Build an AnimationSet object and pass it to the AnimatedGraphicalEntity
-			AnimationSet::SetType s;
-			const auto animationsList = object->getPrototype()->getAnimationsData();
-			for (const auto& anim: animationsList) {
-				s[anim->getState()] = graphicsDataManager->getAnimation(anim->getName());
-				qDebug() << anim->getName() << " for " << BS::changeStateToString(anim->getState());
-			}
-
 			// Get centre, radius and build a polygon emulating circle.
 			const float radius = object->getPrototype()->getProperty("baseRadius").toFloat();
 			QPointF centre = object->getPrototype()->getBaseCentre();
@@ -67,7 +61,28 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x() + radius, centre.y()}));
 			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x(), centre.y() + radius}));
 
-			ptr = new AnimatedGraphicalEntity(object, basePolygon, &graphicalEffectFactory, AnimationSet{s});
+			// Build an AnimationSet object and pass it to the AnimatedGraphicalEntity
+			AnimationSet::SetType s;
+			const auto animationsList = object->getPrototype()->getAnimationsData();
+			if (animationsList.empty()) {
+				// New textures.
+				const GraphicalTextureSet *textureSet = graphicsDataManager->getTextureSet(
+						object->getPrototype()->getProperty(Data::TextureSet).toString());
+				const Unit *unit = dynamic_cast<const Unit *>(object);
+				assert(unit != nullptr);	// If this fails, then something is REALLY messed up.
+				ptr = new UnitGraphicalEntity{unit, basePolygon, &graphicalEffectFactory, textureSet};
+			} else {
+				// Old textures.
+				for (const auto& anim: animationsList) {
+					s[anim->getState()] = graphicsDataManager->getAnimation(anim->getName());
+					qDebug() << anim->getName() << " for " <<
+							BS::changeStateToString(anim->getState());
+				}
+
+				ptr = new AnimatedGraphicalEntity(object, basePolygon, &graphicalEffectFactory,
+								  AnimationSet{s});
+			}
+
 		} else if (objectType == "location" || objectType == "environment") {
 			// Convert base polygon from metres to pixels.
 			basePolygon = object->getPrototype()->getBasePolygon();

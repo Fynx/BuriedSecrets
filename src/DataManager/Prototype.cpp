@@ -5,6 +5,19 @@
 
 #include <cassert>
 
+#include "DataManager/TextureSetData.hpp"
+
+
+Prototype::Prototype()
+	: textureSetData(nullptr)
+{}
+
+
+Prototype::~Prototype()
+{
+	delete textureSetData;
+}
+
 
 bool Prototype::hasProperty(const QString &key) const
 {
@@ -42,8 +55,8 @@ const QList<const AnimationData *> Prototype::getAnimationsData() const
 const AnimationData *Prototype::getAnimationData(const BS::State &state) const
 {
 	auto it = animationData.find(state);
-	assert(it != animationData.end());
-	return it.value();
+// 	assert(it != animationData.end());
+	return it == animationData.end() ? nullptr : it.value();
 }
 
 
@@ -52,6 +65,19 @@ void Prototype::addAnimationData(BS::State state, const AnimationData *data)
 	qDebug() << "Adding animationData for " << data->getName() << "(" << BS::changeStateToString(state) << ")";
 	assert(!animationData.contains(state));
 	animationData[state] = data;
+}
+
+
+const TextureSetData *Prototype::getTextureSetData() const
+{
+	return textureSetData;
+}
+
+
+void Prototype::setTextureSetData(TextureSetData *textureSetData)
+{
+	delete this->textureSetData;
+	this->textureSetData = textureSetData;
 }
 
 

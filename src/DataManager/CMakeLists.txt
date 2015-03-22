@@ -5,6 +5,7 @@ set (DataManager_SRCS
 	Resource.cpp
 	TextureData.cpp
 	TextureSet.cpp
+	TextureSetData.cpp
 )
 
 set (DataManager_HDRS
