@@ -57,13 +57,7 @@
 		"sightRange": 3.0,
 		"movementSpeed": 5,
 		"regeneration": 1.5,
-		"animations": {
-			"Idle": "SoszuIdle",
-			"Run": "SoszuWalking",
-			"Heal": "SoszuHeal",
-			"Attack": "SoszuAttack",
-			"RunAttack": "SoszuRunAttack"
-		}
+		"textureSet": "Soszu"
 	},
 
 

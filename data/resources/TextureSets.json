@@ -16,5 +16,12 @@
 			"RunAttack_Pistol": "DrSneeRunAttackPistol",
 			"Attack_Pistol": "DrSneeRunAttackPistol"
 		}
+	},
+
+	"Soszu": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "Soszu"
+		}
 	}
 }
