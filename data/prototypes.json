@@ -89,13 +89,7 @@
 		"sightRange": 3.0,
 		"movementSpeed": 5,
 		"regeneration": 1,
-		"animations": {
-			"Idle": "DrSneeIdle",
-			"Run": "DrSneeWalk",
-			"Heal": "DrSneeHeal",
-			"Attack": "DrSneeAttack",
-			"RunAttack": "DrSneeAttackRun"
-		}
+		"textureSet": "DrSnee"
 	},
 
 

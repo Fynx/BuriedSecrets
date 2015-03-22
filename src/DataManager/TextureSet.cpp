@@ -13,7 +13,7 @@
 TextureSet::TextureSet(const QList<QPair<QString, TextureData *>> &textures)
 {
 	// Parse the strings and create the list of images.
-	QRegExp re("([A-Z][a-z]+)([A-Za-z ]*)");
+	QRegExp re("([A-Za-z ]+)(_[A-Za-z ]+)?");
 
 	for (const auto &entry : textures) {
 		ImageMetaData metaData;
@@ -27,7 +27,7 @@ TextureSet::TextureSet(const QList<QPair<QString, TextureData *>> &textures)
 		// Extract state and weapon from the string.
 		metaData.state = BS::changeStringToState(re.cap(1));
 		metaData.weapon = (re.captureCount() > 2) ?
-				BS::changeStringToItemType(re.cap(2)) : BS::ItemType::Invalid;
+				BS::changeStringToItemType(re.cap(2).remove(0, 1)) : BS::ItemType::Invalid;
 
 		const auto &frames = entry.second->getFrames();
 		for (const auto &frame : frames) {

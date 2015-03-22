@@ -6,5 +6,15 @@
 			"Idle": "SeniorCebulezIdlePistol",
 			"Attack": "SeniorCebulezAttackPistol"
 		}
+	},
+
+	"DrSnee": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "DrSneeIdlePistol",
+			"Run_Pistol": "DrSneeRunPistol",
+			"RunAttack_Pistol": "DrSneeRunAttackPistol",
+			"Attack_Pistol": "DrSneeRunAttackPistol"
+		}
 	}
 }
