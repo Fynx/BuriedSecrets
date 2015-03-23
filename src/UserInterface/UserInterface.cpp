@@ -25,7 +25,7 @@ UserInterface::UserInterface(General *general, DataManager *dataManager)
 
 	initWindows();
 	initLayout();
-// 	initDevActionsMenu();
+	initDevActionsMenu();
 
 	stackedWidget_->setCursor(BSCursor(Cursors::PointerPrimary));
 }
