@@ -5,8 +5,6 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
-#include "Graphics/Entities/AnimationSet.hpp"
-#include "Graphics/Entities/AnimatedGraphicalEntity.hpp"
 #include "Graphics/Entities/MoveCommandEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/ShotEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/StaticGraphicalEntity.hpp"
@@ -61,28 +59,12 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x() + radius, centre.y()}));
 			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x(), centre.y() + radius}));
 
-			// Build an AnimationSet object and pass it to the AnimatedGraphicalEntity
-			AnimationSet::SetType s;
-			const auto animationsList = object->getPrototype()->getAnimationsData();
-			if (animationsList.empty()) {
-				// New textures.
-				const GraphicalTextureSet *textureSet = graphicsDataManager->getTextureSet(
-						object->getPrototype()->getProperty(Data::TextureSet).toString());
-				const Unit *unit = dynamic_cast<const Unit *>(object);
-				assert(unit != nullptr);	// If this fails, then something is REALLY messed up.
-				ptr = new UnitGraphicalEntity{unit, basePolygon, &graphicalEffectFactory, textureSet};
-			} else {
-				// Old textures.
-				for (const auto& anim: animationsList) {
-					s[anim->getState()] = graphicsDataManager->getAnimation(anim->getName());
-					qDebug() << anim->getName() << " for " <<
-							BS::changeStateToString(anim->getState());
-				}
-
-				ptr = new AnimatedGraphicalEntity(object, basePolygon, &graphicalEffectFactory,
-								  AnimationSet{s});
-			}
-
+			// New textures.
+			const GraphicalTextureSet *textureSet = graphicsDataManager->getTextureSet(
+					object->getPrototype()->getProperty(Data::TextureSet).toString());
+			const Unit *unit = dynamic_cast<const Unit *>(object);
+			assert(unit != nullptr);	// If this fails, then something is REALLY messed up.
+			ptr = new UnitGraphicalEntity{unit, basePolygon, &graphicalEffectFactory, textureSet};
 		} else if (objectType == "location" || objectType == "environment") {
 			// Convert base polygon from metres to pixels.
 			basePolygon = object->getPrototype()->getBasePolygon();

@@ -42,32 +42,6 @@ void Prototype::setProperty(const QString &key, const QVariant &value)
 }
 
 
-const QList<const AnimationData *> Prototype::getAnimationsData() const
-{
-	QList<const AnimationData *> result;
-	for (auto val: animationData) {
-		result.append(val);
-	}
-	return result;
-}
-
-
-const AnimationData *Prototype::getAnimationData(const BS::State &state) const
-{
-	auto it = animationData.find(state);
-// 	assert(it != animationData.end());
-	return it == animationData.end() ? nullptr : it.value();
-}
-
-
-void Prototype::addAnimationData(BS::State state, const AnimationData *data)
-{
-	qDebug() << "Adding animationData for " << data->getName() << "(" << BS::changeStateToString(state) << ")";
-	assert(!animationData.contains(state));
-	animationData[state] = data;
-}
-
-
 const TextureSetData *Prototype::getTextureSetData() const
 {
 	return textureSetData;

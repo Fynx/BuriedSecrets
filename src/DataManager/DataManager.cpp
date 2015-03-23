@@ -19,7 +19,6 @@ DataManager::~DataManager()
 {
 	qDeleteAll(prototypes);
 	qDeleteAll(resources);
-	qDeleteAll(animationData);
 	qDeleteAll(textureSets);
 	qDeleteAll(texturesData);
 }
@@ -41,11 +40,6 @@ const Prototype *DataManager::getPrototype(const QString &name) const
 const Resource *DataManager::getResource(const QString &name) const
 {
 	return resources[name];
-}
-
-const AnimationData *DataManager::getAnimationData(const QString &name) const
-{
-	return animationData[name];
 }
 
 const TextureSet *DataManager::getTextureSet(const QString &name) const
@@ -118,15 +112,6 @@ void DataManager::loadPrototypes()
 // 			qDebug() << "\t\t" << key << value.toVariant();
 		}
 
-		if (prototype->hasProperty(Data::Animations)) {
-			auto animations = prototype->getProperty(Data::Animations).toMap();
-
-			for (const QString &key : animations.keys()) {
-				const AnimationData *animData = getAnimationData(animations[key].toString());
-				prototype->addAnimationData(BS::changeStringToState(key), animData);
-			}
-		}
-
 		if (prototype->hasProperty(Data::TextureSet)) {
 			prototype->setTextureSetData(new TextureSetData(getTextureSet(
 					prototype->getProperty(Data::TextureSet).toString())));
@@ -185,16 +170,7 @@ void DataManager::loadResources()
 			for (const QString &key : json.keys()) {
 				const QJsonObject &obj = json[key].toObject();
 				QString typeString = obj[Properties::Type].toString();
-				if (typeString == Resources::Animation) {
-					AnimationData *animation = new AnimationData(
-						key,
-						BS::changeStringToState(obj[TempData::State].toString()),
-						obj[AnimationProperties::FramesNumber].toInt(),
-						obj[AnimationProperties::Frames].toArray().toVariantList()
-					);
-					qDebug() << key << obj[TempData::State].toString();
-					animationData[key] = animation;
-				} else if (typeString == Resources::Texture || typeString == Resources::Font
+				if (typeString == Resources::Texture || typeString == Resources::Font
 				           || typeString == Resources::Image) {
 					/** Load the data from the file */
 					QByteArray resourceData = readRawData(preffix + obj[Data::Data].toString());
@@ -238,13 +214,4 @@ void DataManager::loadResources()
 }
 
 void DataManager::validateResources() const
-{
-	for (const auto &anim: animationData) {
-		for (const auto &frames: anim->getFramesDescription()) {
-			for (const auto &str: frames) {
-				assert(resources.contains(str));
-				// TODO FIXME Assert that the type is a Texture.
-			}
-		}
-	}
-}
+{}

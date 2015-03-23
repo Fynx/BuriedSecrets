@@ -59,7 +59,6 @@ namespace Attributes {                                 // Converted into class f
 }
 
 namespace Data {
-	const QString Animations    = "animations";
 	const QString Animators     = "animators";
 	const QString Data          = "data";
 	const QString Objects       = "objects";
@@ -90,7 +89,6 @@ namespace MapProperties {
 }
 
 namespace Resources {
-	const QString Animation     = "animation";
 	const QString Font          = "font";
 	const QString Image         = "image";
 	const QString Texture       = "texture";

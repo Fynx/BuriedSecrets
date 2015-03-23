@@ -1,5 +1,4 @@
 set (DataManager_SRCS
-	AnimationData.cpp
 	DataManager.cpp
 	Prototype.cpp
 	Resource.cpp

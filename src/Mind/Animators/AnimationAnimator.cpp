@@ -1,11 +1,11 @@
 /* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
+#include "Mind/Animators/AnimationAnimator.hpp"
+
 #include "DataManager/TextureSetData.hpp"
 #include "DebugManager/DebugManager.hpp"
-
 #include "GameObjects/Unit.hpp"
-#include "Mind/Animators/AnimationAnimator.hpp"
 
 
 AnimationAnimator::AnimationAnimator(Mind *mind)
@@ -20,7 +20,6 @@ void AnimationAnimator::act()
 	for (auto &obj: objects) {
 		if (obj->getState() == BS::State::Inside)
 			continue;
-		auto *animData = obj->getPrototype()->getAnimationData(obj->getState());
 		BS::State state = obj->getState();
 		BS::ItemType weapon = BS::ItemType::Invalid;
 		const Unit *unit = dynamic_cast<const Unit *>(obj);
@@ -37,8 +36,7 @@ void AnimationAnimator::act()
 			}
 		}
 
-		int allFrames = ((animData != nullptr) ? animData->getFramesNumber() :
-				obj->getPrototype()->getTextureSetData()->getFramesNumber(state, weapon));
+		int allFrames = obj->getPrototype()->getTextureSetData()->getFramesNumber(state, weapon);
 		int currentFrame = obj->getFrame();
 		if (currentFrame + 1 >= allFrames) {
 			obj->setState(BS::State::Idle);

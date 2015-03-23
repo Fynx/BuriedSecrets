@@ -21,9 +21,6 @@ GraphicsDataManager::~GraphicsDataManager()
 	for (auto &elem: textures) {
 		delete elem.first;
 	}
-	for (auto &elem: animations) {
-		delete elem.first;
-	}
 	for (auto &elem: fonts) {
 		delete elem.first;
 	}
@@ -48,37 +45,6 @@ const Texture* GraphicsDataManager::getTexture(const QString& name)
 			// TODO should we die miserably here?
 		}
 		textures[name] = QPair<Texture *, int>{result, 1};
-	} else {
-		it->second++;
-		result = it->first;
-	}
-
-	return result;
-}
-
-
-const Animation *GraphicsDataManager::getAnimation(const QString &name)
-{
-	Animation *result = nullptr;
-
-	auto it = animations.find(name);
-	if (it == animations.end()) {
-		const AnimationData *animationData = dataManager->getAnimationData(name);
-		Animation::FramesList frames;
-		auto framesDescription = animationData->getFramesDescription();
-
-		// Assert 8 directions (needed for isometric graphics).
-		assert(framesDescription.length() == 8);
-
-		for (int dir = 0; dir < framesDescription.length(); ++dir) {
-			frames.append(QVector<const sf::Texture *>{});
-			for (const QString &frameName: framesDescription[dir]) {
-				frames[dir].append(getTexture(frameName));
-			}
-		}
-
-		result = new Animation{frames};
-		animations[name] = QPair<Animation *, int>{result, 1};
 	} else {
 		it->second++;
 		result = it->first;

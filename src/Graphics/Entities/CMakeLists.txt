@@ -1,7 +1,4 @@
 set (Entities_SRCS
-	Animation.cpp
-	AnimationSet.cpp
-	AnimatedGraphicalEntity.cpp
 	EffectGraphicalEntity.cpp
 	GraphicalEntity.cpp
 	GraphicalEntityFactory.cpp
