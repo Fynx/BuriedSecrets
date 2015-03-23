@@ -140,13 +140,7 @@
 		"psychosis": 100,
 		"sightRange": 1,
 		"movementSpeed": 7,
-		"animations": {
-			"Idle": "MobSoldierIdle",
-			"Run": "MobSoldierRun",
-			"Heal": "MobSoldierHeal",
-			"Attack": "MobSoldierAttack",
-			"RunAttack": "MobSoldierRunAttack"
-		}
+		"textureSet": "MobSoldier"
 	},
 
 

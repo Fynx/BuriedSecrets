@@ -33,5 +33,15 @@
 			"Attack": "MobWomanAttack",
 			"RunAttack": "MobWomanAttack"
 		}
+	},
+
+	"MobSoldier": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "MobSoldierIdle",
+			"Run": "MobSoldierRun",
+			"Attack": "MobSoldierAttack",
+			"RunAttack": "MobSoldierAttack"
+		}
 	}
 }

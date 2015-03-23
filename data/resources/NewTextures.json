@@ -67,5 +67,26 @@
 		"rows": 8,
 		"columns": 8,
 		"path": "images/units/MobWoman/Attack.png"
+	},
+
+	"MobSoldierIdle": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/MobSoldier/Idle.png"
+	},
+
+	"MobSoldierRun": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 10,
+		"path": "images/units/MobSoldier/Run.png"
+	},
+
+	"MobSoldierAttack": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 13,
+		"path": "images/units/MobSoldier/Attack.png"
 	}
 }
