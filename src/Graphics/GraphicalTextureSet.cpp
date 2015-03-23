@@ -8,7 +8,13 @@
 
 GraphicalTextureSet::GraphicalTextureSet(const GraphicalTextureSet::FrameSet &frameSet)
 		: frames{frameSet}
-{}
+{
+	QSet<BS::Graphic::Direction> directions;
+	for (auto iter = frameSet.constBegin(); iter != frameSet.constEnd(); ++iter) {
+		directions.insert(iter.key().direction);
+	}
+	numDirections = directions.size();
+}
 
 
 const sf::Texture *GraphicalTextureSet::getFrame(ImageMetaData key) const
@@ -36,3 +42,8 @@ const sf::Texture *GraphicalTextureSet::getFrame(ImageMetaData key) const
 	return it.value();
 }
 
+
+int GraphicalTextureSet::getNumDirections() const
+{
+	return numDirections;
+}

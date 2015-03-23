@@ -13,7 +13,9 @@ public:
 	GraphicalTextureSet(const FrameSet &frameSet);
 
 	const sf::Texture *getFrame(ImageMetaData key) const;
+	int getNumDirections() const;
 
 private:
 	FrameSet frames;
+	int numDirections;
 };

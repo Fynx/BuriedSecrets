@@ -130,5 +130,61 @@
 		"rows": 8,
 		"columns": 8,
 		"path": "images/units/MobTank/Attack.png"
+	},
+
+	"SoszuHouse": {
+		"type": "NewTexture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/SoszuHouse.png"
+	},
+
+	"WiredFence": {
+		"type": "NewTexture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/WiredFence.png"
+	},
+
+	"Bunker": {
+		"type": "NewTexture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/Bunker.png"
+	},
+
+	"PlayerCamp": {
+		"type": "NewTexture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/PlayerCamp.png"
+	},
+
+	"Destination": {
+		"type": "NewTexture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/Destination.png"
+	},
+
+	"MobHouse1": {
+		"type": "NewTexture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/MobHouse1.png"
+	},
+
+	"MobHouse2": {
+		"type": "NewTexture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/MobHouse2.png"
+	},
+
+	"MobHouse3": {
+		"type": "NewTexture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/MobHouse3.png"
 	}
 }

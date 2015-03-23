@@ -3,38 +3,6 @@
 		"type": "texture",
 		"data": "images/Map0.png"
 	},
-	"SoszuHouse": {
-		"type": "texture",
-		"data": "images/SoszuHouse.png"
-	},
-	"WiredFence": {
-		"type": "texture",
-		"data": "images/WiredFence.png"
-	},
-	"Bunker": {
-		"type": "texture",
-		"data": "images/Bunker.png"
-	},
-	"PlayerCamp": {
-		"type": "texture",
-		"data": "images/PlayerCamp.png"
-	},
-	"Destination": {
-		"type": "texture",
-		"data": "images/Destination.png"
-	},
-	"MobHouse1": {
-		"type": "texture",
-		"data": "images/MobHouse1.png"
-	},
-	"MobHouse2": {
-		"type": "texture",
-		"data": "images/MobHouse2.png"
-	},
-	"MobHouse3": {
-		"type": "texture",
-		"data": "images/MobHouse3.png"
-	},
 	"Empty": {
 		"type": "texture",
 		"data": "images/Empty.png"

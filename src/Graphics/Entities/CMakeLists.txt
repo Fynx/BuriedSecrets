@@ -2,10 +2,12 @@ set (Entities_SRCS
 	EffectGraphicalEntity.cpp
 	GraphicalEntity.cpp
 	GraphicalEntityFactory.cpp
+	LocationGraphicalEntity.cpp
 	MoveCommandEffectGraphicalEntity.cpp
 	ShotEffectGraphicalEntity.cpp
 	SpriteGraphicalEntity.cpp
 	StaticGraphicalEntity.cpp
+	TexturedGraphicalEntity.cpp
 	UnitGraphicalEntity.cpp
 )
 

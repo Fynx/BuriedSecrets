@@ -3,8 +3,6 @@
  */
 #include "Graphics/Entities/UnitGraphicalEntity.hpp"
 
-#include <cassert>
-
 #include "DataManager/ImageMetaData.hpp"
 #include "DebugManager/DebugManager.hpp"
 
@@ -12,17 +10,11 @@
 UnitGraphicalEntity::UnitGraphicalEntity(const Unit *unit, const QList<QPointF> &basePolygon,
 					 GraphicalEffectFactory *graphicalEffectFactory,
 					 const GraphicalTextureSet* textureSet)
-		: SpriteGraphicalEntity{unit, basePolygon, graphicalEffectFactory}, textureSet{textureSet}, unit{unit}
+		: TexturedGraphicalEntity{unit, basePolygon, graphicalEffectFactory, textureSet}, unit{unit}
 {}
 
 
-void UnitGraphicalEntity::setDirection(const BS::Graphic::Direction &direction)
-{
-	this->direction = direction;
-}
-
-
-void UnitGraphicalEntity::update(const float timeDelta)
+ImageMetaData UnitGraphicalEntity::getImageMetaData() const
 {
 	ImageMetaData metaData;
 
@@ -43,7 +35,5 @@ void UnitGraphicalEntity::update(const float timeDelta)
 		}
 	}
 
-	sprite.setTexture(*(textureSet->getFrame(metaData)));
+	return metaData;
 }
-
-

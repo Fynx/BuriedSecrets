@@ -60,6 +60,7 @@ void DataManager::loadFromFile(const QString &path, T &s)
 	QFile file(path);
 	if (!file.open(QIODevice::ReadOnly)) {
 		warn(QString("DataManager: Failed to load file ") + path);
+		assert(false);
 		return;
 	}
 
@@ -74,6 +75,7 @@ void DataManager::saveToFile(const QString &path, const T &s)
 
 	if (!tmpFile.open(QIODevice::WriteOnly)) {
 		warn(QString("DataManager: Failed to save to ") + path);
+		assert(false);
 		return;
 	}
 

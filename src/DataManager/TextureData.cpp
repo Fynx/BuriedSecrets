@@ -30,9 +30,11 @@ TextureData::TextureData(const int rows, const int columns, const QByteArray &da
 			QImage frameImage = texture.copy(frame * frameWidth, dir * frameHeight,
 							 frameWidth, frameHeight);
 			frameImage.save(&imageData, "PNG");
-			
-			frames.append({{static_cast<BS::Graphic::Direction>(dir), frame},
-				       new Resource(imageData.data().data(), imageData.data().length())});
+
+			frames.append({
+					{rows > 1 ? static_cast<BS::Graphic::Direction>(dir) :
+							BS::Graphic::Direction::Invalid, frame},
+					new Resource(imageData.data().data(), imageData.data().length())});
 		}
 	}
 }

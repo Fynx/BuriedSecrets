@@ -2,25 +2,18 @@
  * All rights reserved.
  */
 #pragma once
-#include "DataManager/ImageMetaData.hpp"
 #include "GameObjects/Unit.hpp"
-#include "Graphics/Entities/SpriteGraphicalEntity.hpp"
-#include "Graphics/GraphicalTextureSet.hpp"
+#include "Graphics/Entities/TexturedGraphicalEntity.hpp"
 
 
-class TextureSet;
-
-
-class UnitGraphicalEntity : public SpriteGraphicalEntity {
+class UnitGraphicalEntity : public TexturedGraphicalEntity {
 public:
 	UnitGraphicalEntity(const Unit *unit, const QList<QPointF> &basePolygon,
 			    GraphicalEffectFactory *graphicalEffectFactory, const GraphicalTextureSet *textureSet);
-	void setDirection(const BS::Graphic::Direction &direction) override;
-	void update(const float timeDelta) override;
+
+protected:
+	ImageMetaData getImageMetaData() const override;
 
 private:
-	BS::Graphic::Direction direction;
-
-	const GraphicalTextureSet *textureSet;
 	const Unit *unit;
 };

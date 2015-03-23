@@ -5,6 +5,7 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Graphics/Entities/LocationGraphicalEntity.hpp"
 #include "Graphics/Entities/MoveCommandEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/ShotEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/StaticGraphicalEntity.hpp"
@@ -65,7 +66,7 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 			const Unit *unit = dynamic_cast<const Unit *>(object);
 			assert(unit != nullptr);	// If this fails, then something is REALLY messed up.
 			ptr = new UnitGraphicalEntity{unit, basePolygon, &graphicalEffectFactory, textureSet};
-		} else if (objectType == "location" || objectType == "environment") {
+		} else if (objectType == "environment") {
 			// Convert base polygon from metres to pixels.
 			basePolygon = object->getPrototype()->getBasePolygon();
 			for (QPointF &p: basePolygon) {
@@ -75,6 +76,20 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 			ptr = new StaticGraphicalEntity(object, basePolygon, &graphicalEffectFactory,
 					graphicsDataManager->getTexture(
 							object->getPrototype()->getProperty("textureName").toString()));
+		} else if (objectType == "location") {
+			// Convert base polygon from metres to pixels.
+			basePolygon = object->getPrototype()->getBasePolygon();
+			for (QPointF &p: basePolygon) {
+				p = viewport->fromMetresToPixels(p);
+			}
+
+			const Location *location = dynamic_cast<const Location *>(object);
+			assert(location != nullptr);
+
+			ptr = new LocationGraphicalEntity{location, basePolygon, &graphicalEffectFactory,
+					graphicsDataManager->getTextureSet(
+							object->getPrototype()->getProperty(
+									Data::TextureSet).toString())};
 		} else {
 			qDebug() << "FAIL!";
 			Q_ASSERT(false);	// Not a known type.
@@ -132,6 +147,3 @@ void GraphicalEntityFactory::deleteObjects()
 	qDeleteAll(objectEntities);
 	qDeleteAll(effectEntities);
 }
-
-
-

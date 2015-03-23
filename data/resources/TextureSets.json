@@ -63,5 +63,61 @@
 			"Attack": "MobTankAttack",
 			"RunAttack": "MobTankAttack"
 		}
+	},
+
+	"SoszuHouse": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "SoszuHouse"
+		}
+	},
+
+	"WiredFence": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "WiredFence"
+		}
+	},
+
+	"Bunker": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "Bunker"
+		}
+	},
+
+	"PlayerCamp": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "PlayerCamp"
+		}
+	},
+
+	"Destination": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "Destination"
+		}
+	},
+
+	"MobHouse1": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "MobHouse1"
+		}
+	},
+
+	"MobHouse2": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "MobHouse2"
+		}
+	},
+
+	"MobHouse3": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "MobHouse3"
+		}
 	}
 }
