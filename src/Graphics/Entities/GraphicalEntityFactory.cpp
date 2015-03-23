@@ -5,6 +5,7 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Graphics/Entities/EnvironmentGraphicalEntity.hpp"
 #include "Graphics/Entities/LocationGraphicalEntity.hpp"
 #include "Graphics/Entities/MoveCommandEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/ShotEffectGraphicalEntity.hpp"
@@ -47,13 +48,14 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 	GraphicalEntity *ptr = nullptr;
 
 	if (iter == objectEntities.end()) {
-		auto objectType = object->getPrototype()->getProperty("type").toString();
+		const Prototype *prototype = object->getPrototype();
+		auto objectType = prototype->getProperty("type").toString();
 		QList<QPointF> basePolygon;
 
 		if (objectType == "unit") {
 			// Get centre, radius and build a polygon emulating circle.
-			const float radius = object->getPrototype()->getProperty("baseRadius").toFloat();
-			QPointF centre = object->getPrototype()->getBaseCentre();
+			const float radius = prototype->getProperty("baseRadius").toFloat();
+			QPointF centre = prototype->getBaseCentre();
 			// Clockwise
 			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x() - radius, centre.y()}));
 			basePolygon.append(viewport->fromMetresToPixels(QPointF{centre.x(), centre.y() - radius}));
@@ -62,34 +64,35 @@ GraphicalEntity *GraphicalEntityFactory::getOrCreate(const Object *object)
 
 			// New textures.
 			const GraphicalTextureSet *textureSet = graphicsDataManager->getTextureSet(
-					object->getPrototype()->getProperty(Data::TextureSet).toString());
+					prototype->getProperty(Data::TextureSet).toString());
 			const Unit *unit = dynamic_cast<const Unit *>(object);
 			assert(unit != nullptr);	// If this fails, then something is REALLY messed up.
 			ptr = new UnitGraphicalEntity{unit, basePolygon, &graphicalEffectFactory, textureSet};
-		} else if (objectType == "environment") {
+		} else if (objectType == "location" || objectType == "environment") {
 			// Convert base polygon from metres to pixels.
-			basePolygon = object->getPrototype()->getBasePolygon();
+			basePolygon = prototype->getBasePolygon();
 			for (QPointF &p: basePolygon) {
 				p = viewport->fromMetresToPixels(p);
 			}
 
-			ptr = new StaticGraphicalEntity(object, basePolygon, &graphicalEffectFactory,
-					graphicsDataManager->getTexture(
-							object->getPrototype()->getProperty("textureName").toString()));
-		} else if (objectType == "location") {
-			// Convert base polygon from metres to pixels.
-			basePolygon = object->getPrototype()->getBasePolygon();
-			for (QPointF &p: basePolygon) {
-				p = viewport->fromMetresToPixels(p);
+			if (objectType == "location") {
+				const Location *location = dynamic_cast<const Location *>(object);
+				assert(location != nullptr);
+
+				ptr = new LocationGraphicalEntity{location, basePolygon, &graphicalEffectFactory,
+						graphicsDataManager->getTextureSet(
+								prototype->getProperty(Data::TextureSet).toString())};
+			} else {
+				const Environment *environmentObject = dynamic_cast<const Environment *>(object);
+				assert(environmentObject != nullptr);
+
+				ptr = new EnvironmentGraphicalEntity(environmentObject, basePolygon,
+						&graphicalEffectFactory,
+						environmentObject->isTransparent() ? nullptr :
+								graphicsDataManager->getTextureSet(
+										prototype->getProperty(Data::TextureSet
+												).toString()));
 			}
-
-			const Location *location = dynamic_cast<const Location *>(object);
-			assert(location != nullptr);
-
-			ptr = new LocationGraphicalEntity{location, basePolygon, &graphicalEffectFactory,
-					graphicsDataManager->getTextureSet(
-							object->getPrototype()->getProperty(
-									Data::TextureSet).toString())};
 		} else {
 			qDebug() << "FAIL!";
 			Q_ASSERT(false);	// Not a known type.

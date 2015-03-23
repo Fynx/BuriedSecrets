@@ -3,10 +3,6 @@
 		"type": "texture",
 		"data": "images/Map0.png"
 	},
-	"Empty": {
-		"type": "texture",
-		"data": "images/Empty.png"
-	},
 	"ArrowDown": {
 		"type": "texture",
 		"data": "images/arrow-down.png"

@@ -1,5 +1,6 @@
 set (Entities_SRCS
 	EffectGraphicalEntity.cpp
+	EnvironmentGraphicalEntity.cpp
 	GraphicalEntity.cpp
 	GraphicalEntityFactory.cpp
 	LocationGraphicalEntity.cpp
