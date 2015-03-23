@@ -100,13 +100,7 @@
 		"psychosis": 100,
 		"sightRange": 1,
 		"movementSpeed": 6,
-		"animations": {
-			"Idle": "MobPeasantIdle",
-			"Run": "MobPeasantRun",
-			"Heal": "MobPeasantHeal",
-			"Attack": "MobPeasantAttack",
-			"RunAttack": "MobPeasantRunAttack"
-		}
+		"textureSet": "MobPeasant"
 	},
 
 

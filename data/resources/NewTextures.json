@@ -88,5 +88,26 @@
 		"rows": 8,
 		"columns": 13,
 		"path": "images/units/MobSoldier/Attack.png"
+	},
+
+	"MobPeasantIdle": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/MobPeasant/Idle.png"
+	},
+
+	"MobPeasantRun": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 10,
+		"path": "images/units/MobPeasant/Run.png"
+	},
+
+	"MobPeasantAttack": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 8,
+		"path": "images/units/MobPeasant/Attack.png"
 	}
 }
