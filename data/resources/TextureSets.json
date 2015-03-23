@@ -23,5 +23,15 @@
 		"textures": {
 			"Idle": "Soszu"
 		}
+	},
+
+	"MobWoman": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "MobWomanIdle",
+			"Run": "MobWomanRun",
+			"Attack": "MobWomanAttack",
+			"RunAttack": "MobWomanAttack"
+		}
 	}
 }

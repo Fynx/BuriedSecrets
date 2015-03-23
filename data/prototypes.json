@@ -123,13 +123,7 @@
 		"psychosis": 100,
 		"sightRange": 1,
 		"movementSpeed": 5,
-		"animations": {
-			"Idle": "MobWomanIdle",
-			"Run": "MobWomanRun",
-			"Heal": "MobWomanHeal",
-			"Attack": "MobWomanAttack",
-			"RunAttack": "MobWomanRunAttack"
-		}
+		"textureSet": "MobWoman"
 	},
 
 
