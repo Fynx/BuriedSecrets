@@ -109,5 +109,26 @@
 		"rows": 8,
 		"columns": 8,
 		"path": "images/units/MobPeasant/Attack.png"
+	},
+
+	"MobTankIdle": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/MobTank/Idle.png"
+	},
+
+	"MobTankRun": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 10,
+		"path": "images/units/MobTank/Run.png"
+	},
+
+	"MobTankAttack": {
+		"type": "NewTexture",
+		"rows": 8,
+		"columns": 8,
+		"path": "images/units/MobTank/Attack.png"
 	}
 }

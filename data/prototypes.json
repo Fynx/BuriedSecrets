@@ -151,13 +151,7 @@
 		"psychosis": 100,
 		"sightRange": 1.0,
 		"movementSpeed": 4,
-		"animations": {
-			"Idle": "MobTankIdle",
-			"Run": "MobTankRun",
-			"Heal": "MobTankHeal",
-			"Attack": "MobTankAttack",
-			"RunAttack": "MobTankRunAttack"
-		}
+		"textureSet": "MobTank"
 	},
 
 

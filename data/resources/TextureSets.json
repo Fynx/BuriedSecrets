@@ -53,5 +53,15 @@
 			"Attack": "MobPeasantAttack",
 			"RunAttack": "MobPeasantAttack"
 		}
+	},
+
+	"MobTank": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "MobTankIdle",
+			"Run": "MobTankRun",
+			"Attack": "MobTankAttack",
+			"RunAttack": "MobTankAttack"
+		}
 	}
 }
