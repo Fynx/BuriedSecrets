@@ -1,13 +1,15 @@
 set (ContentEditor_SRCS
 	ContentEditor.cpp
+	PrototypesEditor.cpp
 	main.cpp
 )
 
 set (ContentEditor_HDRS
 	ContentEditor.hpp
+	PrototypesEditor.hpp
 )
 
-qt_wrap_cpp (ContentEditor_SRCS ${ContentEditor_SRCS})
+qt5_wrap_cpp (ContentEditor_SRCS ${ContentEditor_HDRS})
 
 add_executable (ContentEditor ${ContentEditor_SRCS})
 target_link_libraries (ContentEditor

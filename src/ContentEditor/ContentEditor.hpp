@@ -4,8 +4,27 @@
 #pragma once
 
 #include <QtWidgets>
+#include "ContentEditor/PrototypesEditor.hpp"
 
-class ContentEditor : public QMainWindow {
+class ContentEditor : public QWidget {
+Q_OBJECT;
+
 public:
+	ContentEditor();
+	virtual ~ContentEditor();
+
 private:
+	void initObjects();
+	void initLayout();
+
+	void onSave();
+	void onQuit();
+
+	virtual void keyPressEvent(QKeyEvent *event);
+
+	QTabWidget *tabWidget;
+	PrototypesEditor *prototypesEditor;
+
+	QPushButton *buttonSave;
+	QPushButton *buttonQuit;
 };
