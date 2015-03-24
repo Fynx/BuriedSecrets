@@ -1,10 +1,204 @@
 {
+	"SeniorCebulezRunHandgun": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 11,
+		"path": "images/units/SeniorCebulez/WalkHandgun.png"
+	},
+
+	"SeniorCebulezIdlePistol": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/SeniorCebulez/IdlePistol.png"
+	},
+
+	"SeniorCebulezAttackPistol": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 3,
+		"path": "images/units/SeniorCebulez/AttackPistol.png"
+	},
+
+	"DrSneeIdlePistol": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/DrSnee/IdlePistol.png"
+	},
+
+	"DrSneeRunPistol": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 15,
+		"path": "images/units/DrSnee/RunPistol.png"
+	},
+
+	"DrSneeRunAttackPistol": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 4,
+		"path": "images/units/DrSnee/RunAttackPistol.png"
+	},
+
+	"Soszu": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 3,
+		"path": "images/Soszu.png"
+	},
+
+	"MobWomanIdle": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/MobWoman/Idle.png"
+	},
+
+	"MobWomanRun": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 10,
+		"path": "images/units/MobWoman/Run.png"
+	},
+
+	"MobWomanAttack": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 8,
+		"path": "images/units/MobWoman/Attack.png"
+	},
+
+	"MobSoldierIdle": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/MobSoldier/Idle.png"
+	},
+
+	"MobSoldierRun": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 10,
+		"path": "images/units/MobSoldier/Run.png"
+	},
+
+	"MobSoldierAttack": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 13,
+		"path": "images/units/MobSoldier/Attack.png"
+	},
+
+	"MobPeasantIdle": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/MobPeasant/Idle.png"
+	},
+
+	"MobPeasantRun": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 10,
+		"path": "images/units/MobPeasant/Run.png"
+	},
+
+	"MobPeasantAttack": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 8,
+		"path": "images/units/MobPeasant/Attack.png"
+	},
+
+	"MobTankIdle": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/MobTank/Idle.png"
+	},
+
+	"MobTankRun": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 10,
+		"path": "images/units/MobTank/Run.png"
+	},
+
+	"MobTankAttack": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 8,
+		"path": "images/units/MobTank/Attack.png"
+	},
+
+	"SoszuHouse": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/SoszuHouse.png"
+	},
+
+	"WiredFence": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/WiredFence.png"
+	},
+
+	"Bunker": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/Bunker.png"
+	},
+
+	"PlayerCamp": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/PlayerCamp.png"
+	},
+
+	"Destination": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/Destination.png"
+	},
+
+	"MobHouse1": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/MobHouse1.png"
+	},
+
+	"MobHouse2": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/MobHouse2.png"
+	},
+
+	"MobHouse3": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/MobHouse3.png"
+	},
+
 	"Map0": {
 		"type": "texture",
-		"data": "images/Map0.png"
+		"rows": 1,
+		"columns": 1,
+		"path": "images/Map0.png"
 	},
+
 	"ArrowDown": {
 		"type": "texture",
-		"data": "images/arrow-down.png"
+		"rows": 1,
+		"columns": 1,
+		"path": "images/arrow-down.png"
 	}
 }

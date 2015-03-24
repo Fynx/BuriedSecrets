@@ -170,7 +170,7 @@ void DataManager::loadResources()
 			for (const QString &key : json.keys()) {
 				const QJsonObject &obj = json[key].toObject();
 				QString typeString = obj[Properties::Type].toString();
-				if (typeString == Resources::Texture || typeString == Resources::Font
+				if (typeString == Resources::Font
 				           || typeString == Resources::Image) {
 					/** Load the data from the file */
 					QByteArray resourceData = readRawData(preffix + obj[Data::Data].toString());
@@ -187,7 +187,7 @@ void DataManager::loadResources()
 						textureSet.append({it.key(), it.value().toString()});
 					}
 					textureSetsData[key] = textureSet;
-				} else if (typeString == "NewTexture") {
+				} else if (typeString == Resources::Texture) {
 					// Create a new TextureData object.
 					QByteArray textureData = readRawData(preffix + obj[Data::Path].toString());
 					int rows = obj[Data::Rows].toInt();

@@ -18,9 +18,6 @@ GraphicsDataManager::GraphicsDataManager(const DataManager* dataManager)
 
 GraphicsDataManager::~GraphicsDataManager()
 {
-	for (auto &elem: textures) {
-		delete elem.first;
-	}
 	for (auto &elem: fonts) {
 		delete elem.first;
 	}
@@ -28,29 +25,6 @@ GraphicsDataManager::~GraphicsDataManager()
 		delete elem.first;
 	}
 	// The rest is going to clean itself.
-}
-
-
-const Texture* GraphicsDataManager::getTexture(const QString& name)
-{
-	Texture *result = nullptr;
-
-	auto it = textures.find(name);
-	if (it == textures.end()) {
-		const Resource *image = dataManager->getResource(name);
-		result = new Texture();
-		result->setSmooth(true);
-		if (!result->loadFromMemory(image->getData(), image->getDataLength())) {
-			qDebug() << "Failed to load the texture: " << name;
-			// TODO should we die miserably here?
-		}
-		textures[name] = QPair<Texture *, int>{result, 1};
-	} else {
-		it->second++;
-		result = it->first;
-	}
-
-	return result;
 }
 
 
@@ -83,7 +57,6 @@ const GraphicalTextureSet *GraphicsDataManager::getTextureSet(const QString &nam
 
 	return result;
 }
-
 
 
 const Font *GraphicsDataManager::getFont(const QString &name)

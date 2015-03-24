@@ -4,13 +4,14 @@
 #pragma once
 #include <QtCore/QHash>
 #include <QtCore/QPair>
-#include <QtCore/QString>
 #include <SFML/Graphics.hpp>
 
 #include "Graphics/GraphicalTextureSet.hpp"
 
 
 class DataManager;
+class QString;
+
 
 /**
  * @brief Data manager for graphical resources - textures, fonts etc.
@@ -22,21 +23,12 @@ public:
 	GraphicsDataManager(const DataManager *dataManager);
 	~GraphicsDataManager();
 
-	/**
-	 * @brief Returns a shared pointer to the texture (living in the graphics card memory).
-	 *
-	 * TODO At some point there might be a need to add some mechanism for removing the unneeded data.
-	 *
-	 * @param name The identifier of the resource.
-	 */
-	const sf::Texture *getTexture(const QString &name);
 	const GraphicalTextureSet *getTextureSet(const QString &name);
 	const sf::Font *getFont(const QString &name);
 
 private:
 	const DataManager *dataManager;
 
-	QHash<QString, QPair<sf::Texture *, int>> textures;
 	QHash<QString, QPair<GraphicalTextureSet *, int>> textureSets;
 	QHash<QString, QPair<sf::Font *, int>> fonts;
 };

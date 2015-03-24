@@ -119,5 +119,19 @@
 		"textures": {
 			"Idle": "MobHouse3"
 		}
+	},
+
+	"Map0": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "Map0"
+		}
+	},
+
+	"ArrowDown": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "ArrowDown"
+		}
 	}
 }

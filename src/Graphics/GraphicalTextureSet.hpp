@@ -12,7 +12,8 @@ public:
 	typedef QHash<ImageMetaData, sf::Texture *> FrameSet;
 	GraphicalTextureSet(const FrameSet &frameSet);
 
-	const sf::Texture *getFrame(ImageMetaData key) const;
+	const sf::Texture *getFrame(ImageMetaData key = ImageMetaData{BS::State::Idle, BS::ItemType::Invalid,
+								      BS::Graphic::Direction::Invalid, 0}) const;
 	int getNumDirections() const;
 
 private:

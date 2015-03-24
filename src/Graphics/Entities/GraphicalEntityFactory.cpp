@@ -125,7 +125,10 @@ EffectGraphicalEntity *GraphicalEntityFactory::getOrCreateEffectEntity(const Eff
 			ptr = new ShotEffectGraphicalEntity{viewport};
 		} else if (name == Effects::MoveCommand) {
 			ptr = new MoveCommandEffectGraphicalEntity{viewport,
-					graphicsDataManager->getTexture(Resources::ArrowDownCursor)};
+					graphicsDataManager->getTextureSet(Resources::ArrowDownCursor)->getFrame(
+							ImageMetaData{BS::State::Idle, BS::ItemType::Invalid,
+								      BS::Graphic::Direction::Invalid, 0}
+					)};
 		}
 
 		if (!ptr) {

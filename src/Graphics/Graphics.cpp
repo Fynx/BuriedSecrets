@@ -74,7 +74,8 @@ void Graphics::resumeRendering()
 void Graphics::loadMap()
 {
 	this->mapManager = mind->getMapManager();
-	mapSprite = new sf::Sprite{*(graphicsDataManager.getTexture(mapManager->getMap()->getName()))};
+	mapSprite = new sf::Sprite{
+			*(graphicsDataManager.getTextureSet(mapManager->getMap()->getName())->getFrame())};
 	mapSprite->setPosition(0, 0);
 }
 
