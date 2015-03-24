@@ -50,7 +50,7 @@ void AnimatorManager::initAnimators()
 	info("Initializing animators...");
 	addAnimator(new AnimatorTest(mind), Animators::Test, 40);
 	addAnimator(new AnimatorPhysicsUpdate(mind), Animators::PhysicsUpdate, 40);
-	addAnimator(new AnimationAnimator(mind), Animators::Animation, 700);
+	addAnimator(new AnimationAnimator(mind), Animators::Animation, 160);
 	addAnimator(new AnimatorMove(mind), Animators::Move, 40);
 	addAnimator(new AnimatorConsume(mind), Animators::Consume, 1000);
 	addAnimator(new AnimatorApplyDamage(mind), Animators::ApplyDamage, 40);
