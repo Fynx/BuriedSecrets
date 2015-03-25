@@ -16,7 +16,7 @@ target_link_libraries (ContentEditor
 	${Qt5Widgets_LIBRARIES}
 # 	${SFML_LIBRARIES}
 # 	Xcursor
-# 	DataManager
+	DataManager
 # 	DebugManager
 # 	GameObjects
 # 	Graphics
@@ -25,5 +25,5 @@ target_link_libraries (ContentEditor
 # 	PhysicsEngine
 # 	SoundsManager
 # 	MapManager
-# 	Common
+	Common
 )

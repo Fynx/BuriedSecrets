@@ -5,6 +5,7 @@
 #include "ContentEditor/ContentEditor.hpp"
 
 ContentEditor::ContentEditor()
+	: dataManager(new DataManager)
 {
 	initObjects();
 	initLayout();
@@ -12,7 +13,9 @@ ContentEditor::ContentEditor()
 }
 
 ContentEditor::~ContentEditor()
-{}
+{
+	delete dataManager;
+}
 
 void ContentEditor::initObjects()
 {
@@ -53,14 +56,12 @@ void ContentEditor::initLayout()
 
 void ContentEditor::onSave()
 {
-	qDebug() << "Save";
-	//TODO
+	dataManager->save();
 }
 
 /** Save on quit, too */
 void ContentEditor::onQuit()
 {
-	qDebug() << "Quit";
 	onSave();
 	close();
 }

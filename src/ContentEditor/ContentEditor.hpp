@@ -5,6 +5,7 @@
 
 #include <QtWidgets>
 #include "ContentEditor/PrototypesEditor.hpp"
+#include "DataManager/DataManager.hpp"
 
 class ContentEditor : public QWidget {
 Q_OBJECT;
@@ -27,4 +28,6 @@ private:
 
 	QPushButton *buttonSave;
 	QPushButton *buttonQuit;
+
+	DataManager *dataManager;
 };

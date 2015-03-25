@@ -23,6 +23,11 @@ DataManager::~DataManager()
 	qDeleteAll(texturesData);
 }
 
+void DataManager::save() const
+{
+	savePrototypes();
+}
+
 QList <Prototype *> DataManager::getAllPrototypes()
 {
 	return prototypes.values();
@@ -63,7 +68,7 @@ QJsonObject DataManager::loadJsonFromFile(const QString &path)
 	}
 }
 
-void DataManager::saveJsonToFile(const QString &path, const QJsonObject &json)
+void DataManager::saveJsonToFile(const QString &path, const QJsonObject &json) const
 {
 	QSaveFile file(path);
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
@@ -106,18 +111,16 @@ void DataManager::loadPrototypes()
 		qDebug() << (QString("[") + QString::number(counter++) + "/"
 			+ QString::number(json.keys().size()) + "]\t").toStdString().c_str() << name;
 		prototype->setProperty(Properties::Name, name);
-		for (const QString &key : json[name].toObject().keys()) {
-			QJsonValue value = json[name].toObject()[key];
-			prototype->setProperty(key, value.toVariant());
-// 			qDebug() << "\t\t" << key << value.toVariant();
-		}
+		prototype->loadFromJson(json[name].toObject());
 
 		if (prototype->hasProperty(Data::TextureSet)) {
 			prototype->setTextureSetData(new TextureSetData(getTextureSet(
-					prototype->getProperty(Data::TextureSet).toString())));
+				prototype->getProperty(Data::TextureSet).toString())));
 		}
 
-		// Parsing for centre and base polygon (for those objects that have it).
+		//TODO I'm thinking about throwing all of this below into Prototype::loadFromJson
+
+		/** Parsing for centre and base polygon (for those objects that have it). */
 		if (prototype->hasProperty(Properties::BaseCentre)) {
 			const QVariantList centre = prototype->getProperty(Properties::BaseCentre).toList();
 			prototype->setBaseCentre(QPointF(centre[0].toFloat(), centre[1].toFloat()));
@@ -126,7 +129,7 @@ void DataManager::loadPrototypes()
 			QList<QPointF> basePolygon;
 			QPointF baseCentre;
 
-			for (const QVariant &p: polygon) {
+			for (const QVariant &p : polygon) {
 				const QVariantList &point = p.toList();
 				basePolygon.append(QPointF{point[0].toFloat(), point[1].toFloat()});
 				baseCentre += basePolygon.back();
@@ -145,7 +148,22 @@ void DataManager::loadPrototypes()
 
 void DataManager::savePrototypes() const
 {
-	err("Save option NOT AVAILABLE!");
+	info("Saving prototypes...");
+
+	QString path = "data/prototypes2.json";
+
+	QJsonObject json;
+
+	int counter = 1;
+	for (const QString &key : prototypes.keys()) {
+		qDebug() << (QString("[") + QString::number(counter++) + "/"
+			+ QString::number(prototypes.keys().size()) + "]\t").toStdString().c_str() << key;
+		json[key] = prototypes[key]->saveToJson();
+	}
+
+	saveJsonToFile(path, json);
+
+	info("done.");
 }
 
 void DataManager::loadResources()

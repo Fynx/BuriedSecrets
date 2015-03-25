@@ -17,6 +17,8 @@ public:
 	DataManager();
 	~DataManager();
 
+	void save() const;
+
 	QList <Prototype *> getAllPrototypes();
 	const Prototype *getPrototype(const QString &name) const;
 	const Resource *getResource(const QString &name) const;
@@ -28,7 +30,7 @@ public:
 	void saveToFile(const QString &path, const T &s);
 
 	QJsonObject loadJsonFromFile(const QString &path);
-	void saveJsonToFile(const QString &path, const QJsonObject &json);
+	void saveJsonToFile(const QString &path, const QJsonObject &json) const;
 
 	/**
 	 * @brief Reads file as raw data and returns it as a QString.

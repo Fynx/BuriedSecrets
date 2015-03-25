@@ -40,6 +40,9 @@ public:
 	void setBaseCentre(const QPointF &baseCentre);
 	void setBasePolygon(const QList<QPointF> &basePolygon);
 
+	void loadFromJson(const QJsonObject &json);
+	QJsonObject saveToJson() const;
+
 private:
 	QMap <QString, QVariant> properties;
 	QPointF baseCentre;
