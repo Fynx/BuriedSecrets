@@ -29,6 +29,9 @@ void AnimatorMove::act()
 			if (obj->getState() == State::Run){
 				obj->setState(State::Idle);
 			}
+			if (obj->getState() == State::RunBase){
+				obj->setState(State::IdleBase);
+			}
 			mind->physicsEngine()->setVelocity(obj, dir);
 			continue;
 		}
@@ -40,6 +43,8 @@ void AnimatorMove::act()
 		else {
 			if (obj->getState() == State::Idle)
 				obj->setState(State::Run);
+			if (obj->getState() == State::IdleBase)
+				obj->setState(State::RunBase);
 			dir.normalize();
 			dir = dir * unit->getSpeed();
 			mind->physicsEngine()->setVelocity(obj, dir);
