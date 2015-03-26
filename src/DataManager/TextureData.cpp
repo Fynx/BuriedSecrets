@@ -29,7 +29,7 @@ TextureData::TextureData(const int rows, const int columns, const QByteArray &da
 			QBuffer imageData;
 			QImage frameImage = texture.copy(frame * frameWidth, dir * frameHeight,
 							 frameWidth, frameHeight);
-			frameImage.save(&imageData, "PNG");
+			frameImage.save(&imageData, "PNG", 100);
 
 			frames.append({
 					{rows > 1 ? static_cast<BS::Graphic::Direction>(dir) :
