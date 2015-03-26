@@ -33,6 +33,16 @@ void Prototype::setProperty(const QString &key, const QVariant &value)
 	properties[key] = value;
 }
 
+void Prototype::removeProperty(const QString &key)
+{
+	properties.remove(key);
+}
+
+const QVariantMap &Prototype::getProperties() const
+{
+	return properties;
+}
+
 const TextureSetData *Prototype::getTextureSetData() const
 {
 	return textureSetData;

@@ -28,9 +28,14 @@ void DataManager::save() const
 	savePrototypes();
 }
 
-QList <Prototype *> DataManager::getAllPrototypes()
+QList<Prototype *> DataManager::getAllPrototypes()
 {
 	return prototypes.values();
+}
+
+QHash<QString, Prototype *> DataManager::getPrototypesMap()
+{
+	return prototypes;
 }
 
 const Prototype *DataManager::getPrototype(const QString &name) const
@@ -55,6 +60,11 @@ const TextureSet *DataManager::getTextureSet(const QString &name) const
 	}
 
 	return textureSets[name];
+}
+
+void DataManager::addPrototype(const QString &name, Prototype *prototype)
+{
+	prototypes[name] = prototype;
 }
 
 QJsonObject DataManager::loadJsonFromFile(const QString &path)

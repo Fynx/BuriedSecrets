@@ -20,9 +20,11 @@ public:
 	void save() const;
 
 	QList <Prototype *> getAllPrototypes();
+	QHash <QString, Prototype *> getPrototypesMap();
 	const Prototype *getPrototype(const QString &name) const;
 	const Resource *getResource(const QString &name) const;
 	const TextureSet *getTextureSet(const QString &name) const;
+	void addPrototype(const QString &name, Prototype *prototype);
 
 	template <class T>
 	void loadFromFile(const QString &path, T &s);

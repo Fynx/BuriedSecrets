@@ -21,7 +21,7 @@ void ContentEditor::initObjects()
 {
 	tabWidget = new QTabWidget();
 
-	prototypesEditor = new PrototypesEditor(this);
+	prototypesEditor = new PrototypesEditor(this, dataManager);
 
 	tabWidget->addTab(prototypesEditor, "Prototypes");
 

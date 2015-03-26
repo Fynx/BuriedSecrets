@@ -19,6 +19,9 @@ public:
 	bool hasProperty(const QString &key) const;
 	QVariant getProperty(const QString &key) const;
 	void setProperty(const QString &key, const QVariant &value);
+	void removeProperty(const QString &key);
+
+	const QVariantMap &getProperties() const;
 
 	const TextureSetData *getTextureSetData() const;
 	/**
