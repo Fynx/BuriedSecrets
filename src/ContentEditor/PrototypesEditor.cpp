@@ -15,6 +15,11 @@ PrototypesEditor::PrototypesEditor(QWidget *parent, DataManager *dataManager)
 	stats = new QTableWidget();
 	connect(stats, &QTableWidget::cellChanged, this, &PrototypesEditor::onFieldChanged);
 
+	buttonAddRow = new QPushButton("Add row");
+	connect(buttonAddRow, &QPushButton::clicked, this, &PrototypesEditor::onAddRow);
+	buttonRemoveRow = new QPushButton("Remove row");
+	connect(buttonRemoveRow, &QPushButton::clicked, this, &PrototypesEditor::onRemoveRow);
+
 	initLayout();
 	updateList();
 }
@@ -36,6 +41,14 @@ void PrototypesEditor::initLayout()
 	stats->setColumnWidth(1, 400.0);
 	layoutStats->addWidget(stats);
 
+	QHBoxLayout *layoutButtons = new QHBoxLayout();
+	layoutButtons->addWidget(buttonRemoveRow);
+	layoutButtons->addItem(new QSpacerItem(50, 50));
+	layoutButtons->addWidget(buttonAddRow);
+
+	layoutStats->addItem(layoutButtons);
+
+
 	layout->addItem(layoutStats);
 
 
@@ -48,8 +61,11 @@ void PrototypesEditor::updateList()
 
 	prototypes = dataManager->getPrototypesMap();
 
-	for (const Prototype *p : prototypes)
-		prototypesList->addItem(p->getProperty(Properties::Name).toString());
+	QStringList keys = prototypes.keys();
+	qSort(keys.begin(), keys.end());
+
+	for (const QString &key : keys)
+		prototypesList->addItem(key);
 }
 
 void PrototypesEditor::onItemSelected()
@@ -60,7 +76,11 @@ void PrototypesEditor::onItemSelected()
 	stats->setRowCount(0);
 	stats->setHorizontalHeaderLabels({"Keys", "Values"});
 	int counter = 0;
-	for (const QString &key : getCurrentPrototype()->getProperties().keys()) {
+
+	QStringList keysList = getCurrentPrototype()->getProperties().keys();
+	qSort(keysList.begin(), keysList.end());
+
+	for (const QString &key : keysList) {
 		QTableWidgetItem *itemKey = new QTableWidgetItem(key);
 		QTableWidgetItem *itemVal = new QTableWidgetItem(QString(getCurrentPrototype()->getProperty(key).toByteArray()));
 		stats->insertRow(counter);
@@ -88,16 +108,33 @@ void PrototypesEditor::onFieldChanged(int row, int col)
 		QString oldKey = keys[row];
 		QString newKey = stats->item(row, col)->text();
 
+		if (newKey.isEmpty()) {
+			warn("The key is empty!");
+			return;
+		}
+
 		qDebug() << "changing key from" << oldKey << "to" << newKey;
 
-		QVariant value = values[oldKey];
+		QVariant value;
+		if (values.contains(oldKey)) {
+			value = values[oldKey];
+			values.remove(oldKey);
+			getCurrentPrototype()->removeProperty(oldKey);
+		} else {
+			if (stats->item(row, 1) != nullptr)
+				value = stats->item(row, 1)->text();
+		}
 
-		values.remove(oldKey);
 		values.insert(newKey, value);
-		getCurrentPrototype()->removeProperty(oldKey);
+
 		getCurrentPrototype()->setProperty(newKey, value);
 		keys[row] = newKey;
 	} else if (col == 1) {
+		if (!keys.contains(row)) {
+			qDebug() << "Edited value, but not the key.";
+			return;
+		}
+
 		QVariant newValue = QVariant(stats->item(row, col)->text());
 		qDebug() << "changing value" << keys[row] << "from"
 			<< getCurrentPrototype()->getProperty(keys[row]) << "to" << newValue;
@@ -109,7 +146,31 @@ void PrototypesEditor::onFieldChanged(int row, int col)
 	}
 }
 
+void PrototypesEditor::onAddRow()
+{
+	if (getCurrentPrototype() == nullptr)
+		return;
+	stats->insertRow(stats->rowCount());
+}
+
+void PrototypesEditor::onRemoveRow()
+{
+	if (getCurrentPrototype() == nullptr)
+		return;
+
+	int row = stats->currentRow();
+
+	qDebug() << "remove row" << keys[row];
+
+	getCurrentPrototype()->removeProperty(keys[row]);
+	values.remove(keys[row]);
+	keys.remove(row);
+	stats->removeRow(row);
+}
+
 Prototype *PrototypesEditor::getCurrentPrototype()
 {
+	if (prototypesList->currentItem() == nullptr)
+		return nullptr;
 	return prototypes[prototypesList->currentItem()->text()];
 }

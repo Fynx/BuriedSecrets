@@ -21,12 +21,15 @@ private:
 
 	void onItemSelected();
 	void onFieldChanged(int row, int col);
+	void onAddRow();
+	void onRemoveRow();
 
 	Prototype *getCurrentPrototype();
 
 	QListWidget *prototypesList;
 	QTableWidget *stats;
-	QLineEdit *editValue;
+	QPushButton *buttonAddRow;
+	QPushButton *buttonRemoveRow;
 	QHash<QString, Prototype *> prototypes;
 	QHash<QString, QVariant> values;
 	QHash<int, QString> keys;
