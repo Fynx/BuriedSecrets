@@ -27,9 +27,7 @@ public:
 	bool isAssemblable() const;
 	bool isTransparent() const;
 	int getCapacity() const;
-	qreal getRange() const;
 
-	void setRange(qreal r);		// REMOVE
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
@@ -42,5 +40,4 @@ private:
 	bool assemblable;
 	bool transparent;
 	int capacity;
-	qreal range;
 };

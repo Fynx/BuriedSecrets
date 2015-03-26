@@ -31,7 +31,7 @@ SelectionManager::SelectionManager(Mind *mind, BoardWidget *boardWidget)
 {
 	//init Viewport
 	viewport_.setMapSize(mind_->getMap()->getSize());
-	auto campPos = mind_->physicsEngine()->getPosition(mind_->getPlayerFaction()->getCamp());
+	auto campPos = mind_->physicsEngine()->getPosition(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
 	viewport_.centerOnPointInMetres(campPos);
 
 	connect(edgeMoveTimer_, &QTimer::timeout, this, &SelectionManager::checkForViewportMove);

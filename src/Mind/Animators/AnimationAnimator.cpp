@@ -7,6 +7,7 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 
+using namespace BS;
 
 AnimationAnimator::AnimationAnimator(Mind *mind)
 	: Animator{mind}
@@ -20,8 +21,8 @@ void AnimationAnimator::act()
 	for (auto &obj: objects) {
 		if (obj->getState() == BS::State::Inside)
 			continue;
-		BS::State state = obj->getState();
-		BS::ItemType weapon = BS::ItemType::Invalid;
+		State state = obj->getState();
+		ItemType weapon = ItemType::Invalid;
 		const Unit *unit = dynamic_cast<const Unit *>(obj);
 		if (unit != nullptr) {
 			Item *item = unit->getUsedItem();
@@ -39,7 +40,10 @@ void AnimationAnimator::act()
 		int allFrames = obj->getPrototype()->getTextureSetData()->getFramesNumber(state, weapon);
 		int currentFrame = obj->getFrame();
 		if (currentFrame + 1 >= allFrames) {
-			obj->setState(BS::State::Idle);
+			if (state == State::RunBase || state == State::IdleBase)
+				obj->setState(State::IdleBase);
+			else
+				obj->setState(State::Idle);
 			obj->setFrame(0);
 		} else {
 			obj->setFrame(currentFrame + 1);

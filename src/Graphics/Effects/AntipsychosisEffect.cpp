@@ -28,7 +28,7 @@ void AntipsychosisEffect::update(const GraphicalEntity *graphicalEntity)
 		Q_ASSERT(false);
 	}
 
-	float radius = location->getRange();
+	float radius = 25; // location->getRange();  FIXME PLOX!
 	QPointF radiusP{radius, radius};
 	radiusP = viewport->fromMetresToPixels(radiusP);
 	radius = std::max(radiusP.x(), radiusP.y());

@@ -41,6 +41,8 @@ namespace BS {
 		Inside,        // Unit
 		Run,           // Unit
 		RunAttack,     // Unit
+		RunBase,       // Unit
+		IdleBase,      // Unit
 		Delay,         // Weapon
 		Shoot,         // Weapon
 	};
@@ -64,7 +66,8 @@ namespace BS {
 		Enter,
 		Heal,
 		Leave,
-		Move
+		Move,
+		Base
 	};
 
 	enum Slot {

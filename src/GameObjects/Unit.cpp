@@ -257,6 +257,8 @@ BS::Command Unit::getCommand()
 
 void Unit::setCommand(BS::Command c)
 {
+	if ((getState() == State::RunBase || getState() == State::IdleBase) && (c != Command::Assemble && c != Command::Move && c != Command::Base))
+		return;
 	command = c;
 }
 

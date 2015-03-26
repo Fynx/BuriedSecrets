@@ -20,14 +20,14 @@ public:
 
 	Journal *getJournal();
 	QuestLog *getQuestLog();
-	Location *getCamp();
 
 	int getCampUid() const;
-	void setCamp(Location *);
+	void setCamp(int);
 	const QSet<int> &getUnitsUids() const;
 	const QList<int> &getAllUnitsUids() const;
 	bool isAliveMember(int uid) const;
 	int getFood() const;
+	double getCampRange() const;
 	bool isNeutralFaction(int uid) const;
 	bool isFriendly(Object *obj);
 
@@ -44,7 +44,7 @@ private:
 	Journal *journal;
 	QuestLog *questLog;
 	int campUid;
-	Location *camp;
+	double campRange;
 	QSet<int> unitsUids;
 	QList<int> allUnitsUids;
 };

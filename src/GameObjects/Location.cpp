@@ -53,8 +53,6 @@ void Location::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
 
-	range = json[Attributes::CampRange].toDouble();
-
 	if (json.contains(Attributes::Items)) {
 		for (const QJsonValue &val : json[Attributes::Items].toArray()) {
 			int itemUid = val.toObject()[Attributes::Uid].toInt();
@@ -71,9 +69,6 @@ void Location::loadFromJson(const QJsonObject &json)
 QJsonObject Location::saveToJson() const
 {
 	QJsonObject json = Object::saveToJson();
-
-	if (range != 0)
-		json[Attributes::CampRange] = range;
 
 	QJsonArray its;
 	for (Item *item : items.keys()) {
@@ -129,14 +124,4 @@ bool Location::isTransparent() const
 int Location::getCapacity() const
 {
 	return prototype->getProperty(Properties::Capacity).toInt();
-}
-
-qreal Location::getRange() const
-{
-	return range;
-}
-
-void Location::setRange(qreal r)
-{
-	range = r;
 }

@@ -171,6 +171,8 @@ namespace States {
 	const QString Invalid   = "Invalid";
 	const QString Run       = "Run";
 	const QString RunAttack = "RunAttack";
+	const QString RunBase   = "RunBase";
+	const QString IdleBase  = "IdleBase";
 	const QString Shoot     = "Shoot";
 }
 

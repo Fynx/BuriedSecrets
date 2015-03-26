@@ -28,7 +28,7 @@ void AnimatorAssemble::act()
 			continue;
 
 		Item *ikeaSet = unit->getUsedItem();
-		if (!ikeaSet){
+		if (!ikeaSet && (unit->getState() != State::RunBase && unit->getState() != State::IdleBase)){
 			unit->setCommand(Command::None);
 			continue;
 		}
@@ -41,21 +41,26 @@ void AnimatorAssemble::act()
 		if (QVector2D(to-from).length() > epsilon)
 			continue;
 
-		if (ikeaSet->getPrototype()->hasProperty(Properties::SpawnedType)){
-			QString  spawned = ikeaSet->getPrototype()->getProperty(Properties::SpawnedType).toString();
-			Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
-			mind->addObject(fort, unit->getTargetPoint());
+		info("Still standing!");
+		QString spawned;
+		if (unit->getState() == State::RunBase || unit->getState() == State::IdleBase)
+			spawned = "Player Camp";
+		else if (ikeaSet) {
+			if (ikeaSet->getPrototype()->hasProperty(Properties::SpawnedType))
+				spawned = ikeaSet->getPrototype()->getProperty(Properties::SpawnedType).toString();
 			unit->getEquipment()->removeItem(ikeaSet);
-			fort->setFactionId(unit->getFactionId());
-			if (spawned == "Player Camp"){		//ToDo
-				mind->getFactionById(unit->getFactionId())->setCamp((Location *)fort);
-				((Location *)fort)->setRange(25);
-				mind->addEffect(Effect(Effects::Antipsychosis, new ObjectEffectData(fort)));
-			}
 		}
-		else
-			warn("Invalid Fortification item");
-
+		info("Still standing!2");
+		Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
+		mind->addObject(fort, unit->getTargetPoint());
+		fort->setFactionId(unit->getFactionId());
+		info("Still standing!2.5");
+		if (spawned == "Player Camp"){
+			mind->getFactionById(unit->getFactionId())->setCamp(fort->getUid());;
+			mind->addEffect(Effect(Effects::Antipsychosis, new ObjectEffectData(fort)));
+		}
+		info("Still standing!3");
+		unit->setState(State::Idle);
 		unit->setCommand(Command::None);
 	}
 }

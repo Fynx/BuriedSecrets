@@ -29,15 +29,9 @@ QuestLog *Faction::getQuestLog()
 	return questLog;
 }
 
-Location *Faction::getCamp()
+void Faction::setCamp(int c)
 {
-	return camp;
-}
-
-void Faction::setCamp(Location *c)
-{
-	camp = c;
-	campUid = c->getUid();
+	campUid = c;
 }
 
 int Faction::getCampUid() const
@@ -63,6 +57,11 @@ bool Faction::isAliveMember(int uid) const
 int Faction::getFood() const
 {
 	return food;
+}
+
+double Faction::getCampRange() const
+{
+	return campRange;
 }
 
 bool Faction::isNeutralFaction(int uid) const
@@ -109,6 +108,7 @@ void Faction::loadFromJson(const QJsonObject &json)
 
 	food = json[Attributes::Food].toInt();
 	campUid = json[Attributes::CampId].toInt();
+	campRange = json[Attributes::CampRange].toDouble();
 
 	QJsonArray us = json[Attributes::Units].toArray();
 	for (const QJsonValue &value : us) {
@@ -129,6 +129,8 @@ QJsonObject Faction::saveToJson() const
 
 	json[Attributes::Food] = food;
 	json[Attributes::CampId] = campUid;
+	if (campRange != 0)
+		json[Attributes::CampRange] = campRange;
 
 	QJsonArray us;
 	for (int u : unitsUids)

@@ -4,7 +4,9 @@
 		"textures": {
 			"Run": "SeniorCebulezRunHandgun",
 			"Idle": "SeniorCebulezIdlePistol",
-			"Attack": "SeniorCebulezAttackPistol"
+			"Attack": "SeniorCebulezAttackPistol",
+			"RunBase": "RunBase",
+			"IdleBase": "IdleBase"
 		}
 	},
 
@@ -14,14 +16,18 @@
 			"Idle": "DrSneeIdlePistol",
 			"Run_Pistol": "DrSneeRunPistol",
 			"RunAttack_Pistol": "DrSneeRunAttackPistol",
-			"Attack_Pistol": "DrSneeRunAttackPistol"
+			"Attack_Pistol": "DrSneeRunAttackPistol",
+			"RunBase": "RunBase",
+			"IdleBase": "IdleBase"
 		}
 	},
 
 	"Soszu": {
 		"type": "TextureSet",
 		"textures": {
-			"Idle": "Soszu"
+			"Idle": "Soszu",
+			"RunBase": "RunBase",
+			"IdleBase": "IdleBase"
 		}
 	},
 

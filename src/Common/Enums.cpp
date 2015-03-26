@@ -19,6 +19,8 @@ static const QMap<BS::State, QString> stateToString {
 	{BS::State::Heal,      States::Heal},
 	{BS::State::RunAttack, States::RunAttack},
 	{BS::State::Run,       States::Run},
+	{BS::State::RunBase,   States::RunBase},
+	{BS::State::IdleBase,  States::IdleBase},
 	{BS::State::Shoot,     States::Shoot},
 };
 

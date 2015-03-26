@@ -28,9 +28,10 @@ void AnimatorNearCamp::act()
 		Faction *faction = mind->getFactionById(unit->getFactionId());
 		if (!faction)
 			continue;
-		if (!faction->getCamp())
+		Location *camp = dynamic_cast<Location *>(mind->getObjectFromUid(faction->getCampUid()));
+		if (!camp)
 			continue;
-		QPointF campPos = mind->physicsEngine()->getPosition(faction->getCamp());
+		QPointF campPos = mind->physicsEngine()->getPosition(camp);
 		if (campPos.isNull()){
 			warn("Camp exists but doesn't have any position... wtf?");
 			continue;
@@ -42,7 +43,7 @@ void AnimatorNearCamp::act()
 		else
 			unitPos = mind->physicsEngine()->getPosition(unit->getLocation());
 
-		if (QVector2D(unitPos - campPos).length() > faction->getCamp()->getRange())
+		if (QVector2D(unitPos - campPos).length() > faction->getCampRange())
 			continue;
 
 		unit->property(TempData::NearCamp) = true;

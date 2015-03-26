@@ -14,6 +14,7 @@
 			"equipment": 2,
 			"food": 2500,
 			"campId": 3,
+			"campRange": 25,
 			"faction": 1,
 			"units": [4, 6, 8],
 			"relations": [[1, 1505], [2, -100]]
@@ -30,7 +31,6 @@
 		{
 			"uid": 3,
 			"name": "Player Camp",
-			"campRange": 25,
 			"x": 56,
 			"y": 290
 		},

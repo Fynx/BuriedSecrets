@@ -45,6 +45,8 @@ void AnimatorDisassemble::act()
 			continue;
 		}
 
+		bool isCamp = mind->getFactionById(unit->getFactionId())->getCampUid() == target->getUid();
+
 		if (target->getPrototype()->hasProperty(Properties::SpawnedType)){
 			QString  spawned = target->getPrototype()->getProperty(Properties::SpawnedType).toString();
 			Item *item = dynamic_cast<Item *>(mind->createDefaultObject(BS::Type::Item, spawned));
@@ -53,6 +55,12 @@ void AnimatorDisassemble::act()
 
 			info("Disassemble. Id: " + QString::number(target->getUid()));
 			mind->removeObject(target);
+		}
+		else if (isCamp){
+			info("Disassemble. Id: " + QString::number(target->getUid()));
+			mind->removeObject(target);
+			unit->setState(State::IdleBase);
+			unit->setCommand(Command::Base);
 		}
 
 		unit->setCommand(Command::None);

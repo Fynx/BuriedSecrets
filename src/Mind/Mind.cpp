@@ -113,13 +113,6 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Q_ASSERT(eq->getType() == BS::Type::Equipment);
 			faction->setEquipment(dynamic_cast<Equipment *>(eq));
 
-			if (faction->getCampUid()) {
-				Location *camp = dynamic_cast<Location *>(getObjectFromUid(faction->getCampUid()));
-				faction->setCamp(camp);
-			} else {
-				warn("Faction has no camp");
-			}
-
 			break;
 		}
 		case BS::Type::Unit: {
@@ -182,7 +175,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 	}
 
 	// Add antipsychosis.
-	addEffect(Effect(Effects::Antipsychosis, new ObjectEffectData(getFactionById(PlayerFactionId)->getCamp())));
+	addEffect(Effect(Effects::Antipsychosis, new ObjectEffectData(getObjectFromUid(getFactionById(PlayerFactionId)->getCampUid()))));
 
 	info("done.");
 }
