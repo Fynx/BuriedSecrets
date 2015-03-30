@@ -9,16 +9,16 @@
 
 #include "Common/Geometry.hpp"
 #include "DebugManager/DebugManager.hpp"
-#include "GameObjects/Object.hpp"
-#include "GameObjects/Unit.hpp"
 #include "Mind/MapManager/Map.hpp"
 #include "Mind/MapManager/DiffVisibilityMap.hpp"
 #include "Mind/MapManager/ImageVisibilityMap.hpp"
 #include "Mind/MapManager/VisibilityMap.hpp"
 #include "Mind/MapManager/VisibilityUpdate.hpp"
-#include "PhysicsEngine/PhysicsEngine.hpp"
 
 
+class Object;
+class PathFinder;
+class PhysicsEngine;
 class Unit;
 
 
@@ -34,7 +34,7 @@ public:
 	/**
 	 * @brief Returns a path from point from to point to.
 	 */
-	QList<QPointF> getPath(const QPointF &from, const QPointF &to) const;
+	QList<QPointF> getPath(const Object *object, const QPointF &to) const;
 
 	/**
 	 * @brief True if a point can be walked onto.
@@ -102,6 +102,7 @@ private:
 	QHash<int, DiffVisibilityMap> FOVs;	// Per-faction FOVs.
 	QHash<int, ImageVisibilityMap> FOWs;
 
+	const PathFinder *pathFinder;
 	const PhysicsEngine *physicsEngine;
 	VisibilityUpdateDiff *visibilityUpdatesDiff;
 };

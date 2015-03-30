@@ -8,10 +8,11 @@
 
 #include "Common/Strings.hpp"
 #include "GameObjects/Unit.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 
 MapManager::MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId)
-	: playerFactionId{playerFactionId}, map{json}, physicsEngine{physicsEngine},
+	: playerFactionId{playerFactionId}, map{json}, pathFinder{nullptr}, physicsEngine{physicsEngine},
 	visibilityUpdatesDiff{new VisibilityUpdateDiff{}}
 {}
 
@@ -22,11 +23,12 @@ const Map *MapManager::getMap() const
 }
 
 
-QList<QPointF> MapManager::getPath(const QPointF &from, const QPointF &to) const
+QList<QPointF> MapManager::getPath(const Object *object, const QPointF &to) const
 {
 	QList<QPointF> result{to};
 
-	// TODO
+	// TODO uncomment
+// 	return pathFinder->getPath(object, to);
 
 	return result;
 }

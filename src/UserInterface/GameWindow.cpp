@@ -6,6 +6,7 @@
 #include "DebugManager/DebugManager.hpp"
 #include "Mind/Mind.hpp"
 #include "Common/Strings.hpp"
+#include "GameObjects/Unit.hpp"
 #include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/UnitsPanel.hpp"
 #include "UserInterface/FactionPanel.hpp"

@@ -1,11 +1,12 @@
 /* YoLoDevelopment, 2015
  * All rights reserved.
  */
-#include "UnitsPanel.hpp"
+#include "UserInterface/UnitsPanel.hpp"
 
+#include "Mind/Mind.hpp"
+#include "GameObjects/Unit.hpp"
 #include "UserInterface/DeadSection.hpp"
 #include "UserInterface/UnitSection.hpp"
-#include "Mind/Mind.hpp"
 
 const QSize UnitsPanel::SectionSize{160, 130};
 

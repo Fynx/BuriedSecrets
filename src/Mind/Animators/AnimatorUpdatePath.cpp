@@ -54,6 +54,6 @@ void AnimatorUpdatePath::act()
 			continue;
 		}
 
-		unit->setCurrentPath(mind->getMapManager()->getPath(from, to));
+		unit->setCurrentPath(mind->getMapManager()->getPath(unit, to));
 	}
 }

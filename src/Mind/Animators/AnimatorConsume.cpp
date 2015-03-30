@@ -7,6 +7,7 @@
 
 #include "Mind/Mind.hpp"
 #include "GameObjects/Faction.hpp"
+#include "GameObjects/Unit.hpp"
 #include "DebugManager/DebugManager.hpp"
 
 

@@ -3,6 +3,7 @@ set (MapManager_SRCS
 	ImageVisibilityMap.cpp
 	MapManager.cpp
 	Map.cpp
+	PathFinder.cpp
 	VisibilityMap.cpp
 )
 
