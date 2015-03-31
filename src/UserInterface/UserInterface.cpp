@@ -124,6 +124,10 @@ void UserInterface::initDevActionsMenu()
 	connect(actionFOWToggle, &QAction::triggered, general_, &General::toggleDisplayFOW);
 	menuDebug->addAction(actionFOWToggle);
 
+	QAction *actionShowPathsToggle = new QAction("Toggle show unit paths", mainWindow_);
+	connect(actionShowPathsToggle, &QAction::triggered, general_, &General::toggleShowPaths);
+	menuDebug->addAction(actionShowPathsToggle);
+
 	QAction *actionFPSToggle = new QAction("Toggle FPS", mainWindow_);
 	connect(actionFPSToggle, &QAction::triggered, general_, &General::toggleDisplayFPS);
 	menuDebug->addAction(actionFPSToggle);

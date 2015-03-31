@@ -21,7 +21,8 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	  mapManager(nullptr),
 	  constructor(new ItemConstructor(dataManager, this)),
 	  gameState(BS::GameState::Running),
-	  basePolygonsEffectOn(false)
+	  basePolygonsEffectOn(false),
+	  showPathsEffectOn(false)
 {
 	info("Mind initialized");
 	soundsManager->onEvent(QString("test: success"));
@@ -258,19 +259,29 @@ void Mind::deleteEffect(QLinkedList<Effect>::iterator effectIterator)
 void Mind::toggleBasePolygons()
 {
 	// Remove all occurences of base polygons.
-	for (auto it = activeEffects.begin(); it != activeEffects.end();) {
-		auto iter = it;
-		++iter;
-		if (it->getName() == Effects::BasePolygon) {
-			activeEffects.erase(it);
-		}
-		it = iter;
-	}
+	removeAllEffects(Effects::BasePolygon);
 
 	if (!basePolygonsEffectOn) {
 		// Add base polygons to everything.
 		for (const auto *object : objects) {
 			addEffect(Effect{Effects::BasePolygon, new ObjectEffectData{object}});
+		}
+	}
+
+	basePolygonsEffectOn = !basePolygonsEffectOn;
+}
+
+void Mind::toggleShowPaths()
+{
+	// Remove all occurences of show paths.
+	removeAllEffects(Effects::ShowPath);
+
+	if (!basePolygonsEffectOn) {
+		// Add base polygons to everything.
+		for (const auto *object : objects) {
+			if (object->getType() == BS::Type::Unit) {
+				addEffect(Effect{Effects::ShowPath, new ObjectEffectData{object}});
+			}
 		}
 	}
 
@@ -425,3 +436,16 @@ Object *Mind::createObjectFromJson(const QString &name, const QJsonObject &json)
 
 	return obj;
 }
+
+void Mind::removeAllEffects(const QString &name)
+{
+	for (auto it = activeEffects.begin(); it != activeEffects.end();) {
+		auto iter = it;
+		++iter;
+		if (it->getName() == name) {
+			activeEffects.erase(it);
+		}
+		it = iter;
+	}
+}
+

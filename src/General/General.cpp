@@ -89,6 +89,12 @@ void General::toggleDisplayFOW()
 }
 
 
+void General::toggleShowPaths()
+{
+	mind->toggleShowPaths();
+}
+
+
 void General::toggleDisplayFPS()
 {
 	graphics->toggleShowFPS();

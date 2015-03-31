@@ -11,6 +11,7 @@
 #include "Graphics/Effects/AntipsychosisEffect.hpp"
 #include "Graphics/Effects/BasePolygonEffect.hpp"
 #include "Graphics/Effects/SelectionEffect.hpp"
+#include "Graphics/Effects/ShowPathEffect.hpp"
 
 
 GraphicalEffectFactory::GraphicalEffectFactory(const Viewport *viewport)
@@ -42,6 +43,8 @@ GraphicalEffect *GraphicalEffectFactory::get(const Effect &effect)
 				dynamic_cast<const ObjectRadiusEffectData *>(effect.getEffectData()));
 		assert(data != nullptr);
 		return new AntipsychosisEffect{viewport, data->getRadius()};
+	} else if (name == Effects::ShowPath) {
+		return new ShowPathEffect{viewport};
 	}
 
 	err("GraphicalEffectFactory: Cannot produce an effect for: " + effect.getName());

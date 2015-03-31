@@ -30,6 +30,7 @@ public:
 	// FIXME this might need to be moved to DebugManager
 	void toggleDisplayBasePolygons();
 	void toggleDisplayFOW();
+	void toggleShowPaths();
 	void toggleDisplayFPS();
 
 	void pauseGame();

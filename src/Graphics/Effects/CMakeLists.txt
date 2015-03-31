@@ -5,6 +5,7 @@ set (Effects_SRCS
 	GraphicalEffectFactory.cpp
 	GraphicalEffect.cpp
 	SelectionEffect.cpp
+	ShowPathEffect.cpp
 )
 
 set (Effects_HDRS

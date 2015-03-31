@@ -59,6 +59,7 @@ public:
 	BS::Command getCommand();
 
 	QList<QPointF> &getCurrentPath();
+	const QList<QPointF> getCurrentPath() const;
 	void setCurrentPath(const QList<QPointF> &path);
 
 	QVector<QPointF> getPatrolRoute() const;

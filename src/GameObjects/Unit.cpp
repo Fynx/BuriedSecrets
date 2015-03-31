@@ -205,6 +205,11 @@ QList<QPointF> &Unit::getCurrentPath()
 	return currentPath;
 }
 
+const QList<QPointF> Unit::getCurrentPath() const
+{
+	return currentPath;
+}
+
 void Unit::setCurrentPath(const QList<QPointF> &path)
 {
 	currentPath = path;

@@ -71,10 +71,12 @@ public:
 	void deleteEffect(QLinkedList<Effect>::iterator effectIterator);
 
 	void toggleBasePolygons();
+	void toggleShowPaths();
 
 private:
 	Object *createObject(BS::Type type, const QString &name);
 	Object *createObjectFromJson(const QString &name, const QJsonObject &json);
+	void removeAllEffects(const QString &name);
 
 	DataManager   *dataManager;
 	PhysicsEngine *physics;
@@ -91,4 +93,5 @@ private:
 	QLinkedList<Effect> activeEffects;
 
 	bool basePolygonsEffectOn;
+	bool showPathsEffectOn;
 };

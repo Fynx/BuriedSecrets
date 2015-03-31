@@ -142,9 +142,10 @@ namespace BS {
 		// Change ids here to change the order in which the effects are drawn on the screen.
 		// Please bear in mind that pre and post effects are stored and sorted separately.
 		enum EffectOrder {
-			BasePolygon = 99999999,
+			BasePolygon = 255,
 			Selection = 1,
-			Antipsychosis = 0
+			Antipsychosis = 0,
+			ShowPath = 254
 		};
 	}
 }
