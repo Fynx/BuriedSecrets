@@ -3,8 +3,11 @@
  */
 #include "Graphics/Effects/GraphicalEffectFactory.hpp"
 
+#include <cassert>
+
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/ObjectRadiusEffectData.hpp"
 #include "Graphics/Effects/AntipsychosisEffect.hpp"
 #include "Graphics/Effects/BasePolygonEffect.hpp"
 #include "Graphics/Effects/SelectionEffect.hpp"
@@ -35,7 +38,10 @@ GraphicalEffect *GraphicalEffectFactory::get(const Effect &effect)
 	} else if (name == Effects::BasePolygon) {
 		return new BasePolygonEffect{viewport};
 	} else if (name == Effects::Antipsychosis) {
-		return new AntipsychosisEffect{viewport};
+		const ObjectRadiusEffectData *data = (
+				dynamic_cast<const ObjectRadiusEffectData *>(effect.getEffectData()));
+		assert(data != nullptr);
+		return new AntipsychosisEffect{viewport, data->getRadius()};
 	}
 
 	err("GraphicalEffectFactory: Cannot produce an effect for: " + effect.getName());

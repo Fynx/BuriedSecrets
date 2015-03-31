@@ -9,8 +9,8 @@
 #include "Graphics/Entities/GraphicalEntity.hpp"
 
 
-AntipsychosisEffect::AntipsychosisEffect(const Viewport *viewport)
-		: CircleEffect{viewport, sf::Color{181, 20, 125, 90}, sf::Color{181, 20, 125, 35}}
+AntipsychosisEffect::AntipsychosisEffect(const Viewport *viewport, const float radius)
+		: CircleEffect{viewport, sf::Color{181, 20, 125, 90}, sf::Color{181, 20, 125, 35}}, radius{radius}
 {}
 
 
@@ -28,11 +28,9 @@ void AntipsychosisEffect::update(const GraphicalEntity *graphicalEntity)
 		Q_ASSERT(false);
 	}
 
-	float radius = 25; // location->getRange();  FIXME PLOX!
 	QPointF radiusP{radius, radius};
 	radiusP = viewport->fromMetresToPixels(radiusP);
-	radius = std::max(radiusP.x(), radiusP.y());
-	setGeometry(graphicalEntity->getPosition(), radius);
+	setGeometry(graphicalEntity->getPosition(), std::max(radiusP.x(), radiusP.y()));
 }
 
 

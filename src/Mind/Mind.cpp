@@ -5,7 +5,7 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
-#include "Mind/ObjectEffectData.hpp"
+#include "Mind/ObjectRadiusEffectData.hpp"
 #include "GameObjects/Environment.hpp"
 #include "GameObjects/Equipment.hpp"
 #include "GameObjects/Location.hpp"
@@ -175,7 +175,9 @@ void Mind::loadFromJson(const QJsonObject &json)
 	}
 
 	// Add antipsychosis.
-	addEffect(Effect(Effects::Antipsychosis, new ObjectEffectData(getObjectFromUid(getFactionById(PlayerFactionId)->getCampUid()))));
+	addEffect(Effect(Effects::Antipsychosis,
+			 new ObjectRadiusEffectData(getObjectFromUid(getFactionById(PlayerFactionId)->getCampUid()),
+						    getFactionById(PlayerFactionId)->getCampRange())));
 
 	info("done.");
 }

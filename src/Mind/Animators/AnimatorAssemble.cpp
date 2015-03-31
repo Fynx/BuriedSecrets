@@ -4,12 +4,12 @@
 
 #include "Mind/Animators/AnimatorAssemble.hpp"
 
+#include "Common/Enums.hpp"
+#include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
-#include "Mind/ObjectEffectData.hpp"
-#include "Common/Enums.hpp"
-#include "Common/Strings.hpp"
+#include "Mind/ObjectRadiusEffectData.hpp"
 
 using namespace BS;
 
@@ -57,7 +57,9 @@ void AnimatorAssemble::act()
 		info("Still standing!2.5");
 		if (spawned == "Player Camp"){
 			mind->getFactionById(unit->getFactionId())->setCamp(fort->getUid());;
-			mind->addEffect(Effect(Effects::Antipsychosis, new ObjectEffectData(fort)));
+			mind->addEffect(Effect(Effects::Antipsychosis,
+					new ObjectRadiusEffectData(fort,
+							mind->getFactionById(unit->getFactionId())->getCampRange())));
 		}
 		info("Still standing!3");
 		unit->setState(State::Idle);

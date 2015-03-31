@@ -1,9 +1,11 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
-#include "GameObjects/Object.hpp"
 #include "Mind/EffectData.hpp"
+
+
+class Object;
 
 
 class ObjectEffectData : public EffectData {
