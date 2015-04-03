@@ -35,6 +35,7 @@ namespace Animators {
 	const QString BuildingDmg   = "AnimatorBuildingDmg";
 	const QString AggressiveAtt = "AnimatorAggressiveAtt";
 	const QString Result        = "AnimatorResult";
+	const QString GuardAtt      = "AnimatorGuardAtt";
 }
 
 namespace Attributes {                                 // Converted into class fields

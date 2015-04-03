@@ -29,6 +29,7 @@
 #include "Mind/Animators/AnimatorBuildingDmg.hpp"
 #include "Mind/Animators/AnimatorAggressiveAtt.hpp"
 #include "Mind/Animators/AnimatorResult.hpp"
+#include "Mind/Animators/AnimatorGuardAtt.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -72,6 +73,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorMobAttitude(mind), Animators::MobAttitude, 500);
 	addAnimator(new AnimatorBuildingDmg(mind), Animators::BuildingDmg, 40);
 	addAnimator(new AnimatorAggressiveAtt(mind), Animators::AggressiveAtt, 500);
+	addAnimator(new AnimatorGuardAtt(mind), Animators::GuardAtt, 500);
 	addAnimator(new AnimatorResult(mind), Animators::Result, 100);
 	info("done.");
 }

@@ -14,7 +14,7 @@ Unit::Unit(const Prototype *prototype)
 {
 	property(TempData::IsSelected) = false;
 	location = nullptr;
-	attitude = Attitude::Aggressive;
+	attitude = Attitude::Guard;
 	command = Command::None;
 	setPsychosis(0);
 }

@@ -1,8 +1,9 @@
+
 /* YoLoDevelopment, 2014
  * All rights reserved.
  */
 
-#include "Mind/Animators/AnimatorAggressiveAtt.hpp"
+#include "Mind/Animators/AnimatorGuardAtt.hpp"
 
 #include "Common/Strings.hpp"
 #include "Common/Geometry.hpp"
@@ -13,26 +14,26 @@
 using namespace BS;
 
 
-AnimatorAggressiveAtt::AnimatorAggressiveAtt(Mind *mind) : Animator(mind)
+AnimatorGuardAtt::AnimatorGuardAtt(Mind *mind) : Animator(mind)
 {
-	info("Animator AggressiveAtt created.");
+	info("Animator GuardeAtt created.");
 }
 
 
-void AnimatorAggressiveAtt::act()
+void AnimatorGuardAtt::act()
 {
 	for (Object * obj : objects){
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		if (unit->getAttitude() != Attitude::Aggressive)
+		if (unit->getAttitude() != Attitude::Guard)
 			continue;
 		if (unit->getCommand() == Command::Attack && mind->getObjectFromUid(unit->getTargetObject())){
 			Object *target = mind->getObjectFromUid(unit->getTargetObject());
 			if (mind->getFactionById(unit->getFactionId())->isNeutralFaction(target->getFactionId()))
 				unit->setCommand(Command::None);
 		}
-		if (unit->getCommand() != Command::None && unit->getCommand() != Command::Move)
+		if (unit->getCommand() != Command::None)
 			continue;
 		QPointF from = mind->physicsEngine()->getPosition(unit);
 		QPointF to;
@@ -48,7 +49,12 @@ void AnimatorAggressiveAtt::act()
 				dist = Geometry::distance(to, from);
 			}
 		}
-		if (enemy){
+		Item *weapon = unit->getEquipment()->getSlotItem(Slot::Weapon);
+		if (!weapon){
+			err("I has no weapon!");
+			continue;
+		}
+		if (enemy && dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat()){
 			unit->setCommand(Command::Attack);
 			unit->setTargetObject(enemy->getUid());
 		}

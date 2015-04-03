@@ -26,6 +26,7 @@ set (Anims_SRCS
 	AnimatorMobAttitude.cpp
 	AnimatorBuildingDmg.cpp
 	AnimatorAggressiveAtt.cpp
+	AnimatorGuardAtt.cpp
 	AnimatorResult.cpp
 )
 
