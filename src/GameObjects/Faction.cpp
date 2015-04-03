@@ -73,7 +73,7 @@ bool Faction::isNeutralFaction(int uid) const
 	return relations.value(uid) > 0;
 }
 
-bool Faction::isFriendly(Object* obj)
+bool Faction::isFriendly(const Object *obj)
 {
 	return isNeutralFaction(obj->getFactionId()) || obj->getFactionId() == getFactionId();
 }

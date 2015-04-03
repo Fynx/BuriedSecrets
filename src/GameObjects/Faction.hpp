@@ -29,7 +29,7 @@ public:
 	int getFood() const;
 	double getCampRange() const;
 	bool isNeutralFaction(int uid) const;
-	bool isFriendly(Object *obj);
+	bool isFriendly(const Object *obj);
 
 	void modifyRelation(int uid, int diff);
 	int consume(int f);

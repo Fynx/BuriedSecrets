@@ -31,6 +31,7 @@ void AnimatorAttack::act()
 				unit->setState(State::Idle);
 			continue;
 		}
+
 		if (unit->getState() == State::Inside)
 			unit->setAttitude(Attitude::BuildingAggressive);
 		Item *weapon = unit->getUsedItem();
@@ -43,6 +44,10 @@ void AnimatorAttack::act()
 		if (!target){
 			unit->setCommand(Command::None);
 			warn("Invalid target in attack animator");
+			continue;
+		}
+		if (mind->getFactionById(unit->getFactionId())->isFriendly(target)){
+			unit->setCommand(Command::None);
 			continue;
 		}
 

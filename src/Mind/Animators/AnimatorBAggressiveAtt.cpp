@@ -27,11 +27,6 @@ void AnimatorBAggressiveAtt::act()
 			continue;
 		if (unit->getAttitude() != Attitude::BuildingAggressive)
 			continue;
-		if (unit->getCommand() == Command::Attack && mind->getObjectFromUid(unit->getTargetObject())){
-			Object *target = mind->getObjectFromUid(unit->getTargetObject());
-			if (mind->getFactionById(unit->getFactionId())->isNeutralFaction(target->getFactionId()))
-				unit->setCommand(Command::None);
-		}
 		if (unit->getState() != State::Inside){
 			err("Invalid inside attitude while not in building");
 			continue;
@@ -42,7 +37,7 @@ void AnimatorBAggressiveAtt::act()
 		float dist = 10000;
 
 		for (auto *obj: mind->getMapManager()->getVisibleObjects(unit)){
-			if (mind->getFactionById(unit->getFactionId())->isNeutralFaction(obj->getFactionId()))
+			if (mind->getFactionById(unit->getFactionId())->isFriendly(obj))
 				continue;
 			to = mind->physicsEngine()->getPosition(obj);
 			if (Geometry::distance(to, from) < dist){

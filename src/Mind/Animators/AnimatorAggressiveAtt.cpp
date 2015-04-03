@@ -27,11 +27,6 @@ void AnimatorAggressiveAtt::act()
 			continue;
 		if (unit->getAttitude() != Attitude::Aggressive)
 			continue;
-		if (unit->getCommand() == Command::Attack && mind->getObjectFromUid(unit->getTargetObject())){
-			Object *target = mind->getObjectFromUid(unit->getTargetObject());
-			if (mind->getFactionById(unit->getFactionId())->isNeutralFaction(target->getFactionId()))
-				unit->setCommand(Command::None);
-		}
 		if (unit->getCommand() != Command::None && unit->getCommand() != Command::Move)
 			continue;
 		QPointF from = mind->physicsEngine()->getPosition(unit);
@@ -39,7 +34,7 @@ void AnimatorAggressiveAtt::act()
 		const Object *enemy = nullptr;
 		float dist = 10000;
 		for (auto *obj: mind->getMapManager()->getVisibleObjects(unit)){
-			if (mind->getFactionById(unit->getFactionId())->isNeutralFaction(obj->getFactionId()))
+			if (mind->getFactionById(unit->getFactionId())->isFriendly(obj))
 				continue;
 
 			to = mind->physicsEngine()->getPosition(obj);
