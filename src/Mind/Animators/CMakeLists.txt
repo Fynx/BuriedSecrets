@@ -28,6 +28,7 @@ set (Anims_SRCS
 	AnimatorAggressiveAtt.cpp
 	AnimatorGuardAtt.cpp
 	AnimatorResult.cpp
+	AnimatorBAggressiveAtt.cpp
 )
 
 set (Anims_HDRS

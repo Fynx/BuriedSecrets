@@ -31,6 +31,8 @@ void AnimatorAttack::act()
 				unit->setState(State::Idle);
 			continue;
 		}
+		if (unit->getState() == State::Inside)
+			unit->setAttitude(Attitude::BuildingAggressive);
 		Item *weapon = unit->getUsedItem();
 		if (!weapon){
 			unit->setCommand(Command::None);
