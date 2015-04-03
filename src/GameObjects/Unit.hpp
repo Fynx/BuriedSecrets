@@ -71,6 +71,9 @@ public:
 	QPointF getTargetPoint();
 	void setTargetPoint(QPointF);
 
+	const Object *getNearestEnemy() const;
+	void setNearestEnemy(const Object *);
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
@@ -87,4 +90,5 @@ private:
 
 	int targetObjectUid;
 	QPointF targetPoint;
+	const Object *nearestEnemy;
 };

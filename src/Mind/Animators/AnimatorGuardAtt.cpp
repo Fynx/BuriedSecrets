@@ -30,25 +30,11 @@ void AnimatorGuardAtt::act()
 			continue;
 		if (unit->getCommand() != Command::None)
 			continue;
-		QPointF from = mind->physicsEngine()->getPosition(unit);
-		QPointF to;
-		const Object *enemy = nullptr;
-		float dist = 10000;
-		for (auto *obj: mind->getMapManager()->getVisibleObjects(unit)){
-			if (mind->getFactionById(unit->getFactionId())->isFriendly(obj))
-				continue;
 
-			to = mind->physicsEngine()->getPosition(obj);
-			if (Geometry::distance(to, from) < dist){
-				enemy = obj;
-				dist = Geometry::distance(to, from);
-			}
-		}
+		const Object *enemy = unit->getNearestEnemy();
+		float dist = unit->property(TempData::NearestDist).toFloat();
 		Item *weapon = unit->getEquipment()->getSlotItem(Slot::Weapon);
-		if (!weapon){
-			err("I has no weapon!");
-			continue;
-		}
+
 		if (enemy && dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat()){
 			unit->setCommand(Command::Attack);
 			unit->setTargetObject(enemy->getUid());

@@ -31,6 +31,7 @@
 #include "Mind/Animators/AnimatorResult.hpp"
 #include "Mind/Animators/AnimatorGuardAtt.hpp"
 #include "Mind/Animators/AnimatorBAggressiveAtt.hpp"
+#include "Mind/Animators/AnimatorNearestEnemy.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -77,6 +78,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorBAggressiveAtt(mind), Animators::BAggressiveAtt, 500);
 	addAnimator(new AnimatorGuardAtt(mind), Animators::GuardAtt, 500);
 	addAnimator(new AnimatorResult(mind), Animators::Result, 100);
+	addAnimator(new AnimatorNearestEnemy(mind), Animators::NearestEnemy, 500);
 	info("done.");
 }
 

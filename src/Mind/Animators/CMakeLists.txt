@@ -29,6 +29,7 @@ set (Anims_SRCS
 	AnimatorGuardAtt.cpp
 	AnimatorResult.cpp
 	AnimatorBAggressiveAtt.cpp
+	AnimatorNearestEnemy.cpp
 )
 
 set (Anims_HDRS

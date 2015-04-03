@@ -17,6 +17,7 @@ Unit::Unit(const Prototype *prototype)
 	attitude = Attitude::Guard;
 	command = Command::None;
 	setPsychosis(0);
+	setNearestEnemy(nullptr);
 }
 
 Unit::~Unit()
@@ -265,6 +266,16 @@ void Unit::setCommand(BS::Command c)
 	if ((getState() == State::RunBase || getState() == State::IdleBase) && (c != Command::Assemble && c != Command::Move && c != Command::Base))
 		return;
 	command = c;
+}
+
+const Object *Unit::getNearestEnemy() const
+{
+	return nearestEnemy;
+}
+
+void Unit::setNearestEnemy(const Object *obj)
+{
+	nearestEnemy = obj;
 }
 
 /** Save & load */

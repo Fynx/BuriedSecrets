@@ -10,33 +10,34 @@ namespace AnimationProperties {
 }
 
 namespace Animators {
-	const QString Animation     = "AnimatorAnimation";
-	const QString ApplyDamage   = "AnimatorApplyDamage";
-	const QString Consume       = "AnimatorConsume";
-	const QString Die           = "AnimatorDie";
-	const QString Move          = "AnimatorMove";
-	const QString PhysicsUpdate = "AnimatorPhysicsUpdate";
-	const QString Test          = "AnimatorTest";
-	const QString UpdatePath    = "AnimatorUpdatePath";
-	const QString Regenerate    = "AnimatorRegenerate";
-	const QString GoPsycho      = "AnimatorGoPsycho";
-	const QString Heal          = "AnimatorHeal";
-	const QString Assemble      = "AnimatorAssemble";
-	const QString EnterBuilding = "AnimatorEnterBuilding";
-	const QString LeaveBuilding = "AnimatorLeaveBuilding";
-	const QString Attack        = "AnimatorAttack";
-	const QString Weapon        = "AnimatorWeapon";
-	const QString UpdateFOV     = "AnimatorUpdateFOV";
-	const QString NearCamp      = "AnimatorNearCamp";
-	const QString WatchTarget   = "AnimatorWatchTarget";
-	const QString Disassemble   = "AnimatorDisassemble";
-	const QString Effects       = "AnimatorEffects";
-	const QString MobAttitude   = "AnimatorMobAttitude";
-	const QString BuildingDmg   = "AnimatorBuildingDmg";
-	const QString AggressiveAtt = "AnimatorAggressiveAtt";
-	const QString Result        = "AnimatorResult";
-	const QString GuardAtt      = "AnimatorGuardAtt";
-	const QString BAggressiveAtt = "AnimatorBAggressiveAtt";
+	const QString Animation        = "AnimatorAnimation";
+	const QString ApplyDamage      = "AnimatorApplyDamage";
+	const QString Consume          = "AnimatorConsume";
+	const QString Die              = "AnimatorDie";
+	const QString Move             = "AnimatorMove";
+	const QString PhysicsUpdate    = "AnimatorPhysicsUpdate";
+	const QString Test             = "AnimatorTest";
+	const QString UpdatePath       = "AnimatorUpdatePath";
+	const QString Regenerate       = "AnimatorRegenerate";
+	const QString GoPsycho         = "AnimatorGoPsycho";
+	const QString Heal             = "AnimatorHeal";
+	const QString Assemble         = "AnimatorAssemble";
+	const QString EnterBuilding    = "AnimatorEnterBuilding";
+	const QString LeaveBuilding    = "AnimatorLeaveBuilding";
+	const QString Attack           = "AnimatorAttack";
+	const QString Weapon           = "AnimatorWeapon";
+	const QString UpdateFOV        = "AnimatorUpdateFOV";
+	const QString NearCamp         = "AnimatorNearCamp";
+	const QString WatchTarget      = "AnimatorWatchTarget";
+	const QString Disassemble      = "AnimatorDisassemble";
+	const QString Effects          = "AnimatorEffects";
+	const QString MobAttitude      = "AnimatorMobAttitude";
+	const QString BuildingDmg      = "AnimatorBuildingDmg";
+	const QString AggressiveAtt    = "AnimatorAggressiveAtt";
+	const QString Result           = "AnimatorResult";
+	const QString GuardAtt         = "AnimatorGuardAtt";
+	const QString BAggressiveAtt   = "AnimatorBAggressiveAtt";
+	const QString NearestEnemy     = "AnimatorNearestEnemy";
 }
 
 namespace Attributes {                                 // Converted into class fields
@@ -183,6 +184,7 @@ namespace TempData {                                   // kept in GO's map
 	const QString Damage        = "damage";
 	const QString IsSelected    = "isSelected";
 	const QString NearCamp      = "nearCamp";
+	const QString NearestDist   = "nearestDist";
 	const QString State         = "state";
 	const QString X             = "x";
 	const QString Y             = "y";

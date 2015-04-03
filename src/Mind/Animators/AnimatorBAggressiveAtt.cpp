@@ -31,22 +31,8 @@ void AnimatorBAggressiveAtt::act()
 			err("Invalid inside attitude while not in building");
 			continue;
 		}
-		QPointF from = mind->physicsEngine()->getPosition(unit->getLocation());
-		QPointF to;
-		const Object *enemy = nullptr;
-		float dist = 10000;
 
-		for (auto *obj: mind->getMapManager()->getVisibleObjects(unit)){
-			if (mind->getFactionById(unit->getFactionId())->isFriendly(obj))
-				continue;
-			to = mind->physicsEngine()->getPosition(obj);
-			if (Geometry::distance(to, from) < dist){
-				enemy = obj;
-				dist = Geometry::distance(to, from);
-			}
-		}
-		if (enemy)
-			err("Alive!!! " + enemy->getName() + " " + QString::number(dist));
+		const Object *enemy = unit->getNearestEnemy();
 		if (enemy){
 			unit->setCommand(Command::Attack);
 			unit->setTargetObject(enemy->getUid());
