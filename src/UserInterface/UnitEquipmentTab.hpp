@@ -9,11 +9,12 @@
 
 class DataManager;
 class Item;
+class ItemWidget;
 class Mind;
 class SlotWidget;
 class Unit;
 
-class UnitEquipmentTab : public ItemsDisplay {
+class UnitEquipmentTab : public QWidget {
 
 public:
 	UnitEquipmentTab(Unit *unit, Mind *mind, DataManager *dataManager);
@@ -24,14 +25,14 @@ private:
 	QLabel *slotTitle(BS::Slot slot);
 	Item *uidToItem(int uid);
 	void updateSlots();
-	void refresh();
 
+	DataManager *const dataManager_;
 	Unit *unit_;
-    Mind *const mind_;
+	Mind *const mind_;
 	QHash<BS::Slot, SlotWidget *> slotWidgets_;
+	ItemWidget *itemWidget_;
 
 private slots:
-	void updateSlotsMarks();
 	void onItemMovedIn(int uid);
 	void onItemMovedOut(int uid);
 	void onSlotLinkedIn(BS::Slot slot, int uid);

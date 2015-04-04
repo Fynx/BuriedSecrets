@@ -20,6 +20,9 @@ public:
 	const QSet<Item *> &getItems() const;
 	int getWeight() const;
 
+	//TODO AEIOU list below should be read from prototype according to class or sth
+	// may be const &
+	QList<BS::Slot> getAvailableSlots();
 	void removeFromSlot(BS::Slot slot);
 	void putItemIntoSlot(BS::Slot slot, Item *item);
 	int getSlotItemUid(BS::Slot slot) const;

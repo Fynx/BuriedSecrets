@@ -12,18 +12,11 @@
 #include "UserInterface/SlotWidget.hpp"
 
 UnitEquipmentTab::UnitEquipmentTab(Unit *unit, Mind *mind, DataManager *dataManager)
-	: ItemsDisplay(dataManager),
+	: dataManager_(dataManager),
 	  unit_(unit),
 	  mind_(mind)
 {
 	initLayout();
-
-	connect(this, &ItemsDisplay::itemChanged, this, &UnitEquipmentTab::updateSlotsMarks);
-	connect(this, &ItemsDisplay::itemChanged, this, &UnitEquipmentTab::updateSlots);
-	connect(this, &ItemsDisplay::itemMovedIn, this, &UnitEquipmentTab::onItemMovedIn);
-	connect(this, &ItemsDisplay::itemMovedOut, this, &UnitEquipmentTab::onItemMovedOut);
-
-	refresh();
 }
 
 void UnitEquipmentTab::initLayout()
@@ -31,28 +24,17 @@ void UnitEquipmentTab::initLayout()
 	auto layout = new QVBoxLayout;
 	setLayout(layout);
 
-	layout->addWidget(createItemWidget(), 1);
-
-	auto hLayout = new QHBoxLayout;
-	layout->addLayout(hLayout, 1);
-
-	hLayout->addWidget(createItemsList(), 1);
-	hLayout->addLayout(createSlotsLayout(), 1);
-
-	connectDisplays();
+	itemWidget_ = new ItemWidget(dataManager_);
+	layout->addWidget(itemWidget_, 1);
+	layout->addLayout(createSlotsLayout(), 1);
 }
 
 QLayout *UnitEquipmentTab::createSlotsLayout()
 {
-	QList<BS::Slot> displayedSlots_ {
-		BS::Slot::Weapon, BS::Slot::Armor, BS::Slot::Medicament, BS::Slot::Tool,
-		BS::Slot::Fortification, BS::Slot::Perception,
-	};
-
 	auto formLayout = new QFormLayout;
 	formLayout->setLabelAlignment(Qt::AlignRight);
 
-	for (auto slot : displayedSlots_) {
+	for (auto &slot : unit_->getEquipment()->getAvailableSlots()) {
 		auto sw = new SlotWidget(slot);
 		connect(sw, &SlotWidget::itemLinkedIn, this, &UnitEquipmentTab::onSlotLinkedIn);
 		connect(sw, &SlotWidget::itemLinkedOut, this, &UnitEquipmentTab::onSlotLinkedOut);
@@ -86,26 +68,6 @@ Item *UnitEquipmentTab::uidToItem(int uid)
 	return nullptr;
 }
 
-void UnitEquipmentTab::updateSlotsMarks()
-{
-	for (auto sw : slotWidgets_) {
-		sw->markEnabled(false);
-		sw->markLinked(false);
-	}
-
-	if (currentData() == QVariant::Invalid)
-		return;
-
-	auto item = uidToItem(currentData().toInt());
-	if (item == nullptr)
-		return;
-
-	for (auto sw : slotWidgets_) {
-		sw->markEnabled(item->isSlotAvailable(sw->slot()));
-		sw->markLinked(sw->itemUid() == item->getUid());
-	}
-}
-
 void UnitEquipmentTab::updateSlots()
 {
 	for (auto sw : slotWidgets_) {
@@ -121,15 +83,6 @@ void UnitEquipmentTab::updateSlots()
 		else
 			sw->clearItem();
 	}
-
-	updateSlotsMarks();
-}
-
-void UnitEquipmentTab::refresh()
-{
-	setItemsList(unit_->getEquipment()->getItems().toList());
-
-	updateSlotsMarks();
 }
 
 void UnitEquipmentTab::onItemMovedIn(int uid)
@@ -138,15 +91,11 @@ void UnitEquipmentTab::onItemMovedIn(int uid)
 	if (item == nullptr)
 		return;
 	unit_->getEquipment()->addItem(item);
-
-	refresh();
 }
 
 void UnitEquipmentTab::onItemMovedOut(int uid)
 {
 	unit_->getEquipment()->removeItem(uidToItem(uid));
-
-	setItemsList(unit_->getEquipment()->getItems().toList());
 
 	updateSlots();
 }

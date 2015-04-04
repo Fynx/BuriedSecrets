@@ -89,6 +89,11 @@ QJsonObject Equipment::saveToJson() const
 	return json;
 }
 
+QList<BS::Slot> Equipment::getAvailableSlots()
+{
+	return {BS::Slot::Weapon, BS::Slot::Armor, BS::Slot::Medicament, BS::Slot::Fortification,};
+}
+
 void Equipment::removeFromSlot(BS::Slot slot)
 {
 	usedItems.remove(slot);
