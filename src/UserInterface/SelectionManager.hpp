@@ -5,7 +5,7 @@
 
 #include <QtWidgets>
 
-#include "UserInterface/Viewport.hpp"
+#include "UserInterface/GameViewport.hpp"
 #include "Common/Enums.hpp"
 
 class BoardWidget;
@@ -18,11 +18,6 @@ class Location;
 class SelectionManager : public QObject {
 	Q_OBJECT
 public:
-	static const float pixelToMetresScale; // Number of pixels per meter
-	static const int ViewportKeyMoveDelta;
-	static const int ViewportEdgeMoveDelta;
-	static const int EdgeViewportMoveTimerInterval;
-	static const qreal ViewportZoomDelta;
 	static const QColor SelectionColor;
 
 	SelectionManager(Mind *mind, BoardWidget *boardWidget);
@@ -46,8 +41,6 @@ private:
 	void instructCommand(BS::Command command, Unit *unit, QPointF point, Object *target);
 
 	int unitNumberToUid(int number) const;
-	Object *objectInPixelsPos(QPoint pointInPixels) const;
-	QSet<Object *> objectInPixelsRect(QRect rectInPixels) const;
 
 	QSet<int> filterSelection(const QSet<Object *> &objects) const;
 	void selectUnits(const QSet<int> &unitsUids);
@@ -61,15 +54,11 @@ private:
 
 	Mind *const mind_;
 	BoardWidget *boardWidget_;
-	Viewport viewport_;
-	QTimer *edgeMoveTimer_;
+	GameViewport gameViewport_;
 
 	QSet<int> selectedUnitsUids_;
 	int selectedLocationUid_;
 	QMap<int, QSet<int>> selectionGroupsUids_;
 
 	QHash<int, QLinkedList<Effect>::iterator> uidToSelectionEffect_;
-
-private slots:
-	void checkForViewportMove();
 };

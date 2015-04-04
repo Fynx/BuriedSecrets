@@ -12,31 +12,18 @@
 #include "Mind/ObjectEffectData.hpp"
 #include "Mind/PointEffectData.hpp"
 #include "UserInterface/BoardWidget.hpp"
-#include "UserInterface/IsometricPerspective.hpp"
 #include "UserInterface/Resources.hpp"
 
-const float SelectionManager::pixelToMetresScale = 30.0f;
-const int SelectionManager::ViewportKeyMoveDelta = 300;
-const int SelectionManager::ViewportEdgeMoveDelta = 15;
-const int SelectionManager::EdgeViewportMoveTimerInterval = 10;
-const qreal SelectionManager::ViewportZoomDelta = 0.05f;
 const QColor SelectionManager::SelectionColor = QColor("Cyan");
 
 SelectionManager::SelectionManager(Mind *mind, BoardWidget *boardWidget)
 	: mind_(mind),
 	  boardWidget_(boardWidget),
-	  viewport_(new IsometricPerspective(pixelToMetresScale)),
-	  edgeMoveTimer_(new QTimer),
+	  gameViewport_(mind, boardWidget),
 	  selectedLocationUid_(Object::InvalidUid)
 {
-	//init Viewport
-	viewport_.setMapSize(mind_->getMap()->getSize());
-	auto campPos = mind_->physicsEngine()->getPosition(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
-	viewport_.centerOnPointInMetres(campPos);
-
-	connect(edgeMoveTimer_, &QTimer::timeout, this, &SelectionManager::checkForViewportMove);
-
-	edgeMoveTimer_->start(EdgeViewportMoveTimerInterval);
+	// center view on camp
+	gameViewport_.showObject(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
 
 	//init selectionGroups
 	for (int i = 0; i < 10; ++i)
@@ -45,37 +32,15 @@ SelectionManager::SelectionManager(Mind *mind, BoardWidget *boardWidget)
 
 Viewport *SelectionManager::viewport()
 {
-	return &viewport_;
+	return gameViewport_.viewport();
 }
 
 void SelectionManager::keyPressEvent(const QKeyEvent *event)
 {
 	removeDeadFromSelection();
 
-	//Viewport
-	switch (event->key()) {
-		case Qt::Key_W:
-			viewport_.moveViewInPixels({0, ViewportKeyMoveDelta * (-1)});
-			break;
-		case Qt::Key_S:
-			viewport_.moveViewInPixels({0, ViewportKeyMoveDelta});
-			break;
-		case Qt::Key_A:
-			viewport_.moveViewInPixels({ViewportKeyMoveDelta * (-1), 0});
-			break;
-		case Qt::Key_D:
-			viewport_.moveViewInPixels({ViewportKeyMoveDelta, 0});
-			break;
-		case Qt::Key_Plus:
-			viewport_.zoomIn(ViewportZoomDelta);
-			break;
-		case Qt::Key_Minus:
-			viewport_.zoomIn(ViewportZoomDelta * (-1));
-			break;
-		case Qt::Key_Equal:
-			viewport_.resetZoom();
-			break;
-	}
+	//show event to gameViewport
+	gameViewport_.keyPressEvent(event);
 
 	//Selection groups
 	if (event->key() >= Qt::Key_0 && event->key() <= Qt::Key_9) {
@@ -98,8 +63,8 @@ void SelectionManager::mousePressEvent(const QMouseEvent *event)
 {
 	removeDeadFromSelection();
 
-	QPointF place = viewport_.getPhysicalCoordinates(event->pos());
-	Object *target = objectInPixelsPos(event->pos());
+	QPointF place = viewport()->getPhysicalCoordinates(event->pos());
+	Object *target = gameViewport_.objectInPixelsPos(event->pos());
 
 	if (event->button() == Qt::RightButton) {
 		if (event->modifiers() & Qt::ControlModifier) {
@@ -123,7 +88,7 @@ void SelectionManager::mousePressEvent(const QMouseEvent *event)
 
 void SelectionManager::gameWidgetResized(QSize sizeInPixels)
 {
-	viewport_.setViewSizeInPixels(sizeInPixels);
+	gameViewport_.gameWidgetResized(sizeInPixels);
 }
 
 void SelectionManager::refresh()
@@ -132,7 +97,6 @@ void SelectionManager::refresh()
 	markBuildingsSelected();
 	adjustCursor();
 	checkForMoveCommand();
-	checkForViewportMove();
 }
 
 void SelectionManager::showUnit(int uid)
@@ -141,12 +105,12 @@ void SelectionManager::showUnit(int uid)
 		return;
 
 	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
-	QPointF unitPos;
+	auto obj = dynamic_cast<Object *>(unit);
+
 	if (unit->getState() == BS::State::Inside)
-		unitPos = mind_->physicsEngine()->getPosition(unit->getLocation());
-	else
-		unitPos = mind_->physicsEngine()->getPosition(unit);
-	viewport_.centerOnPointInMetres(unitPos);
+		obj = dynamic_cast<Object *>(unit->getLocation());
+
+	gameViewport_.showObject(obj);
 }
 
 void SelectionManager::pickUnit(int uid)
@@ -174,7 +138,7 @@ void SelectionManager::pickUnit(int uid)
 
 void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
 {
-	auto filteredUnits = filterSelection(objectInPixelsRect(selectionRect));
+	auto filteredUnits = filterSelection(gameViewport_.objectInPixelsRect(selectionRect));
 
 	if (QApplication::keyboardModifiers() & Qt::ShiftModifier)
 		addUnitsToSelection(filteredUnits);
@@ -304,35 +268,6 @@ int SelectionManager::unitNumberToUid(int number) const
 	return Object::InvalidUid;
 }
 
-Object *SelectionManager::objectInPixelsPos(QPoint pointInPixels) const
-{
-	QPointF point = viewport_.getPhysicalCoordinates(pointInPixels);
-
-	point -= QPointF(0.1, 0.1);
-	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
-
-	if (objects.isEmpty())
-		return nullptr;
-
-	return mind_->getObjectFromUid(objects[0]->getUid());
-}
-
-QSet<Object *> SelectionManager::objectInPixelsRect(QRect rectInPixels) const
-{
-	auto topLeftInMetres = viewport_.getPhysicalCoordinates(rectInPixels.topLeft());
-	auto botomRightInMetres = viewport_.getPhysicalCoordinates(rectInPixels.bottomRight());
-	QRectF rectInMetres(topLeftInMetres, botomRightInMetres);
-	rectInMetres = rectInMetres.normalized();
-
-	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(rectInMetres);
-
-	QSet<Object *> result;
-	for (auto &obj : objects)
-		result.insert(mind_->getObjectFromUid(obj->getUid()));
-
-	return result;
-}
-
 QSet<int> SelectionManager::filterSelection(const QSet<Object *> &objects) const
 {
 	QSet<int> units;
@@ -455,7 +390,7 @@ void SelectionManager::adjustCursor()
 	if (!boardWidget_->geometry().contains(boardPos))
 		return;
 
-	auto target = objectInPixelsPos(boardPos);
+	auto target = gameViewport_.objectInPixelsPos(boardPos);
 	BS::Command command = BS::Command::None;
 
 	if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
@@ -505,8 +440,8 @@ void SelectionManager::checkForMoveCommand()
 	if (!boardWidget_->geometry().contains(pos))
 		return;
 
-	QPointF place = viewport_.getPhysicalCoordinates(pos);
-	Object *target = objectInPixelsPos(pos);
+	QPointF place = viewport()->getPhysicalCoordinates(pos);
+	Object *target = gameViewport_.objectInPixelsPos(pos);
 
 	if (target != nullptr && target->getType() != BS::Type::Environment)
 		return;
@@ -518,22 +453,4 @@ void SelectionManager::checkForMoveCommand()
 			unit->setTargetPoint(place);
 		}
 	}
-}
-
-void SelectionManager::checkForViewportMove()
-{
-	QPoint pos = boardWidget_->cursor().pos();
-	QRect global = QApplication::desktop()->screenGeometry();
-
-	if (pos.x() == global.right())
-		viewport_.moveViewInPixels({ViewportEdgeMoveDelta, 0});
-
-	if (pos.x() == global.left())
-		viewport_.moveViewInPixels({(-1) * ViewportEdgeMoveDelta, 0});
-
-	if (pos.y() == global.bottom())
-		viewport_.moveViewInPixels({0, ViewportEdgeMoveDelta});
-
-	if (pos.y() == global.top())
-		viewport_.moveViewInPixels({0, (-1) * ViewportEdgeMoveDelta});
 }
