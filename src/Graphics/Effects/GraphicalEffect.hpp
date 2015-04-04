@@ -4,7 +4,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-#include "UserInterface/Viewport.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 class GraphicalEntity;

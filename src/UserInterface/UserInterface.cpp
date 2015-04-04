@@ -6,10 +6,10 @@
 #include "General/General.hpp"
 #include "Mind/Mind.hpp"
 #include "Graphics/GraphicsWidget.hpp"
-#include "UserInterface/Viewport.hpp"
-#include "UserInterface/MainMenuWindow.hpp"
-#include "UserInterface/GameInterface.hpp"
-#include "UserInterface/PostGameWindow.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
+#include "UserInterface/Menus/MainMenu.hpp"
+#include "UserInterface/Game/GameInterface.hpp"
+#include "UserInterface/Menus/PostGameMenu.hpp"
 #include "UserInterface/Resources.hpp"
 
 UserInterface::UserInterface(General *general, DataManager *dataManager)
@@ -17,8 +17,8 @@ UserInterface::UserInterface(General *general, DataManager *dataManager)
 	  dataManager_(dataManager),
 	  mainWindow_(new QMainWindow),
 	  gameWindow_(nullptr),
-	  postGameWindow_(new PostGameWindow),
-	  mainMenuWindow_(new MainMenuWindow(this)),
+	  postGameMenu_(new PostGameMenu),
+	  mainMenuWindow_(new MainMenu(this)),
 	  gameEnded_(false)
 {
 	Q_INIT_RESOURCE(UI_data);
@@ -67,17 +67,17 @@ void UserInterface::newGame(Mind *mind, BoardWidget *boardWidget)
 
 void UserInterface::initWindows()
 {
-	connect(mainMenuWindow_, &MainMenuWindow::quitActivated, mainWindow_, &QMainWindow::close);
-	connect(mainMenuWindow_, &MainMenuWindow::newGameActivated, this, &UserInterface::onNewGame);
-	connect(mainMenuWindow_, &MainMenuWindow::continueActivated, this, &UserInterface::onContinueGame);
-	connect(postGameWindow_, &PostGameWindow::goToMainMenu, this, &UserInterface::onAfterGame);
+	connect(mainMenuWindow_, &MainMenu::quitActivated, mainWindow_, &QMainWindow::close);
+	connect(mainMenuWindow_, &MainMenu::newGameActivated, this, &UserInterface::onNewGame);
+	connect(mainMenuWindow_, &MainMenu::continueActivated, this, &UserInterface::onContinueGame);
+	connect(postGameMenu_, &PostGameMenu::goToMainMenu, this, &UserInterface::onAfterGame);
 }
 
 void UserInterface::initLayout()
 {
 	stackedWidget_ = new QStackedWidget;
 	stackedWidget_->insertWidget(static_cast<int>(Window::MainMenu), mainMenuWindow_);
-	stackedWidget_->insertWidget(static_cast<int>(Window::PostGameMenu), postGameWindow_);
+	stackedWidget_->insertWidget(static_cast<int>(Window::PostGameMenu), postGameMenu_);
 
 	mainWindow_->setCentralWidget(stackedWidget_);
 	mainWindow_->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
@@ -142,7 +142,7 @@ void UserInterface::onShowMainMenu()
 void UserInterface::onGameEnded(BS::GameState gs)
 {
 	general_->pauseGame();
-	postGameWindow_->setEnding(gs);
+	postGameMenu_->setEnding(gs);
 	switchToWindow(Window::PostGameMenu);
 }
 

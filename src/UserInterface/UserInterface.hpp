@@ -12,9 +12,9 @@ class General;
 class Mind;
 class InterfaceDataManager;
 class Viewport;
-class MainMenuWindow;
+class MainMenu;
 class GameInterface;
-class PostGameWindow;
+class PostGameMenu;
 
 class UserInterface : public QObject {
 	Q_OBJECT
@@ -44,8 +44,8 @@ private:
 
 	QMainWindow *mainWindow_;
 	GameInterface *gameWindow_;
-	PostGameWindow *postGameWindow_;
-	MainMenuWindow *mainMenuWindow_;
+	PostGameMenu *postGameMenu_;
+	MainMenu *mainMenuWindow_;
 	QStackedWidget *stackedWidget_;
 
 	void initLayout();

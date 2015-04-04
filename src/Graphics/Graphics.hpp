@@ -16,7 +16,7 @@
 #include "Mind/MapManager/Map.hpp"
 #include "Mind/Mind.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
-#include "UserInterface/Viewport.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 /**

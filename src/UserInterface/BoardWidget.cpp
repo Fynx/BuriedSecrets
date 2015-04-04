@@ -1,7 +1,7 @@
 /* YoLoDevelopment, 2015
  * All rights reserved.
  */
-#include "BoardWidget.hpp"
+#include "UserInterface/BoardWidget.hpp"
 
 BoardWidget::BoardWidget()
 	: isRubberBandVisible_(false)

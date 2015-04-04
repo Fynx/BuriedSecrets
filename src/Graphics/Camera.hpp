@@ -6,7 +6,7 @@
 
 #include "GameObjects/Object.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
-#include "UserInterface/Viewport.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 class Camera {

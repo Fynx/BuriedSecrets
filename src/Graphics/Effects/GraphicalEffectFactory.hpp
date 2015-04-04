@@ -6,7 +6,7 @@
 
 #include "Mind/Effect.hpp"
 #include "Graphics/Effects/GraphicalEffect.hpp"
-#include "UserInterface/Viewport.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 /**

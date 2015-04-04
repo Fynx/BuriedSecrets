@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Mind/MapManager/MapManager.hpp"
-#include "UserInterface/Viewport.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 /**

@@ -8,7 +8,7 @@
 #include "Graphics/Entities/EffectGraphicalEntity.hpp"
 #include "Graphics/Entities/GraphicalEntity.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
-#include "UserInterface/Viewport.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 class GraphicalEntityFactory {

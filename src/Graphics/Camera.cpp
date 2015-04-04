@@ -4,7 +4,7 @@
 #include "Graphics/Camera.hpp"
 
 #include "Common/Geometry.hpp"
-#include "UserInterface/Perspective.hpp"
+#include "UserInterface/Viewport/Perspective.hpp"
 
 
 Camera::Camera(const PhysicsEngine *physicsEngine, const Viewport *viewport)
