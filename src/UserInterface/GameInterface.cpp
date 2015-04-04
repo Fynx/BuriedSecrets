@@ -1,7 +1,7 @@
-﻿/* YoLoDevelopment, 2014
+﻿/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
-#include "UserInterface/GameWindow.hpp"
+#include "UserInterface/GameInterface.hpp"
 
 #include "DebugManager/DebugManager.hpp"
 #include "Mind/Mind.hpp"
@@ -11,15 +11,15 @@
 #include "UserInterface/FactionPanel.hpp"
 #include "UserInterface/CampWindow.hpp"
 
-const int GameWindow::UpdateTimerInterval = 100;
+const int GameInterface::UpdateTimerInterval = 100;
 
-GameWindow::GameWindow(Mind *m, DataManager *dm, BoardWidget *bw, QWidget *parent)
+GameInterface::GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget *parent)
 	: QWidget(parent),
 	  mind_(m),
 	  dataManager_(dm),
 	  boardWidget_(bw),
 	  updateTimer_(new QTimer),
-	  selectionManager_(m, bw),
+	  gameSelections_(m, bw),
 	  gameWindows_(m, dm),
 	  isPaused_(false)
 {
@@ -31,17 +31,17 @@ GameWindow::GameWindow(Mind *m, DataManager *dm, BoardWidget *bw, QWidget *paren
 	//WARNING if initialized before boardWidget - goes below
 	gameWindows_.initWindows(this);
 
-	connect(&gameWindows_, &GameWindows::pauseGame, this, &GameWindow::pauseGame);
-	connect(&gameWindows_, &GameWindows::resumeGame, this, &GameWindow::resumeGame);
-	connect(updateTimer_, &QTimer::timeout, this, &GameWindow::refresh);
+	connect(&gameWindows_, &GameWindows::pauseGame, this, &GameInterface::pauseGame);
+	connect(&gameWindows_, &GameWindows::resumeGame, this, &GameInterface::resumeGame);
+	connect(updateTimer_, &QTimer::timeout, this, &GameInterface::refresh);
 }
 
-Viewport *GameWindow::viewport()
+Viewport *GameInterface::viewport()
 {
-	return selectionManager_.viewport();
+	return gameSelections_.viewport();
 }
 
-void GameWindow::startUpdateLoop()
+void GameInterface::startUpdateLoop()
 {
 	info("Starting UI update loop.");
 
@@ -50,25 +50,25 @@ void GameWindow::startUpdateLoop()
 	info("Loop started successfully.");
 }
 
-void GameWindow::initBoardWidget()
+void GameInterface::initBoardWidget()
 {
 	//Pointer to boardWidget is passed in constructor from Graphics
 	boardWidget_->setParent(this);
-	connect(boardWidget_, &BoardWidget::selectionEnded, &selectionManager_, &SelectionManager::selectionByRectEnded);
+	connect(boardWidget_, &BoardWidget::selectionEnded, &gameSelections_, &GameSelections::selectionByRectEnded);
 }
 
-void GameWindow::initUnitsPanel()
+void GameInterface::initUnitsPanel()
 {
 	unitsPanel_ = new UnitsPanel(dataManager_, mind_);
 	unitsPanel_->setParent(this);
-	connect(unitsPanel_, &UnitsPanel::pickUnit, &selectionManager_, &SelectionManager::pickUnit);
-	connect(unitsPanel_, &UnitsPanel::showUnit, &selectionManager_, &SelectionManager::showUnit);
+	connect(unitsPanel_, &UnitsPanel::pickUnit, &gameSelections_, &GameSelections::pickUnit);
+	connect(unitsPanel_, &UnitsPanel::showUnit, &gameSelections_, &GameSelections::showUnit);
 	connect(unitsPanel_, &UnitsPanel::pickUnit, &gameWindows_, &GameWindows::switchUnitWindow);
 	connect(unitsPanel_, &UnitsPanel::showUnitMenu, &gameWindows_, &GameWindows::showUnitWindow);
-	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameWindow::adjustUnitsPanelGeometry);
+	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameInterface::adjustUnitsPanelGeometry);
 }
 
-void GameWindow::initFactionPanel()
+void GameInterface::initFactionPanel()
 {
 	factionPanel_ = new FactionPanel;
 	factionPanel_->setParent(this);
@@ -76,7 +76,7 @@ void GameWindow::initFactionPanel()
 	connect(factionPanel_, &FactionPanel::journalActivated, &gameWindows_, &GameWindows::showJournalWindow);
 }
 
-void GameWindow::refresh()
+void GameInterface::refresh()
 {
 	if (mind_->getGameState() != BS::GameState::Running) {
 		updateTimer_->stop();
@@ -90,13 +90,13 @@ void GameWindow::refresh()
 	else
 		factionPanel_->setCampIconFlash(false);
 
-	selectionManager_.refresh();
+	gameSelections_.refresh();
 
 	unitsPanel_->refresh();
 	factionPanel_->refresh(mind_);
 }
 
-void GameWindow::keyPressEvent(QKeyEvent *event)
+void GameInterface::keyPressEvent(QKeyEvent *event)
 {
 	switch (event->key()) {
 		case Qt::Key_Escape:
@@ -109,26 +109,26 @@ void GameWindow::keyPressEvent(QKeyEvent *event)
 				resumeGame();
 			break;
 		default:
-			selectionManager_.keyPressEvent(event);
+			gameSelections_.keyPressEvent(event);
 	}
 	QWidget::keyPressEvent(event);
 }
 
-void GameWindow::mousePressEvent(QMouseEvent *event)
+void GameInterface::mousePressEvent(QMouseEvent *event)
 {
 	if (childAt(event->pos()) == boardWidget_)
-		selectionManager_.mousePressEvent(event);
+		gameSelections_.mousePressEvent(event);
 
 	QWidget::mousePressEvent(event);
 }
 
-void GameWindow::resizeEvent(QResizeEvent *event)
+void GameInterface::resizeEvent(QResizeEvent *event)
 {
 	//maximize boardWidget_
 	boardWidget_->setGeometry(geometry());
 
 	//inform GameWidgetManager about resize (Viewport must know)
-	selectionManager_.gameWidgetResized(boardWidget_->size());
+	gameSelections_.gameWidgetResized(boardWidget_->size());
 
 	//resize unitsPanel
 	adjustUnitsPanelGeometry();
@@ -143,13 +143,13 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 	QWidget::resizeEvent(event);
 }
 
-void GameWindow::adjustUnitsPanelGeometry()
+void GameInterface::adjustUnitsPanelGeometry()
 {
 	QPoint topLeft = QPoint((geometry().width() - unitsPanel_->sizeHint().width()) / 2, 0);
 	unitsPanel_->setGeometry(QRect(topLeft, unitsPanel_->sizeHint()));
 }
 
-void GameWindow::pauseGame()
+void GameInterface::pauseGame()
 {
 	if (!isPaused_) {
 		mind_->pauseGame();
@@ -157,7 +157,7 @@ void GameWindow::pauseGame()
 	}
 }
 
-void GameWindow::resumeGame()
+void GameInterface::resumeGame()
 {
 	if (isPaused_ && !gameWindows_.isSubwindowOpen()) {
 		mind_->resumeGame();

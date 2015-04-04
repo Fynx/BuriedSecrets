@@ -1,11 +1,11 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
 
 #include <QtWidgets>
 
-#include "UserInterface/SelectionManager.hpp"
+#include "UserInterface/GameSelections.hpp"
 #include "UserInterface/GameWindows.hpp"
 #include "Common/Enums.hpp"
 
@@ -16,12 +16,12 @@ class Mind;
 class UnitsPanel;
 class Viewport;
 
-class GameWindow : public QWidget {
+class GameInterface : public QWidget {
 	Q_OBJECT
 public:
 	static const int UpdateTimerInterval; //in milliseconds
 
-	GameWindow(Mind *m, DataManager *dm, BoardWidget *bw, QWidget *parent = nullptr);
+	GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget *parent = nullptr);
 
 	Viewport *viewport();
 
@@ -49,7 +49,7 @@ private:
 
 	QTimer *updateTimer_;
 
-	SelectionManager selectionManager_;
+	GameSelections gameSelections_;
 	GameWindows gameWindows_;
 	bool isPaused_;
 

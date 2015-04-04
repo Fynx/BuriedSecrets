@@ -1,7 +1,7 @@
 /* YoLoDevelopment, 2015
  * All rights reserved.
  */
-#include "SelectionManager.hpp"
+#include "UserInterface/GameSelections.hpp"
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
@@ -11,7 +11,7 @@
 #include "Mind/Mind.hpp"
 #include "Mind/ObjectEffectData.hpp"
 
-SelectionManager::SelectionManager(Mind *mind, BoardWidget *boardWidget)
+GameSelections::GameSelections(Mind *mind, BoardWidget *boardWidget)
 	: mind_(mind),
 	  gameViewport_(mind, boardWidget),
 	  gameCommands_(mind, boardWidget, gameViewport_, *this),
@@ -25,17 +25,17 @@ SelectionManager::SelectionManager(Mind *mind, BoardWidget *boardWidget)
 		selectionGroupsUids_.insert(i, {});
 }
 
-const QSet <int> &SelectionManager::selectedUnitsUids() const
+const QSet <int> &GameSelections::selectedUnitsUids() const
 {
 	return selectedUnitsUids_;
 }
 
-Viewport *SelectionManager::viewport()
+Viewport *GameSelections::viewport()
 {
 	return gameViewport_.viewport();
 }
 
-void SelectionManager::keyPressEvent(const QKeyEvent *event)
+void GameSelections::keyPressEvent(const QKeyEvent *event)
 {
 	removeDeadFromSelection();
 
@@ -59,19 +59,19 @@ void SelectionManager::keyPressEvent(const QKeyEvent *event)
 	}
 }
 
-void SelectionManager::mousePressEvent(const QMouseEvent *event)
+void GameSelections::mousePressEvent(const QMouseEvent *event)
 {
 	removeDeadFromSelection();
 
 	gameCommands_.mousePressEvent(event);
 }
 
-void SelectionManager::gameWidgetResized(QSize sizeInPixels)
+void GameSelections::gameWidgetResized(QSize sizeInPixels)
 {
 	gameViewport_.gameWidgetResized(sizeInPixels);
 }
 
-void SelectionManager::refresh()
+void GameSelections::refresh()
 {
 	gameCommands_.refresh();
 
@@ -79,12 +79,12 @@ void SelectionManager::refresh()
 	markBuildingsSelected();
 }
 
-void SelectionManager::showUnit(int uid)
+void GameSelections::showUnit(int uid)
 {
 	gameViewport_.showUnit(uid);
 }
 
-void SelectionManager::pickUnit(int uid)
+void GameSelections::pickUnit(int uid)
 {
 	if (!mind_->getPlayerFaction()->isAliveMember(uid))
 		return;
@@ -99,7 +99,7 @@ void SelectionManager::pickUnit(int uid)
 		selectUnits({unit->getUid()});
 }
 
-void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
+void GameSelections::selectionByRectEnded(const QRect &selectionRect)
 {
 	auto filteredUnits = filterSelection(gameViewport_.objectInPixelsRect(selectionRect));
 
@@ -109,7 +109,7 @@ void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
 		selectUnits(filteredUnits);
 }
 
-int SelectionManager::unitNumberToUid(int number) const
+int GameSelections::unitNumberToUid(int number) const
 {
 	auto faction = mind_->getPlayerFaction();
 	auto allUnits = faction->getAllUnitsUids();
@@ -124,7 +124,7 @@ int SelectionManager::unitNumberToUid(int number) const
 	return Object::InvalidUid;
 }
 
-QSet<int> SelectionManager::filterSelection(const QSet<Object *> &objects) const
+QSet<int> GameSelections::filterSelection(const QSet<Object *> &objects) const
 {
 	QSet<int> units;
 	QSet<Location *> buildings;
@@ -157,7 +157,7 @@ QSet<int> SelectionManager::filterSelection(const QSet<Object *> &objects) const
 	return units;
 }
 
-void SelectionManager::selectUnits(const QSet<int> &unitsUids)
+void GameSelections::selectUnits(const QSet<int> &unitsUids)
 {
 	for (auto &uid : selectedUnitsUids_)
 		removeSelectionEffect(uid);
@@ -170,7 +170,7 @@ void SelectionManager::selectUnits(const QSet<int> &unitsUids)
 	markBuildingsSelected();
 }
 
-void SelectionManager::addUnitsToSelection(QSet<int> unitsUids)
+void GameSelections::addUnitsToSelection(QSet<int> unitsUids)
 {
 	selectedUnitsUids_.unite(unitsUids);
 
@@ -180,7 +180,7 @@ void SelectionManager::addUnitsToSelection(QSet<int> unitsUids)
 	markBuildingsSelected();
 }
 
-void SelectionManager::markBuildingsSelected()
+void GameSelections::markBuildingsSelected()
 {
 	if (selectedLocationUid_ != Object::InvalidUid)
 		removeSelectionEffect(selectedLocationUid_);
@@ -202,7 +202,7 @@ void SelectionManager::markBuildingsSelected()
 	}
 }
 
-void SelectionManager::addSelectionEffect(int objUid)
+void GameSelections::addSelectionEffect(int objUid)
 {
 	if (uidToSelectionEffect_.contains(objUid))
 		return;
@@ -214,7 +214,7 @@ void SelectionManager::addSelectionEffect(int objUid)
 	uidToSelectionEffect_.insert(objUid, effectIterator);
 }
 
-void SelectionManager::removeSelectionEffect(int objUid)
+void GameSelections::removeSelectionEffect(int objUid)
 {
 	if (!uidToSelectionEffect_.contains(objUid))
 		return;
@@ -229,7 +229,7 @@ void SelectionManager::removeSelectionEffect(int objUid)
 	uidToSelectionEffect_.erase(selection);
 }
 
-void SelectionManager::removeDeadFromSelection()
+void GameSelections::removeDeadFromSelection()
 {
 	auto selectedUnitsUidsCopy_ = selectedUnitsUids_;
 	for (auto uid : selectedUnitsUidsCopy_)

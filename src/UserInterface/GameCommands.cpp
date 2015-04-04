@@ -12,14 +12,14 @@
 #include "Mind/PointEffectData.hpp"
 #include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/GameViewport.hpp"
-#include "UserInterface/SelectionManager.hpp"
+#include "UserInterface/GameSelections.hpp"
 #include "UserInterface/Resources.hpp"
 
-GameCommands::GameCommands(Mind *m, BoardWidget *bw, const GameViewport &gv, const SelectionManager &sm)
+GameCommands::GameCommands(Mind *m, BoardWidget *bw, const GameViewport &gv, const GameSelections &gs)
 	: mind_(m),
 	  boardWidget_(bw),
 	  gameViewport_(gv),
-	  selectionManager_(sm)
+	  gameSelections_(gs)
 {}
 
 void GameCommands::mousePressEvent(const QMouseEvent *event)
@@ -55,7 +55,7 @@ void GameCommands::refresh()
 
 const QSet<int> &GameCommands::selectedUnits()
 {
-	return selectionManager_.selectedUnitsUids();
+	return gameSelections_.selectedUnitsUids();
 }
 
 BS::Command GameCommands::choosePrimaryCommand(Unit *unit, Object *target)

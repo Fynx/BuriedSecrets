@@ -6,8 +6,9 @@
 	DeadSection.cpp
 	FactionPanel.cpp
 	GameCommands.cpp
+	GameInterface.cpp
+	GameSelections.cpp
 	GameViewport.cpp
-	GameWindow.cpp
 	GameWindows.cpp
 	IsometricPerspective.cpp
 	ItemsDisplay.cpp
@@ -18,7 +19,6 @@
 	Perspective.cpp
 	PostGameWindow.cpp
 	Resources.cpp
-	SelectionManager.cpp
 	SlotWidget.cpp
 	UnitsPanel.cpp
 	UnitEquipmentTab.cpp
@@ -36,15 +36,15 @@ set (UserInterface_HDRS
 	CampWindow.hpp
 	FactionPanel.hpp
 	GameCommands.hpp
+	GameInterface.hpp
+	GameSelections.hpp
 	GameViewport.hpp
-	GameWindow.hpp
 	GameWindows.hpp
 	ItemsDisplay.hpp
 	ItemsListWidget.hpp
 	JournalWindow.hpp
 	MainMenuWindow.hpp
 	PostGameWindow.hpp
-	SelectionManager.hpp
 	SlotWidget.hpp
 	UnitsPanel.hpp
 	UnitSection.hpp

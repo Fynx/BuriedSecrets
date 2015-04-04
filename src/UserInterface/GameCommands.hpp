@@ -13,11 +13,11 @@ class Mind;
 class Object;
 class Unit;
 class GameViewport;
-class SelectionManager;
+class GameSelections;
 
 class GameCommands {
 public:
-	GameCommands(Mind *m, BoardWidget *bw, const GameViewport &gv, const SelectionManager &sm);
+	GameCommands(Mind *m, BoardWidget *bw, const GameViewport &gv, const GameSelections &gs);
 
 	void mousePressEvent(const QMouseEvent *event);
 	void refresh();
@@ -35,5 +35,5 @@ private:
 	Mind *const mind_;
 	BoardWidget *boardWidget_;
 	const GameViewport &gameViewport_;
-	const SelectionManager &selectionManager_;
+	const GameSelections &gameSelections_;
 };

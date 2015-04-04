@@ -1,4 +1,4 @@
-﻿/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014
  * All rights reserved.
  */
 #include "UserInterface/UserInterface.hpp"
@@ -8,7 +8,7 @@
 #include "Graphics/GraphicsWidget.hpp"
 #include "UserInterface/Viewport.hpp"
 #include "UserInterface/MainMenuWindow.hpp"
-#include "UserInterface/GameWindow.hpp"
+#include "UserInterface/GameInterface.hpp"
 #include "UserInterface/PostGameWindow.hpp"
 #include "UserInterface/Resources.hpp"
 
@@ -52,11 +52,11 @@ bool UserInterface::gameInProgress() const
 
 void UserInterface::newGame(Mind *mind, BoardWidget *boardWidget)
 {
-	gameWindow_ = new GameWindow(mind, dataManager_, boardWidget);
+	gameWindow_ = new GameInterface(mind, dataManager_, boardWidget);
 	gameEnded_ = false;
 
-	connect(gameWindow_, &GameWindow::showMainMenu, this, &UserInterface::onShowMainMenu);
-	connect(gameWindow_, &GameWindow::gameEnded, this, &UserInterface::onGameEnded);
+	connect(gameWindow_, &GameInterface::showMainMenu, this, &UserInterface::onShowMainMenu);
+	connect(gameWindow_, &GameInterface::gameEnded, this, &UserInterface::onGameEnded);
 	stackedWidget_->insertWidget(static_cast<int>(Window::Game), gameWindow_);
 
 	switchToWindow(Window::Game);
@@ -92,8 +92,8 @@ void UserInterface::switchToWindow(Window window)
 void UserInterface::clearGame()
 {
 	if (gameInProgress()) {
-		disconnect(gameWindow_, &GameWindow::showMainMenu, this, &UserInterface::onShowMainMenu);
-		disconnect(gameWindow_, &GameWindow::gameEnded, this, &UserInterface::onGameEnded);
+		disconnect(gameWindow_, &GameInterface::showMainMenu, this, &UserInterface::onShowMainMenu);
+		disconnect(gameWindow_, &GameInterface::gameEnded, this, &UserInterface::onGameEnded);
 		stackedWidget_->removeWidget(gameWindow_);
 		delete gameWindow_;
 	}

@@ -15,10 +15,10 @@ class Mind;
 class Object;
 class Unit;
 
-class SelectionManager : public QObject {
+class GameSelections : public QObject {
 	Q_OBJECT
 public:
-	SelectionManager(Mind *mind, BoardWidget *boardWidget);
+	GameSelections(Mind *mind, BoardWidget *boardWidget);
 
 	const QSet<int> &selectedUnitsUids() const;
 

@@ -1,4 +1,4 @@
-﻿/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014
  * All rights reserved.
  */
 #pragma once
@@ -13,7 +13,7 @@ class Mind;
 class InterfaceDataManager;
 class Viewport;
 class MainMenuWindow;
-class GameWindow;
+class GameInterface;
 class PostGameWindow;
 
 class UserInterface : public QObject {
@@ -43,7 +43,7 @@ private:
 	DataManager *const dataManager_;
 
 	QMainWindow *mainWindow_;
-	GameWindow *gameWindow_;
+	GameInterface *gameWindow_;
 	PostGameWindow *postGameWindow_;
 	MainMenuWindow *mainMenuWindow_;
 	QStackedWidget *stackedWidget_;
