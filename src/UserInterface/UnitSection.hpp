@@ -17,6 +17,7 @@ public:
 	const Unit *unit();
 	QSize sizeHint() const;
 	void refresh();
+	void setSelected(bool isSelected);
 
 private:
 	static const QSize AvatarSize;

@@ -14,6 +14,10 @@ QRect BoardWidget::rubberBandRect() const
 
 bool BoardWidget::isRubberBandVisible() const
 {
+	if (isRubberBandVisible_) {
+		if (qMax(rubberBandRect_.width(), rubberBandRect_.height()) < MinimalRectSize)
+			return false;
+	}
 	return isRubberBandVisible_;
 }
 

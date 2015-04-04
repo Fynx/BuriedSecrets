@@ -183,8 +183,9 @@ void GameSelections::addSelectionEffect(int objUid)
 	if (uidToSelectionEffect_.contains(objUid))
 		return;
 
+	emit selectionChanged(objUid, true);
+
 	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
-	object->property(TempData::IsSelected) = QVariant(true);
 	auto effectIterator = mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(object)));
 
 	uidToSelectionEffect_.insert(objUid, effectIterator);
@@ -195,9 +196,7 @@ void GameSelections::removeSelectionEffect(int objUid)
 	if (!uidToSelectionEffect_.contains(objUid))
 		return;
 
-	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
-	if (object != nullptr)
-		object->property(TempData::IsSelected) = QVariant(false);
+	emit selectionChanged(objUid, false);
 
 	const auto selection = uidToSelectionEffect_.find(objUid);
 	mind_->deleteEffect(selection.value());

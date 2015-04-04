@@ -63,6 +63,7 @@ void GameInterface::initUnitsPanel()
 {
 	unitsPanel_ = new UnitsPanel(dataManager_, mind_);
 	unitsPanel_->setParent(this);
+	connect(&gameSelections_, &GameSelections::selectionChanged, unitsPanel_, &UnitsPanel::setSelection);
 	connect(unitsPanel_, &UnitsPanel::pickUnit, &gameSelections_, &GameSelections::pickUnit);
 	connect(unitsPanel_, &UnitsPanel::showUnit, &gameViewport_, &GameViewport::showUnit);
 	connect(unitsPanel_, &UnitsPanel::pickUnit, &gameWindows_, &GameWindows::switchUnitWindow);

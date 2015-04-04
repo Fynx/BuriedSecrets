@@ -9,6 +9,7 @@ class BoardWidget : public QWidget {
 	Q_OBJECT
 
 public:
+	const int MinimalRectSize = 7;
 	BoardWidget();
 
 	QRect rubberBandRect() const;

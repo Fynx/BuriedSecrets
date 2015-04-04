@@ -182,7 +182,6 @@ namespace States {
 
 namespace TempData {                                   // kept in GO's map
 	const QString Damage        = "damage";
-	const QString IsSelected    = "isSelected";
 	const QString NearCamp      = "nearCamp";
 	const QString NearestDist   = "nearestDist";
 	const QString State         = "state";

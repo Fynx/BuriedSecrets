@@ -18,6 +18,9 @@ public:
 	QSize sizeHint() const;
 	void refresh();
 
+public slots:
+	void setSelection(int uid, bool isSelected);
+
 private:
 	bool didUnitsChange();
 	void rebuild();
@@ -27,7 +30,7 @@ private:
 	const Mind *const mind_;
 
 	QList<QPair<int, bool>> unitsStates_; //id, isAlive
-	QSet<UnitSection *> unitSections_;
+	QHash<int, UnitSection *> unitSections_;
 	QHBoxLayout *panelLayout_;
 
 	QSignalMapper pickSignalMapper_;

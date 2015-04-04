@@ -47,4 +47,6 @@ private:
 
 	QHash<int, QLinkedList<Effect>::iterator> uidToSelectionEffect_;
 
+signals:
+	void selectionChanged(int uid, bool isSelected);
 };

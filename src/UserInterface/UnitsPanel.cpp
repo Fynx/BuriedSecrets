@@ -46,6 +46,11 @@ void UnitsPanel::refresh()
 		iter->refresh();
 }
 
+void UnitsPanel::setSelection(int uid, bool isSelected)
+{
+	unitSections_[uid]->setSelected(isSelected);
+}
+
 bool UnitsPanel::didUnitsChange()
 {
 	QList<int> allUnits = mind_->getPlayerFaction()->getAllUnitsUids();
@@ -90,7 +95,7 @@ void UnitsPanel::appendUnitSection(int uid)
 	const Unit *unit = dynamic_cast<const Unit *>(mind_->getObjectFromUid(uid));
 	UnitSection *unitSection = new UnitSection(unit, dataManager_);
 
-	unitSections_.insert(unitSection);
+	unitSections_.insert(uid, unitSection);
 	panelLayout_->addWidget(unitSection);
 
 	connect(unitSection, &UnitSection::pickUnit,
