@@ -104,7 +104,8 @@ void GameInterface::keyPressEvent(QKeyEvent *event)
 {
 	switch (event->key()) {
 		case Qt::Key_Escape:
-			emit showMainMenu();
+			if (!gameWindows_.isSubwindowOpen())
+				emit showMainMenu();
 			break;
 		case Qt::Key_P:
 			if (!isPaused_)
@@ -112,10 +113,11 @@ void GameInterface::keyPressEvent(QKeyEvent *event)
 			else
 				resumeGame();
 			break;
-		default:
-			gameSelections_.keyPressEvent(event);
-			gameViewport_.keyPressEvent(event);
 	}
+	gameSelections_.keyPressEvent(event);
+	gameViewport_.keyPressEvent(event);
+	gameWindows_.keyPressEvent(event);
+
 	QWidget::keyPressEvent(event);
 }
 

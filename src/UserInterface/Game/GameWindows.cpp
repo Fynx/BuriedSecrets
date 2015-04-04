@@ -25,6 +25,30 @@ void GameWindows::adjustWindowsGeometry(const QRect &mainWindowGeometry, const Q
 	tileCenter(unitWindow_);
 }
 
+void GameWindows::keyPressEvent(const QKeyEvent *event)
+{
+	switch (event->key()) {
+		case Qt::Key_Escape:
+			closeCampWindow();
+			closeJournalWindow();
+			closeUnitWindow();
+			break;
+		case Qt::Key_C:
+			showCampWindow();
+			break;
+		case Qt::Key_J:
+			showJournalWindow();
+			break;
+		case Qt::Key_I:
+			for (auto uid : mind_->getPlayerFaction()->getAllUnitsUids())
+				if (mind_->getPlayerFaction()->isAliveMember(uid)) {
+					showUnitWindow(*(mind_->getPlayerFaction()->getUnitsUids().begin()));
+					break;
+				}
+			break;
+	}
+}
+
 void GameWindows::initWindows(QWidget *gameWindow)
 {
 	// CampWindow

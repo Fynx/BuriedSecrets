@@ -19,6 +19,8 @@ public:
 	void initWindows(QWidget *mainWidget);
 	void adjustWindowsGeometry(const QRect &mainWindowGeometry, const QSize &unitsPanelSize);
 
+	void keyPressEvent(const QKeyEvent *event);
+
 	bool isSubwindowOpen() const;
 	CampWindow *campWindow() const;
 

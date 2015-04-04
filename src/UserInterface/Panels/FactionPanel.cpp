@@ -33,13 +33,12 @@ void FactionPanel::initLayout()
 	auto mainLayout = new QHBoxLayout;
 	setLayout(mainLayout);
 
-	journalBtn_ = new QPushButton("Journal");
+	journalBtn_ = new QPushButton;
 	journalBtn_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	connect(journalBtn_, &QPushButton::clicked, this, &FactionPanel::journalActivated);
+	journalBtn_->setIcon(QIcon(Icons::Journal));
+	journalBtn_->setIconSize(IconsSize);
 	mainLayout->addWidget(journalBtn_);
-
-	//PLAYTESTS
-	journalBtn_->hide();
 
 	campBtn_ = new QPushButton;
 	campBtn_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);

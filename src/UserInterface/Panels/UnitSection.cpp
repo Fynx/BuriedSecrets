@@ -21,6 +21,7 @@ UnitSection::UnitSection(const Unit *unit, DataManager *dataManager)
 	setAutoFillBackground(true);
 	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 	setLineWidth(3);
+	setFrameStyle(QFrame::Panel | QFrame::Sunken);
 
 	initLayout();
 }
