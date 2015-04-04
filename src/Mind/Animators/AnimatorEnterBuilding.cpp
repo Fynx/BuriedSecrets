@@ -42,7 +42,7 @@ void AnimatorEnterBuilding::act()
 			continue;
 		}
 
-		if (target->getCapacity() <= target->getUnitsUids().size()){
+		if (target->isFull()){
 			unit->setCommand(Command::None);
 			continue;
 		}

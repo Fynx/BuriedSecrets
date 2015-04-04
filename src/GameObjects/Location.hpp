@@ -21,6 +21,7 @@ public:
 	void insertUnit(int id);
 	void removeUnit(int id);
 	QList<int> getUnitsUids() const;
+	bool isFull() const;
 
 	QPointF getOffset();
 

@@ -104,6 +104,11 @@ QList<int> Location::getUnitsUids() const
 	return unitsUids.toList();
 }
 
+bool Location::isFull() const
+{
+	return getCapacity() <= unitsUids.count();
+}
+
 QPointF Location::getOffset()
 {
 	if (prototype->hasProperty(Properties::OffsetX))

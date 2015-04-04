@@ -68,30 +68,34 @@ BS::Command GameCommands::choosePrimaryCommand(Unit *unit, Object *target)
 			return BS::Command::None;
 	}
 
-	if (target == nullptr || target->getType() == BS::Type::Environment) {
+	// if this is ground or not iteresting target
+	if (target == nullptr || target->getType() == BS::Type::Environment
+	    || !mind_->getMapManager()->hasBeenSeen(target)) {
 		if (unit->getState() == BS::State::Inside)
 			return BS::Command::Leave;
 		else
 			return BS::Command::Move;
 	}
-	else {
-		switch (target->getType()) {
-			case BS::Type::Unit:
-				if (!mind_->getPlayerFaction()->isFriendly(target))
-					return BS::Command::Attack;
-				break;
-			case BS::Type::Location:
-				if (mind_->getPlayerFaction()->isFriendly(target)) {
-					if (unit->getState() != BS::State::Inside)
-						return BS::Command::Enter;
-				}
-				else
-					return BS::Command::Attack;
-				break;
-			default:
-				break;
-		}
+
+	// only interesting targets remain
+	switch (target->getType()) {
+		case BS::Type::Unit:
+			if (!mind_->getPlayerFaction()->isFriendly(target))
+				return BS::Command::Attack;
+			break;
+		case BS::Type::Location:
+			if (mind_->getPlayerFaction()->isFriendly(target)) {
+				auto location = dynamic_cast<Location *>(target);
+				if (unit->getState() != BS::State::Inside && !location->isFull())
+					return BS::Command::Enter;
+			}
+			else
+				return BS::Command::Attack;
+			break;
+		default:
+			break;
 	}
+
 	return BS::Command::None;
 }
 
@@ -105,26 +109,30 @@ BS::Command GameCommands::chooseSecondaryCommand(Unit *unit, Object *target)
 			return BS::Command::None;
 	}
 
+	// if this is ground or not iteresting target
 	if (target == nullptr) {
 		if (unit->getState() != BS::State::Inside)
 			return BS::Command::Assemble;
+		else
+			return BS::Command::None;
 	}
-	else {
-		switch (target->getType()) {
-			case BS::Type::Unit:
-				if (mind_->getPlayerFaction()->isFriendly(target))
-					return BS::Command::Heal;
-				break;
-			case BS::Type::Location:
-				//TODO check if disassemblable - location, not fortification
-				if (unit->getState() != BS::State::Inside)
-					return BS::Command::Disassemble;
-				break;
-			default:
-				break;
-		}
+
+	// only interesting targets remain
+	switch (target->getType()) {
+		case BS::Type::Unit:
+			if (mind_->getPlayerFaction()->isFriendly(target))
+				return BS::Command::Heal;
+			break;
+		case BS::Type::Location:
+			//TODO check if disassemblable - location, not fortification
+			if (unit->getState() != BS::State::Inside)
+				return BS::Command::Disassemble;
+			break;
+		default:
+			break;
 	}
-	return BS::Command::None;
+
+		return BS::Command::None;
 }
 
 void GameCommands::instructCommand(BS::Command command, Unit *unit, QPointF point, Object *target)

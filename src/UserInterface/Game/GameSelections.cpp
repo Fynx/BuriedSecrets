@@ -183,9 +183,10 @@ void GameSelections::addSelectionEffect(int objUid)
 	if (uidToSelectionEffect_.contains(objUid))
 		return;
 
-	emit selectionChanged(objUid, true);
-
 	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
+	if (dynamic_cast<Unit *>(object))
+		emit selectionChanged(objUid, true);
+
 	auto effectIterator = mind_->addEffect(Effect(Effects::Selection, new ObjectEffectData(object)));
 
 	uidToSelectionEffect_.insert(objUid, effectIterator);
@@ -196,7 +197,8 @@ void GameSelections::removeSelectionEffect(int objUid)
 	if (!uidToSelectionEffect_.contains(objUid))
 		return;
 
-	emit selectionChanged(objUid, false);
+	if (dynamic_cast<Unit *>(mind_->getObjectFromUid(objUid)))
+		emit selectionChanged(objUid, false);
 
 	const auto selection = uidToSelectionEffect_.find(objUid);
 	mind_->deleteEffect(selection.value());
