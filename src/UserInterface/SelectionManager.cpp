@@ -106,14 +106,16 @@ void SelectionManager::mousePressEvent(const QMouseEvent *event)
 			//SecondaryAction
 			if (selectedUnitsUids_.size() == 1) {
 				Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnitsUids_.begin()));
-				makeSecondaryAction(unit, place, target);
+				auto command = chooseSecondaryCommand(unit, target);
+				instructCommand(command, unit, place, target);
 			}
 		}
 		else {
-			// Primary Action
+			// Primary Command
 			for (auto &uid : selectedUnitsUids_) {
 				Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
-				makePrimaryAction(unit, place, target);
+				auto command = choosePrimaryCommand(unit, target);
+				instructCommand(command, unit, place, target);
 			}
 		}
 	}
@@ -139,7 +141,11 @@ void SelectionManager::showUnit(int uid)
 		return;
 
 	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
-	auto unitPos = mind_->physicsEngine()->getPosition(unit);
+	QPointF unitPos;
+	if (unit->getState() == BS::State::Inside)
+		unitPos = mind_->physicsEngine()->getPosition(unit->getLocation());
+	else
+		unitPos = mind_->physicsEngine()->getPosition(unit);
 	viewport_.centerOnPointInMetres(unitPos);
 }
 
@@ -176,78 +182,110 @@ void SelectionManager::selectionByRectEnded(const QRect &selectionRect)
 		selectUnits(filteredUnits);
 }
 
-void SelectionManager::makePrimaryAction(Unit *unit, QPointF point, Object *target)
+BS::Command SelectionManager::choosePrimaryCommand(Unit *unit, Object *target)
 {
+	//if unit is camp
+	if (unit->getState() == BS::State::IdleBase || unit->getState() == BS::State::RunBase) {
+		if (target == nullptr)
+			return BS::Command::Move;
+		else
+			return BS::Command::None;
+	}
+
 	if (target == nullptr || target->getType() == BS::Type::Environment) {
 		if (unit->getState() == BS::State::Inside)
-			unit->setCommand(BS::Command::Leave);
+			return BS::Command::Leave;
 		else
-			unit->setCommand(BS::Command::Move);
-
-		unit->setTargetPoint(point);
-		mind_->addEffect(Effect(Effects::MoveCommand, new PointEffectData(point), Effect::CommandEffectTimeout));
+			return BS::Command::Move;
 	}
 	else {
 		switch (target->getType()) {
 			case BS::Type::Unit:
-				if (!mind_->getPlayerFaction()->isFriendly(target)) {
-					unit->setTargetObject(target->getUid());
-					unit->setCommand(BS::Command::Attack);
-					mind_->addEffect(Effect(Effects::HostileCommand, new ObjectEffectData(target),
-					                 Effect::CommandEffectTimeout));
-				}
+				if (!mind_->getPlayerFaction()->isFriendly(target))
+					return BS::Command::Attack;
 				break;
-			//TODO changed from Building/Fortification - check
 			case BS::Type::Location:
 				if (mind_->getPlayerFaction()->isFriendly(target)) {
-					if (unit->getState() != BS::State::Inside) {
-						unit->setTargetObject(target->getUid());
-						unit->setCommand(BS::Command::Enter);
-						mind_->addEffect(Effect(Effects::EnterCommand, new ObjectEffectData(target),
-						                 Effect::CommandEffectTimeout));
-					}
+					if (unit->getState() != BS::State::Inside)
+						return BS::Command::Enter;
 				}
-				else {
-					unit->setTargetObject(target->getUid());
-					unit->setCommand(BS::Command::Attack);
-					mind_->addEffect(Effect(Effects::HostileCommand, new ObjectEffectData(target),
-					                 Effect::CommandEffectTimeout));
-				}
+				else
+					return BS::Command::Attack;
 				break;
 			default:
 				break;
 		}
 	}
+	return BS::Command::None;
 }
 
-void SelectionManager::makeSecondaryAction(Unit *unit, QPointF point, Object *target)
+BS::Command SelectionManager::chooseSecondaryCommand(Unit *unit, Object *target)
 {
+	//if unit is camp
+	if (unit->getState() == BS::State::IdleBase || unit->getState() == BS::State::RunBase) {
+		if (target == nullptr)
+			return BS::Command::Assemble;
+		else
+			return BS::Command::None;
+	}
+
 	if (target == nullptr) {
-		if (unit->getState() != BS::State::Inside) {
-			unit->setCommand(BS::Command::Assemble);
-			unit->setTargetPoint(point);
-		}
+		if (unit->getState() != BS::State::Inside)
+			return BS::Command::Assemble;
 	}
 	else {
 		switch (target->getType()) {
 			case BS::Type::Unit:
-				if (mind_->getPlayerFaction()->isFriendly(target)) {
-					unit->setTargetObject(target->getUid());
-					unit->setCommand(BS::Command::Heal);
-					mind_->addEffect(Effect(Effects::FriendlyCommand, new ObjectEffectData(target),
-					                 Effect::CommandEffectTimeout));
-				}
+				if (mind_->getPlayerFaction()->isFriendly(target))
+					return BS::Command::Heal;
 				break;
 			case BS::Type::Location:
 				//TODO check if disassemblable - location, not fortification
-				if (unit->getState() != BS::State::Inside) {
-					unit->setTargetObject(target->getUid());
-					unit->setCommand(BS::Command::Disassemble);
-				}
+				if (unit->getState() != BS::State::Inside)
+					return BS::Command::Disassemble;
 				break;
 			default:
 				break;
 		}
+	}
+	return BS::Command::None;
+}
+
+void SelectionManager::instructCommand(BS::Command command, Unit *unit, QPointF point, Object *target)
+{
+	if (command != BS::Command::None)
+		unit->setCommand(command);
+
+	switch (command) {
+		case BS::Command::Assemble:
+			unit->setTargetPoint(point);
+			return;
+		case BS::Command::Attack:
+			unit->setTargetObject(target->getUid());
+			mind_->addEffect(Effect(Effects::HostileCommand, new ObjectEffectData(target),
+			                 Effect::CommandEffectTimeout));
+			return;
+		case BS::Command::Disassemble:
+			unit->setTargetObject(target->getUid());
+			return;
+		case BS::Command::Enter:
+			unit->setTargetObject(target->getUid());
+			mind_->addEffect(Effect(Effects::EnterCommand, new ObjectEffectData(target),
+			                 Effect::CommandEffectTimeout));
+			return;
+		case BS::Command::Heal:
+			unit->setTargetObject(target->getUid());
+			mind_->addEffect(Effect(Effects::FriendlyCommand, new ObjectEffectData(target),
+			                 Effect::CommandEffectTimeout));
+			return;
+		case BS::Command::Leave:
+			return;
+		case BS::Command::Move:
+			unit->setTargetPoint(point);
+			mind_->addEffect(Effect(Effects::MoveCommand, new PointEffectData(point), Effect::CommandEffectTimeout));
+			return;
+		default:
+			return;
 	}
 }
 
@@ -417,57 +455,42 @@ void SelectionManager::adjustCursor()
 	if (!boardWidget_->geometry().contains(boardPos))
 		return;
 
-	// no units selected
-	if (selectedUnitsUids_.isEmpty()) {
-		boardWidget_->setCursor(BSCursor((Cursors::PointerPrimary)));
-		return;
+	auto target = objectInPixelsPos(boardPos);
+	BS::Command command = BS::Command::None;
+
+	if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
+		if (selectedUnitsUids_.size() == 1) {
+			//check for possible secondary command
+			Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnitsUids_.begin()));
+			command = chooseSecondaryCommand(unit, target);
+		}
+	}
+	else {
+		if (!selectedUnitsUids_.isEmpty()) {
+			//check for possible primary action
+			Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnitsUids_.begin()));
+			command = choosePrimaryCommand(unit, target);
+		}
 	}
 
-	// check if only one unit
-	Unit *unit = nullptr;
-	if (selectedUnitsUids_.size() == 1)
-		unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnitsUids_.begin()));
-
-	// set default cursor
 	QCursor cursor = BSCursor(Cursors::PointerPrimary);
 
-	// adjust cursor
-	auto obj = objectInPixelsPos(boardPos);
-	Location *l;
-	if (obj != nullptr) {
-		switch (obj->getType()) {
-			case BS::Type::Location:
-				l = dynamic_cast<Location *>(obj);
-				// check for etering location
-				if (mind_->getPlayerFaction()->isFriendly(obj)) {
-					if (l->getCapacity() - l->getUnitsUids().size() > 0)
-						cursor = BSCursor(Cursors::ArrowDownPrimary);
-				}
-				else
-					//check for hostile location attack
-					cursor = BSCursor(Cursors::Target);
-				break;
-			case BS::Type::Unit:
-				// check for heal
-				if (mind_->getPlayerFaction()->isFriendly(obj)) {
-					if (QApplication::keyboardModifiers() & Qt::ControlModifier && unit != nullptr)
-						if (unit->getEquipment()->getSlotItem(BS::Medicament) != nullptr)
-							cursor = BSCursor(Cursors::HealCross);
-				}
-				else
-					//check for hostile unit attack
-					cursor = BSCursor(Cursors::Target);
-				break;
-			default:
-				break;
-		}
+	switch (command) {
+		case BS::Command::Assemble:
+			cursor = BSCursor(Cursors::ArrowDownSecondary);
+			break;
+		case BS::Command::Attack:
+			cursor = BSCursor(Cursors::Target);
+			break;
+		case BS::Command::Enter:
+			cursor = BSCursor(Cursors::ArrowDownPrimary);
+			break;
+		case BS::Command::Heal:
+			cursor = BSCursor(Cursors::HealCross);
+			break;
+		default:
+			break;
 	}
-	else
-		// check for contruction placement
-		if (QApplication::keyboardModifiers() & Qt::ControlModifier && unit != nullptr) {
-			if (unit->getEquipment()->getSlotItem(BS::Fortification) != nullptr)
-				cursor = BSCursor(Cursors::ArrowDownSecondary);
-		}
 
 	boardWidget_->setCursor(cursor);
 }

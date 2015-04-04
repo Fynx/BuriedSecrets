@@ -6,6 +6,7 @@
 #include <QtWidgets>
 
 #include "UserInterface/Viewport.hpp"
+#include "Common/Enums.hpp"
 
 class BoardWidget;
 class Effect;
@@ -40,8 +41,9 @@ public slots:
 	void selectionByRectEnded(const QRect &selectionRect);
 
 private:
-	void makePrimaryAction(Unit *unit, QPointF point, Object *target);
-	void makeSecondaryAction(Unit *unit, QPointF point, Object *target);
+	BS::Command choosePrimaryCommand(Unit *unit, Object *target);
+	BS::Command chooseSecondaryCommand(Unit *unit, Object *target);
+	void instructCommand(BS::Command command, Unit *unit, QPointF point, Object *target);
 
 	int unitNumberToUid(int number) const;
 	Object *objectInPixelsPos(QPoint pointInPixels) const;
