@@ -5,8 +5,10 @@
 
 #include <QtWidgets>
 
-#include "UserInterface/GameSelections.hpp"
 #include "UserInterface/GameWindows.hpp"
+#include "UserInterface/GameViewport.hpp"
+#include "UserInterface/GameSelections.hpp"
+#include "UserInterface/GameCommands.hpp"
 #include "Common/Enums.hpp"
 
 class BoardWidget;
@@ -48,10 +50,12 @@ private:
 	FactionPanel *factionPanel_;
 
 	QTimer *updateTimer_;
-
-	GameSelections gameSelections_;
-	GameWindows gameWindows_;
 	bool isPaused_;
+
+	GameWindows gameWindows_;
+	GameViewport gameViewport_;
+	GameSelections gameSelections_;
+	GameCommands gameCommands_;
 
 private slots:
 	void adjustUnitsPanelGeometry();

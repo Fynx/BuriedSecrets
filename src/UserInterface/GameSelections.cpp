@@ -10,16 +10,13 @@
 #include "Mind/Effect.hpp"
 #include "Mind/Mind.hpp"
 #include "Mind/ObjectEffectData.hpp"
+#include "UserInterface/GameViewport.hpp"
 
-GameSelections::GameSelections(Mind *mind, BoardWidget *boardWidget)
-	: mind_(mind),
-	  gameViewport_(mind, boardWidget),
-	  gameCommands_(mind, boardWidget, gameViewport_, *this),
+GameSelections::GameSelections(Mind *m, const GameViewport &gv)
+	: mind_(m),
+	  gameViewport_(gv),
 	  selectedLocationUid_(Object::InvalidUid)
 {
-	// center view on camp
-	gameViewport_.showObject(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
-
 	//init selectionGroups
 	for (int i = 0; i < 10; ++i)
 		selectionGroupsUids_.insert(i, {});
@@ -30,17 +27,9 @@ const QSet <int> &GameSelections::selectedUnitsUids() const
 	return selectedUnitsUids_;
 }
 
-Viewport *GameSelections::viewport()
-{
-	return gameViewport_.viewport();
-}
-
 void GameSelections::keyPressEvent(const QKeyEvent *event)
 {
 	removeDeadFromSelection();
-
-	//show event to gameViewport
-	gameViewport_.keyPressEvent(event);
 
 	//Selection groups
 	if (event->key() >= Qt::Key_0 && event->key() <= Qt::Key_9) {
@@ -61,27 +50,14 @@ void GameSelections::keyPressEvent(const QKeyEvent *event)
 
 void GameSelections::mousePressEvent(const QMouseEvent *event)
 {
+	//TODO why this is needed? is this still necessary?
 	removeDeadFromSelection();
-
-	gameCommands_.mousePressEvent(event);
-}
-
-void GameSelections::gameWidgetResized(QSize sizeInPixels)
-{
-	gameViewport_.gameWidgetResized(sizeInPixels);
 }
 
 void GameSelections::refresh()
 {
-	gameCommands_.refresh();
-
 	removeDeadFromSelection();
 	markBuildingsSelected();
-}
-
-void GameSelections::showUnit(int uid)
-{
-	gameViewport_.showUnit(uid);
 }
 
 void GameSelections::pickUnit(int uid)

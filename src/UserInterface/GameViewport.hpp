@@ -32,6 +32,8 @@ public:
 	void gameWidgetResized(QSize sizeInPixels);
 
 	void showObject(Object *obj);
+
+public slots:
 	void showUnit(int uid);
 
 private:

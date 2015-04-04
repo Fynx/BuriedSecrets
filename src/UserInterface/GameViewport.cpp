@@ -29,6 +29,9 @@ GameViewport::GameViewport(Mind *mind, BoardWidget *boardWidget)
 	connect(edgeMoveTimer_, &QTimer::timeout, this, &GameViewport::checkForViewportMove);
 
 	edgeMoveTimer_->start(EdgeViewportMoveTimerInterval);
+
+	//center on camp
+	showObject(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
 }
 
 const Viewport *GameViewport::viewport() const

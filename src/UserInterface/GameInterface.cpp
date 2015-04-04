@@ -19,9 +19,11 @@ GameInterface::GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget 
 	  dataManager_(dm),
 	  boardWidget_(bw),
 	  updateTimer_(new QTimer),
-	  gameSelections_(m, bw),
+	  isPaused_(false),
 	  gameWindows_(m, dm),
-	  isPaused_(false)
+	  gameViewport_(m, bw),
+	  gameSelections_(m, gameViewport_),
+	  gameCommands_(m, bw, gameViewport_, gameSelections_)
 {
 
 	initBoardWidget();
@@ -38,7 +40,7 @@ GameInterface::GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget 
 
 Viewport *GameInterface::viewport()
 {
-	return gameSelections_.viewport();
+	return gameViewport_.viewport();
 }
 
 void GameInterface::startUpdateLoop()
@@ -62,7 +64,7 @@ void GameInterface::initUnitsPanel()
 	unitsPanel_ = new UnitsPanel(dataManager_, mind_);
 	unitsPanel_->setParent(this);
 	connect(unitsPanel_, &UnitsPanel::pickUnit, &gameSelections_, &GameSelections::pickUnit);
-	connect(unitsPanel_, &UnitsPanel::showUnit, &gameSelections_, &GameSelections::showUnit);
+	connect(unitsPanel_, &UnitsPanel::showUnit, &gameViewport_, &GameViewport::showUnit);
 	connect(unitsPanel_, &UnitsPanel::pickUnit, &gameWindows_, &GameWindows::switchUnitWindow);
 	connect(unitsPanel_, &UnitsPanel::showUnitMenu, &gameWindows_, &GameWindows::showUnitWindow);
 	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameInterface::adjustUnitsPanelGeometry);
@@ -91,6 +93,7 @@ void GameInterface::refresh()
 		factionPanel_->setCampIconFlash(false);
 
 	gameSelections_.refresh();
+	gameCommands_.refresh();
 
 	unitsPanel_->refresh();
 	factionPanel_->refresh(mind_);
@@ -110,14 +113,17 @@ void GameInterface::keyPressEvent(QKeyEvent *event)
 			break;
 		default:
 			gameSelections_.keyPressEvent(event);
+			gameViewport_.keyPressEvent(event);
 	}
 	QWidget::keyPressEvent(event);
 }
 
 void GameInterface::mousePressEvent(QMouseEvent *event)
 {
-	if (childAt(event->pos()) == boardWidget_)
+	if (childAt(event->pos()) == boardWidget_) {
 		gameSelections_.mousePressEvent(event);
+		gameCommands_.mousePressEvent(event);
+	}
 
 	QWidget::mousePressEvent(event);
 }
@@ -127,8 +133,8 @@ void GameInterface::resizeEvent(QResizeEvent *event)
 	//maximize boardWidget_
 	boardWidget_->setGeometry(geometry());
 
-	//inform GameWidgetManager about resize (Viewport must know)
-	gameSelections_.gameWidgetResized(boardWidget_->size());
+	//inform GameViewport about resize
+	gameViewport_.gameWidgetResized(boardWidget_->size());
 
 	//resize unitsPanel
 	adjustUnitsPanelGeometry();

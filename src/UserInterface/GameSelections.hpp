@@ -5,12 +5,9 @@
 
 #include <QtWidgets>
 
-#include "UserInterface/GameViewport.hpp"
-#include "UserInterface/GameCommands.hpp"
-#include "Common/Enums.hpp"
-
 class BoardWidget;
 class Effect;
+class GameViewport;
 class Mind;
 class Object;
 class Unit;
@@ -18,20 +15,15 @@ class Unit;
 class GameSelections : public QObject {
 	Q_OBJECT
 public:
-	GameSelections(Mind *mind, BoardWidget *boardWidget);
+	GameSelections(Mind *m, const GameViewport &gv);
 
 	const QSet<int> &selectedUnitsUids() const;
 
-	Viewport *viewport();
-
 	void keyPressEvent(const QKeyEvent *event);
 	void mousePressEvent(const QMouseEvent *event);
-	void gameWidgetResized(QSize sizeInPixels);
-
 	void refresh();
 
 public slots:
-	void showUnit(int uid);
 	void pickUnit(int uid);
 	void selectionByRectEnded(const QRect &selectionRect);
 
@@ -47,8 +39,7 @@ private:
 	void removeDeadFromSelection();
 
 	Mind *const mind_;
-	GameViewport gameViewport_;
-	GameCommands gameCommands_;
+	const GameViewport &gameViewport_;
 
 	QSet<int> selectedUnitsUids_;
 	int selectedLocationUid_;
