@@ -5,6 +5,7 @@
 
 #include "DebugManager/DebugManager.hpp"
 #include "Mind/Mind.hpp"
+#include "GameObjects/Unit.hpp"
 #include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/IsometricPerspective.hpp"
 
@@ -28,6 +29,40 @@ GameViewport::GameViewport(Mind *mind, BoardWidget *boardWidget)
 	connect(edgeMoveTimer_, &QTimer::timeout, this, &GameViewport::checkForViewportMove);
 
 	edgeMoveTimer_->start(EdgeViewportMoveTimerInterval);
+}
+
+const Viewport *GameViewport::viewport() const
+{
+	return &viewport_;
+}
+
+Object *GameViewport::objectInPixelsPos(QPoint pointInPixels) const
+{
+	QPointF point = viewport_.getPhysicalCoordinates(pointInPixels);
+
+	point -= QPointF(0.1, 0.1);
+	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
+
+	if (objects.isEmpty())
+		return nullptr;
+
+	return mind_->getObjectFromUid(objects[0]->getUid());
+}
+
+QSet<Object *> GameViewport::objectInPixelsRect(QRect rectInPixels) const
+{
+	auto topLeftInMetres = viewport_.getPhysicalCoordinates(rectInPixels.topLeft());
+	auto botomRightInMetres = viewport_.getPhysicalCoordinates(rectInPixels.bottomRight());
+	QRectF rectInMetres(topLeftInMetres, botomRightInMetres);
+	rectInMetres = rectInMetres.normalized();
+
+	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(rectInMetres);
+
+	QSet<Object *> result;
+	for (auto &obj : objects)
+		result.insert(mind_->getObjectFromUid(obj->getUid()));
+
+	return result;
 }
 
 Viewport *GameViewport::viewport()
@@ -73,33 +108,18 @@ void GameViewport::showObject(Object *obj)
 	viewport_.centerOnPointInMetres(mind_->physicsEngine()->getPosition(obj));
 }
 
-Object *GameViewport::objectInPixelsPos(QPoint pointInPixels) const
+void GameViewport::showUnit(int uid)
 {
-	QPointF point = viewport_.getPhysicalCoordinates(pointInPixels);
+	if (!mind_->getPlayerFaction()->isAliveMember(uid))
+		return;
 
-	point -= QPointF(0.1, 0.1);
-	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
+	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	auto obj = dynamic_cast<Object *>(unit);
 
-	if (objects.isEmpty())
-		return nullptr;
+	if (unit->getState() == BS::State::Inside)
+		obj = dynamic_cast<Object *>(unit->getLocation());
 
-	return mind_->getObjectFromUid(objects[0]->getUid());
-}
-
-QSet<Object *> GameViewport::objectInPixelsRect(QRect rectInPixels) const
-{
-	auto topLeftInMetres = viewport_.getPhysicalCoordinates(rectInPixels.topLeft());
-	auto botomRightInMetres = viewport_.getPhysicalCoordinates(rectInPixels.bottomRight());
-	QRectF rectInMetres(topLeftInMetres, botomRightInMetres);
-	rectInMetres = rectInMetres.normalized();
-
-	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(rectInMetres);
-
-	QSet<Object *> result;
-	for (auto &obj : objects)
-		result.insert(mind_->getObjectFromUid(obj->getUid()));
-
-	return result;
+	showObject(obj);
 }
 
 void GameViewport::checkForViewportMove()

@@ -22,14 +22,17 @@ public:
 
 	GameViewport(Mind *mind, BoardWidget *boardWidget);
 
+	const Viewport *viewport() const;
+	Object *objectInPixelsPos(QPoint pointInPixels) const;
+	QSet<Object *> objectInPixelsRect(QRect rectInPixels) const;
+
 	Viewport *viewport();
 
 	void keyPressEvent(const QKeyEvent *event);
 	void gameWidgetResized(QSize sizeInPixels);
 
 	void showObject(Object *obj);
-	Object *objectInPixelsPos(QPoint pointInPixels) const;
-	QSet<Object *> objectInPixelsRect(QRect rectInPixels) const;
+	void showUnit(int uid);
 
 private:
 	Mind *const mind_;

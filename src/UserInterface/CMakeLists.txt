@@ -5,6 +5,7 @@
 	CampWindow.cpp
 	DeadSection.cpp
 	FactionPanel.cpp
+	GameCommands.cpp
 	GameViewport.cpp
 	GameWindow.cpp
 	IsometricPerspective.cpp
@@ -33,6 +34,7 @@ set (UserInterface_HDRS
 	CampConstructorTab.hpp
 	CampWindow.hpp
 	FactionPanel.hpp
+	GameCommands.hpp
 	GameViewport.hpp
 	GameWindow.hpp
 	ItemsDisplay.hpp
