@@ -8,6 +8,7 @@
 	GameCommands.cpp
 	GameViewport.cpp
 	GameWindow.cpp
+	GameWindows.cpp
 	IsometricPerspective.cpp
 	ItemsDisplay.cpp
 	ItemsListWidget.cpp
@@ -37,6 +38,7 @@ set (UserInterface_HDRS
 	GameCommands.hpp
 	GameViewport.hpp
 	GameWindow.hpp
+	GameWindows.hpp
 	ItemsDisplay.hpp
 	ItemsListWidget.hpp
 	JournalWindow.hpp

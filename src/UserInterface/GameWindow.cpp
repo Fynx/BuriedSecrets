@@ -5,24 +5,22 @@
 
 #include "DebugManager/DebugManager.hpp"
 #include "Mind/Mind.hpp"
-#include "Common/Strings.hpp"
 #include "GameObjects/Unit.hpp"
 #include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/UnitsPanel.hpp"
 #include "UserInterface/FactionPanel.hpp"
 #include "UserInterface/CampWindow.hpp"
-#include "UserInterface/JournalWindow.hpp"
-#include "UserInterface/UnitWindow.hpp"
 
 const int GameWindow::UpdateTimerInterval = 100;
 
-GameWindow::GameWindow(Mind *mind, DataManager *dataManager, BoardWidget *boardWidget, QWidget *parent)
+GameWindow::GameWindow(Mind *m, DataManager *dm, BoardWidget *bw, QWidget *parent)
 	: QWidget(parent),
-	  mind_(mind),
-	  dataManager_(dataManager),
-	  boardWidget_(boardWidget),
+	  mind_(m),
+	  dataManager_(dm),
+	  boardWidget_(bw),
 	  updateTimer_(new QTimer),
-	  selectionManager_(mind, boardWidget),
+	  selectionManager_(m, bw),
+	  gameWindows_(m, dm),
 	  isPaused_(false)
 {
 
@@ -31,8 +29,10 @@ GameWindow::GameWindow(Mind *mind, DataManager *dataManager, BoardWidget *boardW
 	initFactionPanel();
 
 	//WARNING if initialized before boardWidget - goes below
-	initWindows();
+	gameWindows_.initWindows(this);
 
+	connect(&gameWindows_, &GameWindows::pauseGame, this, &GameWindow::pauseGame);
+	connect(&gameWindows_, &GameWindows::resumeGame, this, &GameWindow::resumeGame);
 	connect(updateTimer_, &QTimer::timeout, this, &GameWindow::refresh);
 }
 
@@ -50,27 +50,6 @@ void GameWindow::startUpdateLoop()
 	info("Loop started successfully.");
 }
 
-void GameWindow::initWindows()
-{
-	// CampWindow
-	campWindow_ = new CampWindow(mind_, dataManager_);
-	campWindow_->setParent(this);
-	campWindow_->hide();
-	connect(campWindow_, &CampWindow::exit, this, &GameWindow::closeCampWindow);
-
-	// UnitWindow
-	unitWindow_ = new UnitWindow(mind_, dataManager_);
-	unitWindow_->setParent(this);
-	unitWindow_->hide();
-	connect(unitWindow_, &UnitWindow::exit, this, &GameWindow::closeUnitWindow);
-
-	// JournalWindow
-	journalWindow_ = new JournalWindow;
-	journalWindow_->setParent(this);
-	journalWindow_->hide();
-	connect(journalWindow_, &JournalWindow::exit, this, &GameWindow::closeJournalWindow);
-}
-
 void GameWindow::initBoardWidget()
 {
 	//Pointer to boardWidget is passed in constructor from Graphics
@@ -84,8 +63,8 @@ void GameWindow::initUnitsPanel()
 	unitsPanel_->setParent(this);
 	connect(unitsPanel_, &UnitsPanel::pickUnit, &selectionManager_, &SelectionManager::pickUnit);
 	connect(unitsPanel_, &UnitsPanel::showUnit, &selectionManager_, &SelectionManager::showUnit);
-	connect(unitsPanel_, &UnitsPanel::pickUnit, this, &GameWindow::switchUnitWindow);
-	connect(unitsPanel_, &UnitsPanel::showUnitMenu, this, &GameWindow::showUnitWindow);
+	connect(unitsPanel_, &UnitsPanel::pickUnit, &gameWindows_, &GameWindows::switchUnitWindow);
+	connect(unitsPanel_, &UnitsPanel::showUnitMenu, &gameWindows_, &GameWindows::showUnitWindow);
 	connect(unitsPanel_, &UnitsPanel::sizeChanged, this, &GameWindow::adjustUnitsPanelGeometry);
 }
 
@@ -93,8 +72,8 @@ void GameWindow::initFactionPanel()
 {
 	factionPanel_ = new FactionPanel;
 	factionPanel_->setParent(this);
-	connect(factionPanel_, &FactionPanel::campActivated, this, &GameWindow::showCampWindow);
-	connect(factionPanel_, &FactionPanel::journalActivated, this, &GameWindow::showJournalWindow);
+	connect(factionPanel_, &FactionPanel::campActivated,    &gameWindows_, &GameWindows::showCampWindow);
+	connect(factionPanel_, &FactionPanel::journalActivated, &gameWindows_, &GameWindows::showJournalWindow);
 }
 
 void GameWindow::refresh()
@@ -105,7 +84,8 @@ void GameWindow::refresh()
 		return;
 	}
 
-	if (campWindow_->knownEquipmentSize() != mind_->getPlayerFaction()->getEquipment()->getItems().count())
+	//TODO move / remove
+	if (gameWindows_.campWindow()->knownEquipmentSize() != mind_->getPlayerFaction()->getEquipment()->getItems().count())
 		factionPanel_->setCampIconFlash(true);
 	else
 		factionPanel_->setCampIconFlash(false);
@@ -114,22 +94,6 @@ void GameWindow::refresh()
 
 	unitsPanel_->refresh();
 	factionPanel_->refresh(mind_);
-}
-
-void GameWindow::pauseGame()
-{
-	if (!isPaused_) {
-		mind_->pauseGame();
-		isPaused_ = true;
-	}
-}
-
-void GameWindow::resumeGame()
-{
-	if (isPaused_ && !isSubwindowOpen()) {
-		mind_->resumeGame();
-		isPaused_ = false;
-	}
 }
 
 void GameWindow::keyPressEvent(QKeyEvent *event)
@@ -166,6 +130,7 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 	//inform GameWidgetManager about resize (Viewport must know)
 	selectionManager_.gameWidgetResized(boardWidget_->size());
 
+	//resize unitsPanel
 	adjustUnitsPanelGeometry();
 
 	//resize campPanel
@@ -173,35 +138,9 @@ void GameWindow::resizeEvent(QResizeEvent *event)
 	               geometry().height() - FactionPanelSize.height());
 	factionPanel_->setGeometry(QRect(topLeft, FactionPanelSize));
 
-	tileCenter(campWindow_);
-	tileCenter(journalWindow_);
-	tileCenter(unitWindow_);
+	gameWindows_.adjustWindowsGeometry(geometry(), unitsPanel_->sizeHint());
 
 	QWidget::resizeEvent(event);
-}
-
-void GameWindow::tileCenter(QWidget *widget)
-{
-	QPoint topLeft(geometry().width() / 4, unitsPanel_->sizeHint().height());
-	QSize size(geometry().width() / 2, geometry().height() - topLeft.y());
-
-	widget->setGeometry(QRect(topLeft, size));
-}
-
-void GameWindow::tileLeft(QWidget *widget)
-{
-	QPoint topLeft(0, unitsPanel_->sizeHint().height());
-	QSize size(geometry().width() / 2, geometry().height() - topLeft.y());
-
-	widget->setGeometry(QRect(topLeft, size));
-}
-
-void GameWindow::tileRight(QWidget *widget)
-{
-	QPoint topLeft(geometry().width() / 2, unitsPanel_->sizeHint().height());
-	QSize size(geometry().width() / 2, geometry().height() - topLeft.y());
-
-	widget->setGeometry(QRect(topLeft, size));
 }
 
 void GameWindow::adjustUnitsPanelGeometry()
@@ -210,92 +149,18 @@ void GameWindow::adjustUnitsPanelGeometry()
 	unitsPanel_->setGeometry(QRect(topLeft, unitsPanel_->sizeHint()));
 }
 
-bool GameWindow::isSubwindowOpen()
+void GameWindow::pauseGame()
 {
-	return journalWindow_->isVisible() || campWindow_->isVisible() || unitWindow_->isVisible();
-}
-
-void GameWindow::showCampWindow()
-{
-	pauseGame();
-
-	journalWindow_->hide();
-
-	if (unitWindow_->isVisible()) {
-		tileRight(unitWindow_);
-		tileLeft(campWindow_);
+	if (!isPaused_) {
+		mind_->pauseGame();
+		isPaused_ = true;
 	}
-
-	campWindow_->refresh();
-	campWindow_->show();
 }
 
-void GameWindow::showJournalWindow()
+void GameWindow::resumeGame()
 {
-	pauseGame();
-
-	campWindow_->hide();
-	journalWindow_->show();
-	unitWindow_->hide();
-}
-
-void GameWindow::showUnitWindow(int uid)
-{
-	pauseGame();
-
-	journalWindow_->hide();
-
-	if (campWindow_->isVisible()) {
-		tileRight(unitWindow_);
-		tileLeft(campWindow_);
+	if (isPaused_ && !gameWindows_.isSubwindowOpen()) {
+		mind_->resumeGame();
+		isPaused_ = false;
 	}
-
-	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
-	if (unit == nullptr) {
-		err("Invalid unit UID to display");
-		return;
-	}
-	unitWindow_->setUnit(unit);
-	unitWindow_->show();
-}
-
-void GameWindow::switchUnitWindow(int uid)
-{
-	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
-	if (unit == nullptr) {
-		err("Invalid unit UID to display");
-		return;
-	}
-
-	if (unitWindow_->isVisible())
-		unitWindow_->setUnit(unit);
-
-}
-
-void GameWindow::closeCampWindow()
-{
-	campWindow_->hide();
-	tileCenter(unitWindow_);
-	tileCenter(campWindow_);
-
-	if (!isSubwindowOpen())
-		resumeGame();
-}
-
-void GameWindow::closeJournalWindow()
-{
-	journalWindow_->hide();
-
-	if (!isSubwindowOpen())
-		resumeGame();
-}
-
-void GameWindow::closeUnitWindow()
-{
-	unitWindow_->hide();
-	tileCenter(unitWindow_);
-	tileCenter(campWindow_);
-
-	if (!isSubwindowOpen())
-		resumeGame();
 }
