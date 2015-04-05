@@ -29,6 +29,4 @@ private:
 signals:
 	void itemMovedIn(int uid);
 	void itemMovedOut(int uid);
-	void itemLinkedIn(int uid);
-	void itemLinkedOut(int uid);
 };

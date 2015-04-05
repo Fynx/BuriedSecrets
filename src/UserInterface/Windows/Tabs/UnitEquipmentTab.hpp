@@ -17,7 +17,7 @@ class Unit;
 class UnitEquipmentTab : public QWidget {
 
 public:
-	UnitEquipmentTab(Unit *unit, Mind *mind, DataManager *dataManager);
+	UnitEquipmentTab(Unit *u, Mind *m, DataManager *dm);
 
 private:
 	void initLayout();
@@ -33,8 +33,7 @@ private:
 	ItemWidget *itemWidget_;
 
 private slots:
-	void onItemMovedIn(int uid);
-	void onItemMovedOut(int uid);
-	void onSlotLinkedIn(BS::Slot slot, int uid);
-	void onSlotLinkedOut(BS::Slot slot, int uid);
+	void showItem(int uid);
+	void onItemMovedIn(BS::Slot slot, int uid);
+	void onItemMovedOut(BS::Slot slot, int uid);
 };

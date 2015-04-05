@@ -50,8 +50,6 @@ void ItemsDisplay::connectDisplays()
 	connect(itemsList_, &ItemsListWidget::currentItemChanged, this, &ItemsDisplay::onCurrentChanged);
 	connect(itemsList_, &ItemsListWidget::itemMovedOut, this, &ItemsDisplay::itemMovedOut);
 	connect(itemsList_, &ItemsListWidget::itemMovedIn, this, &ItemsDisplay::itemMovedIn);
-	connect(itemsList_, &ItemsListWidget::itemLinkedOut, this, &ItemsDisplay::itemLinkedOut);
-	connect(itemsList_, &ItemsListWidget::itemLinkedIn, this, &ItemsDisplay::itemLinkedIn);
 }
 
 void ItemsDisplay::disableDragAndDrop()

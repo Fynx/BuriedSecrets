@@ -53,13 +53,6 @@ void ItemsListWidget::dragMoveEvent(QDragMoveEvent *event)
 		return;
 	}
 
-	SlotWidget *sw = qobject_cast<SlotWidget *>(event->source());
-	if (sw && event->possibleActions() & Qt::LinkAction) {
-		event->setDropAction(Qt::LinkAction);
-		event->accept();
-		return;
-	}
-
 	else
 		event->ignore();
 }
@@ -69,13 +62,6 @@ void ItemsListWidget::dropEvent(QDropEvent *event)
 	if (event->possibleActions() & Qt::MoveAction) {
 		event->setDropAction(Qt::MoveAction);
 		emit itemMovedIn(QVariant(event->mimeData()->data("uid")).toInt());
-		event->accept();
-		return;
-	}
-
-	if (event->possibleActions() == Qt::LinkAction) {
-		event->setDropAction(Qt::LinkAction);
-		emit itemLinkedIn(QVariant(event->mimeData()->data("uid")).toInt());
 		event->accept();
 		return;
 	}
@@ -99,10 +85,8 @@ void ItemsListWidget::performDrag()
 	drag->setMimeData(mimeData);
 	drag->setPixmap(QPixmap(item->icon().pixmap(32, 32)));
 
-	auto result = drag->exec(Qt::LinkAction | Qt::MoveAction);
+	auto result = drag->exec(Qt::MoveAction);
 	if (result == Qt::MoveAction) {
 		emit itemMovedOut(item->data(Qt::UserRole).toInt());
 	}
-	if (result == Qt::LinkAction)
-		emit itemLinkedOut(item->data(Qt::UserRole).toInt());
 }

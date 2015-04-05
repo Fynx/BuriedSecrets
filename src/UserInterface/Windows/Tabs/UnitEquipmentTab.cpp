@@ -5,16 +5,17 @@
 
 #include "Common/Strings.hpp"
 #include "DataManager/DataManager.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
 #include "UserInterface/Windows/Tabs/Item/ItemsListWidget.hpp"
 #include "UserInterface/Windows/Tabs/Item/ItemWidget.hpp"
 #include "UserInterface/Windows/Tabs/Item/SlotWidget.hpp"
 
-UnitEquipmentTab::UnitEquipmentTab(Unit *unit, Mind *mind, DataManager *dataManager)
-	: dataManager_(dataManager),
-	  unit_(unit),
-	  mind_(mind)
+UnitEquipmentTab::UnitEquipmentTab(Unit *u, Mind *m, DataManager *dm)
+	: dataManager_(dm),
+	  unit_(u),
+	  mind_(m)
 {
 	initLayout();
 }
@@ -35,9 +36,10 @@ QLayout *UnitEquipmentTab::createSlotsLayout()
 	formLayout->setLabelAlignment(Qt::AlignRight);
 
 	for (auto &slot : unit_->getEquipment()->getAvailableSlots()) {
-		auto sw = new SlotWidget(slot);
-		connect(sw, &SlotWidget::itemLinkedIn, this, &UnitEquipmentTab::onSlotLinkedIn);
-		connect(sw, &SlotWidget::itemLinkedOut, this, &UnitEquipmentTab::onSlotLinkedOut);
+		auto sw = new SlotWidget(mind_, slot);
+		connect(sw, &SlotWidget::slotActivated, this, &UnitEquipmentTab::showItem);
+		connect(sw, &SlotWidget::itemMovedIn, this, &UnitEquipmentTab::onItemMovedIn);
+		connect(sw, &SlotWidget::itemMovedOut, this, &UnitEquipmentTab::onItemMovedOut);
 		slotWidgets_.insert(slot, sw);
 		formLayout->addRow(slotTitle(slot), sw);
 	}
@@ -47,7 +49,7 @@ QLayout *UnitEquipmentTab::createSlotsLayout()
 	return formLayout;
 }
 
-QLabel* UnitEquipmentTab::slotTitle(BS::Slot slot)
+QLabel *UnitEquipmentTab::slotTitle(BS::Slot slot)
 {
 	auto txt = BS::changeSlotToString(slot);
 	if (!txt.isEmpty())
@@ -85,33 +87,41 @@ void UnitEquipmentTab::updateSlots()
 	}
 }
 
-void UnitEquipmentTab::onItemMovedIn(int uid)
+void UnitEquipmentTab::showItem(int uid)
 {
 	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
-	if (item == nullptr)
+	if (item == nullptr){
+		err(QString("Invalid item to be shown, uid: ") + QString::number(uid));
 		return;
-	unit_->getEquipment()->addItem(item);
+	}
+
+	itemWidget_->setItem(item);
 }
 
-void UnitEquipmentTab::onItemMovedOut(int uid)
+void UnitEquipmentTab::onItemMovedIn(BS::Slot slot, int uid)
 {
-	unit_->getEquipment()->removeItem(uidToItem(uid));
-
-	updateSlots();
-}
-
-void UnitEquipmentTab::onSlotLinkedIn(BS::Slot slot, int uid)
-{
-	auto item = uidToItem(uid);
-	if (!item->getAvailableSlots().contains(slot))
+	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	if (item == nullptr){
+		err(QString("Invalid item moved in to slot, uid: ") + QString::number(uid));
 		return;
+	}
 
 	unit_->getEquipment()->putItemIntoSlot(slot, item);
+	unit_->getEquipment()->addItem(item);
+
 	updateSlots();
 }
 
-void UnitEquipmentTab::onSlotLinkedOut(BS::Slot slot, int uid)
+void UnitEquipmentTab::onItemMovedOut(BS::Slot slot, int uid)
 {
+	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	if (item == nullptr) {
+		err(QString("Invalid item moved out from slot, uid: ") + QString::number(uid));
+		return;
+	}
+
 	unit_->getEquipment()->removeFromSlot(slot);
+	unit_->getEquipment()->removeItem(item);
+
 	updateSlots();
 }
