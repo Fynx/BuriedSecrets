@@ -12,7 +12,8 @@
 
 GameWindows::GameWindows(Mind *m, DataManager *dm)
 	: mind_(m),
-	  dataManager_(dm)
+	  dataManager_(dm),
+	  openedWindow_(Window::Game)
 {}
 
 void GameWindows::adjustWindowsGeometry(const QRect &mainWindowGeometry, const QSize &unitsPanelSize)
@@ -29,15 +30,13 @@ void GameWindows::keyPressEvent(const QKeyEvent *event)
 {
 	switch (event->key()) {
 		case Qt::Key_Escape:
-			closeCampWindow();
-			closeJournalWindow();
-			closeUnitWindow();
+			showWindow(Window::Game);
 			break;
 		case Qt::Key_C:
-			showCampWindow();
+			showWindow(Window::Camp);
 			break;
 		case Qt::Key_J:
-			showJournalWindow();
+			showWindow(Window::Journal);
 			break;
 		case Qt::Key_I:
 			for (auto uid : mind_->getPlayerFaction()->getAllUnitsUids())
@@ -55,96 +54,110 @@ void GameWindows::initWindows(QWidget *gameWindow)
 	campWindow_ = new CampWindow(mind_, dataManager_);
 	campWindow_->setParent(gameWindow);
 	campWindow_->hide();
-	connect(campWindow_, &CampWindow::exit, this, &GameWindows::closeCampWindow);
+	connect(campWindow_, &CampWindow::exit, this, &GameWindows::closeSubwindow);
 
 	// UnitWindow
 	unitWindow_ = new UnitWindow(mind_, dataManager_);
 	unitWindow_->setParent(gameWindow);
 	unitWindow_->hide();
-	connect(unitWindow_, &UnitWindow::exit, this, &GameWindows::closeUnitWindow);
+	connect(unitWindow_, &UnitWindow::exit, this, &GameWindows::closeSubwindow);
 
 	// JournalWindow
 	journalWindow_ = new JournalWindow;
 	journalWindow_->setParent(gameWindow);
 	journalWindow_->hide();
-	connect(journalWindow_, &JournalWindow::exit, this, &GameWindows::closeJournalWindow);
+	connect(journalWindow_, &JournalWindow::exit, this, &GameWindows::closeSubwindow);
 }
 
 bool GameWindows::isSubwindowOpen() const
 {
-	return journalWindow_->isVisible() || campWindow_->isVisible() || unitWindow_->isVisible();
-}
-
-CampWindow *GameWindows::campWindow() const
-{
-	return campWindow_;
+	return openedWindow_ != Window::Game;
 }
 
 void GameWindows::showVisitWindow(Unit *unit)
 {
-	if (! isSubwindowOpen())
-		emit pauseGame();
-
-	tileLeft(campWindow_);
-	tileRight(unitWindow_);
-
-	journalWindow_->hide();
-	campWindow_->refresh();
 	unitWindow_->setUnit(unit);
-	campWindow_->show();
-	unitWindow_->show();
+	showWindow(Window::Visit);
 }
 
 void GameWindows::showCampWindow()
 {
-	if (! isSubwindowOpen())
-		emit pauseGame();
-
-	campWindow_->refresh();
-	campWindow_->show();
-	journalWindow_->hide();
-	unitWindow_->hide();
+	showWindow(Window::Camp);
 }
 
 void GameWindows::showJournalWindow()
 {
-	if (! isSubwindowOpen())
-		emit pauseGame();
-
-	journalWindow_->show();
-	campWindow_->hide();
-	unitWindow_->hide();
+	showWindow(Window::Journal);
 }
 
 void GameWindows::showUnitWindow(int uid)
 {
-	if (! isSubwindowOpen())
-		emit pauseGame();
-
-
 	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
 	if (unit == nullptr) {
 		err("Invalid unit UID to display");
 		return;
 	}
 	unitWindow_->setUnit(unit);
-
-	unitWindow_->show();
-	campWindow_->hide();
-	journalWindow_->hide();
+	showWindow(Window::Unit);
 }
 
 void GameWindows::switchUnitWindow(int uid)
 {
+
 	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
 	if (unit == nullptr) {
 		err("Invalid unit UID to display");
 		return;
 	}
 
+	if (openedWindow_ == Window::Visit)
+		showWindow(Window::Unit);
+
 	if (unitWindow_->isVisible())
 		unitWindow_->setUnit(unit);
+}
 
+void GameWindows::showWindow(GameWindows::Window window)
+{
+	if (openedWindow_ == window)
+		return;
+
+	//window will change & it's no longer game, so we have to pause game
+	if (openedWindow_ == Window::Game)
+		emit pauseGame();
+
+	campWindow_->hide();
+	journalWindow_->hide();
+	unitWindow_->hide();
+
+	switch (window) {
+		case Window::Camp:
+			tileCenter(campWindow_);
+			campWindow_->refresh();
+			campWindow_->show();
+			break;
+		case Window::Game:
+			break;
+		case Window::Journal:
+			journalWindow_->show();
+			break;
+		case Window::Unit:
+			tileCenter(unitWindow_);
+			unitWindow_->show();
+			break;
+		case Window::Visit:
+			tileLeft(campWindow_);
+			tileRight(unitWindow_);
+			campWindow_->refresh();
+			campWindow_->show();
+			unitWindow_->show();
+			break;
+	}
+
+	openedWindow_ = window;
+
+	if (openedWindow_ == Window::Game)
+		emit resumeGame();
 }
 
 void GameWindows::tileCenter(QWidget *widget)
@@ -152,7 +165,6 @@ void GameWindows::tileCenter(QWidget *widget)
 	auto geom = availableGeometry_;
 	geom.setWidth(availableGeometry_.width() / 2);
 	geom.translate(geom.width() / 2, 0);
-
 	widget->setGeometry(geom);
 }
 
@@ -160,7 +172,6 @@ void GameWindows::tileLeft(QWidget *widget)
 {
 	auto geom = availableGeometry_;
 	geom.setWidth(availableGeometry_.width() / 2);
-
 	widget->setGeometry(geom);
 }
 
@@ -169,33 +180,10 @@ void GameWindows::tileRight(QWidget *widget)
 	auto geom = availableGeometry_;
 	geom.setWidth(availableGeometry_.width() / 2);
 	geom.translate(geom.width(), 0);
-
 	widget->setGeometry(geom);
 }
 
-void GameWindows::closeCampWindow()
+void GameWindows::closeSubwindow()
 {
-	campWindow_->hide();
-
-	tileCenter(unitWindow_);
-	tileCenter(campWindow_);
-
-	if (! isSubwindowOpen())
-		emit resumeGame();
-}
-
-void GameWindows::closeJournalWindow()
-{
-	journalWindow_->hide();
-	emit resumeGame();
-}
-
-void GameWindows::closeUnitWindow()
-{
-	unitWindow_->hide();
-	tileCenter(unitWindow_);
-	tileCenter(campWindow_);
-
-	if (! isSubwindowOpen())
-		emit resumeGame();
+	showWindow(Window::Game);
 }

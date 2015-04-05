@@ -9,7 +9,6 @@
 #include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/Panels/UnitsPanel.hpp"
 #include "UserInterface/Panels/FactionPanel.hpp"
-#include "UserInterface/Windows/CampWindow.hpp"
 
 const int GameInterface::UpdateTimerInterval = 100;
 

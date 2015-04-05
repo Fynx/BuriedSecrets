@@ -94,8 +94,6 @@ float Unit::getMaxPsychosis() const
 
 float Unit::getEncumbrance() const
 {
-	return 0;
-	//TODO no equipment;
 	return getEquipment()->getWeight();
 }
 

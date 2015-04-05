@@ -6,14 +6,14 @@
 #include <QtWidgets>
 #include "Common/Enums.hpp"
 
-class Mind;
+class UnitEquipmentTab;
 
 class SlotWidget : public QFrame {
 	Q_OBJECT
 
 public:
-	SlotWidget(Mind *m, BS::Slot slot);
-	SlotWidget(Mind *m, BS::Slot slot, QPixmap pixmap, const QString &text, int itemUid);
+	SlotWidget(UnitEquipmentTab *uet, BS::Slot slot);
+	SlotWidget(UnitEquipmentTab *uet, BS::Slot slot, QPixmap pixmap, const QString &text, int itemUid);
 
 	void setItem(const QPixmap &pixmap, const QString &text, int itemUid);
 	void clearItem();
@@ -41,7 +41,7 @@ private:
 
 	QPoint dragStartPos_;
 
-	Mind *mind_;
+	UnitEquipmentTab *unitEquipmentTab_;
 	BS::Slot slot_;
 	QLabel *miniature_;
 	QLabel *text_;

@@ -19,6 +19,8 @@ class UnitEquipmentTab : public QWidget {
 public:
 	UnitEquipmentTab(Unit *u, Mind *m, DataManager *dm);
 
+	bool isAcceptableItem(int uid, BS::Slot slot);
+
 private:
 	void initLayout();
 	QLayout *createSlotsLayout();

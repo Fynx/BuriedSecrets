@@ -3,19 +3,20 @@
  */
 #include "UserInterface/Windows/Tabs/Item/SlotWidget.hpp"
 
-#include "Mind/Mind.hpp"
+#include "UserInterface/Windows/Tabs/UnitEquipmentTab.hpp"
 #include "UserInterface/Resources.hpp"
 #include "GameObjects/Object.hpp"
 #include "UserInterface/Windows/Tabs/Item/ItemsListWidget.hpp"
 
 const QSize SlotWidget::MiniatureSize {48, 48};
 
-SlotWidget::SlotWidget(Mind *m, BS::Slot slot)
-	: SlotWidget(m, slot, QPixmap(Icons::Empty), {}, Object::InvalidUid)
+SlotWidget::SlotWidget(UnitEquipmentTab *uet, BS::Slot slot)
+	: SlotWidget(uet, slot, QPixmap(Icons::Empty), {}, Object::InvalidUid)
 {}
 
-SlotWidget::SlotWidget(Mind *m, BS::Slot slot, QPixmap pixmap, const QString &text, int itemUid)
-	: mind_(m), slot_(slot)
+SlotWidget::SlotWidget(UnitEquipmentTab *uet, BS::Slot slot,
+                       QPixmap pixmap, const QString &text, int itemUid)
+	: unitEquipmentTab_(uet), slot_(slot)
 {
 	initLayout();
 
@@ -107,8 +108,7 @@ void SlotWidget::dragMoveEvent(QDragMoveEvent *event)
 
 	int uid = QVariant(event->mimeData()->data("uid")).toInt();
 
-	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
-	if (item != nullptr && item->getAvailableSlots().contains(slot_)) {
+	if (unitEquipmentTab_->isAcceptableItem(uid, slot_)) {
 		event->accept();
 		return;
 	}

@@ -20,6 +20,23 @@ UnitEquipmentTab::UnitEquipmentTab(Unit *u, Mind *m, DataManager *dm)
 	initLayout();
 }
 
+bool UnitEquipmentTab::isAcceptableItem(int uid, BS::Slot slot)
+{
+	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	if (! item->getAvailableSlots().contains(slot))
+		return false;
+
+	//take current Item in this slot into account
+	int currentItemWeight = 0;
+	if (auto currentItem = unit_->getEquipment()->getSlotItem(slot))
+		currentItemWeight = currentItem->getWeight();
+
+	if (item->getWeight() + unit_->getEncumbrance() - currentItemWeight > unit_->getMaxEncumbrance())
+		return false;
+
+	return true;
+}
+
 void UnitEquipmentTab::initLayout()
 {
 	auto layout = new QVBoxLayout;
@@ -36,7 +53,7 @@ QLayout *UnitEquipmentTab::createSlotsLayout()
 	formLayout->setLabelAlignment(Qt::AlignRight);
 
 	for (auto &slot : unit_->getEquipment()->getAvailableSlots()) {
-		auto sw = new SlotWidget(mind_, slot);
+		auto sw = new SlotWidget(this, slot);
 		connect(sw, &SlotWidget::slotActivated, this, &UnitEquipmentTab::showItem);
 		connect(sw, &SlotWidget::itemMovedIn, this, &UnitEquipmentTab::onItemMovedIn);
 		connect(sw, &SlotWidget::itemMovedOut, this, &UnitEquipmentTab::onItemMovedOut);
@@ -98,12 +115,12 @@ void UnitEquipmentTab::onItemMovedIn(BS::Slot slot, int uid)
 	}
 
 	//if slot was not empty return item to camp
-	Item *formerItem = unit_->getEquipment()->getSlotItem(slot);
-	if (formerItem != nullptr) {
+	Item *currentItem = unit_->getEquipment()->getSlotItem(slot);
+	if (currentItem != nullptr) {
 		unit_->getEquipment()->removeFromSlot(slot);
-		unit_->getEquipment()->removeItem(formerItem);
+		unit_->getEquipment()->removeItem(currentItem);
 		auto factionEq = mind_->getFactionById(unit_->getFactionId())->getEquipment();
-		factionEq->addItem(formerItem);
+		factionEq->addItem(currentItem);
 	}
 
 	unit_->getEquipment()->addItem(item);
