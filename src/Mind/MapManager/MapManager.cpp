@@ -73,7 +73,11 @@ QList<const Object *> MapManager::getVisibleObjects(const Unit *unit) const
 	QList<const Object *> result;
 	float radius = unit->getSightRange();
 	QPointF radiusP{radius, radius};
-	QPointF pos = physicsEngine->getPosition(unit);
+	QPointF pos;
+	if (unit->getState() == BS::State::Inside)
+		 pos = physicsEngine->getPosition(unit->getLocation());
+	else
+		pos = physicsEngine->getPosition(unit);
 	auto objects = physicsEngine->getObjectsInRect(QRectF{pos - radiusP, pos + radiusP});
 
 	//VisibilityUpdate FOV = getUnitFOV(unit);

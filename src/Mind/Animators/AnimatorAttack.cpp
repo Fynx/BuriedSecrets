@@ -52,8 +52,8 @@ void AnimatorAttack::act()
 		}
 
 		QPointF from = mind->physicsEngine()->getPosition(unit);
-		if (from.isNull() && unit->getState() == State::Inside)
-			from = mind->physicsEngine()->getPosition((Object *)unit->getLocation());
+		if (unit->getState() == State::Inside)
+			from = mind->physicsEngine()->getPosition(unit->getLocation());
 
 		QPointF to = mind->physicsEngine()->getPosition(target);
 		if (to.isNull() || from.isNull()){
