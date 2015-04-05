@@ -23,7 +23,6 @@ public slots:
 
 private:
 	void initLayout();
-	Item *uidToItem(int uid);
 
 	Equipment *eq_;
 	Mind *mind_;

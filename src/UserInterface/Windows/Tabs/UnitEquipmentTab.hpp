@@ -23,7 +23,6 @@ private:
 	void initLayout();
 	QLayout *createSlotsLayout();
 	QLabel *slotTitle(BS::Slot slot);
-	Item *uidToItem(int uid);
 	void updateSlots();
 
 	DataManager *const dataManager_;

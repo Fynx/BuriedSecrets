@@ -46,15 +46,7 @@ void ItemsListWidget::dragMoveEvent(QDragMoveEvent *event)
 		return;
 	}
 
-	ItemsListWidget *ilw = qobject_cast<ItemsListWidget *>(event->source());
-	if (ilw && event->possibleActions() & Qt::MoveAction) {
-		event->setDropAction(Qt::MoveAction);
-		event->accept();
-		return;
-	}
-
-	else
-		event->ignore();
+	event->accept();
 }
 
 void ItemsListWidget::dropEvent(QDropEvent *event)

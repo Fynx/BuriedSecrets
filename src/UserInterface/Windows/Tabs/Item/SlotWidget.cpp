@@ -50,6 +50,11 @@ void SlotWidget::setMarked(bool isMarked)
 // 		setLineWidth(1);
 }
 
+bool SlotWidget::isEmpty() const
+{
+	return itemUid_ == Object::InvalidUid;
+}
+
 BS::Slot SlotWidget::slot() const
 {
 	return slot_;
@@ -62,7 +67,8 @@ int SlotWidget::itemUid() const
 
 void SlotWidget::mousePressEvent(QMouseEvent *event)
 {
-	emit slotActivated(itemUid_);
+	if (!isEmpty())
+		emit slotActivated(itemUid_);
 
 	if (event->button() == Qt::LeftButton)
 		dragStartPos_ = event->pos();
@@ -83,6 +89,13 @@ void SlotWidget::mouseMoveEvent(QMouseEvent *event)
 void SlotWidget::dragEnterEvent(QDragEnterEvent *event)
 {
 	dragMoveEvent(event);
+	if (event->isAccepted())
+		setMarked(true);
+}
+
+void SlotWidget::dragLeaveEvent(QDragLeaveEvent *event)
+{
+	setMarked(false);
 }
 
 void SlotWidget::dragMoveEvent(QDragMoveEvent *event)
@@ -95,7 +108,7 @@ void SlotWidget::dragMoveEvent(QDragMoveEvent *event)
 	int uid = QVariant(event->mimeData()->data("uid")).toInt();
 
 	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
-	if (item != nullptr || item->getAvailableSlots().contains(slot_)) {
+	if (item != nullptr && item->getAvailableSlots().contains(slot_)) {
 		event->accept();
 		return;
 	}
@@ -107,8 +120,11 @@ void SlotWidget::dropEvent(QDropEvent *event)
 {
 	if (event->possibleActions() & Qt::MoveAction) {
 		event->setDropAction(Qt::MoveAction);
-		emit itemMovedIn(slot_, QVariant(event->mimeData()->data("uid")).toInt());
 		event->accept();
+
+		emit itemMovedIn(slot_, QVariant(event->mimeData()->data("uid")).toInt());
+
+		setMarked(false);
 		return;
 	}
 

@@ -61,15 +61,6 @@ QLabel *UnitEquipmentTab::slotTitle(BS::Slot slot)
 	return slotTitle;
 }
 
-Item *UnitEquipmentTab::uidToItem(int uid)
-{
-	for (auto item : unit_->getEquipment()->getItems())
-		if (item->getUid() == uid)
-			return item;
-
-	return nullptr;
-}
-
 void UnitEquipmentTab::updateSlots()
 {
 	for (auto sw : slotWidgets_) {
@@ -106,8 +97,17 @@ void UnitEquipmentTab::onItemMovedIn(BS::Slot slot, int uid)
 		return;
 	}
 
-	unit_->getEquipment()->putItemIntoSlot(slot, item);
+	//if slot was not empty return item to camp
+	Item *formerItem = unit_->getEquipment()->getSlotItem(slot);
+	if (formerItem != nullptr) {
+		unit_->getEquipment()->removeFromSlot(slot);
+		unit_->getEquipment()->removeItem(formerItem);
+		auto factionEq = mind_->getFactionById(unit_->getFactionId())->getEquipment();
+		factionEq->addItem(formerItem);
+	}
+
 	unit_->getEquipment()->addItem(item);
+	unit_->getEquipment()->putItemIntoSlot(slot, item);
 
 	updateSlots();
 }

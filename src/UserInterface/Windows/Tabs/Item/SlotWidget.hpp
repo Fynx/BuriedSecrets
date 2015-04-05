@@ -20,6 +20,7 @@ public:
 
 	void setMarked(bool isMarked);
 
+	bool isEmpty() const;
 	BS::Slot slot() const;
 	int itemUid() const;
 
@@ -27,6 +28,8 @@ protected:
 	void mousePressEvent(QMouseEvent *event);
 	void mouseMoveEvent(QMouseEvent *event);
 	void dragEnterEvent(QDragEnterEvent *event);
+	void dragLeaveEvent(QDragLeaveEvent *event);
+
 	void dragMoveEvent(QDragMoveEvent *event);
 	void dropEvent(QDropEvent *event);
 

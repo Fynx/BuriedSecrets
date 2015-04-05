@@ -43,20 +43,14 @@ void CampEquipmentTab::initLayout()
 	connectDisplays();
 }
 
-Item* CampEquipmentTab::uidToItem(int uid)
-{
-	for (auto item : eq_->getItems())
-		if (item->getUid() == uid)
-			return item;
-
-	return nullptr;
-}
-
 void CampEquipmentTab::onItemMovedIn(int uid)
 {
 	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
-	if (item == nullptr)
+	if (item == nullptr) {
+		err(QString("Invalid item moved in to camp, uid: ") + QString::number(uid));
 		return;
+	}
+
 	eq_->addItem(item);
 
 	refresh();
@@ -64,7 +58,13 @@ void CampEquipmentTab::onItemMovedIn(int uid)
 
 void CampEquipmentTab::onItemMovedOut(int uid)
 {
-	eq_->removeItem(uidToItem(uid));
+	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	if (item == nullptr) {
+		err(QString("Invalid item moved out from camp, uid: ") + QString::number(uid));
+		return;
+	}
+
+	eq_->removeItem(item);
 
 	refresh();
 }
