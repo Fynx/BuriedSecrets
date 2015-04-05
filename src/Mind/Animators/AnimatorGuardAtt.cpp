@@ -35,7 +35,8 @@ void AnimatorGuardAtt::act()
 		float dist = unit->property(TempData::NearestDist).toFloat();
 		Item *weapon = unit->getEquipment()->getSlotItem(Slot::Weapon);
 
-		if (enemy && dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat()){
+		if (weapon && enemy && dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat()){
+			err("Found an enemy! attacking!");
 			unit->setCommand(Command::Attack);
 			unit->setTargetObject(enemy->getUid());
 		}

@@ -23,8 +23,6 @@ void AnimatorMove::act()
 		if (!unit)
 			continue;
 
-/*		if ( !(obj->getState() == BS::Idle) && !(obj->getState() == BS::Run) && !(obj->getState() == BS::RunAttack))
-			continue;*/
 		if (unit->getCurrentPath().size() == 0 || obj->getState() == State::Heal || obj->getState() == State::Attack) {
 			if (obj->getState() == State::Run){
 				obj->setState(State::Idle);

@@ -72,13 +72,13 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorWatchTarget(mind), Animators::WatchTarget, 40);
 	addAnimator(new AnimatorDisassemble(mind), Animators::Disassemble, 100);
 	addAnimator(new AnimatorEffects(mind), Animators::Effects, 50);
+	addAnimator(new AnimatorNearestEnemy(mind), Animators::NearestEnemy, 500);
 	addAnimator(new AnimatorMobAttitude(mind), Animators::MobAttitude, 500);
 	addAnimator(new AnimatorBuildingDmg(mind), Animators::BuildingDmg, 40);
 	addAnimator(new AnimatorAggressiveAtt(mind), Animators::AggressiveAtt, 500);
 	addAnimator(new AnimatorBAggressiveAtt(mind), Animators::BAggressiveAtt, 500);
 	addAnimator(new AnimatorGuardAtt(mind), Animators::GuardAtt, 500);
 	addAnimator(new AnimatorResult(mind), Animators::Result, 100);
-	addAnimator(new AnimatorNearestEnemy(mind), Animators::NearestEnemy, 500);
 	info("done.");
 }
 

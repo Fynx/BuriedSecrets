@@ -41,7 +41,6 @@ void AnimatorAssemble::act()
 		if (QVector2D(to-from).length() > epsilon)
 			continue;
 
-		info("Still standing!");
 		QString spawned;
 		if (unit->getState() == State::RunBase || unit->getState() == State::IdleBase)
 			spawned = "Player Camp";
@@ -50,18 +49,17 @@ void AnimatorAssemble::act()
 				spawned = ikeaSet->getPrototype()->getProperty(Properties::SpawnedType).toString();
 			unit->getEquipment()->removeItem(ikeaSet);
 		}
-		info("Still standing!2");
+
 		Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
 		mind->addObject(fort, unit->getTargetPoint());
 		fort->setFactionId(unit->getFactionId());
-		info("Still standing!2.5");
 		if (spawned == "Player Camp"){
 			mind->getFactionById(unit->getFactionId())->setCamp(fort->getUid());;
 			mind->addEffect(Effect(Effects::Antipsychosis,
 					new ObjectRadiusEffectData(fort,
 							mind->getFactionById(unit->getFactionId())->getCampRange())));
 		}
-		info("Still standing!3");
+
 		unit->setState(State::Idle);
 		unit->setCommand(Command::None);
 	}
