@@ -43,10 +43,8 @@ void AnimatorUpdatePath::act()
 		if ((comm == Command::Assemble) || (comm == Command::Move))
 			to = unit->getTargetPoint();
 
-		if (from.isNull() || to.isNull()){
-			unit->setCurrentPath(QList<QPointF>());
+		if (from.isNull() || to.isNull())
 			continue;
-		}
 
 		if (comm == Command::Move && QVector2D(from-to).length() < epsilon) {
 			if (unit->getState() == State::RunBase || unit->getState() == State::IdleBase)

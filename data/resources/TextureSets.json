@@ -127,6 +127,13 @@
 		}
 	},
 
+	"Teleport1": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "Teleport1Idle"
+		}
+	},
+
 	"Map0": {
 		"type": "TextureSet",
 		"textures": {

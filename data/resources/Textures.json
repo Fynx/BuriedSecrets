@@ -202,6 +202,13 @@
 		"path": "images/MobHouse3.png"
 	},
 
+	"Teleport1Idle": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 3,
+		"path": "images/Teleport1Idle.png"
+	},
+
 	"Map0": {
 		"type": "texture",
 		"rows": 1,

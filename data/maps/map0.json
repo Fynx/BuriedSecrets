@@ -1555,9 +1555,10 @@
 
 		{
 			"uid": 1001,
-			"name": "Mob House1",
+			"name": "Teleport1",
 			"animators": [
-				"AnimatorBuildingDmg"
+				"AnimatorAnimation",
+				"AnimatorKickOut"
 			],
 			"items": [
 				{
@@ -1566,7 +1567,9 @@
 				}
 			],
 			"x": 5.5,
-			"y": 287
+			"y": 287,
+			"exitX": 45,
+			"exitY": 287
 		},
 
 

@@ -30,6 +30,7 @@ set (Anims_SRCS
 	AnimatorResult.cpp
 	AnimatorBAggressiveAtt.cpp
 	AnimatorNearestEnemy.cpp
+	AnimatorKickOut.cpp
 )
 
 set (Anims_HDRS

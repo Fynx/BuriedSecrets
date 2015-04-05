@@ -529,6 +529,20 @@
 	},
 
 
+	"Teleport1": {
+		"type": "location",
+		"textureSet": "Teleport1",
+		"basePolygon": [[2.7, 13], [5.7, 12.1], [8.2, 9], [7.8, 6.6], [4, 7.2], [0.7, 11.2]],
+		"capacity": 5,
+		"bigAttBonus": -6,
+		"bigDefBonus": 0.4,
+		"smallDefBonus": 0.1,
+		"bigRangeBonus": 35,
+		"offsetX": 2,
+		"offsetY": 3
+	},
+
+
 	"Lake1": {
 		"type": "environment",
 		"basePolygon": [[0, 0], [15, 35], [21, 33], [22, 22], [28, 20], [46,3]],

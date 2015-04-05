@@ -38,15 +38,18 @@ namespace Animators {
 	const QString GuardAtt         = "AnimatorGuardAtt";
 	const QString BAggressiveAtt   = "AnimatorBAggressiveAtt";
 	const QString NearestEnemy     = "AnimatorNearestEnemy";
+	const QString KickOut          = "AnimatorKickOut";
 }
 
 namespace Attributes {                                 // Converted into class fields
 	const QString Attitude         = "attitude";
 	const QString CampId           = "campId";			// Faction, converted to pointer
-	const QString CampRange        = "campRange";
+	const QString CampRange        = "campRange";		// Faction
 	const QString Command          = "command";
-	const QString DelayTime        = "delayTime";         // Item
+	const QString DelayTime        = "delayTime";       // Item
 	const QString Equipment        = "equipment";
+	const QString ExitX            = "exitX";           // Location, optional exitPoint
+	const QString ExitY            = "exitY";
 	const QString Faction          = "faction";
 	const QString Food             = "food";
 	const QString HP               = "hp";

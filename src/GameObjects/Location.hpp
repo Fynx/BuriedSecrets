@@ -23,7 +23,9 @@ public:
 	QList<int> getUnitsUids() const;
 	bool isFull() const;
 
-	QPointF getOffset();
+	QPointF getOffset() const;
+
+	QPointF getExitPoint() const;
 
 	bool isAssemblable() const;
 	bool isTransparent() const;
@@ -41,4 +43,5 @@ private:
 	bool assemblable;
 	bool transparent;
 	int capacity;
+	QPointF exitPoint;
 };

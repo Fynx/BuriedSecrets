@@ -29,7 +29,10 @@ void AnimatorLeaveBuilding::act()
 			continue;
 
 		QPointF to(0,0);
-		to = mind->physicsEngine()->getPosition(building) + building->getOffset();
+		if (building->getExitPoint().isNull())
+			to = mind->physicsEngine()->getPosition(building) + building->getOffset();
+		else
+			to = building->getExitPoint();
 
 		building->removeUnit(unit->getUid());
 		if (building->getUnitsUids().size() == 0)
@@ -40,5 +43,6 @@ void AnimatorLeaveBuilding::act()
 		unit->setCommand(Command::None);
 		unit->setState(State::Idle);
 		unit->setAttitude(Attitude::Aggressive);
+		unit->setCurrentPath(QList<QPointF>());
 	}
 }

@@ -5,7 +5,8 @@
 #include "Common/Strings.hpp"
 
 Location::Location(const Prototype *prototype)
-	: Object(prototype)
+	: Object(prototype),
+	  exitPoint(0,0)
 {}
 
 Location::~Location()
@@ -64,6 +65,10 @@ void Location::loadFromJson(const QJsonObject &json)
 		for (const QJsonValue &uid : json[Attributes::Units].toArray())
 			unitsUids.insert(uid.toInt());
 	}
+
+	if (json.contains(Attributes::ExitX) && json.contains(Attributes::ExitY)) {
+		exitPoint = QPointF(json[Attributes::ExitX].toDouble(), json[Attributes::ExitY].toDouble());
+	}
 }
 
 QJsonObject Location::saveToJson() const
@@ -86,6 +91,8 @@ QJsonObject Location::saveToJson() const
 	if (!uts.isEmpty())
 		json[Attributes::Units] = uts;
 
+	json[Attributes::ExitX] = exitPoint.x();
+	json[Attributes::ExitY] = exitPoint.y();
 	return json;
 }
 
@@ -109,11 +116,16 @@ bool Location::isFull() const
 	return getCapacity() <= unitsUids.count();
 }
 
-QPointF Location::getOffset()
+QPointF Location::getOffset() const
 {
 	if (prototype->hasProperty(Properties::OffsetX))
 		return QPointF(prototype->getProperty(Properties::OffsetX).toFloat(), prototype->getProperty(Properties::OffsetY).toFloat());
 	return QPointF(5, 5);
+}
+
+QPointF Location::getExitPoint() const
+{
+	return exitPoint;
 }
 
 bool Location::isAssemblable() const

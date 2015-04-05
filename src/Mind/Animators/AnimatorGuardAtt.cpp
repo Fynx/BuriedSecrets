@@ -36,7 +36,6 @@ void AnimatorGuardAtt::act()
 		Item *weapon = unit->getEquipment()->getSlotItem(Slot::Weapon);
 
 		if (weapon && enemy && dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat()){
-			err("Found an enemy! attacking!");
 			unit->setCommand(Command::Attack);
 			unit->setTargetObject(enemy->getUid());
 		}
