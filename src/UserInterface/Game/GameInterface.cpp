@@ -33,6 +33,7 @@ GameInterface::GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget 
 	//WARNING if initialized before boardWidget - goes below
 	gameWindows_.initWindows(this);
 
+	connect(&gameCommands_, &GameCommands::visitBase, &gameWindows_, &GameWindows::showVisitWindow);
 	connect(&gameWindows_, &GameWindows::pauseGame, this, &GameInterface::pauseGame);
 	connect(&gameWindows_, &GameWindows::resumeGame, this, &GameInterface::resumeGame);
 	connect(updateTimer_, &QTimer::timeout, this, &GameInterface::refresh);
@@ -86,12 +87,6 @@ void GameInterface::refresh()
 		emit gameEnded(mind_->getGameState());
 		return;
 	}
-
-	//TODO move / remove
-	if (gameWindows_.campWindow()->knownEquipmentSize() != mind_->getPlayerFaction()->getEquipment()->getItems().count())
-		factionPanel_->setCampIconFlash(true);
-	else
-		factionPanel_->setCampIconFlash(false);
 
 	gameSelections_.refresh();
 	gameCommands_.refresh();

@@ -40,6 +40,7 @@ set (UserInterface_HDRS
 	BoardWidget.hpp
 	UserInterface.hpp
 
+	Game/GameCommands.hpp
 	Game/GameInterface.hpp
 	Game/GameSelections.hpp
 	Game/GameViewport.hpp

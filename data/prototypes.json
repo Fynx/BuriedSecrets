@@ -474,7 +474,7 @@
 	"Player Camp": {
 		"type": "location",
 		"textureSet": "PlayerCamp",
-		"capacity": 0,
+		"capacity": 1,
 		"basePolygon": [[0, 10.2], [2.68, 13.08], [6.66, 8.6], [4, 6]]
 	},
 

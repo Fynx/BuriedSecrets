@@ -15,7 +15,8 @@ class Unit;
 class GameViewport;
 class GameSelections;
 
-class GameCommands {
+class GameCommands : public QObject {
+	Q_OBJECT
 public:
 	GameCommands(Mind *m, BoardWidget *bw, const GameViewport &gv, const GameSelections &gs);
 
@@ -31,9 +32,14 @@ private:
 
 	void adjustCursor();
 	void checkForMoveCommand();
+	void checkForBaseVisit();
 
 	Mind *const mind_;
 	BoardWidget *boardWidget_;
 	const GameViewport &gameViewport_;
 	const GameSelections &gameSelections_;
+	bool isVisiting_;
+
+signals:
+	void visitBase(Unit *unit);
 };

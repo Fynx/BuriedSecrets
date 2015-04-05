@@ -19,7 +19,8 @@ GameCommands::GameCommands(Mind *m, BoardWidget *bw, const GameViewport &gv, con
 	: mind_(m),
 	  boardWidget_(bw),
 	  gameViewport_(gv),
-	  gameSelections_(gs)
+	  gameSelections_(gs),
+	  isVisiting_(false)
 {}
 
 void GameCommands::mousePressEvent(const QMouseEvent *event)
@@ -51,6 +52,7 @@ void GameCommands::refresh()
 {
 	adjustCursor();
 	checkForMoveCommand();
+	checkForBaseVisit();
 }
 
 const QSet<int> &GameCommands::selectedUnits()
@@ -243,4 +245,30 @@ void GameCommands::checkForMoveCommand()
 			unit->setTargetPoint(place);
 		}
 	}
+}
+
+void GameCommands::checkForBaseVisit()
+{
+	auto camp = dynamic_cast<Location *>(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
+	if (!camp)
+		return;
+
+	if (camp->getUnitsUids().count() != 1) {
+		isVisiting_ = false;
+		return;
+	}
+
+	if (isVisiting_)
+		return;
+
+	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(camp->getUnitsUids().at(0)));
+	if (unit == nullptr) {
+		err("What is in base, if not unit?");
+		return;
+	}
+
+	emit visitBase(unit);
+	isVisiting_ = true;
+
+	unit->setCommand(BS::Command::Leave);
 }

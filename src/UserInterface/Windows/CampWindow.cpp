@@ -24,11 +24,6 @@ void CampWindow::refresh()
 	campConstructorTab_->refresh();
 }
 
-int CampWindow::knownEquipmentSize() const
-{
-	return campEquipmentTab_->knownEquipmentSize();
-}
-
 QWidget *CampWindow::createTabWidget()
 {
 	tabWidget_ = new QTabWidget;

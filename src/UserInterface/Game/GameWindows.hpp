@@ -9,6 +9,7 @@ class CampWindow;
 class DataManager;
 class JournalWindow;
 class Mind;
+class Unit;
 class UnitWindow;
 
 class GameWindows : public QObject {
@@ -25,6 +26,7 @@ public:
 	CampWindow *campWindow() const;
 
 public slots:
+	void showVisitWindow(Unit *unit);
 	void showCampWindow();
 	void showJournalWindow();
 	void showUnitWindow(int uid);

@@ -23,15 +23,12 @@ GameViewport::GameViewport(Mind *mind, BoardWidget *boardWidget)
 {
 	//init Viewport
 	viewport_.setMapSize(mind_->getMap()->getSize());
-	auto campPos = mind_->physicsEngine()->getPosition(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
-	viewport_.centerOnPointInMetres(campPos);
+	//center on camp
+	showObject(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
 
 	connect(edgeMoveTimer_, &QTimer::timeout, this, &GameViewport::checkForViewportMove);
 
 	edgeMoveTimer_->start(EdgeViewportMoveTimerInterval);
-
-	//center on camp
-	showObject(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
 }
 
 const Viewport *GameViewport::viewport() const

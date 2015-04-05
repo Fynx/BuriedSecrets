@@ -16,16 +16,6 @@ FactionPanel::FactionPanel()
 void FactionPanel::refresh(const Mind *mind)
 {
 	foodAmount_->setNum(mind->getPlayerFaction()->getFood());
-
-	if (campIconFlash_)
-		campBtn_->setIcon(QIcon(Icons::CampSelected));
-	else
-		campBtn_->setIcon(QIcon(Icons::Camp));
-}
-
-void FactionPanel::setCampIconFlash(bool flash)
-{
-	campIconFlash_ = flash;
 }
 
 void FactionPanel::initLayout()
@@ -50,7 +40,7 @@ void FactionPanel::initLayout()
 	mainLayout->addLayout(createFoodLayout());
 }
 
-QLayout* FactionPanel::createFoodLayout()
+QLayout *FactionPanel::createFoodLayout()
 {
 	auto foodLayout = new QHBoxLayout;
 

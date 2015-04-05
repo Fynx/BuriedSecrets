@@ -80,48 +80,58 @@ CampWindow *GameWindows::campWindow() const
 	return campWindow_;
 }
 
-void GameWindows::showCampWindow()
+void GameWindows::showVisitWindow(Unit *unit)
 {
-	emit pauseGame();
+	if (! isSubwindowOpen())
+		emit pauseGame();
+
+	tileLeft(campWindow_);
+	tileRight(unitWindow_);
 
 	journalWindow_->hide();
+	campWindow_->refresh();
+	unitWindow_->setUnit(unit);
+	campWindow_->show();
+	unitWindow_->show();
+}
 
-	if (unitWindow_->isVisible()) {
-		tileRight(unitWindow_);
-		tileLeft(campWindow_);
-	}
+void GameWindows::showCampWindow()
+{
+	if (! isSubwindowOpen())
+		emit pauseGame();
 
-		campWindow_->refresh();
-		campWindow_->show();
+	campWindow_->refresh();
+	campWindow_->show();
+	journalWindow_->hide();
+	unitWindow_->hide();
 }
 
 void GameWindows::showJournalWindow()
 {
-	emit pauseGame();
+	if (! isSubwindowOpen())
+		emit pauseGame();
 
-	campWindow_->hide();
 	journalWindow_->show();
+	campWindow_->hide();
 	unitWindow_->hide();
 }
 
 void GameWindows::showUnitWindow(int uid)
 {
-	emit pauseGame();
+	if (! isSubwindowOpen())
+		emit pauseGame();
 
-	journalWindow_->hide();
 
-	if (campWindow_->isVisible()) {
-		tileRight(unitWindow_);
-		tileLeft(campWindow_);
+	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	if (unit == nullptr) {
+		err("Invalid unit UID to display");
+		return;
 	}
+	unitWindow_->setUnit(unit);
 
-		Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
-		if (unit == nullptr) {
-			err("Invalid unit UID to display");
-			return;
-		}
-			unitWindow_->setUnit(unit);
-			unitWindow_->show();
+	unitWindow_->show();
+	campWindow_->hide();
+	journalWindow_->hide();
 }
 
 void GameWindows::switchUnitWindow(int uid)
@@ -132,8 +142,8 @@ void GameWindows::switchUnitWindow(int uid)
 		return;
 	}
 
-		if (unitWindow_->isVisible())
-			unitWindow_->setUnit(unit);
+	if (unitWindow_->isVisible())
+		unitWindow_->setUnit(unit);
 
 }
 
@@ -166,19 +176,18 @@ void GameWindows::tileRight(QWidget *widget)
 void GameWindows::closeCampWindow()
 {
 	campWindow_->hide();
+
 	tileCenter(unitWindow_);
 	tileCenter(campWindow_);
 
-	if (!isSubwindowOpen())
+	if (! isSubwindowOpen())
 		emit resumeGame();
 }
 
 void GameWindows::closeJournalWindow()
 {
 	journalWindow_->hide();
-
-	if (!isSubwindowOpen())
-		emit resumeGame();
+	emit resumeGame();
 }
 
 void GameWindows::closeUnitWindow()
@@ -187,6 +196,6 @@ void GameWindows::closeUnitWindow()
 	tileCenter(unitWindow_);
 	tileCenter(campWindow_);
 
-	if (!isSubwindowOpen())
+	if (! isSubwindowOpen())
 		emit resumeGame();
 }

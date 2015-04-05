@@ -12,8 +12,7 @@
 CampEquipmentTab::CampEquipmentTab(Equipment *eq, Mind *mind, DataManager *dataManager)
 	: ItemsDisplay(dataManager),
 	  eq_(eq),
-	  mind_(mind),
-	  knownEquipmentSize_(0)
+	  mind_(mind)
 {
 	initLayout();
 
@@ -25,12 +24,6 @@ CampEquipmentTab::CampEquipmentTab(Equipment *eq, Mind *mind, DataManager *dataM
 void CampEquipmentTab::refresh()
 {
 	setItemsList(eq_->getItems().toList());
-	knownEquipmentSize_ = eq_->getItems().size();
-}
-
-int CampEquipmentTab::knownEquipmentSize() const
-{
-	return knownEquipmentSize_;
 }
 
 void CampEquipmentTab::initLayout()

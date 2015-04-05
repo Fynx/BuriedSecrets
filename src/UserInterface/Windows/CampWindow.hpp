@@ -15,7 +15,6 @@ class CampWindow : public QFrame {
 public:
 	CampWindow(Mind *mind, DataManager *dataManager);
 	void refresh();
-	int knownEquipmentSize() const;
 
 private:
 	static const int EquipmentIndex = 0;
