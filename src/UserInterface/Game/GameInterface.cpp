@@ -7,6 +7,7 @@
 #include "Mind/Mind.hpp"
 #include "GameObjects/Unit.hpp"
 #include "UserInterface/BoardWidget.hpp"
+#include "UserInterface/Panels/AttitudeWidget.hpp"
 #include "UserInterface/Panels/UnitsPanel.hpp"
 #include "UserInterface/Panels/FactionPanel.hpp"
 #include "UserInterface/Panels/NotificationPanel.hpp"
@@ -25,12 +26,13 @@ GameInterface::GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget 
 	  gameSelections_(m, gameViewport_),
 	  gameCommands_(m, bw, gameViewport_, gameSelections_)
 {
+	//WARNING if initialized after anything else, goes above
 	initBoardWidget();
+	initAttitudeWidget();
 	initUnitsPanel();
 	initFactionPanel();
 	initNotificationPanel();
 
-	//WARNING if initialized before boardWidget - goes below
 	gameWindows_.initWindows(this);
 
 	connect(&gameCommands_, &GameCommands::visitBase, &gameWindows_, &GameWindows::showVisitWindow);
@@ -51,6 +53,12 @@ void GameInterface::startUpdateLoop()
 	update();
 	updateTimer_->start(UpdateTimerInterval);
 	info("Loop started successfully.");
+}
+
+void GameInterface::initAttitudeWidget()
+{
+	attitudeWidget_ = new AttitudeWidget(mind_);
+	attitudeWidget_->setParent(this);
 }
 
 void GameInterface::initBoardWidget()
@@ -102,6 +110,7 @@ void GameInterface::refresh()
 	gameSelections_.refresh();
 	gameCommands_.refresh();
 
+	attitudeWidget_->refresh(gameSelections_.selectedUnitsUids());
 	unitsPanel_->refresh();
 	factionPanel_->refresh();
 	notificationPanel_->refresh();

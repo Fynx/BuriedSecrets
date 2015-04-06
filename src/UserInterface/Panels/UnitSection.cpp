@@ -38,21 +38,21 @@ QSize UnitSection::sizeHint() const
 
 void UnitSection::refresh()
 {
-// 	switch(unit_->getAttitude()) {
-// 		case BS::Attitude::BuildingAggressive:
-// 		case BS::Attitude::Aggressive:
-// 			attitudeIcon_->setPixmap(QPixmap(Icons::Aggresive).scaled(IconSize));
-// 			break;
-// 		case BS::Attitude::BuildingDefensive:
-// 		case BS::Attitude::Guard:
-// 			attitudeIcon_->setPixmap(QPixmap(Icons::Guard).scaled(IconSize));
-// 			break;
-// 		case BS::Attitude::Coward:
-// 			attitudeIcon_->setPixmap(QPixmap(Icons::Coward).scaled(IconSize));
-// 			break;
-// 		default:
-// 			err("Unknown attitude");
-// 	}
+	switch(unit_->getAttitude()) {
+		case BS::Attitude::BuildingAggressive:
+		case BS::Attitude::Aggressive:
+			attitudeIcon_->setPixmap(QPixmap(Icons::Aggresive).scaled(IconSize));
+			break;
+		case BS::Attitude::BuildingDefensive:
+		case BS::Attitude::Guard:
+			attitudeIcon_->setPixmap(QPixmap(Icons::Guard).scaled(IconSize));
+			break;
+		case BS::Attitude::Coward:
+			attitudeIcon_->setPixmap(QPixmap(Icons::Coward).scaled(IconSize));
+			break;
+		default:
+			err("Unknown attitude");
+	}
 
 	if (unit_->getState() == BS::State::Inside)
 		locationIcon_->setPixmap(QPixmap(Icons::LocationSelected).scaled(IconSize));
@@ -118,8 +118,8 @@ QLayout *UnitSection::createIconsLayout()
 {
 	auto iconsLayout = new QVBoxLayout;
 
-// 	attitudeIcon_ = new QLabel;
-// 	iconsLayout->addWidget(attitudeIcon_);
+	attitudeIcon_ = new QLabel;
+	iconsLayout->addWidget(attitudeIcon_);
 
 	campIcon_ = new QLabel;
 	iconsLayout->addWidget(campIcon_);

@@ -37,7 +37,7 @@ private:
 
 	QLabel *locationIcon_;
 	QLabel *campIcon_;
-// 	QLabel *attitudeIcon_;
+	QLabel *attitudeIcon_;
 
 	QProgressBar *hpBar_;
 	QProgressBar *psychosisBar_;

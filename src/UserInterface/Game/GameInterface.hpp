@@ -11,6 +11,7 @@
 #include "UserInterface/Game/GameCommands.hpp"
 #include "Common/Enums.hpp"
 
+class AttitudeWidget;
 class BoardWidget;
 class DataManager;
 class FactionPanel;
@@ -33,6 +34,7 @@ public slots:
 
 private:
     void initBoardWidget();
+	void initAttitudeWidget();
 	void initUnitsPanel();
 	void initFactionPanel();
 	void initNotificationPanel();
@@ -46,6 +48,7 @@ private:
 	Mind *const mind_;
 	DataManager *const dataManager_;
 
+	AttitudeWidget *attitudeWidget_;
 	BoardWidget *boardWidget_;
 	UnitsPanel *unitsPanel_;
 	FactionPanel *factionPanel_;

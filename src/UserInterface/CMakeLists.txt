@@ -12,6 +12,7 @@
 	Menus/MainMenu.cpp
 	Menus/PostGameMenu.cpp
 
+	Panels/AttitudeWidget.cpp
 	Panels/DeadSection.cpp
 	Panels/FactionPanel.cpp
 	Panels/NotificationPanel.cpp
@@ -53,6 +54,7 @@ set (UserInterface_HDRS
 	Menus/MainMenu.hpp
 	Menus/PostGameMenu.hpp
 
+	Panels/AttitudeWidget.hpp
 	Panels/FactionPanel.hpp
 	Panels/UnitsPanel.hpp
 	Panels/UnitSection.hpp
