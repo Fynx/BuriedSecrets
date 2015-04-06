@@ -8,6 +8,7 @@
 #include "Mind/ObjectRadiusEffectData.hpp"
 #include "GameObjects/Environment.hpp"
 #include "GameObjects/Equipment.hpp"
+#include "GameObjects/Journal.hpp"
 #include "GameObjects/Location.hpp"
 #include "GameObjects/Unit.hpp"
 
@@ -171,14 +172,32 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 			break;
 		}
+		case BS::Type::Journal: {
+			Journal *journal = dynamic_cast<Journal *>(object);
+
+			for (int entryUid : journal->getEntriesUids()) {
+				JournalEntry *entry = dynamic_cast<JournalEntry *>(getObjectFromUid(entryUid));
+				Q_ASSERT(entry->getType() == BS::Type::JournalEntry);
+				journal->addEntry(entry);
+			}
+
+			//TEST
+
+			qDebug() << "zurnal entry" << journal->getEntry(0)->getText();
+
+			break;
+		}
 		default:;
 		}
 	}
 
 	// Add antipsychosis.
-	addEffect(Effect(Effects::Antipsychosis,
-			 new ObjectRadiusEffectData(getObjectFromUid(getFactionById(PlayerFactionId)->getCampUid()),
-						    getFactionById(PlayerFactionId)->getCampRange())));
+	addEffect(
+		Effect(
+			Effects::Antipsychosis,
+			new ObjectRadiusEffectData(getObjectFromUid(
+				getFactionById(PlayerFactionId)->getCampUid()),
+				getFactionById(PlayerFactionId)->getCampRange())));
 
 	info("done.");
 }
@@ -409,6 +428,16 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 			obj = item;
 			break;
 		}
+		case BS::Type::Journal: {
+			Journal *journal = new Journal(dataManager->getPrototype(name));
+			obj = journal;
+			break;
+		}
+		case BS::Type::JournalEntry: {
+			JournalEntry *entry = new JournalEntry(dataManager->getPrototype(name));
+			obj = entry;
+			break;
+		}
 		case BS::Type::Location: {
 			Location *location = new Location(dataManager->getPrototype(name));
 			obj = location;
@@ -430,6 +459,7 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 Object *Mind::createObjectFromJson(const QString &name, const QJsonObject &json)
 {
 	QString typeString = dataManager->getPrototype(name)->getProperty(Properties::Type).toString();
+
 	BS::Type type = BS::changeStringToType(typeString);
 	Object *obj = createObject(type, name);
 	obj->loadFromJson(json);
@@ -442,9 +472,8 @@ void Mind::removeAllEffects(const QString &name)
 	for (auto it = activeEffects.begin(); it != activeEffects.end();) {
 		auto iter = it;
 		++iter;
-		if (it->getName() == name) {
+		if (it->getName() == name)
 			activeEffects.erase(it);
-		}
 		it = iter;
 	}
 }

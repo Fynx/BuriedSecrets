@@ -46,7 +46,9 @@ namespace Attributes {                                 // Converted into class f
 	const QString CampId           = "campId";			// Faction, converted to pointer
 	const QString CampRange        = "campRange";		// Faction
 	const QString Command          = "command";
+	const QString Date             = "date";
 	const QString DelayTime        = "delayTime";       // Item
+	const QString Entries          = "entries";
 	const QString Equipment        = "equipment";
 	const QString ExitX            = "exitX";           // Location, optional exitPoint
 	const QString ExitY            = "exitY";
@@ -59,6 +61,8 @@ namespace Attributes {                                 // Converted into class f
 	const QString Relations        = "relations";
 	const QString SearchDifficulty = "searchDifficulty";
 	const QString Slots            = "slots";
+	const QString Text             = "text";
+	const QString Title            = "title";
 	const QString Uid              = "uid";
 	const QString Units            = "units";
 	const QString UsesLeft         = "UsesLeft";          // Item
@@ -86,6 +90,14 @@ namespace Effects {
 	const QString Shot            = "ShotEffect";
 	const QString Antipsychosis   = "AntipsychosisEffect";
 	const QString ShowPath        = "ShowPathEffect";
+}
+
+namespace EntryTypes {
+	const QString Quest     = "quest";
+	const QString Invalid   = "invalid";
+	const QString ItemFound = "itemFound";
+	const QString Psycho    = "psycho";
+	const QString Death     = "death";
 }
 
 namespace MapProperties {
@@ -193,14 +205,15 @@ namespace TempData {                                   // kept in GO's map
 }
 
 namespace Types {
-	const QString Invalid     = "invalid";
-	const QString Item        = "item";
-	const QString Environment = "environment";
-	const QString Equipment   = "equipment";
-	const QString Faction     = "faction";
-	const QString Journal     = "journal";
-	const QString Location    = "location";
-	const QString Unit        = "unit";
+	const QString Invalid      = "invalid";
+	const QString Item         = "item";
+	const QString Environment  = "environment";
+	const QString Equipment    = "equipment";
+	const QString Faction      = "faction";
+	const QString Journal      = "journal";
+	const QString JournalEntry = "journalEntry";
+	const QString Location     = "location";
+	const QString Unit         = "unit";
 }
 
 namespace ItemTypes {

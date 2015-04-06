@@ -24,6 +24,7 @@ namespace BS {
 		Equipment,
 		Faction,
 		Journal,
+		JournalEntry,
 		Location,
 		Unit,
 	};
@@ -123,6 +124,19 @@ namespace BS {
 	BS::ItemType changeStringToItemType(const QString &str);
 
 	BS::Slot getCorrespondingSlot(BS::ItemType type);
+
+
+	enum class EntryType : quint8 {
+		Death,
+		Invalid,
+		ItemFound,
+		Quest,
+		Psycho,
+	};
+
+	QString changeEntryTypeToString(BS::EntryType type);
+	BS::EntryType changeStringToEntryType(const QString &str);
+
 
 	namespace Graphic {
 		// This is an enum for a reason (underlying value implicitly converted to a numeric type).

@@ -9,6 +9,16 @@
 	},
 
 
+	"BasicJournal": {
+		"type": "journal"
+	},
+
+
+	"BasicJournalEntry": {
+		"type": "journalEntry"
+	},
+
+
 	"Senior Cebulez": {
 		"type": "unit",
 		"profession": "Megalomaniac Leader",

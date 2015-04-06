@@ -97,9 +97,9 @@ void Object::loadFromJson(const QJsonObject &json)
 QJsonObject Object::saveToJson() const
 {
 	QJsonObject json;
-	json.insert(Properties::Name, getName());
-	json.insert(Attributes::Uid, getUid());
-	json.insert(Attributes::Faction, getFactionId());
+	json[Properties::Name] = getName();
+	json[Attributes::Uid] = getUid();
+	json[Attributes::Faction] = getFactionId();
 	return json;
 }
 

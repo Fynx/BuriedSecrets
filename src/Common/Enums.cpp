@@ -3,8 +3,6 @@
  */
 #include "Common/Enums.hpp"
 
-#include <cassert>
-
 #include <QtCore>
 
 #include "Common/Strings.hpp"
@@ -25,14 +23,15 @@ static const QMap<BS::State, QString> stateToString {
 };
 
 static const QMap<BS::Type, QString> typeToString {
-	{BS::Type::Invalid,     Types::Invalid},
-	{BS::Type::Item,        Types::Item},
-	{BS::Type::Environment, Types::Environment},
-	{BS::Type::Equipment,   Types::Equipment},
-	{BS::Type::Faction,     Types::Faction},
-	{BS::Type::Journal,     Types::Journal},
-	{BS::Type::Location,    Types::Location},
-	{BS::Type::Unit,        Types::Unit},
+	{BS::Type::Invalid,      Types::Invalid},
+	{BS::Type::Item,         Types::Item},
+	{BS::Type::Environment,  Types::Environment},
+	{BS::Type::Equipment,    Types::Equipment},
+	{BS::Type::Faction,      Types::Faction},
+	{BS::Type::Journal,      Types::Journal},
+	{BS::Type::JournalEntry, Types::JournalEntry},
+	{BS::Type::Location,     Types::Location},
+	{BS::Type::Unit,         Types::Unit},
 };
 
 static const QMap<BS::Slot, QString> slotToString {
@@ -86,6 +85,14 @@ static const QMap<BS::ItemType, BS::Slot> correspondingSlot {
 	{BS::ItemType::SniperRifle,   BS::Slot::Weapon},
 };
 
+static const QMap<BS::EntryType, QString> entryTypeToString {
+	{BS::EntryType::Death,     EntryTypes::Death},
+	{BS::EntryType::Invalid,   EntryTypes::Invalid},
+	{BS::EntryType::ItemFound, EntryTypes::ItemFound},
+	{BS::EntryType::Quest,     EntryTypes::Quest},
+	{BS::EntryType::Psycho,    EntryTypes::Psycho},
+};
+
 namespace BS {
 
 	QString changeSlotToString(Slot slot)
@@ -130,12 +137,23 @@ namespace BS {
 
 	ItemType changeStringToItemType(const QString &str)
 	{
-		assert(!::itemTypeToString.keys(str).empty());
+		Q_ASSERT(!::itemTypeToString.keys(str).empty());
 		return ::itemTypeToString.key(str, ItemType::Invalid);
 	}
 
 	Slot getCorrespondingSlot(ItemType type)
 	{
 		return ::correspondingSlot[type];
+	}
+
+	QString changeEntryTypeToString(EntryType type)
+	{
+		Q_ASSERT(::entryTypeToString.contains(type));
+		return ::entryTypeToString.value(type);
+	}
+
+	EntryType changeStringToEntryType(const QString &str)
+	{
+		return ::entryTypeToString.key(str);
 	}
 }
