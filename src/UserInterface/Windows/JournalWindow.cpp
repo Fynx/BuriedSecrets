@@ -2,15 +2,17 @@
  * All rights reserved.
  */
 #include "UserInterface/Windows/JournalWindow.hpp"
-#include "UserInterface/JournalEntryWidget.hpp"
 
-#include "Mind/Mind.hpp"
 #include "DataManager/DataManager.hpp"
+#include "DebugManager/DebugManager.hpp"
+#include "GameObjects/Journal.hpp"
+#include "GameObjects/JournalEntry.hpp"
+#include "Mind/Mind.hpp"
+#include "UserInterface/JournalEntryWidget.hpp"
 
 JournalWindow::JournalWindow(Mind *m, DataManager *dm)
 	: mind_(m),
-	  dataManager_(dm),
-	  journal_(m->getPlayerFaction()->getJournal())
+	  dataManager_(dm)
 {
 	closeBtn_ = new QPushButton(tr("Close"));
 	connect(closeBtn_, &QPushButton::clicked, this, &JournalWindow::exit);
@@ -18,6 +20,32 @@ JournalWindow::JournalWindow(Mind *m, DataManager *dm)
 	setAutoFillBackground(true);
 
 	initLayout();
+	connect(entriesList_, &QListWidget::currentItemChanged, this, &JournalWindow::onCurrentEntryChanged);
+}
+
+void JournalWindow::refresh()
+{
+	auto entries = mind_->getPlayerFaction()->getJournal()->getEntries();
+
+	for (auto entry : entries) {
+		auto lwi = new QListWidgetItem(entry->getTitle(), entriesList_);
+		lwi->setFlags(Qt::ItemFlag::ItemIsSelectable | Qt::ItemIsEnabled);
+		lwi->setData(Qt::UserRole, entry->getUid());
+		lwi->setFont(QFont("Times", 18));
+	}
+
+	if (entriesList_->count() > 0)
+		entriesList_->setCurrentRow(0);
+}
+
+void JournalWindow::setCurrentEntry(int uid)
+{
+	auto entry = dynamic_cast<JournalEntry *>(mind_->getObjectFromUid(uid));
+	if (!entry) {
+		warn(QString::number(uid) + QString(" is not valid journal entry."));
+		return;
+	}
+	journalEntryWidget_->setEntry(entry);
 }
 
 void JournalWindow::initLayout()
@@ -36,4 +64,9 @@ void JournalWindow::initLayout()
 	hLayout->addWidget(journalEntryWidget_, 1);
 
 	layout->addWidget(closeBtn_);
+}
+
+void JournalWindow::onCurrentEntryChanged(QListWidgetItem *item)
+{
+	setCurrentEntry(item->data(Qt::UserRole).toInt());
 }

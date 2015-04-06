@@ -57,6 +57,7 @@ set (UserInterface_HDRS
 	Panels/UnitsPanel.hpp
 	Panels/UnitSection.hpp
 	Panels/NotificationPanel.hpp
+	Panels/NotificationWidget.hpp
 
 	Windows/CampWindow.hpp
 	Windows/JournalWindow.hpp

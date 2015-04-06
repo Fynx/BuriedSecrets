@@ -25,7 +25,6 @@ GameInterface::GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget 
 	  gameSelections_(m, gameViewport_),
 	  gameCommands_(m, bw, gameViewport_, gameSelections_)
 {
-
 	initBoardWidget();
 	initUnitsPanel();
 	initFactionPanel();
@@ -58,14 +57,16 @@ void GameInterface::initBoardWidget()
 {
 	//Pointer to boardWidget is passed in constructor from Graphics
 	boardWidget_->setParent(this);
-	connect(boardWidget_, &BoardWidget::selectionEnded, &gameSelections_, &GameSelections::selectionByRectEnded);
+	connect(boardWidget_, &BoardWidget::selectionEnded,
+	        &gameSelections_, &GameSelections::selectionByRectEnded);
 }
 
 void GameInterface::initUnitsPanel()
 {
 	unitsPanel_ = new UnitsPanel(dataManager_, mind_);
 	unitsPanel_->setParent(this);
-	connect(&gameSelections_, &GameSelections::selectionChanged, unitsPanel_, &UnitsPanel::setSelection);
+	connect(&gameSelections_, &GameSelections::selectionChanged,
+	        unitsPanel_, &UnitsPanel::setSelection);
 	connect(unitsPanel_, &UnitsPanel::pickUnit, &gameSelections_, &GameSelections::pickUnit);
 	connect(unitsPanel_, &UnitsPanel::showUnit, &gameViewport_, &GameViewport::showUnit);
 	connect(unitsPanel_, &UnitsPanel::pickUnit, &gameWindows_, &GameWindows::switchUnitWindow);
@@ -77,13 +78,17 @@ void GameInterface::initFactionPanel()
 {
 	factionPanel_ = new FactionPanel(mind_);
 	factionPanel_->setParent(this);
-	connect(factionPanel_, &FactionPanel::campActivated,    &gameWindows_, &GameWindows::showCampWindow);
-	connect(factionPanel_, &FactionPanel::journalActivated, &gameWindows_, &GameWindows::showJournalWindow);
+	connect(factionPanel_, &FactionPanel::campActivated,
+	        &gameWindows_, &GameWindows::showCampWindow);
+	connect(factionPanel_, &FactionPanel::journalActivated,
+	        &gameWindows_, &GameWindows::showJournalWindow);
 }
 
 void GameInterface::initNotificationPanel()
 {
 	notificationPanel_ = new NotificationPanel(mind_, dataManager_, this);
+	connect(notificationPanel_, &NotificationPanel::notificationClicked,
+	        &gameWindows_, &GameWindows::showJournalEntry);
 }
 
 void GameInterface::refresh()

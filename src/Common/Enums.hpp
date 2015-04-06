@@ -128,6 +128,7 @@ namespace BS {
 
 	enum class EntryType : quint8 {
 		Death,
+		Help,
 		Invalid,
 		ItemFound,
 		Quest,

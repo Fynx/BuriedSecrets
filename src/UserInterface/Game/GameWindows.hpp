@@ -21,7 +21,6 @@ public:
 	void adjustWindowsGeometry(const QRect &mainWindowGeometry, const QSize &unitsPanelSize);
 
 	void keyPressEvent(const QKeyEvent *event);
-
 	bool isSubwindowOpen() const;
 
 public slots:
@@ -30,6 +29,7 @@ public slots:
 	void showJournalWindow();
 	void showUnitWindow(int uid);
 	void switchUnitWindow(int uid);
+	void showJournalEntry(int uid);
 
 private:
 	enum class Window {

@@ -41,4 +41,7 @@ private:
 
 private slots:
 	void updateNotifications();
+
+signals:
+	void notificationClicked(int uid);
 };

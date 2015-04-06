@@ -87,6 +87,7 @@ static const QMap<BS::ItemType, BS::Slot> correspondingSlot {
 
 static const QMap<BS::EntryType, QString> entryTypeToString {
 	{BS::EntryType::Death,     EntryTypes::Death},
+	{BS::EntryType::Help,      EntryTypes::Help},
 	{BS::EntryType::Invalid,   EntryTypes::Invalid},
 	{BS::EntryType::ItemFound, EntryTypes::ItemFound},
 	{BS::EntryType::Quest,     EntryTypes::Quest},

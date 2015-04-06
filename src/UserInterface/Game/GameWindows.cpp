@@ -117,6 +117,12 @@ void GameWindows::switchUnitWindow(int uid)
 		unitWindow_->setUnit(unit);
 }
 
+void GameWindows::showJournalEntry(int uid)
+{
+	journalWindow_->setCurrentEntry(uid);
+	showWindow(Window::Journal);
+}
+
 void GameWindows::showWindow(GameWindows::Window window)
 {
 	if (openedWindow_ == window)
@@ -139,6 +145,7 @@ void GameWindows::showWindow(GameWindows::Window window)
 		case Window::Game:
 			break;
 		case Window::Journal:
+			journalWindow_->refresh();
 			journalWindow_->show();
 			break;
 		case Window::Unit:

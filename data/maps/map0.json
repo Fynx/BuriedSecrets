@@ -2094,8 +2094,8 @@
 			"uid": 3101,
 			"name": "BasicJournalEntry",
 			"title": "Welcome to hell",
-			"entryType": "quest",
-			"text": "Clever text",
+			"entryType": "help",
+			"text": "Before me things create were none,\nsave things Eternal, and eternal I endure.\nAll hope abandon ye who enter here.",
 			"date": "10.10.1010 10:10"
 		}
 	]

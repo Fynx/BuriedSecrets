@@ -96,6 +96,7 @@ namespace Effects {
 
 namespace EntryTypes {
 	const QString Quest     = "quest";
+	const QString Help      = "help";
 	const QString Invalid   = "invalid";
 	const QString ItemFound = "itemFound";
 	const QString Psycho    = "psycho";
