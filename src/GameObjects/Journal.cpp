@@ -27,6 +27,11 @@ JournalEntry *Journal::getEntry(int number) const
 	return entries[number];
 }
 
+const QVector< JournalEntry* > Journal::getEntries() const
+{
+	return entries;
+}
+
 int Journal::getEntriesNumber() const
 {
 	return entries.size();

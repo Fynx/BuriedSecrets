@@ -13,12 +13,14 @@ static const QSize IconsSize{64, 64};
 class FactionPanel : public QFrame {
 	Q_OBJECT
 public:
-	FactionPanel();
-	void refresh(const Mind *mind);
+	FactionPanel(const Mind *m);
+	void refresh();
 
 private:
 	void initLayout();
 	QLayout *createFoodLayout();
+
+	const Mind *const mind_;
 
 	QPushButton *campBtn_;
 	QPushButton *journalBtn_;

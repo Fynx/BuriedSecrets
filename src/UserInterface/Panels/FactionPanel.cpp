@@ -6,16 +6,17 @@
 #include "Mind/Mind.hpp"
 #include "UserInterface/Resources.hpp"
 
-FactionPanel::FactionPanel()
+FactionPanel::FactionPanel(const Mind *m)
+	: mind_(m)
 {
 	setAutoFillBackground(true);
 
 	initLayout();
 }
 
-void FactionPanel::refresh(const Mind *mind)
+void FactionPanel::refresh()
 {
-	foodAmount_->setNum(mind->getPlayerFaction()->getFood());
+	foodAmount_->setNum(mind_->getPlayerFaction()->getFood());
 }
 
 void FactionPanel::initLayout()

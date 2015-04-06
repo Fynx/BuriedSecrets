@@ -19,6 +19,7 @@ public:
 
 	void addEntry(JournalEntry *entry);
 	JournalEntry *getEntry(int number) const;
+	const QVector<JournalEntry *>getEntries() const;
 	int getEntriesNumber() const;
 	void clearEntries();
 

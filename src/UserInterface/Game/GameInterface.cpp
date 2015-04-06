@@ -9,6 +9,7 @@
 #include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/Panels/UnitsPanel.hpp"
 #include "UserInterface/Panels/FactionPanel.hpp"
+#include "UserInterface/Panels/NotificationPanel.hpp"
 
 const int GameInterface::UpdateTimerInterval = 100;
 
@@ -28,6 +29,7 @@ GameInterface::GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget 
 	initBoardWidget();
 	initUnitsPanel();
 	initFactionPanel();
+	initNotificationPanel();
 
 	//WARNING if initialized before boardWidget - goes below
 	gameWindows_.initWindows(this);
@@ -73,10 +75,15 @@ void GameInterface::initUnitsPanel()
 
 void GameInterface::initFactionPanel()
 {
-	factionPanel_ = new FactionPanel;
+	factionPanel_ = new FactionPanel(mind_);
 	factionPanel_->setParent(this);
 	connect(factionPanel_, &FactionPanel::campActivated,    &gameWindows_, &GameWindows::showCampWindow);
 	connect(factionPanel_, &FactionPanel::journalActivated, &gameWindows_, &GameWindows::showJournalWindow);
+}
+
+void GameInterface::initNotificationPanel()
+{
+	notificationPanel_ = new NotificationPanel(mind_, dataManager_, this);
 }
 
 void GameInterface::refresh()
@@ -91,7 +98,8 @@ void GameInterface::refresh()
 	gameCommands_.refresh();
 
 	unitsPanel_->refresh();
-	factionPanel_->refresh(mind_);
+	factionPanel_->refresh();
+	notificationPanel_->refresh();
 }
 
 void GameInterface::keyPressEvent(QKeyEvent *event)
@@ -135,6 +143,8 @@ void GameInterface::resizeEvent(QResizeEvent *event)
 
 	//resize unitsPanel
 	adjustUnitsPanelGeometry();
+
+	notificationPanel_->adjustPanelGeometry(geometry(), unitsPanel_->sizeHint());
 
 	//resize campPanel
 	QPoint topLeft(geometry().width() - FactionPanelSize.width(),

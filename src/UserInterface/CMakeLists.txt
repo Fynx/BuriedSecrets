@@ -14,6 +14,8 @@
 
 	Panels/DeadSection.cpp
 	Panels/FactionPanel.cpp
+	Panels/NotificationPanel.cpp
+	Panels/NotificationWidget.cpp
 	Panels/UnitsPanel.cpp
 	Panels/UnitSection.cpp
 
@@ -54,6 +56,7 @@ set (UserInterface_HDRS
 	Panels/FactionPanel.hpp
 	Panels/UnitsPanel.hpp
 	Panels/UnitSection.hpp
+	Panels/NotificationPanel.hpp
 
 	Windows/CampWindow.hpp
 	Windows/JournalWindow.hpp

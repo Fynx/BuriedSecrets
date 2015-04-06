@@ -15,6 +15,7 @@ class BoardWidget;
 class DataManager;
 class FactionPanel;
 class Mind;
+class NotificationPanel;
 class UnitsPanel;
 class Viewport;
 
@@ -34,6 +35,7 @@ private:
     void initBoardWidget();
 	void initUnitsPanel();
 	void initFactionPanel();
+	void initNotificationPanel();
 
 	void refresh();
 
@@ -41,13 +43,13 @@ private:
 	void mousePressEvent(QMouseEvent *event);
 	void resizeEvent(QResizeEvent *event);
 
-
 	Mind *const mind_;
 	DataManager *const dataManager_;
 
 	BoardWidget *boardWidget_;
 	UnitsPanel *unitsPanel_;
 	FactionPanel *factionPanel_;
+	NotificationPanel *notificationPanel_;
 
 	QTimer *updateTimer_;
 	bool isPaused_;
