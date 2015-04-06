@@ -2,6 +2,7 @@
  * All rights reserved.
  */
 #include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/JournalEntry.hpp"
 
 JournalEntry::JournalEntry(const Prototype *prototype)
@@ -22,6 +23,8 @@ void JournalEntry::setDate(const QString &text)
 {
 	date = text;
 }
+
+//TODO test it
 
 void JournalEntry::setDate(int d, int m, int y, int hrs, int min)
 {
@@ -54,11 +57,26 @@ void JournalEntry::setTitle(const QString &newTitle)
 	title = newTitle;
 }
 
+BS::EntryType JournalEntry::getEntryType() const
+{
+	return entryType;
+}
+
+void JournalEntry::setEntryType(BS::EntryType type)
+{
+	entryType = type;
+}
+
 void JournalEntry::loadFromJson(const QJsonObject &json)
 {
 	date  = json[Attributes::Date].toString();
 	text  = json[Attributes::Text].toString();
 	title = json[Attributes::Title].toString();
+
+	if (!json.contains(Attributes::EntryType))
+		err("No entry type for this JournalEntry!");
+	else
+		entryType = BS::changeStringToEntryType(json[Attributes::EntryType].toString());
 
 	Object::loadFromJson(json);
 }
@@ -70,6 +88,7 @@ QJsonObject JournalEntry::saveToJson() const
 	json[Attributes::Date]  = date;
 	json[Attributes::Text]  = text;
 	json[Attributes::Title] = title;
+	json[Attributes::EntryType] = BS::changeEntryTypeToString(entryType);
 
 	return json;
 }

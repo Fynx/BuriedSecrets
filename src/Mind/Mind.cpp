@@ -115,6 +115,13 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Q_ASSERT(eq->getType() == BS::Type::Equipment);
 			faction->setEquipment(dynamic_cast<Equipment *>(eq));
 
+			if (faction->getJournalUid() != Object::InvalidUid) {
+				Object *j = getObjectFromUid(faction->getJournalUid());
+				Q_ASSERT(j->getType() == BS::Type::Journal);
+				faction->setJournal(dynamic_cast<Journal *>(j));
+				qDebug() << "\t\t\tcontains journal (" << j->getUid() << ")";
+			}
+
 			break;
 		}
 		case BS::Type::Unit: {
@@ -179,11 +186,9 @@ void Mind::loadFromJson(const QJsonObject &json)
 				JournalEntry *entry = dynamic_cast<JournalEntry *>(getObjectFromUid(entryUid));
 				Q_ASSERT(entry->getType() == BS::Type::JournalEntry);
 				journal->addEntry(entry);
+				qDebug() << "\t\t\tcontains entry" << entry->getTitle() << "("
+					<< BS::changeEntryTypeToString(entry->getEntryType()) << ")";
 			}
-
-			//TEST
-
-			qDebug() << "zurnal entry" << journal->getEntry(0)->getText();
 
 			break;
 		}

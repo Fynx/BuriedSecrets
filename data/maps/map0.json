@@ -13,6 +13,7 @@
 			],
 			"equipment": 2,
 			"food": 2500,
+			"journal": 3000,
 			"campId": 3,
 			"campRange": 25,
 			"faction": 1,
@@ -2093,6 +2094,7 @@
 			"uid": 3101,
 			"name": "BasicJournalEntry",
 			"title": "Welcome to hell",
+			"entryType": "quest",
 			"text": "Clever text",
 			"date": "10.10.1010 10:10"
 		}

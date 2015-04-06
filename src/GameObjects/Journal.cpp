@@ -27,6 +27,11 @@ JournalEntry *Journal::getEntry(int number) const
 	return entries[number];
 }
 
+int Journal::getEntriesNumber() const
+{
+	return entries.size();
+}
+
 void Journal::clearEntries()
 {
 	qDeleteAll(entries);

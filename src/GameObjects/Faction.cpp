@@ -1,16 +1,17 @@
 /* YoLoDevelopment, 2014
  * All rights reserved.
  */
-#include "GameObjects/Faction.hpp"
 
 #include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Journal.hpp"
+#include "GameObjects/Faction.hpp"
 #include "GameObjects/Location.hpp"
 #include "GameObjects/QuestLog.hpp"
 #include "GameObjects/Unit.hpp"
 
 Faction::Faction(const Prototype *prototype)
-	: Object(prototype)
+	: Object(prototype), journalUid(Object::InvalidUid), journal(nullptr)
 {
 }
 
@@ -19,8 +20,22 @@ BS::Type Faction::getType() const
 	return BS::Type::Faction;
 }
 
+int Faction::getJournalUid() const
+{
+	return journalUid;
+}
+
+void Faction::setJournal(Journal *newJournal)
+{
+	if (newJournal == nullptr)
+		warn("Setting nullptr Journal.");
+	journal = newJournal;
+}
+
 Journal *Faction::getJournal()
 {
+	if (journal == nullptr)
+		warn("Returning nullptr Journal.");
 	return journal;
 }
 
@@ -115,10 +130,12 @@ void Faction::loadFromJson(const QJsonObject &json)
 		unitsUids.insert(value.toInt());
 		allUnitsUids.append(value.toInt());
 	}
+
 	QJsonArray rels = json[Attributes::Relations].toArray();
-	for (const QJsonValue &value : rels) {
+	for (const QJsonValue &value : rels)
 		relations[value.toArray().first().toInt()] = value.toArray().last().toInt();
-	}
+
+	journalUid = json[Attributes::Journal].toInt();
 }
 
 QJsonObject Faction::saveToJson() const
@@ -136,6 +153,8 @@ QJsonObject Faction::saveToJson() const
 	for (int u : unitsUids)
 		us.append(u);
 	json[Attributes::Units] = us;
+
+	json[Attributes::Journal] = journal->getUid();
 
 	return json;
 }

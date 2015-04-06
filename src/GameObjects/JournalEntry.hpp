@@ -22,6 +22,9 @@ public:
 	QString getTitle() const;
 	void setTitle(const QString &title);
 
+	BS::EntryType getEntryType() const;
+	void setEntryType(BS::EntryType type);
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
@@ -29,4 +32,5 @@ private:
 	QString date;
 	QString text;
 	QString title;
+	BS::EntryType entryType;
 };

@@ -11,12 +11,15 @@ class Location;
 class QuestLog;
 class Unit;
 
-// Add faction registration in reading function
+//TODO Add faction registration in reading function
 class Faction : public Object, public Equipped {
 public:
 	Faction(const Prototype *prototype);
 
 	BS::Type getType() const;
+
+	int getJournalUid() const;
+	void setJournal(Journal *journal);
 
 	Journal *getJournal();
 	QuestLog *getQuestLog();
@@ -41,10 +44,14 @@ public:
 private:
 	int food;
 	QHash<int, int> relations;
+
+	int journalUid;
 	Journal *journal;
 	QuestLog *questLog;
+
 	int campUid;
 	double campRange;
+
 	QSet<int> unitsUids;
 	QList<int> allUnitsUids;
 };

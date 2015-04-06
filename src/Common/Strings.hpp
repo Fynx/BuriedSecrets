@@ -49,6 +49,7 @@ namespace Attributes {                                 // Converted into class f
 	const QString Date             = "date";
 	const QString DelayTime        = "delayTime";       // Item
 	const QString Entries          = "entries";
+	const QString EntryType        = "entryType";
 	const QString Equipment        = "equipment";
 	const QString ExitX            = "exitX";           // Location, optional exitPoint
 	const QString ExitY            = "exitY";
@@ -56,6 +57,7 @@ namespace Attributes {                                 // Converted into class f
 	const QString Food             = "food";
 	const QString HP               = "hp";
 	const QString Items            = "items";
+	const QString Journal          = "journal";
 	const QString PatrolRoute      = "patrolRoute";
 	const QString Psychosis        = "psychosis";
 	const QString Relations        = "relations";
