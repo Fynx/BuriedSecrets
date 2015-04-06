@@ -27,7 +27,7 @@ private:
 
 	static const QSize PictureSize;
 	static const QSize StarSize;
-	static const QMargins DetailsContentMargin;
+	static const QMargins DetailsContentMargins;
 	static const QFont DetailsFont;
 	static const QFont TitlesFont;
 	static const int VerticalSpacing = 10;

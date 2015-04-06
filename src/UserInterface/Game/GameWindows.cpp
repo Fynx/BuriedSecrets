@@ -63,7 +63,7 @@ void GameWindows::initWindows(QWidget *gameWindow)
 	connect(unitWindow_, &UnitWindow::exit, this, &GameWindows::closeSubwindow);
 
 	// JournalWindow
-	journalWindow_ = new JournalWindow;
+	journalWindow_ = new JournalWindow(mind_, dataManager_);
 	journalWindow_->setParent(gameWindow);
 	journalWindow_->hide();
 	connect(journalWindow_, &JournalWindow::exit, this, &GameWindows::closeSubwindow);

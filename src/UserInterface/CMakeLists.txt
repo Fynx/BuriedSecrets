@@ -34,6 +34,8 @@
 	Windows/Tabs/Item/ItemsListWidget.cpp
 	Windows/Tabs/Item/ItemWidget.cpp
 	Windows/Tabs/Item/SlotWidget.cpp
+
+	JournalEntryWidget.cpp
 )
 
 set (UserInterface_HDRS

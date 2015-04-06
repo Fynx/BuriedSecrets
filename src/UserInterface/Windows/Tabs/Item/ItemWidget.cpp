@@ -11,7 +11,7 @@
 
 const QSize ItemWidget::PictureSize{200, 200};
 const QSize ItemWidget::StarSize{30, 30};
-const QMargins ItemWidget::DetailsContentMargin{0, 20, 0, 20};
+const QMargins ItemWidget::DetailsContentMargins{0, 20, 0, 20};
 const QFont ItemWidget::DetailsFont{"Times", 16};
 const QFont ItemWidget::TitlesFont{"Arial", 16, QFont::Bold};
 
@@ -89,7 +89,7 @@ QLayout *ItemWidget::createDetailsPart()
 {
 	auto layout = new QFormLayout;
 
-	layout->setContentsMargins(DetailsContentMargin);
+	layout->setContentsMargins(DetailsContentMargins);
 	layout->setVerticalSpacing(VerticalSpacing);
 	layout->setHorizontalSpacing(HorizontalSpacing);
 
