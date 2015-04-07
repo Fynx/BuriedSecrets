@@ -74,6 +74,7 @@ void UnitsPanel::rebuild()
 	unitsStates_.clear();
 	unitSections_.clear();
 
+	//FIXME probably memleak - I am not sure it deletes QObjects (QLayoutItem is not a QObject)
 	QLayoutItem *child;
 	while ((child = panelLayout_->takeAt(0)) != nullptr)
 		delete child;

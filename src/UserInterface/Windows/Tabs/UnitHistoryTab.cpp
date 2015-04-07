@@ -8,7 +8,7 @@
 #include "Common/Strings.hpp"
 
 const QSize UnitHistoryTab::PictureSize{256, 256};
-const QMargins UnitHistoryTab::ContentsMargins{32, 32, 32, 32};
+const QMargins UnitHistoryTab::ContentsMargins{15, 15, 15, 15};
 
 UnitHistoryTab::UnitHistoryTab(Unit *unit, DataManager *dataManager)
 	: unit_(unit),
@@ -27,7 +27,7 @@ void UnitHistoryTab::initLayout()
 	mainLayout->addLayout(createDataLayout());
 }
 
-QWidget* UnitHistoryTab::createPictureWidget()
+QWidget *UnitHistoryTab::createPictureWidget()
 {
 	auto picture = new QLabel;
 	QString avatarName = unit_->getPrototype()->getProperty(Properties::Picture).toString();
@@ -41,25 +41,76 @@ QWidget* UnitHistoryTab::createPictureWidget()
 	return picture;
 }
 
-QLayout* UnitHistoryTab::createDataLayout()
+QLayout *UnitHistoryTab::createDataLayout()
 {
-	QFormLayout *layout = new QFormLayout;
-	layout->setVerticalSpacing(VerticalSpacing);
-	layout->setHorizontalSpacing(HorizontalSpacing);
+	auto layout = new QGridLayout;
+// 	layout->setHorizontalSpacing(HorizontalSpacing);
 
-	layout->addRow(keyLabel(tr("Name")), valueLabel(unit_->getName()));
+	auto layoutUp = new QFormLayout;
+	layout->addLayout(layoutUp, 0, 0, 1, 2);
+	layoutUp->setVerticalSpacing(VerticalSpacing);
+	layoutUp->setHorizontalSpacing(HorizontalSpacing);
 
-	int age = unit_->getPrototype()->getProperty(Properties::Age).toInt();
-	layout->addRow(keyLabel(tr("Age")), valueLabel(QString::number(age)));
+	layoutUp->addRow(keyLabel(tr("Name")), valueLabel(unit_->getName()));
 
-	QString profession = unit_->getPrototype()->getProperty(Properties::Profession).toString();
-	layout->addRow(keyLabel(tr("Profession")), valueLabel(profession));
+	QString label;
+	// History
+	label = unit_->getPrototype()->getProperty(Properties::Age).toString();
+	layoutUp->addRow(keyLabel(tr("Age")), valueLabel(label));
 
-	QString background = unit_->getPrototype()->getProperty(Properties::Background).toString();
-	layout->addRow(keyLabel(tr("Background")), valueLabel(background));
+	label = unit_->getPrototype()->getProperty(Properties::Profession).toString();
+	layoutUp->addRow(keyLabel(tr("Profession")), valueLabel(label));
 
-	QString quote = unit_->getPrototype()->getProperty(Properties::Quote).toString();
-	layout->addRow(keyLabel(tr("Quote")), valueLabel(quote));
+	label = unit_->getPrototype()->getProperty(Properties::Background).toString();
+	layoutUp->addRow(keyLabel(tr("Background")), valueLabel(label));
+
+	label = unit_->getPrototype()->getProperty(Properties::Quote).toString();
+	layoutUp->addRow(keyLabel(tr("Quote")), valueLabel(label));
+
+	auto statsLeft = new QFormLayout;
+	layout->addLayout(statsLeft, 1, 0, 1, 1);
+	statsLeft->setVerticalSpacing(VerticalSpacing);
+	statsLeft->setHorizontalSpacing(HorizontalSpacing);
+
+	// Basic stats
+	label = unit_->getPrototype()->getProperty(Properties::Encumbrance).toString();
+	statsLeft->addRow(keyLabel(tr("Encumbrance")), valueLabel(label));
+
+	label = unit_->getPrototype()->getProperty(Properties::FoodDemand).toString();
+	statsLeft->addRow(keyLabel(tr("Food demand")), valueLabel(label));
+
+	label = unit_->getPrototype()->getProperty(Properties::HP).toString();
+	statsLeft->addRow(keyLabel(tr("Phisical health")), valueLabel(label));
+
+	label = unit_->getPrototype()->getProperty(Properties::Psychosis).toString();
+	statsLeft->addRow(keyLabel(tr("Mental health")), valueLabel(label));
+
+	label = unit_->getPrototype()->getProperty(Properties::Regeneration).toString();
+	statsLeft->addRow(keyLabel(tr("Regeneration")), valueLabel(label));
+
+	auto statsRight = new QFormLayout;
+	layout->addLayout(statsRight, 1, 1, 1, 1);
+	statsRight->setVerticalSpacing(VerticalSpacing);
+	statsRight->setHorizontalSpacing(HorizontalSpacing);
+
+	// Skill stats
+	label = unit_->getPrototype()->getProperty(Properties::Engineering).toString();
+	statsRight->addRow(keyLabel(tr("Engineering")), valueLabel(label));
+
+	label = unit_->getPrototype()->getProperty(Properties::Healing).toString();
+	statsRight->addRow(keyLabel(tr("Healing")), valueLabel(label));
+	/*
+	label = unit_->getPrototype()->getProperty(Properties::Perception).toString();
+	statsRight->addRow(keyLabel(tr("Perception")), valueLabel(label));
+	*/
+	label = unit_->getPrototype()->getProperty(Properties::DamageControl).toString();
+	statsRight->addRow(keyLabel(tr("Damage control")), valueLabel(label));
+
+	label = unit_->getPrototype()->getProperty(Properties::SightRange).toString();
+	statsRight->addRow(keyLabel(tr("Sight range")), valueLabel(label));
+
+	label = unit_->getPrototype()->getProperty(Properties::MovementSpeed).toString();
+	statsRight->addRow(keyLabel(tr("Movement speed")), valueLabel(label));
 
 	return layout;
 }
@@ -67,7 +118,7 @@ QLayout* UnitHistoryTab::createDataLayout()
 QLabel *UnitHistoryTab::keyLabel(const QString &title)
 {
 	auto label = new QLabel(title);
-	label->setFont(QFont("Arial", 16, QFont::Bold));
+	label->setFont(QFont("Arial", 14, QFont::Bold));
 	return label;
 }
 
@@ -75,6 +126,6 @@ QLabel *UnitHistoryTab::valueLabel(const QString &value)
 {
 	auto label = new QLabel(value);
 	label->setWordWrap(true);
-	label->setFont(QFont("Times", 16));
+	label->setFont(QFont("Times", 14));
 	return label;
 }

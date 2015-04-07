@@ -16,7 +16,7 @@ public:
 private:
 	static const QSize PictureSize;
 	static const QMargins ContentsMargins;
-	static const int VerticalSpacing = 10;
+	static const int VerticalSpacing = 5;
 	static const int HorizontalSpacing = 15;
 
 
