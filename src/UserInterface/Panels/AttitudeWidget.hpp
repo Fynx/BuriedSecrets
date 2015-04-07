@@ -33,7 +33,6 @@ private:
 	Mind *const mind_;
 	QSet<int> uids_;
 	QList<BS::Attitude> options_;
-	QList<QPushButton *> buttons_;
 	bool outsideAttitudes_;
 
 	QVBoxLayout *attitudeLayout_;

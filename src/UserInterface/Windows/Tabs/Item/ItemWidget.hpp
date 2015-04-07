@@ -30,7 +30,7 @@ private:
 	static const QMargins DetailsContentMargins;
 	static const QFont DetailsFont;
 	static const QFont TitlesFont;
-	static const int VerticalSpacing = 10;
+	static const int VerticalSpacing = 5;
 	static const int HorizontalSpacing = 15;
 
 	void initLayout();
@@ -38,6 +38,9 @@ private:
 	QLayout *createDetailsPart();
 	void fillWidget();
 	void fillQuality(int q);
+	void fillSpecifics();
+	void addSpecific(const QString &key, const QString &value);
+	void addSpecificProperty(const QString &key, const QString &property);
 
 	const Prototype *prototype_;
 	DataManager *const dataManager_;
@@ -51,6 +54,6 @@ private:
 	QLabel *itemTypeLabel_;
 	QList<QLabel *> stars_;
 	QLabel *weightLabel_;
-	QLabel *componentsLabel_;
-	QLabel *componentsTitle_;
+
+	QFormLayout *specificsLayout_;
 };

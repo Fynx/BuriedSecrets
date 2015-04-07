@@ -11,9 +11,9 @@
 
 const QSize ItemWidget::PictureSize{200, 200};
 const QSize ItemWidget::StarSize{30, 30};
-const QMargins ItemWidget::DetailsContentMargins{0, 20, 0, 20};
-const QFont ItemWidget::DetailsFont{"Times", 16};
-const QFont ItemWidget::TitlesFont{"Arial", 16, QFont::Bold};
+const QMargins ItemWidget::DetailsContentMargins{0, 0, 0, 0};
+const QFont ItemWidget::DetailsFont{"Times", 14};
+const QFont ItemWidget::TitlesFont{"Arial", 14, QFont::Bold};
 
 
 ItemWidget::ItemWidget(DataManager *dataManager) : prototype_(nullptr), dataManager_(dataManager)
@@ -35,7 +35,7 @@ void ItemWidget::setItem(const Item *item)
 	fillWidget();
 }
 
-void ItemWidget::setPrototype(const Prototype* prototype)
+void ItemWidget::setPrototype(const Prototype *prototype)
 {
 	prototype_ = prototype;
 
@@ -87,22 +87,25 @@ QLayout *ItemWidget::createMainPart()
 
 QLayout *ItemWidget::createDetailsPart()
 {
-	auto layout = new QFormLayout;
+	auto layout = new QVBoxLayout;
 
-	layout->setContentsMargins(DetailsContentMargins);
-	layout->setVerticalSpacing(VerticalSpacing);
-	layout->setHorizontalSpacing(HorizontalSpacing);
+	auto fLayout = new QFormLayout;
+	layout->addLayout(fLayout);
+
+	fLayout->setContentsMargins(DetailsContentMargins);
+	fLayout->setVerticalSpacing(VerticalSpacing);
+	fLayout->setHorizontalSpacing(HorizontalSpacing);
 
 	descriptionLabel_ = new QLabel;
 	descriptionLabel_->setFont(DetailsFont);
 	descriptionLabel_->setWordWrap(true);
-	layout->addRow(descriptionLabel_);
+	fLayout->addRow(descriptionLabel_);
 
 	auto itemTypeTitle = new QLabel(tr("Type"));
 	itemTypeTitle->setFont(TitlesFont);
 	itemTypeLabel_ = new QLabel;
 	itemTypeLabel_->setFont(DetailsFont);
-	layout->addRow(itemTypeTitle, itemTypeLabel_);
+	fLayout->addRow(itemTypeTitle, itemTypeLabel_);
 
 	auto qualityTitle = new QLabel(tr("Quality"));
 	qualityTitle->setFont(TitlesFont);
@@ -112,19 +115,23 @@ QLayout *ItemWidget::createDetailsPart()
 		starsLayout->addWidget(stars_.back());
 	}
 	starsLayout->addStretch();
-	layout->addRow(qualityTitle, starsLayout);
+	fLayout->addRow(qualityTitle, starsLayout);
 
 	auto weightTitle = new QLabel(tr("Weight"));
 	weightTitle->setFont(TitlesFont);
 	weightLabel_ = new QLabel;
 	weightLabel_->setFont(DetailsFont);
-	layout->addRow(weightTitle, weightLabel_);
+	fLayout->addRow(weightTitle, weightLabel_);
 
-	componentsTitle_ = new QLabel(tr("Parts"));
-	componentsTitle_->setFont(TitlesFont);
-	componentsLabel_ = new QLabel;
-	componentsLabel_->setFont(DetailsFont);
-	layout->addRow(componentsTitle_, componentsLabel_);
+	layout->addSpacing(VerticalSpacing * 2);
+
+	specificsLayout_ = new QFormLayout;
+	specificsLayout_->setContentsMargins(DetailsContentMargins);
+	specificsLayout_->setVerticalSpacing(VerticalSpacing);
+	specificsLayout_->setHorizontalSpacing(HorizontalSpacing);
+	layout->addLayout(specificsLayout_);
+
+	layout->addStretch();
 
 	return layout;
 }
@@ -144,7 +151,6 @@ void ItemWidget::fillWidget()
 
 	// Details
 	descriptionLabel_->setText(prototype_->getProperty(Properties::Description).toString());
-
 	weightLabel_->setNum(prototype_->getProperty(Properties::Weight).toInt());
 	fillQuality(prototype_->getProperty(Properties::Quality).toInt());
 
@@ -154,16 +160,9 @@ void ItemWidget::fillWidget()
 			itemTypesString += ", ";
 		itemTypesString += val.toString();
 	}
-
 	itemTypeLabel_->setText(itemTypesString);
 
-	auto components = prototype_->getProperty(Properties::Ingredients).toStringList();
-	QString componentsTxt;
-	for (QString name : components)
-		componentsTxt += name + QString("\n");
-	componentsLabel_->setVisible(components.count() > 0);
-	componentsTitle_->setVisible(components.count() > 0);
-	componentsLabel_->setText(componentsTxt);
+	fillSpecifics();
 
 	this->repaint();
 }
@@ -176,4 +175,59 @@ void ItemWidget::fillQuality(int q)
 		else
 			stars_[i]->clear();
 	}
+}
+
+void ItemWidget::fillSpecifics()
+{
+	while (QLayoutItem *child = specificsLayout_->takeAt(0)) {
+		delete child->widget();
+		delete child;
+	}
+
+	auto components = prototype_->getProperty(Properties::Ingredients).toStringList();
+	if (components.count() > 0)
+		addSpecific(tr("Parts"), components.join(", "));
+
+	for (auto type : prototype_->getProperty(Properties::ItemTypes).toList()) {
+		switch (BS::getCorrespondingSlot(BS::changeStringToItemType(type.toString()))) {
+			case BS::Armor:
+				addSpecificProperty(tr("Defense"), Properties::Defense);
+				break;
+			case BS::Medicament:
+				addSpecificProperty(tr("Healing"), Properties::Healing);
+				break;
+			case BS::Tool:
+				addSpecificProperty(tr("Engineering"), Properties::Engineering);
+				break;
+			case BS::Weapon:
+				addSpecificProperty(tr("Damage"), Properties::Damage);
+				addSpecificProperty(tr("Dispersion"), Properties::Dispersion);
+				addSpecificProperty(tr("Range"), Properties::Range);
+				addSpecificProperty(tr("Optimal range"), Properties::OptimalRange);
+				addSpecificProperty(tr("Shots interval"), Properties::ShotsInterval);
+				addSpecificProperty(tr("Magazine size"), Properties::MagazineSize);
+				addSpecificProperty(tr("Reload time"), Properties::ReloadTime);
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+void ItemWidget::addSpecific(const QString &key, const QString &value)
+{
+	auto keyLabel = new QLabel(key);
+	keyLabel->setFont(TitlesFont);
+
+	auto valueLabel = new QLabel(value);
+	valueLabel->setWordWrap(true);
+	valueLabel->setFont(DetailsFont);
+
+	specificsLayout_->addRow(keyLabel, valueLabel);
+}
+
+void ItemWidget::addSpecificProperty(const QString &key, const QString &property)
+{
+	QString value = prototype_->getProperty(property).toString();
+	addSpecific(key, value);
 }

@@ -130,21 +130,17 @@ void AttitudeWidget::addOption(BS::Attitude option)
 			&signalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 	signalMapper_.setMapping(btn, options_.count());
 	options_.append(option);
-	buttons_.append(btn);
 	attitudeLayout_->addWidget(btn);
 }
 
 void AttitudeWidget::clearOptions()
 {
-	QLayoutItem *child;
-	while ((child = attitudeLayout_->takeAt(0)) != nullptr)
+	while (QLayoutItem *child = attitudeLayout_->takeAt(0)) {
+		delete child->widget();
 		delete child;
-
-	for (auto btn : buttons_)
-		delete btn;
+	}
 
 	options_.clear();
-	buttons_.clear();
 }
 
 void AttitudeWidget::onOptionClicked(int option)

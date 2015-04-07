@@ -51,21 +51,12 @@ QLayout *UnitHistoryTab::createDataLayout()
 	layoutUp->setVerticalSpacing(VerticalSpacing);
 	layoutUp->setHorizontalSpacing(HorizontalSpacing);
 
-	layoutUp->addRow(keyLabel(tr("Name")), valueLabel(unit_->getName()));
-
-	QString label;
 	// History
-	label = unit_->getPrototype()->getProperty(Properties::Age).toString();
-	layoutUp->addRow(keyLabel(tr("Age")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::Profession).toString();
-	layoutUp->addRow(keyLabel(tr("Profession")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::Background).toString();
-	layoutUp->addRow(keyLabel(tr("Background")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::Quote).toString();
-	layoutUp->addRow(keyLabel(tr("Quote")), valueLabel(label));
+	addProperty(tr("Name"),       Properties::Name,       layoutUp);
+	addProperty(tr("Age"),        Properties::Age,        layoutUp);
+	addProperty(tr("Profession"), Properties::Profession, layoutUp);
+	addProperty(tr("Background"), Properties::Background, layoutUp);
+	addProperty(tr("Quote"),      Properties::Quote,      layoutUp);
 
 	auto statsLeft = new QFormLayout;
 	layout->addLayout(statsLeft, 1, 0, 1, 1);
@@ -73,20 +64,11 @@ QLayout *UnitHistoryTab::createDataLayout()
 	statsLeft->setHorizontalSpacing(HorizontalSpacing);
 
 	// Basic stats
-	label = unit_->getPrototype()->getProperty(Properties::Encumbrance).toString();
-	statsLeft->addRow(keyLabel(tr("Encumbrance")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::FoodDemand).toString();
-	statsLeft->addRow(keyLabel(tr("Food demand")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::HP).toString();
-	statsLeft->addRow(keyLabel(tr("Phisical health")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::Psychosis).toString();
-	statsLeft->addRow(keyLabel(tr("Mental health")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::Regeneration).toString();
-	statsLeft->addRow(keyLabel(tr("Regeneration")), valueLabel(label));
+	addProperty(tr("Encumbrance"),     Properties::Encumbrance,  statsLeft);
+	addProperty(tr("Food demand"),     Properties::FoodDemand,   statsLeft);
+	addProperty(tr("Physical health"), Properties::HP,           statsLeft);
+	addProperty(tr("Mental health"),   Properties::Psychosis,    statsLeft);
+	addProperty(tr("Regeneration"),    Properties::Regeneration, statsLeft);
 
 	auto statsRight = new QFormLayout;
 	layout->addLayout(statsRight, 1, 1, 1, 1);
@@ -94,38 +76,25 @@ QLayout *UnitHistoryTab::createDataLayout()
 	statsRight->setHorizontalSpacing(HorizontalSpacing);
 
 	// Skill stats
-	label = unit_->getPrototype()->getProperty(Properties::Engineering).toString();
-	statsRight->addRow(keyLabel(tr("Engineering")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::Healing).toString();
-	statsRight->addRow(keyLabel(tr("Healing")), valueLabel(label));
-	/*
-	label = unit_->getPrototype()->getProperty(Properties::Perception).toString();
-	statsRight->addRow(keyLabel(tr("Perception")), valueLabel(label));
-	*/
-	label = unit_->getPrototype()->getProperty(Properties::DamageControl).toString();
-	statsRight->addRow(keyLabel(tr("Damage control")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::SightRange).toString();
-	statsRight->addRow(keyLabel(tr("Sight range")), valueLabel(label));
-
-	label = unit_->getPrototype()->getProperty(Properties::MovementSpeed).toString();
-	statsRight->addRow(keyLabel(tr("Movement speed")), valueLabel(label));
+	addProperty(tr("Engineering"),    Properties::Engineering,   statsRight);
+	addProperty(tr("Healing"),        Properties::Healing,       statsRight);
+// 	addProperty(tr("Perception"),     Properties::Perception,    statsRight);
+	addProperty(tr("Damage control"), Properties::DamageControl, statsRight);
+	addProperty(tr("Sight range"),    Properties::SightRange,    statsRight);
+	addProperty(tr("Movent speed"),   Properties::MovementSpeed, statsRight);
 
 	return layout;
 }
 
-QLabel *UnitHistoryTab::keyLabel(const QString &title)
+void UnitHistoryTab::addProperty(const QString &key, const QString &property, QFormLayout *layout)
 {
-	auto label = new QLabel(title);
-	label->setFont(QFont("Arial", 14, QFont::Bold));
-	return label;
-}
+	auto labelKey = new QLabel(key);
+	labelKey->setFont(QFont("Arial", 14, QFont::Bold));
 
-QLabel *UnitHistoryTab::valueLabel(const QString &value)
-{
-	auto label = new QLabel(value);
-	label->setWordWrap(true);
-	label->setFont(QFont("Times", 14));
-	return label;
+	QString valueTxt = unit_->getPrototype()->getProperty(property).toString();
+	auto labelValue = new QLabel(valueTxt);
+	labelValue->setWordWrap(true);
+	labelValue->setFont(QFont("Times", 14));
+
+	layout->addRow(labelKey, labelValue);
 }

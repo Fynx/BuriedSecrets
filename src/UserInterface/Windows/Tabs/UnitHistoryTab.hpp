@@ -24,8 +24,7 @@ private:
 	QWidget *createPictureWidget();
 	QLayout *createDataLayout();
 
-	QLabel *keyLabel(const QString &title);
-	QLabel *valueLabel(const QString &value);
+	void addProperty(const QString &key, const QString &property, QFormLayout *layout);
 
 	Unit *unit_;
 	DataManager *const dataManager_;

@@ -74,11 +74,10 @@ void UnitsPanel::rebuild()
 	unitsStates_.clear();
 	unitSections_.clear();
 
-	//FIXME probably memleak - I am not sure it deletes QObjects (QLayoutItem is not a QObject)
-	QLayoutItem *child;
-	while ((child = panelLayout_->takeAt(0)) != nullptr)
+	while (QLayoutItem *child = panelLayout_->takeAt(0)) {
+		delete child->widget();
 		delete child;
-
+	}
 	auto faction = mind_->getPlayerFaction();
 
 	for (int uid : faction->getAllUnitsUids()) {
