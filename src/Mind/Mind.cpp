@@ -1,10 +1,13 @@
-﻿/* YoLoDevelopment, 2014
+﻿/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Mind/Mind.hpp"
 
 #include "Common/Strings.hpp"
+#include "DataManager/DataManager.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/Animators/AnimatorManager.hpp"
+#include "Mind/ItemConstructor.hpp"
 #include "Mind/MapManager/MapManager.hpp"
 #include "Mind/ObjectRadiusEffectData.hpp"
 #include "GameObjects/Environment.hpp"
@@ -12,6 +15,8 @@
 #include "GameObjects/Journal.hpp"
 #include "GameObjects/Location.hpp"
 #include "GameObjects/Unit.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
+#include "SoundsManager/SoundsManager.hpp"
 
 const int Mind::PlayerFactionId = 1;
 

@@ -1,7 +1,6 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
-
 #include "Mind/Animators/AnimatorAttack.hpp"
 
 #include "Common/Strings.hpp"
@@ -10,6 +9,7 @@
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
 #include "Mind/PointToPointEffectData.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 using namespace BS;
 

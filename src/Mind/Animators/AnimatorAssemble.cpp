@@ -1,7 +1,6 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
-
 #include "Mind/Animators/AnimatorAssemble.hpp"
 
 #include "Common/Enums.hpp"
@@ -10,6 +9,7 @@
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
 #include "Mind/ObjectRadiusEffectData.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 using namespace BS;
 

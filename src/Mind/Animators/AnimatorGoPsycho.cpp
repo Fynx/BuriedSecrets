@@ -1,14 +1,15 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
-
 #include "Mind/Animators/AnimatorGoPsycho.hpp"
 
 #include "DebugManager/DebugManager.hpp"
 #include "Common/Strings.hpp"
 #include "GameObjects/Unit.hpp"
 #include "GameObjects/Faction.hpp"
+#include "Mind/Animators/AnimatorManager.hpp"
 #include "Mind/Mind.hpp"
+
 
 using namespace BS;
 

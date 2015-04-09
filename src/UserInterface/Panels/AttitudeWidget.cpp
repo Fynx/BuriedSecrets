@@ -3,9 +3,10 @@
  */
 #include "UserInterface/Panels/AttitudeWidget.hpp"
 
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/JournalEntry.hpp"
-#include "Mind/Mind.hpp"
 #include "GameObjects/Unit.hpp"
+#include "Mind/Mind.hpp"
 #include "UserInterface/Resources.hpp"
 
 const QFont AttitudeWidget::TextFont{"Times", 14};

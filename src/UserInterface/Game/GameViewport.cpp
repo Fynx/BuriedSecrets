@@ -7,6 +7,7 @@
 #include "Mind/MapManager/MapManager.hpp"
 #include "Mind/Mind.hpp"
 #include "GameObjects/Unit.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 #include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/Viewport/IsometricPerspective.hpp"
 

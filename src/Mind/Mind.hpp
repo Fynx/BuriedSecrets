@@ -1,25 +1,24 @@
-﻿/* YoLoDevelopment, 2014
+﻿/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
 #include <QtCore>
 
 #include "Common/Enums.hpp"
-#include "DataManager/DataManager.hpp"
 #include "GameObjects/Object.hpp"
 #include "GameObjects/Faction.hpp"
-#include "Mind/Animators/AnimatorManager.hpp"
 #include "Mind/Effect.hpp"
 #include "Mind/Event.hpp"
-#include "Mind/ItemConstructor.hpp"
-#include "PhysicsEngine/PhysicsEngine.hpp"
-#include "SoundsManager/SoundsManager.hpp"
 
+class AnimatorManager;
+class DataManager;
+class ItemConstructor;
 class Map;
 class MapManager;
+class PhysicsEngine;
+class SoundsManager;
 
 class Mind : public QObject {
-
 Q_OBJECT
 public:
 	static const int PlayerFactionId;

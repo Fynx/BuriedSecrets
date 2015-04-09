@@ -1,7 +1,6 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
-
 #include "Mind/Animators/AnimatorDisassemble.hpp"
 
 #include "DebugManager/DebugManager.hpp"
@@ -9,6 +8,7 @@
 #include "Mind/Mind.hpp"
 #include "Common/Enums.hpp"
 #include "Common/Strings.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 using namespace BS;
 

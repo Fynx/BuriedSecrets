@@ -1,10 +1,11 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Mind/Animators/AnimatorTest.hpp"
 
-#include "Mind/Mind.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/Mind.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 
 AnimatorTest::AnimatorTest(Mind *mind) : Animator(mind)

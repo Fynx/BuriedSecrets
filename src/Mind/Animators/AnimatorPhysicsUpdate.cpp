@@ -3,8 +3,9 @@
  */
 #include "Mind/Animators/AnimatorPhysicsUpdate.hpp"
 
-#include "Mind/Mind.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/Mind.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 
 AnimatorPhysicsUpdate::AnimatorPhysicsUpdate(Mind *mind) : Animator(mind)

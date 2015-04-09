@@ -5,6 +5,7 @@
 #include "GameObjects/Unit.hpp"
 #include "Mind/Animators/AnimatorUpdateFOV.hpp"
 #include "Mind/MapManager/MapManager.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 
 AnimatorUpdateFOV::AnimatorUpdateFOV(Mind *mind): Animator{mind}

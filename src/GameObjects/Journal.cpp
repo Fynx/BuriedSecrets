@@ -1,5 +1,10 @@
-#include "Common/Strings.hpp"
+/* YoLoDevelopment, 2014-2015
+ * All rights reserved.
+ */
 #include "GameObjects/Journal.hpp"
+
+#include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Item.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"

@@ -8,6 +8,7 @@
 #include "GameObjects/Unit.hpp"
 #include "Mind/MapManager/MapManager.hpp"
 #include "Mind/Mind.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 using namespace BS;
 

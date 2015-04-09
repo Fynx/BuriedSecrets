@@ -3,9 +3,10 @@
  */
 #include "Mind/Animators/AnimatorMove.hpp"
 
+#include "DebugManager/DebugManager.hpp"
 #include "Mind/Mind.hpp"
 #include "GameObjects/Unit.hpp"
-#include "DebugManager/DebugManager.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 using namespace BS;
 

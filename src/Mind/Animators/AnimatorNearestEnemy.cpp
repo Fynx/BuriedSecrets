@@ -1,15 +1,15 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
-
 #include "Mind/Animators/AnimatorNearestEnemy.hpp"
 
-#include "Common/Strings.hpp"
 #include "Common/Geometry.hpp"
+#include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/MapManager/MapManager.hpp"
 #include "Mind/Mind.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 using namespace BS;
 
