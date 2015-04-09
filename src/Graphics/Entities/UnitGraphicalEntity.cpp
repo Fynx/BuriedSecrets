@@ -5,6 +5,7 @@
 
 #include "DataManager/ImageMetaData.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "GameObjects/Unit.hpp"
 
 
 UnitGraphicalEntity::UnitGraphicalEntity(const Unit *unit, const QList<QPointF> &basePolygon,

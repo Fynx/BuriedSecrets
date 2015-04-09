@@ -1,9 +1,11 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/Entities/ShotEffectGraphicalEntity.hpp"
 
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/PointToPointEffectData.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 ShotEffectGraphicalEntity::ShotEffectGraphicalEntity(const Viewport *viewport)

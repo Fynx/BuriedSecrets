@@ -1,10 +1,7 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
-
-#include <QtWidgets/QWidget>
-#include <QtCore/QTimer>
 #include <SFML/Graphics.hpp>
 
 #include "UserInterface/BoardWidget.hpp"

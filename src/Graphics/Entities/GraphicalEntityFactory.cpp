@@ -1,16 +1,22 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/Entities/GraphicalEntityFactory.hpp"
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "GameObjects/Environment.hpp"
+#include "GameObjects/Object.hpp"
+#include "GameObjects/Unit.hpp"
+#include "Graphics/GraphicsDataManager.hpp"
 #include "Graphics/Entities/EnvironmentGraphicalEntity.hpp"
 #include "Graphics/Entities/LocationGraphicalEntity.hpp"
 #include "Graphics/Entities/MoveCommandEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/ShotEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/StaticGraphicalEntity.hpp"
 #include "Graphics/Entities/UnitGraphicalEntity.hpp"
+#include "Mind/Effect.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 GraphicalEntityFactory::GraphicalEntityFactory(GraphicsDataManager *graphicsDataManager, const Viewport *viewport)

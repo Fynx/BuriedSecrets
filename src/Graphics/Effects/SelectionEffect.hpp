@@ -1,7 +1,9 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
+#include <QList>
+#include <QPointF>
 #include <SFML/Graphics.hpp>
 
 #include "Graphics/Effects/CircleEffect.hpp"

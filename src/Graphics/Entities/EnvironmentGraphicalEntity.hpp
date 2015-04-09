@@ -2,8 +2,9 @@
  * All rights reserved.
  */
 #pragma once
-#include "GameObjects/Environment.hpp"
 #include "Graphics/Entities/TexturedGraphicalEntity.hpp"
+
+class Environment;
 
 
 class EnvironmentGraphicalEntity : public TexturedGraphicalEntity {

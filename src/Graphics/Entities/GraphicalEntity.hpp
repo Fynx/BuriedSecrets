@@ -1,14 +1,20 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
+#include <QMultiMap>
+#include <QPointF>
 #include <QSet>
+#include <QSizeF>
 #include <SFML/Graphics.hpp>
 
-#include "GameObjects/Object.hpp"
-#include "Graphics/Effects/GraphicalEffectFactory.hpp"
+#include "Common/Enums.hpp"
 #include "Graphics/Effects/GraphicalEffect.hpp"
-#include "Mind/Effect.hpp"
+
+class Effect;
+class EffectData;
+class GraphicalEffectFactory;
+class Object;
 
 
 /**

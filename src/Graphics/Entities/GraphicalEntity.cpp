@@ -1,7 +1,11 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/Entities/GraphicalEntity.hpp"
+
+#include "GameObjects/Object.hpp"
+#include "Graphics/Effects/GraphicalEffectFactory.hpp"
+#include "Mind/Effect.hpp"
 
 
 GraphicalEntity::GraphicalEntity(const Object *object, QList<QPointF> basePolygon,
@@ -131,5 +135,3 @@ void GraphicalEntity::removeEffect(EffectsMap &effectsMap, EffectId effectId, Ef
 	delete iter.value();
 	effectsMap.erase(iter);
 }
-
-

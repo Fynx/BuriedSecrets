@@ -3,6 +3,9 @@
  */
 #include "Graphics/Entities/EnvironmentGraphicalEntity.hpp"
 
+#include "DataManager/ImageMetaData.hpp"
+#include "GameObjects/Environment.hpp"
+
 
 EnvironmentGraphicalEntity::EnvironmentGraphicalEntity(const Environment *environmentObject,
 						       const QList<QPointF> &basePolygon,

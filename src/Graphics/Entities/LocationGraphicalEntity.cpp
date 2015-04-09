@@ -3,6 +3,9 @@
  */
 #include "Graphics/Entities/LocationGraphicalEntity.hpp"
 
+#include "GameObjects/Location.hpp"
+#include "Graphics/GraphicalTextureSet.hpp"
+
 
 LocationGraphicalEntity::LocationGraphicalEntity(const Location *location, const QList<QPointF> &basePolygon,
 						 GraphicalEffectFactory *graphicalEffectFactory,

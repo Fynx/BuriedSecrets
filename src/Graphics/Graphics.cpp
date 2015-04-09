@@ -1,10 +1,19 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/Graphics.hpp"
 
+#include "Graphics/Camera.hpp"
+#include "Graphics/Effects/GraphicalEffectFactory.hpp"
+#include "Graphics/Entities/GraphicalEntityFactory.hpp"
+#include "Graphics/GraphicalFogOfWar.hpp"
+#include "Graphics/GraphicsWidget.hpp"
+#include "Mind/MapManager/MapManager.hpp"
+#include "Mind/Mind.hpp"
 #include "Mind/ObjectEffectData.hpp"
 #include "UserInterface/Viewport/Perspective.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 
 
 Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataManager, Mind *mind)

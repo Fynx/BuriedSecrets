@@ -1,10 +1,11 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/Effects/CircleEffect.hpp"
 
 #include "Common/Geometry.hpp"
 #include "Graphics/Entities/GraphicalEntity.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 CircleEffect::CircleEffect(const Viewport *viewport, const sf::Color &outlineColor, const sf::Color &fillColor)

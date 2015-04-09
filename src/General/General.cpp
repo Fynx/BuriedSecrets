@@ -1,7 +1,9 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "General/General.hpp"
+
+#include "Graphics/GraphicsWidget.hpp"
 #include "PhysicsEngine/Box2DEngine.hpp"
 
 General::General()

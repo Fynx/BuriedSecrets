@@ -7,6 +7,7 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Graphics/Entities/GraphicalEntity.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 ShowPathEffect::ShowPathEffect(const Viewport *viewport): GraphicalEffect{viewport} {

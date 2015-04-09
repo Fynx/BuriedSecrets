@@ -1,7 +1,10 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/GraphicalFogOfWar.hpp"
+
+#include "Mind/MapManager/MapManager.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 GraphicalFogOfWar::GraphicalFogOfWar(sf::RenderTarget *renderTarget, MapManager *mapManager, const Viewport *viewport)

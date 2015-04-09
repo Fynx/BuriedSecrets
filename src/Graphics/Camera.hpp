@@ -1,19 +1,25 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
-#include <SFML/Graphics.hpp>
 
-#include "GameObjects/Object.hpp"
-#include "PhysicsEngine/PhysicsEngine.hpp"
-#include "UserInterface/Viewport/Viewport.hpp"
+class Viewport;
+class Object;
+class Perspective;
+class PhysicsEngine;
+template<class T>
+class QList;
+
+namespace sf {
+	class View;
+};
 
 
 class Camera {
 public:
 	Camera(const PhysicsEngine *physicsEngine, const Viewport *viewport);
 
-	QList< const Object * > getVisibleObjects() const;
+	QList<const Object *> getVisibleObjects() const;
 	/**
 	 * @brief This method transforms a continuous angle into a discretized form.
 	 */

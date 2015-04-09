@@ -1,11 +1,13 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/Effects/SelectionEffect.hpp"
 
 #include "Common/Geometry.hpp"
 #include "Common/Strings.hpp"
+#include "GameObjects/Object.hpp"
 #include "Graphics/Entities/GraphicalEntity.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 SelectionEffect::SelectionEffect(const Viewport *viewport, const sf::Color &color) : CircleEffect{viewport, color}

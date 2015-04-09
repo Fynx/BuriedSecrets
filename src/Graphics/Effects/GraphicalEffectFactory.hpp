@@ -1,12 +1,13 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
+#include <QSet>
 #include <QString>
 
-#include "Mind/Effect.hpp"
-#include "Graphics/Effects/GraphicalEffect.hpp"
-#include "UserInterface/Viewport/Viewport.hpp"
+class Effect;
+class GraphicalEffect;
+class Viewport;
 
 
 /**

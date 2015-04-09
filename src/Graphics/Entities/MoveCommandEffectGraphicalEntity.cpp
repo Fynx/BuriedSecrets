@@ -1,10 +1,11 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/Entities/MoveCommandEffectGraphicalEntity.hpp"
 
 #include "DebugManager/DebugManager.hpp"
 #include "Mind/PointEffectData.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 MoveCommandEffectGraphicalEntity::MoveCommandEffectGraphicalEntity(const Viewport *viewport,
@@ -12,7 +13,6 @@ MoveCommandEffectGraphicalEntity::MoveCommandEffectGraphicalEntity(const Viewpor
 		: EffectGraphicalEntity{viewport}
 {
 	sprite.setTexture(*texture);
-// 	sprite.setScale(0.8, 0.8);	// TODO temporary.
 }
 
 

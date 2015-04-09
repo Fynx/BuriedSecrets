@@ -8,7 +8,6 @@
 
 #include "Graphics/GraphicalTextureSet.hpp"
 
-
 class DataManager;
 class QString;
 

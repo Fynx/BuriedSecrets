@@ -4,7 +4,8 @@
 #pragma once
 #include "Graphics/Common/LineShape.hpp"
 #include "Graphics/Entities/EffectGraphicalEntity.hpp"
-#include "Mind/PointToPointEffectData.hpp"
+
+class EffectData;
 
 
 /**

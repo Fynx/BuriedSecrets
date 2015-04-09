@@ -1,12 +1,12 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
-
+#include <QSizeF>
 #include <SFML/Graphics.hpp>
 
-#include "Mind/MapManager/MapManager.hpp"
-#include "UserInterface/Viewport/Viewport.hpp"
+class MapManager;
+class Viewport;
 
 
 /**

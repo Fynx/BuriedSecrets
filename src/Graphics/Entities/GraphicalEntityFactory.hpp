@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -7,8 +7,9 @@
 #include "Graphics/Effects/GraphicalEffectFactory.hpp"
 #include "Graphics/Entities/EffectGraphicalEntity.hpp"
 #include "Graphics/Entities/GraphicalEntity.hpp"
-#include "Graphics/GraphicsDataManager.hpp"
-#include "UserInterface/Viewport/Viewport.hpp"
+
+class GraphicsDataManager;
+class Viewport;
 
 
 class GraphicalEntityFactory {

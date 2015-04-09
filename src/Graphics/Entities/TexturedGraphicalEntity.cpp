@@ -6,6 +6,7 @@
 #include <cassert>
 
 #include "DebugManager/DebugManager.hpp"
+#include "Graphics/GraphicalTextureSet.hpp"
 
 
 TexturedGraphicalEntity::TexturedGraphicalEntity(const Object *object, const QList<QPointF> &basePolygon,

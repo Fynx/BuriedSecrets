@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/Effects/AntipsychosisEffect.hpp"
@@ -7,6 +7,7 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Location.hpp"
 #include "Graphics/Entities/GraphicalEntity.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 AntipsychosisEffect::AntipsychosisEffect(const Viewport *viewport, const float radius)

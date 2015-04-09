@@ -2,8 +2,9 @@
  * All rights reserved.
  */
 #pragma once
-#include "GameObjects/Unit.hpp"
 #include "Graphics/Entities/TexturedGraphicalEntity.hpp"
+
+class Unit;
 
 
 class UnitGraphicalEntity : public TexturedGraphicalEntity {

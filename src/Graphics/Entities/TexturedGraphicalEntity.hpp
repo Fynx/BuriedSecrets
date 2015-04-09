@@ -3,10 +3,9 @@
  */
 #pragma once
 #include "Graphics/Entities/SpriteGraphicalEntity.hpp"
-#include "Graphics/GraphicalTextureSet.hpp"
-
 
 class ImageMetaData;
+class GraphicalTextureSet;
 
 
 /**

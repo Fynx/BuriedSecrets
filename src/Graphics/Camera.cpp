@@ -1,10 +1,16 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/Camera.hpp"
 
+#include <QList>
+#include <SFML/Graphics.hpp>
+
 #include "Common/Geometry.hpp"
+#include "GameObjects/Object.hpp"
+#include "PhysicsEngine/PhysicsEngine.hpp"
 #include "UserInterface/Viewport/Perspective.hpp"
+#include "UserInterface/Viewport/Viewport.hpp"
 
 
 Camera::Camera(const PhysicsEngine *physicsEngine, const Viewport *viewport)

@@ -2,8 +2,9 @@
  * All rights reserved.
  */
 #pragma once
-#include "GameObjects/Location.hpp"
 #include "Graphics/Entities/TexturedGraphicalEntity.hpp"
+
+class Location;
 
 
 class LocationGraphicalEntity : public TexturedGraphicalEntity {

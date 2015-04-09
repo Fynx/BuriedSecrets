@@ -1,10 +1,12 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
 #include <SFML/Graphics.hpp>
 
 #include "Graphics/Effects/GraphicalEffect.hpp"
+
+class QPointF;
 
 
 class CircleEffect: public GraphicalEffect {

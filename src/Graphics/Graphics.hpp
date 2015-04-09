@@ -1,22 +1,24 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
-
-#include <SFML/Graphics.hpp>
+#include <QtCore/QObject>
+#include <QtCore/QTimer>
 #include <QtCore/QVector>
+#include <SFML/Graphics.hpp>
 
-#include "Graphics/Camera.hpp"
-#include "Graphics/GraphicsWidget.hpp"
-#include "Graphics/Effects/GraphicalEffectFactory.hpp"
 #include "Graphics/Entities/GraphicalEntity.hpp"
-#include "Graphics/Entities/GraphicalEntityFactory.hpp"
-#include "Graphics/GraphicalFogOfWar.hpp"
 #include "Graphics/GraphicsDataManager.hpp"
-#include "Mind/MapManager/Map.hpp"
-#include "Mind/Mind.hpp"
-#include "PhysicsEngine/PhysicsEngine.hpp"
-#include "UserInterface/Viewport/Viewport.hpp"
+
+class Camera;
+class GraphicalEffectFactory;
+class GraphicalEntityFactory;
+class GraphicalFogOfWar;
+class GraphicsWidget;
+class MapManager;
+class Mind;
+class PhysicsEngine;
+class Viewport;
 
 
 /**

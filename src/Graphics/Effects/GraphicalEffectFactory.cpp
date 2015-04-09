@@ -7,6 +7,7 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/Effect.hpp"
 #include "Mind/ObjectRadiusEffectData.hpp"
 #include "Graphics/Effects/AntipsychosisEffect.hpp"
 #include "Graphics/Effects/BasePolygonEffect.hpp"

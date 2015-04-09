@@ -1,13 +1,11 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
 #include <SFML/Graphics.hpp>
 
-#include "UserInterface/Viewport/Viewport.hpp"
-
-
 class GraphicalEntity;
+class Viewport;
 
 
 /**
@@ -23,6 +21,8 @@ public:
 	 * @param viewport The viewport used for drawing.
 	 * @param renderTarget The render target to which the effect should be drawn.
 	 */
+	virtual ~GraphicalEffect() = default;
+
 	virtual void draw(const GraphicalEntity *graphicalEntity, sf::RenderTarget *renderTarget) = 0;
 
 	/**
@@ -32,8 +32,6 @@ public:
 	 * @return int
 	 */
 	virtual int getOrderId() const = 0;
-
-	virtual ~GraphicalEffect() = default;
 
 protected:
 	const Viewport *viewport;
