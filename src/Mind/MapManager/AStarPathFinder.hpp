@@ -2,9 +2,12 @@
  * All rights reserved.
  */
 #pragma once
+#include <QHash>
 #include <QPoint>
 
 #include "Mind/MapManager/PathFinder.hpp"
+
+class AccessiblityMap;
 
 
 class AStarPathFinder : public PathFinder {
@@ -30,16 +33,10 @@ private:
 	static const float costs[8];
 	static const float sqrtTwo;
 
-	/**
-	 * @brief This method returns the discretized point. It chooses the closest point available out
-	 *
-	 * @param point ...
-	 * @param gridSize ...
-	 * @return QPoint
-	 */
-	QPoint discretizePoint(const QPointF &point, const float gridSize) const;
-	QPointF undiscretizePoint(const QPoint &point, const float gridSize) const;
+	AccessiblityMap *getAccessiblityMap(const int gridSize);
 	float heuristicDistance(const QPoint &from, const QPoint &to, const float gridSize);
 	void appendPathToResult(QList<QPointF> &result, const std::vector<Node> &nodes, int v,
-				const float gridSize) const;
+				const float gridSize, AccessiblityMap *accMap) const;
+
+	QHash<int, AccessiblityMap *> accessibilityMaps;
 };

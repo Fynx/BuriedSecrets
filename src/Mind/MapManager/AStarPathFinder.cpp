@@ -18,6 +18,7 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Object.hpp"
 #include "GameObjects/Unit.hpp"
+#include "Mind/MapManager/DynamicAccessibilityMap.hpp"
 #include "Mind/MapManager/MapManager.hpp"
 
 
@@ -26,7 +27,6 @@ const float AStarPathFinder::costs[] = {1.0f, sqrt(2.0f), 1.0f, sqrt(2.0f), 1.0f
 const float AStarPathFinder::sqrtTwo = sqrt(2.0f);
 
 
-// FIXME possibly risky
 inline uint qHash (const QPoint & key)
 {
 	return qHash(QPair<int, int>{key.x(), key.y()});
@@ -52,9 +52,10 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 
 	const float objRadius = object->getPrototype()->getProperty(Properties::BaseRadius).toFloat();
 	const float gridSize = 2.0f * objRadius;
-	QPoint targetPoint = discretizePoint(target, gridSize);
-	QPoint sourcePoint = discretizePoint(source, gridSize);
-	const Object *targetObject = mapManager->getObjectContaining(undiscretizePoint(targetPoint, gridSize));
+	auto *accMap = getAccessiblityMap(gridSize);
+	QPoint targetPoint = accMap->discretize(target);
+	QPoint sourcePoint = accMap->discretize(source);
+	const Object *targetObject = mapManager->getObjectContaining(accMap->undiscretize(targetPoint));
 	qDebug() << "PF: Starting from: " << sourcePoint << " going to: " << targetPoint <<
 			(targetObject != nullptr ? targetObject->getName() : "");
 
@@ -111,7 +112,7 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 
 		if (nodes[v].point == targetPoint) {
 			qDebug() << "Found path! " << lastId + 1 << "nodes considered";
-			appendPathToResult(result, nodes, v, gridSize);
+			appendPathToResult(result, nodes, v, gridSize, accMap);
 			break;
 		}
 
@@ -120,19 +121,19 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 
 		for (int i = 0; i < 8; ++i) {
 			QPoint nextPoint = nodes[v].point + directions[i];
-			QPointF nextPointReal = undiscretizePoint(nextPoint, gridSize);
+			QPointF nextPointReal = accMap->undiscretize(nextPoint);
 			const float nextDist = prevDist + costs[i];
 
 			if (!mapManager->getMap()->isPointValid(nextPointReal) || nextDist > distBound) {
 				continue;
 			}
 
-			if (!mapManager->canStandOn(unit, nextPointReal)) {
+			if (!accMap->isAccessible(unit, nextPoint)) {
 				if (targetObject != nullptr &&
 						mapManager->getObjectContaining(nextPointReal) == targetObject) {
 					// v is the result - the closest point to the target.
 					qDebug() << "Found path! " << lastId + 1 << "nodes considered";
-					appendPathToResult(result, nodes, v, gridSize);
+					appendPathToResult(result, nodes, v, gridSize, accMap);
 					q.clear();
 					break;
 				}
@@ -181,16 +182,16 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 }
 
 
-QPoint AStarPathFinder::discretizePoint(const QPointF &point, const float gridSize) const
+AccessiblityMap *AStarPathFinder::getAccessiblityMap(const int gridSize)
 {
-	return (point / gridSize).toPoint();
-}
+	const auto it = accessibilityMaps.find(gridSize);
+	if (it != accessibilityMaps.end()) {
+		return it.value();
+	}
 
-
-QPointF AStarPathFinder::undiscretizePoint(const QPoint &point, const float gridSize) const
-{
-	QPointF p{point};
-	return p * gridSize + QPointF{gridSize / 2.0f, gridSize / 2.0f};
+	AccessiblityMap *map = new DynamicAccessiblityMap(mapManager, gridSize);
+	accessibilityMaps.insert(gridSize, map);
+	return map;
 }
 
 
@@ -204,7 +205,7 @@ float AStarPathFinder::heuristicDistance(const QPoint &from, const QPoint &to, c
 
 void AStarPathFinder::appendPathToResult(QList<QPointF> &result,
 					 const std::vector<AStarPathFinder::Node> &nodes,
-					 int v, const float gridSize) const
+					 int v, const float gridSize, AccessiblityMap *accMap) const
 {
 	QList<int> path;
 	while (v != -1 && nodes[v].previousNode != -1) {
@@ -213,7 +214,7 @@ void AStarPathFinder::appendPathToResult(QList<QPointF> &result,
 	}
 
 	while (!path.empty()) {
-		result.append(undiscretizePoint(nodes[path.back()].point, gridSize));
+		result.append(accMap->undiscretize(nodes[path.back()].point));
 		path.pop_back();
 	}
 }

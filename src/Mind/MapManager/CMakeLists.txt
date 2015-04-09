@@ -1,6 +1,8 @@
 set (MapManager_SRCS
+	AccessibilityMap.cpp
 	AStarPathFinder.cpp
 	DiffVisibilityMap.cpp
+	DynamicAccessibilityMap.cpp
 	ImageVisibilityMap.cpp
 	MapManager.cpp
 	Map.cpp

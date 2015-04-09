@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -14,7 +14,6 @@
 #include "Mind/MapManager/ImageVisibilityMap.hpp"
 #include "Mind/MapManager/VisibilityMap.hpp"
 #include "Mind/MapManager/VisibilityUpdate.hpp"
-
 
 class Object;
 class PathFinder;
@@ -42,7 +41,7 @@ public:
 	 */
 	bool isAccessible(const QPointF &point) const;
 	/**
-	 * @brief True if the object can stand on the point.
+	 * @brief True if the unit can stand on the point.
 	 */
 	bool canStandOn(const Unit *unit, const QPointF &point) const;
 	/**
