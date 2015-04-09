@@ -22,6 +22,7 @@ namespace Icons {
 	const QString Location         = Prefix + "house";
 	const QString LocationSelected = Prefix + "house-selected";
 	const QString Journal          = Prefix + "journal";
+	const QString Psycho           = Prefix + "psycho";
 	const QString Skull            = Prefix + "skull";
 	const QString Star             = Prefix + "banana-for-scale";
 }

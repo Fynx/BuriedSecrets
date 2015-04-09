@@ -48,6 +48,7 @@ public:
 	Object *createDefaultObject(BS::Type type, QString prototype);
 	void removeObject(Object *object);
 
+	bool isNotRemoved(int uid) const;
 	Object *getObjectFromUid(const int uid);
 	const Object *getObjectFromUid(const int uid) const;
 	Faction *getFactionById(const int id);

@@ -28,6 +28,9 @@ void JournalWindow::refresh()
 	auto entries = mind_->getPlayerFaction()->getJournal()->getEntries();
 
 	for (auto entry : entries) {
+		if (! JournalEntry::hasLongForm(entry->getEntryType()))
+			continue;
+
 		auto lwi = new QListWidgetItem(entry->getTitle(), entriesList_);
 		lwi->setFlags(Qt::ItemFlag::ItemIsSelectable | Qt::ItemIsEnabled);
 		lwi->setData(Qt::UserRole, entry->getUid());

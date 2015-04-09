@@ -5,13 +5,9 @@
 
 #include <QtWidgets>
 
-class DeadSection : public QWidget {
+class IconSection : public QWidget {
 
 public:
-    DeadSection();
-
+	IconSection(const QString &icon);
 	QSize sizeHint() const;
-
-private:
-
 };

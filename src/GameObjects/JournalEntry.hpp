@@ -7,6 +7,8 @@
 
 class JournalEntry : public Object {
 public:
+	static bool hasLongForm(BS::EntryType type);
+
 	JournalEntry(const Prototype *prototype);
 
 	BS::Type getType() const;

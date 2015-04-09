@@ -68,7 +68,9 @@ void NotificationPanel::updateNotifications()
 NotificationWidget *NotificationPanel::createNotification(JournalEntry *entry)
 {
 	auto notif = new NotificationWidget(entry);
-	connect(notif, &NotificationWidget::notificationClicked, this, &NotificationPanel::notificationClicked);
+	if (JournalEntry::hasLongForm(entry->getEntryType()))
+		connect(notif, &NotificationWidget::notificationClicked,
+		        this, &NotificationPanel::notificationClicked);
 	notif->setParent(mainWidget_);
 	notif->resize(NotificationSize);
 	notif->show();

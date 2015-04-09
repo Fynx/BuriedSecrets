@@ -13,7 +13,7 @@
 	Menus/PostGameMenu.cpp
 
 	Panels/AttitudeWidget.cpp
-	Panels/DeadSection.cpp
+	Panels/IconSection.cpp
 	Panels/FactionPanel.cpp
 	Panels/NotificationPanel.cpp
 	Panels/NotificationWidget.cpp

@@ -367,6 +367,11 @@ void Mind::removeObject(Object *object)
 			removeObject(item);
 }
 
+bool Mind::isNotRemoved(int uid) const
+{
+	return uidToObject.contains(uid);
+}
+
 Object *Mind::getObjectFromUid(const int uid)
 {
 	if (uidToObject.contains(uid))

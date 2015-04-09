@@ -5,6 +5,13 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/JournalEntry.hpp"
 
+bool JournalEntry::hasLongForm(BS::EntryType type)
+{
+	if (type == BS::EntryType::ItemFound)
+		return false;
+	return true;
+}
+
 JournalEntry::JournalEntry(const Prototype *prototype)
 	: Object(prototype)
 {}

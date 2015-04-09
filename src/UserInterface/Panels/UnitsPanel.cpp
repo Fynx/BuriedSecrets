@@ -5,8 +5,9 @@
 
 #include "Mind/Mind.hpp"
 #include "GameObjects/Unit.hpp"
-#include "UserInterface/Panels/DeadSection.hpp"
+#include "UserInterface/Panels/IconSection.hpp"
 #include "UserInterface/Panels/UnitSection.hpp"
+#include "UserInterface/Resources.hpp"
 
 const QSize UnitsPanel::SectionSize{160, 130};
 
@@ -85,7 +86,11 @@ void UnitsPanel::rebuild()
 		if (unitsStates_.back().second)
 			appendUnitSection(uid);
 		else {
-			panelLayout_->addWidget(new DeadSection);
+			//check if alive or psycho
+			if (mind_->isNotRemoved(uid))
+				panelLayout_->addWidget(new IconSection(Icons::Psycho));
+			else
+				panelLayout_->addWidget(new IconSection(Icons::Skull));
 		}
 	}
 }

@@ -41,13 +41,13 @@ int TextureSetData::getFramesNumber(const BS::State state, const BS::ItemType we
 	auto it = framesNumber.find(key);
 	if (it == framesNumber.end()) {
 		// Try without the weapon.
-		warn("Couldn't get the frame number for given meta data, trying without the weapon...");
+// 		warn("Couldn't get the frame number for given meta data, trying without the weapon...");
 		key.weapon = BS::ItemType::Invalid;
 
 		it = framesNumber.find(key);
 		if (it == framesNumber.end()) {
 			// Try in idle state.
-			warn("Couldn't get the frame number even without the weapon, trying to fall back to Idle...");
+// 			warn("Couldn't get the frame number even without the weapon, trying to fall back to Idle...");
 			key.state = BS::State::Idle;
 
 			it = framesNumber.find(key);

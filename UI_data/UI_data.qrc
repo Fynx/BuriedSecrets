@@ -12,6 +12,7 @@
 		<file alias="house-selected">icons/house-selected.png</file>
 		<file alias="journal">icons/journal.png</file>
 		<file alias="skull">icons/skull.png</file>
+		<file alias="psycho">icons/psycho.png</file>
 	</qresource>
 	<qresource prefix="/cursors">
 		<file alias="arrow-down-primary">cursors/arrow-down-primary.png</file>
