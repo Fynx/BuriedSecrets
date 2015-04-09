@@ -56,11 +56,16 @@ namespace BS {
 		QVector2D angleToVec(float a);
 		bool inCircle(const QPointF &p, const Circle &circle);
 		bool circlesIntersect(const Circle &a, const Circle &b);
+		bool vectorsIntersect(const QPointF &aBegin, const QPointF &aEnd,
+				      const QPointF &bBegin, const QPointF &bEnd);
 		float det(const QPointF &a, const QPointF &b, const QPointF &c);
+		int detSgn(const QPointF &a, const QPointF &b, const QPointF &c);
 		/**
 		 * @brief True if c is to the left of the vector from a to b. False otherwise.
 		 */
 		bool toLeft(const QPointF &a, const QPointF &b, const QPointF &c);
+		bool inLine(const QPointF &a, const QPointF &b, const QPointF &c);
 		QRectF scaleRect(const QRectF &rect, const float scale);
+		bool pointInPolygon(const QPointF &point, const QList<QPointF> &polygon);
 	}
 }

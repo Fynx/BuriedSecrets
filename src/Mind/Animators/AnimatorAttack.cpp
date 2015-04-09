@@ -61,7 +61,7 @@ void AnimatorAttack::act()
 			unit->setCommand(Command::None);
 			continue;
 		}
-		float dist = QVector2D(to-from).length();
+		float dist = QVector2D(to - from).length();
 		if (dist > weapon->getPrototype()->getProperty(Properties::Range).toFloat())
 			continue;
 

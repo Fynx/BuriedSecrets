@@ -12,10 +12,11 @@
 #include "Mind/Effect.hpp"
 #include "Mind/Event.hpp"
 #include "Mind/ItemConstructor.hpp"
-#include "Mind/MapManager/MapManager.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "SoundsManager/SoundsManager.hpp"
 
+class Map;
+class MapManager;
 
 class Mind : public QObject {
 

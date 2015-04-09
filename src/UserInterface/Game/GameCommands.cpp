@@ -7,6 +7,7 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Effect.hpp"
+#include "Mind/MapManager/MapManager.hpp"
 #include "Mind/Mind.hpp"
 #include "Mind/ObjectEffectData.hpp"
 #include "Mind/PointEffectData.hpp"

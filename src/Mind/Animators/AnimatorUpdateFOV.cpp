@@ -1,9 +1,10 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
-
+#include "Common/Geometry.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/Animators/AnimatorUpdateFOV.hpp"
+#include "Mind/MapManager/MapManager.hpp"
 
 
 AnimatorUpdateFOV::AnimatorUpdateFOV(Mind *mind): Animator{mind}

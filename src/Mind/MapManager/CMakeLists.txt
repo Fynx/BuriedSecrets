@@ -1,4 +1,5 @@
 set (MapManager_SRCS
+	AStarPathFinder.cpp
 	DiffVisibilityMap.cpp
 	ImageVisibilityMap.cpp
 	MapManager.cpp

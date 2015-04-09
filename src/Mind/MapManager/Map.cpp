@@ -16,6 +16,11 @@ const QJsonObject &Map::getJson() const
 	return json;
 }
 
+bool Map::isPointValid(const QPointF &point) const
+{
+	return point.x() >= 0.0f && point.y() >= 0.0f && point.x() <= size.width() && point.y() <= size.height();
+}
+
 const QString &Map::getName() const
 {
 	return name;

@@ -6,6 +6,7 @@
 
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
+#include "Mind/MapManager/MapManager.hpp"
 #include "Mind/Mind.hpp"
 
 using namespace BS;
@@ -21,17 +22,19 @@ void AnimatorUpdatePath::act()
 {
 	for (Object * obj : objects){
 		Unit *unit = dynamic_cast<Unit *>(obj);
-		if (!unit)
+		if (unit == nullptr) {
 			continue;
+		}
 		Command comm = unit->getCommand();
 		QPointF from = mind->physicsEngine()->getPosition(unit);
 		QPointF to(0, 0);
 
-		if ((comm == Command::Attack && unit->getState() != State::Attack) || (comm == Command::Heal) || (comm == Command::Disassemble))
+		if ((comm == Command::Attack && unit->getState() != State::Attack) || (comm == Command::Heal) ||
+				(comm == Command::Disassemble)) {
 			to = mind->physicsEngine()->getPosition(mind->getObjectFromUid(unit->getTargetObject()));
-		if (comm == Command::Enter){
+		} else if (comm == Command::Enter){
 			Location *target = (Location *)mind->getObjectFromUid(unit->getTargetObject());
-			if (!target){
+			if (target == nullptr) {
 				unit->setCommand(Command::None);
 				unit->setState(State::Idle);
 				continue;
@@ -40,13 +43,15 @@ void AnimatorUpdatePath::act()
 			to = mind->physicsEngine()->getPosition(target) + target->getOffset();
 		}
 
-		if ((comm == Command::Assemble) || (comm == Command::Move))
+		if ((comm == Command::Assemble) || (comm == Command::Move)) {
 			to = unit->getTargetPoint();
+		}
 
-		if (from.isNull() || to.isNull())
+		if (from.isNull() || to.isNull()) {
 			continue;
+		}
 
-		if (comm == Command::Move && QVector2D(from-to).length() < epsilon) {
+		if (comm == Command::Move && QVector2D(from - to).length() < epsilon) {
 			if (unit->getState() == State::RunBase || unit->getState() == State::IdleBase)
 				unit->setCommand(Command::Base);
 			else
@@ -54,6 +59,9 @@ void AnimatorUpdatePath::act()
 			continue;
 		}
 
-		unit->setCurrentPath(mind->getMapManager()->getPath(unit, to));
+		auto &path = unit->getCurrentPath();
+		if (path.empty() || path.back() != to) {
+			unit->setCurrentPath(mind->getMapManager()->getPath(unit, to));
+		}
 	}
 }

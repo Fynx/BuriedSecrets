@@ -61,7 +61,7 @@ const QPointF Prototype::getBaseCentre() const
 }
 
 
-const QList< QPointF > Prototype::getBasePolygon() const
+const QList<QPointF> Prototype::getBasePolygon() const
 {
 	return basePolygon;
 }
@@ -73,7 +73,7 @@ void Prototype::setBaseCentre(const QPointF &baseCentre)
 }
 
 
-void Prototype::setBasePolygon(const QList< QPointF > &basePolygon)
+void Prototype::setBasePolygon(const QList<QPointF> &basePolygon)
 {
 	this->basePolygon = basePolygon;
 }

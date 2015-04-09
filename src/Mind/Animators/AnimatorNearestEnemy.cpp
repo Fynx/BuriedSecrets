@@ -8,6 +8,7 @@
 #include "Common/Geometry.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
+#include "Mind/MapManager/MapManager.hpp"
 #include "Mind/Mind.hpp"
 
 using namespace BS;

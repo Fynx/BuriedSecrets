@@ -19,6 +19,7 @@ public:
 	 * @brief True if point (x, y) can be stepped on. False otherwise.
 	 */
 	bool canStepAt(const float x, const float y) const;
+	bool isPointValid(const QPointF &point) const;
 
 	const QString &getName() const;
 	const QString &getDesc() const;

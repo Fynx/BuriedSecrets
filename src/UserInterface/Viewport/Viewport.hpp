@@ -54,7 +54,7 @@ public:
 	void moveViewInMetres(QPointF deltaInMetres);
 	void setViewSizeInMetres(const QSizeF &sizeInMetres);
 	void setViewSizeInPixels(const QSize &sizeInPixels);
-    void centerOnPointInMetres(const QPointF &point);
+	void centerOnPointInMetres(const QPointF &point);
 	/**
 	 * @brief Sets the map size. Arguments are in metres.
 	 */

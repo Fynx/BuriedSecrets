@@ -3,9 +3,9 @@
  */
 #pragma once
 
-#include "GameObjects/Object.hpp"
-
 #include <QtCore>
+
+#include "GameObjects/Object.hpp"
 
 class Mind;
 

@@ -4,6 +4,7 @@
 #include "UserInterface/Game/GameViewport.hpp"
 
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/MapManager/MapManager.hpp"
 #include "Mind/Mind.hpp"
 #include "GameObjects/Unit.hpp"
 #include "UserInterface/BoardWidget.hpp"

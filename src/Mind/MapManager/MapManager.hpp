@@ -29,17 +29,22 @@ class Unit;
 class MapManager {
 public:
 	MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId);
+	~MapManager();
 
 	const Map *getMap() const;
 	/**
 	 * @brief Returns a path from point from to point to.
 	 */
-	QList<QPointF> getPath(const Object *object, const QPointF &to) const;
+	QList<QPointF> getPath(const Object *object, const QPointF &to);
 
 	/**
 	 * @brief True if a point can be walked onto.
 	 */
 	bool isAccessible(const QPointF &point) const;
+	/**
+	 * @brief True if the object can stand on the point.
+	 */
+	bool canStandOn(const Unit *unit, const QPointF &point) const;
 	/**
 	 * @brief True if the point has been seen by the faction.
 	 */
@@ -49,6 +54,9 @@ public:
 	 * @brief True if the object has been seen by the player's faction.
 	 */
 	bool hasBeenSeen(const Object *object) const;
+
+	bool pointInObject(const QPointF &point, const Object *object, const float inflate = 0.0f) const;
+	const Object *getObjectContaining(const QPointF &point, const float inflate = 0.0f) const;
 
 	/**
 	 * @brief Returns the region currently visible to the units from the given faction.
@@ -102,8 +110,8 @@ private:
 	QHash<int, DiffVisibilityMap> FOVs;	// Per-faction FOVs.
 	QHash<int, ImageVisibilityMap> FOWs;
 
-	const PathFinder *pathFinder;
 	const PhysicsEngine *physicsEngine;
+	PathFinder *pathFinder;
 	VisibilityUpdateDiff *visibilityUpdatesDiff;
 };
 

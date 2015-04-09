@@ -2,11 +2,13 @@
  * All rights reserved.
  */
 #pragma once
-#include <QList>
 
 class MapManager;
 class Object;
 class QPointF;
+
+template<class T>
+class QList;
 
 /**
  * @brief This class represents an abstract pathfinder.
@@ -14,7 +16,8 @@ class QPointF;
 class PathFinder {
 public:
 	PathFinder(const MapManager *mapManager);
-	virtual QList<QPointF> getPath(const Object *object, const QPointF &target) = 0;
+	virtual ~PathFinder() = default;
+	virtual QList<QPointF> getPath(const QPointF &source, const Object *object, const QPointF &target) = 0;
 
 protected:
 	const MapManager *mapManager;

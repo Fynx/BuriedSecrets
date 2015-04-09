@@ -5,6 +5,7 @@
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
+#include "Mind/MapManager/MapManager.hpp"
 #include "Mind/ObjectRadiusEffectData.hpp"
 #include "GameObjects/Environment.hpp"
 #include "GameObjects/Equipment.hpp"

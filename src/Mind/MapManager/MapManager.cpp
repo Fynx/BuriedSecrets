@@ -8,13 +8,20 @@
 
 #include "Common/Strings.hpp"
 #include "GameObjects/Unit.hpp"
+#include "Mind/MapManager/AStarPathFinder.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 
 
 MapManager::MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId)
-	: playerFactionId{playerFactionId}, map{json}, pathFinder{nullptr}, physicsEngine{physicsEngine},
-	visibilityUpdatesDiff{new VisibilityUpdateDiff{}}
+	: playerFactionId{playerFactionId}, map{json}, physicsEngine{physicsEngine},
+	pathFinder{new AStarPathFinder{this}}, visibilityUpdatesDiff{new VisibilityUpdateDiff{}}
 {}
+
+
+MapManager::~MapManager()
+{
+	delete pathFinder;
+}
 
 
 const Map *MapManager::getMap() const
@@ -23,14 +30,42 @@ const Map *MapManager::getMap() const
 }
 
 
-QList<QPointF> MapManager::getPath(const Object *object, const QPointF &to) const
+QList<QPointF> MapManager::getPath(const Object *object, const QPointF &to)
 {
-	QList<QPointF> result{to};
+	return pathFinder->getPath(physicsEngine->getPosition(object), object, to);
+}
 
-	// TODO uncomment
-// 	return pathFinder->getPath(object, to);
 
-	return result;
+bool MapManager::canStandOn(const Unit *unit, const QPointF &point) const
+{
+	float radius = unit->getPrototype()->getProperty(Properties::BaseRadius).toFloat();
+	QPointF radiusP{radius, radius};
+	radiusP *= 10;
+	const auto &objects = physicsEngine->getObjectsInRect(QRectF{point - radiusP, point + radiusP});
+
+	for (const auto *obj : objects) {
+		if (obj != unit) {
+			QPointF objCentrePos = physicsEngine->getPosition(obj);
+			if (obj->getType() == BS::Type::Unit) {
+				continue;
+			} else if (obj->getPrototype()->hasProperty(Properties::BasePolygon)) {
+				QList<QPointF> candidates;
+				candidates.append(objCentrePos - point);
+				const auto &polygon = obj->getPrototype()->getBasePolygon();
+				QPointF objCentre = obj->getPrototype()->getBaseCentre();
+				for (const auto &p : polygon) {
+					candidates.append(objCentrePos - objCentre + p - point);
+				}
+
+				// FIXME fix this when edges bugs in A* are fixed
+				if (pointInObject(point, obj/*, radius*/)) {
+					return false;
+				}
+			}
+		}
+	}
+
+	return true;
 }
 
 
@@ -65,6 +100,45 @@ bool MapManager::hasBeenSeen(const Object *object, const int factionId) const
 bool MapManager::hasBeenSeen(const Object *object) const
 {
 	return hasBeenSeen(object, playerFactionId);
+}
+
+
+bool MapManager::pointInObject(const QPointF &point, const Object *object, const float inflate) const
+{
+	QPointF objPos = physicsEngine->getPosition(object);
+	if (object->getType() == BS::Type::Unit) {
+		return BS::Geometry::distance(point, objPos) <=
+			qMin(0.0f, object->getPrototype()->getProperty(Properties::BaseRadius).toFloat() - inflate);
+	} else if (object->getPrototype()->hasProperty(Properties::BasePolygon)) {
+		const QPointF &baseCentre = object->getPrototype()->getBaseCentre();
+		auto polygon = object->getPrototype()->getBasePolygon();
+		for (auto &p : polygon) {
+			p -= baseCentre;
+			const float length = sqrt(p.x() * p.x() + p.y() * p.y());
+			p *= (length + inflate) / length;
+			p += objPos;
+		}
+
+		return BS::Geometry::pointInPolygon(point, polygon);
+	}
+
+	return false;
+}
+
+
+const Object *MapManager::getObjectContaining(const QPointF &point, const float inflate) const
+{
+	float radius = 20.0f;
+	QPointF radiusP{radius, radius};
+	const auto &objects = physicsEngine->getObjectsInRect(QRectF{point - radiusP, point + radiusP});
+
+	for (const auto *obj : objects) {
+		if (pointInObject(point, obj, inflate)) {
+			return obj;
+		}
+	}
+
+	return nullptr;
 }
 
 
