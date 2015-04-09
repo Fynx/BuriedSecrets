@@ -117,12 +117,6 @@ QLayout *ItemWidget::createDetailsPart()
 	starsLayout->addStretch();
 	fLayout->addRow(qualityTitle, starsLayout);
 
-	auto weightTitle = new QLabel(tr("Weight"));
-	weightTitle->setFont(TitlesFont);
-	weightLabel_ = new QLabel;
-	weightLabel_->setFont(DetailsFont);
-	fLayout->addRow(weightTitle, weightLabel_);
-
 	layout->addSpacing(VerticalSpacing * 2);
 
 	specificsLayout_ = new QFormLayout;
@@ -151,7 +145,6 @@ void ItemWidget::fillWidget()
 
 	// Details
 	descriptionLabel_->setText(prototype_->getProperty(Properties::Description).toString());
-	weightLabel_->setNum(prototype_->getProperty(Properties::Weight).toInt());
 	fillQuality(prototype_->getProperty(Properties::Quality).toInt());
 
 	QString itemTypesString;
@@ -179,7 +172,8 @@ void ItemWidget::fillQuality(int q)
 
 void ItemWidget::fillSpecifics()
 {
-	while (QLayoutItem *child = specificsLayout_->takeAt(0)) {
+	while (specificsLayout_->count() > 0) {
+		QLayoutItem *child = specificsLayout_->takeAt(0);
 		delete child->widget();
 		delete child;
 	}

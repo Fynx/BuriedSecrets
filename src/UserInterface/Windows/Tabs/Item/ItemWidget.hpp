@@ -53,7 +53,6 @@ private:
 	QLabel *descriptionLabel_;
 	QLabel *itemTypeLabel_;
 	QList<QLabel *> stars_;
-	QLabel *weightLabel_;
 
 	QFormLayout *specificsLayout_;
 };

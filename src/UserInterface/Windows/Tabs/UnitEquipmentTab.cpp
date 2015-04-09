@@ -26,13 +26,13 @@ bool UnitEquipmentTab::isAcceptableItem(int uid, BS::Slot slot)
 	if (! item->getAvailableSlots().contains(slot))
 		return false;
 
-	//take current Item in this slot into account
-	int currentItemWeight = 0;
-	if (auto currentItem = unit_->getEquipment()->getSlotItem(slot))
-		currentItemWeight = currentItem->getWeight();
-
-	if (item->getWeight() + unit_->getEncumbrance() - currentItemWeight > unit_->getMaxEncumbrance())
-		return false;
+// 	take current Item in this slot into account
+// 	int currentItemWeight = 0;
+// 	if (auto currentItem = unit_->getEquipment()->getSlotItem(slot))
+// 		currentItemWeight = currentItem->getWeight();
+//
+// 	if (item->getWeight() + unit_->getEncumbrance() - currentItemWeight > unit_->getMaxEncumbrance())
+// 		return false;
 
 	return true;
 }

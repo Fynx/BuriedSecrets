@@ -76,7 +76,7 @@ QLayout *UnitHistoryTab::createDataLayout()
 	statsRight->setHorizontalSpacing(HorizontalSpacing);
 
 	// Skill stats
-	addProperty(tr("Engineering"),    Properties::Engineering,   statsRight);
+// 	addProperty(tr("Engineering"),    Properties::Engineering,   statsRight);
 	addProperty(tr("Healing"),        Properties::Healing,       statsRight);
 // 	addProperty(tr("Perception"),     Properties::Perception,    statsRight);
 	addProperty(tr("Damage control"), Properties::DamageControl, statsRight);
