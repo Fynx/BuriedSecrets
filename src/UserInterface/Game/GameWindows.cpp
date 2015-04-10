@@ -30,7 +30,8 @@ void GameWindows::keyPressEvent(const QKeyEvent *event)
 {
 	switch (event->key()) {
 		case Qt::Key_Escape:
-			showWindow(Window::Game);
+			if (openedWindow_ != Window::UnitDecision)
+				showWindow(Window::Game);
 			break;
 		case Qt::Key_C:
 			showWindow(Window::Camp);

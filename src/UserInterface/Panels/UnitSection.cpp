@@ -16,11 +16,13 @@ const int UnitSection::BarWidth{10};
 
 UnitSection::UnitSection(const Unit *unit, DataManager *dataManager)
 	: unit_(unit),
-	  dataManager_(dataManager)
+	  dataManager_(dataManager),
+	  lastKnownHP_(unit->getHP())
 {
 	setAutoFillBackground(true);
+	setObjectName("myObject");
 	setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-	setLineWidth(3);
+	setLineWidth(2);
 	setFrameStyle(QFrame::Panel | QFrame::Sunken);
 
 	initLayout();
@@ -38,6 +40,16 @@ QSize UnitSection::sizeHint() const
 
 void UnitSection::refresh()
 {
+	//TODO do it better way than setStyleSheet maybe
+	int hp = unit_->getHP();
+	// not changed && not critical
+	if (lastKnownHP_ == hp && hp * 100 > unit_->getMaxHP() * CriticalPercentHP)
+		setStyleSheet("#myObject {}");
+	else {
+		lastKnownHP_ = hp;
+		setStyleSheet("#myObject { border: 2px solid red; }");
+	}
+
 	switch(unit_->getAttitude()) {
 		case BS::Attitude::BuildingAggressive:
 		case BS::Attitude::Aggressive:
@@ -157,7 +169,8 @@ QLayout *UnitSection::createBarsLayout()
 		(*bar)->setMaximumWidth(BarWidth);
 		barsLayout->addWidget(*bar);
 	}
-
+	hpBar_->setStyleSheet("QProgressBar::chunk {background-color:red}");
+	psychosisBar_->setStyleSheet("QProgressBar::chunk {background-color:blue}");
 	cooldownBar_->hide();
 
 	return barsLayout;

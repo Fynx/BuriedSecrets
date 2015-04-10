@@ -64,7 +64,7 @@ void JournalWindow::initLayout()
 	entriesList_ = new QListWidget;
 	hLayout->addWidget(entriesList_, 1);
 	journalEntryWidget_ = new JournalEntryWidget;
-	hLayout->addWidget(journalEntryWidget_, 1);
+	hLayout->addWidget(journalEntryWidget_, 2);
 
 	layout->addWidget(closeBtn_);
 }

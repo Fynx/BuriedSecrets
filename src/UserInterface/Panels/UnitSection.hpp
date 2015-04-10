@@ -12,6 +12,8 @@ class Mind;
 class UnitSection : public QFrame {
 	Q_OBJECT
 public:
+	static const int CriticalPercentHP = 15;
+
 	UnitSection(const Unit *unit, DataManager *dataManager);
 
 	const Unit *unit();
@@ -34,6 +36,8 @@ private:
 
 	const Unit *const unit_;
 	DataManager *const dataManager_;
+
+	int lastKnownHP_;
 
 	QLabel *locationIcon_;
 	QLabel *campIcon_;
