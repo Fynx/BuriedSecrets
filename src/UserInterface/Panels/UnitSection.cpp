@@ -47,9 +47,6 @@ void UnitSection::refresh()
 		case BS::Attitude::Guard:
 			attitudeIcon_->setPixmap(QPixmap(Icons::Guard).scaled(IconSize));
 			break;
-		case BS::Attitude::Coward:
-			attitudeIcon_->setPixmap(QPixmap(Icons::Coward).scaled(IconSize));
-			break;
 		default:
 			err("Unknown attitude");
 	}
@@ -69,6 +66,16 @@ void UnitSection::refresh()
 
 	psychosisBar_->setMaximum(unit_->getMaxPsychosis());
 	psychosisBar_->setValue(unit_->getPsychosis());
+
+// 	if (auto item = unit_->getUsedItem()){
+// 		if (item->getUseDelay() == 0 )
+// 			cooldownBar_->hide();
+// 		else {
+// 			cooldownBar_->show();
+// 			cooldownBar_->setMaximum(item->property(Properties::ReloadTime).toInt());
+// 			cooldownBar_->setValue(item->getUseDelay());
+// 		}
+// 	}
 }
 
 void UnitSection::setSelected(bool isSelected)
@@ -118,14 +125,10 @@ QLayout *UnitSection::createIconsLayout()
 {
 	auto iconsLayout = new QVBoxLayout;
 
-	attitudeIcon_ = new QLabel;
-	iconsLayout->addWidget(attitudeIcon_);
-
-	campIcon_ = new QLabel;
-	iconsLayout->addWidget(campIcon_);
-
-	locationIcon_ = new QLabel;
-	iconsLayout->addWidget(locationIcon_);
+	for (QLabel **label : {&attitudeIcon_, &campIcon_, &locationIcon_}) {
+		(*label) = new QLabel;
+		iconsLayout->addWidget(*label);
+	}
 
 	return iconsLayout;
 }
@@ -146,19 +149,16 @@ QLayout *UnitSection::createBarsLayout()
 {
 	auto barsLayout = new QHBoxLayout;
 
-	hpBar_ = new QProgressBar;
-	hpBar_->setTextVisible(false);
-	hpBar_->setOrientation(Qt::Vertical);
-	hpBar_->setMinimum(0);
-	hpBar_->setMaximumWidth(BarWidth);
-	barsLayout->addWidget(hpBar_);
+	for (QProgressBar **bar : {&hpBar_, &psychosisBar_, &cooldownBar_}) {
+		(*bar) = new QProgressBar;
+		(*bar)->setTextVisible(false);
+		(*bar)->setOrientation(Qt::Vertical);
+		(*bar)->setMinimum(0);
+		(*bar)->setMaximumWidth(BarWidth);
+		barsLayout->addWidget(*bar);
+	}
 
-	psychosisBar_ = new QProgressBar;
-	psychosisBar_->setTextVisible(false);
-	psychosisBar_->setOrientation(Qt::Vertical);
-	psychosisBar_->setMinimum(0);
-	psychosisBar_->setMaximumWidth(BarWidth);
-	barsLayout->addWidget(psychosisBar_);
+	cooldownBar_->hide();
 
 	return barsLayout;
 }

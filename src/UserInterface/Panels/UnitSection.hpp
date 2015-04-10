@@ -41,6 +41,7 @@ private:
 
 	QProgressBar *hpBar_;
 	QProgressBar *psychosisBar_;
+	QProgressBar *cooldownBar_;
 
 signals:
 	void pickUnit();

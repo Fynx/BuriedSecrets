@@ -9,6 +9,12 @@ class DataManager;
 class Mind;
 class UnitSection;
 
+	enum class UnitStatus {
+		Member,
+		Psycho,
+		Dead
+	};
+
 class UnitsPanel : public QFrame {
 	Q_OBJECT
 public:
@@ -25,17 +31,19 @@ private:
 	bool didUnitsChange();
 	void rebuild();
 	void appendUnitSection(int uid);
+	UnitStatus determineUnitStatus(int uid);
 
 	DataManager *const dataManager_;
 	const Mind *const mind_;
 
-	QList<QPair<int, bool>> unitsStates_; //id, isAlive
+	QList<QPair<int, UnitStatus>> unitsStates_; //id, isAlive
 	QHash<int, UnitSection *> unitSections_;
 	QHBoxLayout *panelLayout_;
 
 	QSignalMapper pickSignalMapper_;
 	QSignalMapper showMenuSignalMapper_;
 	QSignalMapper showUnitSignalMapper_;
+
 
 signals:
 	void pickUnit(int uid);

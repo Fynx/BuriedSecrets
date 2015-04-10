@@ -47,7 +47,6 @@ namespace Attributes {                                 // Converted into class f
 	const QString CampRange        = "campRange";		// Faction
 	const QString Command          = "command";
 	const QString Date             = "date";
-	const QString DelayTime        = "delayTime";       // Item
 	const QString Entries          = "entries";
 	const QString EntryType        = "entryType";
 	const QString Equipment        = "equipment";

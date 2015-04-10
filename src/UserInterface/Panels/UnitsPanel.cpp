@@ -64,7 +64,7 @@ bool UnitsPanel::didUnitsChange()
 		if (allUnits[i] != unitsStates_[i].first)
 			return true;
 		//check state
-		if (mind_->getPlayerFaction()->isAliveMember(allUnits[i]) != unitsStates_[i].second)
+		if (determineUnitStatus(allUnits[i]) != unitsStates_[i].second)
 			return true;
 	}
 	return false;
@@ -79,18 +79,21 @@ void UnitsPanel::rebuild()
 		delete child->widget();
 		delete child;
 	}
-	auto faction = mind_->getPlayerFaction();
 
-	for (int uid : faction->getAllUnitsUids()) {
-		unitsStates_.append({uid, faction->isAliveMember(uid)});
-		if (unitsStates_.back().second)
+	for (int uid : mind_->getPlayerFaction()->getAllUnitsUids()) {
+		auto state = determineUnitStatus(uid);
+		unitsStates_.append({uid, state});
+
+		switch (state) {
+		case UnitStatus::Member:
 			appendUnitSection(uid);
-		else {
-			//check if alive or psycho
-			if (mind_->isNotRemoved(uid))
-				panelLayout_->addWidget(new IconSection(Icons::Psycho));
-			else
-				panelLayout_->addWidget(new IconSection(Icons::Skull));
+			break;
+		case UnitStatus::Psycho:
+			panelLayout_->addWidget(new IconSection(Icons::Psycho));
+			break;
+		case UnitStatus::Dead:
+			panelLayout_->addWidget(new IconSection(Icons::Skull));
+			break;
 		}
 	}
 }
@@ -113,4 +116,15 @@ void UnitsPanel::appendUnitSection(int uid)
 	pickSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
 	showMenuSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
 	showUnitSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
+}
+
+UnitStatus UnitsPanel::determineUnitStatus(int uid)
+{
+	if (mind_->getPlayerFaction()->isAliveMember(uid))
+		return UnitStatus::Member;
+
+	if (mind_->isNotRemoved(uid))
+		return UnitStatus::Psycho;
+
+	return UnitStatus::Dead;
 }

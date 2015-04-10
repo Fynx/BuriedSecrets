@@ -69,7 +69,6 @@ void AttitudeWidget::setUnits(QSet<int> uids)
 		outsideAttitudes_ = true;
 		addOption(BS::Attitude::Aggressive);
 		addOption(BS::Attitude::Guard);
-		addOption(BS::Attitude::Coward);
 	}
 	else {
 		outsideAttitudes_ = false;
@@ -116,10 +115,6 @@ void AttitudeWidget::addOption(BS::Attitude option)
 		case BS::Attitude::Guard:
 			icon = QPixmap(Icons::Guard).scaled(IconSize);
 			text = tr("Guard");
-			break;
-		case BS::Attitude::Coward:
-			icon = QPixmap(Icons::Coward).scaled(IconSize);
-			text = tr("Coward");
 			break;
 		default:
 			err("Unknown attitude");

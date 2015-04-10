@@ -197,7 +197,7 @@ void GameSelections::removeSelectionEffect(int objUid)
 	if (!uidToSelectionEffect_.contains(objUid))
 		return;
 
-	if (dynamic_cast<Unit *>(mind_->getObjectFromUid(objUid)))
+	if (mind_->isNotRemoved(objUid) && dynamic_cast<Unit *>(mind_->getObjectFromUid(objUid)))
 		emit selectionChanged(objUid, false);
 
 	const auto selection = uidToSelectionEffect_.find(objUid);

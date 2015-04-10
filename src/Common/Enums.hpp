@@ -54,7 +54,6 @@ namespace BS {
 	enum class Attitude : quint8 {
 		Aggressive,
 		Guard,
-		Coward,
 		BuildingAggressive,
 		BuildingDefensive
 	};
