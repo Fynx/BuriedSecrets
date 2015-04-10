@@ -56,6 +56,9 @@ public:
 	Faction *getPlayerFaction();
 	const Faction *getPlayerFaction() const;
 
+	void acceptPendingUnit(int uid);
+	void declinePendingUnit(int uid);
+
 	void pauseGame();
 	void resumeGame();
 

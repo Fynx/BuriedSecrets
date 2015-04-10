@@ -28,6 +28,7 @@ public:
 	void setCamp(int);
 	const QSet<int> &getUnitsUids() const;
 	const QList<int> &getAllUnitsUids() const;
+	QList<int> getPendingUnitsUids() const;
 	bool isAliveMember(int uid) const;
 	int getFood() const;
 	double getCampRange() const;

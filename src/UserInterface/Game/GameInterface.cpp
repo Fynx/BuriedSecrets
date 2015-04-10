@@ -109,6 +109,7 @@ void GameInterface::refresh()
 
 	gameSelections_.refresh();
 	gameCommands_.refresh();
+	gameWindows_.refresh();
 
 	attitudeWidget_->refresh(gameSelections_.selectedUnitsUids());
 	unitsPanel_->refresh();

@@ -74,10 +74,29 @@ bool GameWindows::isSubwindowOpen() const
 	return openedWindow_ != Window::Game;
 }
 
+void GameWindows::refresh()
+{
+	auto pendingUnits = mind_->getPlayerFaction()->getPendingUnitsUids();
+	if (pendingUnits.isEmpty() || openedWindow_ == Window::UnitDecision)
+		return;
+
+	showUnitDecision(pendingUnits.first());
+}
+
 void GameWindows::showVisitWindow(Unit *unit)
 {
 	unitWindow_->setUnit(unit);
 	showWindow(Window::Visit);
+}
+
+void GameWindows::showUnitDecision(int uid)
+{
+	unitWindow_->setUnitForDecision(uid);
+	QMessageBox msgBox;
+	msgBox.setWindowTitle(tr("New unit"));
+	msgBox.setText(tr("An outsider wants to join your faction."));
+	msgBox.exec();
+	showWindow(Window::UnitDecision);
 }
 
 void GameWindows::showCampWindow()
@@ -149,6 +168,7 @@ void GameWindows::showWindow(GameWindows::Window window)
 			journalWindow_->show();
 			break;
 		case Window::Unit:
+		case Window::UnitDecision:
 			tileCenter(unitWindow_);
 			unitWindow_->show();
 			break;

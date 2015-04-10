@@ -22,6 +22,7 @@ public:
 
 	void keyPressEvent(const QKeyEvent *event);
 	bool isSubwindowOpen() const;
+	void refresh();
 
 public slots:
 	void showVisitWindow(Unit *unit);
@@ -34,12 +35,14 @@ public slots:
 private:
 	enum class Window {
 		Camp,
+		UnitDecision,
 		Game,
 		Journal,
 		Unit,
 		Visit,
 	};
 
+	void showUnitDecision(int uid);
 	void showWindow(Window window);
 	void tileLeft(QWidget *widget);
 	void tileRight(QWidget *widget);

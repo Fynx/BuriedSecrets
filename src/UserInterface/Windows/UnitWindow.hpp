@@ -16,12 +16,18 @@ public:
 
 public slots:
 	void setUnit(Unit *unit);
+	void setUnitForDecision(int uid);
 
 private:
+	static const int ShowMode = 0;
+	static const int DecisionMode = 1;
 	static const int EquipmentIndex = 0;
 	static const int HistoryIndex = 1;
+	static const QFont LabelFont;
 
 	void initLayout();
+	QWidget *createShowButtons();
+	QWidget *createDecisionButtons();
 
 	Unit *unit_;
 	Mind *const mind_;
@@ -30,7 +36,12 @@ private:
 	QTabWidget *tabWidget_;
 
 	QLabel *title_;
-	QPushButton *closeBtn_;
+
+	QStackedLayout *buttonsLayout_;
+
+private slots:
+	void onAccept();
+	void onDecline();
 
 signals:
 	void exit();

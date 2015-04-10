@@ -64,6 +64,12 @@ const QList<int> &Faction::getAllUnitsUids() const
 	return allUnitsUids;
 }
 
+QList<int> Faction::getPendingUnitsUids() const
+{
+	//TODO
+	return {};
+}
+
 bool Faction::isAliveMember(int uid) const
 {
 	return unitsUids.contains(uid);

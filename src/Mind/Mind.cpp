@@ -414,6 +414,16 @@ const Faction *Mind::getPlayerFaction() const
 	return getFactionById(PlayerFactionId);
 }
 
+void Mind::acceptPendingUnit(int uid)
+{
+	//TODO
+}
+
+void Mind::declinePendingUnit(int uid)
+{
+	//TODO
+}
+
 Object *Mind::createObject(BS::Type type, const QString &name)
 {
 	//TODO remove EVERYTHING from here except creating the object itself

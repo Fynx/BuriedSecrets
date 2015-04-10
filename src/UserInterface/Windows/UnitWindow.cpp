@@ -9,6 +9,8 @@
 #include "UserInterface/Windows/Tabs/UnitHistoryTab.hpp"
 #include "GameObjects/Unit.hpp"
 
+const QFont UnitWindow::LabelFont{"Times", 16};
+
 UnitWindow::UnitWindow(Mind *mind, DataManager *dataManager)
 	: unit_(nullptr),
 	  mind_(mind),
@@ -21,7 +23,7 @@ UnitWindow::UnitWindow(Mind *mind, DataManager *dataManager)
 
 void UnitWindow::initLayout()
 {
-	auto layout  = new QVBoxLayout;
+	auto layout = new QVBoxLayout;
 	setLayout(layout);
 
 	title_ = new QLabel;
@@ -29,17 +31,48 @@ void UnitWindow::initLayout()
 	layout->addWidget(title_);
 
 	tabWidget_ = new QTabWidget;
-	tabWidget_->tabBar()->setFont(QFont("Times", 16));
-	layout->addWidget(tabWidget_);
+	tabWidget_->tabBar()->setFont(LabelFont);
+	layout->addWidget(tabWidget_, 1);
 
-	closeBtn_ = new QPushButton(tr("Close"));
-	closeBtn_->setFont(QFont("Times", 16));
-	connect (closeBtn_, &QPushButton::clicked, this, &UnitWindow::exit);
-	layout->addWidget(closeBtn_);
+	buttonsLayout_ = new QStackedLayout;
+	buttonsLayout_->insertWidget(ShowMode, createShowButtons());
+	buttonsLayout_->insertWidget(DecisionMode, createDecisionButtons());
+	layout->addLayout(buttonsLayout_);
+}
+
+QWidget *UnitWindow::createShowButtons()
+{
+	auto closeBtn = new QPushButton(tr("Close"));
+	closeBtn->setFont(LabelFont);
+	connect(closeBtn, &QPushButton::clicked, this, &UnitWindow::exit);
+	return closeBtn;
+}
+
+QWidget *UnitWindow::createDecisionButtons()
+{
+	auto hLayout = new QHBoxLayout;
+	auto acceptBtn = new QPushButton(tr("Accept"));
+	acceptBtn->setFont(LabelFont);
+	connect(acceptBtn, &QPushButton::clicked, this, &UnitWindow::exit);
+	connect(acceptBtn, &QPushButton::clicked, this, &UnitWindow::onAccept);
+	hLayout->insertWidget(ShowMode, acceptBtn);
+
+	auto declineBtn = new QPushButton(tr("Decline"));
+	declineBtn->setFont(LabelFont);
+	connect(declineBtn, &QPushButton::clicked, this, &UnitWindow::exit);
+	connect(declineBtn, &QPushButton::clicked, this, &UnitWindow::onDecline);
+	hLayout->insertWidget(ShowMode, declineBtn);
+
+	auto placeHolder = new QWidget;
+	placeHolder->setLayout(hLayout);
+
+	return placeHolder;
 }
 
 void UnitWindow::setUnit(Unit *unit)
 {
+	buttonsLayout_->setCurrentIndex(ShowMode);
+
 	unit_ = unit;
 
 	title_->setText(unit_->getName());
@@ -56,4 +89,26 @@ void UnitWindow::setUnit(Unit *unit)
 	tabWidget_->insertTab(HistoryIndex,   new UnitHistoryTab(unit_, dataManager_),   tr("History"));
 
 	tabWidget_->setCurrentIndex(oldIdx);
+}
+
+void UnitWindow::setUnitForDecision(int uid)
+{
+	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	if (unit == nullptr) {
+		warn(QString("Invalid unit to set for decision, uid: ") + QString::number(uid));
+		return;
+	}
+
+	setUnit(unit);
+	buttonsLayout_->setCurrentIndex(DecisionMode);
+}
+
+void UnitWindow::onAccept()
+{
+	mind_->acceptPendingUnit(unit_->getUid());
+}
+
+void UnitWindow::onDecline()
+{
+	mind_->declinePendingUnit(unit_->getUid());
 }
