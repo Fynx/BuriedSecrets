@@ -134,6 +134,10 @@ namespace BS {
 		Psycho,
 	};
 
+	inline uint qHash(const EntryType &entry) {
+		return static_cast<quint8>(entry);
+	}
+
 	QString changeEntryTypeToString(BS::EntryType type);
 	BS::EntryType changeStringToEntryType(const QString &str);
 
