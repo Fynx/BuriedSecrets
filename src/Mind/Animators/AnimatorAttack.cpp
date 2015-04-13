@@ -80,9 +80,6 @@ void AnimatorAttack::act()
 				unit->setState(State::RunAttack);
 		}
 
-		info(unit->getName() + " is attacking! Distance: " + QString::number(dist));
-		weapon->setState(State::Shoot);
-
 		// Calculate direction...
 		QVector2D direction = QVector2D(to - from);
 		QPointF hitPoint(0, 0);
@@ -96,6 +93,11 @@ void AnimatorAttack::act()
 		Object *hit = mind->physicsEngine()->getFirstHit(from, direction,
 				weapon->getPrototype()->getProperty(Properties::Range).toFloat());
 
+		// Friendly fire out!
+		if (hit && (hit->getFactionId() == unit->getFactionId()))
+			continue;
+		info(unit->getName() + " is attacking! Distance: " + QString::number(dist));
+		weapon->setState(State::Shoot);
 		if (!hit){
 			info("Miss!");
 			hitPoint = from + (direction *
