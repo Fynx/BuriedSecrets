@@ -318,10 +318,10 @@ void Mind::toggleShowPaths()
 	basePolygonsEffectOn = !basePolygonsEffectOn;
 }
 
-void Mind::addObject(Object *object, const QPointF &position)
+void Mind::addObject(Object *object, const QPointF &position, float angle)
 {
 	addObject(object);
-	physics->addObject(object, position);
+	physics->addObject(object, position, angle);
 }
 
 void Mind::addObject(Object *object)

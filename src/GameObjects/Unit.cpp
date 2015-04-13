@@ -17,6 +17,7 @@ Unit::Unit(const Prototype *prototype)
 	command = Command::None;
 	setPsychosis(0);
 	setNearestEnemy(nullptr);
+	setTargetAngle(0);
 }
 
 Unit::~Unit()
@@ -241,6 +242,16 @@ QPointF Unit::getTargetPoint()
 void Unit::setTargetPoint(QPointF p)
 {
 	targetPoint = p;
+}
+
+float Unit::getTargetAngle()
+{
+	return targetAngle;
+}
+
+void Unit::setTargetAngle(float angle)
+{
+	targetAngle = angle;
 }
 
 BS::Attitude Unit::getAttitude() const

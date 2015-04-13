@@ -71,6 +71,9 @@ public:
 	QPointF getTargetPoint();
 	void setTargetPoint(QPointF);
 
+	float getTargetAngle();
+	void setTargetAngle(float);
+
 	const Object *getNearestEnemy() const;
 	void setNearestEnemy(const Object *);
 
@@ -90,5 +93,6 @@ private:
 
 	int targetObjectUid;
 	QPointF targetPoint;
+	float targetAngle;
 	const Object *nearestEnemy;
 };

@@ -27,7 +27,7 @@ void AnimatorAggressiveAtt::act()
 			continue;
 		if (unit->getAttitude() != Attitude::Aggressive)
 			continue;
-		if (unit->getCommand() != Command::None && unit->getCommand() != Command::Move)
+		if (unit->getCommand() != Command::None)
 			continue;
 
 		const Object *enemy = unit->getNearestEnemy();

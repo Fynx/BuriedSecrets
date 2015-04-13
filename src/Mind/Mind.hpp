@@ -43,7 +43,7 @@ public:
 	 * @param position The position at which it should initially be (physics).
 	 * @return void
 	 */
-	void addObject(Object* object, const QPointF &position);
+	void addObject(Object* object, const QPointF &position, float angle = 0);
 	void addObject(Object* object);
 	Object *createDefaultObject(BS::Type type, QString prototype);
 	void removeObject(Object *object);

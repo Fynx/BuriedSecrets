@@ -51,7 +51,7 @@ void AnimatorAssemble::act()
 		}
 
 		Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
-		mind->addObject(fort, unit->getTargetPoint());
+		mind->addObject(fort, unit->getTargetPoint(), unit->getTargetAngle());
 		fort->setFactionId(unit->getFactionId());
 		if (spawned == "Player Camp"){
 			mind->getFactionById(unit->getFactionId())->setCamp(fort->getUid());;

@@ -32,6 +32,9 @@ void AnimatorMove::act()
 				obj->setState(State::IdleBase);
 			}
 			mind->physicsEngine()->setVelocity(obj, dir);
+			if (unit->getCurrentPath().size() == 0 )
+				mind->physicsEngine()->setAngle(obj, unit->getTargetAngle());
+
 			continue;
 		}
 
