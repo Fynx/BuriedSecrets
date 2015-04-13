@@ -414,14 +414,23 @@ const Faction *Mind::getPlayerFaction() const
 	return getFactionById(PlayerFactionId);
 }
 
+// FactionId should be set during adding to the pending set in faction
 void Mind::acceptPendingUnit(int uid)
 {
-	//TODO
+	Unit *unit = dynamic_cast<Unit*>(getObjectFromUid(uid));
+	if (!unit)
+		return;
+	getFactionById(unit->getFactionId())->removePendingUnit(uid);
+	getFactionById(unit->getFactionId())->addUnit(uid);
 }
 
 void Mind::declinePendingUnit(int uid)
 {
-	//TODO
+	Unit *unit = dynamic_cast<Unit*>(getObjectFromUid(uid));
+	if (!unit)
+		return;
+	getFactionById(unit->getFactionId())->removePendingUnit(uid);
+	removeObject(unit);
 }
 
 Object *Mind::createObject(BS::Type type, const QString &name)

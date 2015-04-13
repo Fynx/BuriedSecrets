@@ -59,6 +59,13 @@ void AnimatorEnterBuilding::act()
 			mind->getFactionById(unit->getFactionId())->getEquipment()->addItem(it);
 		}
 
+		// Meeting new units
+		Unit *pending = dynamic_cast<Unit*>(mind->getObjectFromUid(target->getUnitMet()));
+		if (pending){
+			pending->setFactionId(unit->getFactionId());
+			mind->getFactionById(unit->getFactionId())->addPendingUnit(pending->getUid());
+		}
+
 		unit->setAttitude(Attitude::BuildingAggressive);
 		unit->setCommand(Command::None);
 		unit->setState(State::Inside);

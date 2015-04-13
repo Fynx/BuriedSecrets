@@ -6,6 +6,7 @@
 
 Location::Location(const Prototype *prototype)
 	: Object(prototype),
+	  unitMet(0),
 	  exitPoint(0,0)
 {}
 
@@ -48,8 +49,6 @@ const QMap<int, int> &Location::getItemsUids() const
 	return itemsUids;
 }
 
-//TODO Search difficulty
-
 void Location::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
@@ -66,6 +65,8 @@ void Location::loadFromJson(const QJsonObject &json)
 			unitsUids.insert(uid.toInt());
 	}
 
+	if (json.contains(Attributes::UnitMet))
+			unitMet = json[Attributes::UnitMet].toInt();
 	if (json.contains(Attributes::ExitX) && json.contains(Attributes::ExitY)) {
 		exitPoint = QPointF(json[Attributes::ExitX].toDouble(), json[Attributes::ExitY].toDouble());
 	}
@@ -141,4 +142,14 @@ bool Location::isTransparent() const
 int Location::getCapacity() const
 {
 	return prototype->getProperty(Properties::Capacity).toInt();
+}
+
+int Location::getUnitMet()
+{
+	return unitMet;
+}
+
+void Location::setUnitMet(int uid)
+{
+	unitMet = uid;
 }

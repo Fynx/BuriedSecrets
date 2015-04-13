@@ -29,6 +29,8 @@ public:
 	const QSet<int> &getUnitsUids() const;
 	const QList<int> &getAllUnitsUids() const;
 	QList<int> getPendingUnitsUids() const;
+	void addPendingUnit(int uid);
+	void removePendingUnit(int uid);
 	bool isAliveMember(int uid) const;
 	int getFood() const;
 	double getCampRange() const;
@@ -38,6 +40,7 @@ public:
 	void modifyRelation(int uid, int diff);
 	int consume(int f);
 	void removeUnit(int uid);
+	void addUnit(int uid);
 
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
@@ -55,4 +58,5 @@ private:
 
 	QSet<int> unitsUids;
 	QList<int> allUnitsUids;
+	QSet<int> pendingUids;
 };

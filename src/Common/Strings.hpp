@@ -65,6 +65,7 @@ namespace Attributes {                                 // Converted into class f
 	const QString Text             = "text";
 	const QString Title            = "title";
 	const QString Uid              = "uid";
+	const QString UnitMet          = "unitMet";           // Location, unit uid to pending
 	const QString Units            = "units";
 	const QString UsesLeft         = "UsesLeft";          // Item
 }

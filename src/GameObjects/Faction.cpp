@@ -66,8 +66,17 @@ const QList<int> &Faction::getAllUnitsUids() const
 
 QList<int> Faction::getPendingUnitsUids() const
 {
-	//TODO
-	return {};
+	return pendingUids.toList();
+}
+
+void Faction::addPendingUnit(int uid)
+{
+	pendingUids.insert(uid);
+}
+
+void Faction::removePendingUnit(int uid)
+{
+	pendingUids.remove(uid);
 }
 
 bool Faction::isAliveMember(int uid) const
@@ -120,6 +129,12 @@ int Faction::consume(int f)
 void Faction::removeUnit(int uid)
 {
 	unitsUids.remove(uid);
+}
+
+void Faction::addUnit(int uid)
+{
+	unitsUids.insert(uid);
+	allUnitsUids.append(uid);
 }
 
 void Faction::loadFromJson(const QJsonObject &json)

@@ -31,6 +31,9 @@ public:
 	bool isTransparent() const;
 	int getCapacity() const;
 
+	int getUnitMet();
+	void setUnitMet(int uid);
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
@@ -43,5 +46,6 @@ private:
 	bool assemblable;
 	bool transparent;
 	int capacity;
+	int unitMet;
 	QPointF exitPoint;
 };
