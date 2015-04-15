@@ -26,6 +26,8 @@ void AnimatorNearestEnemy::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
+		if (!mind->getFactionById(unit->getFactionId()))
+			continue;
 		QPointF from;
 		if (unit->getState() == State::Inside)
 			from = mind->physicsEngine()->getPosition(unit->getLocation());

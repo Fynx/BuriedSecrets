@@ -26,6 +26,8 @@ void AnimatorGoPsycho::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
+		if (!mind->getFactionById(unit->getFactionId()))
+			continue;
 
 		if (unit->property(TempData::NearCamp) == false){
 			unit->setPsychosis(unit->getPsychosis() - 1);

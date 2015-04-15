@@ -23,6 +23,8 @@ void AnimatorNearCamp::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
+		if (!mind->getFactionById(unit->getFactionId()))
+			continue;
 
 		unit->property(TempData::NearCamp) = false;
 		Faction *faction = mind->getFactionById(unit->getFactionId());

@@ -17,7 +17,7 @@
 			"campId": 3,
 			"campRange": 25,
 			"faction": 1,
-			"units": [4, 6, 8],
+			"units": [4, 6],
 			"relations": [[1, 1505], [2, -100]]
 		},
 
@@ -1580,6 +1580,7 @@
 			"animators": [
 				"AnimatorBuildingDmg"
 			],
+			"unitMet": 8,
 			"x": 26,
 			"y": 217
 		},
