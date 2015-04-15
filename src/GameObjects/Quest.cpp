@@ -3,6 +3,7 @@
  */
 #include "GameObjects/Quest.hpp"
 #include "Mind/Mind.hpp"
+#include "GameObjects/Location.hpp"
 
 Quest::Quest(const Prototype *prototype)
 	: Object(prototype),
@@ -111,7 +112,9 @@ bool Quest::evaluateConditions(const QList<Condition> &cond, Mind *mind, int fac
 
 bool Quest::evaluateFoodCount(const Condition &c, Mind *mind, int factionId)
 {
-	return true;
+	bool res = mind->getFactionById(factionId)->getFood() > c.argument;
+
+	return res ^ c.isNegative;
 }
 
 
@@ -123,13 +126,17 @@ bool Quest::evaluateFragsCount(const Condition &c, Mind *mind, int factionId)
 
 bool Quest::evaluateItemFound(const Condition &c, Mind *mind, int factionId)
 {
-	return true;
+	bool res = mind->getFactionById(factionId)->getEquipment()->getItemsUids().contains(c.argument);
+	return res ^ c.isNegative;
 }
 
 
 bool Quest::evaluateLocationReached(const Condition &c, Mind *mind, int factionId)
 {
-	return true;
+	Location *loc = dynamic_cast<Location*>(mind->getObjectFromUid(c.argument));
+	if (!loc)
+		return true;
+	return (loc->getFactionId() == factionId) ^ c.isNegative;
 }
 
 
@@ -141,13 +148,19 @@ bool Quest::evaluateObjectVisible(const Condition &c, Mind *mind, int factionId)
 
 bool Quest::evaluateQuestFail(const Condition &c, Mind *mind, int factionId)
 {
-	return true;
+	Quest *quest = dynamic_cast<Quest *>(mind->getObjectFromUid(c.argument));
+	if (!quest)
+		return true;
+	return (quest->getState() == State::Fail) ^ c.isNegative;
 }
 
 
 bool Quest::evaluateQuestSuccess(const Condition &c, Mind *mind, int factionId)
 {
-	return true;
+	Quest *quest = dynamic_cast<Quest *>(mind->getObjectFromUid(c.argument));
+	if (!quest)
+		return true;
+	return (quest->getState() == State::Success) ^ c.isNegative;
 }
 
 
@@ -159,5 +172,6 @@ bool Quest::evaluateTimeCount(const Condition &c, Mind *mind, int factionId)
 
 bool Quest::evaluateUnitMet(const Condition &c, Mind *mind, int factionId)
 {
-	return true;
+	bool res = mind->getFactionById(factionId)->getUnitsUids().contains(c.argument);
+	return res ^ c.isNegative;
 }
