@@ -38,6 +38,7 @@ void AnimatorUpdatePath::act()
 			if (target == nullptr) {
 				unit->setCommand(Command::None);
 				unit->setState(State::Idle);
+				unit->setCurrentPath(QList<QPointF>());
 				continue;
 			}
 
@@ -49,6 +50,7 @@ void AnimatorUpdatePath::act()
 		}
 
 		if (from.isNull() || to.isNull()) {
+			unit->setCurrentPath(QList<QPointF>());
 			continue;
 		}
 
@@ -57,6 +59,7 @@ void AnimatorUpdatePath::act()
 				unit->setCommand(Command::Base);
 			else
 				unit->setCommand(Command::None);
+			unit->setCurrentPath(QList<QPointF>());
 			continue;
 		}
 

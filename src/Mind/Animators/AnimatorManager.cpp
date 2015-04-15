@@ -52,35 +52,47 @@ AnimatorManager::~AnimatorManager()
 void AnimatorManager::initAnimators()
 {
 	info("Initializing animators...");
-	addAnimator(new AnimatorTest(mind), Animators::Test, 40);
+
+	// Values can be changed but not order!
+
 	addAnimator(new AnimatorPhysicsUpdate(mind), Animators::PhysicsUpdate, 40);
-	addAnimator(new AnimationAnimator(mind), Animators::Animation, 160);
 	addAnimator(new AnimatorMove(mind), Animators::Move, 40);
-	addAnimator(new AnimatorConsume(mind), Animators::Consume, 1000);
 	addAnimator(new AnimatorApplyDamage(mind), Animators::ApplyDamage, 40);
+	addAnimator(new AnimatorBuildingDmg(mind), Animators::BuildingDmg, 40);
 	addAnimator(new AnimatorDie(mind), Animators::Die, 40);
+	addAnimator(new AnimatorWatchTarget(mind), Animators::WatchTarget, 40);
+	////////
+
+	addAnimator(new AnimatorUpdateFOV(mind), Animators::UpdateFOV, 50);
+	addAnimator(new AnimatorEffects(mind), Animators::Effects, 50);
+	///////
+
+	addAnimator(new AnimationAnimator(mind), Animators::Animation, 100);
 	addAnimator(new AnimatorUpdatePath(mind), Animators::UpdatePath, 100);
-	addAnimator(new AnimatorRegenerate(mind), Animators::Regenerate, 1000);
-	addAnimator(new AnimatorGoPsycho(mind), Animators::GoPsycho, 1000);
 	addAnimator(new AnimatorHeal(mind), Animators::Heal, 100);
 	addAnimator(new AnimatorAssemble(mind), Animators::Assemble, 100);
 	addAnimator(new AnimatorEnterBuilding(mind), Animators::EnterBuilding, 100);
 	addAnimator(new AnimatorLeaveBuilding(mind), Animators::LeaveBuilding, 100);
 	addAnimator(new AnimatorWeapon(mind), Animators::Weapon, 100);
 	addAnimator(new AnimatorAttack(mind), Animators::Attack, 100);
-	addAnimator(new AnimatorUpdateFOV(mind), Animators::UpdateFOV, 50);
-	addAnimator(new AnimatorNearCamp(mind), Animators::NearCamp, 1000);
-	addAnimator(new AnimatorWatchTarget(mind), Animators::WatchTarget, 40);
 	addAnimator(new AnimatorDisassemble(mind), Animators::Disassemble, 100);
-	addAnimator(new AnimatorEffects(mind), Animators::Effects, 50);
+	addAnimator(new AnimatorResult(mind), Animators::Result, 100);
+	addAnimator(new AnimatorKickOut(mind), Animators::KickOut, 100);
+	////////
+
 	addAnimator(new AnimatorNearestEnemy(mind), Animators::NearestEnemy, 500);
 	addAnimator(new AnimatorMobAttitude(mind), Animators::MobAttitude, 500);
-	addAnimator(new AnimatorBuildingDmg(mind), Animators::BuildingDmg, 40);
 	addAnimator(new AnimatorAggressiveAtt(mind), Animators::AggressiveAtt, 500);
 	addAnimator(new AnimatorBAggressiveAtt(mind), Animators::BAggressiveAtt, 500);
 	addAnimator(new AnimatorGuardAtt(mind), Animators::GuardAtt, 500);
-	addAnimator(new AnimatorResult(mind), Animators::Result, 100);
-	addAnimator(new AnimatorKickOut(mind), Animators::KickOut, 100);
+	////////
+
+	addAnimator(new AnimatorConsume(mind), Animators::Consume, 1000);
+	addAnimator(new AnimatorRegenerate(mind), Animators::Regenerate, 1000);
+	addAnimator(new AnimatorGoPsycho(mind), Animators::GoPsycho, 1000);
+	addAnimator(new AnimatorNearCamp(mind), Animators::NearCamp, 1000);
+	///////
+
 	info("done.");
 }
 

@@ -24,7 +24,7 @@ void AnimatorMove::act()
 		if (!unit)
 			continue;
 
-		if (unit->getCurrentPath().size() == 0 || obj->getState() == State::Heal || obj->getState() == State::Attack) {
+		if (unit->getCurrentPath().size() == 0 || obj->getState() == State::Heal || obj->getState() == State::Assemble || obj->getState() == State::Attack) {
 			if (obj->getState() == State::Run){
 				obj->setState(State::Idle);
 			}
@@ -48,7 +48,9 @@ void AnimatorMove::act()
 			dir = dir * unit->getSpeed();
 			mind->physicsEngine()->setVelocity(obj, dir);
 		}
-		if (unit->getCurrentPath().size() == 0 )
+		if (unit->getCurrentPath().size() == 0 && unit->getTargetAngle() > 0){
 			mind->physicsEngine()->setAngle(obj, unit->getTargetAngle());
+			unit->setTargetAngle(-1);
+		}
 	}
 }

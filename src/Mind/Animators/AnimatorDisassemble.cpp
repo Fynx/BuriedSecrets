@@ -51,7 +51,10 @@ void AnimatorDisassemble::act()
 			QString  spawned = target->getPrototype()->getProperty(Properties::SpawnedType).toString();
 			Item *item = dynamic_cast<Item *>(mind->createDefaultObject(BS::Type::Item, spawned));
 			mind->addObject(item);
-			unit->getEquipment()->addItem(item);
+
+			Faction *faction = mind->getFactionById(unit->getFactionId());
+			if (faction)
+				faction->getEquipment()->addItem(item);
 
 			info("Disassemble. Id: " + QString::number(target->getUid()));
 			mind->removeObject(target);

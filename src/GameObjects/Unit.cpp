@@ -17,7 +17,7 @@ Unit::Unit(const Prototype *prototype)
 	command = Command::None;
 	setPsychosis(0);
 	setNearestEnemy(nullptr);
-	setTargetAngle(0);
+	setTargetAngle(-1);
 }
 
 Unit::~Unit()
