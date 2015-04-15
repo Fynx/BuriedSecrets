@@ -12,9 +12,10 @@
 #include "PhysicsEngine/PhysicsEngine.hpp"
 
 
-MapManager::MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId)
+MapManager::MapManager(const QJsonObject &json, const Mind *mind, const PhysicsEngine *physicsEngine,
+		       const int playerFactionId)
 	: playerFactionId{playerFactionId}, map{json}, physicsEngine{physicsEngine},
-	pathFinder{new AStarPathFinder{this}}, visibilityUpdatesDiff{new VisibilityUpdateDiff{}}
+	pathFinder{new AStarPathFinder{this, mind}}, visibilityUpdatesDiff{new VisibilityUpdateDiff{}}
 {}
 
 

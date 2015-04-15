@@ -60,7 +60,7 @@ AnimatorManager *Mind::getAnimatorManager()
 void Mind::loadFromJson(const QJsonObject &json)
 {
 	delete mapManager;
-	mapManager = new MapManager(json, physics, PlayerFactionId);
+	mapManager = new MapManager(json, this, physics, PlayerFactionId);
 
 	const QJsonArray &objs = json[Data::Objects].toArray();
 
@@ -412,6 +412,15 @@ Faction *Mind::getPlayerFaction()
 const Faction *Mind::getPlayerFaction() const
 {
 	return getFactionById(PlayerFactionId);
+}
+
+QVector<const Object *> Mind::getAllObjects() const
+{
+	QVector<const Object *> result;
+	for (Object * obj : objects) {
+		result.append(obj);
+	}
+	return result;
 }
 
 // FactionId should be set during adding to the pending set in faction

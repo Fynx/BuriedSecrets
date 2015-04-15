@@ -15,6 +15,7 @@
 #include "Mind/MapManager/VisibilityMap.hpp"
 #include "Mind/MapManager/VisibilityUpdate.hpp"
 
+class Mind;
 class Object;
 class PathFinder;
 class PhysicsEngine;
@@ -27,7 +28,8 @@ class Unit;
  */
 class MapManager {
 public:
-	MapManager(const QJsonObject &json, const PhysicsEngine *physicsEngine, const int playerFactionId);
+	MapManager(const QJsonObject &json, const Mind *mind, const PhysicsEngine *physicsEngine,
+		   const int playerFactionId);
 	~MapManager();
 
 	const Map *getMap() const;
@@ -41,7 +43,7 @@ public:
 	 */
 	bool isAccessible(const QPointF &point) const;
 	/**
-	 * @brief True if the unit can stand on the point.
+	 * @brief True if the object created from the given prototype can stand on the point.
 	 */
 	bool canStandOn(const Unit *unit, const QPointF &point) const;
 	/**

@@ -8,11 +8,13 @@
 #include "Mind/MapManager/PathFinder.hpp"
 
 class AccessiblityMap;
+class Mind;
+class Unit;
 
 
 class AStarPathFinder : public PathFinder {
 public:
-	AStarPathFinder(const MapManager *mapManager);
+	AStarPathFinder(const MapManager *mapManager, const Mind *mind);
 	QList<QPointF> getPath(const QPointF &source, const Object *object, const QPointF &target) override;
 
 private:
@@ -33,7 +35,8 @@ private:
 	static const float costs[8];
 	static const float sqrtTwo;
 
-	AccessiblityMap *getAccessiblityMap(const int gridSize);
+	AccessiblityMap *getAccessiblityMap(const int gridSize, const Unit *unit);
+	float getGridSize(const float radius) const;
 	float heuristicDistance(const QPoint &from, const QPoint &to, const float gridSize);
 	void appendPathToResult(QList<QPointF> &result, const std::vector<Node> &nodes, int v,
 				const float gridSize, AccessiblityMap *accMap) const;

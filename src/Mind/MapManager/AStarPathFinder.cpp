@@ -18,8 +18,9 @@
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Object.hpp"
 #include "GameObjects/Unit.hpp"
-#include "Mind/MapManager/DynamicAccessibilityMap.hpp"
 #include "Mind/MapManager/MapManager.hpp"
+#include "Mind/MapManager/PrecomputedAccessibilityMap.hpp"
+#include "Mind/Mind.hpp"
 
 
 const QPoint AStarPathFinder::directions[] = {{0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}, {-1, -1}};
@@ -33,8 +34,18 @@ inline uint qHash (const QPoint & key)
 }
 
 
-AStarPathFinder::AStarPathFinder(const MapManager *mapManager): PathFinder{mapManager}
-{}
+AStarPathFinder::AStarPathFinder(const MapManager *mapManager, const Mind *mind)
+		: PathFinder{mapManager}
+{
+	auto objects = mind->getAllObjects();
+	for (const Object* obj : objects) {
+		const Unit *unit = dynamic_cast<const Unit *>(obj);
+		if (unit != nullptr && obj->getPrototype()->hasProperty(Properties::BaseRadius)) {
+			getAccessiblityMap(getGridSize(
+					obj->getPrototype()->getProperty(Properties::BaseRadius).toFloat()), unit);
+		}
+	}
+}
 
 
 QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *object, const QPointF &target)
@@ -51,8 +62,8 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 	}
 
 	const float objRadius = object->getPrototype()->getProperty(Properties::BaseRadius).toFloat();
-	const float gridSize = 2.0f * objRadius;
-	auto *accMap = getAccessiblityMap(gridSize);
+	const float gridSize = getGridSize(objRadius);
+	auto *accMap = getAccessiblityMap(gridSize, unit);
 	QPoint targetPoint = accMap->discretize(target);
 	QPoint sourcePoint = accMap->discretize(source);
 	const Object *targetObject = mapManager->getObjectContaining(accMap->undiscretize(targetPoint));
@@ -182,16 +193,22 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 }
 
 
-AccessiblityMap *AStarPathFinder::getAccessiblityMap(const int gridSize)
+AccessiblityMap *AStarPathFinder::getAccessiblityMap(const int gridSize, const Unit *unit)
 {
 	const auto it = accessibilityMaps.find(gridSize);
 	if (it != accessibilityMaps.end()) {
 		return it.value();
 	}
 
-	AccessiblityMap *map = new DynamicAccessiblityMap(mapManager, gridSize);
+	AccessiblityMap *map = new PrecomputedAccessibilityMap(mapManager, gridSize, unit);
 	accessibilityMaps.insert(gridSize, map);
 	return map;
+}
+
+
+float AStarPathFinder::getGridSize(const float radius) const
+{
+	return 2.0f * radius;
 }
 
 

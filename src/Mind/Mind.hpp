@@ -55,6 +55,7 @@ public:
 	const Faction *getFactionById(const int id) const;
 	Faction *getPlayerFaction();
 	const Faction *getPlayerFaction() const;
+	QVector<const Object *> getAllObjects() const;
 
 	void acceptPendingUnit(int uid);
 	void declinePendingUnit(int uid);

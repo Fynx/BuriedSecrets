@@ -7,6 +7,7 @@ set (MapManager_SRCS
 	MapManager.cpp
 	Map.cpp
 	PathFinder.cpp
+	PrecomputedAccessibilityMap.cpp
 	VisibilityMap.cpp
 )
 
