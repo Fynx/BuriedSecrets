@@ -8,7 +8,6 @@
 
 class Journal;
 class Location;
-class QuestLog;
 class Unit;
 
 //TODO Add faction registration in reading function
@@ -22,7 +21,6 @@ public:
 	void setJournal(Journal *journal);
 
 	Journal *getJournal();
-	QuestLog *getQuestLog();
 
 	int getCampUid() const;
 	void setCamp(int);
@@ -51,7 +49,6 @@ private:
 
 	int journalUid;
 	Journal *journal;
-	QuestLog *questLog;
 
 	int campUid;
 	double campRange;

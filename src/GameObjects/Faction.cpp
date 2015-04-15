@@ -7,7 +7,6 @@
 #include "GameObjects/Journal.hpp"
 #include "GameObjects/Faction.hpp"
 #include "GameObjects/Location.hpp"
-#include "GameObjects/QuestLog.hpp"
 #include "GameObjects/Unit.hpp"
 
 Faction::Faction(const Prototype *prototype)
@@ -37,11 +36,6 @@ Journal *Faction::getJournal()
 	if (journal == nullptr)
 		warn("Returning nullptr Journal.");
 	return journal;
-}
-
-QuestLog *Faction::getQuestLog()
-{
-	return questLog;
 }
 
 void Faction::setCamp(int c)

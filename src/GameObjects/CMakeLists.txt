@@ -7,9 +7,8 @@ set (GameObjects_SRCS
 	JournalEntry.cpp
 	Location.cpp
 	Object.cpp
-	QuestLog.cpp
+	Quest.cpp
 	Unit.cpp
-	World.cpp
 )
 
 set (GameObjects_HDRS
