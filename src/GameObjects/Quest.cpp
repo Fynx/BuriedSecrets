@@ -4,13 +4,11 @@
 #include "GameObjects/Quest.hpp"
 
 Quest::Quest(const Prototype *prototype)
-	: Object(prototype)
+	: Object(prototype),
+	  startEntry(0),
+	  failEntry(0),
+	  successEntry(0)
 {}
-
-QString Quest::getDescription() const
-{
-	return prototype->getProperty("description").toString();
-}
 
 void Quest::loadFromJson(const QJsonObject &json)
 {

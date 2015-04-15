@@ -103,6 +103,18 @@ namespace EntryTypes {
 	const QString Death     = "death";
 }
 
+namespace ConditionTypes {
+	const QString QuestFail       = "questFail";
+	const QString QuestSuccess    = "questSuccess";
+	const QString FoodCount       = "foodCount";
+	const QString TimeCount       = "timeCount";
+	const QString FragsCount      = "fragsCount";
+	const QString ItemFound       = "itemFound";
+	const QString UnitMet         = "unitMet";
+	const QString ObjectVisible   = "objectVisible";
+	const QString LocationReached = "locationReached";
+}
+
 namespace MapProperties {
 	const QString MapDesc       = "mapDesc";
 	const QString MapName       = "mapName";
@@ -198,6 +210,10 @@ namespace States {
 	const QString RunBase   = "RunBase";
 	const QString IdleBase  = "IdleBase";
 	const QString Shoot     = "Shoot";
+	const QString Inactive  = "Inactive";
+	const QString Active    = "Active";
+	const QString Success   = "Success";
+	const QString Fail      = "Fail";
 }
 
 namespace TempData {                                   // kept in GO's map
@@ -218,6 +234,7 @@ namespace Types {
 	const QString Journal      = "journal";
 	const QString JournalEntry = "journalEntry";
 	const QString Location     = "location";
+	const QString Quest        = "quest";
 	const QString Unit         = "unit";
 }
 

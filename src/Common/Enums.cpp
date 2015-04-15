@@ -21,6 +21,10 @@ static const QMap<BS::State, QString> stateToString {
 	{BS::State::RunBase,   States::RunBase},
 	{BS::State::IdleBase,  States::IdleBase},
 	{BS::State::Shoot,     States::Shoot},
+	{BS::State::Inactive,  States::Inactive},
+	{BS::State::Active,    States::Active},
+	{BS::State::Success,   States::Success},
+	{BS::State::Fail,      States::Fail},
 };
 
 static const QMap<BS::Type, QString> typeToString {
@@ -32,6 +36,7 @@ static const QMap<BS::Type, QString> typeToString {
 	{BS::Type::Journal,      Types::Journal},
 	{BS::Type::JournalEntry, Types::JournalEntry},
 	{BS::Type::Location,     Types::Location},
+	{BS::Type::Quest,        Types::Quest},
 	{BS::Type::Unit,         Types::Unit},
 };
 
@@ -93,6 +98,18 @@ static const QMap<BS::EntryType, QString> entryTypeToString {
 	{BS::EntryType::ItemFound, EntryTypes::ItemFound},
 	{BS::EntryType::Quest,     EntryTypes::Quest},
 	{BS::EntryType::Psycho,    EntryTypes::Psycho},
+};
+
+static const QMap<BS::ConditionType, QString> conditionTypeToString {
+	{BS::ConditionType::QuestFail,         ConditionTypes::QuestFail},
+	{BS::ConditionType::QuestSuccess,      ConditionTypes::QuestSuccess},
+	{BS::ConditionType::FoodCount,         ConditionTypes::FoodCount},
+	{BS::ConditionType::TimeCount,         ConditionTypes::TimeCount},
+	{BS::ConditionType::FragsCount,        ConditionTypes::FragsCount},
+	{BS::ConditionType::ItemFound,         ConditionTypes::ItemFound},
+	{BS::ConditionType::UnitMet,           ConditionTypes::UnitMet},
+	{BS::ConditionType::ObjectVisible,     ConditionTypes::ObjectVisible},
+	{BS::ConditionType::LocationReached,   ConditionTypes::LocationReached},
 };
 
 namespace BS {
@@ -157,5 +174,16 @@ namespace BS {
 	EntryType changeStringToEntryType(const QString &str)
 	{
 		return ::entryTypeToString.key(str);
+	}
+
+	QString changeConditionTypeToString(ConditionType type)
+	{
+		Q_ASSERT(::conditionTypeToString.contains(type));
+		return ::conditionTypeToString.value(type);
+	}
+
+	ConditionType changeStringToConditionType(const QString &str)
+	{
+		return ::conditionTypeToString.key(str);
 	}
 }

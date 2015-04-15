@@ -26,6 +26,7 @@ namespace BS {
 		Journal,
 		JournalEntry,
 		Location,
+		Quest,
 		Unit,
 	};
 
@@ -47,6 +48,10 @@ namespace BS {
 		IdleBase,      // Unit
 		Delay,         // Weapon
 		Shoot,         // Weapon
+		Inactive,      // Quest
+		Success,       // Quest
+		Fail,          // Quest
+		Active,        // Quest
 	};
 
 	State changeStringToState(const QString &str);
@@ -141,6 +146,27 @@ namespace BS {
 
 	QString changeEntryTypeToString(BS::EntryType type);
 	BS::EntryType changeStringToEntryType(const QString &str);
+
+
+	enum class ConditionType : quint8 {
+		QuestFail,
+		QuestSuccess,
+		FoodCount,
+		TimeCount,
+		FragsCount,
+		ItemFound,
+		UnitMet,
+		ObjectVisible,
+		LocationReached
+	};
+
+	inline uint qHash(const ConditionType &cond) {
+		return static_cast<quint8>(cond);
+	}
+
+	QString changeConditionTypeToString(BS::ConditionType type);
+	BS::ConditionType changeStringToConditionType(const QString &str);
+
 
 
 	namespace Graphic {
