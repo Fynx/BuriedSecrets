@@ -38,13 +38,26 @@ void AnimatorAssemble::act()
 
 		if (to.isNull() || from.isNull())
 			continue;
-		if (QVector2D(to-from).length() > epsilon)
+		if (QVector2D(to-from).length() > epsilon){
+			if (ikeaSet){
+				ikeaSet->setUseDelay(ikeaSet->getPrototype()->getProperty(Properties::BuildTime).toInt());
+				ikeaSet->setMaxDelay(ikeaSet->getPrototype()->getProperty(Properties::BuildTime).toInt());
+			}
 			continue;
+		}
+
 
 		QString spawned;
 		if (unit->getState() == State::RunBase || unit->getState() == State::IdleBase)
 			spawned = "Player Camp";
 		else if (ikeaSet) {
+			if (unit->getState() != State::Assemble){
+				unit->setState(State::Assemble);
+			}
+			if (ikeaSet->getUseDelay() > 0){
+				ikeaSet->setUseDelay(ikeaSet->getUseDelay() -1);
+				continue;
+			}
 			if (ikeaSet->getPrototype()->hasProperty(Properties::SpawnedType))
 				spawned = ikeaSet->getPrototype()->getProperty(Properties::SpawnedType).toString();
 			unit->getEquipment()->removeItem(ikeaSet);

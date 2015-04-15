@@ -130,6 +130,7 @@ namespace Properties {                                 // for Prototypes
 	const QString BigDefBonus   = "bigDefBonus";       // Bonus from location
 	const QString BigAttBonus   = "bigAttBonus";       // Bonus from location
 	const QString BigRangeBonus = "bigRangeBonus";     // Bonus from location
+	const QString BuildTime     = "buildTime";         // For ikeaSets
 	const QString Capacity      = "capacity";
 	const QString Damage        = "damage";            // Weapon
 	const QString DamageControl = "damageControl";     // base for Unit
@@ -186,6 +187,7 @@ namespace Slots {
 
 namespace States {
 	const QString Attack    = "Attack";
+	const QString Assemble  = "Assemble";
 	const QString Delay     = "Delay";
 	const QString Heal      = "Heal";
 	const QString Idle      = "Idle";

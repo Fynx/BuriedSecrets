@@ -37,6 +37,7 @@ namespace BS {
 	// For now it's just going to be a standard enum, because I'm stuck here and don't want it to stay that way.
 	enum State {
 		Attack = 0,        // Unit
+		Assemble,      // Unit
 		Heal,          // Unit
 		Idle,
 		Inside,        // Unit

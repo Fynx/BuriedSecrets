@@ -384,6 +384,7 @@
 		"description": "As Gandalf would say: They shall not pass. At least for a while.",
 		"quality": 5,
 		"weight": 4,
+		"buildTime": 15,
 		"spawnedType": "Wired fence",
 		"ingredients": ["Wooden planks", "Wire"],
 		"slots": ["fortification"]
@@ -397,6 +398,7 @@
 		"description": "German design, Swedish materials, your sweat & tears. No more, no less.",
 		"quality": 10,
 		"weight": 8,
+		"buildTime": 15,
 		"spawnedType": "Bunker",
 		"slots": ["fortification"]
 	},
@@ -409,6 +411,7 @@
 		"description": "[No funny description here.]",
 		"quality": 10,
 		"weight": 1,
+		"buildTime": 15,
 		"spawnedType": "Player Camp",
 		"slots": ["fortification"]
 	},

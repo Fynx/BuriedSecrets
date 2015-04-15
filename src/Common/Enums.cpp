@@ -11,6 +11,7 @@
 
 static const QMap<BS::State, QString> stateToString {
 	{BS::State::Attack,    States::Attack},
+	{BS::State::Assemble,  States::Assemble},
 	{BS::State::Delay,     States::Delay},
 	{BS::State::Idle,      States::Idle},
 	{BS::State::Inside,    States::Inside},
