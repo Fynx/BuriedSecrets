@@ -10,7 +10,7 @@ class Journal;
 class Location;
 class Unit;
 
-//TODO Add faction registration in reading function
+
 class Faction : public Object, public Equipped {
 public:
 	Faction(const Prototype *prototype);
@@ -24,21 +24,26 @@ public:
 
 	int getCampUid() const;
 	void setCamp(int);
+
+	void removeUnit(int uid);
+	void addUnit(int uid);
 	const QSet<int> &getUnitsUids() const;
 	const QList<int> &getAllUnitsUids() const;
 	QList<int> getPendingUnitsUids() const;
 	void addPendingUnit(int uid);
 	void removePendingUnit(int uid);
 	bool isAliveMember(int uid) const;
+
+	int consume(int f);
 	int getFood() const;
+
 	double getCampRange() const;
+
 	bool isNeutralFaction(int uid) const;
 	bool isFriendly(const Object *obj);
-
 	void modifyRelation(int uid, int diff);
-	int consume(int f);
-	void removeUnit(int uid);
-	void addUnit(int uid);
+
+	QList<int> getQuests() const;
 
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
@@ -49,6 +54,7 @@ private:
 
 	int journalUid;
 	Journal *journal;
+	QList<int> quests;
 
 	int campUid;
 	double campRange;

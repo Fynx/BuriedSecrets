@@ -39,6 +39,7 @@ namespace Animators {
 	const QString BAggressiveAtt   = "AnimatorBAggressiveAtt";
 	const QString NearestEnemy     = "AnimatorNearestEnemy";
 	const QString KickOut          = "AnimatorKickOut";
+	const QString Quest            = "AnimatorQuest";
 }
 
 namespace Attributes {                                 // Converted into class fields

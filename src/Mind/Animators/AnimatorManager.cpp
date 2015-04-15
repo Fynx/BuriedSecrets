@@ -33,6 +33,7 @@
 #include "Mind/Animators/AnimatorBAggressiveAtt.hpp"
 #include "Mind/Animators/AnimatorNearestEnemy.hpp"
 #include "Mind/Animators/AnimatorKickOut.hpp"
+#include "Mind/Animators/AnimatorQuest.hpp"
 
 
 AnimatorManager::AnimatorManager(Mind *mind) : signalMapper(this), mind(mind)
@@ -91,6 +92,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorRegenerate(mind), Animators::Regenerate, 1000);
 	addAnimator(new AnimatorGoPsycho(mind), Animators::GoPsycho, 1000);
 	addAnimator(new AnimatorNearCamp(mind), Animators::NearCamp, 1000);
+	addAnimator(new AnimatorQuest(mind), Animators::Quest, 1000);
 	///////
 
 	info("done.");

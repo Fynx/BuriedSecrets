@@ -131,6 +131,11 @@ void Faction::addUnit(int uid)
 	allUnitsUids.append(uid);
 }
 
+QList<int> Faction::getQuests() const
+{
+	return quests;
+}
+
 void Faction::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
