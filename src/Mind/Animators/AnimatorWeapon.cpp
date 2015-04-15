@@ -31,10 +31,12 @@ void AnimatorWeapon::act()
 		if (weapon->getState() == State::Shoot){
 			weapon->setUsesLeft(weapon->getUsesLeft() - 1);
 			weapon->setUseDelay(weapon->getPrototype()->getProperty(Properties::ShotsInterval).toInt());
+			weapon->setMaxDelay(weapon->getPrototype()->getProperty(Properties::ShotsInterval).toInt());
 		}
 		if (weapon->getUsesLeft() <= 0){
 			weapon->setUsesLeft(weapon->getPrototype()->getProperty(Properties::MagazineSize).toInt());
 			weapon->setUseDelay(weapon->getPrototype()->getProperty(Properties::ReloadTime).toInt());
+			weapon->setMaxDelay(weapon->getPrototype()->getProperty(Properties::ReloadTime).toInt());
 		}
 		if (weapon->getUseDelay() > 0)
 			weapon->setState(State::Delay);

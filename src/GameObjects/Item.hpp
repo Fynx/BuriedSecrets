@@ -27,10 +27,14 @@ public:
 	int getUseDelay();
 	void setUseDelay(int t);
 
+	int getMaxDelay();
+	void setMaxDelay(int t);
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
 private:
 	int usesLeft;
 	int delay;
+	int maxDelay;
 };

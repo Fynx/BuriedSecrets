@@ -79,15 +79,14 @@ void UnitSection::refresh()
 	psychosisBar_->setMaximum(unit_->getMaxPsychosis());
 	psychosisBar_->setValue(unit_->getPsychosis());
 
-// 	if (auto item = unit_->getUsedItem()){
-// 		if (item->getUseDelay() == 0 )
-// 			cooldownBar_->hide();
-// 		else {
-// 			cooldownBar_->show();
-// 			cooldownBar_->setMaximum(item->property(Properties::ReloadTime).toInt());
-// 			cooldownBar_->setValue(item->getUseDelay());
-// 		}
-// 	}
+	auto item = unit_->getUsedItem();
+ 	if (item && item->getUseDelay() != 0){
+		cooldownBar_->show();
+		cooldownBar_->setMaximum(item->getMaxDelay());
+		cooldownBar_->setValue(item->getMaxDelay() - item->getUseDelay());
+ 	}
+	else
+		cooldownBar_->hide();
 }
 
 void UnitSection::setSelected(bool isSelected)

@@ -8,7 +8,7 @@
 #include "Common/Enums.hpp"
 
 Item::Item(const Prototype *prototype)
-	: Object(prototype), usesLeft(1), delay(0)
+	: Object(prototype), usesLeft(1), delay(0), maxDelay(0)
 {
 }
 
@@ -74,6 +74,16 @@ void Item::setUsesLeft(int n)
 	usesLeft = n;
 	if (usesLeft < 0)
 		usesLeft = 0;
+}
+
+int Item::getMaxDelay()
+{
+	return maxDelay;
+}
+
+void Item::setMaxDelay(int t)
+{
+	maxDelay = t;
 }
 
 void Item::loadFromJson(const QJsonObject &json)
