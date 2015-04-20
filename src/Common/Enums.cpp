@@ -101,6 +101,7 @@ static const QMap<BS::EntryType, QString> entryTypeToString {
 };
 
 static const QMap<BS::ConditionType, QString> conditionTypeToString {
+	{BS::ConditionType::Invalid,           ConditionTypes::Invalid},
 	{BS::ConditionType::QuestFail,         ConditionTypes::QuestFail},
 	{BS::ConditionType::QuestSuccess,      ConditionTypes::QuestSuccess},
 	{BS::ConditionType::FoodCount,         ConditionTypes::FoodCount},

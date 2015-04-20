@@ -15,6 +15,7 @@
 #include "GameObjects/Journal.hpp"
 #include "GameObjects/Location.hpp"
 #include "GameObjects/Unit.hpp"
+#include "GameObjects/Quest.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "SoundsManager/SoundsManager.hpp"
 
@@ -485,6 +486,11 @@ Object *Mind::createObject(BS::Type type, const QString &name)
 		case BS::Type::Location: {
 			Location *location = new Location(dataManager->getPrototype(name));
 			obj = location;
+			break;
+		}
+		case BS::Type::Quest: {
+			Quest *quest = new Quest(dataManager->getPrototype(name));
+			obj = quest;
 			break;
 		}
 		case BS::Type::Unit: {

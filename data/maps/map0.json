@@ -2098,6 +2098,18 @@
 			"entryType": "help",
 			"text": "Before me things create were none,\nsave things Eternal, and eternal I endure.\nAll hope abandon ye who enter here.",
 			"date": "10.10.1010 10:10"
+		},
+
+		{
+			"uid": 3400,
+			"name": "BasicQuest",
+			"title": "Yhui",
+			"startConditions": [
+				{
+					"conditionType": "timeCount",
+					"argument": 50
+				}
+			]
 		}
 	]
 }

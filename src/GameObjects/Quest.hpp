@@ -12,6 +12,9 @@ struct Condition
 	ConditionType type;
 	bool isNegative;
 	int argument;
+
+	void loadFromJson(const QJsonObject &json);
+	QJsonObject saveToJson() const;
 };
 
 class Mind;
@@ -19,6 +22,10 @@ class Mind;
 class Quest : public Object {
 public:
 	Quest(const Prototype *prototype);
+
+	virtual Type getType() const;
+
+	QString getTitle() const;
 
 	bool isFinal() const;
 	const QList<Condition> &getStartConds() const;
@@ -44,6 +51,7 @@ public:
 	static bool evaluateLocationReached(const Condition &c, Mind *mind, int factionId);
 
 private:
+	QString title;
 	bool finalQuest;
 	QList<Condition> startConds;
 	QList<Condition> successConds;

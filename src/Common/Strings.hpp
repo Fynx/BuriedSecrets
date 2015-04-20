@@ -42,33 +42,41 @@ namespace Animators {
 	const QString Quest            = "AnimatorQuest";
 }
 
-namespace Attributes {                                 // Converted into class fields
-	const QString Attitude         = "attitude";
-	const QString CampId           = "campId";			// Faction, converted to pointer
-	const QString CampRange        = "campRange";		// Faction
-	const QString Command          = "command";
-	const QString Date             = "date";
-	const QString Entries          = "entries";
-	const QString EntryType        = "entryType";
-	const QString Equipment        = "equipment";
-	const QString ExitX            = "exitX";           // Location, optional exitPoint
-	const QString ExitY            = "exitY";
-	const QString Faction          = "faction";
-	const QString Food             = "food";
-	const QString HP               = "hp";
-	const QString Items            = "items";
-	const QString Journal          = "journal";
-	const QString PatrolRoute      = "patrolRoute";
-	const QString Psychosis        = "psychosis";
-	const QString Relations        = "relations";
-	const QString SearchDifficulty = "searchDifficulty";
-	const QString Slots            = "slots";
-	const QString Text             = "text";
-	const QString Title            = "title";
-	const QString Uid              = "uid";
-	const QString UnitMet          = "unitMet";           // Location, unit uid to pending
-	const QString Units            = "units";
-	const QString UsesLeft         = "UsesLeft";          // Item
+/** Converted into class fields */
+namespace Attributes {
+	const QString Argument          = "argument";          /** Condition */
+	const QString Attitude          = "attitude";
+	const QString IsFinal           = "isFinal";           /** Quest */
+	const QString CampId            = "campId";            /** Faction, converted to pointer */
+	const QString CampRange         = "campRange";         /** Faction */
+	const QString Command           = "command";
+	const QString ConditionType     = "conditionType";     /** Condition */
+	const QString Date              = "date";
+	const QString Entries           = "entries";
+	const QString EntryType         = "entryType";
+	const QString Equipment         = "equipment";
+	const QString ExitX             = "exitX";             /** Location, optional exitPoint */
+	const QString ExitY             = "exitY";
+	const QString Faction           = "faction";
+	const QString FailureConditions = "failureConditions"; /** Condition */
+	const QString Food              = "food";
+	const QString HP                = "hp";
+	const QString IsNegative        = "isNegative";        /** Condition */
+	const QString Items             = "items";
+	const QString Journal           = "journal";
+	const QString PatrolRoute       = "patrolRoute";
+	const QString Psychosis         = "psychosis";
+	const QString Relations         = "relations";
+	const QString SearchDifficulty  = "searchDifficulty";
+	const QString Slots             = "slots";
+	const QString StartConditions   = "startConditions";   /** Quest */
+	const QString SuccessConditions = "successConditions"; /** Quest */
+	const QString Text              = "text";
+	const QString Title             = "title";             /** JournalEntry, Quest */
+	const QString Uid               = "uid";
+	const QString UnitMet           = "unitMet";           /** Location, unit uid to pending */
+	const QString Units             = "units";
+	const QString UsesLeft          = "UsesLeft";          /** Item */
 }
 
 namespace Data {
@@ -84,12 +92,12 @@ namespace Data {
 }
 
 namespace Effects {
-	const QString BasePolygon     = "BasePolygonEffect";	// Display base polygon and other debug info.
+	const QString BasePolygon     = "BasePolygonEffect";   /** Display base polygon and other debug info. */
 	const QString EnterCommand    = "EnterCommand";
 	const QString FriendlyCommand = "FriendlyCommand";
 	const QString HostileCommand  = "HostileCommand";
 	const QString MoveCommand     = "MoveCommand";
-	const QString Selection       = "SelectionEffect";	// Unit selection.
+	const QString Selection       = "SelectionEffect";     /** Unit selection. */
 	const QString Shot            = "ShotEffect";
 	const QString Antipsychosis   = "AntipsychosisEffect";
 	const QString ShowPath        = "ShowPathEffect";
@@ -105,6 +113,7 @@ namespace EntryTypes {
 }
 
 namespace ConditionTypes {
+	const QString Invalid         = "invalid";
 	const QString QuestFail       = "questFail";
 	const QString QuestSuccess    = "questSuccess";
 	const QString FoodCount       = "foodCount";
@@ -131,54 +140,54 @@ namespace Resources {
 	const QString TextureSet    = "TextureSet";
 }
 
-namespace Properties {                                 // for Prototypes
-	const QString Age           = "age";               // base for Unit
+namespace Properties {                                     /** for Prototypes */
+	const QString Age           = "age";               /** base for Unit */
 	const QString Assemblable   = "assemblable";
-	const QString Attack        = "attack";            // base for Unit
-	const QString Avatar        = "avatar";            // base for Unit
-	const QString Background    = "background";        // base for Unit
+	const QString Attack        = "attack";            /** base for Unit */
+	const QString Avatar        = "avatar";            /** base for Unit */
+	const QString Background    = "background";        /** base for Unit */
 	const QString BaseCentre    = "baseCentre";
 	const QString BasePolygon   = "basePolygon";
 	const QString BaseRadius    = "baseRadius";
-	const QString BigDefBonus   = "bigDefBonus";       // Bonus from location
-	const QString BigAttBonus   = "bigAttBonus";       // Bonus from location
-	const QString BigRangeBonus = "bigRangeBonus";     // Bonus from location
-	const QString BuildTime     = "buildTime";         // For ikeaSets
+	const QString BigDefBonus   = "bigDefBonus";       /** Bonus from location */
+	const QString BigAttBonus   = "bigAttBonus";       /** Bonus from location */
+	const QString BigRangeBonus = "bigRangeBonus";     /** Bonus from location */
+	const QString BuildTime     = "buildTime";         /** For ikeaSets */
 	const QString Capacity      = "capacity";
-	const QString Damage        = "damage";            // Weapon
-	const QString DamageControl = "damageControl";     // base for Unit
-	const QString Description   = "description";       // Item description
+	const QString Damage        = "damage";            /** Weapon */
+	const QString DamageControl = "damageControl";     /** base for Unit */
+	const QString Description   = "description";       /** Item description */
 	const QString DefAnimators  = "defAnimators";
-	const QString Defense       = "defense";           // Armor
-	const QString Dispersion    = "dispersion";        // Weapon
-	const QString Encumbrance   = "encumbrance";       // max for Unit
-	const QString Engineering   = "engineering";       // base for Unit
-	const QString FoodDemand    = "foodDemand";        // base for Unit
-	const QString Healing       = "healing";           // base for Unit
-	const QString HP            = "hp";                // max for Unit
-	const QString Ingredients   = "ingredients";       // Item
+	const QString Defense       = "defense";           /** Armor */
+	const QString Dispersion    = "dispersion";        /** Weapon */
+	const QString Encumbrance   = "encumbrance";       /** max for Unit */
+	const QString Engineering   = "engineering";       /** base for Unit */
+	const QString FoodDemand    = "foodDemand";        /** base for Unit */
+	const QString Healing       = "healing";           /** base for Unit */
+	const QString HP            = "hp";                /** max for Unit */
+	const QString Ingredients   = "ingredients";       /** Item */
 	const QString ItemTypes     = "itemTypes";
-	const QString MagazineSize  = "magazineSize";      // Weapon
-	const QString MovementSpeed = "movementSpeed";     // Unit
+	const QString MagazineSize  = "magazineSize";      /** Weapon */
+	const QString MovementSpeed = "movementSpeed";     /** Unit */
 	const QString Name          = "name";
 	const QString Obstacle      = "obstacle";
-	const QString OptimalRange  = "optimalRange";      // Weapon
-	const QString OffsetX       = "offsetX";           // For building
-	const QString OffsetY       = "offsetY";           // For building
-	const QString Perception    = "perception";        // base for Unit
-	const QString Picture       = "picture";           // base for Unit
-	const QString Profession    = "profession";        // base for Unit
-	const QString Psychosis     = "psychosis";         // max for Unit ??
-	const QString Quote         = "quote";             // base for Unit
-	const QString Quality       = "quality";           // Item quality
-	const QString Range         = "range";             // Weapon
-	const QString Regeneration  = "regeneration";      // Unit
-	const QString ReloadTime    = "reloadTime";        // Weapon
-	const QString ShotsInterval = "shotsInterval";     // Weapon
-	const QString SightRange    = "sightRange";        // base for Unit
+	const QString OptimalRange  = "optimalRange";      /** Weapon */
+	const QString OffsetX       = "offsetX";           /** For building */
+	const QString OffsetY       = "offsetY";           /** For building */
+	const QString Perception    = "perception";        /** base for Unit */
+	const QString Picture       = "picture";           /** base for Unit */
+	const QString Profession    = "profession";        /** base for Unit */
+	const QString Psychosis     = "psychosis";         /** max for Unit ??  */
+	const QString Quote         = "quote";             /** base for Unit */
+	const QString Quality       = "quality";           /** Item quality */
+	const QString Range         = "range";             /** Weapon */
+	const QString Regeneration  = "regeneration";      /** Unit */
+	const QString ReloadTime    = "reloadTime";        /** Weapon */
+	const QString ShotsInterval = "shotsInterval";     /** Weapon */
+	const QString SightRange    = "sightRange";        /** base for Unit */
 	const QString Slots         = "slots";
-	const QString SmallDefBonus = "smallDefBonus";     // Bonus from location
-	const QString SpawnedType   = "spawnedType";       // Item - Fortification
+	const QString SmallDefBonus = "smallDefBonus";     /** Bonus from location */
+	const QString SpawnedType   = "spawnedType";       /** Item - Fortification */
 	const QString Transparent   = "transparent";
 	const QString Type          = "type";
 	const QString Weight        = "weight";

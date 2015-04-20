@@ -149,6 +149,7 @@ namespace BS {
 
 
 	enum class ConditionType : quint8 {
+		Invalid,
 		QuestFail,
 		QuestSuccess,
 		FoodCount,
@@ -160,13 +161,13 @@ namespace BS {
 		LocationReached
 	};
 
-	inline uint qHash(const ConditionType &cond) {
+	inline uint qHash(const ConditionType &cond)
+	{
 		return static_cast<quint8>(cond);
 	}
 
 	QString changeConditionTypeToString(BS::ConditionType type);
 	BS::ConditionType changeStringToConditionType(const QString &str);
-
 
 
 	namespace Graphic {
