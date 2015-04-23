@@ -57,6 +57,12 @@ public:
 	bool hasBeenSeen(const Object *object) const;
 
 	bool pointInObject(const QPointF &point, const Object *object, const float inflate = 0.0f) const;
+	/**
+	 * @brief This method returns an Object containing the point or nullptr if no such object exists.
+	 *
+	 * IMPORTANT: This method ignores units! It can return any Object except a unit. If you need the unit for some
+	 * reason, please rename this method and create another one for units.
+	 */
 	const Object *getObjectContaining(const QPointF &point, const float inflate = 0.0f) const;
 
 	/**

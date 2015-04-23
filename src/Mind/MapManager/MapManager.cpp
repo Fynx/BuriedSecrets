@@ -58,8 +58,7 @@ bool MapManager::canStandOn(const Unit *unit, const QPointF &point) const
 					candidates.append(objCentrePos - objCentre + p - point);
 				}
 
-				// FIXME fix this when edges bugs in A* are fixed
-				if (pointInObject(point, obj/*, radius*/)) {
+				if (pointInObject(point, obj, radius)) {
 					return false;
 				}
 			}
@@ -134,7 +133,7 @@ const Object *MapManager::getObjectContaining(const QPointF &point, const float 
 	const auto &objects = physicsEngine->getObjectsInRect(QRectF{point - radiusP, point + radiusP});
 
 	for (const auto *obj : objects) {
-		if (pointInObject(point, obj, inflate)) {
+		if (obj->getType() != BS::Type::Unit && pointInObject(point, obj, inflate)) {
 			return obj;
 		}
 	}

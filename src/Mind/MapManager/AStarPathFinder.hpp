@@ -19,7 +19,7 @@ public:
 
 private:
 	struct Node {
-		Node() : point{-1, -1}, costFromSource{10000.0f}, heuristicCost{100000.0f}, previousNode{-1} {};
+		Node() : point{-1, -1}, costFromSource{100000.0f}, heuristicCost{100000.0f}, previousNode{-1} {};
 		Node(const QPoint &point, const float costFromSource, const float heuristicCost,
 		     const int previousNode = -1)
 			: point{point}, costFromSource{costFromSource}, heuristicCost{heuristicCost},

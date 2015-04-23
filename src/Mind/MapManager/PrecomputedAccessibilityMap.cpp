@@ -28,15 +28,14 @@ PrecomputedAccessibilityMap::PrecomputedAccessibilityMap(const MapManager *mapMa
 	
         // Debug
 // 	QSizeF mapSize = mapManager->getMap()->getSize();
-// 	QSize discSize = (mapSize / gridSize).toSize();
 // 	QImage image{mapSize.toSize(), QImage::Format_ARGB32};
 // 	image.fill(Qt::transparent);
 // 	QPainter painter{&image};
 // 	painter.setBrush(QBrush(Qt::black));
 // 
-// 	for (int x = 0; x < discSize.width(); ++x) {
-// 		for (int y = 0; y < discSize.height(); ++y) {
-// 			if (!mapManager->canStandOn(unit, undiscretize(QPoint{x, y}))) {
+// 	for (int x = 0; x < width; ++x) {
+// 		for (int y = 0; y < height; ++y) {
+// 			if (!matrix[x][y]) {
 // 				painter.drawRect(x * gridSize, y * gridSize, gridSize, gridSize);
 // 			}
 // 		}
