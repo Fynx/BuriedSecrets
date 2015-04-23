@@ -307,7 +307,7 @@ void Mind::toggleShowPaths()
 	// Remove all occurences of show paths.
 	removeAllEffects(Effects::ShowPath);
 
-	if (!basePolygonsEffectOn) {
+	if (!showPathsEffectOn) {
 		// Add base polygons to everything.
 		for (const auto *object : objects) {
 			if (object->getType() == BS::Type::Unit) {
@@ -316,7 +316,7 @@ void Mind::toggleShowPaths()
 		}
 	}
 
-	basePolygonsEffectOn = !basePolygonsEffectOn;
+	showPathsEffectOn = !showPathsEffectOn;
 }
 
 void Mind::addObject(Object *object, const QPointF &position, float angle)
