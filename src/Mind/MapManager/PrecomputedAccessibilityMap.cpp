@@ -3,11 +3,14 @@
  */
 #include "Mind/MapManager/PrecomputedAccessibilityMap.hpp"
 
+#include <QImage>
+
+#include "GameObjects/Unit.hpp"
 #include "Mind/MapManager/MapManager.hpp"
 
 
 PrecomputedAccessibilityMap::PrecomputedAccessibilityMap(const MapManager *mapManager, const int gridSize,
-							 const Unit* unit)
+							 const Unit *unit)
 	: AccessiblityMap{mapManager, gridSize}
 {
 	QSizeF size = mapManager->getMap()->getSize();
@@ -22,6 +25,26 @@ PrecomputedAccessibilityMap::PrecomputedAccessibilityMap(const MapManager *mapMa
 			matrix[i][j] = mapManager->canStandOn(unit, undiscretize(QPoint{i, j}));
 		}
 	}
+	
+        // Debug
+// 	QSizeF mapSize = mapManager->getMap()->getSize();
+// 	QSize discSize = (mapSize / gridSize).toSize();
+// 	QImage image{mapSize.toSize(), QImage::Format_ARGB32};
+// 	image.fill(Qt::transparent);
+// 	QPainter painter{&image};
+// 	painter.setBrush(QBrush(Qt::black));
+// 
+// 	for (int x = 0; x < discSize.width(); ++x) {
+// 		for (int y = 0; y < discSize.height(); ++y) {
+// 			if (!mapManager->canStandOn(unit, undiscretize(QPoint{x, y}))) {
+// 				painter.drawRect(x * gridSize, y * gridSize, gridSize, gridSize);
+// 			}
+// 		}
+// 	}
+// 
+// 	qDebug() << unit->getName();
+// 	image.save("/tmp/" + unit->getName() + ".png");
+	// End of Debug
 }
 
 

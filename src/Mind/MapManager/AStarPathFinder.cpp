@@ -12,8 +12,6 @@
 #include <QPointF>
 #include <QSet>
 
-#include <QImage>
-
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Object.hpp"
@@ -38,7 +36,7 @@ AStarPathFinder::AStarPathFinder(const MapManager *mapManager, const Mind *mind)
 		: PathFinder{mapManager}
 {
 	auto objects = mind->getAllObjects();
-	for (const Object* obj : objects) {
+	for (const Object *obj : objects) {
 		const Unit *unit = dynamic_cast<const Unit *>(obj);
 		if (unit != nullptr && obj->getPrototype()->hasProperty(Properties::BaseRadius)) {
 			getAccessiblityMap(getGridSize(
@@ -50,7 +48,6 @@ AStarPathFinder::AStarPathFinder(const MapManager *mapManager, const Mind *mind)
 
 QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *object, const QPointF &target)
 {
-
 	QList<QPointF> result;
 
 	const Unit *unit = dynamic_cast<const Unit *>(object);
@@ -69,30 +66,6 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 	const Object *targetObject = mapManager->getObjectContaining(accMap->undiscretize(targetPoint));
 	qDebug() << "PF: Starting from: " << sourcePoint << " going to: " << targetPoint <<
 			(targetObject != nullptr ? targetObject->getName() : "");
-
-
-	// Debug
-// 	static QSet<QString> names;
-// 	if (!names.contains(unit->getName())) {
-// 		QSizeF mapSize = mapManager->getMap()->getSize();
-// 		QSize discSize = (mapSize / gridSize).toSize();
-// 		QImage image{mapSize.toSize(), QImage::Format_ARGB32};
-// 		image.fill(Qt::transparent);
-// 		QPainter painter{&image};
-// 		painter.setBrush(QBrush(Qt::black));
-//
-// 		for (int x = 0; x < discSize.width(); ++x) {
-// 			for (int y = 0; y < discSize.height(); ++y) {
-// 				if (!mapManager->canStandOn(unit, undiscretizePoint(QPoint{x, y}, gridSize))) {
-// 					painter.drawRect(x * gridSize, y * gridSize, gridSize, gridSize);
-// 				}
-// 			}
-// 		}
-//
-// 		image.save("/tmp/" + unit->getName() + ".png");
-// 		names.insert(unit->getName());
-// 	}
-	// End of Debug
 
 	QSet<int> visited;
 	QHash<QPoint, int> pointToNode;

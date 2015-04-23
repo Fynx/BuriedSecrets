@@ -61,7 +61,6 @@ AnimatorManager *Mind::getAnimatorManager()
 void Mind::loadFromJson(const QJsonObject &json)
 {
 	delete mapManager;
-	mapManager = new MapManager(json, this, physics, PlayerFactionId);
 
 	const QJsonArray &objs = json[Data::Objects].toArray();
 
@@ -203,6 +202,9 @@ void Mind::loadFromJson(const QJsonObject &json)
 		}
 	}
 
+	// It is important that this line is called AFTER the creation of objects.
+	mapManager = new MapManager(json, this, physics, PlayerFactionId);
+	
 	// Add antipsychosis.
 	addEffect(
 		Effect(
