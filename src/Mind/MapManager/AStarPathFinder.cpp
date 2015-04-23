@@ -58,8 +58,7 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 		return result;
 	}
 
-	const float objRadius = object->getPrototype()->getProperty(Properties::BaseRadius).toFloat();
-	const float gridSize = getGridSize(objRadius);
+	const float gridSize = getGridSize(object->getPrototype()->getProperty(Properties::BaseRadius).toFloat());
 	auto *accMap = getAccessiblityMap(gridSize, unit);
 	QPoint targetPoint = accMap->discretize(target);
 	QPoint sourcePoint = accMap->discretize(source);
@@ -86,7 +85,7 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 	std::set<int, comp> q{comp{&nodes}};
 
 	pointToNode.insert(sourcePoint, ++lastId);
-	const float initialDist = heuristicDistance(sourcePoint, targetPoint, gridSize);
+	const float initialDist = heuristicDistance(sourcePoint, targetPoint);
 	const float distBound = 6.0f * initialDist;
 	nodes[lastId] = Node{sourcePoint, 0.0f, initialDist};
 	q.insert(lastId);
@@ -94,12 +93,10 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 	while (!q.empty()) {
 		const auto v = *q.begin();
 		q.erase(q.begin());
-		QPointF vPointReal = accMap->undiscretize(nodes[v].point);
 
-		if (nodes[v].point == targetPoint || (targetObject != nullptr &&
-				BS::Geometry::distance(vPointReal, target) <= gridSize * sqrtTwo &&
-				mapManager->getObjectContaining(vPointReal, gridSize / 2.0f) == targetObject)){
-			qDebug() << "Found path! ";
+		if (nodes[v].point == targetPoint ||
+				isTarget(accMap->undiscretize(nodes[v].point), target, targetObject, gridSize)) {
+			qDebug() << "Found path!";
 			appendPathToResult(result, nodes, v, gridSize, accMap);
 			break;
 		}
@@ -116,14 +113,12 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 				continue;
 			}
 
-			float nextRank = nextDist + heuristicDistance(nextPoint, targetPoint, gridSize);
+			float nextRank = nextDist + heuristicDistance(nextPoint, targetPoint);
 
 			if (!accMap->isAccessible(unit, nextPoint)) {
-				if (targetObject != nullptr &&
-						BS::Geometry::distance(nextPointReal, target) <= gridSize * sqrtTwo &&
-						mapManager->getObjectContaining(nextPointReal,
-										gridSize / 2.0f) == targetObject) {
-					nextRank = nextDist;	// We will be at the end.
+				if (isTarget(nextPointReal, target, targetObject, gridSize)) {
+					nextRank = nextDist;	// We will be at the end, so we assume the heuristic
+								// distance to be 0.
 				} else {
 					continue;	// Not accessible and not the target.
 				}
@@ -193,19 +188,14 @@ float AStarPathFinder::getGridSize(const float radius) const
 }
 
 
-float AStarPathFinder::heuristicDistance(const QPoint &from, const QPoint &to, const float gridSize)
+float AStarPathFinder::heuristicDistance(const QPoint &from, const QPoint &to)
 {
-// 	QPoint diff = from - to;
-// 	const float side = qMin(abs(diff.x()), abs(diff.y()));
-// 	return diff.manhattanLength() + (sqrtTwo - 2.0f) * side;
-	// FIXME
 	return BS::Geometry::distance(from, to);
 }
 
 
-void AStarPathFinder::appendPathToResult(QList<QPointF> &result,
-					 const std::vector<AStarPathFinder::Node> &nodes,
-					 int v, const float gridSize, AccessiblityMap *accMap) const
+void AStarPathFinder::appendPathToResult(QList<QPointF> &result, const std::vector<AStarPathFinder::Node> &nodes, int v,
+					 const float gridSize, AccessiblityMap *accMap) const
 {
 	QList<int> path;
 	while (v != -1 && nodes[v].previousNode != -1) {
@@ -218,3 +208,12 @@ void AStarPathFinder::appendPathToResult(QList<QPointF> &result,
 		path.pop_back();
 	}
 }
+
+
+bool AStarPathFinder::isTarget(const QPointF& point, const QPointF& target, const Object* targetObject,
+			       const float gridSize) const
+{
+	return targetObject != nullptr && BS::Geometry::distance(point, target) <= gridSize * sqrtTwo &&
+			mapManager->getObjectContaining(point, gridSize / 2.0f) == targetObject;
+}
+
