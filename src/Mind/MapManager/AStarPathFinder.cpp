@@ -60,11 +60,11 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 
 	const float gridSize = getGridSize(object->getPrototype()->getProperty(Properties::BaseRadius).toFloat());
 	auto *accMap = getAccessiblityMap(gridSize, unit);
-	QPoint targetPoint = accMap->discretize(target);
-	QPoint sourcePoint = accMap->discretize(source);
-	const Object *targetObject = mapManager->getObjectContaining(accMap->undiscretize(targetPoint),
+	QPoint targetDiscrete = accMap->discretize(target);
+	QPoint sourceDiscrete = accMap->discretize(source);
+	const Object *targetObject = mapManager->getObjectContaining(accMap->undiscretize(targetDiscrete),
 								     gridSize / 2.0f);
-	qDebug() << "PF: Starting from: " << sourcePoint << " going to: " << targetPoint <<
+	qDebug() << "PF: Starting from: " << sourceDiscrete << " going to: " << targetDiscrete <<
 			(targetObject != nullptr ? targetObject->getName() : "no object");
 
 	QSet<int> visited;
@@ -84,17 +84,17 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 
 	std::set<int, comp> q{comp{&nodes}};
 
-	pointToNode.insert(sourcePoint, ++lastId);
-	const float initialDist = heuristicDistance(sourcePoint, targetPoint);
+	pointToNode.insert(sourceDiscrete, ++lastId);
+	const float initialDist = heuristicDistance(sourceDiscrete, targetDiscrete);
 	const float distBound = 6.0f * initialDist;
-	nodes[lastId] = Node{sourcePoint, 0.0f, initialDist};
+	nodes[lastId] = Node{sourceDiscrete, 0.0f, initialDist};
 	q.insert(lastId);
 
 	while (!q.empty()) {
 		const auto v = *q.begin();
 		q.erase(q.begin());
 
-		if (nodes[v].point == targetPoint ||
+		if (nodes[v].point == targetDiscrete ||
 				isTarget(accMap->undiscretize(nodes[v].point), target, targetObject, gridSize)) {
 			qDebug() << "Found path!";
 			appendPathToResult(result, nodes, v, gridSize, accMap);
@@ -113,7 +113,7 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 				continue;
 			}
 
-			float nextRank = nextDist + heuristicDistance(nextPoint, targetPoint);
+			float nextRank = nextDist + heuristicDistance(nextPoint, targetDiscrete);
 
 			if (!accMap->isAccessible(unit, nextPoint)) {
 				if (isTarget(nextPointReal, target, targetObject, gridSize)) {
