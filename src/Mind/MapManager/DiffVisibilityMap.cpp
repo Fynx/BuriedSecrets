@@ -40,7 +40,13 @@ bool DiffVisibilityMap::isVisible(const Unit *from, const QPointF &target, const
 	// For now we'll stick to the second one and see how it works.
 
 	QPointF fromPos = physicsEngine->getPosition(from);
-	return physicsEngine->getFirstHit(fromPos, QVector2D{target - fromPos}, from->getSightRange()) == owner;
+	return target == fromPos ? true : physicsEngine->getFirstHit(fromPos,
+								     QVector2D{target - fromPos},
+								     from->getSightRange()) == owner;
 }
 
 
+VisibilityUpdateDiff DiffVisibilityMap::getCurrentData() const
+{
+	return container;
+}

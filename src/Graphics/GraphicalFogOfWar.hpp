@@ -5,6 +5,8 @@
 #include <QSizeF>
 #include <SFML/Graphics.hpp>
 
+#include "Mind/MapManager/VisibilityUpdate.hpp"
+
 class MapManager;
 class Viewport;
 
@@ -26,6 +28,8 @@ public:
 	void draw();
 
 private:
+	void drawFOVs(sf::RenderTexture& canvas, const VisibilityUpdateDiff& updateDiff);
+
 	sf::Sprite FOWSprite;
 	sf::Sprite tempSprite;
 	sf::RenderTexture FOWTexture;
@@ -33,6 +37,9 @@ private:
 	sf::CircleShape circle;
 	sf::ConvexShape polygon;
 	QSizeF textureSize;
+
+	sf::Sprite FOVSprite;
+	sf::RenderTexture FOVTexture;
 
 	sf::RenderTarget *renderTarget;
 	MapManager *mapManager;

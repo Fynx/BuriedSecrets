@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Mind/MapManager/MapManager.hpp"
@@ -15,7 +15,8 @@
 MapManager::MapManager(const QJsonObject &json, const Mind *mind, const PhysicsEngine *physicsEngine,
 		       const int playerFactionId)
 	: playerFactionId{playerFactionId}, map{json}, physicsEngine{physicsEngine},
-	pathFinder{new AStarPathFinder{this, mind}}, visibilityUpdatesDiff{new VisibilityUpdateDiff{}}
+	pathFinder{new AStarPathFinder{this, mind}}, visibilityUpdatesDiff{new VisibilityUpdateDiff{}},
+	playerFOV{map.getSize().toSize()}
 {}
 
 
@@ -66,6 +67,12 @@ bool MapManager::canStandOn(const Unit *unit, const QPointF &point) const
 	}
 
 	return true;
+}
+
+
+bool MapManager::canBeSeen(const Object* object) const
+{
+	return ((const VisibilityMap *)&playerFOV)->isVisible(nullptr, object, physicsEngine);
 }
 
 
@@ -142,6 +149,13 @@ const Object *MapManager::getObjectContaining(const QPointF &point, const float 
 }
 
 
+VisibilityUpdateDiff MapManager::getVisibleRegion() const
+{
+	assert(FOVs.contains(playerFactionId));
+	return FOVs[playerFactionId].getCurrentData();
+}
+
+
 QList<const Object *> MapManager::getVisibleObjects(const Unit *unit) const
 {
 	QList<const Object *> result;
@@ -169,6 +183,10 @@ QList<const Object *> MapManager::getVisibleObjects(const Unit *unit) const
 void MapManager::clearFieldOfView(const int factionId)
 {
 	FOVs[factionId].clear();
+
+	if (factionId == playerFactionId) {
+		playerFOV.clear();
+	}
 }
 
 
@@ -232,6 +250,7 @@ void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle circ
 
 	if (factionId == playerFactionId) {
 		visibilityUpdatesDiff->append(update);
+		playerFOV.update(update);
 	}
 
 	// FOW

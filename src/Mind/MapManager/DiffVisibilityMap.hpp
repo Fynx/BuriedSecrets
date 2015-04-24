@@ -12,6 +12,8 @@ public:
 	void update(const VisibilityUpdate &visibilityUpdate) override;
 	void clear() override;
 
+	VisibilityUpdateDiff getCurrentData() const;
+
 protected:
 	bool isVisible(const Unit *from, const QPointF &target, const Object *owner,
 		       const PhysicsEngine *physicsEngine) const override;

@@ -47,6 +47,16 @@ public:
 	 */
 	bool canStandOn(const Unit *unit, const QPointF &point) const;
 	/**
+	 * @brief True if the object can be seen by the faction.
+	 *
+	 * NOT IMPLEMENTED.
+	 */
+	bool canBeSeen(const Object *object, const int factionId) const;
+	/**
+	 * @brief True if the object can be seen by the player's faction.
+	 */
+	bool canBeSeen(const Object *object) const;
+	/**
 	 * @brief True if the point has been seen by the faction.
 	 */
 	bool hasBeenSeen(const QPointF &point, const int factionId) const;
@@ -67,8 +77,14 @@ public:
 
 	/**
 	 * @brief Returns the region currently visible to the units from the given faction.
+	 *
+	 * NOT IMPLEMENTED.
 	 */
 	VisibilityUpdateDiff getVisibleRegion(const int factionId) const;
+	/**
+	 * @brief Returns the region currently visible to the player's faction.
+	 */
+	VisibilityUpdateDiff getVisibleRegion() const;
 	/**
 	 * @brief Returns a list of all the objects visible to the units from faction factionId.
 	 *
@@ -120,6 +136,7 @@ private:
 	const PhysicsEngine *physicsEngine;
 	PathFinder *pathFinder;
 	VisibilityUpdateDiff *visibilityUpdatesDiff;
+	ImageVisibilityMap playerFOV;
 };
 
 

@@ -7,6 +7,9 @@
 #include "UserInterface/Viewport/Viewport.hpp"
 
 
+// Potential TODO/FIXME: This class may benefit from the use of shaders to speed things up.
+
+
 GraphicalFogOfWar::GraphicalFogOfWar(sf::RenderTarget *renderTarget, MapManager *mapManager, const Viewport *viewport)
 	: renderTarget{renderTarget}, mapManager{mapManager}, viewport{viewport}
 {
@@ -22,6 +25,9 @@ GraphicalFogOfWar::GraphicalFogOfWar(sf::RenderTarget *renderTarget, MapManager 
 	FOWTexture.clear(sf::Color::Black);
 	FOWSprite.setPosition(0, 0);
 
+	FOVTexture.create(sizeP.x(), sizeP.y());
+	FOVSprite.setPosition(0, 0);
+
 	tempTexture.create(0, 0);
 
 	circle.setPointCount(40);
@@ -35,9 +41,36 @@ GraphicalFogOfWar::GraphicalFogOfWar(sf::RenderTarget *renderTarget, MapManager 
 
 void GraphicalFogOfWar::update()
 {
+	// FOW
 	auto *updateDiff = mapManager->getVisibilityUpdatesDiff();
+	if (updateDiff->length() > 0) {
+		drawFOVs(FOWTexture, *updateDiff);
+		FOWSprite.setTexture(FOWTexture.getTexture());
 
-	for (const auto& visUpdate: *updateDiff) {
+		// FOV
+		// Clear previous visible region.
+		FOVTexture.clear(sf::Color::Black);
+
+		// Get and draw the current visible region.
+		auto visibleRegion = mapManager->getVisibleRegion();
+		drawFOVs(FOVTexture, visibleRegion);
+		FOVSprite.setTexture(FOVTexture.getTexture());
+		FOVSprite.setColor(sf::Color{255, 255, 255, 100});
+	}
+	delete updateDiff;
+}
+
+
+void GraphicalFogOfWar::draw()
+{
+	renderTarget->draw(FOVSprite);
+	renderTarget->draw(FOWSprite);
+}
+
+
+void GraphicalFogOfWar::drawFOVs(sf::RenderTexture& canvas, const VisibilityUpdateDiff& updateDiff)
+{
+	for (const auto &visUpdate: updateDiff) {
 		QPointF radiusP = {visUpdate.includeCircle.radius, visUpdate.includeCircle.radius};
 		radiusP = viewport->fromMetresToPixels(radiusP);
 
@@ -70,17 +103,10 @@ void GraphicalFogOfWar::update()
 		tempTexture.display();
 		tempSprite.setTexture(tempTexture.getTexture());
 		tempSprite.setPosition(realPos.x() - radiusP.x(), realPos.y() - radiusP.y());
-		FOWTexture.draw(tempSprite, sf::RenderStates{sf::BlendMode::BlendMultiply});
+		canvas.draw(tempSprite, sf::RenderStates{sf::BlendMode::BlendMultiply});
 	}
 
-	FOWTexture.display();
-	FOWSprite.setTexture(FOWTexture.getTexture());
-	delete updateDiff;
+	canvas.display();
 }
 
-
-void GraphicalFogOfWar::draw()
-{
-	renderTarget->draw(FOWSprite);
-}
 

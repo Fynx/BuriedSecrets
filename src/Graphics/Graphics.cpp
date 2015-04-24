@@ -118,9 +118,11 @@ void Graphics::render()
 	auto visibleObjects = camera->getVisibleObjects();
 
 	if (showFOW) {
-		// Filter out everything outside of FOW.
+		// Filter out everything outside of FOW and units outside of FOV.
 		for (int i = 0; i < visibleObjects.length(); ++i) {
-			if (!mapManager->hasBeenSeen(visibleObjects[i])) {
+			if (!mapManager->hasBeenSeen(visibleObjects[i]) ||
+					(visibleObjects[i]->getType() == BS::Type::Unit &&
+							!mapManager->canBeSeen(visibleObjects[i]))) {
 				std::swap(visibleObjects[i], visibleObjects.back());
 				visibleObjects.pop_back();
 				--i;
