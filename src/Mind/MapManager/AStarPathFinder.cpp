@@ -10,7 +10,6 @@
 #include <QDebug>
 #include <QPair>
 #include <QPointF>
-#include <QSet>
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
@@ -67,9 +66,9 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 	qDebug() << "PF: Starting from: " << sourceDiscrete << " going to: " << targetDiscrete <<
 			(targetObject != nullptr ? targetObject->getName() : "no object");
 
-	QSet<int> visited;
 	QHash<QPoint, int> pointToNode;
-	std::vector<Node> nodes{10000};
+	std::vector<bool> visited(10000, false);
+	std::vector<Node> nodes(10000);
 	int lastId = -1;
 
 	struct comp {
@@ -107,7 +106,7 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 		}
 
 		const float prevDist = nodes[v].costFromSource;
-		visited.insert(v);
+		visited[v] = true;
 
 		for (int i = 0; i < 8; ++i) {
 			QPoint nextPoint = nodes[v].point + directions[i];
@@ -139,7 +138,11 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 			if (iter != pointToNode.end()) {
 				nextId = iter.value();
 
-				if (!visited.contains(nextId)) {
+				if (static_cast<int>(visited.size()) <= nextId) {
+					visited.resize(2 * visited.size(), false);
+				}
+
+				if (!visited[nextId]) {
 					auto it = q.find(nextId);
 					if (it != q.end()) {
 						if (nodes[nextId].heuristicCost > nextRank) {
