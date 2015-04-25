@@ -86,13 +86,18 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 
 	pointToNode.insert(sourceDiscrete, ++lastId);
 	const float initialDist = heuristicDistance(sourceDiscrete, targetDiscrete);
-	const float distBound = 6.0f * initialDist;
+	float distBound = 6.0f * initialDist;
 	nodes[lastId] = Node{sourceDiscrete, 0.0f, initialDist};
 	q.insert(lastId);
 
 	while (!q.empty()) {
 		const auto v = *q.begin();
 		q.erase(q.begin());
+
+		if (nodes[v].heuristicCost > distBound) {
+			continue;	// We might have put the node in the queue before getting an improved distBound,
+					// so we need to check here if we want to spend any work on this node.
+		}
 
 		if (nodes[v].point == targetDiscrete ||
 				isTarget(accMap->undiscretize(nodes[v].point), target, targetObject, gridSize)) {
@@ -113,12 +118,17 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 				continue;
 			}
 
+			if (nextPoint == targetDiscrete && nextDist < distBound) {
+				distBound = nextDist;	// We can definetely find a solution closer!
+			}
+
 			float nextRank = nextDist + heuristicDistance(nextPoint, targetDiscrete);
 
 			if (!accMap->isAccessible(unit, nextPoint)) {
 				if (isTarget(nextPointReal, target, targetObject, gridSize)) {
 					nextRank = nextDist;	// We will be at the end, so we assume the heuristic
 								// distance to be 0.
+					distBound = qMin(distBound, nextDist);
 				} else {
 					continue;	// Not accessible and not the target.
 				}
