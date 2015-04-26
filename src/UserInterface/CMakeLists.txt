@@ -11,6 +11,8 @@
 
 	Menus/MainMenu.cpp
 	Menus/PostGameMenu.cpp
+	Menus/LoadGameMenu.cpp
+	Menus/SaveGameMenu.cpp
 
 	Panels/AttitudeWidget.cpp
 	Panels/IconSection.cpp
@@ -53,6 +55,8 @@ set (UserInterface_HDRS
 
 	Menus/MainMenu.hpp
 	Menus/PostGameMenu.hpp
+	Menus/LoadGameMenu.hpp
+	Menus/SaveGameMenu.hpp
 
 	Panels/AttitudeWidget.hpp
 	Panels/FactionPanel.hpp

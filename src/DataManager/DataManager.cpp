@@ -9,6 +9,9 @@
 #include "DataManager/TextureSetData.hpp"
 #include "DebugManager/DebugManager.hpp"
 
+const QString DataManager::SavesPath{"data/saves/"};
+const QString DataManager::SavesExtension{".json"};
+
 DataManager::DataManager()
 {
 	loadResources();

@@ -21,7 +21,9 @@ MainMenu::MainMenu(const UserInterface *userInterface, QWidget *parent)
 void MainMenu::adjustButtonsVisibility()
 {
 	continueBtn_->setVisible(userInterface_->gameInProgress());
-// 	saveGameBtn_->setVisible(userInterface_->gameInProgress());
+	saveGameBtn_->setVisible(userInterface_->gameInProgress());
+	//TMP due to WTF
+	loadGameBtn_->setVisible(userInterface_->gameInProgress());
 }
 
 void MainMenu::keyPressEvent(QKeyEvent *event)
@@ -53,21 +55,16 @@ void MainMenu::initButtons()
 	newGameBtn_->setFont(buttonFont);
 	newGameBtn_->setSizePolicy(btnSizePolicy);
 	connect(newGameBtn_, &QPushButton::clicked, this, &MainMenu::newGameActivated);
-/*
+
 	loadGameBtn_ = new QPushButton(tr("Load game"));
 	loadGameBtn_->setFont(buttonFont);
 	loadGameBtn_->setSizePolicy(btnSizePolicy);
-	connect(loadGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::loadGameActivated);
+	connect(loadGameBtn_, &QPushButton::clicked, this, &MainMenu::loadGameActivated);
 
 	saveGameBtn_ = new QPushButton(tr("Save game"));
 	saveGameBtn_->setFont(buttonFont);
 	saveGameBtn_->setSizePolicy(btnSizePolicy);
-	connect(saveGameBtn_, &QPushButton::clicked, this, &MainMenuWindow::saveGameActivated);
-
-	instructionsBtn_ = new QPushButton(tr("Instructions"));
-	instructionsBtn_->setFont(buttonFont);
-	instructionsBtn_->setSizePolicy(btnSizePolicy);
-	connect(instructionsBtn_, &QPushButton::clicked, this, &MainMenuWindow::instructionsActivated);*/
+	connect(saveGameBtn_, &QPushButton::clicked, this, &MainMenu::saveGameActivated);
 
 	quitGameBtn_ = new QPushButton(tr("Quit"));
 	quitGameBtn_->setFont(buttonFont);
@@ -90,9 +87,8 @@ void MainMenu::initLayout()
 
 	mainLayout->addWidget(continueBtn_, 1);
 	mainLayout->addWidget(newGameBtn_, 1);
-// 	mainLayout->addWidget(loadGameBtn_,1);
-// 	mainLayout->addWidget(saveGameBtn_, 1);
-// 	mainLayout->addWidget(instructionsBtn_, 1);
+	mainLayout->addWidget(loadGameBtn_,1);
+	mainLayout->addWidget(saveGameBtn_, 1);
 	mainLayout->addWidget(quitGameBtn_, 1);
 	mainLayout->addStretch(3);
 }

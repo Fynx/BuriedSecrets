@@ -13,6 +13,8 @@ class Mind;
 class InterfaceDataManager;
 class Viewport;
 class MainMenu;
+class LoadGameMenu;
+class SaveGameMenu;
 class GameInterface;
 class PostGameMenu;
 
@@ -34,9 +36,8 @@ private:
 		MainMenu,
 		Game,
 		PostGameMenu,
-		LoadGame,
-		SaveGame,
-		Instructions
+		LoadGameMenu,
+		SaveGameMenu,
 };
 
 	General *const general_;
@@ -45,11 +46,13 @@ private:
 	QMainWindow *mainWindow_;
 	GameInterface *gameWindow_;
 	PostGameMenu *postGameMenu_;
-	MainMenu *mainMenuWindow_;
+	MainMenu *mainMenu_;
+	LoadGameMenu *loadGameMenu_;
+	SaveGameMenu *saveGameMenu_;
 	QStackedWidget *stackedWidget_;
 
 	void initLayout();
-	void initWindows();
+	void initMenus();
 	void switchToWindow(Window window);
 
 	//DEV TMP
@@ -62,4 +65,8 @@ private slots:
 	void onAfterGame();
 	void onNewGame();
 	void onContinueGame();
+	void onShowLoadGame();
+	void onShowSaveGame();
+	void loadGame(QString path);
+	void saveGame(QString path);
 };

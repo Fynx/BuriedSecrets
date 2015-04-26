@@ -22,22 +22,26 @@ public:
 
 	QMainWindow *getMainWindow();
 
-	void clearGameModules();
-	void startNewGame();
-
-	void saveLevel();
-
 	// FIXME this might need to be moved to DebugManager
+	void saveLevel();
 	void toggleDisplayBasePolygons();
 	void toggleDisplayFOW();
 	void toggleShowPaths();
 	void toggleDisplayFPS();
 
+public slots:
+	void startNewGame();
+	void loadGame(const QString &path);
+	void saveGame(const QString &path);
+
 	void pauseGame();
 	void resumeGame();
 
 private:
-	void initModules();
+	void clearGameModules();
+	void launchGame(const QString &path);
+
+	bool gameStarted_;
 
 	//Permanent modules
 	DebugManager  *debugManager;

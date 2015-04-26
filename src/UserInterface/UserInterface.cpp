@@ -10,6 +10,8 @@
 #include "UserInterface/Menus/MainMenu.hpp"
 #include "UserInterface/Game/GameInterface.hpp"
 #include "UserInterface/Menus/PostGameMenu.hpp"
+#include "UserInterface/Menus/LoadGameMenu.hpp"
+#include "UserInterface/Menus/SaveGameMenu.hpp"
 #include "UserInterface/Resources.hpp"
 
 UserInterface::UserInterface(General *general, DataManager *dataManager)
@@ -18,12 +20,14 @@ UserInterface::UserInterface(General *general, DataManager *dataManager)
 	  mainWindow_(new QMainWindow),
 	  gameWindow_(nullptr),
 	  postGameMenu_(new PostGameMenu),
-	  mainMenuWindow_(new MainMenu(this)),
+	  mainMenu_(new MainMenu(this)),
+	  loadGameMenu_(new LoadGameMenu),
+	  saveGameMenu_(new SaveGameMenu),
 	  gameEnded_(false)
 {
 	Q_INIT_RESOURCE(UI_data);
 
-	initWindows();
+	initMenus();
 	initLayout();
 	initDevActionsMenu();
 
@@ -60,24 +64,35 @@ void UserInterface::newGame(Mind *mind, BoardWidget *boardWidget)
 	stackedWidget_->insertWidget(static_cast<int>(Window::Game), gameWindow_);
 
 	switchToWindow(Window::Game);
-	mainMenuWindow_->adjustButtonsVisibility();
+	mainMenu_->adjustButtonsVisibility();
 
 	gameWindow_->startUpdateLoop();
 }
 
-void UserInterface::initWindows()
+void UserInterface::initMenus()
 {
-	connect(mainMenuWindow_, &MainMenu::quitActivated, mainWindow_, &QMainWindow::close);
-	connect(mainMenuWindow_, &MainMenu::newGameActivated, this, &UserInterface::onNewGame);
-	connect(mainMenuWindow_, &MainMenu::continueActivated, this, &UserInterface::onContinueGame);
+	connect(mainMenu_, &MainMenu::quitActivated, mainWindow_, &QMainWindow::close);
+	connect(mainMenu_, &MainMenu::newGameActivated, this, &UserInterface::onNewGame);
+	connect(mainMenu_, &MainMenu::continueActivated, this, &UserInterface::onContinueGame);
+	connect(mainMenu_, &MainMenu::loadGameActivated, this, &UserInterface::onShowLoadGame);
+	connect(mainMenu_, &MainMenu::saveGameActivated, this, &UserInterface::onShowSaveGame);
 	connect(postGameMenu_, &PostGameMenu::goToMainMenu, this, &UserInterface::onAfterGame);
+
+	connect(loadGameMenu_, &LoadGameMenu::closeActivated, this, &UserInterface::onShowMainMenu);
+	connect(loadGameMenu_, &LoadGameMenu::loadGame, this, &UserInterface::loadGame);
+	connect(saveGameMenu_, &SaveGameMenu::closeActivated, this, &UserInterface::onShowMainMenu);
+	connect(saveGameMenu_, &SaveGameMenu::saveGame, this, &UserInterface::saveGame);
+
 }
 
 void UserInterface::initLayout()
 {
 	stackedWidget_ = new QStackedWidget;
-	stackedWidget_->insertWidget(static_cast<int>(Window::MainMenu), mainMenuWindow_);
+	stackedWidget_->insertWidget(static_cast<int>(Window::MainMenu), mainMenu_);
 	stackedWidget_->insertWidget(static_cast<int>(Window::PostGameMenu), postGameMenu_);
+	//FIXME If load / save in different order load before new game opens correctly WTF?!
+	stackedWidget_->insertWidget(static_cast<int>(Window::LoadGameMenu), loadGameMenu_);
+	stackedWidget_->insertWidget(static_cast<int>(Window::SaveGameMenu), saveGameMenu_);
 
 	mainWindow_->setCentralWidget(stackedWidget_);
 	mainWindow_->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
@@ -149,7 +164,7 @@ void UserInterface::onGameEnded(BS::GameState gs)
 void UserInterface::onAfterGame()
 {
 	gameEnded_ = true;
-	mainMenuWindow_->adjustButtonsVisibility();
+	mainMenu_->adjustButtonsVisibility();
 	switchToWindow(Window::MainMenu);
 }
 
@@ -162,4 +177,26 @@ void UserInterface::onContinueGame()
 {
 	general_->resumeGame();
 	switchToWindow(Window::Game);
+}
+
+void UserInterface::onShowLoadGame()
+{
+	general_->pauseGame();
+	switchToWindow(Window::LoadGameMenu);
+}
+
+void UserInterface::onShowSaveGame()
+{
+	general_->pauseGame();
+	switchToWindow(Window::SaveGameMenu);
+}
+
+void UserInterface::loadGame(QString path)
+{
+	general_->loadGame(path);
+}
+
+void UserInterface::saveGame(QString path)
+{
+	general_->saveGame(path);
 }
