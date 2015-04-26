@@ -132,6 +132,7 @@ private:
 	Map map;
 	QHash<int, DiffVisibilityMap> FOVs;	// Per-faction FOVs.
 	QHash<int, ImageVisibilityMap> FOWs;
+	QHash<const Unit *, BS::Geometry::Circle> lastCircle;
 
 	const PhysicsEngine *physicsEngine;
 	PathFinder *pathFinder;

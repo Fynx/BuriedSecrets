@@ -249,7 +249,11 @@ void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle circ
 	it.value().update(update);
 
 	if (factionId == playerFactionId) {
-		visibilityUpdatesDiff->append(update);
+		if (!(lastCircle[unit] == circle)) {
+			visibilityUpdatesDiff->append(update);
+		}
+		lastCircle[unit] = circle;
+
 		playerFOV.update(update);
 	}
 

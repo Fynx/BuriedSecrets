@@ -23,23 +23,35 @@ public:
 	 */
 	void update();
 	/**
-	 * @brief Draws FOW on the renderTarget.
+	 * @brief Draws the FOW.
 	 */
 	void draw();
 
 private:
-	void drawFOVs(sf::RenderTexture& canvas, const VisibilityUpdateDiff& updateDiff);
+	/**
+	 * @brief Draws updates to the visibility to a FOV on canvas.
+	 */
+	void drawUpdates(sf::RenderTexture& canvas, const VisibilityUpdateDiff& updateDiff, const QRectF &view,
+			 const float scale);
+	void enlargeAndBlur(const sf::Texture &texture, sf::RenderTexture &target, const QPointF &topLeft,
+			    const QPointF &bottomRight);
 
-	sf::Sprite FOWSprite;
-	sf::Sprite tempSprite;
-	sf::RenderTexture FOWTexture;
-	sf::RenderTexture tempTexture;
-	sf::CircleShape circle;
-	sf::ConvexShape polygon;
-	QSizeF textureSize;
+	float sizeScale;
+	QRectF previousView;
 
 	sf::Sprite FOVSprite;
+	sf::Sprite FOWSprite;
+
+	sf::Shader blurHShader;
+	sf::Shader blurVShader;
+
 	sf::RenderTexture FOVTexture;
+	sf::RenderTexture FOWTexture;
+	sf::RenderTexture FOWScreenTexture;
+	sf::RenderTexture tempTexture;
+
+	sf::CircleShape circle;
+	sf::ConvexShape polygon;
 
 	sf::RenderTarget *renderTarget;
 	MapManager *mapManager;

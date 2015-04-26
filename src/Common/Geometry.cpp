@@ -13,6 +13,12 @@ bool isZero(const float x) {
 }
 
 
+bool operator==(const BS::Geometry::Circle& a, const BS::Geometry::Circle& b)
+{
+	return a.centre == b.centre && isZero(a.radius - b.radius);
+}
+
+
 float BS::Geometry::distance(const QPointF &a, const QPointF &b)
 {
 	return sqrt((a.x() - b.x()) * (a.x() - b.x()) + (a.y() - b.y()) * (a.y() - b.y()));

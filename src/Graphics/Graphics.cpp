@@ -166,6 +166,8 @@ void Graphics::render()
 
 		return aP.x() < bP.x();
 	      });
+
+	FOW->update();
 	// End of separate function.
 
 	GraphicalEntity *obj;
@@ -175,9 +177,6 @@ void Graphics::render()
 		obj = visibleGraphicalEntities[idx];
 		visibleGraphicalEntities[idx]->drawPreEffects(canvas);
 	}
-
-	drawFOW();
-	drawRubberBand();
 
 	// Draw entities.
 	for (int i = 0, idx = drawOrder[0]; i < visibleGraphicalEntities.size(); idx = drawOrder[++i]) {
@@ -190,6 +189,11 @@ void Graphics::render()
 		obj = visibleGraphicalEntities[idx];
 		visibleGraphicalEntities[idx]->drawPostEffects(canvas);
 	}
+
+	if (showFOW) {
+		FOW->draw();
+	}
+	drawRubberBand();
 
 	drawFPS();
 
@@ -257,15 +261,6 @@ void Graphics::drawFPS()
 }
 
 
-void Graphics::drawFOW()
-{
-	FOW->update();
-	if (showFOW) {
-		FOW->draw();
-	}
-}
-
-
 void Graphics::updateEffects(QVector<GraphicalEntity *> &visibleEntities)
 {
 	// Get, filter and assign effects to entities.
@@ -300,4 +295,3 @@ void Graphics::updateEffects(QVector<GraphicalEntity *> &visibleEntities)
 		entity->removeInactiveEffects();
 	}
 }
-

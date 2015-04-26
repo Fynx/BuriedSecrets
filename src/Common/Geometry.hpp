@@ -69,3 +69,5 @@ namespace BS {
 		bool pointInPolygon(const QPointF &point, const QList<QPointF> &polygon);
 	}
 }
+
+bool operator==(const BS::Geometry::Circle &a, const BS::Geometry::Circle &b);

@@ -45,8 +45,6 @@ public:
 	void resumeRendering();
 	/**
 	 * @brief Loads the graphical representation of the map.
-	 *
-	 * @return void
 	 */
 	void loadMap();
 	void toggleShowFPS();
@@ -64,10 +62,6 @@ private:
 	 */
 	void drawRubberBand();
 	void drawFPS();
-	/**
-	 * @brief Updates and draws Fog of War if enabled.
-	 */
-	void drawFOW();
 	/**
 	 * @brief Gets effects from mind and updates the inside state of entities to use them.
 	 */
