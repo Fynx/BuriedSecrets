@@ -13,10 +13,13 @@
 #include "Graphics/Effects/BasePolygonEffect.hpp"
 #include "Graphics/Effects/SelectionEffect.hpp"
 #include "Graphics/Effects/ShowPathEffect.hpp"
+#include "Graphics/Effects/UnitShadowEffect.hpp"
+#include "Graphics/Entities/GraphicalEntityFactory.hpp"
+#include "Graphics/Entities/TexturedGraphicalEntity.hpp"
 
 
 GraphicalEffectFactory::GraphicalEffectFactory(const Viewport *viewport)
-	: viewport{viewport}
+		: viewport{viewport}
 {
 	preEffects.insert(Effects::Selection);
 	preEffects.insert(Effects::EnterCommand);
@@ -46,6 +49,8 @@ GraphicalEffect *GraphicalEffectFactory::get(const Effect &effect)
 		return new AntipsychosisEffect{viewport, data->getRadius()};
 	} else if (name == Effects::ShowPath) {
 		return new ShowPathEffect{viewport};
+	} else if (name == Effects::UnitShadow) {
+		return new UnitShadowEffect{viewport};
 	}
 
 	err("GraphicalEffectFactory: Cannot produce an effect for: " + effect.getName());

@@ -101,6 +101,7 @@ namespace Effects {
 	const QString Shot            = "ShotEffect";
 	const QString Antipsychosis   = "AntipsychosisEffect";
 	const QString ShowPath        = "ShowPathEffect";
+	const QString UnitShadow      = "UnitShadowEffect";
 }
 
 namespace EntryTypes {

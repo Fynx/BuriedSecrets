@@ -19,6 +19,8 @@ public:
 	void setDirection(const BS::Graphic::Direction &direction) override;
 	void update(const float timeDelta) override;
 
+	const sf::Texture *getTexture() const;
+
 protected:
 	virtual ImageMetaData getImageMetaData() const = 0;
 

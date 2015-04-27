@@ -204,7 +204,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 	// It is important that this line is called AFTER the creation of objects.
 	mapManager = new MapManager(json, this, physics, PlayerFactionId);
-	
+
 	// Add antipsychosis.
 	addEffect(
 		Effect(
@@ -333,6 +333,11 @@ void Mind::addObject(Object *object)
 		err("Adding null object.");
 		return;
 	}
+
+	if (object->getType() == BS::Type::Unit) {
+		addEffect(Effect{Effects::UnitShadow, new ObjectEffectData{object}});
+	}
+
 	objects.append(object);
 	uidToObject[object->getUid()] = object;
 }
@@ -529,4 +534,3 @@ void Mind::removeAllEffects(const QString &name)
 		it = iter;
 	}
 }
-

@@ -28,3 +28,10 @@ void TexturedGraphicalEntity::update(const float timeDelta)
 	sprite.setTexture(*texture);
 	sprite.setTextureRect(sf::IntRect{0, 0, (int)texture->getSize().x, (int)texture->getSize().y});
 }
+
+
+const sf::Texture *TexturedGraphicalEntity::getTexture() const
+{
+	return sprite.getTexture();
+}
+

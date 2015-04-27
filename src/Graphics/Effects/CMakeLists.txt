@@ -6,6 +6,7 @@ set (Effects_SRCS
 	GraphicalEffect.cpp
 	SelectionEffect.cpp
 	ShowPathEffect.cpp
+	UnitShadowEffect.cpp
 )
 
 set (Effects_HDRS

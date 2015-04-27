@@ -191,6 +191,7 @@ namespace BS {
 			BasePolygon = 255,
 			Selection = 1,
 			Antipsychosis = 0,
+			UnitShadow = 253,
 			ShowPath = 254
 		};
 	}
