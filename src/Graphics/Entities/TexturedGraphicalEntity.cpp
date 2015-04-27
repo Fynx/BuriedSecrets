@@ -24,5 +24,7 @@ void TexturedGraphicalEntity::setDirection(const BS::Graphic::Direction &directi
 
 void TexturedGraphicalEntity::update(const float timeDelta)
 {
-	sprite.setTexture(*(textureSet->getFrame(getImageMetaData())));
+	const sf::Texture *texture = textureSet->getFrame(getImageMetaData());
+	sprite.setTexture(*texture);
+	sprite.setTextureRect(sf::IntRect{0, 0, (int)texture->getSize().x, (int)texture->getSize().y});
 }
