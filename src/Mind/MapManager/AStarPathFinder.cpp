@@ -182,6 +182,22 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 }
 
 
+void AStarPathFinder::addObject (const Object *object, const QPointF &position)
+{
+	for (auto *accMap : accessibilityMaps.values()) {
+		accMap->addObject(object, position);
+	}
+}
+
+
+void AStarPathFinder::removeObject (const Object *object, const QPointF &position)
+{
+	for (auto *accMap : accessibilityMaps.values()) {
+		accMap->removeObject(object, position);
+	}
+}
+
+
 AccessiblityMap *AStarPathFinder::getAccessiblityMap(const int gridSize, const Unit *unit)
 {
 	const auto it = accessibilityMaps.find(gridSize);

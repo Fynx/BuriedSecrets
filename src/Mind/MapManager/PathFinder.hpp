@@ -18,6 +18,8 @@ public:
 	PathFinder(const MapManager *mapManager);
 	virtual ~PathFinder() = default;
 	virtual QList<QPointF> getPath(const QPointF &source, const Object *object, const QPointF &target) = 0;
+	virtual void addObject(const Object *object, const QPointF &position) = 0;
+	virtual void removeObject(const Object *object, const QPointF &position) = 0;
 
 protected:
 	const MapManager *mapManager;

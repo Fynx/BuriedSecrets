@@ -15,3 +15,10 @@ bool DynamicAccessiblityMap::isAccessible(const Unit *unit, const QPoint &point)
 {
 	return mapManager->canStandOn(unit, undiscretize(point));
 }
+
+
+void DynamicAccessiblityMap::addObject(const Object *object, const QPointF &position)
+{}
+
+void DynamicAccessiblityMap::removeObject(const Object *object, const QPointF &position)
+{}

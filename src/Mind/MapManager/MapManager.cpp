@@ -38,6 +38,18 @@ QList<QPointF> MapManager::getPath(const Object *object, const QPointF &to)
 }
 
 
+void MapManager::addObject(const Object *object)
+{
+	pathFinder->addObject(object, physicsEngine->getPosition(object));
+}
+
+
+void MapManager::removeObject(const Object *object, const QPointF &position)
+{
+	pathFinder->removeObject(object, position);
+}
+
+
 bool MapManager::canStandOn(const Unit *unit, const QPointF &point) const
 {
 	float radius = unit->getPrototype()->getProperty(Properties::BaseRadius).toFloat();

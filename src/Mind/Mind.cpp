@@ -338,6 +338,13 @@ void Mind::addObject(Object *object, const QPointF &position, float angle)
 {
 	addObject(object);
 	physics->addObject(object, position, angle);
+	if (mapManager != nullptr) {
+		mapManager->addObject(object);
+	}
+
+	if (object->getType() == BS::Type::Unit) {
+		addEffect(Effect{Effects::UnitShadow, new ObjectEffectData{object}});
+	}
 }
 
 void Mind::addObject(Object *object)
@@ -345,10 +352,6 @@ void Mind::addObject(Object *object)
 	if (object == nullptr) {
 		err("Adding null object.");
 		return;
-	}
-
-	if (object->getType() == BS::Type::Unit) {
-		addEffect(Effect{Effects::UnitShadow, new ObjectEffectData{object}});
 	}
 
 	objects.append(object);
@@ -373,8 +376,12 @@ Object *Mind::createDefaultObject(BS::Type type, QString prototype)
 void Mind::removeObject(Object *object)
 {
 	qDebug() << "removeObject:" << object->getUid();
+	const auto position = physics->getPosition(object);
 	animatorManager->removeObject(object);
 	physics->removeObject(object);
+	if (mapManager != nullptr) {
+		mapManager->removeObject(object, position);
+	}
 	objects.removeAll(object);
 	uidToObject.remove(object->getUid());
 

@@ -24,7 +24,8 @@ class Unit;
 
 /**
  * @brief This class manages the map representation and can answer questions about Field of View, Fog of War, points
- * visiblity and accessibility per faction.
+ * visiblity and accessibility per faction. It needs to be updated about the creation and deletion of every object after
+ * it is instantiated, since it manages its internal view of the map.
  */
 class MapManager {
 public:
@@ -37,6 +38,15 @@ public:
 	 * @brief Returns a path from point from to point to.
 	 */
 	QList<QPointF> getPath(const Object *object, const QPointF &to);
+
+	/**
+	 * @brief Adds the object to the internal reprsentation of the map.
+	 */
+	void addObject(const Object *object);
+	/**
+	 * @brief Removes the object from the internal representation of the map.
+	 */
+	void removeObject(const Object *object, const QPointF &position);
 
 	/**
 	 * @brief True if a point can be walked onto.

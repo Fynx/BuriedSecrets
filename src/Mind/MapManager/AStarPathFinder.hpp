@@ -16,6 +16,8 @@ class AStarPathFinder : public PathFinder {
 public:
 	AStarPathFinder(const MapManager *mapManager, const Mind *mind);
 	QList<QPointF> getPath(const QPointF &source, const Object *object, const QPointF &target) override;
+	void addObject(const Object *object, const QPointF &position) override;
+	void removeObject(const Object *object, const QPointF &position) override;
 
 private:
 	struct Node {
