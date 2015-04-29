@@ -27,7 +27,7 @@ private:
 	static const QSize NotificationSize;
 
 	NotificationWidget *createNotification(JournalEntry *entry);
-    void updatePositions();
+	void updatePositions();
 
 	Mind *const mind_;
 	DataManager *const dataManager_;

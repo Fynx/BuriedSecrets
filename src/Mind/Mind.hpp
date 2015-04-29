@@ -13,6 +13,7 @@
 class AnimatorManager;
 class DataManager;
 class ItemConstructor;
+class JournalEntry;
 class Map;
 class MapManager;
 class PhysicsEngine;
@@ -57,6 +58,8 @@ public:
 	const Faction *getPlayerFaction() const;
 	QVector<const Object *> getAllObjects() const;
 
+	JournalEntry *getEntryFromType(BS::EntryType type);
+
 	void acceptPendingUnit(int uid);
 	void declinePendingUnit(int uid);
 
@@ -95,6 +98,7 @@ private:
 	QVector<Object *> objects;
 	QHash<const int, Object *> uidToObject;
 	QHash<const int, Faction *> factions;
+	QHash<BS::EntryType, JournalEntry *> entries;
 	QLinkedList<Effect> activeEffects;
 
 	bool basePolygonsEffectOn;

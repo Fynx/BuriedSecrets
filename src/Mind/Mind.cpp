@@ -198,6 +198,19 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 			break;
 		}
+		case BS::Type::JournalEntry: {
+			/**
+			 * Note that you can also take a quest entry from here. (wtf?!)
+			 */
+			JournalEntry *entry = dynamic_cast<JournalEntry *>(object);
+
+			if (entries.contains(entry->getEntryType()))
+				err("Duplicate entry types.");
+			else
+				entries[entry->getEntryType()] = entry;
+
+			break;
+		}
 		default:;
 		}
 	}
@@ -429,6 +442,15 @@ QVector<const Object *> Mind::getAllObjects() const
 		result.append(obj);
 	}
 	return result;
+}
+
+JournalEntry *Mind::getEntryFromType(EntryType type)
+{
+	if (!entries.contains(type)) {
+		warn("There is no entry with type " + BS::changeEntryTypeToString(type));
+		return nullptr;
+	}
+	return entries[type];
 }
 
 // FactionId should be set during adding to the pending set in faction

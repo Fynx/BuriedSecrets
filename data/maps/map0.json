@@ -2101,6 +2101,13 @@
 		},
 
 		{
+			"uid": 3102,
+			"name": "BasicJournalEntry",
+			"entryType": "death",
+			"title": "%1 has been deprived of all earthly concerns."
+		},
+
+		{
 			"uid": 3400,
 			"name": "BasicQuest",
 			"title": "Yhui",

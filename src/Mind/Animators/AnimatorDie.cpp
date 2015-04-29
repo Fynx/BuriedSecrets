@@ -4,6 +4,7 @@
 #include "Mind/Animators/AnimatorDie.hpp"
 
 #include "Mind/Mind.hpp"
+#include "GameObjects/Journal.hpp"
 #include "GameObjects/Unit.hpp"
 #include "DebugManager/DebugManager.hpp"
 
@@ -24,8 +25,12 @@ void AnimatorDie::act()
 			info("Unit dies. Id: " + QString::number(unit->getUid()));
 			if (unit->getLocation())
 				unit->getLocation()->removeUnit(unit->getUid());
-			if (mind->getFactionById(unit->getFactionId()))
+			if (mind->getFactionById(unit->getFactionId())) {
+				Journal *journal = mind->getFactionById(unit->getFactionId())->getJournal();
+				if (journal != nullptr)
+					journal->createEntryDeath(mind, unit);
 				mind->getFactionById(unit->getFactionId())->removeUnit(unit->getUid());
+			}
 			mind->removeObject(unit);
 			//delete unit;
 		}

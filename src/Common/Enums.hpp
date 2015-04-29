@@ -110,7 +110,8 @@ namespace BS {
 		Medicament,
 	};
 
-	inline uint qHash(const ItemType &itemType) {
+	inline uint qHash(const ItemType &itemType)
+	{
 		return static_cast<quint8>(itemType);
 	}
 
@@ -140,7 +141,8 @@ namespace BS {
 		Psycho,
 	};
 
-	inline uint qHash(const EntryType &entry) {
+	inline uint qHash(const EntryType &entry)
+	{
 		return static_cast<quint8>(entry);
 	}
 
