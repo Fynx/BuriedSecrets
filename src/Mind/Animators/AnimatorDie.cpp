@@ -21,7 +21,7 @@ void AnimatorDie::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		if (unit->getHP() <= 0){
+		if (unit->getHP() <= 0) {
 			info("Unit dies. Id: " + QString::number(unit->getUid()));
 			if (unit->getLocation())
 				unit->getLocation()->removeUnit(unit->getUid());

@@ -174,7 +174,13 @@ QJsonObject Faction::saveToJson() const
 		us.append(u);
 	json[Attributes::Units] = us;
 
-	json[Attributes::Journal] = journal->getUid();
+	QJsonArray rels;
+	for (int key : relations.keys())
+		rels.append(QJsonArray({key, relations[key]}));
+	json[Attributes::Relations] = rels;
+
+	if (journal != nullptr)
+		json[Attributes::Journal] = journal->getUid();
 
 	return json;
 }

@@ -66,10 +66,9 @@ void Location::loadFromJson(const QJsonObject &json)
 	}
 
 	if (json.contains(Attributes::UnitMet))
-			unitMet = json[Attributes::UnitMet].toInt();
-	if (json.contains(Attributes::ExitX) && json.contains(Attributes::ExitY)) {
+		unitMet = json[Attributes::UnitMet].toInt();
+	if (json.contains(Attributes::ExitX) && json.contains(Attributes::ExitY))
 		exitPoint = QPointF(json[Attributes::ExitX].toDouble(), json[Attributes::ExitY].toDouble());
-	}
 }
 
 QJsonObject Location::saveToJson() const
@@ -92,8 +91,12 @@ QJsonObject Location::saveToJson() const
 	if (!uts.isEmpty())
 		json[Attributes::Units] = uts;
 
+	if (unitMet != Object::InvalidUid)
+		json[Attributes::UnitMet] = unitMet;
+
 	json[Attributes::ExitX] = exitPoint.x();
 	json[Attributes::ExitY] = exitPoint.y();
+
 	return json;
 }
 

@@ -33,7 +33,7 @@ void AnimatorBAggressiveAtt::act()
 		}
 
 		const Object *enemy = unit->getNearestEnemy();
-		if (enemy){
+		if (enemy) {
 			unit->setCommand(Command::Attack);
 			unit->setTargetObject(enemy->getUid());
 		}

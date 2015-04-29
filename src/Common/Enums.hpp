@@ -58,22 +58,22 @@ namespace BS {
 	QString changeStateToString(BS::State state);
 
 	enum class Attitude : quint8 {
-		Aggressive,
-		Guard,
-		BuildingAggressive,
-		BuildingDefensive
+		Aggressive         = 0,
+		Guard              = 1,
+		BuildingAggressive = 2,
+		BuildingDefensive  = 3
 	};
 
 	enum class Command : quint8 {
-		None,  //Srsly, this should be first
-		Assemble,
-		Attack,
-		Disassemble,
-		Enter,
-		Heal,
-		Leave,
-		Move,
-		Base
+		None        = 0,
+		Assemble    = 1,
+		Attack      = 2,
+		Disassemble = 3,
+		Enter       = 4,
+		Heal        = 5,
+		Leave       = 6,
+		Move        = 7,
+		Base        = 8
 	};
 
 	enum Slot {

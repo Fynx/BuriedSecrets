@@ -290,13 +290,13 @@ void Unit::setNearestEnemy(const Object *obj)
 
 void Unit::loadFromJson(const QJsonObject &json)
 {
-	//TODO paths blablablah // <- Don't remember what...?
-
 	Object::loadFromJson(json);
 	Equipped::loadFromJson(json);
 
 	hp           = json[Attributes::HP].toInt();
 	psychosis    = json[Attributes::Psychosis].toInt();
+
+	command  = static_cast<BS::Command>(json[Attributes::Command].toInt());
 
 	if (json.contains(Attributes::PatrolRoute)) {
 		for (const QJsonValue &val : json[Attributes::PatrolRoute].toArray()) {
@@ -319,6 +319,8 @@ QJsonObject Unit::saveToJson() const
 
 	json[Attributes::HP]        = hp;
 	json[Attributes::Psychosis] = psychosis;
+
+	json[Attributes::Command]  = static_cast<int>(command);
 
 	QJsonArray jPatrolRoute;
 	for (const QPointF &point : patrolRoute) {

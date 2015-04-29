@@ -236,6 +236,8 @@ QJsonObject Mind::saveToJson() const
 
 	json.insert(MapProperties::MapName, mapManager->getMap()->getName());
 	json.insert(MapProperties::MapDesc, mapManager->getMap()->getDesc());
+	json.insert(MapProperties::MapWidth,  mapManager->getMap()->getSize().width());
+	json.insert(MapProperties::MapHeight, mapManager->getMap()->getSize().height());
 
 	for (Object *obj : objects) {
 		if (obj->isRemovable())

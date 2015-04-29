@@ -19,36 +19,30 @@ MapManager::MapManager(const QJsonObject &json, const Mind *mind, const PhysicsE
 	playerFOV{map.getSize().toSize()}
 {}
 
-
 MapManager::~MapManager()
 {
 	delete pathFinder;
 }
-
 
 const Map *MapManager::getMap() const
 {
 	return &map;
 }
 
-
 QList<QPointF> MapManager::getPath(const Object *object, const QPointF &to)
 {
 	return pathFinder->getPath(physicsEngine->getPosition(object), object, to);
 }
-
 
 void MapManager::addObject(const Object *object)
 {
 	pathFinder->addObject(object, physicsEngine->getPosition(object));
 }
 
-
 void MapManager::removeObject(const Object *object, const QPointF &position)
 {
 	pathFinder->removeObject(object, position);
 }
-
 
 bool MapManager::canStandOn(const Unit *unit, const QPointF &point) const
 {
@@ -81,12 +75,10 @@ bool MapManager::canStandOn(const Unit *unit, const QPointF &point) const
 	return true;
 }
 
-
 bool MapManager::canBeSeen(const Object* object) const
 {
 	return ((const VisibilityMap *)&playerFOV)->isVisible(nullptr, object, physicsEngine);
 }
-
 
 bool MapManager::hasBeenSeen(const QPointF &point, const int factionId) const
 {
@@ -101,7 +93,6 @@ bool MapManager::hasBeenSeen(const QPointF &point, const int factionId) const
 	return false;
 }
 
-
 bool MapManager::hasBeenSeen(const Object *object, const int factionId) const
 {
 	auto iter = FOWs.find(factionId);
@@ -115,12 +106,10 @@ bool MapManager::hasBeenSeen(const Object *object, const int factionId) const
 	return false;
 }
 
-
 bool MapManager::hasBeenSeen(const Object *object) const
 {
 	return hasBeenSeen(object, playerFactionId);
 }
-
 
 bool MapManager::pointInObject(const QPointF &point, const Object *object, const float inflate) const
 {
@@ -144,7 +133,6 @@ bool MapManager::pointInObject(const QPointF &point, const Object *object, const
 	return false;
 }
 
-
 const Object *MapManager::getObjectContaining(const QPointF &point, const float inflate) const
 {
 	float radius = 20.0f;
@@ -160,13 +148,11 @@ const Object *MapManager::getObjectContaining(const QPointF &point, const float 
 	return nullptr;
 }
 
-
 VisibilityUpdateDiff MapManager::getVisibleRegion() const
 {
 	assert(FOVs.contains(playerFactionId));
 	return FOVs[playerFactionId].getCurrentData();
 }
-
 
 QList<const Object *> MapManager::getVisibleObjects(const Unit *unit) const
 {
@@ -191,7 +177,6 @@ QList<const Object *> MapManager::getVisibleObjects(const Unit *unit) const
 	return result;
 }
 
-
 void MapManager::clearFieldOfView(const int factionId)
 {
 	FOVs[factionId].clear();
@@ -200,7 +185,6 @@ void MapManager::clearFieldOfView(const int factionId)
 		playerFOV.clear();
 	}
 }
-
 
 void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle circle, const int factionId)
 {
@@ -277,14 +261,12 @@ void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle circ
 	iter.value().update(update);
 }
 
-
 VisibilityUpdateDiff *MapManager::getVisibilityUpdatesDiff()
 {
 	auto *ptr = visibilityUpdatesDiff;
 	visibilityUpdatesDiff = new VisibilityUpdateDiff{};
 	return ptr;
 }
-
 
 QPointF MapManager::getPointOnCircleInline(const BS::Geometry::Circle &circle, const QPointF &p)
 {

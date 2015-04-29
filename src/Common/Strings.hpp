@@ -70,6 +70,7 @@ namespace Attributes {
 	const QString SearchDifficulty  = "searchDifficulty";
 	const QString Slots             = "slots";
 	const QString StartConditions   = "startConditions";   /** Quest */
+	const QString State             = "state";             /** Object */
 	const QString SuccessConditions = "successConditions"; /** Quest */
 	const QString Text              = "text";
 	const QString Title             = "title";             /** JournalEntry, Quest */

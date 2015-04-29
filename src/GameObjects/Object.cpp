@@ -92,6 +92,9 @@ void Object::loadFromJson(const QJsonObject &json)
 	uid = json[Attributes::Uid].toInt();
 	factionId = json[Attributes::Faction].toInt();
 	updateUid(uid);
+
+	if (json.contains(Attributes::State))
+		state = BS::changeStringToState(json[Attributes::State].toString());
 }
 
 QJsonObject Object::saveToJson() const
@@ -100,6 +103,9 @@ QJsonObject Object::saveToJson() const
 	json[Properties::Name] = getName();
 	json[Attributes::Uid] = getUid();
 	json[Attributes::Faction] = getFactionId();
+
+	json[Attributes::State] = BS::changeStateToString(state);
+
 	return json;
 }
 
