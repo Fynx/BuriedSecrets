@@ -3,8 +3,6 @@
  */
 #include "DataManager/DataManager.hpp"
 
-#include <cassert>
-
 #include "Common/Strings.hpp"
 #include "DataManager/TextureSetData.hpp"
 #include "DebugManager/DebugManager.hpp"
@@ -42,6 +40,10 @@ const Prototype *DataManager::getPrototype(const QString &name) const
 
 const Resource *DataManager::getResource(const QString &name) const
 {
+	if (!resources.contains(name)) {
+		err(QString("Resource ") + name + QString(" not found!"));
+		return nullptr;
+	}
 	return resources[name];
 }
 
@@ -49,7 +51,7 @@ const TextureSet *DataManager::getTextureSet(const QString &name) const
 {
 	if (!textureSets.contains(name)) {
 		err("TextureSet " + name + " not found!");
-		assert(false);
+		Q_ASSERT(false);
 	}
 
 	return textureSets[name];
@@ -117,7 +119,7 @@ void DataManager::loadPrototypes()
 
 		if (prototype->hasProperty(Data::TextureSet)) {
 			prototype->setTextureSetData(new TextureSetData(getTextureSet(
-					prototype->getProperty(Data::TextureSet).toString())));
+				prototype->getProperty(Data::TextureSet).toString())));
 		}
 
 		// Parsing for centre and base polygon (for those objects that have it).
@@ -159,7 +161,7 @@ void DataManager::loadResources()
 	QString resourcesListStr = readRawData(preffix + "ResourcesList.txt");
 	QStringList resourcesList = resourcesListStr.split('\n', QString::SkipEmptyParts);
 
-	QHash<QString, QList<QPair<QString, QString>>> textureSetsData;
+	QHash<QString, QList<QPair<QString, QString> > > textureSetsData;
 
 	/** Load all the resources from the list. */
 	int counter = 1;
@@ -183,12 +185,11 @@ void DataManager::loadResources()
 					Resource *resource = new Resource(data, resourceData.length());
 					resources[key] = resource;
 				} else if (typeString == Resources::TextureSet) {
-					// Load the data from the file.
+					/** Load the data from the file. */
 					QVariantMap texturesMap = obj[Data::Textures].toObject().toVariantMap();
-					QList<QPair<QString, QString>> textureSet;
-					for (auto it = texturesMap.constBegin(); it != texturesMap.constEnd(); ++it) {
+					QList<QPair<QString, QString> > textureSet;
+					for (auto it = texturesMap.constBegin(); it != texturesMap.constEnd(); ++it)
 						textureSet.append({it.key(), it.value().toString()});
-					}
 					textureSetsData[key] = textureSet;
 				} else if (typeString == Resources::Texture) {
 					// Create a new TextureData object.

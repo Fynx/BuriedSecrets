@@ -378,7 +378,6 @@ void Mind::removeObject(Object *object)
 	objects.removeAll(object);
 	uidToObject.remove(object->getUid());
 
-	//TODO I wonder it would probably be better with this logic here implemented in AnimatorDie
 	if (object->getType() == BS::Type::Unit)
 		removeObject(dynamic_cast<Unit *>(object)->getEquipment());
 	if (object->getType() == BS::Type::Faction)

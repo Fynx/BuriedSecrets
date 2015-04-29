@@ -127,8 +127,8 @@ void GraphicalFogOfWar::draw()
 }
 
 
-void GraphicalFogOfWar::drawUpdates(sf::RenderTexture& canvas, const VisibilityUpdateDiff& updateDiff,
-				    const QRectF &view, const float scale)
+void GraphicalFogOfWar::drawUpdates(sf::RenderTexture &canvas, const VisibilityUpdateDiff &updateDiff,
+                                    const QRectF &view, const float scale)
 {
 	QPointF scaledSize = viewport->fromMetresToPixels(view.bottomRight() - view.topLeft());
 	if ((int)canvas.getSize().x < (int)scaledSize.x() || (int)canvas.getSize().y < (int)scaledSize.y()) {
