@@ -216,6 +216,20 @@
 		"path": "images/Map0.png"
 	},
 
+	"Map1": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/Map1.png"
+	},
+
+	"Map2": {
+		"type": "texture",
+		"rows": 1,
+		"columns": 1,
+		"path": "images/Map2.png"
+	},
+
 	"ArrowDown": {
 		"type": "texture",
 		"rows": 1,

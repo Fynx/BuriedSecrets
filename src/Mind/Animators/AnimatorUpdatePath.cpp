@@ -48,6 +48,8 @@ void AnimatorUpdatePath::act()
 		if ((comm == Command::Assemble) || (comm == Command::Move)) {
 			to = unit->getTargetPoint();
 		}
+		if ((comm == Command::Move) && to.isNull())
+			continue;
 
 		if (from.isNull() || to.isNull()) {
 			unit->setCurrentPath(QList<QPointF>());

@@ -141,6 +141,20 @@
 		}
 	},
 
+	"Map1": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "Map1"
+		}
+	},
+
+	"Map2": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "Map2"
+		}
+	},
+
 	"ArrowDown": {
 		"type": "TextureSet",
 		"textures": {
