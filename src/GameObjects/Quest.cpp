@@ -84,6 +84,10 @@ void Quest::loadFromJson(const QJsonObject &json)
 	startConds   = fromJson(json[Attributes::StartConditions].toArray());
 	successConds = fromJson(json[Attributes::SuccessConditions].toArray());
 	failConds    = fromJson(json[Attributes::FailureConditions].toArray());
+
+	startEntry   = json[Attributes::StartEntry].toInt();
+	failEntry    = json[Attributes::FailureEntry].toInt();
+	successEntry = json[Attributes::SuccessEntry].toInt();
 }
 
 QJsonObject Quest::saveToJson() const
@@ -103,6 +107,10 @@ QJsonObject Quest::saveToJson() const
 	json[Attributes::StartConditions]   = toJson(startConds);
 	json[Attributes::SuccessConditions] = toJson(successConds);
 	json[Attributes::FailureConditions] = toJson(failConds);
+
+	json[Attributes::StartEntry]   = startEntry;
+	json[Attributes::FailureEntry] = failEntry;
+	json[Attributes::SuccessEntry] = successEntry;
 
 	return json;
 }
@@ -209,7 +217,7 @@ bool Quest::evaluateUnitMet(const Condition &c, Mind *mind, int factionId)
 void Condition::loadFromJson(const QJsonObject &json)
 {
 	Q_ASSERT(json.contains(Attributes::ConditionType));
-	type       = BS::changeStringToConditionType(json[Attributes::ConditionType].toString());
+	type = BS::changeStringToConditionType(json[Attributes::ConditionType].toString());
 	if (type == BS::ConditionType::Invalid)
 		warn("Invalid condition type.");
 
@@ -223,8 +231,8 @@ QJsonObject Condition::saveToJson() const
 
 	json[Attributes::ConditionType] = BS::changeConditionTypeToString(type);
 	if (isNegative)
-		json[Attributes::IsNegative]    = isNegative;
-	json[Attributes::Argument]      = argument;
+		json[Attributes::IsNegative] = isNegative;
+	json[Attributes::Argument] = argument;
 
 	return json;
 }

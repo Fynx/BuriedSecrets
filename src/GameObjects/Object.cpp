@@ -100,8 +100,8 @@ void Object::loadFromJson(const QJsonObject &json)
 QJsonObject Object::saveToJson() const
 {
 	QJsonObject json;
-	json[Properties::Name] = getName();
-	json[Attributes::Uid] = getUid();
+	json[Properties::Name]    = getName();
+	json[Attributes::Uid]     = getUid();
 	json[Attributes::Faction] = getFactionId();
 
 	json[Attributes::State] = BS::changeStateToString(state);

@@ -60,6 +60,7 @@ namespace Attributes {
 	const QString Faction           = "faction";
 	const QString FailureConditions = "failureConditions"; /** Condition */
 	const QString Food              = "food";
+	const QString FailureEntry      = "failureEntry";      /** Quest */
 	const QString HP                = "hp";
 	const QString IsNegative        = "isNegative";        /** Condition */
 	const QString Items             = "items";
@@ -70,8 +71,11 @@ namespace Attributes {
 	const QString SearchDifficulty  = "searchDifficulty";
 	const QString Slots             = "slots";
 	const QString StartConditions   = "startConditions";   /** Quest */
+	const QString StartEntry        = "startEntry";        /** Quest */
 	const QString State             = "state";             /** Object */
 	const QString SuccessConditions = "successConditions"; /** Quest */
+	const QString SuccessEntry      = "successEntry";      /** Quest */
+	const QString TargetPoint       = "targetPoint";       /** Unit */
 	const QString Text              = "text";
 	const QString Title             = "title";             /** JournalEntry, Quest */
 	const QString Uid               = "uid";

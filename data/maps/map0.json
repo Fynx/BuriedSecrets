@@ -65,7 +65,8 @@
 			"x": 50.0,
 			"y": 280.0,
 			"hp": 130,
-			"psychosis": 75
+			"psychosis": 75,
+			"targetPoint": [40.0, 280.0]
 		},
 
 

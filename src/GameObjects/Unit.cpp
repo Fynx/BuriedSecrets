@@ -307,6 +307,12 @@ void Unit::loadFromJson(const QJsonObject &json)
 			patrolRoute.append(QPointF(val.toArray()[0].toDouble(), val.toArray()[1].toDouble()));
 		}
 	}
+
+	QJsonArray tpa = json[Attributes::TargetPoint].toArray();
+	targetPoint = {tpa.first().toDouble(), tpa.last().toDouble()};
+
+	if (targetPoint.x() != 0)
+		qDebug() << "targetPoint:" << targetPoint;
 }
 
 QJsonObject Unit::saveToJson() const
@@ -320,7 +326,7 @@ QJsonObject Unit::saveToJson() const
 	json[Attributes::HP]        = hp;
 	json[Attributes::Psychosis] = psychosis;
 
-	json[Attributes::Command]  = static_cast<int>(command);
+	json[Attributes::Command] = static_cast<int>(command);
 
 	QJsonArray jPatrolRoute;
 	for (const QPointF &point : patrolRoute) {
@@ -329,6 +335,9 @@ QJsonObject Unit::saveToJson() const
 	}
 	if (!jPatrolRoute.isEmpty())
 		json[Attributes::PatrolRoute] = jPatrolRoute;
+
+	QJsonArray tpa = {targetPoint.x(), targetPoint.y()};
+	json[Attributes::TargetPoint] = tpa;
 
 	return json;
 }
