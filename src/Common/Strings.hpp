@@ -107,6 +107,11 @@ namespace Effects {
 	const QString Antipsychosis   = "AntipsychosisEffect";
 	const QString ShowPath        = "ShowPathEffect";
 	const QString UnitShadow      = "UnitShadowEffect";
+	const QString Miss            = "MissEffect";
+}
+
+namespace Decals {
+	const QString UnitHit         = "UnitHitDecal";
 }
 
 namespace EntryTypes {
@@ -144,6 +149,7 @@ namespace Resources {
 	const QString Texture       = "texture";
 	const QString ArrowDownCursor = "ArrowDown";
 	const QString TextureSet    = "TextureSet";
+	const QString BloodTextureSet = "Blood";
 }
 
 namespace Properties {                                     /** for Prototypes */

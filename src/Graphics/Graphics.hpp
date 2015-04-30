@@ -11,6 +11,7 @@
 #include "Graphics/GraphicsDataManager.hpp"
 
 class Camera;
+class DecalManager;
 class GraphicalEffectFactory;
 class GraphicalEntityFactory;
 class GraphicalFogOfWar;
@@ -66,6 +67,7 @@ private:
 	 * @brief Gets effects from mind and updates the inside state of entities to use them.
 	 */
 	void updateEffects(QVector<GraphicalEntity *> &visibleEntities);
+	bool handleDecal(const Effect &effect);
 
 	GraphicsDataManager graphicsDataManager;
 	QTimer renderTimer;
@@ -77,6 +79,7 @@ private:
 	int frames;
 	sf::RectangleShape rubberBand;
 	QSet<GraphicalEntity *> wasReset;	// A helper set for updating effects.
+	sf::RenderTexture mapRenderTexture;
 
 	// This pointer is just for convenience as it points to the widget.
 	sf::RenderWindow *canvas;
@@ -90,6 +93,7 @@ private:
 	sf::Sprite *mapSprite;
 	int *drawOrder;
 	GraphicalFogOfWar *FOW;
+	DecalManager *decalManager;
 
 private slots:
 	/**

@@ -6,6 +6,7 @@
 #include "Graphics/Camera.hpp"
 #include "Graphics/Effects/GraphicalEffectFactory.hpp"
 #include "Graphics/Entities/GraphicalEntityFactory.hpp"
+#include "Graphics/Decals/DecalManager.hpp"
 #include "Graphics/GraphicalFogOfWar.hpp"
 #include "Graphics/GraphicsWidget.hpp"
 #include "Mind/MapManager/MapManager.hpp"
@@ -20,7 +21,7 @@ Graphics::Graphics(const PhysicsEngine *physicsEngine, const DataManager *dataMa
 	: graphicsDataManager{dataManager}, showFPS{true}, showFOW{true}, timeElapsed{0.0f}, frames{0}
 	, widget{new GraphicsWidget}, graphicalEntityFactory{nullptr}, physicsEngine{physicsEngine}
 	, dataManager{dataManager}, mind{mind}, camera{nullptr}, mapSprite{nullptr}, drawOrder{new int[10000]}
-	, FOW{nullptr}
+	, FOW{nullptr}, decalManager{nullptr}
 {
 	canvas = widget;
 	fpsText.setFont(*graphicsDataManager.getFont("HEMIHEAD"));
@@ -60,6 +61,9 @@ void Graphics::startRendering(const Viewport *viewport, int framesIntervalms)
 	delete FOW;
 	FOW = new GraphicalFogOfWar{canvas, mapManager, viewport};
 
+	delete decalManager;
+	decalManager = new DecalManager(mapManager, &mapRenderTexture, &graphicsDataManager, camera->getViewport());
+
 	renderTimer.setInterval(framesIntervalms);
 	connect(&renderTimer, SIGNAL(timeout()), this, SLOT(render()));
 	renderTimer.start();
@@ -86,6 +90,9 @@ void Graphics::loadMap()
 	mapSprite = new sf::Sprite{
 			*(graphicsDataManager.getTextureSet(mapManager->getMap()->getName())->getFrame())};
 	mapSprite->setPosition(0, 0);
+	mapRenderTexture.create(mapSprite->getTexture()->getSize().x, mapSprite->getTexture()->getSize().y);
+	mapRenderTexture.draw(*mapSprite);
+	mapRenderTexture.display();
 }
 
 
@@ -111,6 +118,9 @@ void Graphics::render()
 
 	// Draw the map (can be a separate function).
 	if (mapSprite != nullptr) {
+		mapSprite->setTexture(mapRenderTexture.getTexture());
+		mapSprite->setTextureRect(sf::IntRect{0, 0, static_cast<int>(mapRenderTexture.getSize().x),
+						      static_cast<int>(mapRenderTexture.getSize().y)});
 		canvas->draw(*mapSprite);
 	}
 
@@ -271,6 +281,11 @@ void Graphics::updateEffects(QVector<GraphicalEntity *> &visibleEntities)
 	}
 
 	for (const Effect &effect : *effects) {
+		if (handleDecal(effect)) {
+			// FIXME remove used decals?
+			continue;	// The effect was a decal, already handled, move on.
+		}
+
 		const ObjectEffectData *objData = dynamic_cast<const ObjectEffectData *>(effect.getEffectData());
 
 		if (objData == nullptr) {
@@ -295,3 +310,15 @@ void Graphics::updateEffects(QVector<GraphicalEntity *> &visibleEntities)
 		entity->removeInactiveEffects();
 	}
 }
+
+
+bool Graphics::handleDecal(const Effect &effect)
+{
+	if (decalManager->isDecal(effect)) {
+		decalManager->drawDecal(effect);
+		return true;
+	}
+
+	return false;
+}
+

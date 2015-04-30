@@ -7,7 +7,8 @@
 #include <QDebug>
 
 
-bool isZero(const float x) {
+bool BS::Geometry::isZero(const float x)
+{
 	static const float eps = 0.001f;
 	return fabs(x) <= eps;
 }
@@ -15,7 +16,7 @@ bool isZero(const float x) {
 
 bool operator==(const BS::Geometry::Circle& a, const BS::Geometry::Circle& b)
 {
-	return a.centre == b.centre && isZero(a.radius - b.radius);
+	return a.centre == b.centre && BS::Geometry::isZero(a.radius - b.radius);
 }
 
 
@@ -54,8 +55,9 @@ bool BS::Geometry::circlesIntersect(const BS::Geometry::Circle &a, const BS::Geo
  * @brief A helper method able to tell if a point is on segment.
  */
 bool onSegment(const float detVal, const QPointF &begin, const QPointF &end, const QPointF &point) {
-	return isZero(detVal) && qMin(begin.x(), end.x()) <= point.x()  && point.x() <= qMax(begin.x(), end.x()) &&
-			qMin(begin.y(), end.y()) <= point.y() && point.y() <= qMax(begin.y(), end.y());
+	return BS::Geometry::isZero(detVal) && qMin(begin.x(), end.x()) <= point.x()  &&
+			point.x() <= qMax(begin.x(), end.x()) && qMin(begin.y(), end.y()) <= point.y() &&
+			point.y() <= qMax(begin.y(), end.y());
 }
 
 

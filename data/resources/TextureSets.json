@@ -160,5 +160,12 @@
 		"textures": {
 			"Idle": "ArrowDown"
 		}
+	},
+
+	"Blood": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "Blood"
+		}
 	}
 }

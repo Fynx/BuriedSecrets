@@ -14,6 +14,7 @@
 
 namespace BS {
 	namespace Geometry {
+		const float RADTOGEG = 57.2957795f;
 		const float PI = 3.1415926535f;
 		typedef QPolygonF Polygon;
 
@@ -51,6 +52,7 @@ namespace BS {
 			float A, B, C;
 		};
 
+		bool isZero(const float x);
 		float distance(const QPointF &a, const QPointF &b);
 		float vecToAngle(const QVector2D &v);
 		QVector2D angleToVec(float a);

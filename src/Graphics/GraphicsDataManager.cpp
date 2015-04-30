@@ -55,6 +55,9 @@ const GraphicalTextureSet *GraphicsDataManager::getTextureSet(const QString &nam
 		result = it->first;
 	}
 
+	if (result == nullptr) {
+		err("No texture for: " + name);
+	}
 	return result;
 }
 

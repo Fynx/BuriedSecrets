@@ -94,26 +94,37 @@ void AnimatorAttack::act()
 				weapon->getPrototype()->getProperty(Properties::Range).toFloat());
 
 		// Friendly fire out!
-		if (hit && (hit->getFactionId() == unit->getFactionId()))
+		if (hit && (hit->getFactionId() == unit->getFactionId())) {
 			continue;
+		}
 		info(unit->getName() + " is attacking! Distance: " + QString::number(dist));
 		weapon->setState(State::Shoot);
-		if (!hit){
+		if (!hit) {
 			info("Miss!");
 			hitPoint = from + (direction *
 					weapon->getPrototype()->getProperty(Properties::Range).toFloat()).toPointF();
-		}
-		else{
+			if (unit->getState() != State::Inside) {
+				mind->addEffect(Effect(Effects::Miss,
+						new PointToPointEffectData(mind->physicsEngine()->getPosition(unit),
+									   hitPoint),
+						600));
+			}
+		} else {
 			info("Object hit: " + hit->getName());
 			hit->property(TempData::Damage).setValue(
 					weapon->getPrototype()->getProperty(Properties::Damage).toInt() +
 					hit->property(TempData::Damage).toInt());
-			float hitDist = QVector2D(mind->physicsEngine()->getPosition(hit) - from).length();
-			hitPoint = from + (hitDist * direction.normalized()).toPointF();
+
+			if (hit->getType() == BS::Type::Unit) {
+				if (unit->getState() != State::Inside) {
+					mind->addEffect(Effect(Decals::UnitHit,
+							new PointToPointEffectData(
+									mind->physicsEngine()->getPosition(unit),
+									mind->physicsEngine()->getPosition(hit)),
+							600));
+				}
+			}
 		}
-		if (unit->getState() != State::Inside)
-			mind->addEffect(Effect(Effects::Shot,
-				new PointToPointEffectData(mind->physicsEngine()->getPosition(unit), hitPoint), 600));
 	}
 }
 
