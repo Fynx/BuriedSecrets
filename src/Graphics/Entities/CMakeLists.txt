@@ -4,6 +4,7 @@ set (Entities_SRCS
 	GraphicalEntity.cpp
 	GraphicalEntityFactory.cpp
 	LocationGraphicalEntity.cpp
+	MissEffectGraphicalEntity.cpp
 	MoveCommandEffectGraphicalEntity.cpp
 	ShotEffectGraphicalEntity.cpp
 	SpriteGraphicalEntity.cpp

@@ -144,12 +144,13 @@ namespace MapProperties {
 }
 
 namespace Resources {
-	const QString Font          = "font";
-	const QString Image         = "image";
-	const QString Texture       = "texture";
+	const QString Font            = "font";
+	const QString Image           = "image";
+	const QString Texture         = "texture";
 	const QString ArrowDownCursor = "ArrowDown";
-	const QString TextureSet    = "TextureSet";
+	const QString TextureSet      = "TextureSet";
 	const QString BloodTextureSet = "Blood";
+	const QString MissTextureSet  = "Miss";
 }
 
 namespace Properties {                                     /** for Prototypes */

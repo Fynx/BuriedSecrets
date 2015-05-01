@@ -242,5 +242,12 @@
 		"rows": 1,
 		"columns": 4,
 		"path": "images/Blood.png"
+	},
+
+	"Miss": {
+		"type": "texture",
+		"rows" : 1,
+		"columns": 1,
+		"path": "images/Miss.png"
 	}
 }

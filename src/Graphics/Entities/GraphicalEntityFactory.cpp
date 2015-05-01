@@ -11,6 +11,7 @@
 #include "Graphics/GraphicsDataManager.hpp"
 #include "Graphics/Entities/EnvironmentGraphicalEntity.hpp"
 #include "Graphics/Entities/LocationGraphicalEntity.hpp"
+#include "Graphics/Entities/MissEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/MoveCommandEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/ShotEffectGraphicalEntity.hpp"
 #include "Graphics/Entities/StaticGraphicalEntity.hpp"
@@ -135,6 +136,9 @@ EffectGraphicalEntity *GraphicalEntityFactory::getOrCreateEffectEntity(const Eff
 							ImageMetaData{BS::State::Idle, BS::ItemType::Invalid,
 								      BS::Graphic::Direction::Invalid, 0}
 					)};
+		} else if (name == Effects::Miss) {
+			ptr = new MissGraphicalEntity{viewport,
+						      graphicsDataManager->getTextureSet(Resources::MissTextureSet)};
 		}
 
 		if (!ptr) {

@@ -45,7 +45,6 @@ void BloodDecal::draw(sf::RenderTexture &renderTarget, const EffectData *effectD
 	QPointF scaleP = viewport->getWholeScale();
 	scaleP /= qMax(scaleP.x(), scaleP.y());
 	sprite.setScale(scaleP.x(), scaleP.y());
-	qDebug() << scaleP;
 
 	sprite.setColor(sf::Color{255, 255, 255, 100});
 

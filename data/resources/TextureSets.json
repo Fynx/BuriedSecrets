@@ -167,5 +167,12 @@
 		"textures": {
 			"Idle": "Blood"
 		}
+	},
+
+	"Miss": {
+		"type": "TextureSet",
+		"textures": {
+			"Idle": "Miss"
+		}
 	}
 }
