@@ -65,8 +65,9 @@ void AnimatorAssemble::act()
 
 		Object *fort = mind->createDefaultObject(BS::Type::Location, spawned);
 		mind->addObject(fort, unit->getTargetPoint(), unit->getTargetAngle());
-		fort->setFactionId(unit->getFactionId());
+
 		if (spawned == "Player Camp"){
+			fort->setFactionId(unit->getFactionId());
 			mind->getFactionById(unit->getFactionId())->setCamp(fort->getUid());;
 			mind->addEffect(Effect(Effects::Antipsychosis,
 					new ObjectRadiusEffectData(fort,

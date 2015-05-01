@@ -638,5 +638,62 @@
 		"basePolygon": [[0, 0], [4, 3], [-6, 44], [-12, 33]],
 		"transparent": true,
 		"obstacle": true
+	},
+
+
+	"Crack2-1": {
+		"type": "environment",
+		"basePolygon": [[0, 0], [0, 30], [28, 27.5], [28, 18.5]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Crack2-2": {
+		"type": "environment",
+		"basePolygon": [[0, -1], [22, 21], [27, 49], [43.5, 50], [31.5, -16], [0, -10.5]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Crack2-3": {
+		"type": "environment",
+		"basePolygon": [[1, 7], [-1, -30], [-1, -96], [-4, -95], [-15, -47.5], [-15.5, -26], [-27.5, 13.5]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Crack2-4": {
+		"type": "environment",
+		"basePolygon": [[0, 0], [47.5, 56.5], [47.5, -10.5], [2.5, -9]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Lake2-1": {
+		"type": "environment",
+		"basePolygon": [[0, 0], [-3.5, -10.5], [0, -24], [44, -48], [48.5, -47], [49.5, -41], [46, -26], [26, -8.5]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Forest2-1": {
+		"type": "environment",
+		"basePolygon": [[0, 0], [3, -29], [37.5, -38.5], [58, -72], [58, 0]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Forest2-2": {
+		"type": "environment",
+		"basePolygon": [[0, 0], [31, -66], [34.5, -110], [38, -117], [15.5, -157.5], [-17.5, -83]],
+		"transparent": true,
+		"obstacle": true
 	}
 }
+

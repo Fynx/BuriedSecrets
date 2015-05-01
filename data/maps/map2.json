@@ -256,7 +256,10 @@
 			"units": [102, 104, 106, 108, 110, 112, 114, 116,
 					  118, 120, 122, 124, 126, 128, 130, 132, 134, 136,
 					  138, 140, 142, 144, 146, 148, 150,
-					  152, 154, 156, 158, 160, 162],
+					  152, 154, 156, 158, 160, 162,
+					  164, 166, 168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200,
+					  202, 204, 206, 208, 210, 212, 214, 216, 218, 220, 222, 224, 226, 228, 230, 232, 234, 236, 238,
+					  240, 242, 244, 246, 248, 250, 252, 254],
 			"relations": [[1, -5], [2, 100]]
 		},
 
@@ -2199,6 +2202,584 @@
 				"weapon" : 560
 			}
 		},
+
+
+		{
+			"uid": 222,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 223,
+			"x": 5,
+			"y": 170.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [28, 460]
+			},
+
+
+		{
+			"uid": 223,
+			"name": "BasicEquipment",
+			"items": [561],
+			"slots": {
+				"weapon" : 561
+			}
+		},
+
+
+		{
+			"uid": 224,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 225,
+			"x": 8,
+			"y": 170.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [28, 460]
+			},
+
+
+		{
+			"uid": 225,
+			"name": "BasicEquipment",
+			"items": [562],
+			"slots": {
+				"weapon" : 562
+			}
+		},
+
+
+		{
+			"uid": 226,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 227,
+			"x": 5,
+			"y": 173.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [33, 460]
+			},
+
+
+		{
+			"uid": 227,
+			"name": "BasicEquipment",
+			"items": [563],
+			"slots": {
+				"weapon" : 563
+			}
+		},
+
+
+		{
+			"uid": 228,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 229,
+			"x": 8,
+			"y": 173.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [28, 450]
+			},
+
+
+		{
+			"uid": 229,
+			"name": "BasicEquipment",
+			"items": [564],
+			"slots": {
+				"weapon" : 564
+			}
+		},
+
+
+		{
+			"uid": 230,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 231,
+			"x": 5,
+			"y": 176.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [28, 468]
+			},
+
+
+		{
+			"uid": 231,
+			"name": "BasicEquipment",
+			"items": [565],
+			"slots": {
+				"weapon" : 565
+			}
+		},
+
+
+		{
+			"uid": 232,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 233,
+			"x": 8,
+			"y": 176.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [33, 460]
+			},
+
+
+		{
+			"uid": 233,
+			"name": "BasicEquipment",
+			"items": [566],
+			"slots": {
+				"weapon" : 566
+			}
+		},
+
+
+		{
+			"uid": 234,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 235,
+			"x": 3,
+			"y": 180.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [10, 455]
+			},
+
+
+		{
+			"uid": 235,
+			"name": "BasicEquipment",
+			"items": [567],
+			"slots": {
+				"weapon" : 567
+			}
+		},
+
+
+		{
+			"uid": 236,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 237,
+			"x": 7,
+			"y": 155.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [33, 440]
+			},
+
+
+		{
+			"uid": 237,
+			"name": "BasicEquipment",
+			"items": [568],
+			"slots": {
+				"weapon" : 568
+			}
+		},
+
+
+		{
+			"uid": 238,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 239,
+			"x": 2,
+			"y": 153.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [20, 470]
+			},
+
+
+		{
+			"uid": 239,
+			"name": "BasicEquipment",
+			"items": [569],
+			"slots": {
+				"weapon" : 569
+			}
+		},
+
+
+		{
+			"uid": 240,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 241,
+			"x": 142,
+			"y": 241.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [35, 470]
+			},
+
+
+		{
+			"uid": 241,
+			"name": "BasicEquipment",
+			"items": [570],
+			"slots": {
+				"weapon" : 570
+			}
+		},
+
+
+		{
+			"uid": 242,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 243,
+			"x": 134,
+			"y": 237.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [37, 469]
+			},
+
+
+		{
+			"uid": 243,
+			"name": "BasicEquipment",
+			"items": [571],
+			"slots": {
+				"weapon" : 571
+			}
+		},
+
+
+		{
+			"uid": 244,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 245,
+			"x": 131,
+			"y": 239.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [35, 465]
+			},
+
+
+		{
+			"uid": 245,
+			"name": "BasicEquipment",
+			"items": [572],
+			"slots": {
+				"weapon" : 572
+			}
+		},
+
+
+		{
+			"uid": 246,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 247,
+			"x": 137,
+			"y": 248.0,
+			"hp": 80,
+			"command": 7,
+			"targetPoint": [40, 475]
+			},
+
+
+		{
+			"uid": 247,
+			"name": "BasicEquipment",
+			"items": [573],
+			"slots": {
+				"weapon" : 573
+			}
+		},
+
+
+		{
+			"uid": 248,
+			"name": "MobWoman",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 249,
+			"x": 135,
+			"y": 243.0,
+			"hp": 65,
+			"command": 7,
+			"targetPoint": [44, 473]
+			},
+
+
+		{
+			"uid": 249,
+			"name": "BasicEquipment",
+			"items": [574],
+			"slots": {
+				"weapon" : 574
+			}
+		},
+
+
+		{
+			"uid": 250,
+			"name": "MobWoman",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 251,
+			"x": 137,
+			"y": 246.0,
+			"hp": 65,
+			"command": 7,
+			"targetPoint": [45, 470]
+			},
+
+
+		{
+			"uid": 251,
+			"name": "BasicEquipment",
+			"items": [575],
+			"slots": {
+				"weapon" : 575
+			}
+		},
+
+
+		{
+			"uid": 252,
+			"name": "MobWoman",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 253,
+			"x": 133,
+			"y": 244.0,
+			"hp": 65,
+			"command": 7,
+			"targetPoint": [41, 475]
+			},
+
+
+		{
+			"uid": 253,
+			"name": "BasicEquipment",
+			"items": [576],
+			"slots": {
+				"weapon" : 576
+			}
+		},
+
+
+		{
+			"uid": 254,
+			"name": "MobPeasant",
+			"animators": [
+				"AnimatorAnimation",
+				"AnimatorDie",
+				"AnimatorMove",
+				"AnimatorMobAttitude",
+				"AnimatorNearestEnemy",
+				"AnimatorUpdatePath",
+				"AnimatorUpdateFOV",
+				"AnimatorAttack",
+				"AnimatorApplyDamage",
+				"AnimatorWatchTarget"
+			],
+			"equipment": 255,
+			"x": 127,
+			"y": 238.0,
+			"hp": 65,
+			"command": 7,
+			"targetPoint": [40, 480]
+			},
+
+
+		{
+			"uid": 255,
+			"name": "BasicEquipment",
+			"items": [577],
+			"slots": {
+				"weapon" : 577
+			}
+		},
 		
 		
 		
@@ -2747,6 +3328,159 @@
 		},
 
 
+		{
+			"uid": 561,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 562,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 563,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 564,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 565,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 566,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 567,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 568,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 569,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 570,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 571,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 572,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 573,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 574,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 575,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 576,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
+		{
+			"uid": 577,
+			"name": "Pitchfork",
+			"animators": [
+				"AnimatorWeapon"
+			]
+		},
+
+
 
 
 
@@ -3263,16 +3997,68 @@
 			"text": "Before me things create were none,\nsave things Eternal, and eternal I endure.\nAll hope abandon ye who enter here.",
 			"date": "10.10.1010 10:10"
 		},
+
+
+		{
+			"uid": 3102,
+			"name": "BasicJournalEntry",
+			"title": "Secure the base",
+			"entryType": "quest",
+			"text": "Our bridge to the north has been discovered! \nWe can expect attack from two sides... unless you find something to block this path. ",
+			"date": "10.10.1010 10:10"
+		},
+
+
+		{
+			"uid": 3103,
+			"name": "BasicJournalEntry",
+			"title": "Secure the base",
+			"entryType": "quest",
+			"text": "Great job! Now, when you've stopped the attack, we can take care of more prozaic matters. Like food...",
+			"date": "10.10.1010 10:10"
+		},
+
+
+		{
+			"uid": 3104,
+			"name": "BasicJournalEntry",
+			"title": "Reach the temple",
+			"entryType": "quest",
+			"text": "We cannot stay here forever. \nWe're running out of food, with no hope for new supplies. Old diary left by the previous expedition mentions some kind of temple, hidden in the valey to the north. Local tribes use temples as a kind of granaries. If you want to surive, you must reach it! But remember, staying away from the base can have a terrible influence on ones mind. So take the base with you, as you move forward. ",
+			"date": "10.10.1010 10:10"
+		},
+
+
+		{
+			"uid": 3105,
+			"name": "BasicJournalEntry",
+			"title": "Survivor",
+			"entryType": "quest",
+			"text": "Searching the ruins you've found a note:\n \"I'm moving north, there are supplies! - Bob\" ",
+			"date": "10.10.1010 10:10"
+		},
+
+
+		{
+			"uid": 3106,
+			"name": "BasicJournalEntry",
+			"title": "Survivor",
+			"entryType": "quest",
+			"text": "You've met a survivor from the previous expedition.\nBob tells you about some ancient construction to the East. He doesn't know it's purpose but it's heavily guarded. He also mentions a useful method of hiding in the IKEA Bunker when there is no other shelter during attacks.",
+			"date": "10.10.1010 10:10"
+		},
 		
 
 		{
 			"uid": 3400,
 			"name": "BasicQuest",
 			"title": "Defend the base!",
+			"startEntry": 3102,
+			"successEntry": 3103,
 			"successConditions": [
 				{
 					"conditionType": "fragsCount",
-					"argument": 10
+					"argument": 13
 				}
 			]
 		},
@@ -3281,6 +4067,8 @@
 			"uid": 3401,
 			"name": "BasicQuest",
 			"title": "Reach the temple",
+			"isFinal": true,
+			"startEntry": 3104,
 			"startConditions": [
 				{
 					"conditionType": "questSuccess",
@@ -3299,6 +4087,8 @@
 			"uid": 3402,
 			"name": "BasicQuest",
 			"title": "Survivor",
+			"startEntry": 3105,
+			"successEntry": 3106,
 			"startConditions": [
 				{
 					"conditionType": "locationReached",
@@ -3311,6 +4101,76 @@
 					"argument": 4
 				}
 			]
+		},
+		
+		
+		
+		
+		
+		
+
+
+
+		{
+			"uid": 4001,
+			"name": "Crack2-1",
+			"animators": [],
+			"x": 14,
+			"y": 392
+		},
+		
+		
+		{
+			"uid": 4002,
+			"name": "Crack2-2",
+			"animators": [],
+			"x": 61,
+			"y": 415
+		},
+		
+		
+		{
+			"uid": 4003,
+			"name": "Crack2-3",
+			"animators": [],
+			"x": 61.5,
+			"y": 337
+		},
+		
+		
+		{
+			"uid": 4004,
+			"name": "Crack2-4",
+			"animators": [],
+			"x": 142,
+			"y": 209
+		},
+		
+		
+		{
+			"uid": 4005,
+			"name": "Lake2-1",
+			"animators": [],
+			"x": 129,
+			"y": 334
+		},
+		
+		
+		{
+			"uid": 4006,
+			"name": "Forest2-1",
+			"animators": [],
+			"x": 139,
+			"y": 470
+		},
+		
+		
+		{
+			"uid": 4007,
+			"name": "Forest2-2",
+			"animators": [],
+			"x": 56,
+			"y": 226
 		}
 	]
 }
