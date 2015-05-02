@@ -46,8 +46,11 @@ void UnitSection::refresh()
 	if (lastKnownHP_ == hp && hp * 100 > unit_->getMaxHP() * CriticalPercentHP)
 		setStyleSheet("#myObject {}");
 	else {
+		if (lastKnownHP_ < hp)
+			setStyleSheet("#myObject { border: 2px solid green; }");
+		else
+			setStyleSheet("#myObject { border: 2px solid red; }");
 		lastKnownHP_ = hp;
-		setStyleSheet("#myObject { border: 2px solid red; }");
 	}
 
 	switch(unit_->getAttitude()) {

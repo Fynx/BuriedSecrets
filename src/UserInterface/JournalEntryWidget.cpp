@@ -37,11 +37,13 @@ void JournalEntryWidget::initLayout()
 
 	title_ = new QLabel;
 	title_->setFont(TitleFont);
+	title_->setWordWrap(true);
 	title_->setAlignment(Qt::AlignCenter);
 	layout->addWidget(title_);
 
 	text_ = new QLabel;
 	text_->setFont(DetailsFont);
+	text_->setWordWrap(true);
 	text_->setAlignment(Qt::AlignLeft);
 	layout->addWidget(text_);
 

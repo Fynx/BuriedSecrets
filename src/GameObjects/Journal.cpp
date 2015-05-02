@@ -59,6 +59,7 @@ JournalEntry *Journal::createEntryDeath(Mind *mind, Unit *who)
 
 	QString title = mind->getEntryFromType(BS::EntryType::Death)->getTitle();
 	entry->setTitle(title.arg(who->getName()));
+	entry->setEntryType(BS::EntryType::Death);
 
 	return entry;
 }
@@ -76,6 +77,7 @@ JournalEntry *Journal::createEntryItemFound(Mind *mind, Unit *who, const QVector
 
 	QString title = mind->getEntryFromType(BS::EntryType::ItemFound)->getTitle();
 	entry->setTitle(title.arg(itemsString));
+	entry->setEntryType(BS::EntryType::ItemFound);
 // 	entry->setTitle(who->getName() + " found items: " + itemsString);
 
 	return entry;
@@ -87,6 +89,7 @@ JournalEntry *Journal::createEntryPsycho(Mind *mind, Unit *who)
 
 	QString title = mind->getEntryFromType(BS::EntryType::Psycho)->getTitle();
 	entry->setTitle(title.arg(who->getName()));
+	entry->setEntryType(BS::EntryType::Psycho);
 // 	entry->setTitle(who->getName() + " got psychoed. Get mlged scrub");
 
 	return entry;
@@ -98,6 +101,7 @@ JournalEntry *Journal::createEntryQuest(Mind *mind, int entryUid)
 {
 	JournalEntry *entry = dynamic_cast<JournalEntry *>(mind->getObjectFromUid(entryUid));
 	addEntry(entry);
+	entry->setEntryType(BS::EntryType::Quest);
 
 	return entry;
 }

@@ -53,7 +53,7 @@ void JournalWindow::refresh()
 		auto lwi = new QListWidgetItem(entry->getTitle(), entriesList_);
 		lwi->setFlags(Qt::ItemFlag::ItemIsSelectable | Qt::ItemIsEnabled);
 		lwi->setData(Qt::UserRole, entry->getUid());
-		lwi->setFont(QFont("Times", 18));
+		lwi->setFont(QFont("Times", 16));
 	}
 
 	if (entriesList_->count() > 0)

@@ -13,7 +13,7 @@ const int NotificationPanel::PanelHeight = 500;
 const int NotificationPanel::DisplayLimit = 8;
 const int NotificationPanel::DisplayTime = 3000;
 const int NotificationPanel::TimerInterval = 100;
-const QSize NotificationPanel::NotificationSize{200, 50};
+const QSize NotificationPanel::NotificationSize{250, 50};
 
 NotificationPanel::NotificationPanel(Mind *m, DataManager *dm, QWidget *mainWidget)
 	: mind_(m),
