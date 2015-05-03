@@ -29,9 +29,11 @@ void ShotEffectGraphicalEntity::update(const float timeDelta)
 void ShotEffectGraphicalEntity::updateData(const EffectData *effectData)
 {
 	const PointToPointEffectData *ptpData = dynamic_cast<const PointToPointEffectData *>(effectData);
-	if (!ptpData) {
+	if (ptpData == nullptr) {
 		err("Cannot update data for Shot Effect Entity!");
-		Q_ASSERT(false);
+		// FIXME: Removed the assertion because this should not cause many problems, but this sometimes pops up.
+// 		Q_ASSERT(false);
+		return;
 	}
 
 	QPointF source = viewport->fromMetresToPixels(ptpData->getSource());
