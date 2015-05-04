@@ -37,6 +37,3 @@ void AnimatorAggressiveAtt::act()
 		}
 	}
 }
-
-
-

@@ -81,6 +81,9 @@ public:
 	void toggleBasePolygons();
 	void toggleShowPaths();
 
+	int getSecsSinceBeginning() const;
+	void incSecsSinceBeginning();
+
 private:
 	Object *createObject(BS::Type type, const QString &name);
 	Object *createObjectFromJson(const QString &name, const QJsonObject &json);
@@ -103,4 +106,6 @@ private:
 
 	bool basePolygonsEffectOn;
 	bool showPathsEffectOn;
+
+	int secsSinceBeginning;
 };

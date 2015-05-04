@@ -4003,7 +4003,7 @@
 		{
 			"uid": 3102,
 			"name": "BasicJournalEntry",
-			"title": "Secure the base",
+			"title": "Defend the base",
 			"entryType": "quest",
 			"text": "Our bridge to the north has been discovered! \nWe can expect attack from two sides... unless you find something to block this path. ",
 			"date": "10.10.1010 10:10"
@@ -4065,6 +4065,12 @@
 			"title": "Defend the base!",
 			"startEntry": 3102,
 			"successEntry": 3103,
+			"startConditions": [
+				{
+					"conditionType": "timeCount",
+					"argument": 5
+				}
+			],
 			"successConditions": [
 				{
 					"conditionType": "fragsCount",

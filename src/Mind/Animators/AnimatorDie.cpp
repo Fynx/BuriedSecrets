@@ -28,8 +28,8 @@ void AnimatorDie::act()
 			int attackerUid = unit->property(TempData::Attacker).toInt();
 			Unit *attacker = static_cast<Unit *>(mind->getObjectFromUid(attackerUid));
 			if (attacker != nullptr) {
-				qDebug() << attacker->getName() << "fragged" << unit->getName();
 				attacker->incFrags();
+				mind->getFactionById(attacker->getFactionId())->incTotalFrags();
 			}
 
 			if (unit->getLocation())

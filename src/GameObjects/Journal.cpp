@@ -58,6 +58,11 @@ JournalEntry *Journal::createEntryDeath(Mind *mind, Unit *who)
 	JournalEntry *entry = createEntry(mind);
 	JournalEntry *baseEntry = mind->getEntryFromType(BS::EntryType::Death);
 
+	if (baseEntry == nullptr) {
+		entry->setTitle(who->getName() + " died.");
+		return entry;
+	}
+
 	entry->setTitle(baseEntry->getTitle().arg(who->getName()));
 
 	QString text = baseEntry->getText().arg(who->getName());

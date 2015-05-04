@@ -5,9 +5,9 @@
 
 #include "Mind/Animators/Animator.hpp"
 
-class AnimatorAggressiveAtt : public Animator {
+class AnimatorTime : public Animator {
 public:
-	AnimatorAggressiveAtt(Mind *mind);
+	AnimatorTime(Mind *mind);
 
 	void act();
 };

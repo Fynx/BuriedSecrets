@@ -10,9 +10,8 @@
 #include "GameObjects/Unit.hpp"
 
 Faction::Faction(const Prototype *prototype)
-	: Object(prototype), journalUid(Object::InvalidUid), journal(nullptr)
-{
-}
+	: Object(prototype), journalUid(Object::InvalidUid), journal(nullptr), totalFrags(0)
+{}
 
 BS::Type Faction::getType() const
 {
@@ -92,8 +91,8 @@ bool Faction::isNeutralFaction(int uid) const
 {
 	if (uid == 0)
 		return true;
-	if (!relations.contains(uid))
-		qDebug() << "No such faction! " << uid;
+// 	if (!relations.contains(uid))
+// 		qDebug() << "No such faction! " << uid;
 	return relations.value(uid) > 0;
 }
 
@@ -104,8 +103,8 @@ bool Faction::isFriendly(const Object *obj)
 
 void Faction::modifyRelation(int uid, int diff)
 {
-	if (!relations.contains(uid))
-		qDebug() << "No such faction! " << uid;
+// 	if (!relations.contains(uid))
+// 		qDebug() << "No such faction! " << uid;
 	relations[uid] += diff;
 }
 
@@ -136,6 +135,16 @@ QList<int> Faction::getQuests() const
 	return quests;
 }
 
+int Faction::getTotalFrags() const
+{
+	return totalFrags;
+}
+
+void Faction::incTotalFrags()
+{
+	++totalFrags;
+}
+
 void Faction::loadFromJson(const QJsonObject &json)
 {
 	Object::loadFromJson(json);
@@ -159,6 +168,8 @@ void Faction::loadFromJson(const QJsonObject &json)
 
 	for (const QJsonValue &value : json[Attributes::Quests].toArray())
 		quests.append(value.toInt());
+
+	totalFrags = json[Attributes::Frags].toInt();
 }
 
 QJsonObject Faction::saveToJson() const
@@ -189,6 +200,8 @@ QJsonObject Faction::saveToJson() const
 	for (int quest : quests)
 		qus.append(quest);
 	json[Attributes::Quests] = qus;
+
+	json[Attributes::Frags] = totalFrags;
 
 	return json;
 }

@@ -30,7 +30,8 @@ Mind::Mind(DataManager *dataManager, PhysicsEngine *physicsEngine, SoundsManager
 	  constructor(new ItemConstructor(dataManager, this)),
 	  gameState(BS::GameState::Running),
 	  basePolygonsEffectOn(false),
-	  showPathsEffectOn(false)
+	  showPathsEffectOn(false),
+	  secsSinceBeginning(0)
 {
 	info("Mind initialized");
 	soundsManager->onEvent(QString("test: success"));
@@ -346,6 +347,16 @@ void Mind::toggleShowPaths()
 	showPathsEffectOn = !showPathsEffectOn;
 }
 
+int Mind::getSecsSinceBeginning() const
+{
+	return secsSinceBeginning;
+}
+
+void Mind::incSecsSinceBeginning()
+{
+	++secsSinceBeginning;
+}
+
 void Mind::addObject(Object *object, const QPointF &position, float angle)
 {
 	addObject(object);
@@ -431,15 +442,15 @@ const Object *Mind::getObjectFromUid(const int uid) const
 
 Faction *Mind::getFactionById(int id)
 {
-	if (!factions.contains(id))
-		qDebug() << "No such Faction! " << id;
+// 	if (!factions.contains(id))
+// 		qDebug() << "No such Faction! " << id;
 	return factions.value(id);
 }
 
 const Faction *Mind::getFactionById(int id) const
 {
-	if (!factions.contains(id))
-		qDebug() << "No such Faction! " << id;
+// 	if (!factions.contains(id))
+// 		qDebug() << "No such Faction! " << id;
 	return factions.value(id);
 }
 

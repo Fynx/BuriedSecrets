@@ -32,6 +32,7 @@ set (Anims_SRCS
 	AnimatorNearestEnemy.cpp
 	AnimatorKickOut.cpp
 	AnimatorQuest.cpp
+	AnimatorTime.cpp
 )
 
 set (Anims_HDRS

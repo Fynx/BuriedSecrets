@@ -45,6 +45,9 @@ public:
 
 	QList<int> getQuests() const;
 
+	int getTotalFrags() const;
+	void incTotalFrags();
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
@@ -55,6 +58,8 @@ private:
 	int journalUid;
 	Journal *journal;
 	QList<int> quests;
+
+	int totalFrags;
 
 	int campUid;
 	double campRange;

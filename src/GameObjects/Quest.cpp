@@ -118,8 +118,10 @@ QJsonObject Quest::saveToJson() const
 
 bool Quest::evaluateConditions(const QList<Condition> &cond, Mind *mind, int factionId)
 {
+	if (cond.isEmpty())
+		return false;
 	bool res = true;
-	for (Condition c : cond){
+	for (Condition c : cond) {
 		switch (c.type){
 		case ConditionType::QuestSuccess:
 			res = res && evaluateQuestSuccess(c, mind, factionId);
@@ -165,11 +167,8 @@ bool Quest::evaluateFoodCount(const Condition &c, Mind *mind, int factionId)
 
 bool Quest::evaluateFragsCount(const Condition &c, Mind *mind, int factionId)
 {
-	QSet<int> units = mind->getFactionById(factionId)->getUnitsUids();
-	int frags = 0;
-	for (int unit : units)
-		frags += static_cast<Unit *>(mind->getObjectFromUid(unit))->getFrags();
-	bool res = frags >= c.argument;
+	int frags = mind->getFactionById(factionId)->getTotalFrags();
+	bool res = (frags >= c.argument);
 	return res ^ c.isNegative;
 }
 
@@ -210,7 +209,8 @@ bool Quest::evaluateQuestSuccess(const Condition &c, Mind *mind, int factionId)
 
 bool Quest::evaluateTimeCount(const Condition &c, Mind *mind, int factionId)
 {
-	return true;
+	bool res = mind->getSecsSinceBeginning() >= c.argument;
+	return res ^ c.isNegative;
 }
 
 bool Quest::evaluateUnitMet(const Condition &c, Mind *mind, int factionId)
