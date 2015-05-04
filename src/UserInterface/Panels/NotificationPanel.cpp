@@ -19,11 +19,10 @@ NotificationPanel::NotificationPanel(Mind *m, DataManager *dm, QWidget *mainWidg
 	: mind_(m),
 	  dataManager_(dm),
 	  mainWidget_(mainWidget),
-	  knownJournalEntries_(0),
-	  notificationTimer_(new QTimer)
+	  knownJournalEntries_(0)
 {
-	connect(notificationTimer_, &QTimer::timeout, this, &NotificationPanel::updateNotifications);
-	notificationTimer_->start(TimerInterval);
+	connect(&notificationTimer_, &QTimer::timeout, this, &NotificationPanel::updateNotifications);
+	notificationTimer_.start(TimerInterval);
 }
 
 void NotificationPanel::adjustPanelGeometry(const QRect &mainWindowGeometry, const QSize &unitsPanelSize)

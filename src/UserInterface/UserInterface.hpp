@@ -34,10 +34,10 @@ public:
 private:
 	enum class Window : quint8 {
 		MainMenu,
-		Game,
 		PostGameMenu,
 		LoadGameMenu,
 		SaveGameMenu,
+		Game,
 };
 
 	General *const general_;
@@ -57,7 +57,6 @@ private:
 
 	//DEV TMP
 	void initDevActionsMenu();
-	bool gameEnded_;
 
 private slots:
 	void onShowMainMenu();

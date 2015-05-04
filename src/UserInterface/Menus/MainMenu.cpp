@@ -22,8 +22,6 @@ void MainMenu::adjustButtonsVisibility()
 {
 	continueBtn_->setVisible(userInterface_->gameInProgress());
 	saveGameBtn_->setVisible(userInterface_->gameInProgress());
-	//TMP due to WTF
-	loadGameBtn_->setVisible(userInterface_->gameInProgress());
 }
 
 void MainMenu::keyPressEvent(QKeyEvent *event)

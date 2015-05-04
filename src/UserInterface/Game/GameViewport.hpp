@@ -40,7 +40,7 @@ private:
 	Mind *const mind_;
 	BoardWidget *boardWidget_;
 	Viewport viewport_;
-	QTimer *edgeMoveTimer_;
+	QTimer edgeMoveTimer_;
 
 private slots:
 	void checkForViewportMove();

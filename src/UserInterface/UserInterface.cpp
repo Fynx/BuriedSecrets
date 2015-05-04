@@ -22,8 +22,7 @@ UserInterface::UserInterface(General *general, DataManager *dataManager)
 	  postGameMenu_(new PostGameMenu),
 	  mainMenu_(new MainMenu(this)),
 	  loadGameMenu_(new LoadGameMenu),
-	  saveGameMenu_(new SaveGameMenu),
-	  gameEnded_(false)
+	  saveGameMenu_(new SaveGameMenu)
 {
 	Q_INIT_RESOURCE(UI_data);
 
@@ -51,13 +50,12 @@ Viewport *UserInterface::getViewport()
 
 bool UserInterface::gameInProgress() const
 {
-	return (gameWindow_ != nullptr) && !gameEnded_;
+	return (gameWindow_ != nullptr);
 }
 
 void UserInterface::newGame(Mind *mind, BoardWidget *boardWidget)
 {
 	gameWindow_ = new GameInterface(mind, dataManager_, boardWidget);
-	gameEnded_ = false;
 
 	connect(gameWindow_, &GameInterface::showMainMenu, this, &UserInterface::onShowMainMenu);
 	connect(gameWindow_, &GameInterface::gameEnded, this, &UserInterface::onGameEnded);
@@ -90,7 +88,6 @@ void UserInterface::initLayout()
 	stackedWidget_ = new QStackedWidget;
 	stackedWidget_->insertWidget(static_cast<int>(Window::MainMenu), mainMenu_);
 	stackedWidget_->insertWidget(static_cast<int>(Window::PostGameMenu), postGameMenu_);
-	//FIXME If load / save in different order load before new game opens correctly WTF?!
 	stackedWidget_->insertWidget(static_cast<int>(Window::LoadGameMenu), loadGameMenu_);
 	stackedWidget_->insertWidget(static_cast<int>(Window::SaveGameMenu), saveGameMenu_);
 
@@ -111,6 +108,7 @@ void UserInterface::clearGame()
 		disconnect(gameWindow_, &GameInterface::gameEnded, this, &UserInterface::onGameEnded);
 		stackedWidget_->removeWidget(gameWindow_);
 		delete gameWindow_;
+		gameWindow_ = nullptr;
 	}
 }
 
@@ -156,20 +154,21 @@ void UserInterface::onShowMainMenu()
 
 void UserInterface::onGameEnded(BS::GameState gs)
 {
-	general_->pauseGame();
+	general_->endGame();
 	postGameMenu_->setEnding(gs);
 	switchToWindow(Window::PostGameMenu);
 }
 
 void UserInterface::onAfterGame()
 {
-	gameEnded_ = true;
 	mainMenu_->adjustButtonsVisibility();
 	switchToWindow(Window::MainMenu);
 }
 
 void UserInterface::onNewGame()
 {
+	if (gameInProgress())
+		general_->endGame();
 	general_->startNewGame();
 }
 

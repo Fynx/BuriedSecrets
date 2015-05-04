@@ -33,6 +33,7 @@ public slots:
 	void startNewGame();
 	void loadGame(const QString &path);
 	void saveGame(const QString &path);
+	void endGame();
 
 	void pauseGame();
 	void resumeGame();
@@ -41,7 +42,7 @@ private:
 	void clearGameModules();
 	void launchGame(const QString &path);
 
-	bool gameStarted_;
+	bool gameInProgress_;
 
 	//Permanent modules
 	DebugManager  *debugManager;

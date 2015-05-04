@@ -19,7 +19,6 @@ GameInterface::GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget 
 	  mind_(m),
 	  dataManager_(dm),
 	  boardWidget_(bw),
-	  updateTimer_(new QTimer),
 	  isPaused_(false),
 	  gameWindows_(m, dm),
 	  gameViewport_(m, bw),
@@ -38,7 +37,12 @@ GameInterface::GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget 
 	connect(&gameCommands_, &GameCommands::visitBase, &gameWindows_, &GameWindows::showVisitWindow);
 	connect(&gameWindows_, &GameWindows::pauseGame, this, &GameInterface::pauseGame);
 	connect(&gameWindows_, &GameWindows::resumeGame, this, &GameInterface::resumeGame);
-	connect(updateTimer_, &QTimer::timeout, this, &GameInterface::refresh);
+	connect(&updateTimer_, &QTimer::timeout, this, &GameInterface::refresh);
+}
+
+GameInterface::~GameInterface()
+{
+	delete notificationPanel_;
 }
 
 Viewport *GameInterface::viewport()
@@ -51,7 +55,7 @@ void GameInterface::startUpdateLoop()
 	info("Starting UI update loop.");
 
 	update();
-	updateTimer_->start(UpdateTimerInterval);
+	updateTimer_.start(UpdateTimerInterval);
 	info("Loop started successfully.");
 }
 
@@ -102,7 +106,6 @@ void GameInterface::initNotificationPanel()
 void GameInterface::refresh()
 {
 	if (mind_->getGameState() != BS::GameState::Running) {
-		updateTimer_->stop();
 		emit gameEnded(mind_->getGameState());
 		return;
 	}

@@ -14,7 +14,6 @@ target_link_libraries (BuriedSecrets
 	${Qt5Widgets_LIBRARIES}
 	${SFML_LIBRARIES}
 	${SFML_DEPENDENCIES}
-	Xcursor
 	DataManager
 	DebugManager
 	GameObjects

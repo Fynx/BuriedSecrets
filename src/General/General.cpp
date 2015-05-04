@@ -7,7 +7,7 @@
 #include "PhysicsEngine/Box2DEngine.hpp"
 
 General::General()
-	: gameStarted_(false),
+	: gameInProgress_(false),
 	  debugManager(new DebugManager),
 	  dataManager(new DataManager),
 	  userInterface(new UserInterface(this, dataManager)),
@@ -52,6 +52,11 @@ void General::saveGame(const QString &path)
 	info("Done.");
 }
 
+void General::endGame()
+{
+	clearGameModules();
+}
+
 void General::saveLevel()
 {
 	info("Saving level...");
@@ -64,12 +69,10 @@ void General::toggleDisplayBasePolygons()
 	mind->toggleBasePolygons();
 }
 
-
 void General::toggleDisplayFOW()
 {
 	graphics->toggleFogOfWar();
 }
-
 
 void General::toggleShowPaths()
 {
@@ -84,7 +87,7 @@ void General::toggleDisplayFPS()
 
 void General::pauseGame()
 {
-	if (!gameStarted_)
+	if (!gameInProgress_)
 		return;
 
 	mind->pauseGame();
@@ -93,7 +96,7 @@ void General::pauseGame()
 
 void General::resumeGame()
 {
-	if (!gameStarted_)
+	if (!gameInProgress_)
 		return;
 
 	mind->resumeGame();
@@ -111,13 +114,14 @@ void General::clearGameModules()
 	delete physicsEngine;
 	delete soundsManager;
 
+	gameInProgress_ = false;
+
 	info("Done.");
 }
 
 void General::launchGame(const QString &path)
 {
-	gameStarted_ = true;
-	clearGameModules();
+	gameInProgress_ = true;
 
 	soundsManager = new SoundsManager;
 	physicsEngine = new Box2DEngine;

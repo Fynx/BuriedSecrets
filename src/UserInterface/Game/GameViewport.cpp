@@ -20,17 +20,16 @@ const qreal GameViewport::ViewportZoomDelta = 0.05f;
 GameViewport::GameViewport(Mind *mind, BoardWidget *boardWidget)
 	: mind_(mind),
 	  boardWidget_(boardWidget),
-	  viewport_(new IsometricPerspective(pixelToMetresScale)),
-	  edgeMoveTimer_(new QTimer)
+	  viewport_(new IsometricPerspective(pixelToMetresScale))
 {
 	//init Viewport
 	viewport_.setMapSize(mind_->getMap()->getSize());
 	//center on camp
 	showObject(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
 
-	connect(edgeMoveTimer_, &QTimer::timeout, this, &GameViewport::checkForViewportMove);
+	connect(&edgeMoveTimer_, &QTimer::timeout, this, &GameViewport::checkForViewportMove);
 
-	edgeMoveTimer_->start(EdgeViewportMoveTimerInterval);
+	edgeMoveTimer_.start(EdgeViewportMoveTimerInterval);
 }
 
 const Viewport *GameViewport::viewport() const

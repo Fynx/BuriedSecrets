@@ -37,7 +37,7 @@ private:
 	QRect availableSize_;
 	QVector<QPair<NotificationWidget*, int>> displayedNotifications_;
 	QQueue<JournalEntry *> entriesToShow_;
-	QTimer *notificationTimer_;
+	QTimer notificationTimer_;
 
 private slots:
 	void updateNotifications();

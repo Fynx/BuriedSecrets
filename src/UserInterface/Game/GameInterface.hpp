@@ -26,6 +26,7 @@ public:
 	static const int UpdateTimerInterval; //in milliseconds
 
 	GameInterface(Mind *m, DataManager *dm, BoardWidget *bw, QWidget *parent = nullptr);
+    virtual ~GameInterface();
 
 	Viewport *viewport();
 
@@ -54,7 +55,7 @@ private:
 	FactionPanel *factionPanel_;
 	NotificationPanel *notificationPanel_;
 
-	QTimer *updateTimer_;
+	QTimer updateTimer_;
 	bool isPaused_;
 
 	GameWindows gameWindows_;
