@@ -38,6 +38,7 @@ private:
 
 	float sizeScale;
 	QRectF previousView;
+	VisibilityUpdateDiff previousVisibleRegion;
 
 	sf::Sprite FOVSprite;
 	sf::Sprite FOWSprite;

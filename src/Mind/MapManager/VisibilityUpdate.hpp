@@ -13,4 +13,8 @@ struct VisibilityUpdate {
 	QList<BS::Geometry::Polygon> ommitPolygons;
 };
 
+inline bool operator==(const VisibilityUpdate &a, const VisibilityUpdate &b) {
+	return a.includeCircle == b.includeCircle && a.ommitPolygons == b.ommitPolygons;
+}
+
 typedef QList<VisibilityUpdate> VisibilityUpdateDiff;

@@ -92,7 +92,10 @@ void GraphicalFogOfWar::update()
 	const auto bottomRight = viewport->fromMetresToPixels(view.bottomRight());
 	// FOW
 	auto *updateDiff = mapManager->getVisibilityUpdatesDiff();
-	if (updateDiff->length() > 0 || view.toRect() != previousView.toRect()) {
+	auto visibleRegion = mapManager->getVisibleRegion();
+	if (updateDiff->length() > 0 || view.toRect() != previousView.toRect() ||
+			previousVisibleRegion.length() != visibleRegion.length() ||
+			previousVisibleRegion != visibleRegion) {
 		if (updateDiff->length() > 0) {
 			drawUpdates(FOWTexture, *updateDiff, QRectF{0, 0, mapManager->getMap()->getSize().width(),
 								mapManager->getMap()->getSize().height()}, sizeScale);
@@ -105,7 +108,6 @@ void GraphicalFogOfWar::update()
 
 		// FOV
 		// Get and draw the current visible region.
-		auto visibleRegion = mapManager->getVisibleRegion();
 		QPointF scaledSize = viewport->fromMetresToPixels(view.bottomRight() - view.topLeft());
 		if ((int)FOVTexture.getSize().x < (int)scaledSize.x() ||
 				(int)FOVTexture.getSize().y < (int)scaledSize.y()) {
