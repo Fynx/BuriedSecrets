@@ -17,7 +17,7 @@ endif (BUILD_TESTS)
 
 # SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
-set(SFML_STATIC_VARIABLES TRUE)
+set(SFML_STATIC_LIBRARIES TRUE)
 find_package(SFML 2.1 COMPONENTS system window graphics audio REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
@@ -37,7 +37,8 @@ include_directories(${CMAKE_SOURCE_DIR})
 add_subdirectory (src)
 
 install (DIRECTORY data DESTINATION "${BuriedSecrets_BINARY_DIR}")
-install (DIRECTORY lib DESTINATION "${BuriedSecrets_BINARY_DIR}")
+install (DIRECTORY libs DESTINATION "${BuriedSecrets_BINARY_DIR}")
+install (PROGRAMS src/RunBuriedSecrets.sh DESTINATION "${BuriedSecrets_BINARY_DIR}")
 
 # UI Resources
 qt5_add_resources (UI_data_RESOURCES UI_data/UI_data.qrc)
