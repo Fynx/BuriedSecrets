@@ -186,7 +186,7 @@ void MapManager::clearFieldOfView(const int factionId)
 	}
 }
 
-void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle circle, const int factionId)
+void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle &circle, const int factionId)
 {
 	// FOV
 	VisibilityUpdate update;
@@ -198,7 +198,7 @@ void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle circ
 	auto objects = physicsEngine->getObjectsInRect(boundingRect);
 	for (const Object *obj: objects) {
 		const Prototype *prot = obj->getPrototype();
-		if (!prot->hasProperty(Properties::Transparent) && unit->getLocation() != obj) {
+		if (!prot->hasProperty(Properties::Transparent) && (unit == nullptr || unit->getLocation() != obj)) {
 			QPointF pos = physicsEngine->getPosition(obj);
 			QPointF baseCentre;
 			QPointF centre;
@@ -245,10 +245,13 @@ void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle circ
 	it.value().update(update);
 
 	if (factionId == playerFactionId) {
-		if (!(lastCircle[unit] == circle)) {
+		if (unit == nullptr || !(lastCircle[unit] == circle)) {
 			visibilityUpdatesDiff->append(update);
 		}
-		lastCircle[unit] = circle;
+
+		if (unit != nullptr) {
+			lastCircle[unit] = circle;
+		}
 
 		playerFOV.update(update);
 	}
@@ -259,6 +262,11 @@ void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle circ
 		iter = FOWs.insert(factionId, ImageVisibilityMap{map.getSize().toSize()});
 	}
 	iter.value().update(update);
+}
+
+void MapManager::addVisibility(const BS::Geometry::Circle &circle, const int factionId)
+{
+	addVisibility(nullptr, circle, factionId);
 }
 
 VisibilityUpdateDiff *MapManager::getVisibilityUpdatesDiff()

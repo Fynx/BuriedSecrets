@@ -122,7 +122,15 @@ public:
 	 * @param unit The unit which FOV should be added.
 	 * @param factionId The faction that should see the region.
 	 */
-	void addVisibility(const Unit *unit, const BS::Geometry::Circle circle, const int factionId);
+	void addVisibility(const Unit *unit, const BS::Geometry::Circle &circle, const int factionId);
+	/**
+	 * @brief Adds arbitrary visibility to the faction's FOV.
+	 *
+	 * This updates FOV which automatically propagates to FOW.
+	 *
+	 * @param factionId The faction that should see the region.
+	 */
+	void addVisibility(const BS::Geometry::Circle &circle, const int factionId);
 	/**
 	 * @brief Returns the diff of the visibility updates between the last call of this method and now.
 	 *

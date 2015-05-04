@@ -220,12 +220,21 @@ void Mind::loadFromJson(const QJsonObject &json)
 	mapManager = new MapManager(json, this, physics, PlayerFactionId);
 
 	// Add antipsychosis.
-	addEffect(
-		Effect(
-			Effects::Antipsychosis,
-			new ObjectRadiusEffectData(getObjectFromUid(
-				getFactionById(PlayerFactionId)->getCampUid()),
-				getFactionById(PlayerFactionId)->getCampRange())));
+	const Faction *playerFaction = getFactionById(PlayerFactionId);
+	const Object *camp = getObjectFromUid(playerFaction->getCampUid());
+	const float campRange = playerFaction->getCampRange();
+
+	addEffect(Effect(Effects::Antipsychosis, new ObjectRadiusEffectData(camp, campRange)));
+
+	// Add visibility for the camp.
+	// Get the radius for the camp:
+	float radius = 0.0f;
+	const auto polygon = camp->getPrototype()->getBasePolygon();
+	const auto centre = camp->getPrototype()->getBaseCentre();
+	for (const auto &p : polygon) {
+		radius = qMax(radius, BS::Geometry::distance(centre, p));
+	}
+	mapManager->addVisibility(BS::Geometry::Circle(physics->getPosition(camp), radius * 1.5f), PlayerFactionId);
 
 	info("done.");
 }
