@@ -62,6 +62,7 @@ void AnimatorEnterBuilding::act()
 		// Meeting new units
 		Unit *pending = dynamic_cast<Unit*>(mind->getObjectFromUid(target->getUnitMet()));
 		if (pending){
+			target->setUnitMet(0);
 			pending->setFactionId(unit->getFactionId());
 			mind->getFactionById(unit->getFactionId())->addPendingUnit(pending->getUid());
 		}

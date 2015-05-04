@@ -114,7 +114,7 @@
 		"hp": 80,
 		"psychosis": 100,
 		"sightRange": 1,
-		"movementSpeed": 6,
+		"movementSpeed": 4,
 		"textureSet": "MobPeasant"
 	},
 
@@ -131,7 +131,7 @@
 		"hp": 80,
 		"psychosis": 100,
 		"sightRange": 1,
-		"movementSpeed": 5,
+		"movementSpeed": 3.5,
 		"textureSet": "MobWoman"
 	},
 
@@ -325,7 +325,7 @@
 		"itemTypes": ["Medicament"],
 		"description": "It won't cure your cancer, but might help you go through the day. Before use, read the package leaflet.",
 		"quality": 5,
-		"healing": 7,
+		"healing": 4,
 		"weight": 1,
 		"slots": ["medicament"]
 	},
@@ -338,7 +338,7 @@
 		"itemTypes": ["Medicament"],
 		"description": "Moms Kiss helps for everything. Period. Do not overdose!",
 		"quality": 10,
-		"healing": 20,
+		"healing": 7,
 		"weight": 1,
 		"slots": ["medicament"]
 	},
@@ -673,9 +673,33 @@
 	},
 
 
+	"Crack2-5": {
+		"type": "environment",
+		"basePolygon": [[0, 0], [40, 0], [72, 48], [71, 52], [46, 48],[5, 41]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Crack2-6": {
+		"type": "environment",
+		"basePolygon": [[0, 0], [13, 0], [12.5, 44], [43.5, 66], [0, 129]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
 	"Lake2-1": {
 		"type": "environment",
 		"basePolygon": [[0, 0], [-3.5, -10.5], [0, -24], [44, -48], [48.5, -47], [49.5, -41], [46, -26], [26, -8.5]],
+		"transparent": true,
+		"obstacle": true
+	},
+
+
+	"Lake2-2": {
+		"type": "environment",
+		"basePolygon": [[0, 0], [5, 12], [27, 13], [68, 80], [68, 0]],
 		"transparent": true,
 		"obstacle": true
 	},

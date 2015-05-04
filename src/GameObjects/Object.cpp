@@ -8,7 +8,7 @@
 int Object::LastUid = Object::InvalidUid;
 
 Object::Object(const Prototype *prototype)
-	: prototype(prototype), uid(InvalidUid), state(BS::State::Idle), frame(0)
+	: prototype(prototype), uid(InvalidUid), factionId(0), state(BS::State::Idle), frame(0)
 {}
 
 Object::~Object()

@@ -13,7 +13,7 @@
 				"AnimatorQuest"
 			],
 			"equipment": 2,
-			"food": 2500,
+			"food": 4500,
 			"journal": 3000,
 			"quests": [3400, 3401, 3402],
 			"campId": 3,
@@ -108,8 +108,8 @@
 				"AnimatorGoPsycho"
 			],
 			"equipment": 7,
-			"x": 13.0,
-			"y": 480.0,
+			"x": 18.0,
+			"y": 460.0,
 			"hp": 125,
 			"psychosis": 75
 		},
@@ -152,8 +152,8 @@
 				"AnimatorGoPsycho"
 			],
 			"equipment": 9,
-			"x": 9.0,
-			"y": 480.0,
+			"x": 21.0,
+			"y": 462.0,
 			"hp": 110,
 			"psychosis": 75
 		},
@@ -2221,8 +2221,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 223,
-			"x": 5,
-			"y": 170.0,
+			"x": 50,
+			"y": 150.0,
 			"hp": 80,
 			"command": 7,
 			"targetPoint": [28, 460]
@@ -2255,8 +2255,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 225,
-			"x": 8,
-			"y": 170.0,
+			"x": 53,
+			"y": 150.0,
 			"hp": 80,
 			"command": 7,
 			"targetPoint": [28, 460]
@@ -2289,8 +2289,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 227,
-			"x": 5,
-			"y": 173.0,
+			"x": 50,
+			"y": 153.0,
 			"hp": 80,
 			"command": 7,
 			"targetPoint": [33, 460]
@@ -2323,8 +2323,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 229,
-			"x": 8,
-			"y": 173.0,
+			"x": 53,
+			"y": 153.0,
 			"hp": 80,
 			"command": 7,
 			"targetPoint": [28, 450]
@@ -2357,8 +2357,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 231,
-			"x": 5,
-			"y": 176.0,
+			"x": 50,
+			"y": 156.0,
 			"hp": 80,
 			"command": 7,
 			"targetPoint": [28, 468]
@@ -2391,8 +2391,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 233,
-			"x": 8,
-			"y": 176.0,
+			"x": 53,
+			"y": 156.0,
 			"hp": 80,
 			"command": 7,
 			"targetPoint": [33, 460]
@@ -2425,8 +2425,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 235,
-			"x": 3,
-			"y": 180.0,
+			"x": 48,
+			"y": 160.0,
 			"hp": 80,
 			"command": 7,
 			"targetPoint": [10, 455]
@@ -2459,8 +2459,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 237,
-			"x": 7,
-			"y": 155.0,
+			"x": 52,
+			"y": 135.0,
 			"hp": 80,
 			"command": 7,
 			"targetPoint": [33, 440]
@@ -2493,8 +2493,8 @@
 				"AnimatorWatchTarget"
 			],
 			"equipment": 239,
-			"x": 2,
-			"y": 153.0,
+			"x": 48,
+			"y": 133.0,
 			"hp": 80,
 			"command": 7,
 			"targetPoint": [20, 470]
@@ -4003,7 +4003,7 @@
 		{
 			"uid": 3102,
 			"name": "BasicJournalEntry",
-			"title": "Defend the base",
+			"title": "Secure the base",
 			"entryType": "quest",
 			"text": "Our bridge to the north has been discovered! \nWe can expect attack from two sides... unless you find something to block this path. ",
 			"date": "10.10.1010 10:10"
@@ -4055,7 +4055,7 @@
 			"name": "BasicJournalEntry",
 			"entryType": "death",
 			"title": "%1 died",
-			"text": "%1 is now in the better world."
+			"text": "%1 is now in the better place."
 		},
 
 
@@ -4088,7 +4088,7 @@
 			"startConditions": [
 				{
 					"conditionType": "questSuccess",
-					"argument": 3401
+					"argument": 3400
 				}
 			],
 			"successConditions": [
@@ -4187,6 +4187,33 @@
 			"animators": [],
 			"x": 56,
 			"y": 226
+		},
+
+
+		{
+			"uid": 4008,
+			"name": "Lake2-2",
+			"animators": [],
+			"x": 131,
+			"y": 22
+		},
+
+
+		{
+			"uid": 4009,
+			"name": "Crack2-5",
+			"animators": [],
+			"x": 83,
+			"y": 98.5
+		},
+
+
+		{
+			"uid": 4010,
+			"name": "Crack2-6",
+			"animators": [],
+			"x": 14.5,
+			"y": 48
 		}
 	]
 }
