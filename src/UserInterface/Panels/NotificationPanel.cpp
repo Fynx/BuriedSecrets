@@ -47,13 +47,15 @@ void NotificationPanel::refresh()
 void NotificationPanel::updateNotifications()
 {
 	int inQueueBefore = entriesToShow_.size();
-	QSet<int> toRemove;
+	QList<int> toRemove;
 	for (int i = 0; i < displayedNotifications_.count(); ++i) {
 		displayedNotifications_[i].second -= TimerInterval;
 		if (displayedNotifications_[i].second <= 0)
-			toRemove.insert(i);
+			toRemove.push_back(i);
 	}
-	for (auto idx : toRemove){
+	//WARNING since we remove by indexes it is important to remove higher first
+	while (! toRemove.isEmpty()) {
+		auto idx = toRemove.takeLast();
 		delete displayedNotifications_[idx].first;
 		displayedNotifications_.remove(idx);
 	}
