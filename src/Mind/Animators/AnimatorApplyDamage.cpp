@@ -29,7 +29,7 @@ void AnimatorApplyDamage::act()
 
 		damage = damage * (1.0 - unit->getDamageControl());
 
-		info("ApllyDamage: " + unit->getName() + " " + QString::number(unit->getHP()) + " : " + QString::number(damage));
+		info("ApplyDamage: " + unit->getName() + " " + QString::number(unit->getHP()) + " : " + QString::number(damage));
 		unit->setHP(unit->getHP() - damage);
 	}
 }

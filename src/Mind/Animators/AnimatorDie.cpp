@@ -3,10 +3,11 @@
  */
 #include "Mind/Animators/AnimatorDie.hpp"
 
-#include "Mind/Mind.hpp"
+#include "Common/Strings.hpp"
+#include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Journal.hpp"
 #include "GameObjects/Unit.hpp"
-#include "DebugManager/DebugManager.hpp"
+#include "Mind/Mind.hpp"
 
 
 AnimatorDie::AnimatorDie(Mind *mind) : Animator(mind)
@@ -23,6 +24,14 @@ void AnimatorDie::act()
 			continue;
 		if (unit->getHP() <= 0) {
 			info("Unit dies. Id: " + QString::number(unit->getUid()));
+
+			int attackerUid = unit->property(TempData::Attacker).toInt();
+			Unit *attacker = static_cast<Unit *>(mind->getObjectFromUid(attackerUid));
+			if (attacker != nullptr) {
+				qDebug() << attacker->getName() << "fragged" << unit->getName();
+				attacker->incFrags();
+			}
+
 			if (unit->getLocation())
 				unit->getLocation()->removeUnit(unit->getUid());
 			if (mind->getFactionById(unit->getFactionId())) {

@@ -10,7 +10,7 @@
 using namespace BS;
 
 Unit::Unit(const Prototype *prototype)
-	: Object(prototype)
+	: Object(prototype), frags(0)
 {
 	location = nullptr;
 	attitude = Attitude::Guard;
@@ -286,6 +286,16 @@ void Unit::setNearestEnemy(const Object *obj)
 	nearestEnemy = obj;
 }
 
+int Unit::getFrags() const
+{
+	return frags;
+}
+
+void Unit::incFrags()
+{
+	++frags;
+}
+
 /** Save & load */
 
 void Unit::loadFromJson(const QJsonObject &json)
@@ -313,6 +323,10 @@ void Unit::loadFromJson(const QJsonObject &json)
 
 	if (targetPoint.x() != 0)
 		qDebug() << "targetPoint:" << targetPoint;
+
+	frags = json[Attributes::Frags].toInt();
+
+	qDebug() << "loaded frags:" << frags;
 }
 
 QJsonObject Unit::saveToJson() const
@@ -338,6 +352,8 @@ QJsonObject Unit::saveToJson() const
 
 	QJsonArray tpa = {targetPoint.x(), targetPoint.y()};
 	json[Attributes::TargetPoint] = tpa;
+
+	json[Attributes::Frags] = frags;
 
 	return json;
 }

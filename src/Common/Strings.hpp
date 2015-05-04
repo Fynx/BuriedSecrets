@@ -61,6 +61,7 @@ namespace Attributes {
 	const QString FailureConditions = "failureConditions"; /** Condition */
 	const QString Food              = "food";
 	const QString FailureEntry      = "failureEntry";      /** Quest */
+	const QString Frags             = "frags";             /** Unit */
 	const QString HP                = "hp";
 	const QString IsNegative        = "isNegative";        /** Condition */
 	const QString Items             = "items";
@@ -240,6 +241,7 @@ namespace States {
 }
 
 namespace TempData {                                   // kept in GO's map
+	const QString Attacker      = "attacker";
 	const QString Damage        = "damage";
 	const QString NearCamp      = "nearCamp";
 	const QString NearestDist   = "nearestDist";

@@ -77,6 +77,9 @@ public:
 	const Object *getNearestEnemy() const;
 	void setNearestEnemy(const Object *);
 
+	int getFrags() const;
+	void incFrags();
+
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
@@ -95,4 +98,5 @@ private:
 	QPointF targetPoint;
 	float targetAngle;
 	const Object *nearestEnemy;
+	int frags;
 };

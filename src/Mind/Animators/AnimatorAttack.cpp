@@ -72,8 +72,7 @@ void AnimatorAttack::act()
 			if (weapon->getState() != State::Idle)
 				continue;
 			unit->setState(State::Attack);
-		}
-		else{
+		} else {
 			if (weapon->getState() != State::Idle)
 				continue;
 			if (unit->getState() != State::RunAttack && unit->getState() != State::Inside)
@@ -105,26 +104,26 @@ void AnimatorAttack::act()
 					weapon->getPrototype()->getProperty(Properties::Range).toFloat()).toPointF();
 			if (unit->getState() != State::Inside) {
 				mind->addEffect(Effect(Effects::Miss,
-						new PointToPointEffectData(mind->physicsEngine()->getPosition(unit),
-									   hitPoint),
-						600));
+				                new PointToPointEffectData(mind->physicsEngine()->getPosition(unit),
+				                                           hitPoint),
+				                600));
 			}
 		} else {
 			info("Object hit: " + hit->getName());
 			hit->property(TempData::Damage).setValue(
-					weapon->getPrototype()->getProperty(Properties::Damage).toInt() +
-					hit->property(TempData::Damage).toInt());
+				weapon->getPrototype()->getProperty(Properties::Damage).toInt() +
+				hit->property(TempData::Damage).toInt());
+			hit->property(TempData::Attacker).setValue(unit->getUid());
 
 			if (hit->getType() == BS::Type::Unit) {
 				if (unit->getState() != State::Inside) {
 					mind->addEffect(Effect(Decals::UnitHit,
-							new PointToPointEffectData(
-									mind->physicsEngine()->getPosition(unit),
-									mind->physicsEngine()->getPosition(hit)),
-							600));
+					                new PointToPointEffectData(
+					                	mind->physicsEngine()->getPosition(unit),
+					                	mind->physicsEngine()->getPosition(hit)),
+					                600));
 				}
 			}
 		}
 	}
 }
-

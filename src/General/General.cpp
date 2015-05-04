@@ -34,7 +34,6 @@ QMainWindow *General::getMainWindow()
 void General::startNewGame()
 {
 	info("Starting new game...");
-	//TODO levels loading done properly
 	launchGame("data/maps/map0.json");
 	info("Done.");
 }
