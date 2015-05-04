@@ -205,7 +205,8 @@ void Mind::loadFromJson(const QJsonObject &json)
 			JournalEntry *entry = dynamic_cast<JournalEntry *>(object);
 
 			if (entries.contains(entry->getEntryType()))
-				err("Duplicate entry types.");
+				;
+// 				err("Duplicate entry types.");
 			else
 				entries[entry->getEntryType()] = entry;
 

@@ -56,9 +56,13 @@ const QVector<int> &Journal::getEntriesUids() const
 JournalEntry *Journal::createEntryDeath(Mind *mind, Unit *who)
 {
 	JournalEntry *entry = createEntry(mind);
+	JournalEntry *baseEntry = mind->getEntryFromType(BS::EntryType::Death);
 
-	QString title = mind->getEntryFromType(BS::EntryType::Death)->getTitle();
-	entry->setTitle(title.arg(who->getName()));
+	entry->setTitle(baseEntry->getTitle().arg(who->getName()));
+
+	QString text = baseEntry->getText().arg(who->getName());
+
+	entry->setText(text);
 	entry->setEntryType(BS::EntryType::Death);
 
 	return entry;

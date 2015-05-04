@@ -156,6 +156,9 @@ void Faction::loadFromJson(const QJsonObject &json)
 		relations[value.toArray().first().toInt()] = value.toArray().last().toInt();
 
 	journalUid = json[Attributes::Journal].toInt();
+
+	for (const QJsonValue &value : json[Attributes::Quests].toArray())
+		quests.append(value.toInt());
 }
 
 QJsonObject Faction::saveToJson() const
@@ -181,6 +184,11 @@ QJsonObject Faction::saveToJson() const
 
 	if (journal != nullptr)
 		json[Attributes::Journal] = journal->getUid();
+
+	QJsonArray qus;
+	for (int quest : quests)
+		qus.append(quest);
+	json[Attributes::Quests] = qus;
 
 	return json;
 }

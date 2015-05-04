@@ -19,7 +19,7 @@ endif (BUILD_TESTS)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 set(SFML_STATIC_VARIABLES TRUE)
 find_package(SFML 2.1 COMPONENTS system window graphics audio REQUIRED)
-include_directories(${SFML_INCLUDE_DIR}})
+include_directories(${SFML_INCLUDE_DIR})
 
 # Box2D
 set(BOX2D_VERSION 2.3.0)
@@ -37,6 +37,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 add_subdirectory (src)
 
 install (DIRECTORY data DESTINATION "${BuriedSecrets_BINARY_DIR}")
+install (DIRECTORY lib DESTINATION "${BuriedSecrets_BINARY_DIR}")
 
 # UI Resources
 qt5_add_resources (UI_data_RESOURCES UI_data/UI_data.qrc)

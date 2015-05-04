@@ -68,6 +68,7 @@ namespace Attributes {
 	const QString Journal           = "journal";
 	const QString PatrolRoute       = "patrolRoute";
 	const QString Psychosis         = "psychosis";
+	const QString Quests            = "quests";            /** Faction */
 	const QString Relations         = "relations";
 	const QString SearchDifficulty  = "searchDifficulty";
 	const QString Slots             = "slots";

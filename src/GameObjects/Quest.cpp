@@ -6,6 +6,7 @@
 #include "GameObjects/Quest.hpp"
 #include "Mind/Mind.hpp"
 #include "GameObjects/Location.hpp"
+#include "Unit.hpp"
 
 Quest::Quest(const Prototype *prototype)
 	: Object(prototype),
@@ -164,7 +165,12 @@ bool Quest::evaluateFoodCount(const Condition &c, Mind *mind, int factionId)
 
 bool Quest::evaluateFragsCount(const Condition &c, Mind *mind, int factionId)
 {
-	return true;
+	QSet<int> units = mind->getFactionById(factionId)->getUnitsUids();
+	int frags = 0;
+	for (int unit : units)
+		frags += static_cast<Unit *>(mind->getObjectFromUid(unit))->getFrags();
+	bool res = frags >= c.argument;
+	return res ^ c.isNegative;
 }
 
 bool Quest::evaluateItemFound(const Condition &c, Mind *mind, int factionId)

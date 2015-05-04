@@ -15,6 +15,7 @@
 			"equipment": 2,
 			"food": 2500,
 			"journal": 3000,
+			"quests": [3400, 3401, 3402],
 			"campId": 3,
 			"campRange": 40,
 			"faction": 1,
@@ -2780,10 +2781,10 @@
 				"weapon" : 577
 			}
 		},
-		
-		
-		
-		
+
+
+
+
 
 
 
@@ -3898,15 +3899,15 @@
 
 
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4014,7 +4015,7 @@
 			"name": "BasicJournalEntry",
 			"title": "Secure the base",
 			"entryType": "quest",
-			"text": "Great job! Now, when you've stopped the attack, we can take care of more prozaic matters. Like food...",
+			"text": "Great job! Now, when you've stopped the attack, we can take care of more prosaic matters. Like food...",
 			"date": "10.10.1010 10:10"
 		},
 
@@ -4047,7 +4048,16 @@
 			"text": "You've met a survivor from the previous expedition.\nBob tells you about some ancient construction to the East. He doesn't know it's purpose but it's heavily guarded. He also mentions a useful method of hiding in the IKEA Bunker when there is no other shelter during attacks.",
 			"date": "10.10.1010 10:10"
 		},
-		
+
+
+		{
+			"uid": 3107,
+			"name": "BasicJournalEntry",
+			"entryType": "death",
+			"title": "%1 died",
+			"text": "%1 is now in the better world."
+		},
+
 
 		{
 			"uid": 3400,
@@ -4102,12 +4112,12 @@
 				}
 			]
 		},
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 
 
 
@@ -4118,8 +4128,8 @@
 			"x": 14,
 			"y": 392
 		},
-		
-		
+
+
 		{
 			"uid": 4002,
 			"name": "Crack2-2",
@@ -4127,8 +4137,8 @@
 			"x": 61,
 			"y": 415
 		},
-		
-		
+
+
 		{
 			"uid": 4003,
 			"name": "Crack2-3",
@@ -4136,8 +4146,8 @@
 			"x": 61.5,
 			"y": 337
 		},
-		
-		
+
+
 		{
 			"uid": 4004,
 			"name": "Crack2-4",
@@ -4145,8 +4155,8 @@
 			"x": 142,
 			"y": 209
 		},
-		
-		
+
+
 		{
 			"uid": 4005,
 			"name": "Lake2-1",
@@ -4154,8 +4164,8 @@
 			"x": 129,
 			"y": 334
 		},
-		
-		
+
+
 		{
 			"uid": 4006,
 			"name": "Forest2-1",
@@ -4163,8 +4173,8 @@
 			"x": 139,
 			"y": 470
 		},
-		
-		
+
+
 		{
 			"uid": 4007,
 			"name": "Forest2-2",

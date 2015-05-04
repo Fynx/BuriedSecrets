@@ -22,7 +22,7 @@ AnimatorQuest::AnimatorQuest(Mind *mind) : Animator(mind)
 
 void AnimatorQuest::act()
 {
-	for (Object * obj : objects){
+	for (Object * obj : objects) {
 		Faction *fac = dynamic_cast<Faction *>(obj);
 		if (!fac)
 			continue;
@@ -31,9 +31,10 @@ void AnimatorQuest::act()
 			if (!quest)
 				continue;
 
-			switch (quest->getState()){
+			switch (quest->getState()) {
 			case State::Inactive:
-				if (Quest::evaluateConditions(quest->getStartConds(), mind, fac->getFactionId())){
+				if (Quest::evaluateConditions(quest->getStartConds(), mind, fac->getFactionId())) {
+					
 					quest->setState(State::Active);
 					JournalEntry *entry = dynamic_cast<JournalEntry *>(mind->getObjectFromUid(quest->getStartEntry()));
 					if (entry)

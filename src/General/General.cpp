@@ -34,7 +34,7 @@ QMainWindow *General::getMainWindow()
 void General::startNewGame()
 {
 	info("Starting new game...");
-	launchGame("data/maps/map0.json");
+	launchGame("data/maps/map2.json");
 	info("Done.");
 }
 
