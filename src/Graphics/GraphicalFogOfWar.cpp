@@ -9,7 +9,7 @@
 
 const char *blurH = "\
 uniform sampler2D screenColorBuffer;\
-const float blurSize = 0.1/256.0;\
+const float blurSize = 0.5/256.0;\
 \
 void main(void)\
 {\
@@ -30,7 +30,7 @@ void main(void)\
 
 const char *blurV = "\
 uniform sampler2D screenTexture;\
-const float blurSize = 0.1/256.0;\
+const float blurSize = 0.5/256.0;\
  \
 void main(void)\
 {\
@@ -104,11 +104,16 @@ void GraphicalFogOfWar::update()
 		FOWSprite.setTexture(FOWScreenTexture.getTexture());
 
 		// FOV
-		// Clear previous visible region.
-		FOVTexture.clear(sf::Color::Black);
-
 		// Get and draw the current visible region.
 		auto visibleRegion = mapManager->getVisibleRegion();
+		QPointF scaledSize = viewport->fromMetresToPixels(view.bottomRight() - view.topLeft());
+		if ((int)FOVTexture.getSize().x < (int)scaledSize.x() ||
+				(int)FOVTexture.getSize().y < (int)scaledSize.y()) {
+			qDebug() << "Create FOV texture!" << scaledSize << view;
+			FOVTexture.create(scaledSize.x() * 1.2, scaledSize.y() * 1.2);
+		}
+
+		FOVTexture.clear(sf::Color::Black);
 		drawUpdates(FOVTexture, visibleRegion, view, 1.0f);
 		FOVTexture.display();
 		FOVSprite.setTexture(FOVTexture.getTexture());
@@ -130,13 +135,6 @@ void GraphicalFogOfWar::draw()
 void GraphicalFogOfWar::drawUpdates(sf::RenderTexture &canvas, const VisibilityUpdateDiff &updateDiff,
                                     const QRectF &view, const float scale)
 {
-	QPointF scaledSize = viewport->fromMetresToPixels(view.bottomRight() - view.topLeft());
-	if ((int)canvas.getSize().x < (int)scaledSize.x() || (int)canvas.getSize().y < (int)scaledSize.y()) {
-		qDebug() << "Create!";
-		canvas.create(scaledSize.x() * 1.2, scaledSize.y() * 1.2);
-		canvas.clear(sf::Color::Black);
-	}
-
 	for (const auto &visUpdate: updateDiff) {
 		const auto includeCircle = visUpdate.includeCircle;
 		if (view.topLeft().x() - includeCircle.radius <= includeCircle.centre.x() &&
