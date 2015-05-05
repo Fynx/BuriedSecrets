@@ -44,7 +44,7 @@ private:
 	DataManager *const dataManager_;
 
 	QMainWindow *mainWindow_;
-	GameInterface *gameWindow_;
+	GameInterface *gameInterface_;
 	PostGameMenu *postGameMenu_;
 	MainMenu *mainMenu_;
 	LoadGameMenu *loadGameMenu_;

@@ -5,6 +5,7 @@
 
 #include <QtWidgets>
 
+class BriefingTab;
 class CampConstructorTab;
 class CampEquipmentTab;
 class DataManager;
@@ -17,8 +18,9 @@ public:
 	void refresh();
 
 private:
-	static const int EquipmentIndex = 0;
-	static const int ConstructorIndex = 1;
+	static const int EquipmentIndex   = 0;
+	static const int BriefingIndex    = 1;
+	static const int ConstructorIndex = 2;
 
 	QWidget *createTabWidget();
 	void initLayout();
@@ -31,6 +33,7 @@ private:
 	DataManager *const dataManager_;
 
 	CampEquipmentTab *campEquipmentTab_;
+	BriefingTab *briefingTab_;
 	CampConstructorTab *campConstructorTab_;
 
 signals:

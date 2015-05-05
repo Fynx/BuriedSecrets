@@ -30,6 +30,7 @@
 	Windows/JournalWindow.cpp
 	Windows/UnitWindow.cpp
 
+	Windows/Tabs/BriefingTab.cpp
 	Windows/Tabs/CampConstructorTab.cpp
 	Windows/Tabs/CampEquipmentTab.cpp
 	Windows/Tabs/UnitEquipmentTab.cpp

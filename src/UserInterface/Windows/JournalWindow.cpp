@@ -102,10 +102,10 @@ void JournalWindow::initLayout()
 QLayout *JournalWindow::createFiltersButtons()
 {
 	auto layout = new QHBoxLayout;
-
+/*
 	auto label = new QLabel(tr("Filters"));
 	label->setFont(LabelsFont);
-	layout->addWidget(label);
+	layout->addWidget(label);*/
 
 	for (auto filter : Filters.keys()) {
 		auto btn = new QPushButton(filter);

@@ -4,6 +4,8 @@
 #include "UserInterface/Windows/CampWindow.hpp"
 
 #include "Mind/Mind.hpp"
+#include "Mind/MapManager/Map.hpp"
+#include "UserInterface/Windows/Tabs/BriefingTab.hpp"
 #include "UserInterface/Windows/Tabs/CampEquipmentTab.hpp"
 #include "UserInterface/Windows/Tabs/CampConstructorTab.hpp"
 #include "UserInterface/Resources.hpp"
@@ -32,6 +34,11 @@ QWidget *CampWindow::createTabWidget()
 	auto factionEq = mind_->getPlayerFaction()->getEquipment();
 	campEquipmentTab_ = new CampEquipmentTab(factionEq, mind_, dataManager_);
 	tabWidget_->insertTab(EquipmentIndex, campEquipmentTab_, tr("Equipment"));
+
+	auto title = mind_->getMap()->getTitle();
+	auto text = mind_->getMap()->getText();
+	briefingTab_ = new BriefingTab(title, text);
+	tabWidget_->insertTab(BriefingIndex, briefingTab_, tr("Briefing"));
 
 	campConstructorTab_ = new CampConstructorTab(factionEq, mind_->itemConstructor(), dataManager_);
 	tabWidget_->insertTab(ConstructorIndex, campConstructorTab_, tr("Constructor"));

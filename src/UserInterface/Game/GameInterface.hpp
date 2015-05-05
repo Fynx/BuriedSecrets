@@ -31,7 +31,7 @@ public:
 	Viewport *viewport();
 
 public slots:
-	void startUpdateLoop();
+	void start();
 
 private:
     void initBoardWidget();

@@ -40,11 +40,10 @@ void GameWindows::keyPressEvent(const QKeyEvent *event)
 			showWindow(Window::Journal);
 			break;
 		case Qt::Key_I:
-			for (auto uid : mind_->getPlayerFaction()->getAllUnitsUids())
-				if (mind_->getPlayerFaction()->isAliveMember(uid)) {
-					showUnitWindow(*(mind_->getPlayerFaction()->getUnitsUids().begin()));
-					break;
-				}
+			showUnitWindow(anyAliveUnitUid());
+			break;
+		case Qt::Key_L:
+			showLoadout();
 			break;
 	}
 }
@@ -110,6 +109,18 @@ void GameWindows::showJournalWindow()
 	showWindow(Window::Journal);
 }
 
+void GameWindows::showLoadout()
+{
+	auto uid = anyAliveUnitUid();
+	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	if (unit == nullptr) {
+		err("Invalid unit UID to display");
+		return;
+	}
+	unitWindow_->setUnit(unit);
+	showWindow(Window::Loadout);
+}
+
 void GameWindows::showUnitWindow(int uid)
 {
 	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
@@ -173,6 +184,7 @@ void GameWindows::showWindow(GameWindows::Window window)
 			tileCenter(unitWindow_);
 			unitWindow_->show();
 			break;
+		case Window::Loadout:
 		case Window::Visit:
 			tileLeft(campWindow_);
 			tileRight(unitWindow_);
@@ -214,4 +226,12 @@ void GameWindows::tileRight(QWidget *widget)
 void GameWindows::closeSubwindow()
 {
 	showWindow(Window::Game);
+}
+
+int GameWindows::anyAliveUnitUid()
+{
+	for (auto uid : mind_->getPlayerFaction()->getAllUnitsUids())
+		if (mind_->getPlayerFaction()->isAliveMember(uid))
+			return uid;
+	return Object::InvalidUid;
 }

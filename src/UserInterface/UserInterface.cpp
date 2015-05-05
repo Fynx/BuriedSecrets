@@ -18,7 +18,7 @@ UserInterface::UserInterface(General *general, DataManager *dataManager)
 	: general_(general),
 	  dataManager_(dataManager),
 	  mainWindow_(new QMainWindow),
-	  gameWindow_(nullptr),
+	  gameInterface_(nullptr),
 	  postGameMenu_(new PostGameMenu),
 	  mainMenu_(new MainMenu(this)),
 	  loadGameMenu_(new LoadGameMenu),
@@ -45,26 +45,26 @@ QMainWindow *UserInterface::getMainWindow()
 
 Viewport *UserInterface::getViewport()
 {
-	return gameWindow_->viewport();
+	return gameInterface_->viewport();
 }
 
 bool UserInterface::gameInProgress() const
 {
-	return (gameWindow_ != nullptr);
+	return (gameInterface_ != nullptr);
 }
 
 void UserInterface::newGame(Mind *mind, BoardWidget *boardWidget)
 {
-	gameWindow_ = new GameInterface(mind, dataManager_, boardWidget);
+	gameInterface_ = new GameInterface(mind, dataManager_, boardWidget);
 
-	connect(gameWindow_, &GameInterface::showMainMenu, this, &UserInterface::onShowMainMenu);
-	connect(gameWindow_, &GameInterface::gameEnded, this, &UserInterface::onGameEnded);
-	stackedWidget_->insertWidget(static_cast<int>(Window::Game), gameWindow_);
+	connect(gameInterface_, &GameInterface::showMainMenu, this, &UserInterface::onShowMainMenu);
+	connect(gameInterface_, &GameInterface::gameEnded, this, &UserInterface::onGameEnded);
+	stackedWidget_->insertWidget(static_cast<int>(Window::Game), gameInterface_);
 
 	switchToWindow(Window::Game);
 	mainMenu_->adjustButtonsVisibility();
 
-	gameWindow_->startUpdateLoop();
+	gameInterface_->start();
 }
 
 void UserInterface::initMenus()
@@ -104,11 +104,11 @@ void UserInterface::switchToWindow(Window window)
 void UserInterface::clearGame()
 {
 	if (gameInProgress()) {
-		disconnect(gameWindow_, &GameInterface::showMainMenu, this, &UserInterface::onShowMainMenu);
-		disconnect(gameWindow_, &GameInterface::gameEnded, this, &UserInterface::onGameEnded);
-		stackedWidget_->removeWidget(gameWindow_);
-		delete gameWindow_;
-		gameWindow_ = nullptr;
+		disconnect(gameInterface_, &GameInterface::showMainMenu, this, &UserInterface::onShowMainMenu);
+		disconnect(gameInterface_, &GameInterface::gameEnded, this, &UserInterface::onGameEnded);
+		stackedWidget_->removeWidget(gameInterface_);
+		delete gameInterface_;
+		gameInterface_ = nullptr;
 	}
 }
 

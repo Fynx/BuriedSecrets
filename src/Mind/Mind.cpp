@@ -247,6 +247,8 @@ QJsonObject Mind::saveToJson() const
 
 	json.insert(MapProperties::MapName, mapManager->getMap()->getName());
 	json.insert(MapProperties::MapDesc, mapManager->getMap()->getDesc());
+	json.insert(MapProperties::MapTitle, mapManager->getMap()->getTitle());
+	json.insert(MapProperties::MapText, mapManager->getMap()->getText());
 	json.insert(MapProperties::MapWidth,  mapManager->getMap()->getSize().width());
 	json.insert(MapProperties::MapHeight, mapManager->getMap()->getSize().height());
 

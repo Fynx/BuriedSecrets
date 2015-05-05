@@ -142,6 +142,8 @@ namespace ConditionTypes {
 namespace MapProperties {
 	const QString MapDesc       = "mapDesc";
 	const QString MapName       = "mapName";
+	const QString MapTitle      = "mapTitle";
+	const QString MapText       = "mapText";
 	const QString MapWidth      = "mapWidth";
 	const QString MapHeight     = "mapHeight";
 }

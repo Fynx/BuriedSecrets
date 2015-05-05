@@ -1,6 +1,8 @@
 {
 	"mapName": "Map2",
 	"mapDesc": "map0.wtf",
+	"mapTitle": "Til the end of time",
+	"mapText": "Prevail!",
 	"mapWidth" : 166,
 	"mapHeight" : 500,
 	"objects": [

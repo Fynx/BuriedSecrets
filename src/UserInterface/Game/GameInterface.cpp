@@ -50,8 +50,10 @@ Viewport *GameInterface::viewport()
 	return gameViewport_.viewport();
 }
 
-void GameInterface::startUpdateLoop()
+void GameInterface::start()
 {
+	gameWindows_.showLoadout();
+
 	info("Starting UI update loop.");
 
 	update();

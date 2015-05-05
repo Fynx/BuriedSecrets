@@ -28,6 +28,7 @@ public slots:
 	void showVisitWindow(Unit *unit);
 	void showCampWindow();
 	void showJournalWindow();
+	void showLoadout();
 	void showUnitWindow(int uid);
 	void switchUnitWindow(int uid);
 	void showJournalEntry(int uid);
@@ -40,6 +41,7 @@ private:
 		Journal,
 		Unit,
 		Visit,
+		Loadout,
 	};
 
 	void showUnitDecision(int uid);
@@ -47,6 +49,7 @@ private:
 	void tileLeft(QWidget *widget);
 	void tileRight(QWidget *widget);
 	void tileCenter(QWidget *widget);
+	int anyAliveUnitUid();
 
 	Mind *const mind_;
 	DataManager *const dataManager_;

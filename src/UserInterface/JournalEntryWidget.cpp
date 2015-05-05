@@ -7,7 +7,7 @@
 
 const QFont JournalEntryWidget::DetailsFont{"Times", 16};
 const QFont JournalEntryWidget::TitleFont{"Arial", 16, QFont::Bold};
-const QMargins JournalEntryWidget::ContentMargins{0, 20, 0, 20};
+const QMargins JournalEntryWidget::ContentMargins{10, 20, 10, 20};
 
 
 JournalEntryWidget::JournalEntryWidget(JournalEntry *je)

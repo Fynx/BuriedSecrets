@@ -5,6 +5,8 @@
 
 #include <QtCore>
 
+class JournalEntry;
+
 /**
  * @brief Logical representation of the map.
  *
@@ -23,6 +25,8 @@ public:
 
 	const QString &getName() const;
 	const QString &getDesc() const;
+	const QString &getTitle() const;
+	const QString &getText() const;
 	const QSizeF &getSize() const;
 
 private:
@@ -30,5 +34,7 @@ private:
 	QJsonObject json;
 	QString name;
 	QString desc;
+	QString title;
+	QString text;
 	QSizeF size;
 };
