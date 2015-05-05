@@ -185,7 +185,10 @@ void GameWindows::showWindow(GameWindows::Window window)
 			unitWindow_->show();
 			break;
 		case Window::Loadout:
+			campWindow_->setCurrentTab(CampWindow::BriefingIndex);
 		case Window::Visit:
+			if (window == Window::Visit) //due to fall through
+				campWindow_->setCurrentTab(CampWindow::EquipmentIndex);
 			tileLeft(campWindow_);
 			tileRight(unitWindow_);
 			campWindow_->refresh();

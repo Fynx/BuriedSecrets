@@ -14,13 +14,15 @@ class Mind;
 class CampWindow : public QFrame {
 	Q_OBJECT
 public:
-	CampWindow(Mind *mind, DataManager *dataManager);
-	void refresh();
-
-private:
 	static const int EquipmentIndex   = 0;
 	static const int BriefingIndex    = 1;
 	static const int ConstructorIndex = 2;
+
+	CampWindow(Mind *mind, DataManager *dataManager);
+	void refresh();
+	void setCurrentTab(int tabIndex);
+
+private:
 
 	QWidget *createTabWidget();
 	void initLayout();

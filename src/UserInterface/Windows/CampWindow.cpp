@@ -26,6 +26,11 @@ void CampWindow::refresh()
 	campConstructorTab_->refresh();
 }
 
+void CampWindow::setCurrentTab(int tabIndex)
+{
+	tabWidget_->setCurrentIndex(tabIndex);
+}
+
 QWidget *CampWindow::createTabWidget()
 {
 	tabWidget_ = new QTabWidget;

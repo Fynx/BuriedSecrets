@@ -10,6 +10,9 @@
 #include "PhysicsEngine/PhysicsEngine.hpp"
 #include "UserInterface/BoardWidget.hpp"
 #include "UserInterface/Viewport/IsometricPerspective.hpp"
+#include "Common/Geometry.hpp"
+#include "Common/Strings.hpp"
+#include "GameObjects/Object.hpp"
 
 const float GameViewport::pixelToMetresScale = 30.0f;
 const int GameViewport::ViewportKeyMoveDelta = 300;
@@ -42,7 +45,9 @@ Object *GameViewport::objectInPixelsPos(QPoint pointInPixels) const
 	QPointF point = viewport_.getPhysicalCoordinates(pointInPixels);
 
 	point -= QPointF(0.1, 0.1);
-	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(QRectF(point, QSizeF{0.2, 0.2}));
+	auto rect = QRectF(point, QSizeF{0.2, 0.2});
+	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(rect);
+	objects = filterOutSpam(objects, rect);
 
 	if (objects.isEmpty())
 		return nullptr;
@@ -58,6 +63,7 @@ QSet<Object *> GameViewport::objectInPixelsRect(QRect rectInPixels) const
 	rectInMetres = rectInMetres.normalized();
 
 	QList<const Object *> objects = mind_->physicsEngine()->getObjectsInRect(rectInMetres);
+	objects = filterOutSpam(objects, rectInMetres);
 
 	QSet<Object *> result;
 	for (auto &obj : objects)
@@ -121,6 +127,42 @@ void GameViewport::showUnit(int uid)
 		obj = dynamic_cast<Object *>(unit->getLocation());
 
 	showObject(obj);
+}
+
+QList<const Object *> GameViewport::filterOutSpam(QList<const Object *> objects, const QRectF &rect) const
+{
+	QList<const Object *> result;
+	for (auto obj : objects) {
+		if (! obj->getPrototype()->hasProperty(Properties::BasePolygon)) {
+			result.push_back(obj);
+			continue;
+		}
+
+		//calculate base polygon in metres
+		auto polygon = obj->getPrototype()->getBasePolygon();
+		auto position = mind_->physicsEngine()->getPosition(obj);
+		auto center = obj->getPrototype()->getBaseCentre();
+		for (auto &p : polygon)
+			p = p - center + position;
+
+		//check if polygon is valid
+		if (polygon.isEmpty())
+			continue;
+		//check if polygon is in rect
+		if (rect.contains(polygon[0])) {
+			result.push_back(obj);
+			continue;
+		}
+		//check if polygon intersects rect (heuristic)
+		QList<QPointF> corners{rect.topLeft(), rect.topRight(), rect.bottomLeft(), rect.bottomRight()};
+		for (auto corner : corners) {
+			if (BS::Geometry::pointInPolygon(corner, polygon)) {
+				result.push_back(obj);
+				continue;
+			}
+		}
+	}
+	return result;
 }
 
 void GameViewport::checkForViewportMove()

@@ -37,6 +37,8 @@ public slots:
 	void showUnit(int uid);
 
 private:
+	QList<const Object *> filterOutSpam(QList<const Object *> objects, const QRectF &rect) const;
+
 	Mind *const mind_;
 	BoardWidget *boardWidget_;
 	Viewport viewport_;
