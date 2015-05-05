@@ -102,7 +102,24 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 		if (nodes[v].point == targetDiscrete ||
 				isTarget(accMap->undiscretize(nodes[v].point), target, targetObject, gridSize)) {
 // 			qDebug() << "Found path!";
-			appendPathToResult(result, nodes, v, gridSize, accMap);
+			QList<int> path;
+			int u = v;
+			while (u != -1 && nodes[u].previousNode != -1) {
+				path.append(u);
+				u = nodes[u].previousNode;
+			}
+
+			while (path.size() >= 2 &&
+					BS::Geometry::distance(nodes[path[path.size() - 2]].point, source) <
+							gridSize * sqrtTwo) {
+				path.pop_back();	// Removing nodes at the beginning of the result path that
+							// prolong it.
+			}
+
+			while (!path.empty()) {
+				result.append(accMap->undiscretize(nodes[path.back()].point));
+				path.pop_back();
+			}
 			break;
 		}
 
@@ -221,22 +238,6 @@ float AStarPathFinder::getGridSize(const float radius) const
 float AStarPathFinder::heuristicDistance(const QPoint &from, const QPoint &to)
 {
 	return BS::Geometry::distance(from, to);
-}
-
-
-void AStarPathFinder::appendPathToResult(QList<QPointF> &result, const std::vector<AStarPathFinder::Node> &nodes, int v,
-					 const float gridSize, AccessiblityMap *accMap) const
-{
-	QList<int> path;
-	while (v != -1 && nodes[v].previousNode != -1) {
-		path.append(v);
-		v = nodes[v].previousNode;
-	}
-
-	while (!path.empty()) {
-		result.append(accMap->undiscretize(nodes[path.back()].point));
-		path.pop_back();
-	}
 }
 
 

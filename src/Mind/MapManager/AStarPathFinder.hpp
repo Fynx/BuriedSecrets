@@ -40,8 +40,6 @@ private:
 	AccessiblityMap *getAccessiblityMap(const int gridSize, const Unit *unit);
 	float getGridSize(const float radius) const;
 	float heuristicDistance(const QPoint& from, const QPoint& to);
-	void appendPathToResult(QList<QPointF> &result, const std::vector<Node> &nodes, int v,
-				const float gridSize, AccessiblityMap *accMap) const;
 	/**
 	 * @brief True if the point is close enough to the target to say it is the solution. The target must be in the
 	 * target object, otherwise this method will return false.
