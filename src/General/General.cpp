@@ -60,7 +60,7 @@ void General::endGame()
 void General::saveLevel()
 {
 	info("Saving level...");
-	dataManager->saveJsonToFile("data/maps/save0.json", mind->saveToJson());
+	dataManager->saveJsonToFile("data/saves/save0.json", mind->saveToJson());
 	info("Done.");
 }
 

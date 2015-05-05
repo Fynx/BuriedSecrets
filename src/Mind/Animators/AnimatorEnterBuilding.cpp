@@ -4,8 +4,9 @@
 #include "Mind/Animators/AnimatorEnterBuilding.hpp"
 
 #include "DebugManager/DebugManager.hpp"
-#include "GameObjects/Unit.hpp"
 #include "GameObjects/Location.hpp"
+#include "GameObjects/Journal.hpp"
+#include "GameObjects/Unit.hpp"
 #include "Mind/Mind.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 
@@ -52,19 +53,23 @@ void AnimatorEnterBuilding::act()
 		unit->setLocation(target);
 		mind->physicsEngine()->removeObject(unit);
 
+		Faction *faction = mind->getFactionById(unit->getFactionId());
+
 		// Looting
 		QList<Item *> items = target->getItems(unit->getPerception());
 		for (Item *it : items){
 			target->removeItem(it);
-			mind->getFactionById(unit->getFactionId())->getEquipment()->addItem(it);
+			faction->getEquipment()->addItem(it);
 		}
+		if (!items.isEmpty())
+			faction->getJournal()->createEntryItemFound(mind, unit, QVector<Item *>::fromList(items));
 
 		// Meeting new units
 		Unit *pending = dynamic_cast<Unit*>(mind->getObjectFromUid(target->getUnitMet()));
 		if (pending){
 			target->setUnitMet(0);
 			pending->setFactionId(unit->getFactionId());
-			mind->getFactionById(unit->getFactionId())->addPendingUnit(pending->getUid());
+			faction->addPendingUnit(pending->getUid());
 		}
 
 		unit->setAttitude(Attitude::BuildingAggressive);

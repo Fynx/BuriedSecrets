@@ -84,10 +84,16 @@ JournalEntry *Journal::createEntryItemFound(Mind *mind, Unit *who, const QVector
 		itemsString.append(item->getName());
 	}
 
-	QString title = mind->getEntryFromType(BS::EntryType::ItemFound)->getTitle();
+	JournalEntry *baseEntry = mind->getEntryFromType(BS::EntryType::ItemFound);
+
+	if (baseEntry == nullptr) {
+		entry->setTitle(who->getName() + " found items: " + itemsString + ".");
+		return entry;
+	}
+
+	QString title = baseEntry->getTitle();
 	entry->setTitle(title.arg(itemsString));
 	entry->setEntryType(BS::EntryType::ItemFound);
-// 	entry->setTitle(who->getName() + " found items: " + itemsString);
 
 	return entry;
 }
