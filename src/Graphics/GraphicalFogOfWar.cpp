@@ -50,7 +50,7 @@ void main(void)\
 
 
 GraphicalFogOfWar::GraphicalFogOfWar(sf::RenderTarget *renderTarget, MapManager *mapManager, const Viewport *viewport)
-	: renderTarget{renderTarget}, mapManager{mapManager}, viewport{viewport}
+	: previousVisibleRegionSize{0}, renderTarget{renderTarget}, mapManager{mapManager}, viewport{viewport}
 {
 	const QSizeF size = mapManager->getMap()->getSize();
 	QPointF sizeP{size.width(), size.height()};
@@ -60,8 +60,15 @@ GraphicalFogOfWar::GraphicalFogOfWar(sf::RenderTarget *renderTarget, MapManager 
 	float maxScale = std::max(circleScale.x(), circleScale.y());
 	circleScale /= maxScale;
 
-	sizeScale = 1024.0f / std::max(sizeP.x(), sizeP.y());
-	sizeP *= sizeScale;
+	FOWSizeScale = 1024.0f / std::max(sizeP.x(), sizeP.y());
+	sizeP *= FOWSizeScale;
+
+	const auto view = viewport->getCurrentView();
+	QPointF topLeft = viewport->fromMetresToPixels(view.topLeft());
+	QPointF bottomRight = viewport->fromMetresToPixels(view.bottomRight());
+	QPointF screenSize =  bottomRight - topLeft;
+	FOVSizeScale = 512.0f / std::max(screenSize.x(), screenSize.y());
+	screenSize *= FOVSizeScale;
 
 	FOWTexture.create(sizeP.x(), sizeP.y());
 	FOWTexture.clear(sf::Color::Black);
@@ -69,8 +76,10 @@ GraphicalFogOfWar::GraphicalFogOfWar(sf::RenderTarget *renderTarget, MapManager 
 	FOWSprite.setPosition(0, 0);
 
 	FOWScreenTexture.create(1, 1);
+	FOVOneShaderTexture.create(1, 1);
+	FOVScreenTexture.create(1, 1);
 
-	FOVTexture.create(1, 1);
+	FOVTexture.create(screenSize.x(), screenSize.y());
 	tempTexture.create(1, 1);
 
 	circle.setPointCount(50);
@@ -90,39 +99,37 @@ void GraphicalFogOfWar::update()
 	const auto view = viewport->getCurrentView();
 	const auto topLeft = viewport->fromMetresToPixels(view.topLeft());
 	const auto bottomRight = viewport->fromMetresToPixels(view.bottomRight());
-	// FOW
+
 	auto *updateDiff = mapManager->getVisibilityUpdatesDiff();
-	auto visibleRegion = mapManager->getVisibleRegion();
+	const auto &visibleRegion = mapManager->getVisibleRegion();
 	if (updateDiff->length() > 0 || view.toRect() != previousView.toRect() ||
-			previousVisibleRegion.length() != visibleRegion.length() ||
-			previousVisibleRegion != visibleRegion) {
+			previousVisibleRegionSize != visibleRegion.length()) {
+		// FOW
 		if (updateDiff->length() > 0) {
 			drawUpdates(FOWTexture, *updateDiff, QRectF{0, 0, mapManager->getMap()->getSize().width(),
-								mapManager->getMap()->getSize().height()}, sizeScale);
+								mapManager->getMap()->getSize().height()}, FOWSizeScale);
 			FOWTexture.display();
 		}
 
-		enlargeAndBlur(FOWTexture.getTexture(), FOWScreenTexture, topLeft, bottomRight);
+		enlargeAndBlur(FOWTexture.getTexture(), FOWScreenTexture, topLeft, bottomRight, FOWSizeScale,
+			       blurVShader);
 		FOWSprite.setPosition(topLeft.x(), topLeft.y());
 		FOWSprite.setTexture(FOWScreenTexture.getTexture());
 
 		// FOV
 		// Get and draw the current visible region.
-		QPointF scaledSize = viewport->fromMetresToPixels(view.bottomRight() - view.topLeft());
-		if ((int)FOVTexture.getSize().x < (int)scaledSize.x() ||
-				(int)FOVTexture.getSize().y < (int)scaledSize.y()) {
-			qDebug() << "Create FOV texture!" << scaledSize << view;
-			FOVTexture.create(scaledSize.x() * 1.2, scaledSize.y() * 1.2);
-		}
-
 		FOVTexture.clear(sf::Color::Black);
-		drawUpdates(FOVTexture, visibleRegion, view, 1.0f);
+		drawUpdates(FOVTexture, visibleRegion, view, FOVSizeScale);
 		FOVTexture.display();
-		FOVSprite.setTexture(FOVTexture.getTexture());
+		enlargeAndBlur(FOVTexture.getTexture(), FOVOneShaderTexture, QPointF{0.0f, 0.0f},
+			       (bottomRight - topLeft) * FOVSizeScale, 1.0f, blurVShader);
+		enlargeAndBlur(FOVOneShaderTexture.getTexture(), FOVScreenTexture, QPointF{0.0f, 0.0f},
+			       bottomRight - topLeft, FOVSizeScale, blurHShader);
+		FOVSprite.setTexture(FOVScreenTexture.getTexture());
 		FOVSprite.setPosition(topLeft.x(), topLeft.y());
 		FOVSprite.setColor(sf::Color{255, 255, 255, 115});
 
-		previousVisibleRegion = visibleRegion;
+		previousVisibleRegionSize = visibleRegion.length();
 	}
 	delete updateDiff;
 	previousView = view;
@@ -184,21 +191,21 @@ void GraphicalFogOfWar::drawUpdates(sf::RenderTexture &canvas, const VisibilityU
 
 
 void GraphicalFogOfWar::enlargeAndBlur(const sf::Texture& texture, sf::RenderTexture& target, const QPointF& topLeft,
-				       const QPointF& bottomRight)
+				       const QPointF& bottomRight, const float scale, const sf::Shader &shader)
 {
 	sf::Sprite shaderSprite;
-	shaderSprite.setScale(1.0f / sizeScale, 1.0f / sizeScale);
+	shaderSprite.setScale(1.0f / scale, 1.0f / scale);
 	shaderSprite.setTexture(texture);
-	shaderSprite.setTextureRect(sf::IntRect{(int)(topLeft.x() * sizeScale), (int)(topLeft.y() * sizeScale),
-						(int)((bottomRight.x() - topLeft.x()) * sizeScale) + 1,
-						(int)((bottomRight.y() - topLeft.y()) * sizeScale) + 1});
+	shaderSprite.setTextureRect(sf::IntRect{(int)(topLeft.x() * scale), (int)(topLeft.y() * scale),
+						(int)((bottomRight.x() - topLeft.x()) * scale) + 1,
+						(int)((bottomRight.y() - topLeft.y()) * scale) + 1});
 	shaderSprite.setPosition(0, 0);
 	if ((int)target.getSize().x < (int)(bottomRight.x() - topLeft.x()) ||
 			(int)target.getSize().y < (int)(bottomRight.y() - topLeft.y())) {
 		target.create(bottomRight.x() - topLeft.x(), bottomRight.y() - topLeft.y());
 	}
 	sf::RenderStates noBlendShader{sf::BlendMode::BlendNone};
-	noBlendShader.shader = &blurVShader;
+	noBlendShader.shader = &shader;
 	target.draw(shaderSprite, noBlendShader);
 	target.display();
 }

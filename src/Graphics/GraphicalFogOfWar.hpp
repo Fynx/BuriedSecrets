@@ -34,11 +34,12 @@ private:
 	void drawUpdates(sf::RenderTexture& canvas, const VisibilityUpdateDiff& updateDiff, const QRectF &view,
 			 const float scale);
 	void enlargeAndBlur(const sf::Texture &texture, sf::RenderTexture &target, const QPointF &topLeft,
-			    const QPointF &bottomRight);
+			    const QPointF &bottomRight, const float scale, const sf::Shader &shader);
 
-	float sizeScale;
+	float FOWSizeScale;
+	float FOVSizeScale;
 	QRectF previousView;
-	VisibilityUpdateDiff previousVisibleRegion;
+	int previousVisibleRegionSize;
 
 	sf::Sprite FOVSprite;
 	sf::Sprite FOWSprite;
@@ -47,6 +48,8 @@ private:
 	sf::Shader blurVShader;
 
 	sf::RenderTexture FOVTexture;
+	sf::RenderTexture FOVOneShaderTexture;
+	sf::RenderTexture FOVScreenTexture;
 	sf::RenderTexture FOWTexture;
 	sf::RenderTexture FOWScreenTexture;
 	sf::RenderTexture tempTexture;
