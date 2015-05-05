@@ -22,10 +22,10 @@ Elite Goblin Spearman for Solider Mob from:
 http://opengameart.org/content/flare-mod-goblin-spearman-elite
 
 Goblin Spearman for Peasant Mob from:    
-http://http://opengameart.org/content/flare-mod-goblin-spearman
+http://opengameart.org/content/flare-mod-goblin-spearman
 
 Goblin Shaman for Woman Mob from:   
-http://http://opengameart.org/content/flare-mod-goblin-shaman
+http://opengameart.org/content/flare-mod-goblin-shaman
 
 Blood decal from:    
 http://opengameart.org/content/animated-particle-effects-2
