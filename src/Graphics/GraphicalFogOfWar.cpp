@@ -121,6 +121,8 @@ void GraphicalFogOfWar::update()
 		FOVSprite.setTexture(FOVTexture.getTexture());
 		FOVSprite.setPosition(topLeft.x(), topLeft.y());
 		FOVSprite.setColor(sf::Color{255, 255, 255, 115});
+
+		previousVisibleRegion = visibleRegion;
 	}
 	delete updateDiff;
 	previousView = view;
