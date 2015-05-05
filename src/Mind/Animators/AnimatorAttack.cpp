@@ -102,12 +102,10 @@ void AnimatorAttack::act()
 			info("Miss!");
 			hitPoint = from + (direction *
 					weapon->getPrototype()->getProperty(Properties::Range).toFloat()).toPointF();
-			if (unit->getState() != State::Inside) {
-				mind->addEffect(Effect(Effects::Miss,
-				                new PointToPointEffectData(mind->physicsEngine()->getPosition(unit),
-				                                           hitPoint),
-				                600));
-			}
+			mind->addEffect(Effect(Effects::Miss,
+					       new PointToPointEffectData(mind->physicsEngine()->getPosition(unit),
+									  hitPoint),
+					600));
 		} else {
 			info("Object hit: " + hit->getName());
 			hit->property(TempData::Damage).setValue(
@@ -116,13 +114,11 @@ void AnimatorAttack::act()
 			hit->property(TempData::Attacker).setValue(unit->getUid());
 
 			if (hit->getType() == BS::Type::Unit) {
-				if (unit->getState() != State::Inside) {
-					mind->addEffect(Effect(Decals::UnitHit,
-					                new PointToPointEffectData(
-					                	mind->physicsEngine()->getPosition(unit),
+				mind->addEffect(Effect(Decals::UnitHit,
+						       new PointToPointEffectData(
+								mind->physicsEngine()->getPosition(unit),
 					                	mind->physicsEngine()->getPosition(hit)),
-					                600));
-				}
+						600));
 			}
 		}
 	}
