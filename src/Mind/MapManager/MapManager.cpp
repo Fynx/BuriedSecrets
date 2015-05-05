@@ -120,10 +120,22 @@ bool MapManager::pointInObject(const QPointF &point, const Object *object, const
 	} else if (object->getPrototype()->hasProperty(Properties::BasePolygon)) {
 		const QPointF &baseCentre = object->getPrototype()->getBaseCentre();
 		auto polygon = object->getPrototype()->getBasePolygon();
+		qreal xMax, xMin, yMax, yMin;
+		xMax = xMin = polygon.front().x() - baseCentre.x();
+		yMax = yMin = polygon.front().y() - baseCentre.y();
 		for (auto &p : polygon) {
 			p -= baseCentre;
-			const float length = sqrt(p.x() * p.x() + p.y() * p.y());
-			p *= (length + inflate) / length;
+			xMax = qMax(xMax, p.x());
+			yMax = qMax(yMax, p.y());
+			xMin = qMin(xMin, p.x());
+			yMin = qMin(yMin, p.y());
+		}
+
+		const float inflateScale = 1.02 * qMax((xMax - xMin + inflate) / (xMax - xMin),
+						      (yMax - yMin + inflate) / (yMax - yMin));
+
+		for (auto &p: polygon) {
+			p *= inflateScale;
 			p += objPos;
 		}
 
