@@ -3987,19 +3987,10 @@
 			"uid": 3000,
 			"name": "BasicJournal",
 			"entries": [
-				3101
+				3201, 3202, 3203, 3204, 3205, 3206, 3207, 3208, 3209, 3210
 			]
 		},
 
-
-		{
-			"uid": 3101,
-			"name": "BasicJournalEntry",
-			"title": "Welcome to hell",
-			"entryType": "help",
-			"text": "Before me things create were none,\nsave things Eternal, and eternal I endure.\nAll hope abandon ye who enter here.",
-			"date": "10.10.1010 10:10"
-		},
 
 
 		{
@@ -4058,6 +4049,79 @@
 			"entryType": "death",
 			"title": "%1 died",
 			"text": "%1 is now in the better place."
+		},
+
+
+
+		{
+			"uid": 3201,
+			"name": "BasicJournalEntry",
+			"title": "Units",
+			"entryType": "help",
+			"text": "On the top of the screen there is a panel containing general informations about units you control. \nDouble click on specific section shows window with far more info about unit and enables you to ."
+		},
+		{
+			"uid": 3202,
+			"name": "BasicJournalEntry",
+			"title": "Equipment",
+			"entryType": "help",
+			"text": "Throughout the game your troops will find various equipment. Some of it might look like a useless junk, but with addition of few other things You might construct something valuable out of it. All equipment is available either in your base or in equipments of your units. To exchange items between those two places visit camp like any other location and drag and drop items into appropriate slot. You can see equipment of your units double clicking on the panel on top of the screen."
+		},
+		{
+			"uid": 3203,
+			"name": "BasicJournalEntry",
+			"title": "Psychosis",
+			"entryType": "help",
+			"text": "Each unit has some level of its mental health visible as blue bar on the top of the screen. Every time unit wander from the camp it starts to slowly deteriorate. When it reaches zero... well, you'll see. So it might be a good idea to move your camp around a little bit."
+		},
+		{
+			"uid": 3204,
+			"name": "BasicJournalEntry",
+			"title": "Selecting units",
+			"entryType": "help",
+			"text": "Selecting units can be done in few ways. Drag mouse over your units to select area or press F1 to F12 to choose specific unit. If you want to group your troops, use Ctrl+(0-9) to save current selected units. Then you can simply press 0-9 to select previously stored units.\n If you want add units to current selection instead of new selection add them with Shift key pressed."
+		},
+		{
+			"uid": 3205,
+			"name": "BasicJournalEntry",
+			"title": "Attitudes",
+			"entryType": "help",
+			"text": "Every unit have an attitude that determines unit's behaviour. Aggresive units try to follow enemy and destroy it no matter what, when guards stays in place only fighting back if possible. If aggresive unit is in location behaves as guard outside. Guarding location gives some stats bonuses but unables unit to shoot at enemy."
+		},
+		{
+			"uid": 3206,
+			"name": "BasicJournalEntry",
+			"title": "Healing",
+			"entryType": "help",
+			"text": "Any unit that have necessary equipment can heal its companions. To do so select only this unit and, while pressing Ctrl, right-click on friendly unit."
+		},
+		{
+			"uid": 3207,
+			"name": "BasicJournalEntry",
+			"title": "Food",
+			"entryType": "help",
+			"text": "Each of yours units consumes food, but not all of them eats alike, so beware! Amount of food you possess is displayed in bottom-right corner of screen."
+		},
+		{
+			"uid": 3208,
+			"name": "BasicJournalEntry",
+			"title": "Camp",
+			"entryType": "help",
+			"text": "Camp is a special, single construction which stores all spare as well as newly found equipment and grant nearby units special bonuses. Area of camp effect on units is marked by violet circle on the ground. To chnage unit's equipment command this unit to enter your base. To move camp around chose one unit and right-click on it with Ctrl key pressed. In order to assamble it do exactly the same."
+		},
+		{
+			"uid": 3209,
+			"name": "BasicJournalEntry",
+			"title": "Fortifications",
+			"entryType": "help",
+			"text": "Your units can place fortifications on the ground such as fences and bunkers. To do so select only unit who has fortification in its equipment and right-click on empty place on map while pressing Ctrl."
+		},
+		{
+			"uid": 3210,
+			"name": "BasicJournalEntry",
+			"title": "Buildings",
+			"entryType": "help",
+			"text": "Buildings, can contain food, interesting items or lonely survivors who might join your party, so it's good to visit them on your way. Moreover when unit is inside, it gains special bonuses making it harder for enemy to deal any damage."
 		},
 
 

@@ -12,6 +12,14 @@ bool JournalEntry::hasLongForm(BS::EntryType type)
 	return true;
 }
 
+bool JournalEntry::hasNotification(BS::EntryType type)
+{
+	if (type == BS::EntryType::Help)
+		return false;
+	return true;
+}
+
+
 JournalEntry::JournalEntry(const Prototype *prototype)
 	: Object(prototype)
 {}

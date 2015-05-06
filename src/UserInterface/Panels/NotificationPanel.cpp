@@ -38,8 +38,11 @@ void NotificationPanel::refresh()
 	auto journal = mind_->getPlayerFaction()->getJournal();
 
 	if (journal->getEntries().size() > knownJournalEntries_){
-		while (knownJournalEntries_ < journal->getEntries().size())
-			entriesToShow_.push_back(journal->getEntry(knownJournalEntries_++));
+		while (knownJournalEntries_ < journal->getEntries().size()) {
+			auto entry = journal->getEntry(knownJournalEntries_++);
+			if (JournalEntry::hasNotification(entry->getEntryType()))
+				entriesToShow_.push_back(entry);
+		}
 	}
 }
 
