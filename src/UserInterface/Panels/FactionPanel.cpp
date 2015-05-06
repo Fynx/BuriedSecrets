@@ -24,11 +24,15 @@ void FactionPanel::initLayout()
 	auto mainLayout = new QHBoxLayout;
 	setLayout(mainLayout);
 
+	QColor btnBackgroundColor(102, 102, 102);
+	QPalette btnPalette(btnBackgroundColor);
+
 	journalBtn_ = new QPushButton;
 	journalBtn_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	connect(journalBtn_, &QPushButton::clicked, this, &FactionPanel::journalActivated);
 	journalBtn_->setIcon(QIcon(Icons::Journal));
 	journalBtn_->setIconSize(IconsSize);
+	journalBtn_->setPalette(btnPalette);
 	mainLayout->addWidget(journalBtn_);
 
 	campBtn_ = new QPushButton;
@@ -36,6 +40,7 @@ void FactionPanel::initLayout()
 	connect(campBtn_, &QPushButton::clicked, this, &FactionPanel::campActivated);
 	campBtn_->setIcon(QIcon(Icons::Camp));
 	campBtn_->setIconSize(IconsSize);
+	campBtn_->setPalette(btnPalette);
 	mainLayout->addWidget(campBtn_);
 
 	mainLayout->addLayout(createFoodLayout());

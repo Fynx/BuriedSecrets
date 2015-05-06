@@ -18,7 +18,7 @@ AnimatorDie::AnimatorDie(Mind *mind) : Animator(mind)
 
 void AnimatorDie::act()
 {
-	for (Object * obj : objects){
+	for (Object *obj : objects){
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
@@ -29,7 +29,11 @@ void AnimatorDie::act()
 			Unit *attacker = static_cast<Unit *>(mind->getObjectFromUid(attackerUid));
 			if (attacker != nullptr) {
 				attacker->incFrags();
-				mind->getFactionById(attacker->getFactionId())->incTotalFrags();
+				Faction *faction = mind->getFactionById(attacker->getFactionId());
+				if (faction == nullptr)
+					err("Nullptr faction!");
+				else
+					faction->incTotalFrags();
 			}
 
 			if (unit->getLocation())
