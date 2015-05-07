@@ -6,7 +6,7 @@
 
 int main(int argc, char** argv)
 {
-	QCoreApplication::addLibraryPath("./libs/plugins/");
+// 	QCoreApplication::addLibraryPath("./libs/plugins/");
 	QApplication app(argc, argv);
 	General game;
 	game.getMainWindow()->show();
