@@ -245,13 +245,14 @@ namespace States {
 }
 
 namespace TempData {                                   // kept in GO's map
-	const QString Attacker      = "attacker";
-	const QString Damage        = "damage";
-	const QString NearCamp      = "nearCamp";
-	const QString NearestDist   = "nearestDist";
-	const QString State         = "state";
-	const QString X             = "x";
-	const QString Y             = "y";
+	const QString Attacker         = "attacker";
+	const QString Damage           = "damage";
+	const QString NearCamp         = "nearCamp";
+	const QString NearestDist      = "nearestDist";
+	const QString State            = "state";
+	const QString X                = "x";
+	const QString Y                = "y";
+	const QString PreviousPosition = "PreviousPosition";
 }
 
 namespace Types {

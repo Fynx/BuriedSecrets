@@ -4,6 +4,7 @@
 
 #include "Mind/Animators/AnimatorUpdatePath.hpp"
 
+#include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
 #include "Mind/MapManager/MapManager.hpp"
@@ -68,6 +69,16 @@ void AnimatorUpdatePath::act()
 		auto &path = unit->getCurrentPath();
 		if (path.empty() || path.back() != to) {
 			unit->setCurrentPath(mind->getMapManager()->getPath(unit, to));
+		} else if(isStuck(unit, (10 * from).toPoint())) {
+			path.pop_front();
 		}
 	}
+}
+
+
+bool AnimatorUpdatePath::isStuck(Unit *unit, const QPoint &position)
+{
+	const QPointF previousPos = unit->property(TempData::PreviousPosition).toPoint();
+	unit->property(TempData::PreviousPosition) = position;
+	return previousPos == position;
 }
