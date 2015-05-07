@@ -3998,7 +3998,7 @@
 			"name": "BasicJournalEntry",
 			"title": "Secure the base",
 			"entryType": "quest",
-			"text": "Our bridge to the north has been discovered! \nWe can expect attack from two sides... unless you find something to block this path. ",
+			"text": "Our bridge to the north has been discovered! \nWe can expect an attack from two sides... unless you find something to block this path.",
 			"date": "10.10.1010 10:10"
 		},
 
@@ -4008,7 +4008,7 @@
 			"name": "BasicJournalEntry",
 			"title": "Secure the base",
 			"entryType": "quest",
-			"text": "Great job! Now, when you've stopped the attack, we can take care of more prosaic matters. Like food...",
+			"text": "Great job! Now that you've stopped the attack, we can take care of more prosaic matters. Like food...",
 			"date": "10.10.1010 10:10"
 		},
 
@@ -4018,7 +4018,7 @@
 			"name": "BasicJournalEntry",
 			"title": "Reach the temple",
 			"entryType": "quest",
-			"text": "We cannot stay here forever. \nWe're running out of food, with no hope for new supplies. Old diary left by the previous expedition mentions some kind of temple, hidden in the valey to the north. Local tribes use temples as a kind of granaries. If you want to surive, you must reach it! But remember, staying away from the base can have a terrible influence on ones mind. So take the base with you, as you move forward. ",
+			"text": "We cannot stay here forever. \nWe're running out of food, with no hope for new supplies. Old diary left by the previous expedition mentions some kind of temple hidden in the valley to the north. The local tribes use it as a granary of a sort. If you want to surive, you must reach it! But remember, staying away from the base can have a terrible influence on one's mind. So take the base with you as you move forward.",
 			"date": "10.10.1010 10:10"
 		},
 
@@ -4028,7 +4028,7 @@
 			"name": "BasicJournalEntry",
 			"title": "Survivor",
 			"entryType": "quest",
-			"text": "Searching the ruins you've found a note:\n \"I'm moving north, there are supplies! - Bob\" ",
+			"text": "While searching the ruins you've found a note:\n \"I'm moving north, that's where the supplies are! - Bob\" ",
 			"date": "10.10.1010 10:10"
 		},
 
@@ -4058,35 +4058,35 @@
 			"name": "BasicJournalEntry",
 			"title": "Units",
 			"entryType": "help",
-			"text": "On the top of the screen there is a panel containing general information about units you control. \nDouble click on specific section shows window with far more info about unit."
+			"text": "On the top of the screen there is a panel containing general information about the units you control. \nDouble click on a specific section shows a window with far more info about the unit."
 		},
 		{
 			"uid": 3202,
 			"name": "BasicJournalEntry",
 			"title": "Equipment",
 			"entryType": "help",
-			"text": "Throughout the game your troops will find various equipment. Some of it might look like useless junk, but by adding a few other things you might construct something valuable from it. All equipment is available either in your base or in equipments of your units. To exchange items between those two places visit camp like any other location and drag'n'drop items into appropriate slots. You can see equipment of your units by double clicking on the panel on top of the screen."
+			"text": "Throughout the game your troops will find various equipment. Some of it might look like useless junk, but by adding a few other things you might construct something valuable from it. All equipment is available either in your base or in equipments of your units. To exchange items between those two places by visiting camp like any other location and drag'n'dropping items into appropriate slots. You can see your units' equipment by double clicking on the unit portrait on the panel on top of the screen."
 		},
 		{
 			"uid": 3203,
 			"name": "BasicJournalEntry",
 			"title": "Psychosis",
 			"entryType": "help",
-			"text": "Each unit has some level of it's mental health visible as blue bar on the top of the screen. Every time unit wanders from the camp it starts to slowly deteriorates. When it reaches zero... well, you'll see. So it might be a good idea to move your camp around a little bit."
+			"text": "Each unit has some level of it's mental health visible as blue bar on the panel at the top of the screen. Every time a unit wanders from the camp it's mental health starts to slowly deteriorate. When it reaches zero... well, you'll see. So it might be a good idea to move your camp around a little bit."
 		},
 		{
 			"uid": 3204,
 			"name": "BasicJournalEntry",
 			"title": "Selecting units",
 			"entryType": "help",
-			"text": "Selecting units can be done in a few ways. Drag mouse over your units to select an area or press F1 to F12 to choose specific unit. If you want to group your troops, use Ctrl+(0-9) to save the currently selected units. Then you can simply press 0-9 to select previously stored units.\n If you want to add units to the current selection instead of making new selection add them with Shift key pressed."
+			"text": "Selecting units can be done in a few ways. Drag mouse over your units to select an area or press F1 to F12 to choose a specific unit. If you want to group your troops, use Ctrl+(0-9) to save the currently selected units. Then you can simply press 0-9 to select previously stored units.\n To add units to the current selection instead of making a new selection, add them with Shift key pressed."
 		},
 		{
 			"uid": 3205,
 			"name": "BasicJournalEntry",
 			"title": "Attitudes",
 			"entryType": "help",
-			"text": "Every unit has an attitude that determines it's behaviour. Aggresive units try to follow enemy and destroy him no matter what, while guards stays in place only fighting back if possible. If an aggresive unit is in a location, it behaves as if it was a guard outside. Guarding location gives some stats bonuses but disallows to shoot at enemy."
+			"text": "Every unit has an attitude that determines it's behaviour. Aggresive units try to follow the enemy and destroy him no matter what, while guards stay in place only fighting back if possible. If an aggresive unit is in a location, it behaves as if it was a guard outside. Guarding location gives some stats bonuses but disallows to shoot at enemy."
 		},
 		{
 			"uid": 3206,
@@ -4107,14 +4107,14 @@
 			"name": "BasicJournalEntry",
 			"title": "Camp",
 			"entryType": "help",
-			"text": "Camp is a special, single construction which stores all spare as well as newly found equipment and grants nearby units special bonuses. The area of camp's effect on units is marked by a violet circle on the ground. To chage a unit's equipment, command it to enter your base. To move camp around choose one unit and right-click on the camp with Ctrl key pressed. In order to assamble the camp do exactly the same."
+			"text": "Camp is a special, single construction which stores all spare as well as newly found equipment and grants nearby units special bonuses. The area of the camp's effect on units is marked by a violet circle on the ground. To chage unit's equipment, command it to enter your base. To move the camp around, choose one unit and right-click on the camp with Ctrl key pressed. In order to assamble the camp do exactly the same on a free spot on the ground."
 		},
 		{
 			"uid": 3209,
 			"name": "BasicJournalEntry",
 			"title": "Fortifications",
 			"entryType": "help",
-			"text": "Your units can place fortifications on the ground such as fences and bunkers. To do so select single unit which has a fortification in it's equipment and right-click on an empty place on the map while pressing Ctrl."
+			"text": "Your units can place fortifications on the ground such as fences and bunkers. To do so select single the unit which has a fortification in it's equipment, hold Ctrl and right-click on an empty place on the ground."
 		},
 		{
 			"uid": 3210,
