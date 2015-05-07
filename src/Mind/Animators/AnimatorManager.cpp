@@ -3,7 +3,7 @@
  */
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
-#include "Mind/Animators/AnimationAnimator.hpp"
+#include "Mind/Animators/AnimatorAnimate.hpp"
 #include "Mind/Animators/AnimatorAggressiveAtt.hpp"
 #include "Mind/Animators/AnimatorApplyDamage.hpp"
 #include "Mind/Animators/AnimatorAssemble.hpp"
@@ -69,7 +69,7 @@ void AnimatorManager::initAnimators()
 	addAnimator(new AnimatorEffects(mind), Animators::Effects, 50);
 	///////
 
-	addAnimator(new AnimationAnimator(mind), Animators::Animation, 100);
+	addAnimator(new AnimatorAnimate(mind), Animators::Animate, 100);
 	addAnimator(new AnimatorUpdatePath(mind), Animators::UpdatePath, 100);
 	addAnimator(new AnimatorHeal(mind), Animators::Heal, 100);
 	addAnimator(new AnimatorAssemble(mind), Animators::Assemble, 100);

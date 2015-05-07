@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -11,7 +11,7 @@ namespace AnimationProperties {
 
 namespace Animators {
 	const QString AggressiveAtt    = "AnimatorAggressiveAtt";
-	const QString Animation        = "AnimatorAnimation";
+	const QString Animate          = "AnimatorAnimate";
 	const QString ApplyDamage      = "AnimatorApplyDamage";
 	const QString Assemble         = "AnimatorAssemble";
 	const QString Attack           = "AnimatorAttack";

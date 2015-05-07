@@ -42,7 +42,7 @@
 			"name": "Senior Cebulez",
 			"animators": [
 				"AnimatorAggressiveAtt",
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorAssemble",
 				"AnimatorBAggressiveAtt",
 				"AnimatorDisassemble",
@@ -87,7 +87,7 @@
 			"name": "El Bogdano",
 			"animators": [
 				"AnimatorAggressiveAtt",
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorAssemble",
 				"AnimatorBAggressiveAtt",
 				"AnimatorDisassemble",
@@ -131,7 +131,7 @@
 			"name": "Dr. D. Snee",
 			"animators": [
 				"AnimatorAggressiveAtt",
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorAssemble",
 				"AnimatorBAggressiveAtt",
 				"AnimatorDisassemble",
@@ -265,7 +265,7 @@
 			"uid": 102,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -298,7 +298,7 @@
 			"uid": 104,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -330,7 +330,7 @@
 			"uid": 106,
 			"name": "MobTank",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -362,7 +362,7 @@
 			"uid": 108,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -394,7 +394,7 @@
 			"uid": 110,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -426,7 +426,7 @@
 			"uid": 112,
 			"name": "MobTank",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -458,7 +458,7 @@
 			"uid": 114,
 			"name": "MobTank",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -490,7 +490,7 @@
 			"uid": 116,
 			"name": "MobWoman",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -523,7 +523,7 @@
 			"uid": 118,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -556,7 +556,7 @@
 			"uid": 120,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -589,7 +589,7 @@
 			"uid": 122,
 			"name": "MobWoman",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -622,7 +622,7 @@
 			"uid": 124,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -655,7 +655,7 @@
 			"uid": 126,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -688,7 +688,7 @@
 			"uid": 128,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -720,7 +720,7 @@
 			"uid": 130,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -752,7 +752,7 @@
 			"uid": 132,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -784,7 +784,7 @@
 			"uid": 134,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -816,7 +816,7 @@
 			"uid": 136,
 			"name": "MobTank",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -848,7 +848,7 @@
 			"uid": 138,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -881,7 +881,7 @@
 			"uid": 140,
 			"name": "MobWoman",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -914,7 +914,7 @@
 			"uid": 142,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -946,7 +946,7 @@
 			"uid": 144,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -978,7 +978,7 @@
 			"uid": 146,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -1010,7 +1010,7 @@
 			"uid": 148,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -1042,7 +1042,7 @@
 			"uid": 150,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -1075,7 +1075,7 @@
 			"uid": 152,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -1107,7 +1107,7 @@
 			"uid": 154,
 			"name": "MobSoldier",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -1139,7 +1139,7 @@
 			"uid": 156,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -1171,7 +1171,7 @@
 			"uid": 158,
 			"name": "MobWoman",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -1203,7 +1203,7 @@
 			"uid": 160,
 			"name": "MobPeasant",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -1236,7 +1236,7 @@
 			"uid": 162,
 			"name": "MobWoman",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorDie",
 				"AnimatorMove",
 				"AnimatorMobAttitude",
@@ -1559,7 +1559,7 @@
 			"uid": 1001,
 			"name": "Teleport1",
 			"animators": [
-				"AnimatorAnimation",
+				"AnimatorAnimate",
 				"AnimatorKickOut"
 			],
 			"items": [

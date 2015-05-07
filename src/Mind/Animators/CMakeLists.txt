@@ -1,7 +1,7 @@
 
 set (Anims_SRCS
-	AnimationAnimator.cpp
 	Animator.cpp
+	AnimatorAnimate.cpp
 	AnimatorManager.cpp
 	AnimatorConsume.cpp
 	AnimatorDie.cpp
