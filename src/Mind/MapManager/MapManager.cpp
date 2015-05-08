@@ -131,7 +131,7 @@ bool MapManager::pointInObject(const QPointF &point, const Object *object, const
 			yMin = qMin(yMin, p.y());
 		}
 
-		const float inflateScale = 1.02 * qMax((xMax - xMin + inflate) / (xMax - xMin),
+		const float inflateScale = 1.03 * qMax((xMax - xMin + inflate) / (xMax - xMin),
 						      (yMax - yMin + inflate) / (yMax - yMin));
 
 		for (auto &p: polygon) {

@@ -61,11 +61,22 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 	auto *accMap = getAccessiblityMap(gridSize, unit);
 	QPoint targetDiscrete = accMap->discretize(target);
 	QPoint sourceDiscrete = accMap->discretize(source);
+
+	if (!mapManager->canStandOn(unit, sourceDiscrete)) {
+		for (int i = 0; i < 8; ++i) {
+			QPoint possibleSource = sourceDiscrete + directions[i];
+			if (mapManager->canStandOn(unit, possibleSource)) {
+				sourceDiscrete = possibleSource;
+				break;
+			}
+		}
+	}
+
 	const Object *targetObject =
 		mapManager->getObjectContaining(accMap->undiscretize(targetDiscrete),
 		                                gridSize / 2.0f);
-// 	qDebug() << "PF: Starting from: " << sourceDiscrete << " going to: " << targetDiscrete
-// 		<< (targetObject != nullptr ? targetObject->getName() : "no object");
+	qDebug() << "PF: Starting from: " << sourceDiscrete << " going to: " << targetDiscrete
+		<< (targetObject != nullptr ? targetObject->getName() : "no object");
 
 	QHash<QPoint, int> pointToNode;
 	std::vector<bool> visited(10000, false);
@@ -86,7 +97,7 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 
 	pointToNode.insert(sourceDiscrete, ++lastId);
 	const float initialDist = heuristicDistance(sourceDiscrete, targetDiscrete);
-	float distBound = 6.0f * initialDist;
+	float distBound = 25.0f * initialDist;
 	nodes[lastId] = Node{sourceDiscrete, 0.0f, initialDist};
 	q.insert(lastId);
 
@@ -190,7 +201,7 @@ QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *o
 		}
 	}
 
-// 	qDebug() << lastId + 1 << "nodes considered";
+	qDebug() << lastId + 1 << "nodes considered";
 	while (result.length() >= 2 &&
 			BS::Geometry::distance(target, result.at(result.length() - 2)) < gridSize * sqrtTwo) {
 		result.pop_back();

@@ -97,6 +97,25 @@ void PrecomputedAccessibilityMap::addObject (const Object *object, const QPointF
 				}
 			}
 		}
+
+		// Debug
+// 		QSizeF mapSize = mapManager->getMap()->getSize();
+// 		QImage image{mapSize.toSize(), QImage::Format_ARGB32};
+// 		image.fill(Qt::transparent);
+// 		QPainter painter{&image};
+// 		painter.setBrush(QBrush(Qt::black));
+//
+// 		for (int x = 0; x < width; ++x) {
+// 			for (int y = 0; y < height; ++y) {
+// 				if (!matrix[x][y]) {
+// 					painter.drawRect(x * gridSize, y * gridSize, gridSize, gridSize);
+// 				}
+// 			}
+// 		}
+//
+// 		qDebug() << unit->getName();
+// 		image.save("/tmp/" + unit->getName() + ".png");
+		// End of Debug
 	}
 }
 
