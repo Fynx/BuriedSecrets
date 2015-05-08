@@ -15,9 +15,13 @@ class Unit;
 class AStarPathFinder : public PathFinder {
 public:
 	AStarPathFinder(const MapManager *mapManager, const Mind *mind);
+	~AStarPathFinder() override;
 	QList<QPointF> getPath(const QPointF &source, const Object *object, const QPointF &target) override;
 	void addObject(const Object *object, const QPointF &position) override;
 	void removeObject(const Object *object, const QPointF &position) override;
+
+protected:
+	AccessiblityMap *getAccessiblityMap(const int gridSize, const Unit *unit);
 
 private:
 	struct Node {
@@ -37,7 +41,6 @@ private:
 	static const float costs[8];
 	static const float sqrtTwo;
 
-	AccessiblityMap *getAccessiblityMap(const int gridSize, const Unit *unit);
 	float getGridSize(const float radius) const;
 	float heuristicDistance(const QPoint& from, const QPoint& to);
 	/**

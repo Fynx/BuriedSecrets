@@ -45,6 +45,12 @@ AStarPathFinder::AStarPathFinder(const MapManager *mapManager, const Mind *mind)
 }
 
 
+AStarPathFinder::~AStarPathFinder()
+{
+	qDeleteAll(accessibilityMaps);
+}
+
+
 QList< QPointF > AStarPathFinder::getPath(const QPointF &source, const Object *object, const QPointF &target)
 {
 	QList<QPointF> result;
