@@ -6,7 +6,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 set(CMAKE_CXX_FLAGS "-Wall -Werror -std=c++11")
-set(CMAKE_CXX_FLAGS_DEBUG "$-ggdb -pg")
+set(CMAKE_CXX_FLAGS_DEBUG "-ggdb -pg")
 set(CMAKE_CXX_FLAGS_RELEASE "") # Box2D is problematic to use -OX
 set(EXECUTABLE_OUTPUT_PATH "${BuriedSecrets_BINARY_DIR}/bin")
 set(LIBRARY_OUTPUT_PATH "${BuriedSecrets_BINARY_DIR}/lib")
