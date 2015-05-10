@@ -30,7 +30,7 @@ void AnimatorNearCamp::act()
 		Faction *faction = mind->getFactionById(unit->getFactionId());
 		if (!faction)
 			continue;
-		Location *camp = dynamic_cast<Location *>(mind->getObjectFromUid(faction->getCampUid()));
+		Location *camp = mind->getLocation(faction->getCampUid());
 		if (!camp)
 			continue;
 		QPointF campPos = mind->physicsEngine()->getPosition(camp);

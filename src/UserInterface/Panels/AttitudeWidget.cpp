@@ -23,7 +23,7 @@ AttitudeWidget::AttitudeWidget(Mind *m)
 	resize(WidgetSize);
 	hide();
 	connect(&signalMapper_, static_cast<void (QSignalMapper::*)(int)>(&QSignalMapper::mapped),
-			this, &AttitudeWidget::onOptionClicked);
+		this, &AttitudeWidget::onOptionClicked);
 }
 
 void AttitudeWidget::refresh(QSet<int> uids)
@@ -41,10 +41,10 @@ void AttitudeWidget::refresh(QSet<int> uids)
 
 void AttitudeWidget::initLayout()
 {
-	auto layout = new QVBoxLayout;
+	QVBoxLayout *layout = new QVBoxLayout;
 	setLayout(layout);
 
-	auto label = new QLabel(tr("Behaviour"));
+	QLabel *label = new QLabel(tr("Behaviour"));
 	label->setAlignment(Qt::AlignCenter);
 	label->setFont(TextFont);
 	layout->addWidget(label);
@@ -62,15 +62,15 @@ void AttitudeWidget::setUnits(QSet<int> uids)
 		hide();
 		return;
 	}
-	else
+	else {
 		show();
+	}
 
 	if (anyUnitOutside(uids)) {
 		outsideAttitudes_ = true;
 		addOption(BS::Attitude::Aggressive);
 		addOption(BS::Attitude::Guard);
-	}
-	else {
+	} else {
 		outsideAttitudes_ = false;
 		addOption(BS::Attitude::BuildingAggressive);
 		addOption(BS::Attitude::BuildingDefensive);
@@ -83,7 +83,7 @@ bool AttitudeWidget::inSameLocation(QSet<int> uids)
 	int numOutside;
 
 	for (int uid : uids) {
-		auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+		Unit *unit = mind_->getUnit(uid);
 		if (unit->getState() == BS::State::Inside)
 			++numInside;
 		else
@@ -97,7 +97,7 @@ bool AttitudeWidget::anyUnitOutside(QSet<int> uids)
 {
 	if (uids.isEmpty())
 		return true;
-	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*(uids.begin())));
+	Unit *unit = mind_->getUnit(*(uids.begin()));
 	return unit->getState() != BS::State::Inside;
 }
 
@@ -123,7 +123,7 @@ void AttitudeWidget::addOption(BS::Attitude option)
 	auto btn = new QPushButton(icon, text);
 	btn->setFont(TextFont);
 	connect(btn, &QPushButton::clicked,
-			&signalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
+		&signalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 	signalMapper_.setMapping(btn, options_.count());
 	options_.append(option);
 	attitudeLayout_->addWidget(btn);
@@ -142,7 +142,7 @@ void AttitudeWidget::clearOptions()
 void AttitudeWidget::onOptionClicked(int option)
 {
 	for (int uid : uids_) {
-		auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+		Unit *unit = mind_->getUnit(uid);
 		unit->setAttitude(options_[option]);
 	}
 }

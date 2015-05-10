@@ -28,7 +28,7 @@ void AnimatorQuest::act()
 			continue;
 
 		for (int id : fac->getQuests()){
-			Quest *quest = dynamic_cast<Quest *> (mind->getObjectFromUid(id));
+			Quest *quest = mind->getQuest(id);
 			if (!quest)
 				continue;
 
@@ -37,7 +37,7 @@ void AnimatorQuest::act()
 				if (Quest::evaluateConditions(quest->getStartConds(), mind, fac->getFactionId())) {
 
 					quest->setState(State::Active);
-					JournalEntry *entry = dynamic_cast<JournalEntry *>(mind->getObjectFromUid(quest->getStartEntry()));
+					JournalEntry *entry = mind->getJournalEntry(quest->getStartEntry());
 					if (entry)
 						fac->getJournal()->addEntry(entry);
 				}
@@ -46,14 +46,14 @@ void AnimatorQuest::act()
 			case State::Active:
 				if (Quest::evaluateConditions(quest->getSuccessConds(), mind, fac->getFactionId())) {
 					quest->setState(State::Success);
-					JournalEntry *entry = dynamic_cast<JournalEntry *>(mind->getObjectFromUid(quest->getSuccessEntry()));
+					JournalEntry *entry = mind->getJournalEntry(quest->getSuccessEntry());
 					if (entry)
 						fac->getJournal()->addEntry(entry);
 					if (quest->isFinal())
 						mind->setGameState(GameState::Won);
 				} else if (Quest::evaluateConditions(quest->getFailConds(), mind, fac->getFactionId())) {
 					quest->setState(State::Fail);
-					JournalEntry *entry = dynamic_cast<JournalEntry *>(mind->getObjectFromUid(quest->getFailEntry()));
+					JournalEntry *entry = mind->getJournalEntry(quest->getFailEntry());
 					if (entry)
 						fac->getJournal()->addEntry(entry);
 				}

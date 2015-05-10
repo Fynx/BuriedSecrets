@@ -20,7 +20,7 @@ UnitHistoryTab::UnitHistoryTab(Unit *unit, DataManager *dataManager)
 
 void UnitHistoryTab::initLayout()
 {
-	auto mainLayout = new QVBoxLayout;
+	QVBoxLayout *mainLayout = new QVBoxLayout;
 	setLayout(mainLayout);
 
 	mainLayout->addWidget(createPictureWidget());
@@ -29,7 +29,7 @@ void UnitHistoryTab::initLayout()
 
 QWidget *UnitHistoryTab::createPictureWidget()
 {
-	auto picture = new QLabel;
+	QLabel *picture = new QLabel;
 	QString avatarName = unit_->getPrototype()->getProperty(Properties::Picture).toString();
 	const Resource *res = dataManager_->getResource(avatarName);
 	QImage img;
@@ -43,10 +43,10 @@ QWidget *UnitHistoryTab::createPictureWidget()
 
 QLayout *UnitHistoryTab::createDataLayout()
 {
-	auto layout = new QGridLayout;
+	QGridLayout *layout = new QGridLayout;
 // 	layout->setHorizontalSpacing(HorizontalSpacing);
 
-	auto layoutUp = new QFormLayout;
+	QFormLayout *layoutUp = new QFormLayout;
 	layout->addLayout(layoutUp, 0, 0, 1, 2);
 	layoutUp->setVerticalSpacing(VerticalSpacing);
 	layoutUp->setHorizontalSpacing(HorizontalSpacing);
@@ -58,7 +58,7 @@ QLayout *UnitHistoryTab::createDataLayout()
 	addProperty(tr("Background"), Properties::Background, layoutUp);
 	addProperty(tr("Quote"),      Properties::Quote,      layoutUp);
 
-	auto statsLeft = new QFormLayout;
+	QFormLayout *statsLeft = new QFormLayout;
 	layout->addLayout(statsLeft, 1, 0, 1, 1);
 	statsLeft->setVerticalSpacing(VerticalSpacing);
 	statsLeft->setHorizontalSpacing(HorizontalSpacing);
@@ -70,7 +70,7 @@ QLayout *UnitHistoryTab::createDataLayout()
 	addProperty(tr("Mental health"),   Properties::Psychosis,    statsLeft);
 	addProperty(tr("Regeneration"),    Properties::Regeneration, statsLeft);
 
-	auto statsRight = new QFormLayout;
+	QFormLayout *statsRight = new QFormLayout;
 	layout->addLayout(statsRight, 1, 1, 1, 1);
 	statsRight->setVerticalSpacing(VerticalSpacing);
 	statsRight->setHorizontalSpacing(HorizontalSpacing);
@@ -88,11 +88,11 @@ QLayout *UnitHistoryTab::createDataLayout()
 
 void UnitHistoryTab::addProperty(const QString &key, const QString &property, QFormLayout *layout)
 {
-	auto labelKey = new QLabel(key);
+	QLabel *labelKey = new QLabel(key);
 	labelKey->setFont(QFont("Arial", 14, QFont::Bold));
 
 	QString valueTxt = unit_->getPrototype()->getProperty(property).toString();
-	auto labelValue = new QLabel(valueTxt);
+	QLabel *labelValue = new QLabel(valueTxt);
 	labelValue->setWordWrap(true);
 	labelValue->setFont(QFont("Times", 14));
 

@@ -17,6 +17,7 @@ class JournalEntry;
 class Map;
 class MapManager;
 class PhysicsEngine;
+class Quest;
 class SoundsManager;
 
 class Mind : public QObject {
@@ -57,6 +58,15 @@ public:
 	Faction *getPlayerFaction();
 	const Faction *getPlayerFaction() const;
 	QVector<const Object *> getAllObjects() const;
+
+	Equipment *getEquipment(const int uid);
+	Item *getItem(const int uid);
+	Journal *getJournal(const int uid);
+	JournalEntry *getJournalEntry(const int uid);
+	Location *getLocation(const int uid);
+	Quest *getQuest(const int uid);
+	Unit *getUnit(const int uid);
+	const Unit *getUnit(const int uid) const;
 
 	JournalEntry *getEntryFromType(BS::EntryType type);
 

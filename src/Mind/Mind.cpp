@@ -123,9 +123,8 @@ void Mind::loadFromJson(const QJsonObject &json)
 			faction->setEquipment(dynamic_cast<Equipment *>(eq));
 
 			if (faction->getJournalUid() != Object::InvalidUid) {
-				Object *j = getObjectFromUid(faction->getJournalUid());
-				Q_ASSERT(j->getType() == BS::Type::Journal);
-				faction->setJournal(dynamic_cast<Journal *>(j));
+				Journal *j = getJournal(faction->getJournalUid());
+				faction->setJournal(j);
 				qDebug() << "\t\t\tcontains journal (" << j->getUid() << ")";
 			}
 
@@ -140,27 +139,19 @@ void Mind::loadFromJson(const QJsonObject &json)
 				eqUid = eq->assignUid();
 				addObject(eq);
 			}
-			Object *eq = getObjectFromUid(eqUid);
-			Q_ASSERT(eq->getType() == BS::Type::Equipment);
-			unit->setEquipment(dynamic_cast<Equipment *>(eq));
+			unit->setEquipment(getEquipment(eqUid));
 
 			break;
 		}
 		case BS::Type::Equipment: {
 			Equipment *eq = dynamic_cast<Equipment *>(object);
 
-			for (int itemUid : eq->getItemsUids()) {
-				Object *item = getObjectFromUid(itemUid);
-				Q_ASSERT(item->getType() == BS::Type::Item);
-				eq->addItem(dynamic_cast<Item *>(item));
-			}
+			for (int itemUid : eq->getItemsUids())
+				eq->addItem(getItem(itemUid));
 			for (BS::Slot slot : BS::getSlots()) {
 				int itemUid = eq->getSlotItemUid(slot);
-				if (itemUid != Object::InvalidUid) {
-					Object *item = getObjectFromUid(itemUid);
-					Q_ASSERT(item->getType() == BS::Type::Item);
-					eq->putItemIntoSlot(slot, dynamic_cast<Item *>(item));
-				}
+				if (itemUid != Object::InvalidUid)
+					eq->putItemIntoSlot(slot, getItem(itemUid));
 			}
 
 			break;
@@ -169,9 +160,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Location *loc = dynamic_cast<Location *>(object);
 
 			for (int itemUid : loc->getItemsUids().keys()) {
-				Item *item = dynamic_cast<Item *>(getObjectFromUid(itemUid));
-				Q_ASSERT(item->getType() == BS::Type::Item);
-				loc->addItem(loc->getItemsUids()[itemUid], item);
+				loc->addItem(loc->getItemsUids()[itemUid], getItem(itemUid));
 
 				for (Item *item : loc->getItemsDifficulty().keys())
 					qDebug() << "\t\t\tcontains item" << item->getName()
@@ -179,9 +168,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 			}
 			for (int unitUid : loc->getUnitsUids()) {
 				loc->insertUnit(unitUid);
-				Object *unit = getObjectFromUid(unitUid);
-				Q_ASSERT(unit->getType() == BS::Type::Unit);
-				dynamic_cast<Unit *>(unit)->setLocation(loc);
+				getUnit(unitUid)->setLocation(loc);
 			}
 
 			break;
@@ -190,8 +177,7 @@ void Mind::loadFromJson(const QJsonObject &json)
 			Journal *journal = dynamic_cast<Journal *>(object);
 
 			for (int entryUid : journal->getEntriesUids()) {
-				JournalEntry *entry = dynamic_cast<JournalEntry *>(getObjectFromUid(entryUid));
-				Q_ASSERT(entry->getType() == BS::Type::JournalEntry);
+				JournalEntry *entry = getJournalEntry(entryUid);
 				journal->addEntry(entry);
 				qDebug() << "\t\t\tcontains entry" << entry->getTitle() << "("
 					<< BS::changeEntryTypeToString(entry->getEntryType()) << ")";
@@ -475,6 +461,70 @@ QVector<const Object *> Mind::getAllObjects() const
 	return result;
 }
 
+Equipment *Mind::getEquipment(const int uid)
+{
+	Equipment *eq = dynamic_cast<Equipment *>(getObjectFromUid(uid));
+	if (!eq)
+		err("Equipment with uid " + QString::number(uid) + " not found!");
+	return eq;
+}
+
+Item *Mind::getItem(const int uid)
+{
+	Item *item = dynamic_cast<Item *>(getObjectFromUid(uid));
+	if (!item)
+		err("Item with uid " + QString::number(uid) + " not found!");
+	return item;
+}
+
+Journal *Mind::getJournal(const int uid)
+{
+	Journal *journal = dynamic_cast<Journal *>(getObjectFromUid(uid));
+	if (!journal)
+		err("Journal with uid " + QString::number(uid) + " not found!");
+	return journal;
+}
+
+JournalEntry *Mind::getJournalEntry(const int uid)
+{
+	JournalEntry *entry = dynamic_cast<JournalEntry *>(getObjectFromUid(uid));
+	if (!entry)
+		err("Item with uid " + QString::number(uid) + " not found!");
+	return entry;
+}
+
+Location *Mind::getLocation(const int uid)
+{
+	Location *location = dynamic_cast<Location *>(getObjectFromUid(uid));
+	if (!location)
+		err("Item with uid " + QString::number(uid) + " not found!");
+	return location;
+}
+
+Quest *Mind::getQuest(const int uid)
+{
+	Quest *quest = dynamic_cast<Quest *>(getObjectFromUid(uid));
+	if (!quest)
+		err("Item with uid " + QString::number(uid) + " not found!");
+	return quest;
+}
+
+Unit *Mind::getUnit(const int uid)
+{
+	Unit *unit = dynamic_cast<Unit *>(getObjectFromUid(uid));
+	if (!unit)
+		err("Item with uid " + QString::number(uid) + " not found!");
+	return unit;
+}
+
+const Unit *Mind::getUnit(const int uid) const
+{
+	const Unit *unit = dynamic_cast<const Unit *>(getObjectFromUid(uid));
+	if (!unit)
+		err("Item with uid " + QString::number(uid) + " not found!");
+	return unit;
+}
+
 JournalEntry *Mind::getEntryFromType(EntryType type)
 {
 	if (!entries.contains(type)) {
@@ -487,7 +537,7 @@ JournalEntry *Mind::getEntryFromType(EntryType type)
 // FactionId should be set during adding to the pending set in faction
 void Mind::acceptPendingUnit(int uid)
 {
-	Unit *unit = dynamic_cast<Unit*>(getObjectFromUid(uid));
+	Unit *unit = getUnit(uid);
 	if (!unit)
 		return;
 	getFactionById(unit->getFactionId())->removePendingUnit(uid);
@@ -496,7 +546,7 @@ void Mind::acceptPendingUnit(int uid)
 
 void Mind::declinePendingUnit(int uid)
 {
-	Unit *unit = dynamic_cast<Unit*>(getObjectFromUid(uid));
+	Unit *unit = getUnit(uid);
 	if (!unit)
 		return;
 	getFactionById(unit->getFactionId())->removePendingUnit(uid);

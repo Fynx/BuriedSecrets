@@ -112,7 +112,7 @@ void GameWindows::showJournalWindow()
 void GameWindows::showLoadout()
 {
 	auto uid = anyAliveUnitUid();
-	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	Unit *unit = mind_->getUnit(uid);
 	if (unit == nullptr) {
 		err("Invalid unit UID to display");
 		return;
@@ -123,7 +123,7 @@ void GameWindows::showLoadout()
 
 void GameWindows::showUnitWindow(int uid)
 {
-	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	Unit *unit = mind_->getUnit(uid);
 	if (unit == nullptr) {
 		err("Invalid unit UID to display");
 		return;
@@ -135,7 +135,7 @@ void GameWindows::showUnitWindow(int uid)
 void GameWindows::switchUnitWindow(int uid)
 {
 
-	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	Unit *unit = mind_->getUnit(uid);
 	if (unit == nullptr) {
 		err("Invalid unit UID to display");
 		return;

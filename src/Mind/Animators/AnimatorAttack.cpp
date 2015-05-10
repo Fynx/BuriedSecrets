@@ -26,7 +26,7 @@ void AnimatorAttack::act()
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
-		if (unit->getCommand() != Command::Attack){
+		if (unit->getCommand() != Command::Attack) {
 			if (unit->getState() == State::Attack || unit->getState() == State::RunAttack)
 				unit->setState(State::Idle);
 			continue;
@@ -35,18 +35,18 @@ void AnimatorAttack::act()
 		if (unit->getState() == State::Inside)
 			unit->setAttitude(Attitude::BuildingAggressive);
 		Item *weapon = unit->getUsedItem();
-		if (!weapon){
+		if (!weapon) {
 			unit->setCommand(Command::None);
 			continue;
 		}
 
-		Object *target = dynamic_cast<Object *>(mind->getObjectFromUid(unit->getTargetObject()));
-		if (!target){
+		Object *target = mind->getObjectFromUid(unit->getTargetObject());
+		if (!target) {
 			unit->setCommand(Command::None);
 			warn("Invalid target in attack animator");
 			continue;
 		}
-		if (mind->getFactionById(unit->getFactionId())->isFriendly(target)){
+		if (mind->getFactionById(unit->getFactionId())->isFriendly(target)) {
 			unit->setCommand(Command::None);
 			continue;
 		}
@@ -67,7 +67,7 @@ void AnimatorAttack::act()
 
 		// We are close!
 		if (dist < weapon->getPrototype()->getProperty(Properties::OptimalRange).toFloat() &&
-				unit->getState() != State::Inside){
+				unit->getState() != State::Inside) {
 			unit->setCurrentPath(QList<QPointF>());
 			if (weapon->getState() != State::Idle)
 				continue;

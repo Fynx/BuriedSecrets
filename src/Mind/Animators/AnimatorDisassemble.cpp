@@ -26,7 +26,7 @@ void AnimatorDisassemble::act()
 
 		if (unit->getCommand() != Command::Disassemble)
 			continue;
-		Location *target = dynamic_cast<Location *>(mind->getObjectFromUid(unit->getTargetObject()));
+		Location *target = mind->getLocation(unit->getTargetObject());
 		if (!target){
 			unit->setCommand(Command::None);
 			continue;

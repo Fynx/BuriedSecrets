@@ -26,7 +26,7 @@ void AnimatorConsume::act()
 
 		QSet<int> units = faction->getUnitsUids();
 		for (int id : units){
-			Unit *unit = dynamic_cast<Unit *>(mind->getObjectFromUid(id));
+			Unit *unit = mind->getUnit(id);
 			if (!unit)
 				continue;
 

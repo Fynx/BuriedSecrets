@@ -100,7 +100,7 @@ void UnitsPanel::rebuild()
 
 void UnitsPanel::appendUnitSection(int uid)
 {
-	const Unit *unit = dynamic_cast<const Unit *>(mind_->getObjectFromUid(uid));
+	const Unit *unit = mind_->getUnit(uid);
 	UnitSection *unitSection = new UnitSection(unit, dataManager_);
 
 	unitSections_.insert(uid, unitSection);
@@ -109,9 +109,9 @@ void UnitsPanel::appendUnitSection(int uid)
 	connect(unitSection, &UnitSection::pickUnit,
 	        &pickSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 	connect(unitSection, &UnitSection::showMenu,
-			&showMenuSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
+		&showMenuSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 	connect(unitSection, &UnitSection::showUnit,
-			&showUnitSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
+		&showUnitSignalMapper_, static_cast<void (QSignalMapper::*)()>(&QSignalMapper::map));
 
 	pickSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());
 	showMenuSignalMapper_.setMapping(unitSection, unitSection->unit()->getUid());

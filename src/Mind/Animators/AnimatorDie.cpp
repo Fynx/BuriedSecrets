@@ -26,7 +26,7 @@ void AnimatorDie::act()
 			info("Unit dies. Id: " + QString::number(unit->getUid()));
 
 			int attackerUid = unit->property(TempData::Attacker).toInt();
-			Unit *attacker = static_cast<Unit *>(mind->getObjectFromUid(attackerUid));
+			Unit *attacker = mind->getUnit(attackerUid);
 			if (attacker != nullptr) {
 				attacker->incFrags();
 				Faction *faction = mind->getFactionById(attacker->getFactionId());

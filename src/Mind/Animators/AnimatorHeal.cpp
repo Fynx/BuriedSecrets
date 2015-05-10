@@ -25,7 +25,7 @@ void AnimatorHeal::act()
 			continue;
 		if (unit->getCommand() != Command::Heal)
 			continue;
-		Unit *target = dynamic_cast<Unit *>(mind->getObjectFromUid(unit->getTargetObject()));
+		Unit *target = mind->getUnit(unit->getTargetObject());
 		if (!target){
 			unit->setCommand(Command::None);
 			continue;

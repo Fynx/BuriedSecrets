@@ -114,7 +114,7 @@ JournalEntry *Journal::createEntryPsycho(Mind *mind, Unit *who)
 
 JournalEntry *Journal::createEntryQuest(Mind *mind, int entryUid)
 {
-	JournalEntry *entry = dynamic_cast<JournalEntry *>(mind->getObjectFromUid(entryUid));
+	JournalEntry *entry = mind->getJournalEntry(entryUid);
 	addEntry(entry);
 	entry->setEntryType(BS::EntryType::Quest);
 

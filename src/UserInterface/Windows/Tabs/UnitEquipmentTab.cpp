@@ -22,8 +22,8 @@ UnitEquipmentTab::UnitEquipmentTab(Unit *u, Mind *m, DataManager *dm)
 
 bool UnitEquipmentTab::isAcceptableItem(int uid, BS::Slot slot)
 {
-	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
-	if (! item->getAvailableSlots().contains(slot))
+	Item *item = mind_->getItem(uid);
+	if (!item->getAvailableSlots().contains(slot))
 		return false;
 
 // 	take current Item in this slot into account
@@ -39,7 +39,7 @@ bool UnitEquipmentTab::isAcceptableItem(int uid, BS::Slot slot)
 
 void UnitEquipmentTab::initLayout()
 {
-	auto layout = new QVBoxLayout;
+	QVBoxLayout *layout = new QVBoxLayout;
 	setLayout(layout);
 
 	itemWidget_ = new ItemWidget(dataManager_);
@@ -49,11 +49,11 @@ void UnitEquipmentTab::initLayout()
 
 QLayout *UnitEquipmentTab::createSlotsLayout()
 {
-	auto formLayout = new QFormLayout;
+	QFormLayout *formLayout = new QFormLayout;
 	formLayout->setLabelAlignment(Qt::AlignRight);
 
-	for (auto &slot : unit_->getEquipment()->getAvailableSlots()) {
-		auto sw = new SlotWidget(this, slot);
+	for (BS::Slot slot : unit_->getEquipment()->getAvailableSlots()) {
+		SlotWidget *sw = new SlotWidget(this, slot);
 		connect(sw, &SlotWidget::slotActivated, this, &UnitEquipmentTab::showItem);
 		connect(sw, &SlotWidget::itemMovedIn, this, &UnitEquipmentTab::onItemMovedIn);
 		connect(sw, &SlotWidget::itemMovedOut, this, &UnitEquipmentTab::onItemMovedOut);
@@ -68,11 +68,11 @@ QLayout *UnitEquipmentTab::createSlotsLayout()
 
 QLabel *UnitEquipmentTab::slotTitle(BS::Slot slot)
 {
-	auto txt = BS::changeSlotToString(slot);
+	QString txt = BS::changeSlotToString(slot);
 	if (!txt.isEmpty())
 		txt[0] = txt[0].toUpper();
 
-	auto slotTitle = new QLabel(txt);
+	QLabel *slotTitle = new QLabel(txt);
 	slotTitle->setFont(QFont("Arial", 16, QFont::Bold));
 
 	return slotTitle;
@@ -81,7 +81,7 @@ QLabel *UnitEquipmentTab::slotTitle(BS::Slot slot)
 void UnitEquipmentTab::updateSlots()
 {
 	for (auto sw : slotWidgets_) {
-		auto item = unit_->getEquipment()->getSlotItem(sw->slot());
+		Item *item = unit_->getEquipment()->getSlotItem(sw->slot());
 		if (item != nullptr) {
 			QString pictureName = item->getPrototype()->getProperty(Properties::Picture).toString();
 			const Resource *res = dataManager_->getResource(pictureName);
@@ -89,15 +89,15 @@ void UnitEquipmentTab::updateSlots()
 			img.loadFromData(reinterpret_cast<const uchar *>(res->getData()), res->getDataLength());
 
 			sw->setItem(QPixmap::fromImage(img), item->getName(), item->getUid());
-		}
-		else
+		} else {
 			sw->clearItem();
+		}
 	}
 }
 
 void UnitEquipmentTab::showItem(int uid)
 {
-	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	Item *item = mind_->getItem(uid);
 	if (item == nullptr){
 		err(QString("Invalid item to be shown, uid: ") + QString::number(uid));
 		return;
@@ -108,7 +108,7 @@ void UnitEquipmentTab::showItem(int uid)
 
 void UnitEquipmentTab::onItemMovedIn(BS::Slot slot, int uid)
 {
-	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	Item *item = mind_->getItem(uid);
 	if (item == nullptr){
 		err(QString("Invalid item moved in to slot, uid: ") + QString::number(uid));
 		return;
@@ -119,7 +119,7 @@ void UnitEquipmentTab::onItemMovedIn(BS::Slot slot, int uid)
 	if (currentItem != nullptr) {
 		unit_->getEquipment()->removeFromSlot(slot);
 		unit_->getEquipment()->removeItem(currentItem);
-		auto factionEq = mind_->getFactionById(unit_->getFactionId())->getEquipment();
+		Equipment *factionEq = mind_->getFactionById(unit_->getFactionId())->getEquipment();
 		factionEq->addItem(currentItem);
 	}
 
@@ -131,7 +131,7 @@ void UnitEquipmentTab::onItemMovedIn(BS::Slot slot, int uid)
 
 void UnitEquipmentTab::onItemMovedOut(BS::Slot slot, int uid)
 {
-	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	Item *item = mind_->getItem(uid);
 	if (item == nullptr) {
 		err(QString("Invalid item moved out from slot, uid: ") + QString::number(uid));
 		return;

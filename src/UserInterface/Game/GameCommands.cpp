@@ -33,7 +33,7 @@ void GameCommands::mousePressEvent(const QMouseEvent *event)
 		if (event->modifiers() & Qt::ControlModifier) {
 			//SecondaryAction
 			if (selectedUnits().size() == 1) {
-				Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnits().begin()));
+				Unit *unit = mind_->getUnit(*selectedUnits().begin());
 				auto command = chooseSecondaryCommand(unit, target);
 				instructCommand(command, unit, place, target);
 			}
@@ -41,7 +41,7 @@ void GameCommands::mousePressEvent(const QMouseEvent *event)
 		else {
 			// Primary Command
 			for (auto &uid : selectedUnits()) {
-				Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+				Unit *unit = mind_->getUnit(uid);
 				auto command = choosePrimaryCommand(unit, target);
 				instructCommand(command, unit, place, target);
 			}
@@ -189,14 +189,14 @@ void GameCommands::adjustCursor()
 	if (QApplication::keyboardModifiers() & Qt::ControlModifier) {
 		if (selectedUnits().size() == 1) {
 			//check for possible secondary command
-			Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnits().begin()));
+			Unit *unit = mind_->getUnit(*selectedUnits().begin());
 			command = chooseSecondaryCommand(unit, target);
 		}
 	}
 	else {
 		if (!selectedUnits().isEmpty()) {
 			//check for possible primary action
-			Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(*selectedUnits().begin()));
+			Unit *unit = mind_->getUnit(*selectedUnits().begin());
 			command = choosePrimaryCommand(unit, target);
 		}
 	}
@@ -240,7 +240,7 @@ void GameCommands::checkForMoveCommand()
 		return;
 
 	for (auto &uid : selectedUnits()) {
-		Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+		Unit *unit = mind_->getUnit(uid);
 		if (unit->getCommand() == BS::Command::Move) {
 			unit->setCommand(BS::Command::Move);
 			unit->setTargetPoint(place);
@@ -250,7 +250,7 @@ void GameCommands::checkForMoveCommand()
 
 void GameCommands::checkForBaseVisit()
 {
-	auto camp = dynamic_cast<Location *>(mind_->getObjectFromUid(mind_->getPlayerFaction()->getCampUid()));
+	auto camp = mind_->getLocation(mind_->getPlayerFaction()->getCampUid());
 	if (!camp)
 		return;
 
@@ -262,7 +262,7 @@ void GameCommands::checkForBaseVisit()
 	if (isVisiting_)
 		return;
 
-	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(camp->getUnitsUids().at(0)));
+	auto unit = mind_->getUnit(camp->getUnitsUids().at(0));
 	if (unit == nullptr) {
 		err("What is in base, if not unit?");
 		return;

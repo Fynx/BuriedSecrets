@@ -27,7 +27,7 @@ void AnimatorKickOut::act()
 			continue;
 
 		for (int unitId : loc->getUnitsUids()){
-			Unit *unit = dynamic_cast<Unit*> (mind->getObjectFromUid(unitId));
+			Unit *unit = mind->getUnit(unitId);
 			if (!unit)
 				continue;
 			unit->setCommand(Command::Leave);

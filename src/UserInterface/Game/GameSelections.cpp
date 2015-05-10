@@ -65,7 +65,7 @@ void GameSelections::pickUnit(int uid)
 	if (!mind_->getPlayerFaction()->isAliveMember(uid))
 		return;
 
-	Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	Unit *unit = mind_->getUnit(uid);
 	if (unit == nullptr)
 		return;
 
@@ -123,7 +123,7 @@ QSet<int> GameSelections::filterSelection(const QSet<Object *> &objects) const
 
 	for (auto &building : buildings) {
 		for (auto &unitUid : building->getUnitsUids()) {
-			Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(unitUid));
+			Unit *unit = mind_->getUnit(unitUid);
 			if (!unit)
 				err("Invalid object in building");
 			else
@@ -164,7 +164,7 @@ void GameSelections::markBuildingsSelected()
 	selectedLocationUid_ = Object::InvalidUid;
 
 	for (auto &uid : selectedUnitsUids_) {
-		Unit *unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+		Unit *unit = mind_->getUnit(uid);
 		Location *location = unit->getLocation();
 		if (location) {
 			if (selectedLocationUid_ == Object::InvalidUid) {
@@ -183,7 +183,7 @@ void GameSelections::addSelectionEffect(int objUid)
 	if (uidToSelectionEffect_.contains(objUid))
 		return;
 
-	Object *object = dynamic_cast<Object *>(mind_->getObjectFromUid(objUid));
+	Object *object = mind_->getObjectFromUid(objUid);
 	if (dynamic_cast<Unit *>(object))
 		emit selectionChanged(objUid, true);
 
@@ -197,7 +197,8 @@ void GameSelections::removeSelectionEffect(int objUid)
 	if (!uidToSelectionEffect_.contains(objUid))
 		return;
 
-	if (mind_->isNotRemoved(objUid) && dynamic_cast<Unit *>(mind_->getObjectFromUid(objUid)))
+	Unit *unit = mind_->getUnit(objUid);
+	if (mind_->isNotRemoved(objUid) && unit)
 		emit selectionChanged(objUid, false);
 
 	const auto selection = uidToSelectionEffect_.find(objUid);

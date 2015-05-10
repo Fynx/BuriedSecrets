@@ -120,7 +120,7 @@ void GameViewport::showUnit(int uid)
 	if (!mind_->getPlayerFaction()->isAliveMember(uid))
 		return;
 
-	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	Unit *unit = mind_->getUnit(uid);
 	auto obj = dynamic_cast<Object *>(unit);
 
 	if (unit->getState() == BS::State::Inside)

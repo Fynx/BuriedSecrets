@@ -180,7 +180,7 @@ bool Quest::evaluateItemFound(const Condition &c, Mind *mind, int factionId)
 
 bool Quest::evaluateLocationReached(const Condition &c, Mind *mind, int factionId)
 {
-	Location *loc = dynamic_cast<Location*>(mind->getObjectFromUid(c.argument));
+	Location *loc = mind->getLocation(c.argument);
 	if (!loc)
 		return true;
 	return (loc->getFactionId() == factionId) ^ c.isNegative;
@@ -193,7 +193,7 @@ bool Quest::evaluateObjectVisible(const Condition &c, Mind *mind, int factionId)
 
 bool Quest::evaluateQuestFail(const Condition &c, Mind *mind, int factionId)
 {
-	Quest *quest = dynamic_cast<Quest *>(mind->getObjectFromUid(c.argument));
+	Quest *quest = mind->getQuest(c.argument);
 	if (!quest)
 		return true;
 	return (quest->getState() == State::Fail) ^ c.isNegative;
@@ -201,7 +201,7 @@ bool Quest::evaluateQuestFail(const Condition &c, Mind *mind, int factionId)
 
 bool Quest::evaluateQuestSuccess(const Condition &c, Mind *mind, int factionId)
 {
-	Quest *quest = dynamic_cast<Quest *>(mind->getObjectFromUid(c.argument));
+	Quest *quest = mind->getQuest(c.argument);
 	if (!quest)
 		return true;
 	return (quest->getState() == State::Success) ^ c.isNegative;

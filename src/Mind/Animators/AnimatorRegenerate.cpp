@@ -21,13 +21,13 @@ AnimatorRegenerate::AnimatorRegenerate(Mind *mind) : Animator(mind)
 
 void AnimatorRegenerate::act()
 {
-	for (Object * obj : objects){
+	for (Object *obj : objects){
 		Faction *fac = dynamic_cast<Faction *>(obj);
 		if (!fac)
 			continue;
 
 		for (int id : fac->getUnitsUids()) {
-			Unit *unit = dynamic_cast<Unit *>(mind->getObjectFromUid(id));
+			Unit *unit = mind->getUnit(id);
 			if (!unit)
 				continue;
 			if (unit->property(TempData::NearCamp) == true){

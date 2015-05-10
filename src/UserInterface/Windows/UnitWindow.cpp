@@ -93,7 +93,7 @@ void UnitWindow::setUnit(Unit *unit)
 
 void UnitWindow::setUnitForDecision(int uid)
 {
-	auto unit = dynamic_cast<Unit *>(mind_->getObjectFromUid(uid));
+	Unit *unit = mind_->getUnit(uid);
 	if (unit == nullptr) {
 		warn(QString("Invalid unit to set for decision, uid: ") + QString::number(uid));
 		return;

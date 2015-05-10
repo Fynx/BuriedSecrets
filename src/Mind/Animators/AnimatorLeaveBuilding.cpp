@@ -24,7 +24,7 @@ void AnimatorLeaveBuilding::act()
 			continue;
 		if (unit->getCommand() != Command::Leave)
 			continue;
-		Location *building = dynamic_cast<Location *>(unit->getLocation());
+		Location *building = unit->getLocation();
 		if (!building)
 			continue;
 

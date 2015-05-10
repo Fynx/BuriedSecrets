@@ -27,7 +27,7 @@ void AnimatorEnterBuilding::act()
 			continue;
 		if (unit->getCommand() != Command::Enter)
 			continue;
-		Location *target = dynamic_cast<Location *>(mind->getObjectFromUid(unit->getTargetObject()));
+		Location *target = mind->getLocation(unit->getTargetObject());
 		if (!target)
 			continue;
 
@@ -65,7 +65,7 @@ void AnimatorEnterBuilding::act()
 			faction->getJournal()->createEntryItemFound(mind, unit, QVector<Item *>::fromList(items));
 
 		// Meeting new units
-		Unit *pending = dynamic_cast<Unit*>(mind->getObjectFromUid(target->getUnitMet()));
+		Unit *pending = mind->getUnit(target->getUnitMet());
 		if (pending){
 			target->setUnitMet(0);
 			pending->setFactionId(unit->getFactionId());

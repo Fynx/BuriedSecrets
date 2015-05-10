@@ -31,7 +31,7 @@ JournalWindow::JournalWindow(Mind *m, DataManager *dm)
 
 	initLayout();
 	connect(&filtersMapper_, static_cast<void (QSignalMapper::*)(const QString &)>(&QSignalMapper::mapped),
-			this, &JournalWindow::onFilterClicked);
+		this, &JournalWindow::onFilterClicked);
 	connect(entriesList_, &QListWidget::currentItemChanged,
 	        this, &JournalWindow::onCurrentEntryChanged);
 }
@@ -62,8 +62,7 @@ void JournalWindow::refresh()
 
 void JournalWindow::setCurrentEntry(int uid)
 {
-
-	auto entry = dynamic_cast<JournalEntry *>(mind_->getObjectFromUid(uid));
+	JournalEntry *entry = mind_->getJournalEntry(uid);
 	if (!entry) {
 		warn(QString::number(uid) + QString(" is not valid journal entry."));
 		return;

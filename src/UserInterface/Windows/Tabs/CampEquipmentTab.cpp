@@ -28,7 +28,7 @@ void CampEquipmentTab::refresh()
 
 void CampEquipmentTab::initLayout()
 {
-	auto layout = new QVBoxLayout;
+	QVBoxLayout *layout = new QVBoxLayout;
 	setLayout(layout);
 
 	layout->addWidget(createItemWidget(), 1);
@@ -38,7 +38,7 @@ void CampEquipmentTab::initLayout()
 
 void CampEquipmentTab::onItemMovedIn(int uid)
 {
-	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	Item *item = mind_->getItem(uid);
 	if (item == nullptr) {
 		err(QString("Invalid item moved in to camp, uid: ") + QString::number(uid));
 		return;
@@ -51,7 +51,7 @@ void CampEquipmentTab::onItemMovedIn(int uid)
 
 void CampEquipmentTab::onItemMovedOut(int uid)
 {
-	auto item = dynamic_cast<Item *>(mind_->getObjectFromUid(uid));
+	Item *item = mind_->getItem(uid);
 	if (item == nullptr) {
 		err(QString("Invalid item moved out from camp, uid: ") + QString::number(uid));
 		return;
