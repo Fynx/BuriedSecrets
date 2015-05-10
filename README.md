@@ -29,3 +29,6 @@ http://opengameart.org/content/flare-mod-goblin-shaman
 
 Blood decal from:    
 http://opengameart.org/content/animated-particle-effects-2
+
+Military jeep for Robo Camp from:
+http://opengameart.org/content/military-jeep
