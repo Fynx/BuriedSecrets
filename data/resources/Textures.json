@@ -51,14 +51,14 @@
 	"RunBase": {
 		"type": "texture",
 		"rows": 8,
-		"columns": 3,
+		"columns": 1,
 		"path": "images/units/RoboCamp/RunBase.png"
 	},
 
 	"IdleBase": {
 		"type": "texture",
 		"rows": 8,
-		"columns": 3,
+		"columns": 1,
 		"path": "images/units/RoboCamp/IdleBase.png"
 	},
 

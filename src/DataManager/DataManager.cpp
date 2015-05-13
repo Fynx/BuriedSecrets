@@ -7,13 +7,31 @@
 #include "DataManager/TextureSetData.hpp"
 #include "DebugManager/DebugManager.hpp"
 
-const QString DataManager::SavesPath{"data/saves/"};
 const QString DataManager::SavesExtension{".json"};
+
+const QString DataManager::localDataPath()
+{
+	return QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QString{"/"};;
+}
+
+const QString DataManager::dataPath()
+{
+	return "/opt/buried-secrets/";
+}
+
+const QString DataManager::savesPath()
+{
+	return localDataPath() + QString{"saves/"};
+}
 
 DataManager::DataManager()
 {
 	loadResources();
 	loadPrototypes();
+
+	//make sure saves directory exists
+	QDir dir;
+	dir.mkpath(savesPath());
 }
 
 DataManager::~DataManager()
@@ -102,7 +120,7 @@ QByteArray DataManager::readRawData(const QString &path)
 void DataManager::loadPrototypes()
 {
 	info("Loading prototypes...");
-	QString path = "data/prototypes.json";
+	QString path = dataPath() + QString("data/prototypes.json");
 	QJsonObject json = loadJsonFromFile(path);
 
 	int counter = 1;
@@ -156,7 +174,7 @@ void DataManager::savePrototypes() const
 void DataManager::loadResources()
 {
 	/** Look at README.md of DataManager for more info on the format. */
-	const QString preffix = "data/";
+	const QString preffix = dataPath() + QString("data/");
 	info("Loading resources...");
 	QString resourcesListStr = readRawData(preffix + "ResourcesList.txt");
 	QStringList resourcesList = resourcesListStr.split('\n', QString::SkipEmptyParts);

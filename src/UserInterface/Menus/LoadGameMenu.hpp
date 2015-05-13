@@ -9,6 +9,7 @@ class LoadGameMenu : public QWidget {
 	Q_OBJECT
 public:
 	LoadGameMenu(QWidget *parent = nullptr);
+    void refreshList();
 
 private:
 	static const QMargins ContentsMargins;

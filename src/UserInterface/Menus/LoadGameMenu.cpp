@@ -33,23 +33,8 @@ void LoadGameMenu::initLayout()
 
 QWidget *LoadGameMenu::createSavesList()
 {
-	QDir savesDir(DataManager::SavesPath, QString("*") + DataManager::SavesExtension,
-	              QDir::Name | QDir::IgnoreCase, QDir::Files | QDir::Readable);
-
-	QStringList saves;
-	for (auto save : savesDir.entryList()) {
-		QFileInfo saveInfo(save);
-		saves.append(saveInfo.baseName());
-	}
-
 	savesList_ = new QListWidget();
-	for (auto &save : saves) {
-		auto lwi = new QListWidgetItem(save, savesList_);
-		lwi->setFlags(Qt::ItemFlag::ItemIsSelectable | Qt::ItemIsEnabled);
-		lwi->setData(Qt::UserRole, QVariant(save));
-		lwi->setFont(QFont("Times", 18));
-	}
-
+	refreshList();
 	connect(savesList_, &QListView::doubleClicked, this, &LoadGameMenu::onSaveDoubleClicked);
 
 	return savesList_;
@@ -66,8 +51,30 @@ QWidget *LoadGameMenu::createCloseBtn()
 	return closeBtn;
 }
 
+
+void LoadGameMenu::refreshList()
+{
+	savesList_->clear();
+
+	QDir savesDir(DataManager::savesPath(), QString("*") + DataManager::SavesExtension,
+				  QDir::Name | QDir::IgnoreCase, QDir::Files | QDir::Readable);
+
+	QStringList saves;
+	for (auto save : savesDir.entryList()) {
+		QFileInfo saveInfo(save);
+		saves.append(saveInfo.baseName());
+	}
+
+		for (auto &save : saves) {
+			auto lwi = new QListWidgetItem(save, savesList_);
+			lwi->setFlags(Qt::ItemFlag::ItemIsSelectable | Qt::ItemIsEnabled);
+			lwi->setData(Qt::UserRole, QVariant(save));
+			lwi->setFont(QFont("Times", 18));
+		}
+}
+
 void LoadGameMenu::onSaveDoubleClicked(const QModelIndex &index)
 {
-	auto path = DataManager::SavesPath + index.data().toString() + DataManager::SavesExtension;
+	auto path = DataManager::savesPath() + index.data().toString() + DataManager::SavesExtension;
 	emit loadGame(path);
 }

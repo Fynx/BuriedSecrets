@@ -11,7 +11,7 @@
 const int NotificationPanel::PanelWidth = 200;
 const int NotificationPanel::PanelHeight = 500;
 const int NotificationPanel::DisplayLimit = 8;
-const int NotificationPanel::DisplayTime = 3000;
+const int NotificationPanel::DisplayTime = 5000;
 const int NotificationPanel::TimerInterval = 100;
 const QSize NotificationPanel::NotificationSize{250, 50};
 

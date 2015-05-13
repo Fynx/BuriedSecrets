@@ -6,8 +6,8 @@
 
 int main(int argc, char** argv)
 {
-// 	QCoreApplication::addLibraryPath("./libs/plugins/");
 	QApplication app(argc, argv);
+	app.setApplicationName("BuriedSecrets");
 	General game;
 	game.getMainWindow()->show();
 	return app.exec();

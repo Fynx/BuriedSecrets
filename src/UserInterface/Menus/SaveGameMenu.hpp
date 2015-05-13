@@ -9,6 +9,7 @@ class SaveGameMenu : public QWidget {
 	Q_OBJECT
 public:
 	SaveGameMenu(QWidget *parent = nullptr);
+    void refreshList();
 
 private:
 	static const QMargins ContentsMargins;

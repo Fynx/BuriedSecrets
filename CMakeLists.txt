@@ -44,8 +44,8 @@ install(DIRECTORY data DESTINATION "${BuriedSecrets_BINARY_DIR}")
 
 
 # UI Resources
-qt5_add_resources(UI_data_RESOURCES UI_data/UI_data.qrc)
-add_library(UI_Data ${UI_data_RESOURCES})
+qt5_add_resources(Resources_RESOURCES resources/resources.qrc)
+add_library(Resources ${Resources_RESOURCES})
 
 
 add_subdirectory(src)

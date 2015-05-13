@@ -34,7 +34,7 @@ QMainWindow *General::getMainWindow()
 void General::startNewGame()
 {
 	info("Starting new game...");
-	launchGame("data/maps/map2.json");
+	launchGame("/opt/buried-secrets/data/maps/map0.json");
 	info("Done.");
 }
 
@@ -60,7 +60,7 @@ void General::endGame()
 void General::saveLevel()
 {
 	info("Saving level...");
-	dataManager->saveJsonToFile("data/saves/save0.json", mind->saveToJson());
+	dataManager->saveJsonToFile("~/.local/BuriedSecrets/saves/save0.json", mind->saveToJson());
 	info("Done.");
 }
 

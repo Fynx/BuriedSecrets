@@ -33,22 +33,8 @@ void SaveGameMenu::initLayout()
 
 QWidget *SaveGameMenu::createSavesList()
 {
-	QDir savesDir(DataManager::SavesPath, QString("*") + DataManager::SavesExtension,
-	              QDir::Name | QDir::IgnoreCase, QDir::Files | QDir::Readable);
-
-	QStringList saves;
-	for (auto save : savesDir.entryList()) {
-		QFileInfo saveInfo(save);
-		saves.append(saveInfo.baseName());
-	}
-
 	savesList_ = new QListWidget();
-	for (auto &save : saves) {
-		auto lwi = new QListWidgetItem(save, savesList_);
-		lwi->setFlags(Qt::ItemFlag::ItemIsSelectable | Qt::ItemIsEnabled);
-		lwi->setData(Qt::UserRole, QVariant(save));
-		lwi->setFont(QFont("Times", 18));
-	}
+	refreshList();
 	connect(savesList_, &QListView::doubleClicked, this, &SaveGameMenu::onSaveDoubleClicked);
 
 	return savesList_;
@@ -58,11 +44,11 @@ QWidget *SaveGameMenu::createNewBtn()
 {
 	QFont buttonFont("Times", 24);
 	QSizePolicy btnSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
-	auto closeBtn = new QPushButton(tr("New"));
-	closeBtn->setFont(buttonFont);
-	closeBtn->setSizePolicy(btnSizePolicy);
-	connect(closeBtn, &QPushButton::clicked, this, &SaveGameMenu::onNewClicked);
-	return closeBtn;
+	auto newBtn = new QPushButton(tr("New"));
+	newBtn->setFont(buttonFont);
+	newBtn->setSizePolicy(btnSizePolicy);
+	connect(newBtn, &QPushButton::clicked, this, &SaveGameMenu::onNewClicked);
+	return newBtn;
 }
 
 QWidget *SaveGameMenu::createCloseBtn()
@@ -74,6 +60,27 @@ QWidget *SaveGameMenu::createCloseBtn()
 	closeBtn->setSizePolicy(btnSizePolicy);
 	connect(closeBtn, &QPushButton::clicked, this, &SaveGameMenu::closeActivated);
 	return closeBtn;
+}
+
+void SaveGameMenu::refreshList()
+{
+	savesList_->clear();
+
+	QDir savesDir(DataManager::savesPath(), QString("*") + DataManager::SavesExtension,
+	              QDir::Name | QDir::IgnoreCase, QDir::Files | QDir::Readable);
+
+	QStringList saves;
+	for (auto save : savesDir.entryList()) {
+		QFileInfo saveInfo(save);
+		saves.append(saveInfo.baseName());
+	}
+
+	for (auto &save : saves) {
+		auto lwi = new QListWidgetItem(save, savesList_);
+		lwi->setFlags(Qt::ItemFlag::ItemIsSelectable | Qt::ItemIsEnabled);
+		lwi->setData(Qt::UserRole, QVariant(save));
+		lwi->setFont(QFont("Times", 18));
+	}
 }
 
 void SaveGameMenu::onSaveDoubleClicked(const QModelIndex &index)
@@ -99,7 +106,8 @@ void SaveGameMenu::askForName(const QString &name)
 		filename = QInputDialog::getText(nullptr, title,
 		                                 prompt, QLineEdit::Normal, name, &ok);
 
-	emit saveGame(DataManager::SavesPath + filename + DataManager::SavesExtension);
+	emit saveGame(DataManager::savesPath() + filename + DataManager::SavesExtension);
+	refreshList();
 }
 
 bool SaveGameMenu::isFilenameValid(const QString &filename)

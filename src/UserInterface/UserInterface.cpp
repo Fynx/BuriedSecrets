@@ -24,7 +24,7 @@ UserInterface::UserInterface(General *general, DataManager *dataManager)
 	  loadGameMenu_(new LoadGameMenu),
 	  saveGameMenu_(new SaveGameMenu)
 {
-	Q_INIT_RESOURCE(UI_data);
+	Q_INIT_RESOURCE(resources);
 
 	initMenus();
 	initLayout();
@@ -182,12 +182,14 @@ void UserInterface::onShowLoadGame()
 {
 	general_->pauseGame();
 	switchToWindow(Window::LoadGameMenu);
+	loadGameMenu_->refreshList();
 }
 
 void UserInterface::onShowSaveGame()
 {
 	general_->pauseGame();
 	switchToWindow(Window::SaveGameMenu);
+	saveGameMenu_->refreshList();
 }
 
 void UserInterface::loadGame(QString path)
