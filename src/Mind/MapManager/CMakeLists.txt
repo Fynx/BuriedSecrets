@@ -3,6 +3,7 @@ set (MapManager_SRCS
 	AStarPathFinder.cpp
 	DiffVisibilityMap.cpp
 	DynamicAccessibilityMap.cpp
+	HPAStarPathFinder.cpp
 	ImageVisibilityMap.cpp
 	MapManager.cpp
 	Map.cpp

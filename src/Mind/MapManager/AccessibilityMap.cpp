@@ -14,7 +14,7 @@ AccessiblityMap::AccessiblityMap(const MapManager *mapManager, const int gridSiz
 
 QPoint AccessiblityMap::discretize(const QPointF &point) const
 {
-	return (point / gridSize).toPoint();
+	return QPoint{static_cast<int>(point.x() / gridSize), static_cast<int>(point.y() / gridSize)};
 }
 
 

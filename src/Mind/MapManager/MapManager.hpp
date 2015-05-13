@@ -37,7 +37,7 @@ public:
 	/**
 	 * @brief Returns a path from point from to point to.
 	 */
-	QList<QPointF> getPath(const Object *object, const QPointF &to);
+	QList<QPointF> getPath(const Unit *unit, const QPointF &to);
 
 	/**
 	 * @brief Adds the object to the internal reprsentation of the map.

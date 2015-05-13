@@ -16,12 +16,16 @@ class AStarPathFinder : public PathFinder {
 public:
 	AStarPathFinder(const MapManager *mapManager, const Mind *mind);
 	~AStarPathFinder() override;
-	QList<QPointF> getPath(const QPointF &source, const Object *object, const QPointF &target) override;
+	QList<QPointF> getPath(const QPointF &source, const Unit *unit, const QPointF &target) override;
 	void addObject(const Object *object, const QPointF &position) override;
 	void removeObject(const Object *object, const QPointF &position) override;
 
 protected:
 	AccessiblityMap *getAccessiblityMap(const int gridSize, const Unit *unit);
+	float getGridSize(const float radius) const;
+	float heuristicDistance(const QPoint& from, const QPoint& to);
+	QPair<bool, QList<QPointF>> tryFindPath(const QPointF &source, const Unit *unit, const float gridSize,
+						const QPointF &target, float distanceBound);
 
 private:
 	struct Node {
@@ -41,8 +45,6 @@ private:
 	static const float costs[8];
 	static const float sqrtTwo;
 
-	float getGridSize(const float radius) const;
-	float heuristicDistance(const QPoint& from, const QPoint& to);
 	/**
 	 * @brief True if the point is close enough to the target to say it is the solution. The target must be in the
 	 * target object, otherwise this method will return false.

@@ -60,8 +60,8 @@ PrecomputedAccessibilityMap::~PrecomputedAccessibilityMap()
 
 bool PrecomputedAccessibilityMap::isAccessible(const Unit *unit, const QPoint &point)
 {
-	assert(point.x() >= 0 && point.x() < width && point.y() >= 0 && point.y() < height);
-	return matrix[point.x()][point.y()];
+	return point.x() >= 0 && point.x() < width && point.y() >= 0 && point.y() < height &&
+			matrix[point.x()][point.y()];
 }
 
 
@@ -114,7 +114,7 @@ void PrecomputedAccessibilityMap::addObject (const Object *object, const QPointF
 // 		}
 //
 // 		qDebug() << unit->getName();
-// 		image.save("/tmp/" + unit->getName() + ".png");
+// 		image.save("/tmp/AccMap" + unit->getName() + ".png");
 		// End of Debug
 	}
 }

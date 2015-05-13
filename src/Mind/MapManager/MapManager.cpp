@@ -8,14 +8,14 @@
 
 #include "Common/Strings.hpp"
 #include "GameObjects/Unit.hpp"
-#include "Mind/MapManager/AStarPathFinder.hpp"
+#include "Mind/MapManager/HPAStarPathFinder.hpp"
 #include "PhysicsEngine/PhysicsEngine.hpp"
 
 
 MapManager::MapManager(const QJsonObject &json, const Mind *mind, const PhysicsEngine *physicsEngine,
 		       const int playerFactionId)
 	: playerFactionId{playerFactionId}, map{json}, physicsEngine{physicsEngine},
-	pathFinder{new AStarPathFinder{this, mind}}, visibilityUpdatesDiff{new VisibilityUpdateDiff{}},
+	pathFinder{new HPAStarPathFinder{this, mind}}, visibilityUpdatesDiff{new VisibilityUpdateDiff{}},
 	playerFOV{map.getSize().toSize()}
 {}
 
@@ -29,9 +29,9 @@ const Map *MapManager::getMap() const
 	return &map;
 }
 
-QList<QPointF> MapManager::getPath(const Object *object, const QPointF &to)
+QList<QPointF> MapManager::getPath(const Unit *unit, const QPointF &to)
 {
-	return pathFinder->getPath(physicsEngine->getPosition(object), object, to);
+	return pathFinder->getPath(physicsEngine->getPosition(unit), unit, to);
 }
 
 void MapManager::addObject(const Object *object)
