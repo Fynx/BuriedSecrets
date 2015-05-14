@@ -1,3 +1,17 @@
+// Includes:
+// .hpp if it's an implementation
+#include "Common/SomeHeader.hpp"
+
+// System/STL
+#include <algorithm>
+#include <iostream>
+
+// Third-party
+#include <QtCore>
+
+// Our includes
+#include "Mind/Mind.hpp"
+
 // Indentation
 #define foobar(A)\
 {Foo();Bar();}
