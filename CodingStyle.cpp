@@ -18,6 +18,21 @@
 #define anotherFoo(B)\
 return Bar()
 
+
+class BarBar {
+public:
+	BarBar(int a, float x);
+private:
+	int f;
+	float z;
+};
+
+
+BarBar::BarBar(int a, float x)
+	: f{a}, z{2.0f * x}
+{}
+
+
 namespace Bar
 {
 	class Foo {
