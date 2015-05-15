@@ -374,12 +374,10 @@ Object *Mind::createDefaultObject(BS::Type type, QString prototype)
 	const Prototype *proto = dataManager->getPrototype(prototype);
 	Object *obj = createObject(type, prototype);
 	obj->assignUid();
-	if (proto->hasProperty(Properties::DefAnimators)){
+	if (proto->hasProperty(Properties::DefAnimators))
 		// May require change to some Prototype field
-		for (QString anim : proto->getProperty(Properties::DefAnimators).toStringList()){
+		for (const QString &anim : proto->getProperty(Properties::DefAnimators).toStringList())
 			animatorManager->addObject(anim, obj);
-		}
-	}
 
 	return obj;
 }
@@ -390,9 +388,8 @@ void Mind::removeObject(Object *object)
 	const auto position = physics->getPosition(object);
 	animatorManager->removeObject(object);
 	physics->removeObject(object);
-	if (mapManager != nullptr) {
+	if (mapManager != nullptr)
 		mapManager->removeObject(object, position);
-	}
 	objects.removeAll(object);
 	uidToObject.remove(object->getUid());
 
@@ -403,6 +400,8 @@ void Mind::removeObject(Object *object)
 	if (object->getType() == BS::Type::Equipment)
 		for (Item *item : dynamic_cast<Equipment *>(object)->getItems())
 			removeObject(item);
+
+	delete object;
 }
 
 bool Mind::isNotRemoved(int uid) const
@@ -410,12 +409,14 @@ bool Mind::isNotRemoved(int uid) const
 	return uidToObject.contains(uid);
 }
 
+// Warnings about no objects muted and changed to info.
+
 Object *Mind::getObjectFromUid(const int uid)
 {
 	if (uidToObject.contains(uid))
 		return uidToObject[uid];
-	else
-		warn("Mind::getObjectFromUid: uid not found " + QString::number(uid));
+// 	else
+// 		info("Mind::getObjectFromUid: uid not found " + QString::number(uid));
 	return nullptr;
 }
 
@@ -423,8 +424,8 @@ const Object *Mind::getObjectFromUid(const int uid) const
 {
 	if (uidToObject.contains(uid))
 		return uidToObject[uid];
-	else
-		warn("Mind::getObjectFromUid: uid not found " + QString::number(uid));
+// 	else
+// 		info("Mind::getObjectFromUid: uid not found " + QString::number(uid));
 	return nullptr;
 }
 

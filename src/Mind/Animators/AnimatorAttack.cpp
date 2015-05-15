@@ -19,7 +19,6 @@ AnimatorAttack::AnimatorAttack(Mind *mind) : Animator(mind)
 	info("Animator Attack created.");
 }
 
-
 void AnimatorAttack::act()
 {
 	for (Object * obj : objects){
@@ -43,7 +42,9 @@ void AnimatorAttack::act()
 		Object *target = mind->getObjectFromUid(unit->getTargetObject());
 		if (!target) {
 			unit->setCommand(Command::None);
-			warn("Invalid target in attack animator");
+			// I think this happens whenever something happens whenever target dies.
+			// That's why it's info, not warning.
+			// info("Invalid target in attack animator");
 			continue;
 		}
 		if (mind->getFactionById(unit->getFactionId())->isFriendly(target)) {

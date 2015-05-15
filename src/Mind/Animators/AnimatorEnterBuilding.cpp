@@ -57,10 +57,11 @@ void AnimatorEnterBuilding::act()
 
 		// Looting
 		QList<Item *> items = target->getItems(unit->getPerception());
-		for (Item *it : items){
+		for (Item *it : items) {
 			target->removeItem(it);
 			faction->getEquipment()->addItem(it);
 		}
+
 		if (!items.isEmpty())
 			faction->getJournal()->createEntryItemFound(mind, unit, QVector<Item *>::fromList(items));
 

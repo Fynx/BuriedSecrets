@@ -102,15 +102,19 @@ JournalEntry *Journal::createEntryPsycho(Mind *mind, Unit *who)
 {
 	JournalEntry *entry = createEntry(mind);
 
-	QString title = mind->getEntryFromType(BS::EntryType::Psycho)->getTitle();
+	JournalEntry *baseEntry = mind->getEntryFromType(BS::EntryType::Psycho);
+
+	if (baseEntry == nullptr) {
+		entry->setTitle(who->getName() + " lost the touch with reality.");
+		return entry;
+	}
+
+	QString title = baseEntry->getTitle();
 	entry->setTitle(title.arg(who->getName()));
 	entry->setEntryType(BS::EntryType::Psycho);
-// 	entry->setTitle(who->getName() + " got psychoed. Get mlged scrub");
 
 	return entry;
 }
-
-//TODO maybe some optional args, I dunno
 
 JournalEntry *Journal::createEntryQuest(Mind *mind, int entryUid)
 {

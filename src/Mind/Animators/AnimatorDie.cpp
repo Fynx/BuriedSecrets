@@ -45,7 +45,6 @@ void AnimatorDie::act()
 				mind->getFactionById(unit->getFactionId())->removeUnit(unit->getUid());
 			}
 			mind->removeObject(unit);
-			//delete unit;
 		}
 	}
 }
