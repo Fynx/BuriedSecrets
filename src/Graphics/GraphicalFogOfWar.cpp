@@ -102,7 +102,9 @@ void GraphicalFogOfWar::update()
 
 	auto *updateDiff = mapManager->getVisibilityUpdatesDiff();
 	const auto &visibleRegion = mapManager->getVisibleRegion();
-	if (updateDiff->length() > 0 || view.toRect() != previousView.toRect() ||
+	QPoint topLeftOrig = (10.0f * view.topLeft()).toPoint();	// x10, to drop anything smaller than 0.1
+	QPoint bottomRightOrig = (10.0f * view.bottomRight()).toPoint();
+	if (updateDiff->length() > 0 || previousTopLeft != topLeftOrig || previousBottomRight != bottomRightOrig ||
 			previousVisibleRegionSize != visibleRegion.length()) {
 		// FOW
 		if (updateDiff->length() > 0) {
@@ -132,7 +134,8 @@ void GraphicalFogOfWar::update()
 		previousVisibleRegionSize = visibleRegion.length();
 	}
 	delete updateDiff;
-	previousView = view;
+	previousTopLeft = topLeftOrig;
+	previousBottomRight = bottomRightOrig;
 }
 
 

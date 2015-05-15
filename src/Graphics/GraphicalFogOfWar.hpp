@@ -38,7 +38,8 @@ private:
 
 	float FOWSizeScale;
 	float FOVSizeScale;
-	QRectF previousView;
+	QPoint previousTopLeft;
+	QPoint previousBottomRight;
 	int previousVisibleRegionSize;
 
 	sf::Sprite FOVSprite;
