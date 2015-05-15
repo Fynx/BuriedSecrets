@@ -11,6 +11,9 @@ class Equipment;
 class Item;
 class ItemConstructor;
 
+/**
+ * CampWindow tab, where player can construct new items from available equipment.
+ */
 class CampConstructorTab : public ItemsDisplay {
 	Q_OBJECT
 

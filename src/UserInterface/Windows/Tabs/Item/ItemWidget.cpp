@@ -10,7 +10,6 @@
 #include "UserInterface/Resources.hpp"
 
 const QSize ItemWidget::PictureSize{200, 200};
-const QSize ItemWidget::StarSize{30, 30};
 const QMargins ItemWidget::DetailsContentMargins{0, 0, 0, 0};
 const QFont ItemWidget::DetailsFont{"Times", 14};
 const QFont ItemWidget::TitlesFont{"Arial", 14, QFont::Bold};
@@ -107,16 +106,6 @@ QLayout *ItemWidget::createDetailsPart()
 	itemTypeLabel_->setFont(DetailsFont);
 	fLayout->addRow(itemTypeTitle, itemTypeLabel_);
 
-	auto qualityTitle = new QLabel(tr("Quality"));
-	qualityTitle->setFont(TitlesFont);
-	auto starsLayout = new QHBoxLayout;
-	for (int i = 0; i < Item::StarLimit; ++i) {
-		stars_.append(new QLabel);
-		starsLayout->addWidget(stars_.back());
-	}
-	starsLayout->addStretch();
-	fLayout->addRow(qualityTitle, starsLayout);
-
 	layout->addSpacing(VerticalSpacing * 2);
 
 	specificsLayout_ = new QFormLayout;
@@ -145,7 +134,6 @@ void ItemWidget::fillWidget()
 
 	// Details
 	descriptionLabel_->setText(prototype_->getProperty(Properties::Description).toString());
-	fillQuality(prototype_->getProperty(Properties::Quality).toInt());
 
 	QString itemTypesString;
 	for (const QVariant &val : prototype_->getProperty(Properties::ItemTypes).toList()) {
@@ -158,16 +146,6 @@ void ItemWidget::fillWidget()
 	fillSpecifics();
 
 	this->repaint();
-}
-
-void ItemWidget::fillQuality(int q)
-{
-	for (int i = 0; i < Item::StarLimit; ++i) {
-		if (i < q)
-			stars_[i]->setPixmap(QPixmap(Icons::Star).scaled(StarSize));
-		else
-			stars_[i]->clear();
-	}
 }
 
 void ItemWidget::fillSpecifics()

@@ -15,6 +15,10 @@ class UnitSection;
 		Dead
 	};
 
+/**
+ * Widget to display info about player's units.
+ * Contains IconsSections or UnitsSections.
+ */
 class UnitsPanel : public QFrame {
 	Q_OBJECT
 public:

@@ -11,6 +11,9 @@ class CampEquipmentTab;
 class DataManager;
 class Mind;
 
+/**
+ * In-game window to display info about player's faction.
+ */
 class CampWindow : public QFrame {
 	Q_OBJECT
 public:

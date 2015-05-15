@@ -18,6 +18,9 @@ class SaveGameMenu;
 class GameInterface;
 class PostGameMenu;
 
+/**
+ * Main User Interface module class to manage outside game menus and start / clear game.
+ */
 class UserInterface : public QObject {
 	Q_OBJECT
 public:
@@ -32,7 +35,7 @@ public:
 	void newGame(Mind *mind, BoardWidget *boardWidget);
 
 private:
-	enum class Window : quint8 {
+	enum class Menu : quint8 {
 		MainMenu,
 		PostGameMenu,
 		LoadGameMenu,
@@ -53,7 +56,7 @@ private:
 
 	void initLayout();
 	void initMenus();
-	void switchToWindow(Window window);
+	void switchToMenu(Menu menu);
 
 	//DEV TMP
 	void initDevActionsMenu();

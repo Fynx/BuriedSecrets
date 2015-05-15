@@ -9,6 +9,10 @@ class DataManager;
 class Item;
 class Prototype;
 
+/**
+ * Widget to display item.
+ * Also can display item's prototype.
+ */
 class ItemWidget : public QWidget {
 
 public:
@@ -26,7 +30,6 @@ private:
 	static const int FilledIndex = 1;
 
 	static const QSize PictureSize;
-	static const QSize StarSize;
 	static const QMargins DetailsContentMargins;
 	static const QFont DetailsFont;
 	static const QFont TitlesFont;
@@ -37,7 +40,6 @@ private:
 	QLayout *createMainPart();
 	QLayout *createDetailsPart();
 	void fillWidget();
-	void fillQuality(int q);
 	void fillSpecifics();
 	void addSpecific(const QString &key, const QString &value);
 	void addSpecificProperty(const QString &key, const QString &property);

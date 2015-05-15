@@ -5,6 +5,9 @@
 
 #include <QtWidgets>
 
+/**
+ * Custom QListWidget for items to implement drag'n'drop correctly.
+ */
 class ItemsListWidget : public QListWidget {
 	Q_OBJECT
 

@@ -5,6 +5,10 @@
 
 #include <QtWidgets>
 
+/**
+ * Widget used by (inherited by) Graphics module to draw game map on it.
+ * That way whis widget can use Qt events to detect selections on map.
+ */
 class BoardWidget : public QWidget {
 	Q_OBJECT
 

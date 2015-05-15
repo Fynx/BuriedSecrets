@@ -5,6 +5,10 @@
 
 #include <QtWidgets>
 
+/**
+ * Place to store resources paths listed in qrc file.
+ */
+
 QCursor BSCursor(const QString &cursor);
 
 const QString DataPrefix = ":/";
@@ -16,6 +20,7 @@ namespace Icons {
 	const QString Camp             = Prefix + "camp";
 	const QString CampSelected     = Prefix + "camp-selected";
 	const QString Empty            = Prefix + "empty";
+	const QString Exit             = Prefix + "exit";
 	const QString Food             = Prefix + "food";
 	const QString Guard            = Prefix + "guard";
 	const QString Location         = Prefix + "house";
@@ -23,7 +28,6 @@ namespace Icons {
 	const QString Journal          = Prefix + "journal";
 	const QString Psycho           = Prefix + "psycho";
 	const QString Skull            = Prefix + "skull";
-	const QString Star             = Prefix + "banana-for-scale";
 }
 
 namespace Cursors {

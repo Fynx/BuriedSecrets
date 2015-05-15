@@ -7,6 +7,9 @@
 
 class JournalEntry;
 
+/**
+ * Widget to display notification on game window.
+ */
 class NotificationWidget : public QFrame {
 	Q_OBJECT
 public:

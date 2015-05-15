@@ -6,6 +6,9 @@
 #include <QtWidgets>
 #include "Common/Enums.hpp"
 
+/**
+ * UI menu (more of a screen) to show after winning / losing game.
+ */
 class PostGameMenu : public QWidget {
 	Q_OBJECT
 

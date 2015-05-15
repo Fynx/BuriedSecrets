@@ -59,9 +59,9 @@ void UserInterface::newGame(Mind *mind, BoardWidget *boardWidget)
 
 	connect(gameInterface_, &GameInterface::showMainMenu, this, &UserInterface::onShowMainMenu);
 	connect(gameInterface_, &GameInterface::gameEnded, this, &UserInterface::onGameEnded);
-	stackedWidget_->insertWidget(static_cast<int>(Window::Game), gameInterface_);
+	stackedWidget_->insertWidget(static_cast<int>(Menu::Game), gameInterface_);
 
-	switchToWindow(Window::Game);
+	switchToMenu(Menu::Game);
 	mainMenu_->adjustButtonsVisibility();
 
 	gameInterface_->start();
@@ -86,19 +86,19 @@ void UserInterface::initMenus()
 void UserInterface::initLayout()
 {
 	stackedWidget_ = new QStackedWidget;
-	stackedWidget_->insertWidget(static_cast<int>(Window::MainMenu), mainMenu_);
-	stackedWidget_->insertWidget(static_cast<int>(Window::PostGameMenu), postGameMenu_);
-	stackedWidget_->insertWidget(static_cast<int>(Window::LoadGameMenu), loadGameMenu_);
-	stackedWidget_->insertWidget(static_cast<int>(Window::SaveGameMenu), saveGameMenu_);
+	stackedWidget_->insertWidget(static_cast<int>(Menu::MainMenu), mainMenu_);
+	stackedWidget_->insertWidget(static_cast<int>(Menu::PostGameMenu), postGameMenu_);
+	stackedWidget_->insertWidget(static_cast<int>(Menu::LoadGameMenu), loadGameMenu_);
+	stackedWidget_->insertWidget(static_cast<int>(Menu::SaveGameMenu), saveGameMenu_);
 
 	mainWindow_->setCentralWidget(stackedWidget_);
 	mainWindow_->setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint);
 	mainWindow_->setWindowState(Qt::WindowFullScreen);
 }
 
-void UserInterface::switchToWindow(Window window)
+void UserInterface::switchToMenu(Menu menu)
 {
-	stackedWidget_->setCurrentIndex(static_cast<int>(window));
+	stackedWidget_->setCurrentIndex(static_cast<int>(menu));
 }
 
 void UserInterface::clearGame()
@@ -149,20 +149,20 @@ void UserInterface::initDevActionsMenu()
 void UserInterface::onShowMainMenu()
 {
 	general_->pauseGame();
-	switchToWindow(Window::MainMenu);
+	switchToMenu(Menu::MainMenu);
 }
 
 void UserInterface::onGameEnded(BS::GameState gs)
 {
 	general_->endGame();
 	postGameMenu_->setEnding(gs);
-	switchToWindow(Window::PostGameMenu);
+	switchToMenu(Menu::PostGameMenu);
 }
 
 void UserInterface::onAfterGame()
 {
 	mainMenu_->adjustButtonsVisibility();
-	switchToWindow(Window::MainMenu);
+	switchToMenu(Menu::MainMenu);
 }
 
 void UserInterface::onNewGame()
@@ -175,20 +175,20 @@ void UserInterface::onNewGame()
 void UserInterface::onContinueGame()
 {
 	general_->resumeGame();
-	switchToWindow(Window::Game);
+	switchToMenu(Menu::Game);
 }
 
 void UserInterface::onShowLoadGame()
 {
 	general_->pauseGame();
-	switchToWindow(Window::LoadGameMenu);
+	switchToMenu(Menu::LoadGameMenu);
 	loadGameMenu_->refreshList();
 }
 
 void UserInterface::onShowSaveGame()
 {
 	general_->pauseGame();
-	switchToWindow(Window::SaveGameMenu);
+	switchToMenu(Menu::SaveGameMenu);
 	saveGameMenu_->refreshList();
 }
 

@@ -8,6 +8,9 @@
 class General;
 class UserInterface;
 
+/**
+ * UI main menu, first thing to display after launch.
+ */
 class MainMenu : public QWidget {
 	Q_OBJECT
 public:
@@ -24,7 +27,6 @@ private:
 
 	void initButtons();
 	void initLayout();
-
 
 	QPushButton *continueBtn_;
 	QPushButton *newGameBtn_;

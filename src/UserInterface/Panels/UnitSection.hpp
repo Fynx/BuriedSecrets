@@ -9,6 +9,9 @@ class DataManager;
 class Unit;
 class Mind;
 
+/**
+ * Section of Units panel to display info about specific unit.
+ */
 class UnitSection : public QFrame {
 	Q_OBJECT
 public:

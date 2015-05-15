@@ -197,7 +197,6 @@ namespace Properties {                                     /** for Prototypes */
 	const QString Profession    = "profession";        /** base for Unit */
 	const QString Psychosis     = "psychosis";         /** max for Unit ??  */
 	const QString Quote         = "quote";             /** base for Unit */
-	const QString Quality       = "quality";           /** Item quality */
 	const QString Range         = "range";             /** Weapon */
 	const QString Regeneration  = "regeneration";      /** Unit */
 	const QString ReloadTime    = "reloadTime";        /** Weapon */

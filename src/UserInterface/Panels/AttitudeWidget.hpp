@@ -10,6 +10,9 @@
 class JournalEntry;
 class Mind;
 
+/**
+ * Widget to show and change units attitude.
+ */
 class AttitudeWidget : public QFrame {
 	Q_OBJECT
 public:

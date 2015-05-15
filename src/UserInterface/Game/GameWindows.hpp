@@ -12,6 +12,10 @@ class Mind;
 class Unit;
 class UnitWindow;
 
+/**
+ * Manages all in-game popup windows.
+ * Checks for units wanting to join.
+ */
 class GameWindows : public QObject {
 	Q_OBJECT
 public:

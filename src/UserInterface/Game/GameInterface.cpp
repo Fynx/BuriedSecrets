@@ -92,10 +92,12 @@ void GameInterface::initFactionPanel()
 {
 	factionPanel_ = new FactionPanel(mind_);
 	factionPanel_->setParent(this);
-	connect(factionPanel_, &FactionPanel::campActivated,
-	        &gameWindows_, &GameWindows::showCampWindow);
 	connect(factionPanel_, &FactionPanel::journalActivated,
 	        &gameWindows_, &GameWindows::showJournalWindow);
+	connect(factionPanel_, &FactionPanel::campActivated,
+	        &gameWindows_, &GameWindows::showCampWindow);
+	connect(factionPanel_, &FactionPanel::exitActivated,
+	        this, &GameInterface::showMainMenu);
 }
 
 void GameInterface::initNotificationPanel()

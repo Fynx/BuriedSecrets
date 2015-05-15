@@ -20,6 +20,12 @@ class NotificationPanel;
 class UnitsPanel;
 class Viewport;
 
+/**
+ * Class responsible for game window.
+ * Contains UI update timer, filters and directs Qt events, checks game state.
+ * Parent to all HUD widgets and map.
+ * Has all others game modules.
+ */
 class GameInterface : public QWidget {
 	Q_OBJECT
 public:

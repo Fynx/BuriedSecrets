@@ -5,6 +5,9 @@
 
 #include <QtWidgets>
 
+/**
+ * UI menu to load previously saved games.
+ */
 class LoadGameMenu : public QWidget {
 	Q_OBJECT
 public:

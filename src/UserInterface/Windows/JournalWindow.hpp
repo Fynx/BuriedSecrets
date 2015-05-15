@@ -11,6 +11,9 @@ class Mind;
 class DataManager;
 class JournalEntryWidget;
 
+/**
+ * In-game window to display journal entries.
+ */
 class JournalWindow : public QFrame {
 	Q_OBJECT
 public:

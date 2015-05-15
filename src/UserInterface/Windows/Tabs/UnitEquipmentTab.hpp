@@ -14,6 +14,10 @@ class Mind;
 class SlotWidget;
 class Unit;
 
+/**
+ * UnitWindow Tab to display unit's equipment.
+ * Supports drag'n'drop.
+ */
 class UnitEquipmentTab : public QWidget {
 
 public:

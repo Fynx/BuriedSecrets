@@ -8,6 +8,9 @@
 class DataManager;
 class Unit;
 
+/**
+ * UnitWindow Tab to display units's stats and history.
+ */
 class UnitHistoryTab : public QWidget {
 
 public:

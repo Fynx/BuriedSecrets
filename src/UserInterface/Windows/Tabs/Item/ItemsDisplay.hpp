@@ -11,6 +11,9 @@ class ItemsListWidget;
 class ItemWidget;
 class Prototype;
 
+/**
+ * Abstract class with code to list and display items.
+ */
 class ItemsDisplay : public QWidget {
 	Q_OBJECT
 

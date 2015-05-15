@@ -9,6 +9,9 @@ class DataManager;
 class Mind;
 class Unit;
 
+/**
+ * In-game window to display information about specific unit.
+ */
 class UnitWindow : public QFrame {
 	Q_OBJECT
 public:

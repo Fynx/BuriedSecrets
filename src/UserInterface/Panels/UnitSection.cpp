@@ -95,9 +95,9 @@ void UnitSection::refresh()
 void UnitSection::setSelected(bool isSelected)
 {
 	if (isSelected)
-		setFrameStyle(QFrame::Panel | QFrame::Raised);
-	else
 		setFrameStyle(QFrame::Panel | QFrame::Sunken);
+	else
+		setFrameStyle(QFrame::Panel | QFrame::Raised);
 }
 
 void UnitSection::mouseDoubleClickEvent(QMouseEvent *event)

@@ -5,6 +5,9 @@
 
 #include <QtWidgets>
 
+/**
+ * UI menu to save current game.
+ */
 class SaveGameMenu : public QWidget {
 	Q_OBJECT
 public:

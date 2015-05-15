@@ -5,6 +5,9 @@
 
 #include <QtWidgets>
 
+/**
+ * CampWindow Tab to display briefing for current level.
+ */
 class BriefingTab : public QWidget {
 
 public:

@@ -15,6 +15,9 @@ class Unit;
 class GameViewport;
 class GameSelections;
 
+/**
+ * UI game module to control available actions, clicks on map and current cursor.
+ */
 class GameCommands : public QObject {
 	Q_OBJECT
 public:

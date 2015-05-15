@@ -11,6 +11,11 @@ class BoardWidget;
 class Mind;
 class Object;
 
+/**
+ * UI game module to control current viewport and its movement.
+ * Can tell what units are in specific area.
+ * Can center on specific unit.
+ */
 class GameViewport : public QObject {
 	Q_OBJECT
 public:

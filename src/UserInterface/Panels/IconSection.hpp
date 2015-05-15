@@ -5,6 +5,9 @@
 
 #include <QtWidgets>
 
+/**
+ * Section of units panel for displaying icons instead of info about units. (like "Dead" or "Psycho")
+ */
 class IconSection : public QWidget {
 
 public:

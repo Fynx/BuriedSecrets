@@ -7,6 +7,9 @@
 
 class JournalEntry;
 
+/**
+ * Widget to display entries on in-game journal.
+ */
 class JournalEntryWidget : public QWidget {
 
 public:

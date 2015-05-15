@@ -6,6 +6,10 @@
 #include <QtWidgets>
 #include "Common/Enums.hpp"
 
+/**
+ * Widget responsible for item's slots in units equipment.
+ * Handles drag'n'drop.
+ */
 class UnitEquipmentTab;
 
 class SlotWidget : public QFrame {

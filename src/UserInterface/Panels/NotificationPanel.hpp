@@ -10,6 +10,9 @@ class JournalEntry;
 class Mind;
 class NotificationWidget;
 
+/**
+ * Abstract class to manage display of notifications.
+ */
 class NotificationPanel : public QObject {
 	Q_OBJECT
 public:

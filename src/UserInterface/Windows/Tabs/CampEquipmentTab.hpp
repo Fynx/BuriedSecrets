@@ -11,6 +11,9 @@ class Equipment;
 class Item;
 class Mind;
 
+/**
+ * CampWindow Tab to display player's camp equipment.
+ */
 class CampEquipmentTab : public ItemsDisplay {
 	Q_OBJECT
 

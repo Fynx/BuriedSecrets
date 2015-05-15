@@ -12,6 +12,9 @@ class Mind;
 class Object;
 class Unit;
 
+/**
+ * UI game module to control set of selected units and all way of changing it.
+ */
 class GameSelections : public QObject {
 	Q_OBJECT
 public:
