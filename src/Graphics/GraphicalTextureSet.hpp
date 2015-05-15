@@ -5,18 +5,19 @@
 #include <SFML/Graphics.hpp>
 
 #include "DataManager/ImageMetaData.hpp"
+#include "Graphics/FrameSet.hpp"
 
 
 class GraphicalTextureSet {
 public:
-	typedef QHash<ImageMetaData, sf::Texture *> FrameSet;
-	GraphicalTextureSet(const FrameSet &frameSet);
+	GraphicalTextureSet(const FrameSet *frameSet);
+	~GraphicalTextureSet();
 
 	const sf::Texture *getFrame(ImageMetaData key = ImageMetaData{BS::State::Idle, BS::ItemType::Invalid,
 								      BS::Graphic::Direction::Invalid, 0}) const;
 	int getNumDirections() const;
 
 private:
-	FrameSet frames;
+	const FrameSet *frames;
 	int numDirections;
 };

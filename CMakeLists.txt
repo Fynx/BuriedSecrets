@@ -18,7 +18,7 @@ include_directories(${Qt5Widgets_INCLUDE_DIRS} ${BuriedSecrets_SOURCE_DIR}/src)
 # SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 set(SFML_STATIC_LIBRARIES FALSE)
-find_package(SFML 2.1 COMPONENTS system window graphics audio REQUIRED)
+find_package(SFML 2.2 COMPONENTS system window graphics audio REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
 # Box2D

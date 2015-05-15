@@ -167,7 +167,7 @@ void GraphicalFogOfWar::drawUpdates(sf::RenderTexture &canvas, const VisibilityU
 				tempTexture.create(bounds.width + bounds.left, bounds.height + bounds.top);
 			}
 			tempTexture.clear(sf::Color::Black);
-			tempTexture.draw(circle, sf::RenderStates{sf::BlendMode::BlendMultiply});
+			tempTexture.draw(circle, sf::RenderStates{sf::BlendMultiply});
 
 			for (const BS::Geometry::Polygon &poly: visUpdate.ommitPolygons) {
 				polygon.setPointCount(poly.length());
@@ -184,7 +184,7 @@ void GraphicalFogOfWar::drawUpdates(sf::RenderTexture &canvas, const VisibilityU
 			tempTexture.display();
 			sf::Sprite tempSprite(tempTexture.getTexture());
 			tempSprite.setPosition(realPos.x() - radiusP.x(), realPos.y() - radiusP.y());
-			canvas.draw(tempSprite, sf::RenderStates{sf::BlendMode::BlendMultiply});
+			canvas.draw(tempSprite, sf::RenderStates{sf::BlendMultiply});
 		}
 	}
 }
@@ -204,7 +204,7 @@ void GraphicalFogOfWar::enlargeAndBlur(const sf::Texture& texture, sf::RenderTex
 			(int)target.getSize().y < (int)(bottomRight.y() - topLeft.y())) {
 		target.create(bottomRight.x() - topLeft.x(), bottomRight.y() - topLeft.y());
 	}
-	sf::RenderStates noBlendShader{sf::BlendMode::BlendNone};
+	sf::RenderStates noBlendShader{sf::BlendNone};
 	noBlendShader.shader = &shader;
 	target.draw(shaderSprite, noBlendShader);
 	target.display();

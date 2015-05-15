@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Graphics/GraphicsDataManager.hpp"
@@ -6,6 +6,7 @@
 #include <cassert>
 
 #include "DataManager/DataManager.hpp"
+#include "DebugManager/DebugManager.hpp"
 
 
 using namespace sf;
@@ -36,16 +37,16 @@ const GraphicalTextureSet *GraphicsDataManager::getTextureSet(const QString &nam
 	if (it == textureSets.end()) {
 		const TextureSet *textureSet = dataManager->getTextureSet(name);
 		const auto &frames = textureSet->getAllImages();
-		GraphicalTextureSet::FrameSet frameSet;
+		FrameSet *frameSet = new FrameSet{};
 
 		for (const auto &frameDesc : frames) {
 			Texture *texture = new sf::Texture{};
 			texture->setSmooth(true);
 			if (!texture->loadFromMemory(frameDesc.second->getData(), frameDesc.second->getDataLength())) {
-				qDebug() << "Failed to load the texture: " << name;
-				// TODO should we die miserably here?
+				err("Failed to load the texture: " + name);
+				continue;	// No texture for this one.
 			}
-			frameSet.insert(frameDesc.first, texture);
+			frameSet->insert(frameDesc.first, texture);
 		}
 
 		result = new GraphicalTextureSet{frameSet};

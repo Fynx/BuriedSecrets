@@ -5,6 +5,7 @@ add_subdirectory(Decals)
 
 set (Graphics_SRCS
 	Camera.cpp
+	FrameSet.cpp
 	GraphicalFogOfWar.cpp
 	GraphicalTextureSet.cpp
 	Graphics.cpp
