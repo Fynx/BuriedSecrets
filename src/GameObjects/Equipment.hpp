@@ -6,6 +6,11 @@
 #include "GameObjects/Item.hpp"
 #include "Common/Enums.hpp"
 
+/**
+ * @class Equipment
+ * Storage class for the Items.
+ * Provides convenience functions.
+ */
 class Equipment : public Object {
 public:
 	Equipment(const Prototype *prototype);
@@ -22,6 +27,7 @@ public:
 
 	//TODO AEIOU list below should be read from prototype according to class or sth
 	// may be const &
+	/** Except for the set of items in general, certain items can be put in certain slots. */
 	QList<BS::Slot> getAvailableSlots();
 	void removeFromSlot(BS::Slot slot);
 	void putItemIntoSlot(BS::Slot slot, Item *item);
@@ -38,6 +44,11 @@ private:
 	QHash<BS::Slot, Item *> usedItems;
 };
 
+/**
+ * @class Equipped
+ * Convenience class for anything that contains Equipment.
+ * A subclass of Object can derive after Equipped.
+ */
 class Equipped {
 public:
 	Equipment *getEquipment();

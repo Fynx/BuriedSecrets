@@ -7,7 +7,12 @@
 #include "GameObjects/Location.hpp"
 #include "Common/Enums.hpp"
 
-
+/**
+ * @class Unit
+ * An Object visible on the map.
+ * Units can move, attack, enter and leave Locations, use Items.
+ * Every Unit belongs to some Faction.
+ */
 class Unit : public Object, public Equipped {
 public:
 	Unit(const Prototype *prototype);
@@ -24,6 +29,7 @@ public:
 	void setHP(int hp);
 	float getMaxHP() const;
 
+	/** Unit mental health. */
 	float getPsychosis() const;
 	void setPsychosis(int psychosis);
 	float getMaxPsychosis() const;

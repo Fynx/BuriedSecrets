@@ -37,7 +37,7 @@ namespace BS {
 	// about why and try to solve it together with someone.
 	// For now it's just going to be a standard enum, because I'm stuck here and don't want it to stay that way.
 	enum State {
-		Attack = 0,        // Unit
+		Attack = 0,    // Unit
 		Assemble,      // Unit
 		Heal,          // Unit
 		Idle,

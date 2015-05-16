@@ -5,18 +5,21 @@
 
 #include "GameObjects/JournalEntry.hpp"
 
-//TODO put this journal into Faction
-
 class Mind;
 class Unit;
 class Item;
 
+/**
+ * @class Journal
+ * Object containing JournalEntries.
+ */
 class Journal : public Object {
 public:
 	Journal(const Prototype *prototype);
 
 	BS::Type getType() const;
 
+	/** JournalEntries management functions. */
 	void addEntry(JournalEntry *entry);
 	JournalEntry *getEntry(int number) const;
 	const QVector<JournalEntry *>getEntries() const;
@@ -24,8 +27,6 @@ public:
 	void clearEntries();
 
 	const QVector<int> &getEntriesUids() const;
-
-	//TODO either put date as an argument, or set date afterwards whenever you use these functions.
 
 	JournalEntry *createEntryDeath(Mind *mind, Unit *who);
 	JournalEntry *createEntryItemFound(Mind *mind, Unit *who, const QVector<Item *> &what);

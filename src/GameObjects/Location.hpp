@@ -5,6 +5,12 @@
 
 #include "GameObjects/Item.hpp"
 
+/**
+ * @class Location
+ * An Object visible on the map.
+ * Unit might or might not be able to enter a Location.
+ * Locations may contain Items to be found.
+ */
 class Location : public Object {
 public:
 	Location(const Prototype *prototype);
@@ -12,12 +18,14 @@ public:
 
 	BS::Type getType() const;
 
+	/** Item management functions. */
 	void addItem(int searchDifficulty, Item *item);
 	void removeItem(Item *item);
 	QList<Item *> getItems(int searchDifficulty = 1000) const;
 	const QMap<Item *, int> &getItemsDifficulty() const;
 	const QMap<int, int> &getItemsUids() const;
 
+	/** Unit management functions. */
 	void insertUnit(int id);
 	void removeUnit(int id);
 	QList<int> getUnitsUids() const;
@@ -27,10 +35,13 @@ public:
 
 	QPointF getExitPoint() const;
 
+	/** Is it possible to construct the Location from components. */
 	bool isAssemblable() const;
+	/** Can a Unit see through this location. */
 	bool isTransparent() const;
 	int getCapacity() const;
 
+	/** Unit that might wait in the Location. */
 	int getUnitMet();
 	void setUnitMet(int uid);
 

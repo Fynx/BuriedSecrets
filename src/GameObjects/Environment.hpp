@@ -5,11 +5,16 @@
 
 #include "GameObjects/Object.hpp"
 
+/**
+ * @class Environment
+ * Object that doesn't change and doesn't interact with anything.
+ * It's either barring the way, reducing visibility, or simply being a decoration.
+ */
 class Environment : public Object {
 public:
 	Environment(const Prototype *prototype);
 
-	BS::Type getType() const;
+	virtual BS::Type getType() const;
 
 	bool isObstacle() const;
 	bool isTransparent() const;

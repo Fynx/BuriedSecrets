@@ -10,21 +10,29 @@ class Journal;
 class Location;
 class Unit;
 
-
+/**
+ * @class Faction
+ * Objects can have their Factions - that's particularly important for Units.
+ * This class provides functions that allow to do operations on all Units in the Faction,
+ * manage Faction-related variables and interact with other Factions.
+ */
 class Faction : public Object, public Equipped {
 public:
 	Faction(const Prototype *prototype);
 
 	BS::Type getType() const;
 
+	/** Faction can have a Journal, where some events and messages are stored. */
 	int getJournalUid() const;
 	void setJournal(Journal *journal);
 
 	Journal *getJournal();
 
+	/** Camp is a Location/Item Object. No more than one per Faction. */
 	int getCampUid() const;
 	void setCamp(int);
 
+	/** Unit management functions. */
 	void removeUnit(int uid);
 	void addUnit(int uid);
 	const QSet<int> &getUnitsUids() const;
@@ -39,10 +47,12 @@ public:
 
 	double getCampRange() const;
 
+	/** Faction relations management functions. */
 	bool isNeutralFaction(int uid) const;
 	bool isFriendly(const Object *obj);
 	void modifyRelation(int uid, int diff);
 
+	/** List of Quest Objects that belong to this Faction. */
 	QList<int> getQuests() const;
 
 	int getTotalFrags() const;

@@ -7,6 +7,10 @@
 
 using namespace BS;
 
+/**
+ * @struct
+ * Storage structure for Quest conditions.
+ */
 struct Condition
 {
 	ConditionType type;
@@ -19,6 +23,11 @@ struct Condition
 
 class Mind;
 
+/**
+ * @class Quest
+ * Represents quests in the game.
+ * Contains Conditions for activating and deactivating and convenience functions for evaluating Conditions.
+ */
 class Quest : public Object {
 public:
 	Quest(const Prototype *prototype);
@@ -32,6 +41,7 @@ public:
 	const QList<Condition> &getFailConds() const;
 	const QList<Condition> &getSuccessConds() const;
 
+	/** Corresponding JournalEntries. */
 	const int getStartEntry() const;
 	const int getSuccessEntry() const;
 	const int getFailEntry() const;
@@ -39,6 +49,7 @@ public:
 	virtual void loadFromJson(const QJsonObject &json);
 	virtual QJsonObject saveToJson() const;
 
+	/** Static functions for evaluating Conditions, depending on the current game state. */
 	static bool evaluateConditions(const QList<Condition> &cond, Mind *mind, int factionId);
 	static bool evaluateQuestSuccess(const Condition &c, Mind *mind, int factionId);
 	static bool evaluateQuestFail(const Condition &c, Mind *mind, int factionId);

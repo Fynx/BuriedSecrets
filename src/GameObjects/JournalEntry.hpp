@@ -5,6 +5,13 @@
 
 #include "GameObjects/Object.hpp"
 
+/**
+ * @class JournalEntry
+ * Entries in Journal.
+ * Contain information about what is happening in the game,
+ * including Units' deaths, Quest entries and so on.
+ * JournalEntries contain date, text and title.
+ */
 class JournalEntry : public Object {
 public:
 	static bool hasLongForm(BS::EntryType type);
@@ -14,7 +21,6 @@ public:
 
 	BS::Type getType() const;
 
-	//TODO feel free to change this string to sth more convenient
 	QString getDate() const;
 	void setDate(const QString &text);
 	void setDate(int d, int m, int y, int hrs = -1, int min = -1);
@@ -25,6 +31,7 @@ public:
 	QString getTitle() const;
 	void setTitle(const QString &title);
 
+	/** What kind of Entry is this. Quest? Help-related? */
 	BS::EntryType getEntryType() const;
 	void setEntryType(BS::EntryType type);
 
