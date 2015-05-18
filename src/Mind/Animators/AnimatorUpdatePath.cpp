@@ -16,6 +16,7 @@ using namespace BS;
 
 AnimatorUpdatePath::AnimatorUpdatePath(Mind *mind) : Animator(mind)
 {
+	timer.restart();
 	info("Animator Update Path created.");
 }
 
@@ -66,8 +67,26 @@ void AnimatorUpdatePath::act()
 			continue;
 		}
 
+		bool calculatePath = false;
+		int timestamp = timer.elapsed();
 		auto &path = unit->getCurrentPath();
-		if (path.empty() || path.back() != to) {
+
+		if (path.empty()) {
+			calculatePath = true;
+		} else {
+			const float dist = BS::Geometry::distance(path.back(), to);
+			const float baseRadius = unit->getPrototype()->getProperty(Properties::BaseRadius).toFloat();
+			if (timestamp - unit->property(TempData::PreviousPathTimestamp).toInt() >= burnout &&
+					dist >= 6.0f * baseRadius) {
+				calculatePath = true;
+			} else if (unit->getFactionId() == mind->getPlayerFaction()->getFactionId() &&
+					dist >= 2.0f * baseRadius) {
+				calculatePath = true;
+			}
+		}
+
+		if (calculatePath) {
+			unit->property(TempData::PreviousPathTimestamp) = timestamp;
 			unit->setCurrentPath(mind->getMapManager()->getPath(unit, to));
 		} else if(isStuck(unit, (10 * from).toPoint())) {
 			path.pop_front();
@@ -82,3 +101,4 @@ bool AnimatorUpdatePath::isStuck(Unit *unit, const QPoint &position)
 	unit->property(TempData::PreviousPosition) = position;
 	return previousPos == position;
 }
+

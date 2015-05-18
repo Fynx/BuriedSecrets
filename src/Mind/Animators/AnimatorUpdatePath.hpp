@@ -18,5 +18,7 @@ private:
 	bool isStuck(Unit *unit, const QPoint &position);
 
 	const float epsilon = 0.5;
+	const int burnout = 1500;
+	QTime timer;
 };
 

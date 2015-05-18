@@ -252,6 +252,7 @@ namespace TempData {                                   // kept in GO's map
 	const QString X                = "x";
 	const QString Y                = "y";
 	const QString PreviousPosition = "PreviousPosition";
+	const QString PreviousPathTimestamp = "PreviousPathTimestamp";
 }
 
 namespace Types {
