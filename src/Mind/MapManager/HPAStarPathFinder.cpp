@@ -278,16 +278,7 @@ void HPAStarPathFinder::updateBlock(HPAStarPathFinder::BlockNodesContainer &bloc
 	// Clear the block:
 	for (Node *v : blockContainer[blockId]) {
 		// Remove v from edges of all blocks.
-		for (const Edge &e : v->edges) {
-			// Remove as quick as possible.
-			for (std::size_t i = 0; i < e.v->edges.size(); ++i) {
-				if (e.v->edges[i].v == v) {
-					std::swap(e.v->edges[i], e.v->edges.back());
-					e.v->edges.pop_back();
-					break;
-				}
-			}
-		}
+		removeEdges(v);
 	}
 	for (Node *v : blockContainer[blockId]) {
 		delete v;
@@ -509,8 +500,7 @@ HPAStarPathFinder::Node *HPAStarPathFinder::insertNode(const QPointF &position, 
 {
 	auto accMap = getAccessiblityMap(gridSize, unit);
 	QPoint positionDiscretized = accMap->discretize(position);
-	QPoint blockCoords{positionDiscretized.x() / AbstractGridSize, positionDiscretized.y() / AbstractGridSize};
-	int blockId = getBlockIdFromBlockCoords(blockCoords.x(), blockCoords.y(), gridSize, unit);
+	int blockId = getBlockId(position, gridSize, unit);
 	auto &blockContainer = blockNodes[gridSize];
 	for (Node *v: blockContainer[blockId]) {
 		if (v->getPoint() == positionDiscretized) {
@@ -548,6 +538,7 @@ bool HPAStarPathFinder::canPass(const QPointF &from, const Unit *unit, const QPo
 	float length = sqrt(delta.x() * delta.x() + delta.y() * delta.y());
 	delta /= length;
 	int intLength = length;
+
 	QPointF p = fromDisc;
 	for (int i = 0; i <= intLength; ++i, p += delta) {
 		if (!accMap->isAccessible(unit, p.toPoint())) {
@@ -556,5 +547,29 @@ bool HPAStarPathFinder::canPass(const QPointF &from, const Unit *unit, const QPo
 	}
 
 	return true;
+}
+
+
+void HPAStarPathFinder::removeEdges (const HPAStarPathFinder::Node *node)
+{
+	for (const Edge &e : node->edges) {
+		// Remove as quick as possible.
+		for (std::size_t i = 0; i < e.v->edges.size(); ++i) {
+			if (e.v->edges[i].v == node) {
+				std::swap(e.v->edges[i], e.v->edges.back());
+				e.v->edges.pop_back();
+				--i;
+			}
+		}
+	}
+}
+
+
+int HPAStarPathFinder::getBlockId(const QPointF &position, const int gridSize, const Unit *unit)
+{
+	auto accMap = getAccessiblityMap(gridSize, unit);
+	QPoint positionDiscretized = accMap->discretize(position);
+	QPoint blockCoords{positionDiscretized.x() / AbstractGridSize, positionDiscretized.y() / AbstractGridSize};
+	return getBlockIdFromBlockCoords(blockCoords.x(), blockCoords.y(), gridSize, unit);
 }
 

@@ -67,6 +67,11 @@ private:
 	void updateObject(const Object *object, const QPointF &position);
 	HPAStarPathFinder::Node *insertNode(const QPointF &position, const int gridSize, const Unit *unit);
 	bool canPass(const QPointF &from, const Unit *unit, const QPointF &to, AccessiblityMap *accMap);
+	/**
+	 * @brief Removes all the edges to the node coming from outside.
+	 */
+	void removeEdges(const Node *node);
+	int getBlockId(const QPointF &position, const int gridSize, const Unit *unit);
 
 	QHash<int, BlockNodesContainer> blockNodes;	// A flat array representing the block matrix.
 };
