@@ -124,8 +124,8 @@ QPair< bool, QList< QPointF > > AStarPathFinder::tryFindPath (const QPointF &sou
 	const Object *targetObject =
 		mapManager->getObjectContaining(accMap->undiscretize(targetDiscrete),
 		                                gridSize / 2.0f);
-	qDebug() << "PF: Starting from: " << sourceDiscrete << " going to: " << targetDiscrete
-		<< (targetObject != nullptr ? targetObject->getName() : "no object");
+// 	qDebug() << "PF: Starting from: " << sourceDiscrete << " going to: " << targetDiscrete
+// 		<< (targetObject != nullptr ? targetObject->getName() : "no object");
 
 	QHash<QPoint, int> pointToNode;
 	std::vector<bool> visited(10000, false);
@@ -251,7 +251,7 @@ QPair< bool, QList< QPointF > > AStarPathFinder::tryFindPath (const QPointF &sou
 		}
 	}
 
-	qDebug() << lastId + 1 << "nodes considered";
+// 	qDebug() << lastId + 1 << "nodes considered";
 	while (result.length() >= 2 &&
 			BS::Geometry::distance(target, result.at(result.length() - 2)) < gridSize * sqrtTwo) {
 		result.pop_back();
