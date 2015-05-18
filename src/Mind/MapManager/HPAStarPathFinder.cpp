@@ -49,6 +49,7 @@ HPAStarPathFinder::~HPAStarPathFinder()
 QList<QPointF> HPAStarPathFinder::getPath(const QPointF &source, const Unit *unit, const QPointF &target)
 {
 	QList<QPointF> path;
+
 	const int gridSize = getGridSize(unit->getPrototype()->getProperty(Properties::BaseRadius).toFloat());
 	auto *accMap = AStarPathFinder::getAccessiblityMap(gridSize, unit);
 	QPoint discretizedTarget = accMap->discretize(target);
@@ -108,6 +109,7 @@ QList<QPointF> HPAStarPathFinder::getPath(const QPointF &source, const Unit *uni
 
 			pathNodes.pop();
 			QList<QPointF> tempPath;
+			tempPath.append(source);
 			while (!pathNodes.empty()) {
 				v = pathNodes.top();
 				pathNodes.pop();
@@ -123,8 +125,10 @@ QList<QPointF> HPAStarPathFinder::getPath(const QPointF &source, const Unit *uni
 				}
 			}
 
+			tempPath.append(target);
+
 			// Step 4: (Optional) Smoothen the path.
-			for (int i = 0; i < tempPath.size(); ++i) {
+			for (int i = 0; i < tempPath.size(); ++i) {	// Skip the first node.
 				// Check if the point is unommittable
 				if (path.empty() || i >= tempPath.size() - 1 ||
 						!canPass(path.back(), unit, tempPath[i + 1], accMap)) {
@@ -132,7 +136,12 @@ QList<QPointF> HPAStarPathFinder::getPath(const QPointF &source, const Unit *uni
 				}
 			}
 
-			break;
+			// Step 5: Remove the source and target... Or not? Yeah, why would we?
+			qDebug() << ">>Found path of length" << getPathLength(path) << "searched" << lastId <<
+					"meta nodes.\n";
+
+			path.pop_front();
+			return path;
 		}
 
 		for (Edge &e: nodes[v].node->edges) {
@@ -178,12 +187,6 @@ QList<QPointF> HPAStarPathFinder::getPath(const QPointF &source, const Unit *uni
 		}
 	}
 
-
-	// Step 5: Remove the source and target... Or not? Yeah, why would we?
-	qDebug() << ">>Found path of length" << getPathLength(path) << "searched" << lastId << "meta nodes.\n";
-	if (!path.empty()) {
-		path.pop_front();
-	}
 	path.append(target);
 	return path;
 }
