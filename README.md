@@ -32,3 +32,6 @@ http://opengameart.org/content/animated-particle-effects-2
 
 Military jeep for Robo Camp from:
 http://opengameart.org/content/military-jeep
+
+Teleporter Circle by Clint Bellanger for teleport from:   
+http://opengameart.org/content/teleporter-circle  

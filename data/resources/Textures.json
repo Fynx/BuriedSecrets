@@ -205,8 +205,8 @@
 	"Teleport1Idle": {
 		"type": "texture",
 		"rows": 1,
-		"columns": 3,
-		"path": "images/Teleport1Idle.png"
+		"columns": 4,
+		"path": "images/Teleport1Active.png"
 	},
 
 	"Map0": {

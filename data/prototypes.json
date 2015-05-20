@@ -530,14 +530,15 @@
 	"Teleport1": {
 		"type": "location",
 		"textureSet": "Teleport1",
-		"basePolygon": [[2.7, 13], [5.7, 12.1], [8.2, 9], [7.8, 6.6], [4, 7.2], [0.7, 11.2]],
+		"basePolygon": [[2.7, 7], [6.2, 6.7], [7.5, 3.7], [5.2, 0.5], [2.5, 1], [1, 4]],
 		"capacity": 5,
 		"bigAttBonus": -6,
 		"bigDefBonus": 0.4,
 		"smallDefBonus": 0.1,
 		"bigRangeBonus": 35,
 		"offsetX": 2,
-		"offsetY": 3
+		"offsetY": 3,
+		"transparent": true
 	},
 
 
