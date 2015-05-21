@@ -481,7 +481,7 @@
 		"type": "location",
 		"textureSet": "Destination",
 		"capacity": 10,
-		"basePolygon": [[0, 10.2], [2.68, 13.08], [6.66, 8.6], [4, 6]]
+		"basePolygon": [[1, 10.6], [4.5, 15.6], [7.8, 11.8], [4, 8]]
 	},
 
 

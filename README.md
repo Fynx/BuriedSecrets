@@ -35,3 +35,6 @@ http://opengameart.org/content/military-jeep
 
 Teleporter Circle by Clint Bellanger for teleport from:   
 http://opengameart.org/content/teleporter-circle  
+
+Church for temple from:    
+http://opengameart.org/content/church
