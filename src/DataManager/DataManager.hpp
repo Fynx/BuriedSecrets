@@ -18,8 +18,9 @@ public:
 	~DataManager();
 
 	static const QString SavesExtension;
-	static const QString savesPath();
 	static const QString localDataPath();
+	static const QString savesPath();
+	static const QString basePath();
 	static const QString dataPath();
 	QList <Prototype *> getAllPrototypes();
 	const Prototype *getPrototype(const QString &name) const;

@@ -14,14 +14,19 @@ const QString DataManager::localDataPath()
 	return QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QString{"/"};;
 }
 
-const QString DataManager::dataPath()
-{
-	return "/opt/buried-secrets/";
-}
-
 const QString DataManager::savesPath()
 {
 	return localDataPath() + QString{"saves/"};
+}
+
+const QString DataManager::basePath()
+{
+	return QDir::cleanPath(QCoreApplication::applicationDirPath() + QString{"/.."}) + '/';
+}
+
+const QString DataManager::dataPath()
+{
+	return basePath() + QString{"data/"};
 }
 
 DataManager::DataManager()
@@ -120,7 +125,7 @@ QByteArray DataManager::readRawData(const QString &path)
 void DataManager::loadPrototypes()
 {
 	info("Loading prototypes...");
-	QString path = dataPath() + QString("data/prototypes.json");
+	QString path = dataPath() + QString("prototypes.json");
 	QJsonObject json = loadJsonFromFile(path);
 
 	int counter = 1;
@@ -174,9 +179,8 @@ void DataManager::savePrototypes() const
 void DataManager::loadResources()
 {
 	/** Look at README.md of DataManager for more info on the format. */
-	const QString preffix = dataPath() + QString("data/");
 	info("Loading resources...");
-	QString resourcesListStr = readRawData(preffix + "ResourcesList.txt");
+	QString resourcesListStr = readRawData(dataPath() + "ResourcesList.txt");
 	QStringList resourcesList = resourcesListStr.split('\n', QString::SkipEmptyParts);
 
 	QHash<QString, QList<QPair<QString, QString> > > textureSetsData;
@@ -188,7 +192,7 @@ void DataManager::loadResources()
 			info(QString("[") + QString::number(counter++) + "/" + QString::number(resourcesList.size()) +
 				QString("]") + QString("\tloading ") + resourcePath);
 
-			QJsonObject json = loadJsonFromFile(preffix + resourcePath);
+			QJsonObject json = loadJsonFromFile(dataPath() + resourcePath);
 
 			for (const QString &key : json.keys()) {
 				const QJsonObject &obj = json[key].toObject();
@@ -196,7 +200,7 @@ void DataManager::loadResources()
 				if (typeString == Resources::Font
 				           || typeString == Resources::Image) {
 					/** Load the data from the file */
-					QByteArray resourceData = readRawData(preffix + obj[Data::Data].toString());
+					QByteArray resourceData = readRawData(dataPath() + obj[Data::Data].toString());
 					char *data = new char[resourceData.length()];
 					memcpy(data, resourceData.data(), resourceData.length());
 
@@ -211,7 +215,7 @@ void DataManager::loadResources()
 					textureSetsData[key] = textureSet;
 				} else if (typeString == Resources::Texture) {
 					// Create a new TextureData object.
-					QByteArray textureData = readRawData(preffix + obj[Data::Path].toString());
+					QByteArray textureData = readRawData(dataPath() + obj[Data::Path].toString());
 					int rows = obj[Data::Rows].toInt();
 					int columns = obj[Data::Columns].toInt();
 
