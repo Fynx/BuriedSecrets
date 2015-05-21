@@ -29,13 +29,13 @@ void AnimatorMobAttitude::act()
 			continue;
 
 		const Object *enemy = unit->getNearestEnemy();
-		if (enemy){
+		if (enemy) {
 			unit->setCommand(Command::Attack);
 			unit->setTargetObject(enemy->getUid());
 			continue;
 		}
 
-		if (unit->getCurrentPath().size() == 0){
+		if (unit->getCurrentPath().size() == 0) {
 			unit->setCommand(Command::Move);
 			unit->setCurrentPath(unit->getPatrolRoute().toList());
 		}

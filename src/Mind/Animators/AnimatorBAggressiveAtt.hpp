@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorBAggresiveAtt
+ * Sets targets for Units inside buildings and have aggressive attitude.
+ */
 class AnimatorBAggressiveAtt : public Animator {
 public:
 	AnimatorBAggressiveAtt(Mind *mind);

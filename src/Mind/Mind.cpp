@@ -95,8 +95,6 @@ void Mind::loadFromJson(const QJsonObject &json)
 
 	/** Set pointers */
 
-	//WARNING ItemConstructor is NOT used. Because what for.
-
 	info("Binding objects...");
 
 	int objectsSize = objects.size();
@@ -218,9 +216,8 @@ void Mind::loadFromJson(const QJsonObject &json)
 	float radius = 0.0f;
 	const auto polygon = camp->getPrototype()->getBasePolygon();
 	const auto centre = camp->getPrototype()->getBaseCentre();
-	for (const auto &p : polygon) {
+	for (const auto &p : polygon)
 		radius = qMax(radius, BS::Geometry::distance(centre, p));
-	}
 	mapManager->addVisibility(BS::Geometry::Circle(physics->getPosition(camp), radius * 1.5f), PlayerFactionId);
 
 	info("done.");
@@ -308,12 +305,10 @@ void Mind::toggleBasePolygons()
 	// Remove all occurences of base polygons.
 	removeAllEffects(Effects::BasePolygon);
 
-	if (!basePolygonsEffectOn) {
+	if (!basePolygonsEffectOn)
 		// Add base polygons to everything.
-		for (const auto *object : objects) {
+		for (const auto *object : objects)
 			addEffect(Effect{Effects::BasePolygon, new ObjectEffectData{object}});
-		}
-	}
 
 	basePolygonsEffectOn = !basePolygonsEffectOn;
 }
@@ -349,13 +344,11 @@ void Mind::addObject(Object *object, const QPointF &position, float angle)
 {
 	addObject(object);
 	physics->addObject(object, position, angle);
-	if (mapManager != nullptr) {
+	if (mapManager != nullptr)
 		mapManager->addObject(object);
-	}
 
-	if (object->getType() == BS::Type::Unit) {
+	if (object->getType() == BS::Type::Unit)
 		addEffect(Effect{Effects::UnitShadow, new ObjectEffectData{object}});
-	}
 }
 
 void Mind::addObject(Object *object)
@@ -556,8 +549,6 @@ void Mind::declinePendingUnit(int uid)
 
 Object *Mind::createObject(BS::Type type, const QString &name)
 {
-	//TODO remove EVERYTHING from here except creating the object itself
-
 	Object *obj;
 	switch (type) {
 		case BS::Type::Invalid: {

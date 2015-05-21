@@ -27,7 +27,9 @@ public:
 
 	//TODO AEIOU list below should be read from prototype according to class or sth
 	// may be const &
-	/** Except for the set of items in general, certain items can be put in certain slots. */
+	/**
+	 * Except for storing the set of items in general, Equipment class provides putting certain items in slots.
+	 */
 	QList<BS::Slot> getAvailableSlots();
 	void removeFromSlot(BS::Slot slot);
 	void putItemIntoSlot(BS::Slot slot, Item *item);
@@ -47,7 +49,7 @@ private:
 /**
  * @class Equipped
  * Convenience class for anything that contains Equipment.
- * A subclass of Object can derive after Equipped.
+ * A subclass of Object can derive from Equipped.
  */
 class Equipped {
 public:

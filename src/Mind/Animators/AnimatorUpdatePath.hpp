@@ -7,7 +7,10 @@
 
 class Unit;
 
-
+/**
+ * @class AnimatorUpdatePath
+ * Calculates and modifies Units' paths.
+ */
 class AnimatorUpdatePath : public Animator {
 public:
 	AnimatorUpdatePath(Mind *mind);

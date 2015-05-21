@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorWatchTarget
+ * Updates orientation of Units'.
+ */
 class AnimatorWatchTarget : public Animator {
 public:
 	AnimatorWatchTarget(Mind *mind);

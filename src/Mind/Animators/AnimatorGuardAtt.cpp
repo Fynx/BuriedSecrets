@@ -16,7 +16,7 @@ using namespace BS;
 
 AnimatorGuardAtt::AnimatorGuardAtt(Mind *mind) : Animator(mind)
 {
-	info("Animator GuardeAtt created.");
+	info("Animator GuardAtt created.");
 }
 
 

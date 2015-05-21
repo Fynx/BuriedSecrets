@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorEnterBuilding
+ * Reacts to Units entering Locations.
+ */
 class AnimatorEnterBuilding : public Animator {
 public:
 	AnimatorEnterBuilding(Mind *mind);

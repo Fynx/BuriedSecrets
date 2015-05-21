@@ -40,7 +40,7 @@ void AnimatorDisassemble::act()
 		if (QVector2D(to-from).length() > epsilon)
 			continue;
 
-		if (target->getUnitsUids().size() > 0){
+		if (target->getUnitsUids().size() > 0) {
 			unit->setCommand(Command::None);
 			continue;
 		}
@@ -58,8 +58,7 @@ void AnimatorDisassemble::act()
 
 			info("Disassemble. Id: " + QString::number(target->getUid()));
 			mind->removeObject(target);
-		}
-		else if (isCamp) {
+		} else if (isCamp) {
 			info("Disassemble. Id: " + QString::number(target->getUid()));
 			mind->removeObject(target);
 			unit->setState(State::IdleBase);

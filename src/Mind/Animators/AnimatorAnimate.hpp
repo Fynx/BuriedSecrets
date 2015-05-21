@@ -4,6 +4,10 @@
 #pragma once
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorAnimate
+ * Modifies the state of Units depending on time.
+ */
 class AnimatorAnimate: public Animator {
 public:
 	AnimatorAnimate(Mind *mind);

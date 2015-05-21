@@ -7,7 +7,7 @@
 
 /**
  * @class Item
- * Objects that appear only in Equipments.
+ * Objects that appear only in Equipment.
  * Items can have impact on Units' stats, while in certain slots.
  * Also some Items can be combined to create new Items.
  */

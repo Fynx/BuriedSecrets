@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorAggressiveAtt
+ * Finds the nearest enemy and sets it as target.
+ */
 class AnimatorAggressiveAtt : public Animator {
 public:
 	AnimatorAggressiveAtt(Mind *mind);

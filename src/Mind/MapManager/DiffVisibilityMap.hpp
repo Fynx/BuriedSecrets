@@ -16,7 +16,7 @@ public:
 
 protected:
 	bool isVisible(const Unit *from, const QPointF &target, const Object *owner,
-		       const PhysicsEngine *physicsEngine) const override;
+		const PhysicsEngine *physicsEngine) const override;
 
 private:
 	VisibilityUpdateDiff container;

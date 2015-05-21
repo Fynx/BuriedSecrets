@@ -9,6 +9,10 @@
 
 class Mind;
 
+/**
+ * @class AnimatorManager
+ * Creates, triggers and deletes Animators.
+ */
 class AnimatorManager : public QObject {
 
 Q_OBJECT;
@@ -19,6 +23,8 @@ public:
 	bool addObject(QString animator, Object *obj);
 	bool removeObject(QString animator, Object *obj);
 	bool removeObject(Object *obj);
+
+	/** Timeflow control functions. */
 	void pauseGame();
 	void resumeGame();
 
@@ -31,11 +37,12 @@ private:
 
 	QMap<int, QVector<Animator *> >intervals;
 	QMap<QString, Animator *> animators;
-	QVector <QTimer *> timers;
+	QVector<QTimer *> timers;
 	QSignalMapper signalMapper;
 
 	Mind *mind;
 
 private slots:
+	/** Triggers all animators, periodically. */
 	void update(const int timeElapsed);
 };

@@ -20,7 +20,7 @@ AnimatorAssemble::AnimatorAssemble(Mind *mind) : Animator(mind)
 
 void AnimatorAssemble::act()
 {
-	for (Object * obj : objects) {
+	for (Object *obj : objects) {
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;
@@ -28,7 +28,7 @@ void AnimatorAssemble::act()
 			continue;
 
 		Item *ikeaSet = unit->getUsedItem();
-		if (!ikeaSet && (unit->getState() != State::RunBase && unit->getState() != State::IdleBase)){
+		if (!ikeaSet && (unit->getState() != State::RunBase && unit->getState() != State::IdleBase)) {
 			unit->setCommand(Command::None);
 			continue;
 		}
@@ -38,8 +38,8 @@ void AnimatorAssemble::act()
 
 		if (to.isNull() || from.isNull())
 			continue;
-		if (QVector2D(to-from).length() > epsilon){
-			if (ikeaSet){
+		if (QVector2D(to-from).length() > epsilon) {
+			if (ikeaSet) {
 				ikeaSet->setUseDelay(ikeaSet->getPrototype()->getProperty(Properties::BuildTime).toInt());
 				ikeaSet->setMaxDelay(ikeaSet->getPrototype()->getProperty(Properties::BuildTime).toInt());
 			}
@@ -48,14 +48,13 @@ void AnimatorAssemble::act()
 
 
 		QString spawned;
-		if (unit->getState() == State::RunBase || unit->getState() == State::IdleBase)
+		if (unit->getState() == State::RunBase || unit->getState() == State::IdleBase) {
 			spawned = "Player Camp";
-		else if (ikeaSet) {
-			if (unit->getState() != State::Assemble){
+		} else if (ikeaSet) {
+			if (unit->getState() != State::Assemble)
 				unit->setState(State::Assemble);
-			}
 			if (ikeaSet->getUseDelay() > 0){
-				ikeaSet->setUseDelay(ikeaSet->getUseDelay() -1);
+				ikeaSet->setUseDelay(ikeaSet->getUseDelay() - 1);
 				continue;
 			}
 			if (ikeaSet->getPrototype()->hasProperty(Properties::SpawnedType))
@@ -70,8 +69,8 @@ void AnimatorAssemble::act()
 			fort->setFactionId(unit->getFactionId());
 			mind->getFactionById(unit->getFactionId())->setCamp(fort->getUid());;
 			mind->addEffect(Effect(Effects::Antipsychosis,
-					new ObjectRadiusEffectData(fort,
-							mind->getFactionById(unit->getFactionId())->getCampRange())));
+				new ObjectRadiusEffectData(fort,
+					mind->getFactionById(unit->getFactionId())->getCampRange())));
 		}
 
 		unit->setState(State::Idle);

@@ -19,7 +19,7 @@ void AnimatorEffects::act()
 	const int timeDelta = timer.elapsed();
 	timer.restart();
 	auto effect = mind->getActiveEffects()->begin();
-	while (effect != mind->getActiveEffects()->end()){
+	while (effect != mind->getActiveEffects()->end()) {
 		auto nextEffect = effect;
 		nextEffect++;
 

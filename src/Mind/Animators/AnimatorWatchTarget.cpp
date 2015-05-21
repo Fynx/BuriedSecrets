@@ -32,5 +32,3 @@ void AnimatorWatchTarget::act()
 		mind->physicsEngine()->setAngle(unit, Geometry::vecToAngle(dir));
 	}
 }
-
-

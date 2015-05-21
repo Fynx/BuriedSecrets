@@ -20,6 +20,12 @@ class PhysicsEngine;
 class Quest;
 class SoundsManager;
 
+/**
+ * @class Mind
+ * Mind is a class that manages GameObjects and Animators.
+ * Provides functions for load & save for GameObjects and MapManager.
+ * Contains GameObjects access interface.
+ */
 class Mind : public QObject {
 Q_OBJECT
 public:
@@ -59,6 +65,7 @@ public:
 	const Faction *getPlayerFaction() const;
 	QVector<const Object *> getAllObjects() const;
 
+	/** Convenience access functions for GameObjects. */
 	Equipment *getEquipment(const int uid);
 	Item *getItem(const int uid);
 	Journal *getJournal(const int uid);
@@ -70,12 +77,15 @@ public:
 
 	JournalEntry *getEntryFromType(BS::EntryType type);
 
+	/** Reaction to encounters with characters. */
 	void acceptPendingUnit(int uid);
 	void declinePendingUnit(int uid);
 
+	/** Timeflow control. */
 	void pauseGame();
 	void resumeGame();
 
+	/** General game state - won, lost or running. */
 	BS::GameState getGameState() const;
 	void setGameState(BS::GameState gameState);
 

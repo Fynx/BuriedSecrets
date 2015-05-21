@@ -11,7 +11,7 @@
 
 
 PrecomputedAccessibilityMap::PrecomputedAccessibilityMap(const MapManager *mapManager, const int gridSize,
-							 const Unit *unit)
+	const Unit *unit)
 	: AccessiblityMap{mapManager, gridSize}, unit{unit}
 {
 	QSizeF size = mapManager->getMap()->getSize();
@@ -123,5 +123,3 @@ void PrecomputedAccessibilityMap::addObject (const Object *object, const QPointF
 void PrecomputedAccessibilityMap::removeObject(const Object *object, const QPointF &position) {
 	addObject(object, position);
 }
-
-

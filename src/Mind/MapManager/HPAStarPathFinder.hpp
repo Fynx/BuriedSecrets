@@ -58,12 +58,12 @@ private:
 	BlockNodesContainer *createLayer(const int gridSize, const Unit *unit);
 	const int getBlockIdFromBlockCoords(const int x, const int y, const int gridSize, const Unit *unit);
 	void updateBlock(BlockNodesContainer &blockContainer, const QPoint &blockCoords, const int gridSize,
-			 const Unit *unit);
+		const Unit *unit);
 	void createNodes(QPoint begin, const QPoint &end, const QPoint &neigbourDirection, Block &block,
-			 const int gridSize, const Unit *unit);
+		const int gridSize, const Unit *unit);
 	float getPathLength(const QList<QPointF> &path) const;
 	void connectBlocks(HPAStarPathFinder::BlockNodesContainer &blockContainer, const int neighBlockId,
-			   HPAStarPathFinder::Node *uNode, AccessiblityMap *accMap);
+		HPAStarPathFinder::Node *uNode, AccessiblityMap *accMap);
 	void updateObject(const Object *object, const QPointF &position);
 	HPAStarPathFinder::Node *insertNode(const QPointF &position, const int gridSize, const Unit *unit);
 	bool canPass(const QPointF &from, const Unit *unit, const QPointF &to, AccessiblityMap *accMap);

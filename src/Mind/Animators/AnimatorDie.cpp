@@ -18,7 +18,7 @@ AnimatorDie::AnimatorDie(Mind *mind) : Animator(mind)
 
 void AnimatorDie::act()
 {
-	for (Object *obj : objects){
+	for (Object *obj : objects) {
 		Unit *unit = dynamic_cast<Unit *>(obj);
 		if (!unit)
 			continue;

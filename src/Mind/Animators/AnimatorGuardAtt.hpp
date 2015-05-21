@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorGuardAtt
+ * Reacts to Units' set attitude depending on vicinity.
+ */
 class AnimatorGuardAtt : public Animator {
 public:
 	AnimatorGuardAtt(Mind *mind);

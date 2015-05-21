@@ -24,14 +24,14 @@ protected:
 	AccessiblityMap *getAccessiblityMap(const int gridSize, const Unit *unit);
 	float getGridSize(const float radius) const;
 	float heuristicDistance(const QPoint& from, const QPoint& to);
-	QPair<bool, QList<QPointF>> tryFindPath(const QPointF &source, const Unit *unit, const float gridSize,
-						const QPointF &target, float distanceBound);
+	QPair<bool, QList<QPointF> > tryFindPath(const QPointF &source, const Unit *unit, const float gridSize,
+		const QPointF &target, float distanceBound);
 
 private:
 	struct Node {
 		Node() : point{-1, -1}, costFromSource{100000.0f}, heuristicCost{100000.0f}, previousNode{-1} {};
 		Node(const QPoint &point, const float costFromSource, const float heuristicCost,
-		     const int previousNode = -1)
+			const int previousNode = -1)
 			: point{point}, costFromSource{costFromSource}, heuristicCost{heuristicCost},
 			  previousNode{previousNode} {}
 
@@ -50,7 +50,7 @@ private:
 	 * target object, otherwise this method will return false.
 	 */
 	bool isTarget(const QPointF &point, const QPointF &target, const Object *targetObject,
-		      const float gridSize) const;
+		const float gridSize) const;
 
 	QHash<int, AccessiblityMap *> accessibilityMaps;
 };

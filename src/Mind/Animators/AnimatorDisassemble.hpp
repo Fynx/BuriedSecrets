@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorDisasseble
+ * Disassebles given visible Object into components and puts them in Equipment.
+ */
 class AnimatorDisassemble : public Animator {
 public:
 	AnimatorDisassemble(Mind *mind);

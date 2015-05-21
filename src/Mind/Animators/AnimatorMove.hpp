@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorMove
+ * Executes Units' movement.
+ */
 class AnimatorMove : public Animator {
 public:
 	AnimatorMove(Mind *mind);

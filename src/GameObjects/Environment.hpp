@@ -7,7 +7,7 @@
 
 /**
  * @class Environment
- * Object that doesn't change and doesn't interact with anything.
+ * An Object that doesn't change and doesn't interact with anything.
  * It's either barring the way, reducing visibility, or simply being a decoration.
  */
 class Environment : public Object {

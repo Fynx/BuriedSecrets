@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class
+ * Removes Units from Locations.
+ */
 class AnimatorLeaveBuilding : public Animator {
 public:
 	AnimatorLeaveBuilding(Mind *mind);

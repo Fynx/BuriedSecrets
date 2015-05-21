@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorQuest
+ * Checks start, failure and success conditions for Quests and changes Quests' states.
+ */
 class AnimatorQuest : public Animator {
 public:
 	AnimatorQuest(Mind *mind);

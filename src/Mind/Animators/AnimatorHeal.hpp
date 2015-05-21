@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorHeal
+ * Triggers Units' regeneration.
+ */
 class AnimatorHeal : public Animator {
 public:
 	AnimatorHeal(Mind *mind);

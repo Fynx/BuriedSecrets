@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorAttack
+ * Reacts to Attack command given to a Unit.
+ */
 class AnimatorAttack : public Animator {
 public:
 	AnimatorAttack(Mind *mind);

@@ -32,14 +32,14 @@ inline uint qHash (const QPoint & key)
 
 
 AStarPathFinder::AStarPathFinder(const MapManager *mapManager, const Mind *mind)
-		: PathFinder{mapManager}
+	: PathFinder{mapManager}
 {
 	auto objects = mind->getAllObjects();
 	for (const Object *obj : objects) {
 		const Unit *unit = dynamic_cast<const Unit *>(obj);
 		if (unit != nullptr && obj->getPrototype()->hasProperty(Properties::BaseRadius)) {
 			getAccessiblityMap(getGridSize(
-					obj->getPrototype()->getProperty(Properties::BaseRadius).toFloat()), unit);
+				obj->getPrototype()->getProperty(Properties::BaseRadius).toFloat()), unit);
 		}
 	}
 }
@@ -56,32 +56,29 @@ QList<QPointF> AStarPathFinder::getPath(const QPointF &source, const Unit *unit,
 	const float gridSize = getGridSize(unit->getPrototype()->getProperty(Properties::BaseRadius).toFloat());
 	auto *accMap = getAccessiblityMap(gridSize, unit);
 	return tryFindPath(source, unit, gridSize, target,
-			   6.0f * heuristicDistance(accMap->discretize(source), accMap->discretize(target))).second;
+		6.0f * heuristicDistance(accMap->discretize(source), accMap->discretize(target))).second;
 }
 
 
 void AStarPathFinder::addObject (const Object *object, const QPointF &position)
 {
-	for (auto *accMap : accessibilityMaps.values()) {
+	for (auto *accMap : accessibilityMaps.values())
 		accMap->addObject(object, position);
-	}
 }
 
 
 void AStarPathFinder::removeObject (const Object *object, const QPointF &position)
 {
-	for (auto *accMap : accessibilityMaps.values()) {
+	for (auto *accMap : accessibilityMaps.values())
 		accMap->removeObject(object, position);
-	}
 }
 
 
 AccessiblityMap *AStarPathFinder::getAccessiblityMap(const int gridSize, const Unit *unit)
 {
 	const auto it = accessibilityMaps.find(gridSize);
-	if (it != accessibilityMaps.end()) {
+	if (it != accessibilityMaps.end())
 		return it.value();
-	}
 
 	AccessiblityMap *map = new PrecomputedAccessibilityMap(mapManager, gridSize, unit);
 	accessibilityMaps.insert(gridSize, map);
@@ -101,9 +98,8 @@ float AStarPathFinder::heuristicDistance(const QPoint &from, const QPoint &to)
 }
 
 
-QPair< bool, QList< QPointF > > AStarPathFinder::tryFindPath (const QPointF &source, const Unit *unit,
-							      const float gridSize, const QPointF &target,
-							      float distanceBound)
+QPair< bool, QList< QPointF > > AStarPathFinder::tryFindPath(const QPointF &source, const Unit *unit,
+	const float gridSize, const QPointF &target, float distanceBound)
 {
 	QList<QPointF> result;
 
@@ -263,9 +259,8 @@ QPair< bool, QList< QPointF > > AStarPathFinder::tryFindPath (const QPointF &sou
 
 
 bool AStarPathFinder::isTarget(const QPointF& point, const QPointF& target, const Object* targetObject,
-			       const float gridSize) const
+	const float gridSize) const
 {
 	return targetObject != nullptr && BS::Geometry::distance(point, target) <= gridSize * sqrtTwo &&
-			mapManager->getObjectContaining(point, gridSize / 2.0f) == targetObject;
+		mapManager->getObjectContaining(point, gridSize / 2.0f) == targetObject;
 }
-

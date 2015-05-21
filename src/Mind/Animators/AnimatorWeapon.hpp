@@ -5,6 +5,10 @@
 
 #include "Mind/Animators/Animator.hpp"
 
+/**
+ * @class AnimatorWeapon
+ * Modifies Weapons' states.
+ */
 class AnimatorWeapon : public Animator {
 public:
 	AnimatorWeapon(Mind *mind);
