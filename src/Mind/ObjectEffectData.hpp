@@ -4,11 +4,13 @@
 #pragma once
 #include "Mind/EffectData.hpp"
 
-
 class Object;
 
 
-class ObjectEffectData : public EffectData {
+/**
+ * @brief EffectData for effects which need objects as input.
+ */
+class ObjectEffectData: public EffectData {
 public:
 	ObjectEffectData(const Object *object);
 	~ObjectEffectData() override;

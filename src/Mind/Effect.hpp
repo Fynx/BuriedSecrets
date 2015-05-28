@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -9,6 +9,9 @@
 #include "Mind/EffectData.hpp"
 
 
+/**
+ * @brief The logical representation of an effect.
+ */
 class Effect {
 public:
 	static const int CommandEffectTimeout = 280;	// Empirically set constant.
