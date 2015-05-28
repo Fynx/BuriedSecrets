@@ -1,11 +1,16 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
 #include "Graphics/Effects/CircleEffect.hpp"
 
 
-class AntipsychosisEffect : public CircleEffect {
+/**
+ * @brief This class represents the Antipsychosis effect.
+ *
+ * It's a circular effect with preset violet color.
+ */
+class AntipsychosisEffect: public CircleEffect {
 public:
 	AntipsychosisEffect(const Viewport *viewport, const float radius);
 	int getOrderId() const override;

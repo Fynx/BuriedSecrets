@@ -48,11 +48,13 @@ public:
 	 * @brief Loads the graphical representation of the map.
 	 */
 	void loadMap();
+
+	// Toggle display of FPS / FOW.
 	void toggleShowFPS();
 	void toggleFogOfWar();
 
 private:
-	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QList< const Object * > &objects);
+	QVector<GraphicalEntity *> getGraphicalEntitiesFor(const QList<const Object *> &objects);
 	void updateEntity(GraphicalEntity *entity, const float deltaTime, const QPointF &position);
 	/**
 	 * @brief Returns the graphical position of the entity.
@@ -62,11 +64,21 @@ private:
 	 * @brief Draws the rubber band selection (if needed).
 	 */
 	void drawRubberBand();
+	/**
+	 * @brief Draws the FPS counter.
+	 */
 	void drawFPS();
 	/**
 	 * @brief Gets effects from mind and updates the inside state of entities to use them.
 	 */
 	void updateEffects(QVector<GraphicalEntity *> &visibleEntities);
+	/**
+	 * @brief Draws the decal for a given effect.
+	 *
+	 * This method assumes nothing about the effect and draws it if it actually is a decal.
+	 *
+	 * @return True if the effect was a Decal.
+	 */
 	bool handleDecal(const Effect &effect);
 
 	GraphicsDataManager graphicsDataManager;

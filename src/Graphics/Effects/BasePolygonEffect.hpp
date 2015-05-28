@@ -8,6 +8,9 @@
 class GraphicalEntity;
 
 
+/**
+ * @brief This class represents a debug effect drawing a simple polygon to illustrate objects' base polygons.
+ */
 class BasePolygonEffect: public GraphicalEffect {
 public:
 	BasePolygonEffect(const Viewport *viewport);

@@ -5,7 +5,10 @@
 #include "Graphics/Entities/EffectGraphicalEntity.hpp"
 
 
-class MoveCommandEffectGraphicalEntity : public EffectGraphicalEntity {
+/**
+ * @brief This EffectGraphicalEntity represents a marker for the move command target.
+ */
+class MoveCommandEffectGraphicalEntity: public EffectGraphicalEntity {
 public:
 	MoveCommandEffectGraphicalEntity(const Viewport *viewport, const sf::Texture *texture);
 	void draw(sf::RenderTarget *renderTarget) override;

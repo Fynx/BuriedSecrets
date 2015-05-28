@@ -5,6 +5,12 @@
 #include "Graphics/Effects/GraphicalEffect.hpp"
 
 
+/**
+ * @brief This effect draws a semi-transparent sprite with object's texture on top of it.
+ *
+ * It is used to expose units hidden behind buildings.
+ *
+ */
 class UnitShadowEffect : public GraphicalEffect {
 public:
 	UnitShadowEffect(const Viewport *viewport);

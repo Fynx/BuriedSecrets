@@ -7,7 +7,10 @@
 class GraphicalTextureSet;
 
 
-class MissGraphicalEntity : public EffectGraphicalEntity {
+/**
+ * @brief This EffectGraphicalEntity represents a Object-unrelated effect for a missed shot.
+ */
+class MissGraphicalEntity: public EffectGraphicalEntity {
 public:
 	MissGraphicalEntity(const Viewport *viewport, const GraphicalTextureSet *missTextureSet);
 	void draw (sf::RenderTarget *renderTarget) override;

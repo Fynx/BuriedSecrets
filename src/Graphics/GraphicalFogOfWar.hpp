@@ -33,6 +33,17 @@ private:
 	 */
 	void drawUpdates(sf::RenderTexture& canvas, const VisibilityUpdateDiff& updateDiff, const QRectF &view,
 			 const float scale);
+	/**
+	 * @brief Draws the resized and blurred texture on target.
+	 *
+	 * @param texture the texture to be drawn.
+	 * @param target the target for drawing.
+	 * @param topLeft the top left corner of the screen with respect to the world coordinates.
+	 * @param bottomRight the bottom right corner with respect to the world coordinates.
+	 * @param scale the scale for enlarging.
+	 * @param shader the shader for blur.
+	 * @return void
+	 */
 	void enlargeAndBlur(const sf::Texture &texture, sf::RenderTexture &target, const QPointF &topLeft,
 			    const QPointF &bottomRight, const float scale, const sf::Shader &shader);
 

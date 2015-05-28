@@ -9,6 +9,9 @@
 class QPointF;
 
 
+/**
+ * @brief This class represents a general circle effect widely subclassed for unit selections, area effects etc.
+ */
 class CircleEffect: public GraphicalEffect {
 public:
 	CircleEffect(const Viewport *viewport, const sf::Color &outlineColor,

@@ -9,7 +9,6 @@
 
 /**
  * @brief This class represents a static graphical object that always displays the same image.
- *
  */
 class StaticGraphicalEntity: public SpriteGraphicalEntity {
 public:

@@ -18,8 +18,7 @@ class Object;
 
 
 /**
- * @brief The graphical representation of the logical object.
- *
+ * @brief A graphical representation of a logical object.
  */
 class GraphicalEntity {
 public:
@@ -27,7 +26,13 @@ public:
 			GraphicalEffectFactory *graphicalEffectFactory);
 	virtual ~GraphicalEntity();
 
+	/**
+	 * @brief Draws effects for the Entity that are supposed to appear before (under) it.
+	 */
 	void drawPreEffects(sf::RenderTarget *renderTarget);
+	/**
+	 * @brief Draws effects for the Entity that are supposed to appear after (above) it.
+	 */
 	void drawPostEffects(sf::RenderTarget *renderTarget);
 	virtual void draw(sf::RenderTarget *renderTarget) = 0;
 	/**
@@ -40,9 +45,22 @@ public:
 	 * @brief Returns the newest known screen position of the entity.
 	 */
 	QPointF getPosition() const;
+	/**
+	 * @brief Sets the direction of the Entity.
+	 *
+	 * If there are textures for the given direction, during the next redraw, this entity should use them.
+	 */
 	virtual void setDirection(const BS::Graphic::Direction &direction) = 0;
 	const Object* getObject() const;
+	/**
+	 * @brief Returns the Entity's base polygon (in logical coordinates, relative to the upper left corner of the
+	 * texture).
+	 */
 	QList<QPointF> getBasePolygon() const;
+	/**
+	 * @brief Returns the Entity's base centre (in logical coordinates, relative to the upper left corner of the
+	 * texture).
+	 */
 	QPointF getBaseCentre() const;
 	/**
 	 * @brief Returns the size of the actual texture that is drawn on the screen.

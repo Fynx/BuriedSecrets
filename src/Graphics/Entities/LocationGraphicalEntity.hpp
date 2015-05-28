@@ -7,6 +7,9 @@
 class Location;
 
 
+/**
+ * @brief This class represents the GraphicalEntity for a Location.
+ */
 class LocationGraphicalEntity : public TexturedGraphicalEntity {
 public:
 	LocationGraphicalEntity(const Location *location, const QList<QPointF> &basePolygon,

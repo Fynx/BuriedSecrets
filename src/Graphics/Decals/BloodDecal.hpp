@@ -5,9 +5,12 @@
 #include "Graphics/Decals/Decal.hpp"
 
 
-class BloodDecal : public Decal {
+/**
+ * @brief This class represents a decal for the blood splatter.
+ */
+class BloodDecal: public Decal {
 public:
 	BloodDecal(const Viewport *viewport, const GraphicalTextureSet *decalTextureSet);
-	void draw (sf::RenderTexture &renderTarget, const EffectData *effectData) override;
-	QRectF getTargetRect (const EffectData *effectData) override;
+	void draw(sf::RenderTexture &renderTarget, const EffectData *effectData) override;
+	QRectF getTargetRect(const EffectData *effectData) override;
 };

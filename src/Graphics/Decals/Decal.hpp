@@ -12,9 +12,9 @@ namespace sf {
 	class RenderTexture;
 };
 
+
 /**
  * @brief A class that represents a reusable decal hat can draw itself on a texture.
- *
  */
 class Decal {
 public:

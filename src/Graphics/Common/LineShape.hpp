@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -6,7 +6,12 @@
 #include <SFML/Graphics.hpp>
 
 
-class LineShape : public sf::Drawable
+/**
+ * @brief This class represents a segment between two points.
+ *
+ * An instance of this class can be drawn like any other SFML Drawable.
+ */
+class LineShape: public sf::Drawable
 {
 public:
 	LineShape();

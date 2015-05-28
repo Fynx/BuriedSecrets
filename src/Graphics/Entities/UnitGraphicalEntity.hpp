@@ -7,7 +7,10 @@
 class Unit;
 
 
-class UnitGraphicalEntity : public TexturedGraphicalEntity {
+/**
+ * @brief This class represents a GraphicalEntity for a unit.
+ */
+class UnitGraphicalEntity: public TexturedGraphicalEntity {
 public:
 	UnitGraphicalEntity(const Unit *unit, const QList<QPointF> &basePolygon,
 			    GraphicalEffectFactory *graphicalEffectFactory, const GraphicalTextureSet *textureSet);

@@ -7,10 +7,13 @@
 #include "Graphics/Entities/GraphicalEntity.hpp"
 
 
+/**
+ * @brief This is a common class for various sprite-based GraphicalEntities.
+ */
 class SpriteGraphicalEntity: public GraphicalEntity {
 public:
 	SpriteGraphicalEntity(const Object *object, const QList<QPointF> &basePolygon,
-				GraphicalEffectFactory *graphicalEffectFactory);
+		GraphicalEffectFactory *graphicalEffectFactory);
 
 	void draw(sf::RenderTarget *renderTarget) override;
 	void setPosition(const QPointF &position) override;

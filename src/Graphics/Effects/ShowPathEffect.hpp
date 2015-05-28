@@ -6,7 +6,11 @@
 #include "Graphics/Effects/GraphicalEffect.hpp"
 
 
-class ShowPathEffect : public GraphicalEffect {
+/**
+ * @brief This is a debug effect to illustrate units' paths.
+ *
+ */
+class ShowPathEffect: public GraphicalEffect {
 public:
 	ShowPathEffect(const Viewport *viewport);
 	void draw(const GraphicalEntity *graphicalEntity, sf::RenderTarget *renderTarget) override;

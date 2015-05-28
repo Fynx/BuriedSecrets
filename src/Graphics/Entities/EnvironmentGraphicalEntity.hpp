@@ -7,7 +7,10 @@
 class Environment;
 
 
-class EnvironmentGraphicalEntity : public TexturedGraphicalEntity {
+/**
+ * @brief This entity represents an environment object - a (usually) static object.
+ */
+class EnvironmentGraphicalEntity: public TexturedGraphicalEntity {
 public:
 	EnvironmentGraphicalEntity(const Environment *environmentObject, const QList<QPointF> &basePolygon,
 				   GraphicalEffectFactory *graphicalEffectFactory,

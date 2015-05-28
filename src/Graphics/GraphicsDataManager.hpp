@@ -15,7 +15,7 @@ class QString;
 /**
  * @brief Data manager for graphical resources - textures, fonts etc.
  *
- * Not, this class has to be deleted AFTER deleting anything that uses the resources kept here.
+ * NOTE this class should be deleted AFTER deleting anything that uses the resources kept here.
  */
 class GraphicsDataManager {
 public:

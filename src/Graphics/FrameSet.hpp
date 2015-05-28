@@ -7,7 +7,11 @@
 #include "DataManager/ImageMetaData.hpp"
 
 
-class FrameSet : public QHash<ImageMetaData, sf::Texture *> {
+/**
+ * @brief This is just a standard QHash with added destructor for managing textures' deallocation.
+ *
+ */
+class FrameSet: public QHash<ImageMetaData, sf::Texture *> {
 public:
 	~FrameSet();
 };

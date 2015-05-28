@@ -12,6 +12,9 @@ class GraphicsDataManager;
 class Viewport;
 
 
+/**
+ * @brief Factory for the GraphicalEntities.
+ */
 class GraphicalEntityFactory {
 public:
 	GraphicalEntityFactory(GraphicsDataManager *graphicsDataManager, const Viewport *viewport);
