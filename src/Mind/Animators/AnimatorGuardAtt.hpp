@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -13,6 +13,5 @@ class AnimatorGuardAtt : public Animator {
 public:
 	AnimatorGuardAtt(Mind *mind);
 
-	void act();
+	void act() override;
 };
-

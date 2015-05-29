@@ -4,11 +4,8 @@
 #include "Mind/Animators/AnimatorMobAttitude.hpp"
 
 #include "Common/Strings.hpp"
-#include "Common/Geometry.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
-#include "Mind/Mind.hpp"
-#include "Mind/MapManager/MapManager.hpp"
 
 using namespace BS;
 

@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -13,6 +13,6 @@ class AnimatorWeapon : public Animator {
 public:
 	AnimatorWeapon(Mind *mind);
 
-	void act();
+	void act() override;
 };
 

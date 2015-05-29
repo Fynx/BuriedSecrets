@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -13,5 +13,5 @@ class AnimatorTest : public Animator {
 public:
 	AnimatorTest(Mind *mind);
 
-	void act();
+	void act() override;
 };

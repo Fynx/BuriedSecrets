@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Mind/Animators/AnimatorApplyDamage.hpp"
@@ -8,7 +8,6 @@
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Unit.hpp"
-#include "Mind/Mind.hpp"
 
 AnimatorApplyDamage::AnimatorApplyDamage(Mind *mind) : Animator(mind)
 {
@@ -29,7 +28,8 @@ void AnimatorApplyDamage::act()
 
 		damage = damage * (1.0 - unit->getDamageControl());
 
-		info("ApplyDamage: " + unit->getName() + " " + QString::number(unit->getHP()) + " : " + QString::number(damage));
+		info("ApplyDamage: " + unit->getName() + " " + QString::number(unit->getHP()) + " : " +
+				QString::number(damage));
 		unit->setHP(unit->getHP() - damage);
 	}
 }

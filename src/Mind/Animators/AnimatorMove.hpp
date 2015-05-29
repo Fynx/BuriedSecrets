@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -13,9 +13,8 @@ class AnimatorMove : public Animator {
 public:
 	AnimatorMove(Mind *mind);
 
-	void act();
+	void act() override;
 
 private:
 	const float epsilon = 0.5;
 };
-

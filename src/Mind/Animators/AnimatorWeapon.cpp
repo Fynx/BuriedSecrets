@@ -1,13 +1,11 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
-
 #include "Mind/Animators/AnimatorWeapon.hpp"
 
 #include "Common/Strings.hpp"
 #include "DebugManager/DebugManager.hpp"
 #include "GameObjects/Item.hpp"
-#include "Mind/Mind.hpp"
 
 using namespace BS;
 

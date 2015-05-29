@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -7,12 +7,11 @@
 
 /**
  * @class AnimatorDie
- * Kills Units when their HP level reach 0.
+ * Kills Units when their HP level reaches 0.
  */
 class AnimatorDie : public Animator {
 public:
 	AnimatorDie(Mind *mind);
 
-	void act();
+	void act() override;
 };
-

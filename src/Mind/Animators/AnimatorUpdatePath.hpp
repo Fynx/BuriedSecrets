@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -15,7 +15,7 @@ class AnimatorUpdatePath : public Animator {
 public:
 	AnimatorUpdatePath(Mind *mind);
 
-	void act();
+	void act() override;
 
 private:
 	bool isStuck(Unit *unit, const QPoint &position);

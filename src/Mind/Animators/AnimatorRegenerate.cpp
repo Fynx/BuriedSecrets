@@ -1,7 +1,6 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 20142-2015
  * All rights reserved.
  */
-
 #include "Mind/Animators/AnimatorRegenerate.hpp"
 
 #include "DebugManager/DebugManager.hpp"

@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -13,7 +13,7 @@ class AnimatorResult : public Animator {
 public:
 	AnimatorResult(Mind *mind);
 
-	void act();
+	void act() override;
 };
 
 

@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -13,10 +13,8 @@ class AnimatorEffects : public Animator {
 public:
 	AnimatorEffects(Mind *mind);
 
-	void act();
+	void act() override;
 
 private:
 	QTime timer;
 };
-
-

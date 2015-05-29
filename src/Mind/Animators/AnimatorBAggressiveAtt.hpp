@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -13,7 +13,5 @@ class AnimatorBAggressiveAtt : public Animator {
 public:
 	AnimatorBAggressiveAtt(Mind *mind);
 
-	void act();
+	void act() override;
 };
-
-
