@@ -31,13 +31,12 @@ void MoveCommandEffectGraphicalEntity::updateData(const EffectData *effectData)
 	const PointEffectData *pdata = dynamic_cast<const PointEffectData *>(effectData);
 	if (pdata == nullptr) {
 		err("Move Command effect entity: Cannot cast to PointEffectData");
-		// FIXME: Removed the assertion because this should not cause many problems, but this sometimes pops up.
-// 		Q_ASSERT(false);
+		Q_ASSERT(false);
 		return;
 	}
 
 	QPointF pos = viewport->fromMetresToPixels(pdata->getPoint());
-	// FIXME this assumes the texture is symmetric.
+	// NOTE this assumes the texture is symmetric.
 	sprite.setPosition(pos.x() - sprite.getGlobalBounds().width / 2.0f, pos.y() - sprite.getGlobalBounds().height);
 }
 

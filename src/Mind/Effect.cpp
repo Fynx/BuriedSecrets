@@ -24,7 +24,7 @@ QString Effect::getName() const
 
 const EffectData *Effect::getEffectData() const
 {
-	return effectData.get();
+	return effectData;
 }
 
 
@@ -45,3 +45,8 @@ void Effect::setTimeout(const int timeout)
 	this->timeout = timeout;
 }
 
+
+void Effect::destroyData()
+{
+	delete effectData;
+}

@@ -110,9 +110,13 @@ void General::clearGameModules()
 	userInterface->clearGame();
 
 	delete graphics;
+	graphics = nullptr;
 	delete mind;
+	mind = nullptr;
 	delete physicsEngine;
+	physicsEngine = nullptr;
 	delete soundsManager;
+	soundsManager = nullptr;
 
 	gameInProgress_ = false;
 
@@ -137,7 +141,7 @@ void General::launchGame(const QString &path)
 	graphics->loadMap();
 
 	//start UI & Graphics
-	//WARNING starting newGame in UI must be after all data is loaded to Mind
+	//WARNING starting newGame in UI must be after all data is loaded to Mind.
 	userInterface->newGame(mind, graphics->getGraphicsWidget());
 	graphics->startRendering(userInterface->getViewport());
 

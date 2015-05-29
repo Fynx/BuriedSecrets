@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "Mind/ObjectEffectData.hpp"
@@ -17,3 +17,4 @@ const Object *ObjectEffectData::getObject() const
 {
 	return object;
 }
+

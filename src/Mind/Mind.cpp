@@ -297,6 +297,7 @@ QLinkedList<Effect>::iterator Mind::addEffect(const Effect &effect)
 
 void Mind::deleteEffect(QLinkedList<Effect>::iterator effectIterator)
 {
+	effectIterator->destroyData();
 	activeEffects.erase(effectIterator);
 }
 
@@ -625,7 +626,7 @@ void Mind::removeAllEffects(const QString &name)
 		auto iter = it;
 		++iter;
 		if (it->getName() == name)
-			activeEffects.erase(it);
+			deleteEffect(it);
 		it = iter;
 	}
 }

@@ -3,7 +3,6 @@
  */
 #pragma once
 
-
 /**
  * @brief Represents an implementation of data storage for an effect.
  */

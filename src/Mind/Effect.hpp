@@ -2,8 +2,6 @@
  * All rights reserved.
  */
 #pragma once
-#include <memory>
-
 #include <QString>
 
 #include "Mind/EffectData.hpp"
@@ -38,9 +36,17 @@ public:
 
 	void setTimeout(const int timeout);
 
+	/**
+	 * @brief This method deletes the EffectData object.
+	 *
+	 * WARNING: This method should only be called when you are absolutely sure this is the only object using said
+	 * data.
+	 */
+	void destroyData();
+
 private:
 
 	QString name;
-	std::shared_ptr<EffectData> effectData;
+	EffectData *effectData;
 	int timeout;
 };
