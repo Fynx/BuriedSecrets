@@ -10,11 +10,18 @@
 class TextureSetData;
 
 
+/**
+ * \class Prototype
+ * A Prototype represents a set of non-changeable data for one specific kind of game object.
+ * Data is stored in a map and accessible with functions.
+ * Prototypes also contain convenience graphics data.
+ */
 class Prototype {
 public:
 	Prototype();
 	~Prototype();
 
+	/** Prototype data access functions. */
 	bool hasProperty(const QString &key) const;
 	QVariant getProperty(const QString &key) const;
 	void setProperty(const QString &key, const QVariant &value);
@@ -40,6 +47,7 @@ public:
 	void setBasePolygon(const QList<QPointF> &basePolygon);
 
 private:
+	/** In this map data is accessible under literal keys. */
 	QMap <QString, QVariant> properties;
 	QPointF baseCentre;
 	QList<QPointF> basePolygon;

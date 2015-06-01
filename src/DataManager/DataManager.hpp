@@ -12,21 +12,34 @@
 
 #include <QtWidgets>
 
+/**
+ * \class DataManager
+ * DataManager contains all data needed in the program and provides functions for data management.
+ * There are convenience functions for loading and saving data.
+ *
+ * Non-changeable data for game objects is stored in prototypes.
+ * TODO resources
+ * TODO textureData
+ */
 class DataManager {
 public:
 	DataManager();
 	~DataManager();
 
+	/** Access to data files and directories. */
 	static const QString SavesExtension;
 	static const QString localDataPath();
 	static const QString savesPath();
 	static const QString basePath();
 	static const QString dataPath();
+
+	/** Access functions for data. */
 	QList <Prototype *> getAllPrototypes();
 	const Prototype *getPrototype(const QString &name) const;
 	const Resource *getResource(const QString &name) const;
 	const TextureSet *getTextureSet(const QString &name) const;
 
+	/** Convenience functions for save & load to/from file. */
 	template <class T>
 	void loadFromFile(const QString &path, T &s);
 	template <class T>
