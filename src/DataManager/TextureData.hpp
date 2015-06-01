@@ -10,6 +10,11 @@
 #include "DataManager/Resource.hpp"
 
 
+/**
+ * @brief Stores the single texture data.
+ *
+ * A single texture contains images for many frames in many directions.
+ */
 class TextureData {
 public:
 	typedef QList<QPair<QPair<BS::Graphic::Direction, int>, Resource *>> TextureFrames;

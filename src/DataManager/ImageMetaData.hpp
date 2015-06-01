@@ -6,6 +6,11 @@
 #include "Common/Enums.hpp"
 
 
+/**
+ * @brief MetaData for describing single images.
+ *
+ * Used as a key for a lot of maps.
+ */
 struct ImageMetaData {
 
 	ImageMetaData() {}
@@ -14,9 +19,6 @@ struct ImageMetaData {
 			: state{state}, weapon{weapon}, direction{direction}, frame{frame}
 	{}
 
-	// TODO Weapon state - It is done on the Graphics side now, using WeaponTypes from Enums, this could be moved
-	// here (getters, setters, make this a proper class, etc).
-	// TODO LocationState - ditto?
 	BS::State state;
 	BS::ItemType weapon;
 	BS::Graphic::Direction direction;

@@ -11,6 +11,9 @@
 #include "DataManager/TextureData.hpp"
 
 
+/**
+ * @brief A set of textures indexed with ImageMetaData.
+ */
 class TextureSet {
 public:
 	typedef QList<QPair<ImageMetaData, Resource *>> Frames;

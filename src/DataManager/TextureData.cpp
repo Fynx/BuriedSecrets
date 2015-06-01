@@ -53,4 +53,3 @@ TextureData::TextureFrames TextureData::getFrames()
 	return frames;
 }
 
-

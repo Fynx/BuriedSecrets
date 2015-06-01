@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  *
  * Some parts based on FileIO.hpp by Bartosz Szreder (https://github.com/szreder/devUtil)
@@ -18,8 +18,6 @@
  * There are convenience functions for loading and saving data.
  *
  * Non-changeable data for game objects is stored in prototypes.
- * TODO resources
- * TODO textureData
  */
 class DataManager {
 public:
@@ -77,7 +75,7 @@ void DataManager::loadFromFile(const QString &path, T &s)
 {
 	QFile file(path);
 	if (!file.open(QIODevice::ReadOnly)) {
-		warn(QString("DataManager: Failed to load file ") + path);
+		err(QString("DataManager: Failed to load file ") + path);
 		assert(false);
 		return;
 	}
@@ -92,7 +90,7 @@ void DataManager::saveToFile(const QString &path, const T &s)
 	QSaveFile tmpFile(path);
 
 	if (!tmpFile.open(QIODevice::WriteOnly)) {
-		warn(QString("DataManager: Failed to save to ") + path);
+		err(QString("DataManager: Failed to save to ") + path);
 		assert(false);
 		return;
 	}
