@@ -8,6 +8,10 @@
 #include <QtCore/QSet>
 #include <QtCore/QString>
 
+/**
+ * Enumeration types used in the entire project.
+ * There are convenience from/to string attached.
+ */
 
 namespace BS {
 	enum GameState : quint8 {
@@ -16,7 +20,7 @@ namespace BS {
 		Won,
 	};
 
-
+	/** Object type */
 	enum class Type : quint8 {
 		Invalid,
 		Item,
@@ -33,9 +37,6 @@ namespace BS {
 	QString changeTypeToString(BS::Type type);
 	BS::Type changeStringToType(const QString &string);
 
-	// FIXME(Tommalla): Yes, you'll hate me for this, but I couldn't force QHash to hash State. I'm happy to talk
-	// about why and try to solve it together with someone.
-	// For now it's just going to be a standard enum, because I'm stuck here and don't want it to stay that way.
 	enum State {
 		Attack = 0,    // Unit
 		Assemble,      // Unit
@@ -115,7 +116,7 @@ namespace BS {
 		return static_cast<quint8>(itemType);
 	}
 
-	// The set of the item types that are weapons.
+	/** Set of the item types that are weapons. */
 	const static QSet<ItemType> WeaponTypes {
 		ItemType::Invalid,
 		ItemType::AssaultRifle,
@@ -129,8 +130,8 @@ namespace BS {
 	QString changeItemTypeToString(BS::ItemType type);
 	BS::ItemType changeStringToItemType(const QString &str);
 
+	/** Items of certain types can be put in certain slots. */
 	BS::Slot getCorrespondingSlot(BS::ItemType type);
-
 
 	enum class EntryType : quint8 {
 		Death,
@@ -172,8 +173,9 @@ namespace BS {
 	BS::ConditionType changeStringToConditionType(const QString &str);
 
 
+	/** Graphics info, here for convenience. */
 	namespace Graphic {
-		// This is an enum for a reason (underlying value implicitly converted to a numeric type).
+		/** This is an enum for a reason (underlying value implicitly converted to a numeric type). */
 		enum Direction {
 			Right     = 0,
 			RightUp   = 1,

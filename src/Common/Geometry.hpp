@@ -11,7 +11,9 @@
 #include <QRectF>
 #include <QVector2D>
 
-
+/**
+ * Math functions and constants used in Graphics and PhysicsEngine.
+ */
 namespace BS {
 	namespace Geometry {
 		const float RADTOGEG = 57.2957795f;

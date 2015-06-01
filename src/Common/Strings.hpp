@@ -4,6 +4,10 @@
 #pragma once
 #include <QtCore>
 
+/**
+ * List of strings used in the entire project.
+ */
+
 namespace AnimationProperties {
 	const QString Frames        = "frames";
 	const QString FramesNumber  = "framesNumber";
