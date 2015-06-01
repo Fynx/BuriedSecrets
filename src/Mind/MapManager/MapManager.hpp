@@ -23,14 +23,14 @@ class Unit;
 
 
 /**
- * @brief This class manages the map representation and can answer questions about Field of View, Fog of War, points
+ * @brief This class manages the map representation and can answer questions about Field of View, Fog of War, points'
  * visiblity and accessibility per faction. It needs to be updated about the creation and deletion of every object after
  * it is instantiated, since it manages its internal view of the map.
  */
 class MapManager {
 public:
 	MapManager(const QJsonObject &json, const Mind *mind, const PhysicsEngine *physicsEngine,
-		   const int playerFactionId);
+			const int playerFactionId);
 	~MapManager();
 
 	const Map *getMap() const;
@@ -80,7 +80,7 @@ public:
 	/**
 	 * @brief This method returns an Object containing the point or nullptr if no such object exists.
 	 *
-	 * IMPORTANT: This method ignores units! It can return any Object except a unit. If you need the unit for some
+	 * WARNING: This method ignores units! It can return any Object except a unit. If you need the unit for some
 	 * reason, please rename this method and create another one for units.
 	 */
 	const Object *getObjectContaining(const QPointF &point, const float inflate = 0.0f) const;

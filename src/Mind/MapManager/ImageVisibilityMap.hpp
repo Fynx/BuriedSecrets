@@ -8,6 +8,12 @@
 #include "Mind/MapManager/VisibilityMap.hpp"
 
 
+/**
+ * @brief An image-based VisibilityMap implementation.
+ *
+ * The underlying structure is a QImage. All the updates are drawn into it. It is basically a matrix-based
+ * implementation, but an image is a lot more convenient to use.
+ */
 class ImageVisibilityMap : public VisibilityMap {
 public:
 	ImageVisibilityMap(const QSize &size);

@@ -10,8 +10,7 @@ class QPoint;
 
 
 /**
- * @brief This class represents a map of accessible grid tiles (obtained from dicretizing the map).
- *
+ * @brief This class represents a map of accessible grid tiles (obtained by dicretizing the map).
  */
 class AccessiblityMap {
 public:

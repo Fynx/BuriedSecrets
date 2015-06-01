@@ -9,7 +9,6 @@ class JournalEntry;
 
 /**
  * @brief Logical representation of the map.
- *
  */
 class Map {
 public:
@@ -21,6 +20,9 @@ public:
 	 * @brief True if point (x, y) can be stepped on. False otherwise.
 	 */
 	bool canStepAt(const float x, const float y) const;
+	/**
+	 * @brief True if the coordinates represent a valid point on the map.
+	 */
 	bool isPointValid(const QPointF &point) const;
 
 	const QString &getName() const;
@@ -30,7 +32,6 @@ public:
 	const QSizeF &getSize() const;
 
 private:
-	//TODO extract data into fields or something
 	QJsonObject json;
 	QString name;
 	QString desc;

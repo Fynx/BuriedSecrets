@@ -27,7 +27,7 @@ HPAStarPathFinder::HPAStarPathFinder(const MapManager *mapManager, const Mind *m
 	for (const Object *obj : objects) {
 		const Unit *unit = dynamic_cast<const Unit *>(obj);
 		if (unit != nullptr && obj->getPrototype()->hasProperty(Properties::BaseRadius)) {
-			getBlockNodes(getGridSize(obj->getPrototype()->getProperty(Properties::BaseRadius).toFloat()),
+			getBlockContainer(getGridSize(obj->getPrototype()->getProperty(Properties::BaseRadius).toFloat()),
 				      unit);
 		}
 	}
@@ -206,7 +206,7 @@ void HPAStarPathFinder::removeObject(const Object *object, const QPointF &positi
 }
 
 
-HPAStarPathFinder::BlockNodesContainer *HPAStarPathFinder::getBlockNodes(const int gridSize, const Unit *unit)
+HPAStarPathFinder::BlockNodesContainer *HPAStarPathFinder::getBlockContainer(const int gridSize, const Unit *unit)
 {
 	auto it = blockNodes.find(gridSize);
 	if (it == blockNodes.end()) {
@@ -556,7 +556,7 @@ bool HPAStarPathFinder::canPass(const QPointF &from, const Unit *unit, const QPo
 void HPAStarPathFinder::removeEdges (const HPAStarPathFinder::Node *node)
 {
 	for (const Edge &e : node->edges) {
-		// Remove as quick as possible.
+		// Remove edges as quickly as possible (O(1)).
 		for (std::size_t i = 0; i < e.v->edges.size(); ++i) {
 			if (e.v->edges[i].v == node) {
 				std::swap(e.v->edges[i], e.v->edges.back());

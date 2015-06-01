@@ -12,7 +12,13 @@ class Mind;
 class Unit;
 
 
-class AStarPathFinder : public PathFinder {
+/**
+ * @brief This is a path finder implementation using A* as the algorithm.
+ *
+ * The nodes of the search are fake logical tiles of the map obtained by discretizing the coordinates. The grid tiles
+ * are squares of side length equal to the diameter of the unit for which the search is done.
+ */
+class AStarPathFinder: public PathFinder {
 public:
 	AStarPathFinder(const MapManager *mapManager, const Mind *mind);
 	~AStarPathFinder() override;
@@ -25,9 +31,10 @@ protected:
 	float getGridSize(const float radius) const;
 	float heuristicDistance(const QPoint& from, const QPoint& to);
 	QPair<bool, QList<QPointF> > tryFindPath(const QPointF &source, const Unit *unit, const float gridSize,
-		const QPointF &target, float distanceBound);
+			const QPointF &target, float distanceBound);
 
 private:
+	// The search node used by A*.
 	struct Node {
 		Node() : point{-1, -1}, costFromSource{100000.0f}, heuristicCost{100000.0f}, previousNode{-1} {};
 		Node(const QPoint &point, const float costFromSource, const float heuristicCost,
@@ -41,6 +48,7 @@ private:
 		int previousNode;
 	};
 
+	// Precomputed convenience data.
 	static const QPoint directions[8];
 	static const float costs[8];
 	static const float sqrtTwo;
@@ -50,7 +58,7 @@ private:
 	 * target object, otherwise this method will return false.
 	 */
 	bool isTarget(const QPointF &point, const QPointF &target, const Object *targetObject,
-		const float gridSize) const;
+			const float gridSize) const;
 
 	QHash<int, AccessiblityMap *> accessibilityMaps;
 };

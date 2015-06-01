@@ -14,7 +14,6 @@ class VisibilityUpdate;
  * @brief This class is a container for a visibility map.
  *
  * It can update and query the visibility of regions, points and objects.
- *
  */
 class VisibilityMap {
 public:
@@ -43,6 +42,11 @@ public:
 	virtual void clear() = 0;
 
 protected:
+	/**
+	 * @brief True if target belonging to owner can be seen by the unit from.
+	 *
+	 * Used by isVisible(const Unit *, const Object *, const PhysicsEngine *). You have to implement this.
+	 */
 	virtual bool isVisible(const Unit *from, const QPointF &target, const Object *owner,
 			       const PhysicsEngine *physicsEngine) const = 0;
 };

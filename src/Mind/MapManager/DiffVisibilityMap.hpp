@@ -6,7 +6,10 @@
 #include "Mind/MapManager/VisibilityUpdate.hpp"
 
 
-class DiffVisibilityMap : public VisibilityMap {
+/**
+ * @brief The VisibilityMap implementation which is based on visibility diffs stored inside.
+ */
+class DiffVisibilityMap: public VisibilityMap {
 public:
 	bool isVisible(const QPointF &point) const override;
 	void update(const VisibilityUpdate &visibilityUpdate) override;

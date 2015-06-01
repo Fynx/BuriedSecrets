@@ -7,13 +7,12 @@
 
 /**
  * @brief This class represents a precomputed accessiblity map - a static capture of the accessibility.
- *
  */
 class PrecomputedAccessibilityMap : public AccessiblityMap {
 public:
 	PrecomputedAccessibilityMap(const MapManager *mapManager, const int gridSize, const Unit *unit);
 
-	// No time to write those, and having them wouldn't give us anything anyway.
+	// There's no need for value semantics for this class.
 	PrecomputedAccessibilityMap(const PrecomputedAccessibilityMap &other) = delete;
 	PrecomputedAccessibilityMap(PrecomputedAccessibilityMap &&other) = delete;
 

@@ -13,7 +13,7 @@
 
 bool DiffVisibilityMap::isVisible(const QPointF &point) const
 {
-	// TODO we might want to implement this at some point.
+	// NOTE This was never needed so it was never implemented.
 	err("Not implemented yet.");
 	assert(false);
 }
