@@ -67,6 +67,8 @@ QList<QPointF> HPAStarPathFinder::getPath(const QPointF &source, const Unit *uni
 	Node *targetNode = insertNode(target, gridSize, unit);
 
 	std::vector<SearchNode> nodes(10000);
+	std::vector<bool> visited(nodes.size(), false);
+	QHash<Node *, int> ptrToId;
 
 	// Step 2: Calculate the path on abstract nodes.
 	struct comp {
@@ -80,8 +82,6 @@ QList<QPointF> HPAStarPathFinder::getPath(const QPointF &source, const Unit *uni
 	};
 
 	std::set<int, comp> q{comp{&nodes}};
-	std::vector<bool> visited(10000, false);
-	QHash<Node *, int> ptrToId;
 	int lastId = 0;
 	ptrToId[sourceNode] = 0;
 	nodes[0].node = sourceNode;

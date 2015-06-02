@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #pragma once
@@ -12,7 +12,6 @@ class JournalEntry;
  */
 class Map {
 public:
-// 	Map(const MapInfo *mapInfo);
 	Map(const QJsonObject &json);
 
 	const QJsonObject &getJson() const;

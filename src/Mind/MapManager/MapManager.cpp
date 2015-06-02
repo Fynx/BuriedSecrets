@@ -22,6 +22,7 @@ MapManager::MapManager(const QJsonObject &json, const Mind *mind, const PhysicsE
 MapManager::~MapManager()
 {
 	delete pathFinder;
+	delete visibilityUpdatesDiff;
 }
 
 const Map *MapManager::getMap() const

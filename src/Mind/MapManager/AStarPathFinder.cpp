@@ -124,8 +124,8 @@ QPair< bool, QList< QPointF > > AStarPathFinder::tryFindPath(const QPointF &sour
 // 		<< (targetObject != nullptr ? targetObject->getName() : "no object");
 
 	QHash<QPoint, int> pointToNode;
-	std::vector<bool> visited(10000, false);
 	std::vector<Node> nodes(10000);
+	std::vector<bool> visited(nodes.size(), false);
 	int lastId = -1;
 
 	struct comp {
