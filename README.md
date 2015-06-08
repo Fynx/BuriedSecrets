@@ -38,3 +38,12 @@ http://opengameart.org/content/teleporter-circle
 
 Church for temple from:    
 http://opengameart.org/content/church
+
+Most of the guns from:   
+http://opengameart.org/content/gun-construction-kit  
+
+Machete from:   
+http://www.vecteezy.com/vector-art/68670-vector-weapons
+
+Hunting rifle from:   
+http://www.easyvectors.com/browse/animals/huting-rifle-with-scope-clip-art
