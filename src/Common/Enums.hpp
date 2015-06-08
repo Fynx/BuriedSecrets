@@ -10,7 +10,7 @@
 
 /**
  * Enumeration types used in the entire project.
- * There are convenience from/to string attached.
+ * There are convenience functions from/to strings attached.
  */
 
 namespace BS {
