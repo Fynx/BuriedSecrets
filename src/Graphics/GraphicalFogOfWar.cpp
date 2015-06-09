@@ -8,44 +8,44 @@
 
 
 const char *blurH = "\
-uniform sampler2D screenColorBuffer;\
-const float blurSize = 0.5/256.0;\
+uniform sampler2D colorBuffer;\
+const float blurFactor = 0.5 / 256.0;\
 \
 void main(void)\
 {\
-   vec2 vTexCoord = gl_TexCoord[0].st;\
-   vec4 sum = vec4(0.0);\
-   sum += texture2D(screenColorBuffer, vec2(vTexCoord.x - 4.0*blurSize, vTexCoord.y)) * 0.05;\
-   sum += texture2D(screenColorBuffer, vec2(vTexCoord.x - 3.0*blurSize, vTexCoord.y)) * 0.09;\
-   sum += texture2D(screenColorBuffer, vec2(vTexCoord.x - 2.0*blurSize, vTexCoord.y)) * 0.12;\
-   sum += texture2D(screenColorBuffer, vec2(vTexCoord.x - blurSize, vTexCoord.y)) * 0.15;\
-   sum += texture2D(screenColorBuffer, vec2(vTexCoord.x, vTexCoord.y)) * 0.16;\
-   sum += texture2D(screenColorBuffer, vec2(vTexCoord.x + blurSize, vTexCoord.y)) * 0.15;\
-   sum += texture2D(screenColorBuffer, vec2(vTexCoord.x + 2.0*blurSize, vTexCoord.y)) * 0.12;\
-   sum += texture2D(screenColorBuffer, vec2(vTexCoord.x + 3.0*blurSize, vTexCoord.y)) * 0.09;\
-   sum += texture2D(screenColorBuffer, vec2(vTexCoord.x + 4.0*blurSize, vTexCoord.y)) * 0.05;\
-   gl_FragColor = sum;\
+   vec2 tex = gl_TexCoord[0].st;\
+   vec4 res = vec4(0.0);\
+   res += texture2D(colorBuffer, vec2(tex.x - 4.0 * blurFactor, tex.y)) * 0.05;\
+   res += texture2D(colorBuffer, vec2(tex.x - 3.0 * blurFactor, tex.y)) * 0.09;\
+   res += texture2D(colorBuffer, vec2(tex.x - 2.0 * blurFactor, tex.y)) * 0.12;\
+   res += texture2D(colorBuffer, vec2(tex.x - blurFactor, tex.y)) * 0.15;\
+   res += texture2D(colorBuffer, vec2(tex.x, tex.y)) * 0.16;\
+   res += texture2D(colorBuffer, vec2(tex.x + blurFactor, tex.y)) * 0.15;\
+   res += texture2D(colorBuffer, vec2(tex.x + 2.0 * blurFactor, tex.y)) * 0.12;\
+   res += texture2D(colorBuffer, vec2(tex.x + 3.0 * blurFactor, tex.y)) * 0.09;\
+   res += texture2D(colorBuffer, vec2(tex.x + 4.0 * blurFactor, tex.y)) * 0.05;\
+   gl_FragColor = res;\
 }";
 
 
 const char *blurV = "\
 uniform sampler2D screenTexture;\
-const float blurSize = 0.5/256.0;\
- \
+const float blurFactor = 0.5 / 256.0;\
+\
 void main(void)\
 {\
-   vec2 vTexCoord = gl_TexCoord[0].st;\
-   vec4 sum = vec4(0.0);\
-   sum += texture2D(screenTexture, vec2(vTexCoord.x, vTexCoord.y - 4.0*blurSize)) * 0.05;\
-   sum += texture2D(screenTexture, vec2(vTexCoord.x, vTexCoord.y - 3.0*blurSize)) * 0.09;\
-   sum += texture2D(screenTexture, vec2(vTexCoord.x, vTexCoord.y - 2.0*blurSize)) * 0.12;\
-   sum += texture2D(screenTexture, vec2(vTexCoord.x, vTexCoord.y - blurSize)) * 0.15;\
-   sum += texture2D(screenTexture, vec2(vTexCoord.x, vTexCoord.y)) * 0.16;\
-   sum += texture2D(screenTexture, vec2(vTexCoord.x, vTexCoord.y + blurSize)) * 0.15;\
-   sum += texture2D(screenTexture, vec2(vTexCoord.x, vTexCoord.y + 2.0*blurSize)) * 0.12;\
-   sum += texture2D(screenTexture, vec2(vTexCoord.x, vTexCoord.y + 3.0*blurSize)) * 0.09;\
-   sum += texture2D(screenTexture, vec2(vTexCoord.x, vTexCoord.y + 4.0*blurSize)) * 0.05;\
-   gl_FragColor = sum;\
+   vec2 tex = gl_TexCoord[0].st;\
+   vec4 res = vec4(0.0);\
+   res += texture2D(screenTexture, vec2(tex.x, tex.y - 4.0 * blurFactor)) * 0.05;\
+   res += texture2D(screenTexture, vec2(tex.x, tex.y - 3.0 * blurFactor)) * 0.09;\
+   res += texture2D(screenTexture, vec2(tex.x, tex.y - 2.0 * blurFactor)) * 0.12;\
+   res += texture2D(screenTexture, vec2(tex.x, tex.y - blurFactor)) * 0.15;\
+   res += texture2D(screenTexture, vec2(tex.x, tex.y)) * 0.16;\
+   res += texture2D(screenTexture, vec2(tex.x, tex.y + blurFactor)) * 0.15;\
+   res += texture2D(screenTexture, vec2(tex.x, tex.y + 2.0 * blurFactor)) * 0.12;\
+   res += texture2D(screenTexture, vec2(tex.x, tex.y + 3.0 * blurFactor)) * 0.09;\
+   res += texture2D(screenTexture, vec2(tex.x, tex.y + 4.0 * blurFactor)) * 0.05;\
+   gl_FragColor = res;\
 }";
 
 
