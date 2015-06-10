@@ -7,6 +7,17 @@ Building requirements
 - SFML 2.1
 - Qt5
 
+Installation steps
+-----
+To install this program write following commands:
+
+mkdir build
+cd build
+cmake  -DCMAKE_BUILD_TYPE=Release ..
+make -j5 install
+
+Alternatively use provided RPM package to make system-wide installation
+
 Credits
 -----
 TMIM_Heroine textures for Dr. Snee from:    
