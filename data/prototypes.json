@@ -58,7 +58,7 @@
 		"avatar": "el-bogdano-s",
 		"picture": "el-bogdano",
 		"baseRadius": 1,
-		"baseCentre": [1, 2],
+		"baseCentre": [2.5, 6],
 		"age": 35,
 		"attack": 6,
 		"encumbrance" : 24,
@@ -72,7 +72,7 @@
 		"sightRange": 3.0,
 		"movementSpeed": 5,
 		"regeneration": 1.5,
-		"textureSet": "Soszu"
+		"textureSet": "ElBogdano"
 	},
 
 

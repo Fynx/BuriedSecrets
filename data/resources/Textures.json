@@ -41,13 +41,6 @@
 		"path": "images/units/DrSnee/RunAttackPistol.png"
 	},
 
-	"Soszu": {
-		"type": "texture",
-		"rows": 8,
-		"columns": 3,
-		"path": "images/Soszu.png"
-	},
-
 	"RunBase": {
 		"type": "texture",
 		"rows": 8,
@@ -146,13 +139,6 @@
 		"path": "images/units/MobTank/Attack.png"
 	},
 
-	"SoszuHouse": {
-		"type": "texture",
-		"rows": 1,
-		"columns": 1,
-		"path": "images/SoszuHouse.png"
-	},
-
 	"WiredFence": {
 		"type": "texture",
 		"rows": 1,
@@ -246,8 +232,29 @@
 
 	"Miss": {
 		"type": "texture",
-		"rows" : 1,
+		"rows": 1,
 		"columns": 1,
 		"path": "images/Miss.png"
+	},
+
+	"ElBogdanoRunAssaultRifle": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 19,
+		"path": "images/units/ElBogdano/RunAssaultRifle.png"
+	},
+
+	"ElBogdanoIdle": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 1,
+		"path": "images/units/ElBogdano/Idle.png"
+	},
+
+	"ElBogdanoAttack": {
+		"type": "texture",
+		"rows": 8,
+		"columns": 2,
+		"path": "images/units/ElBogdano/Attack.png"
 	}
 }

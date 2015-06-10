@@ -22,12 +22,15 @@
 		}
 	},
 
-	"Soszu": {
+	"ElBogdano": {
 		"type": "TextureSet",
 		"textures": {
-			"Idle": "Soszu",
+			"Idle": "ElBogdanoIdle",
+			"Run_AssaultRifle": "ElBogdanoRunAssaultRifle",
 			"RunBase": "RunBase",
-			"IdleBase": "IdleBase"
+			"IdleBase": "IdleBase",
+			"Attack": "ElBogdanoAttack",
+			"RunAttack": "ElBogdanoAttack"
 		}
 	},
 
@@ -68,13 +71,6 @@
 			"Run": "MobTankRun",
 			"Attack": "MobTankAttack",
 			"RunAttack": "MobTankAttack"
-		}
-	},
-
-	"SoszuHouse": {
-		"type": "TextureSet",
-		"textures": {
-			"Idle": "SoszuHouse"
 		}
 	},
 
