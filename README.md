@@ -58,3 +58,6 @@ http://www.vecteezy.com/vector-art/68670-vector-weapons
 
 Hunting rifle from:   
 http://www.easyvectors.com/browse/animals/huting-rifle-with-scope-clip-art
+
+Soldier 1.0 for El Bogdano from:  
+http://opengameart.org/content/soldier-10
