@@ -64,3 +64,9 @@ http://opengameart.org/content/soldier-10
 
 Portraits for characters from:   
 http://opengameart.org/content/flare-portrait-pack-resized
+
+Barbed wire assembled from parts from:   
+http://www.freepik.com/free-vector/high-quality-stylish-security-logo-vector_682316.htm#term=wire fence&page=1&position=0
+
+Jailhouse for bunker from:   
+http://opengameart.org/content/jailhouse
