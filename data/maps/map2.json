@@ -66,8 +66,6 @@
 				"AnimatorGoPsycho"
 			],
 			"equipment": 5,
-			"x": 110.0,
-			"y": 310.0,
 			"hp": 130,
 			"psychosis": 75
 		},
@@ -3520,6 +3518,9 @@
 				"AnimatorBuildingDmg"
 			],
 			"unitMet": 4,
+			"units": [
+				4
+			],
 			"x": 103,
 			"y": 313
 		},
