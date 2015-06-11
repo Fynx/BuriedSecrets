@@ -1,4 +1,4 @@
-/* YoLoDevelopment, 2014
+/* YoLoDevelopment, 2014-2015
  * All rights reserved.
  */
 #include "GraphicsWidget.hpp"
@@ -38,10 +38,12 @@ void GraphicsWidget::showEvent(QShowEvent *)
 	}
 }
 
+
 QPaintEngine * GraphicsWidget::paintEngine() const
 {
 	return nullptr;
 }
+
 
 void GraphicsWidget::paintEvent(QPaintEvent*)
 {

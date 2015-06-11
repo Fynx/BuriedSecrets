@@ -41,6 +41,7 @@ Graphics::~Graphics()
 	delete drawOrder;
 	delete FOW;
 	delete graphicalEntityFactory;
+	delete decalManager;
 }
 
 
@@ -282,7 +283,7 @@ void Graphics::updateEffects(QVector<GraphicalEntity *> &visibleEntities)
 
 	for (const Effect &effect : *effects) {
 		if (handleDecal(effect)) {
-			// FIXME remove used decals?
+			// NOTE should we remove used decals?
 			continue;	// The effect was a decal, already handled, move on.
 		}
 

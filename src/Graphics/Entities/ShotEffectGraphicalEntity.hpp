@@ -20,5 +20,4 @@ public:
 
 private:
 	LineShape line;
-	// TODO hit or miss
 };

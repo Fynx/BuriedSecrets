@@ -19,6 +19,12 @@ DecalManager::DecalManager(const MapManager *mapManager, sf::RenderTexture *mapT
 {}
 
 
+DecalManager::~DecalManager()
+{
+	qDeleteAll(decals);
+}
+
+
 void DecalManager::drawDecal(const Effect &effect)
 {
 	// TODO

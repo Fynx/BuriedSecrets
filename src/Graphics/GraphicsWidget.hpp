@@ -19,7 +19,7 @@ public:
 	sf::RenderWindow *getCanvas();
 
 protected:
-	virtual QPaintEngine * paintEngine() const;
+	virtual QPaintEngine *paintEngine() const;
 	virtual void showEvent(QShowEvent *);
 	virtual void paintEvent(QPaintEvent *);
 

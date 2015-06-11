@@ -21,6 +21,7 @@ class DecalManager {
 public:
 	DecalManager(const MapManager *mapManager, sf::RenderTexture *mapTexture,
 		     GraphicsDataManager *graphicsDataManager, const Viewport *viewport);
+	~DecalManager();
 	/**
 	 * @brief Draws the decal for the effect.
 	 */

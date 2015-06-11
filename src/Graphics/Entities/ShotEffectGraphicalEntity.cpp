@@ -31,8 +31,8 @@ void ShotEffectGraphicalEntity::updateData(const EffectData *effectData)
 	const PointToPointEffectData *ptpData = dynamic_cast<const PointToPointEffectData *>(effectData);
 	if (ptpData == nullptr) {
 		err("Cannot update data for Shot Effect Entity!");
-		// FIXME: Removed the assertion because this should not cause many problems, but this sometimes pops up.
-// 		Q_ASSERT(false);
+		// NOTE: Removed the assertion because this should not cause many problems, but this sometimes pops up.
+		// It is safe as-is now, but I'd like to know why it happens.
 		return;
 	}
 
