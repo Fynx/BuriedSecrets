@@ -27,7 +27,6 @@ DecalManager::~DecalManager()
 
 void DecalManager::drawDecal(const Effect &effect)
 {
-	// TODO
 	// Get the RenderTexture for the surface (get texture bounds from the right decal).
 	// WARNING Only map supported now.
 	Decal *decal = getDecal(effect.getName());

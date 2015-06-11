@@ -290,7 +290,6 @@ void Graphics::updateEffects(QVector<GraphicalEntity *> &visibleEntities)
 		const ObjectEffectData *objData = dynamic_cast<const ObjectEffectData *>(effect.getEffectData());
 
 		if (objData == nullptr) {
-			// Not an object effect - TODO
 			EffectGraphicalEntity *effectEntity = graphicalEntityFactory->getOrCreateEffectEntity(effect);
 			if (effectEntity != nullptr) {
 				visibleEntities.append(effectEntity);

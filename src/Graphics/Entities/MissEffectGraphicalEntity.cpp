@@ -25,7 +25,7 @@ void MissGraphicalEntity::draw(sf::RenderTarget *renderTarget)
 
 void MissGraphicalEntity::update (const float timeDelta)
 {
-	// TODO Animation here
+	// Potential animation goes here.
 }
 
 

@@ -55,7 +55,7 @@ void BloodDecal::draw(sf::RenderTexture &renderTarget, const EffectData *effectD
 
 QRectF BloodDecal::getTargetRect (const EffectData *effectData)
 {
-	// TODO (not used yet)
+	// NOTE Not used yet.
 	return QRectF{};
 }
 

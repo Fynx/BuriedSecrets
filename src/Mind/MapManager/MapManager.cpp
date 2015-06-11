@@ -217,8 +217,7 @@ void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle &cir
 			QPointF centre;
 			QPointF left, right;
 			if (prot->hasProperty("baseRadius")) {
-				// It's an object with a circular base.
-				// TODO FIXME not doing it now, because of lack of time to do the math.
+				// It's an object with a circular base. NOTE We skip it.
 				// If we want this in the future, here's where we'd implement it.
 				continue;	//Not supported.
 			} else if (prot->hasProperty("basePolygon")) {
@@ -241,7 +240,6 @@ void MapManager::addVisibility(const Unit *unit, const BS::Geometry::Circle &cir
 			}
 
 			BS::Geometry::Polygon ommitPolygon;
-			// ommitPolygon.append(centre);	// TODO uncomment when height is fixed.
 			ommitPolygon.append(left);
 			ommitPolygon.append(getPointOnCircleInline(circle, left));
 			ommitPolygon.append(getPointOnCircleInline(circle, right));

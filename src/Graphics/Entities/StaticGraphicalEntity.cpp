@@ -20,7 +20,7 @@ StaticGraphicalEntity::StaticGraphicalEntity(
 
 void StaticGraphicalEntity::setDirection(const BS::Graphic::Direction &direction)
 {
-	// FIXME Not supported. Do we wan't to support it in any way?
+	// NOTE Not supported. Do we wan't to support it in any way?
 }
 
 
