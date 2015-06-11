@@ -126,6 +126,9 @@ void Mind::loadFromJson(const QJsonObject &json)
 				qDebug() << "\t\t\tcontains journal (" << j->getUid() << ")";
 			}
 
+			for (int quest : faction->getQuests())
+				qDebug() << "\t\t\tcontains quest" << quest;
+
 			break;
 		}
 		case BS::Type::Unit: {
@@ -165,8 +168,10 @@ void Mind::loadFromJson(const QJsonObject &json)
 						<< "with search difficulty" << loc->getItemsDifficulty()[item];
 			}
 			for (int unitUid : loc->getUnitsUids()) {
+				qDebug() << "\t\t\tcontains unit" << unitUid;
 				loc->insertUnit(unitUid);
 				getUnit(unitUid)->setLocation(loc);
+				getUnit(unitUid)->setState(BS::State::Inside);
 			}
 
 			break;

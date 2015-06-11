@@ -9,7 +9,8 @@
 			"name": "BasicFaction",
 			"animators": [
 				"AnimatorConsume",
-				"AnimatorRegenerate"
+				"AnimatorRegenerate",
+				"AnimatorQuest"
 			],
 			"equipment": 2,
 			"food": 2500,
@@ -18,6 +19,7 @@
 			"campRange": 25,
 			"faction": 1,
 			"units": [4, 6],
+			"quests": [3400, 3401],
 			"relations": [[1, 1505], [2, -100]]
 		},
 
@@ -151,8 +153,6 @@
 				"AnimatorGoPsycho"
 			],
 			"equipment": 9,
-			"x": 50.0,
-			"y": 290.0,
 			"hp": 110,
 			"psychosis": 75
 		},
@@ -1582,6 +1582,9 @@
 				"AnimatorBuildingDmg"
 			],
 			"unitMet": 8,
+			"units": [
+				8
+			],
 			"x": 26,
 			"y": 217
 		},
@@ -2087,18 +2090,7 @@
 			"uid": 3000,
 			"name": "BasicJournal",
 			"entries": [
-				3101
 			]
-		},
-
-
-		{
-			"uid": 3101,
-			"name": "BasicJournalEntry",
-			"title": "Welcome to hell",
-			"entryType": "help",
-			"text": "Before me things create were none,\nsave things Eternal, and eternal I endure.\nAll hope abandon ye who enter here.",
-			"date": "10.10.1010 10:10"
 		},
 
 		{
@@ -2109,15 +2101,60 @@
 		},
 
 		{
+			"uid": 3103,
+			"name": "BasicJournalEntry",
+			"entryType": "quest",
+			"title": "Find the survivor",
+			"text": "Someone camped here few hours ago... If there's a chance, we can't pass the opportunity to acquire another skilled team member."
+		},
+
+		{
+			"uid": 3104,
+			"name": "BasicJournalEntry",
+			"entryType": "quest",
+			"title": "We found Dr. D. Snee!",
+			"text": "We found Dr. D. Snee! Her medic skills will help us to get through!"
+		},
+
+		{
+			"uid": 3105,
+			"name": "BasicJournalEntry",
+			"entryType": "quest",
+			"title": "Reach the temple",
+			"text": "Inscriptions suggest there's a temple further to the north. We must get there!"
+		},
+
+		{
 			"uid": 3400,
 			"name": "BasicQuest",
-			"title": "Yhui",
+			"title": "Reach the temple",
 			"startConditions": [
 				{
 					"conditionType": "timeCount",
-					"argument": 50
+					"argument": 3
 				}
-			]
+			],
+			"startEntry": 3105
+		},
+
+		{
+			"uid": 3401,
+			"name": "BasicQuest",
+			"title": "Find the survivor",
+			"startConditions": [
+				{
+					"conditionType": "timeCount",
+					"argument": 10
+				}
+			],
+			"successConditions": [
+				{
+					"conditionType": "locationReached",
+					"argument": 1002
+				}
+			],
+			"startEntry": 3103,
+			"successEntry": 3104
 		}
 	]
 }
