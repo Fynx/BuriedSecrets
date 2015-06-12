@@ -6,7 +6,7 @@
 		<file alias="empty">icons/empty.png</file>
 		<file alias="exit">icons/exit.png</file>
 		<file alias="food">icons/food.png</file>
-		<file alias="guard">icons/guard.jpg</file>
+		<file alias="guard">icons/guard.png</file>
 		<file alias="house">icons/house.png</file>
 		<file alias="house-selected">icons/house-selected.png</file>
 		<file alias="journal">icons/journal.png</file>

@@ -70,3 +70,6 @@ http://www.freepik.com/free-vector/high-quality-stylish-security-logo-vector_682
 
 Jailhouse for bunker from:   
 http://opengameart.org/content/jailhouse
+
+Attack/guard icons from:   
+http://opengameart.org/content/various-common-icons
