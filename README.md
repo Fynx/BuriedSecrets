@@ -4,19 +4,19 @@ An awesome game!
 
 Building requirements
 -----
-- SFML 2.1
+- SFML 2.2
 - Qt5
 
 Installation steps
 -----
-To install this program write following commands:
+To install this program use following commands:
 
 mkdir build
 cd build
 cmake  -DCMAKE_BUILD_TYPE=Release ..
 make -j5 install
 
-Alternatively use provided RPM package to make system-wide installation
+Alternatively use the provided RPM package to make system-wide installation
 
 Credits
 -----
