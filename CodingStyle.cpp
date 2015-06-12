@@ -18,6 +18,12 @@
 #define anotherFoo(B)\
 return Bar()
 
+// Empty lines:
+// Use whatever feels most readable inside compound statements ({}).
+// Use either 1 or 2 empty lines between top-level code blocks (function definitions, class/variable declarations etc.).
+
+// Line length: Please try not to exceed the limit of 120 characters per single line.
+
 
 class BarBar {
 public:
