@@ -23,7 +23,6 @@ public:
 	const QSet<int> &selectedUnitsUids() const;
 
 	void keyPressEvent(const QKeyEvent *event);
-	void mousePressEvent(const QMouseEvent *event);
 	void refresh();
 
 public slots:
@@ -39,7 +38,7 @@ private:
 	void markBuildingsSelected();
 	void addSelectionEffect(int objUid);
 	void removeSelectionEffect(int objUid);
-	void removeDeadFromSelection();
+	void removeDeadUnits();
 
 	Mind *const mind_;
 	const GameViewport &gameViewport_;

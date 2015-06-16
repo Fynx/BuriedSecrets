@@ -147,10 +147,8 @@ void GameInterface::keyPressEvent(QKeyEvent *event)
 
 void GameInterface::mousePressEvent(QMouseEvent *event)
 {
-	if (childAt(event->pos()) == boardWidget_) {
-		gameSelections_.mousePressEvent(event);
+	if (childAt(event->pos()) == boardWidget_)
 		gameCommands_.mousePressEvent(event);
-	}
 
 	QWidget::mousePressEvent(event);
 }

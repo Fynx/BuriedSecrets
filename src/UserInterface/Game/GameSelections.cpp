@@ -29,8 +29,6 @@ const QSet <int> &GameSelections::selectedUnitsUids() const
 
 void GameSelections::keyPressEvent(const QKeyEvent *event)
 {
-	removeDeadFromSelection();
-
 	//Selection groups
 	if (event->key() >= Qt::Key_0 && event->key() <= Qt::Key_9) {
 		int groupNumber = event->key() - Qt::Key_0;
@@ -48,15 +46,9 @@ void GameSelections::keyPressEvent(const QKeyEvent *event)
 	}
 }
 
-void GameSelections::mousePressEvent(const QMouseEvent *event)
-{
-	//TODO why this is needed? is this still necessary?
-	removeDeadFromSelection();
-}
-
 void GameSelections::refresh()
 {
-	removeDeadFromSelection();
+	removeDeadUnits();
 	markBuildingsSelected();
 }
 
@@ -139,6 +131,7 @@ void GameSelections::selectUnits(const QSet<int> &unitsUids)
 		removeSelectionEffect(uid);
 
 	selectedUnitsUids_ = unitsUids;
+	removeDeadUnits();
 
 	for (auto &uid : selectedUnitsUids_)
 		addSelectionEffect(uid);
@@ -207,7 +200,7 @@ void GameSelections::removeSelectionEffect(int objUid)
 	uidToSelectionEffect_.erase(selection);
 }
 
-void GameSelections::removeDeadFromSelection()
+void GameSelections::removeDeadUnits()
 {
 	auto selectedUnitsUidsCopy_ = selectedUnitsUids_;
 	for (auto uid : selectedUnitsUidsCopy_)
